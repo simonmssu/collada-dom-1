@@ -37,6 +37,7 @@ SRC				 := dae.cpp \
 					daeMetaElementAttribute.cpp \
 					daeMetaGroup.cpp \
 					daeMetaSequence.cpp \
+					daeRawResolver.cpp \
 					daeSIDResolver.cpp \
 					daeStringRef.cpp \
 					daeStringTable.cpp \
