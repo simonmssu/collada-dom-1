@@ -13,6 +13,7 @@
 #ifndef __domTexture_h__
 #define __domTexture_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -78,8 +79,7 @@ public:
 			 * Sets the semantic attribute.
 			 * @param atSemantic The new value for the semantic attribute.
 			 */
-			void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;		
-	 _validAttributeArray[0] = true; }
+			void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the source attribute.
@@ -95,8 +95,7 @@ public:
 			 * Sets the source attribute.
 			 * @param atSource The new value for the source attribute.
 			 */
-			void setSource( const xsAnyURI &atSource ) { attrSource = atSource;		
-	 _validAttributeArray[1] = true; }
+			void setSource( const xsAnyURI &atSource ) { attrSource = atSource; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -174,8 +173,7 @@ public:
 		 * Sets the profile attribute.
 		 * @param atProfile The new value for the profile attribute.
 		 */
-		void setProfile( xsString atProfile ) { *(daeStringRef*)&attrProfile = atProfile;	
-	 _validAttributeArray[0] = true; }
+		void setProfile( xsString atProfile ) { *(daeStringRef*)&attrProfile = atProfile; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the asset element.
@@ -287,8 +285,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the name attribute.
@@ -299,8 +298,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[1] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.

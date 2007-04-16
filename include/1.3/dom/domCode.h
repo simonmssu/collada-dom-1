@@ -13,6 +13,7 @@
 #ifndef __domCode_h__
 #define __domCode_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -71,8 +72,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the lang attribute.
@@ -83,8 +85,7 @@ public:	//Accessors and Mutators
 	 * Sets the lang attribute.
 	 * @param atLang The new value for the lang attribute.
 	 */
-	void setLang( xsNMTOKEN atLang ) { *(daeStringRef*)&attrLang = atLang;
-	 _validAttributeArray[1] = true; }
+	void setLang( xsNMTOKEN atLang ) { *(daeStringRef*)&attrLang = atLang; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the profile attribute.
@@ -95,8 +96,7 @@ public:	//Accessors and Mutators
 	 * Sets the profile attribute.
 	 * @param atProfile The new value for the profile attribute.
 	 */
-	void setProfile( xsString atProfile ) { *(daeStringRef*)&attrProfile = atProfile;
-	 _validAttributeArray[2] = true; }
+	void setProfile( xsString atProfile ) { *(daeStringRef*)&attrProfile = atProfile; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the semantic attribute.
@@ -107,8 +107,7 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;
-	 _validAttributeArray[3] = true; }
+	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the url attribute.
@@ -124,8 +123,7 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl;
-	 _validAttributeArray[4] = true; }
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[4] = true; }
 
 	/**
 	 * Gets the value of this element.

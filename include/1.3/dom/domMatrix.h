@@ -13,6 +13,7 @@
 #ifndef __domMatrix_h__
 #define __domMatrix_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -52,8 +53,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
-	 _validAttributeArray[0] = true; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the _value array.

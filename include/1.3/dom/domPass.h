@@ -13,6 +13,7 @@
 #ifndef __domPass_h__
 #define __domPass_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -65,8 +66,7 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;	
-	 _validAttributeArray[0] = true; }
+		void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the source attribute.
@@ -82,8 +82,7 @@ public:
 		 * Sets the source attribute.
 		 * @param atSource The new value for the source attribute.
 		 */
-		void setSource( const xsAnyURI &atSource ) { attrSource = atSource;	
-	 _validAttributeArray[1] = true; }
+		void setSource( const xsAnyURI &atSource ) { attrSource = atSource; _validAttributeArray[1] = true; }
 
 	protected:
 		/**

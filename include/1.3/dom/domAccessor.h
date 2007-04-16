@@ -13,6 +13,7 @@
 #ifndef __domAccessor_h__
 #define __domAccessor_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -87,8 +88,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the count attribute.
@@ -99,8 +101,7 @@ public:	//Accessors and Mutators
 	 * Sets the count attribute.
 	 * @param atCount The new value for the count attribute.
 	 */
-	void setCount( xsNonNegativeInteger atCount ) { attrCount = atCount;
-	 _validAttributeArray[1] = true; }
+	void setCount( xsNonNegativeInteger atCount ) { attrCount = atCount; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the offset attribute.
@@ -111,8 +112,7 @@ public:	//Accessors and Mutators
 	 * Sets the offset attribute.
 	 * @param atOffset The new value for the offset attribute.
 	 */
-	void setOffset( xsNonNegativeInteger atOffset ) { attrOffset = atOffset;
-	 _validAttributeArray[2] = true; }
+	void setOffset( xsNonNegativeInteger atOffset ) { attrOffset = atOffset; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the source attribute.
@@ -128,8 +128,7 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const xsAnyURI &atSource ) { attrSource = atSource;
-	 _validAttributeArray[3] = true; }
+	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the stride attribute.
@@ -140,8 +139,7 @@ public:	//Accessors and Mutators
 	 * Sets the stride attribute.
 	 * @param atStride The new value for the stride attribute.
 	 */
-	void setStride( xsNonNegativeInteger atStride ) { attrStride = atStride;
-	 _validAttributeArray[4] = true; }
+	void setStride( xsNonNegativeInteger atStride ) { attrStride = atStride; _validAttributeArray[4] = true; }
 
 	/**
 	 * Gets the param element array.

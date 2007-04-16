@@ -13,6 +13,7 @@
 #ifndef __domProgram_h__
 #define __domProgram_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -86,8 +87,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the name attribute.
@@ -98,8 +100,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[1] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the url attribute.
@@ -115,8 +116,7 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl;
-	 _validAttributeArray[2] = true; }
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the asset element.

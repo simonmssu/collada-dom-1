@@ -39,7 +39,7 @@ domNode::registerElement()
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "lookat" );
@@ -113,7 +113,7 @@ domNode::registerElement()
     _Meta->addContents(daeOffsetOf(domNode,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domNode,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domNode,_CMData), 1);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

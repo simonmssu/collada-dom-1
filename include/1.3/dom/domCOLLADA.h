@@ -13,6 +13,7 @@
 #ifndef __domCOLLADA_h__
 #define __domCOLLADA_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -73,8 +74,7 @@ public:	//Accessors and Mutators
 	 * Sets the version attribute.
 	 * @param atVersion The new value for the version attribute.
 	 */
-	void setVersion( xsString atVersion ) { *(daeStringRef*)&attrVersion = atVersion;
-	 _validAttributeArray[1] = true; }
+	void setVersion( xsString atVersion ) { *(daeStringRef*)&attrVersion = atVersion; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.

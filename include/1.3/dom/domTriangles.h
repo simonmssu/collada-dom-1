@@ -13,6 +13,7 @@
 #ifndef __domTriangles_h__
 #define __domTriangles_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -171,8 +172,7 @@ public:	//Accessors and Mutators
 	 * Sets the count attribute.
 	 * @param atCount The new value for the count attribute.
 	 */
-	void setCount( xsNonNegativeInteger atCount ) { attrCount = atCount;
-	 _validAttributeArray[0] = true; }
+	void setCount( xsNonNegativeInteger atCount ) { attrCount = atCount; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the material attribute.
@@ -188,8 +188,7 @@ public:	//Accessors and Mutators
 	 * Sets the material attribute.
 	 * @param atMaterial The new value for the material attribute.
 	 */
-	void setMaterial( const xsAnyURI &atMaterial ) { attrMaterial = atMaterial;
-	 _validAttributeArray[1] = true; }
+	void setMaterial( const xsAnyURI &atMaterial ) { attrMaterial = atMaterial; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the param element array.

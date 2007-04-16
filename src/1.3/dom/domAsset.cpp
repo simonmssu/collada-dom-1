@@ -39,7 +39,7 @@ domAsset::registerElement()
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "author" );
@@ -125,7 +125,7 @@ domAsset::registerElement()
     _Meta->addContents(daeOffsetOf(domAsset,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domAsset,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domAsset,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domAsset));
 	_Meta->validate();

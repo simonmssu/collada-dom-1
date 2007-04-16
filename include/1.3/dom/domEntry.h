@@ -13,6 +13,7 @@
 #ifndef __domEntry_h__
 #define __domEntry_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -84,8 +85,9 @@ public:
 		 * Sets the id attribute.
 		 * @param atId The new value for the id attribute.
 		 */
-		void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;	
-	 _validAttributeArray[0] = true; }
+		void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+			if( _document != NULL ) _document->changeElementID( this, attrId );
+		}
 
 		/**
 		 * Gets the name attribute.
@@ -96,8 +98,7 @@ public:
 		 * Sets the name attribute.
 		 * @param atName The new value for the name attribute.
 		 */
-		void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;	
-	 _validAttributeArray[1] = true; }
+		void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the qualifier attribute.
@@ -108,8 +109,7 @@ public:
 		 * Sets the qualifier attribute.
 		 * @param atQualifier The new value for the qualifier attribute.
 		 */
-		void setQualifier( xsNMTOKEN atQualifier ) { *(daeStringRef*)&attrQualifier = atQualifier;	
-	 _validAttributeArray[2] = true; }
+		void setQualifier( xsNMTOKEN atQualifier ) { *(daeStringRef*)&attrQualifier = atQualifier; _validAttributeArray[2] = true; }
 
 		/**
 		 * Gets the semantic attribute.
@@ -120,8 +120,7 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsToken atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;	
-	 _validAttributeArray[3] = true; }
+		void setSemantic( xsToken atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[3] = true; }
 
 		/**
 		 * Gets the type attribute.
@@ -132,8 +131,7 @@ public:
 		 * Sets the type attribute.
 		 * @param atType The new value for the type attribute.
 		 */
-		void setType( xsNMTOKEN atType ) { *(daeStringRef*)&attrType = atType;	
-	 _validAttributeArray[4] = true; }
+		void setType( xsNMTOKEN atType ) { *(daeStringRef*)&attrType = atType; _validAttributeArray[4] = true; }
 
 		/**
 		 * Gets the value of this element.
@@ -217,8 +215,7 @@ public:	//Accessors and Mutators
 	 * Sets the function attribute.
 	 * @param atFunction The new value for the function attribute.
 	 */
-	void setFunction( xsNMTOKEN atFunction ) { *(daeStringRef*)&attrFunction = atFunction;
-	 _validAttributeArray[0] = true; }
+	void setFunction( xsNMTOKEN atFunction ) { *(daeStringRef*)&attrFunction = atFunction; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the semantic attribute.
@@ -229,8 +226,7 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;
-	 _validAttributeArray[1] = true; }
+	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the param element array.

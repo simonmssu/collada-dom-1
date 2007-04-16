@@ -41,7 +41,7 @@ domSource::registerElement()
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "array" );
@@ -89,7 +89,7 @@ domSource::registerElement()
     _Meta->addContents(daeOffsetOf(domSource,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domSource,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domSource,_CMData), 1);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

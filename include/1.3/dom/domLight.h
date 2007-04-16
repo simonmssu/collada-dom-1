@@ -13,6 +13,7 @@
 #ifndef __domLight_h__
 #define __domLight_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -84,8 +85,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the name attribute.
@@ -96,8 +98,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[1] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the type attribute.
@@ -108,8 +109,7 @@ public:	//Accessors and Mutators
 	 * Sets the type attribute.
 	 * @param atType The new value for the type attribute.
 	 */
-	void setType( domLightType atType ) { attrType = atType;
-	 _validAttributeArray[2] = true; }
+	void setType( domLightType atType ) { attrType = atType; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the asset element.

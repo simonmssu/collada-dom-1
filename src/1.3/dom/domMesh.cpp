@@ -59,7 +59,7 @@ domMesh::registerElement()
 	mea->setElementType( domSource::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 3, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 3, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "lines" );
@@ -107,7 +107,7 @@ domMesh::registerElement()
     _Meta->addContents(daeOffsetOf(domMesh,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domMesh,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domMesh,_CMData), 1);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
