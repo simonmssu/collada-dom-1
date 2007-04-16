@@ -387,13 +387,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libcollada_dom_d.lib libcollada_LIBXMLPlugin_d.lib libcollada_stdErrPlugin_d.lib libcollada_STLDatabase_d.lib libxml2_a.lib iconv.lib zlib.lib wsock32.lib"
-				OutputFile="..\..\bin-dbg\libcollada141dom12_d.dll"
+				OutputFile="..\..\bin-dbg\libcollada141dom13_d.dll"
 				AdditionalLibraryDirectories="$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib;../../tmp/win32"
 				IgnoreDefaultLibraryNames="libc.lib, libcmt.lib, msvcrt.lib, libcd.lib, libcmtd.lib"
 				GenerateDebugInformation="true"
 				OptimizeReferences="1"
 				EnableCOMDATFolding="1"
-				ImportLibrary="..\..\lib-dbg\libcollada141dom12_d.lib"
+				ImportLibrary="..\..\lib-dbg\libcollada141dom13_d.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -466,9 +466,9 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libcollada_dom.lib libcollada_LIBXMLPlugin.lib libcollada_stdErrPlugin.lib libcollada_STLDatabase.lib libxml2_a.lib iconv.lib zlib.lib wsock32.lib"
-				OutputFile="..\..\bin\libcollada141dom12.dll"
+				OutputFile="..\..\bin\libcollada141dom13.dll"
 				AdditionalLibraryDirectories="$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib;../../tmp/win32"
-				ImportLibrary="..\..\lib\libcollada141dom12.lib"
+				ImportLibrary="..\..\lib\libcollada141dom13.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
