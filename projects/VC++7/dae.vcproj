@@ -191,7 +191,7 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="../../lib-dbg/libcollada141dom12_d.pdb"
+				ProgramDataBaseFileName="../../lib-dbg/libcollada141dom13_d.pdb"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="4"/>
@@ -240,7 +240,7 @@
 				PreprocessorDefinitions="WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="../../lib/libcollada141dom12.pdb"
+				ProgramDataBaseFileName="../../lib/libcollada141dom13.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="0"/>
