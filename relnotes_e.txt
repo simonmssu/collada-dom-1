@@ -9,9 +9,9 @@
  implied. See the License for the specific language governing permissions and limitations under the 
  License.
 ======================================================================
-COLLADA 1.4.1 DOM 1.2.0
+COLLADA 1.4.1 DOM 1.3.0
 
-Date: November 10, 2006
+Date: March 30, 2007
 Author: Andrew C. Lorino, Mark C. Barnes
 ======================================================================
 ======================================================================
@@ -27,6 +27,7 @@ Known bugs
 
   SourceForge Open Issues
   
+  1609207   daeURI::makeRelativeTo inconsistent on Windows Platforms
   1561338   New daeTArray single element constructor should be explicit
   1437830 	syntax error in sample DOM code in programming guide
 
@@ -67,8 +68,8 @@ Restriction
 * [Guideline]
   The COLLADA DOM, as of release 1.2.0, is now available as a Windows DLL. The DLL naming conventions is
   libcollada($COLLADA_VERSION)dom($DOM_VERSION).dll. For this release the library is named
-  libcollada141dom12.dll and the import library to use when building client applications is 
-  libcollada141dom12.lib and can be found in the COLLADA_DOM/lib directory. Debug versions have _d appended
+  libcollada141dom13.dll and the import library to use when building client applications is 
+  libcollada141dom13.lib and can be found in the COLLADA_DOM/lib directory. Debug versions have _d appended
   to the end of the filename.
 
 * [Guideline]
@@ -141,6 +142,19 @@ fix up most of the memory leak issues and a few other issues.
 ======================================================================
 Changes (for developer)
 ======================================================================
+* Fixed in COLLADA 1.4.1 DOM 1.3.0
+- 1675177	URIs without filepath crash DOM
+- 1644658	<mipmap_generate> crashes DOM
+- 1643680	<color_mask>'s bool4 values are not saved
+- 1639097	Some instance_* element's save without some attributes
+- 1634513	Need domAny::getElementType
+- 1631700	multiple <init_from> crashes DOM
+- 1623755	Crash while loading an image init_from
+- 1618489	Missing DLLSPEC in daeMetaElement.h
+- 1616083	VC7 dae.vcproj problems
+- 1614431	COLLADA_DOM: daeAtomicType.cpp: error in format string in
+- 1609709	daeTarray get3at and get4at functions are incorrect
+
 * Fixed in COLLADA 1.4.1 DOM 1.2.0
 - 1593134 	daeElement::clone doesn't work perfectly
 - 1591999  	vc7 project files debug files wrong place
