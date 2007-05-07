@@ -220,8 +220,6 @@ daeMetaElement::appendAttribute(daeMetaAttribute* attr)
 		return;
 
 	if (strcmp(attr->getName(),"_value") == 0) {
-		_usesStringContents = attr->getType()->getUsesStrings();
-
 		_metaValue = attr;
 	}
 	else

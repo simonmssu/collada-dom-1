@@ -36,10 +36,7 @@ void
 daeMetaArrayAttribute::set(daeElement* e, daeString s)
 {
 	daeArray* array = (daeArray*)getWritableMemory(e);
-	daeInt typeSize = _type->getSize();
-	daeInt cnt = (daeInt)array->getCount();
-	array->setRawCount(++cnt);
-	_type->stringToMemory((char*)s, array->getRawData()+(cnt-1)*typeSize);
+	_type->stringToArray((daeChar*)s, *array);
 }
 
 void daeMetaArrayAttribute::copy(daeElement* to, daeElement *from) {
@@ -53,7 +50,7 @@ void daeMetaArrayAttribute::copy(daeElement* to, daeElement *from) {
 	daeChar *fromData = fromArray->getRawData();
 	daeChar str[4096];
 	for ( int i = 0; i < cnt; i++ ) {
-		_type->memoryToString( fromData+i*typeSize, str, 2048 );
+		_type->memoryToString( fromData+i*typeSize, str, 4096 );
 		_type->stringToMemory( str, toData+i*typeSize );
 	}
 }

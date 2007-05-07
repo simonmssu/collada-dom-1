@@ -128,13 +128,6 @@ public: // public accessors
 	daeBool getIsTrackableForQueries() { return _isTrackableForQueries; }
 
 	/**
-	 * Gets whether elements of this type have "string" based
-	 * contents; this is necessary to change the parsing mode for strings.
-	 * @return Returns true if this element type has string contents, false if not.
-	 */
-	daeBool getUsesStringContents() { return _usesStringContents; }
-
-	/**
 	 * Sets whether elements of this type should be tracked
 	 * for @c daeDatabase queries.
 	 * @param trackable Indicates whether this element should be tracked.  

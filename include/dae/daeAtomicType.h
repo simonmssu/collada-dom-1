@@ -81,19 +81,30 @@ public:
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 
 	/**
+	 * Reads a whitespace separated list of atomic items into an array. The array is
+	 * cleared before writing into it.
+	 * @param src Whitespace separated list of items.
+	 * @param array The output array of data.
+	 * @return Returns true if the operation was successful, false otherwise.
+	 */
+	virtual daeBool stringToArray(daeChar* src, daeArray& array);
+
+	/**
+	 * Performs a virtual comparison operation between two values of the same atomic type.
+	 * @param value1 Memory location of the first value.
+	 * @param value2 Memory location of the second value.
+	 * @return Returns a positive integer if value1 > value2, a negative integer if 
+	 * value1 < value2, and 0 if value1 == value2.
+	 */
+	virtual daeInt compare(daeChar* value1, daeChar* value2);
+
+	/**
 	 * Resolves a reference, if indeed this type is a reference type.
 	 * @param element The containing element.
 	 * @param src Source of the raw data to resolve.
 	 * should be placed.
 	 */
 	virtual void resolve(daeElementRef element, daeChar* src);
-
-	/**
-	 * Determines if this atomic type requires a special string-based
-	 * parse state.
-	 * @return Returns true if this type requires string contents parsing, false if not.
-	 */
-	virtual daeBool getUsesStrings() { return false; }
 	
 	/**
 	 * Gets the array of strings as name bindings for this type.
@@ -490,13 +501,6 @@ public:
 	daeStringRefType();
 public:
 	/**
-	 * Override base class function.
-	 * Determines if this atomic type requires a special string-based
-	 * parse state.
-	 * @return Returns true if this type requires string contents parsing, false if not.
-	 */
-	virtual daeBool getUsesStrings();
-	/**
 	 * Overrides the base class memory to string conversion function.
 	 * @param src Raw data from which to get the typed items.
 	 * @param dst Destination to output the string version of the elements to.
@@ -513,6 +517,14 @@ public:
 	 * @return Returns true if the operation was successful, false if not successful.
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
+	/**
+	 * Performs a virtual comparison operation between two values of the same atomic type.
+	 * @param value1 Memory location of the first value.
+	 * @param value2 Memory location of the second value.
+	 * @return Returns a positive integer if value1 > value2, a negative integer if 
+	 * value1 < value2, and 0 if value1 == value2.
+	 */
+	virtual daeInt compare(daeChar* value1, daeChar* value2);
 								   
 };
 
@@ -531,12 +543,13 @@ public:
 	
 public:
 	/**
-	 * Override base class function.
-	 * Determines if this atomic type requires a special string-based
-	 * parse state.
-	 * @return Returns true if this type requires string contents parsing, false if not.
+	 * Overrides the base class @c stringToMemoryFunction().
+	 * Reads an atomic typed item into the destination runtime memory.
+	 * @param src Source string.
+	 * @param dst Raw binary to store the resulting value.
+	 * @return Returns true if the operation was successful, false if not successful.
 	 */
-	virtual daeBool getUsesStrings();
+	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 	
 };
 
@@ -679,13 +692,6 @@ public:
 	 * should be placed.
 	 */
 	virtual void resolve(daeElementRef element, daeChar* src);
-	/**
-	 * Override base class function.
-	 * Determines if this atomic type requires a special string-based
-	 * parse state.
-	 * @return Returns true if this type requires string contents parsing, false if not.
-	 */
-	virtual daeBool getUsesStrings() { return true; }
 };
 
 /**

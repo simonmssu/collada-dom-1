@@ -22,6 +22,44 @@
 daeAtomicTypeArray* daeAtomicType::_Types = NULL;
 daeBool daeAtomicType::_TypesInitialized = false;
 
+namespace {
+	// Skip leading whitespace
+	daeChar* skipWhitespace(daeChar* s) {
+		if (s) {
+			// !!!GAC NEEDS TO BE CHANGED to use XML standard whitespace parsing
+			while(*s == ' ' || *s == '\r' || *s == '\n' || *s == '\t') s++;
+		}
+
+		return s;
+	}
+
+	// Move forward past this token
+	daeChar* skipToken(daeChar* s) {
+		while(*s != ' ' && *s != '\r' && *s != '\n' && *s != '\t' && *s != 0) s++;
+		return s;
+	}
+
+	// Given a string of whitespace-separated tokens, this function returns a null-terminated string
+	// containing the next token. If the next token is already null-terminated, no memory is allocated
+	// and the function returns the pointer that was passed in. Note that this function assumes that
+	// the string passed in starts with the next token and not a whitespace.
+	// If returnValue != s, the client should free the returnValue with delete[].
+	daeChar* extractToken(daeChar* s) {
+		if (!s)
+			return 0;
+
+		daeChar* tmp = skipToken(s);
+		if (*tmp != 0) {
+			daeChar* scopy = new daeChar[tmp-s+1];
+			strncpy(scopy, s, tmp-s);
+			scopy[tmp-s] = 0;
+			return scopy;
+		}
+
+		return s;
+	}
+}
+
 void
 daeAtomicType::initializeKnownTypes()
 {
@@ -121,6 +159,31 @@ daeAtomicType::stringToMemory(daeChar *src, daeChar* dstMemory)
 {
 	sscanf(src, _scanFormat, dstMemory);
 	return true;
+}
+
+daeBool
+daeAtomicType::stringToArray(daeChar* src, daeArray& array) {
+	array.clear();
+	array.setElementSize(_size);
+
+	while (*src != 0)
+	{
+		src = skipWhitespace(src);
+		if(*src != 0)
+		{
+			array.setRawCount(array.getCount()+1);
+			if (!stringToMemory(src, array.getRawData()+(array.getCount()-1)*_size))
+				return false;
+			src = skipToken(src);
+		}
+	}
+
+	return true;
+}
+
+daeInt
+daeAtomicType::compare(daeChar* value1, daeChar* value2) {
+	return memcmp(value1, value2, _size);
 }
 
 daeBool
@@ -424,15 +487,17 @@ daeBool
 daeBool
 daeFloatType::stringToMemory(daeChar *src, daeChar* dstMemory)
 {
-	if ( strcmp(src, "NaN") == 0 ) {
+	src = skipWhitespace(src);
+
+	if ( strncmp(src, "NaN", 3) == 0 ) {
 		daeErrorHandler::get()->handleWarning("NaN encountered while setting an attribute or value\n");
 		*(daeInt*)(dstMemory) = 0x7f800002;
 	}
-	else if ( strcmp(src, "INF") == 0 ) {
+	else if ( strncmp(src, "INF", 3) == 0 ) {
 		daeErrorHandler::get()->handleWarning( "INF encountered while setting an attribute or value\n" );
 		*(daeInt*)(dstMemory) = 0x7f800000;
 	}
-	else if ( strcmp(src, "-INF") == 0 ) {
+	else if ( strncmp(src, "-INF", 4) == 0 ) {
 		daeErrorHandler::get()->handleWarning( "-INF encountered while setting an attribute or value\n" );
 		*(daeInt*)(dstMemory) = 0xff800000;
 	}
@@ -469,15 +534,17 @@ daeBool
 daeBool
 daeDoubleType::stringToMemory(daeChar *src, daeChar* dstMemory)
 {
-	if ( strcmp(src, "NaN") == 0 ) {
+	src = skipWhitespace(src);
+
+	if ( strncmp(src, "NaN", 3) == 0 ) {
 		daeErrorHandler::get()->handleWarning( "NaN encountered while setting an attribute or value\n" );
 		*(daeLong*)(dstMemory) = 0x7ff0000000000002LL;
 	}
-	else if ( strcmp(src, "INF") == 0 ) {
+	else if ( strncmp(src, "INF", 3) == 0 ) {
 		daeErrorHandler::get()->handleWarning( "INF encountered while setting an attribute or value\n" );
 		*(daeLong*)(dstMemory) = 0x7ff0000000000000LL;
 	}
-	else if ( strcmp(src, "-INF") == 0 ) {
+	else if ( strncmp(src, "-INF", 4) == 0 ) {
 		daeErrorHandler::get()->handleWarning( "-INF encountered while setting an attribute or value\n" );
 		*(daeLong*)(dstMemory) = 0xfff0000000000000LL;
 	}
@@ -496,16 +563,6 @@ daeBool
 	return true;
 }
 
-daeBool
-daeStringRefType::getUsesStrings()
-{
-	return true;
-}
-daeBool
-daeTokenType::getUsesStrings()
-{
-	return false;
-}
 daeBool
 daeStringRefType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
 {
@@ -685,7 +742,11 @@ daeIDResolverType::resolve(daeElementRef element, daeChar* src)
 daeBool
 daeIDResolverType::stringToMemory(daeChar* src, daeChar* dstMemory)
 {
-	((daeIDRef*)dstMemory)->setID(src);
+	src = skipWhitespace(src);
+	daeChar* id = extractToken(src);
+	((daeIDRef*)dstMemory)->setID(id);
+	if (id != src)
+		delete[] id;
 	return true;
 }
 
@@ -697,12 +758,29 @@ daeStringRefType::stringToMemory(daeChar* srcChars, daeChar* dstMemory)
 }
 
 daeBool
+daeTokenType::stringToMemory(daeChar* src, daeChar* dst)
+{
+	src = skipWhitespace(src);
+	daeChar* srcTmp = extractToken(src);
+	*((daeStringRef*)dst) = srcTmp;
+	if (srcTmp != src)
+		delete[] srcTmp;
+	return true;
+}
+
+daeBool
 daeEnumType::stringToMemory(daeChar* src, daeChar* dst )
 {
+	src = skipWhitespace(src);
+	daeChar* srcTmp = extractToken(src);
+
 	size_t index(0); 
-	if ( _strings->find(src,index) == DAE_ERR_QUERY_NO_MATCH ) return false;
+	if ( _strings->find(srcTmp,index) == DAE_ERR_QUERY_NO_MATCH ) return false;
 	daeEnum val = _values->get( index );
 	*((daeEnum*)dst) = val;
+
+	if (srcTmp != src)
+		delete[] srcTmp;
 
 	return true;
 }
@@ -771,3 +849,9 @@ daeElementRefType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
 	return false;
 }
 
+daeInt
+daeStringRefType::compare(daeChar* value1, daeChar* value2) {
+	daeString s1 = *((daeStringRef *)value1);
+	daeString s2 = *((daeStringRef *)value2);
+	return strcmp(s1, s2);
+}

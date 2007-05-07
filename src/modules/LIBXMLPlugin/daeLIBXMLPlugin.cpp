@@ -339,12 +339,10 @@ void daeLIBXMLPlugin::readAttributes( daeElement *element, xmlTextReaderPtr read
 		while(xmlTextReaderMoveToNextAttribute(reader))
 		{
 			daeMetaAttribute *ma = element->getMeta()->getMetaAttribute((const daeString)xmlTextReaderConstName(reader));
-			if( ( ma != NULL && ma->getType() != NULL && ma->getType()->getUsesStrings() ) || 
-				strcmp(element->getMeta()->getName(), "any") == 0 )
+			if( ( ( ma == NULL || ma->getType() == NULL ) && strcmp(element->getMeta()->getName(), "any") ) ||
+				!element->setAttribute( (const daeString)xmlTextReaderConstName(reader), 
+										(const daeString)xmlTextReaderConstValue(reader) ) )
 			{
-				// String is used as one piece
-				if(!element->setAttribute( (const daeString)xmlTextReaderConstName(reader), 
-					(const daeString)xmlTextReaderConstValue(reader) ) )
 				{
 					const xmlChar * attName	 = xmlTextReaderConstName(reader);
 					const xmlChar * attValue = xmlTextReaderConstValue(reader);
@@ -357,58 +355,6 @@ void daeLIBXMLPlugin::readAttributes( daeElement *element, xmlTextReaderPtr read
 #endif
 					daeErrorHandler::get()->handleWarning( err );
 				}
-			}
-			else
-			{
-				// String needs to be broken up into whitespace seperated items.  The "set" methods for numbers are smart enough to
-				// grab just the first number in a string, but the ones for string lists require a null terminator between each
-				// string.  If this could be fixed we could avoid a copy and memory allocation by using xmlTextReaderConstValue(reader)
-				if ( ma == NULL ) {
-					const xmlChar * attName	 = xmlTextReaderConstName(reader);
-					const xmlChar * attValue = xmlTextReaderConstValue(reader);
-					char err[512];
-					memset( err, 0, 512 );
-#if LIBXML_VERSION >= 20620
-					sprintf(err,"The DOM was unable to create an attribute %s = %s at line %d\nProbably a schema violation.\n", attName, attValue ,xmlTextReaderGetParserLineNumber(reader));
-#else				
-					sprintf(err,"The DOM was unable to create an attribute %s = %s \nProbably a schema violation.\n", attName, attValue);
-#endif
-					daeErrorHandler::get()->handleWarning( err );
-					continue;
-				}
-				xmlChar* value = xmlTextReaderValue(reader);
-				daeChar* current = (daeChar *)value;
-				while(*current != 0)
-				{
-					// !!!GAC NEEDS TO BE CHANGED to use XML standard whitespace parsing
-					// Skip leading whitespace
-					while(*current == ' ' || *current == '\r' || *current == '\n' || *current == '\t') current++;
-					if(*current != 0)
-					{
-						daeChar* start=current;
-						// Find end of string and insert a zero terminator
-						while(*current != ' ' && *current != '\r' && *current != '\n' && *current != '\t' && *current != 0) current++;
-						if(*current != 0)
-						{
-							*current = 0;
-							current++;
-						}
-						if(!element->setAttribute( (const daeString)xmlTextReaderConstName(reader), start) )
-						{
-							const xmlChar * attName	 = xmlTextReaderConstName(reader);
-							const xmlChar * attValue = xmlTextReaderConstValue(reader);
-							char err[512];
-							memset( err, 0, 512 );
-#if LIBXML_VERSION >= 20620
-							sprintf(err,"The DOM was unable to create an attribute %s = %s at line %d\nProbably a schema violation.\n", attName, attValue ,xmlTextReaderGetParserLineNumber(reader));
-#else
-							sprintf(err,"The DOM was unable to create an attribute %s = %s \nProbably a schema violation.\n", attName, attValue);
-#endif
-							daeErrorHandler::get()->handleWarning( err );
-						}
-					}
-				}
-				xmlFree(value);
 			}
 		}
 	}
@@ -425,38 +371,9 @@ void daeLIBXMLPlugin::readValue( daeElement *element, xmlTextReaderPtr reader ) 
 #endif
 		daeErrorHandler::get()->handleWarning( err );
 	}
-	else if(element->getMeta()->getUsesStringContents())
-	{
-		// String is used as one piece
-		element->getMeta()->getValueAttribute()->set(element,(const daeString)xmlTextReaderConstValue(reader));
-	}
 	else
 	{
-		// String needs to be broken up into whitespace seperated items.  The "set" methods for numbers are smart enough to
-		// grab just the first number in a string, but the ones for string lists require a null terminator between each
-		// string.  If this could be fixed we could avoid a copy and memory allocation by using xmlTextReaderConstValue(reader)
-		xmlChar* value = xmlTextReaderValue(reader);
-		daeChar* current = (daeChar *)value;
-		while(*current != 0)
-		{
-			// !!!GAC NEEDS TO BE CHANGED to use XML standard whitespace parsing
-			// Skip leading whitespace
-			while(*current == ' ' || *current == '\r' || *current == '\n' || *current == '\t') current++;
-			if(*current != 0)
-			{
-				daeChar* start=current;
-				// Find end of string and insert a zero terminator
-				while(*current != ' ' && *current != '\r' && *current != '\n' && *current != '\t' && *current != 0) current++;
-				if(*current != 0)
-				{
-					*current = 0;
-					current++;
-				}
-				element->getMeta()->getValueAttribute()->set(element,start);
-				// eat the characters we just read (would be nice if set returned characters used.
-			}
-		}
-		xmlFree(value);
+		element->getMeta()->getValueAttribute()->set(element,(const daeString)xmlTextReaderConstValue(reader));
 	}
 	int ret = xmlTextReaderRead(reader);
 	assert(ret==1);
@@ -794,7 +711,6 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 	daeUInt bufSz = TYPE_BUFFER_SIZE;
 
 	size_t valCount = attr->getCount(element);
-	//default values will not check correctly if they are arrays. Luckily there is only one array attribute in COLLADA.
 	//don't write if !required and is set && is default
 
 	int typeSize = attr->getType()->getSize();
@@ -806,17 +722,6 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 			(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
 		daeErrorHandler::get()->handleError( msg );
 		return;
-	}
-
-	if ( !attr->isArrayAttribute() && ( attr->getType()->getTypeEnum() == daeAtomicType::StringRefType || 
-		 attr->getType()->getTypeEnum() == daeAtomicType::TokenType ) &&
-		 *(char**)attr->getWritableMemory( element ) != NULL )
-	{
-		daeUInt sz = (daeUInt)strlen( *(char**)attr->getWritableMemory( element ) ) +1;
-		if ( bufSz > TYPE_BUFFER_SIZE ) {
-			buf = new char[ bufSz ];
-			bufSz = sz;
-		}
 	}
 
 	//always print value
@@ -834,15 +739,37 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 			
 			//is set
 			//check for default suppression
-			if ( attr->getDefault() != NULL && !attr->isArrayAttribute() )
+			if ( attr->getDefault() != NULL )
 			{
 				//has a default value
-				attr->getType()->stringToMemory( (daeChar*)attr->getDefault(), buf );
-				char* elemMem = attr->get( element, 0 );
-				if( memcmp( buf, elemMem, typeSize ) == 0 )
-				{
-					//is the default value so exit early
-					return;
+
+				if (!attr->isArrayAttribute()) {
+					attr->getType()->stringToMemory( (daeChar*)attr->getDefault(), buf );
+					char* elemMem = attr->get( element, 0 );
+					if( attr->getType()->compare( buf, elemMem ) == 0 )
+					{
+						//is the default value so exit early
+						return;
+					}
+				} else {
+					daeArray defaultArray;
+					attr->getType()->stringToArray((daeChar*)attr->getDefault(), defaultArray);
+
+					daeArray* attrArray = (daeArray*)attr->getWritableMemory(element);
+					if (attrArray->getCount() == defaultArray.getCount()) {
+						size_t i = 0;
+						for (; i < attrArray->getCount(); i++) {
+							if (attr->getType()->compare(attrArray->getRawData() + i*attr->getSize(),
+														 defaultArray.getRawData() + i*attr->getSize()) != 0) {
+									break;
+							}
+						}
+
+						// We made it to the end without detecting a mismatch, so it's the same as the
+						// default value. Exit early.
+						if (i == attrArray->getCount())
+							return;
+					}
 				}
 			}
 
@@ -856,6 +783,18 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 	}
 	if (valCount>0) 
 	{
+		// If buf isn't big enough, make it bigger
+		if ( !attr->isArrayAttribute() && ( attr->getType()->getTypeEnum() == daeAtomicType::StringRefType || 
+			 attr->getType()->getTypeEnum() == daeAtomicType::TokenType ) &&
+			 *(char**)attr->getWritableMemory( element ) != NULL )
+		{
+			daeUInt sz = (daeUInt)strlen( *(char**)attr->getWritableMemory( element ) ) +1;
+			if ( sz > TYPE_BUFFER_SIZE ) {
+				buf = new char[ sz ];
+				bufSz = sz;
+			}
+		}
+
 		//do val 0 first then space and the rest of the vals.
 		char* elemMem = attr->get( element, 0 );
 		attr->getType()->memoryToString( elemMem, buf, bufSz );
