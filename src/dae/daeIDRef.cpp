@@ -249,7 +249,7 @@ daeDefaultIDRefResolver::resolveElement(daeIDRef& idref, daeString typeNameHint)
 
 	if ( idref.getContainer() == NULL ) 
 	{
-		char msg[128];
+		char msg[1024];
 		sprintf(msg,"daeDefaultIDRefResolver::resolveElement() - failed to resolve %s\n",idref.getID(), ". IDRef needs a container element!" );
 		daeErrorHandler::get()->handleWarning( msg );
 		return false;
@@ -261,7 +261,7 @@ daeDefaultIDRefResolver::resolveElement(daeIDRef& idref, daeString typeNameHint)
 
 	if (status||(resolved==NULL)) {
 		idref.setState( daeIDRef::id_failed_id_not_found );
-		char msg[128];
+		char msg[1024];
 		sprintf(msg,"daeDefaultIDRefResolver::resolveElement() - failed to resolve %s\n",idref.getID());
 		daeErrorHandler::get()->handleWarning( msg );
 		return false;
