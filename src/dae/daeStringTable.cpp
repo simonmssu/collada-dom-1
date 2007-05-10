@@ -36,6 +36,8 @@ daeString daeStringTable::allocString(daeString string)
 	daeString buf;
 	if (sizeLeft < stringSize)
 	{
+		if (stringSize > _stringBufferSize)
+			_stringBufferSize = ((stringSize / _stringBufferSize) + 1) * _stringBufferSize ;
 		buf = allocateBuffer();
 	}
 	else
