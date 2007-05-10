@@ -33,8 +33,30 @@ CLEAN_LIST  = $(OBJS) $(TARGET)
 
 all: $(SUBDIRS) nosubs
 nosubs: check createdirs $(SUBDIR) $(TARGET) done
+install: check install_headers install_libraries done
 
 $(TARGET): $(OBJS)
+
+#########################################################
+# build install
+
+install_headers:
+				mkdir /usr/include/dae -p
+				cp include/dae/*.h /usr/include/dae
+				mkdir /usr/include/dom  -p
+				cp include/$(COLLADA_DOM_VERSION)/dom/*.h /usr/include/dom 
+				mkdir /usr/include/modules  -p
+				cp include/modules/*.h /usr/include/modules
+				cp include/dae.h /usr/include/
+				cp include/dom.h /usr/include/
+				
+install_libraries:
+ifeq ($(CONF_NAME),Release)
+				cp lib/*.a /usr/lib
+else
+				cp lib-dbg/*.a /usr/lib
+endif
+
 
 #########################################################
 # build rules
