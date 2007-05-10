@@ -103,6 +103,20 @@ protected:  // Element
  * Init the entire surface with one compound image such as DDS @see domAll
  */
 	domAllRef elemAll;
+	/**
+	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
+	 */
+	daeElementRefArray _contents;
+	/**
+	 * Used to preserve order in elements that have a complex content model.
+	 */
+	daeUIntArray       _contentsOrder;
+
+	/**
+	 * Used to store information needed for some content model objects.
+	 */
+	daeTArray< daeCharArray * > _CMData;
+
 
 public:	//Accessors and Mutators
 	/**
@@ -110,6 +124,17 @@ public:	//Accessors and Mutators
 	 * @return a daeSmartRef to the all element.
 	 */
 	const domAllRef getAll() const { return elemAll; }
+	/**
+	 * Gets the _contents array.
+	 * @return Returns a reference to the _contents element array.
+	 */
+	daeElementRefArray &getContents() { return _contents; }
+	/**
+	 * Gets the _contents array.
+	 * @return Returns a constant reference to the _contents element array.
+	 */
+	const daeElementRefArray &getContents() const { return _contents; }
+
 protected:
 	/**
 	 * Constructor

@@ -49,6 +49,11 @@ domFx_surface_init_planar_common::registerElement()
 	
 	cm->setMaxOrdinal( 0 );
 	_Meta->setCMRoot( cm );	
+	// Ordered list of sub-elements
+    _Meta->addContents(daeOffsetOf(domFx_surface_init_planar_common,_contents));
+    _Meta->addContentsOrder(daeOffsetOf(domFx_surface_init_planar_common,_contentsOrder));
+        
+    _Meta->addCMDataArray(daeOffsetOf(domFx_surface_init_planar_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domFx_surface_init_planar_common));
 	_Meta->validate();
