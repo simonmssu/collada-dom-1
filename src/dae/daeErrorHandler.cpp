@@ -15,29 +15,21 @@
 #include <modules/stdErrPlugin.h>
 
 daeErrorHandler *daeErrorHandler::_instance = NULL;
-daeBool daeErrorHandler::_default = false;
+std::auto_ptr<daeErrorHandler> daeErrorHandler::_defaultInstance(new stdErrPlugin);
 
 daeErrorHandler::daeErrorHandler() {
 }
 
 daeErrorHandler::~daeErrorHandler() {
-	if (_instance != NULL && _default ) {
-		delete _instance;
-		_instance = 0;
-	}
 }
 
 void daeErrorHandler::setErrorHandler( daeErrorHandler *eh ) {
-	if ( _instance != NULL && _default ) {
-		delete _instance;
-	}
 	_instance = eh;
 }
 
 daeErrorHandler *daeErrorHandler::get() {
 	if ( _instance == NULL ) {
-		_instance = new stdErrPlugin();
-		_default = true;
+		return _defaultInstance.get();
 	}
 	return _instance;
 }

@@ -14,6 +14,7 @@
 #ifndef _DAE_ERROR_HANDLER_
 #define _DAE_ERROR_HANDLER_
 
+#include <memory>
 #include <dae/daeTypes.h>
 
 /**
@@ -59,7 +60,7 @@ public:
 
 private:
 	static daeErrorHandler *_instance;
-	static daeBool _default;
+	static std::auto_ptr<daeErrorHandler> _defaultInstance;
 };
 
 #endif
