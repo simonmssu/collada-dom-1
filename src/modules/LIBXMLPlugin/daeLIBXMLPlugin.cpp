@@ -377,6 +377,7 @@ void daeLIBXMLPlugin::readValue( daeElement *element, xmlTextReaderPtr reader ) 
 	}
 	int ret = xmlTextReaderRead(reader);
 	assert(ret==1);
+	ret; // To fix warning C4189 - 'ret' : local variable is initialized but not referenced
 }
 
 
