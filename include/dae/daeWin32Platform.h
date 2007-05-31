@@ -41,4 +41,7 @@ typedef int intptr_t;
 #define DLLSPEC
 #endif
 
+// class 'std::auto_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'daeErrorHandler'
+#pragma warning(disable: 4251)
+
 #endif
