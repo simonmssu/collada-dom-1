@@ -171,10 +171,16 @@ daeAtomicType::stringToArray(daeChar* src, daeArray& array) {
 		src = skipWhitespace(src);
 		if(*src != 0)
 		{
-			array.setRawCount(array.getCount()+1);
-			if (!stringToMemory(src, array.getRawData()+(array.getCount()-1)*_size))
-				return false;
+			daeChar* token = src;
 			src = skipToken(src);
+			daeChar temp = *src;
+			*src = 0;
+
+			array.setRawCount(array.getCount()+1);
+			if (!stringToMemory(token, array.getRawData()+(array.getCount()-1)*_size))
+				return false;
+
+			*src = temp;
 		}
 	}
 
