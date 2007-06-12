@@ -11,9 +11,9 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Debug Dynamic|Win32"
-			OutputDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
-			IntermediateDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
+			Name="Debug DLL|Win32"
+			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -32,8 +32,8 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcolladadom_d.lib"
-				OutputFile="sampleExport_d.exe"
+				AdditionalDependencies="libcollada141dom13_d.lib"
+				OutputFile="../../bin-dbg/sampleExport_d.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(COLLADA_DOM_LOCATION)/lib-dbg"
 				IgnoreAllDefaultLibraries="FALSE"
@@ -65,8 +65,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
-			IntermediateDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
+			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -85,12 +85,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dae_d.lib libcollada_dom_d.lib libcollada_STLDatabase_d.lib libcollada_LIBXMLPlugin_d.lib libcollada_stdErrPlugin_d.lib libxml2_a.lib iconv_a.lib zlib.lib wsock32.lib"
-				OutputFile="sampleExport_staticd.exe"
+				AdditionalDependencies="libcollada_dae_d.lib libcollada_dom_d.lib libxml2_a.lib iconv_a.lib zlib.lib wsock32.lib"
+				OutputFile="../../bin-dbg/sampleExport_staticd.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="$(COLLADA_DOM_LOCATION)/external-libs/libxml2/win32/lib;$(COLLADA_DOM_LOCATION)/lib-dbg/1.4"
+				AdditionalLibraryDirectories="$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib;$(COLLADA_DOM_LOCATION)/lib-dbg/vc7/1.4"
 				IgnoreAllDefaultLibraries="FALSE"
-				IgnoreDefaultLibraryNames="library"
+				IgnoreDefaultLibraryNames="msvcrt"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/sampleExport.pdb"
 				SubSystem="1"
@@ -117,9 +117,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release Dynamic|Win32"
-			OutputDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
-			IntermediateDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
+			Name="Release DLL|Win32"
+			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -135,8 +135,8 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcolladadom.lib"
-				OutputFile="sampleExport.exe"
+				AdditionalDependencies="libcollada141dom13.lib"
+				OutputFile="../../bin/sampleExport.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(COLLADA_DOM_LOCATION)/lib"
 				GenerateDebugInformation="TRUE"
@@ -167,8 +167,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
-			IntermediateDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
+			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -184,10 +184,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libcollada_STLDatabase.lib libcollada_LIBXMLPlugin.lib libcollada_stdErrPlugin.lib libxml2_a.lib zlib.lib wsock32.lib"
-				OutputFile="sampleExport_static.exe"
+				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libxml2_a.lib zlib.lib iconv_a.lib wsock32.lib"
+				OutputFile="../../bin/sampleExport_static.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="$(COLLADA_DOM_LOCATION)/external-libs/libxml2/win32/lib;$(COLLADA_DOM_LOCATION)/lib/1.4"
+				AdditionalLibraryDirectories="$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib;$(COLLADA_DOM_LOCATION)/lib/vc7/1.4"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
 				SubSystem="1"
 				OptimizeReferences="2"

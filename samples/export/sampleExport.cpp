@@ -20,6 +20,7 @@
 
 #include <iostream>
 #include <string>
+#include <memory>
 
 //The main includes for the COLLADA DOM.
 #include <dae.h>
@@ -57,8 +58,8 @@ int main( int argc, char* argv[] )
 	daeInt error;
 
 	//create a DAE instance;
-	DAE *dae = new DAE();
-	if ( dae == NULL )
+	std::auto_ptr<DAE> dae(new DAE());
+	if ( dae.get() == NULL )
 	{
 		std::cerr << "Failed to initialize COLLADA DOM\n";
 		exit( -1 );

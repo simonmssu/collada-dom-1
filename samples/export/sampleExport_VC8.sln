@@ -4,18 +4,18 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sampleExport", "sampleExpor
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug Dynamic|Win32 = Debug Dynamic|Win32
+		Debug DLL|Win32 = Debug DLL|Win32
 		Debug|Win32 = Debug|Win32
-		Release Dynamic|Win32 = Release Dynamic|Win32
+		Release DLL|Win32 = Release DLL|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7810161B-6605-455C-9DAE-2F93002C6D89}.Debug Dynamic|Win32.ActiveCfg = Debug Dynamic|Win32
-		{7810161B-6605-455C-9DAE-2F93002C6D89}.Debug Dynamic|Win32.Build.0 = Debug Dynamic|Win32
+		{7810161B-6605-455C-9DAE-2F93002C6D89}.Debug DLL|Win32.ActiveCfg = Debug DLL|Win32
+		{7810161B-6605-455C-9DAE-2F93002C6D89}.Debug DLL|Win32.Build.0 = Debug DLL|Win32
 		{7810161B-6605-455C-9DAE-2F93002C6D89}.Debug|Win32.ActiveCfg = Debug|Win32
 		{7810161B-6605-455C-9DAE-2F93002C6D89}.Debug|Win32.Build.0 = Debug|Win32
-		{7810161B-6605-455C-9DAE-2F93002C6D89}.Release Dynamic|Win32.ActiveCfg = Release Dynamic|Win32
-		{7810161B-6605-455C-9DAE-2F93002C6D89}.Release Dynamic|Win32.Build.0 = Release Dynamic|Win32
+		{7810161B-6605-455C-9DAE-2F93002C6D89}.Release DLL|Win32.ActiveCfg = Release DLL|Win32
+		{7810161B-6605-455C-9DAE-2F93002C6D89}.Release DLL|Win32.Build.0 = Release DLL|Win32
 		{7810161B-6605-455C-9DAE-2F93002C6D89}.Release|Win32.ActiveCfg = Release|Win32
 		{7810161B-6605-455C-9DAE-2F93002C6D89}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
