@@ -166,6 +166,17 @@ daeAtomicType::stringToArray(daeChar* src, daeArray& array) {
 	array.clear();
 	array.setElementSize(_size);
 
+	if (src == 0)
+		return false;
+
+	// We're about to insert null terminators into the string so that scanf doesn't take forever
+	// doing strlens. Since the memory might not be writable, I need to duplicate the string and
+	// write into the duplicate, or else I might get access violations.
+	// This sucks... surely we can do better than this.
+	daeChar* srcDup = new daeChar[strlen(src)+1];
+	strcpy(srcDup, src);
+	src = srcDup;
+
 	while (*src != 0)
 	{
 		src = skipWhitespace(src);
@@ -177,13 +188,16 @@ daeAtomicType::stringToArray(daeChar* src, daeArray& array) {
 			*src = 0;
 
 			array.setRawCount(array.getCount()+1);
-			if (!stringToMemory(token, array.getRawData()+(array.getCount()-1)*_size))
+			if (!stringToMemory(token, array.getRawData()+(array.getCount()-1)*_size)) {
+				delete[] srcDup;
 				return false;
+			}
 
 			*src = temp;
 		}
 	}
 
+	delete[] srcDup;
 	return true;
 }
 
