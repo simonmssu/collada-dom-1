@@ -18,10 +18,7 @@ include         $(ROOT_DIR)/build/makedefs.txt
 
 # files
 SUBDIRS		+= $(ROOT_DIR)/src/$(COLLADA_DOM_VERSION)/dom \
-			   $(ROOT_DIR)/src/dae \
-		       $(ROOT_DIR)/src/modules/STLDatabase \
-			   $(ROOT_DIR)/src/modules/LIBXMLPlugin \
-			   $(ROOT_DIR)/src/modules/stdErrPlugin 			   
+			   $(ROOT_DIR)/src/dae
 
 
 #INCLUDE_DIR		+= $(ROOT_DIR)/include

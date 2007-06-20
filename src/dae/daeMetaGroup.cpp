@@ -60,19 +60,19 @@ daeElement *daeMetaGroup::placeElement( daeElement *parent, daeElement *child, d
 			continue;
 		}
 		if ( before != NULL ) {
-			if ( _elementContainer->_elementType->placeBefore( before, el, child, &ordinal ) != NULL ) {
+			if ( _elementContainer->_elementType->placeBefore( before, el, child, &ordinal ) ) {
 				ordinal = ordinal + _ordinalOffset;
 				return el;
 			}
 		}
 		else if ( after != NULL ) {
-			if ( _elementContainer->_elementType->placeAfter( after, el, child, &ordinal ) != NULL ) {
+			if ( _elementContainer->_elementType->placeAfter( after, el, child, &ordinal ) ) {
 				ordinal = ordinal + _ordinalOffset;
 				return el;
 			}
 		}
 		else {
-			if ( _elementContainer->_elementType->place( el, child, &ordinal ) != NULL ) {
+			if ( _elementContainer->_elementType->place( el, child, &ordinal ) ) {
 				ordinal = ordinal + _ordinalOffset;
 				return el;
 			}
@@ -84,19 +84,19 @@ daeElement *daeMetaGroup::placeElement( daeElement *parent, daeElement *child, d
 	if ( el != NULL ) {
 		//el = *(daeElementRef*)_elementContainer->get(parent, elCnt );
 		if ( before != NULL ) {
-			if ( _elementContainer->_elementType->placeBefore( before, el, child, &ordinal ) != NULL ) {
+			if ( _elementContainer->_elementType->placeBefore( before, el, child, &ordinal ) ) {
 				ordinal = ordinal + _ordinalOffset;
 				return el;
 			}
 		}
 		else if ( after != NULL ) {
-			if ( _elementContainer->_elementType->placeAfter( after, el, child, &ordinal ) != NULL ) {
+			if ( _elementContainer->_elementType->placeAfter( after, el, child, &ordinal ) ) {
 				ordinal = ordinal + _ordinalOffset;
 				return el;
 			}
 		}
 		else {
-			if ( _elementContainer->_elementType->place( el, child, &ordinal ) != NULL ) {
+			if ( _elementContainer->_elementType->place( el, child, &ordinal ) ) {
 				ordinal = ordinal + _ordinalOffset;
 				return el;
 			}

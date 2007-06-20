@@ -32,8 +32,10 @@ CLEAN_LIST  = $(OBJS) $(TARGET)
 .PHONY:	all $(SUBDIRS)
 
 all: $(SUBDIRS) nosubs
-nosubs: check createdirs $(SUBDIR) $(TARGET) done
-install: check install_headers install_libraries done
+nosubs: check_build createdirs $(SUBDIR) $(TARGET) done
+install: check_install uninstall_headers uninstall_libraries \
+				 install_headers install_libraries done
+uninstall: check_uninstall uninstall_headers uninstall_libraries done
 
 $(TARGET): $(OBJS)
 
@@ -41,21 +43,33 @@ $(TARGET): $(OBJS)
 # build install
 
 install_headers:
-				mkdir /usr/include/dae -p
-				cp include/dae/*.h /usr/include/dae
-				mkdir /usr/include/dom  -p
-				cp include/$(COLLADA_DOM_VERSION)/dom/*.h /usr/include/dom 
-				mkdir /usr/include/modules  -p
-				cp include/modules/*.h /usr/include/modules
-				cp include/dae.h /usr/include/
-				cp include/dom.h /usr/include/
-				
+	mkdir /usr/include/collada -p
+	mkdir /usr/include/collada/dae -p
+	cp include/dae/*.h /usr/include/collada/dae
+	mkdir /usr/include/collada/dom  -p
+	cp include/$(COLLADA_DOM_VERSION)/dom/*.h /usr/include/collada/dom 
+	mkdir /usr/include/collada/modules  -p
+	cp include/modules/*.h /usr/include/collada/modules
+	cp include/dae.h /usr/include/collada
+	cp include/dom.h /usr/include/collada
+
+uninstall_headers:
+	rm -r -f /usr/include/collada
+
 install_libraries:
 ifeq ($(CONF_NAME),Release)
-				cp lib/*.a /usr/lib
+	cp lib/*.a /usr/lib
 else
-				cp lib-dbg/*.a /usr/lib
+	cp lib-dbg/*.a /usr/lib
 endif
+
+uninstall_libraries:
+# We don't want to just remove all /usr/lib/libcollada*.a files. Other libraries
+# such as bullet build with a "libcollada" prefix but aren't part of the COLLADA
+# DOM. We don't want to remove those files if they happen to be in /usr/lib.
+#	rm -f /usr/lib/libcollada*.a
+	rm -f /usr/lib/libcollada_dae.a
+	rm -f /usr/lib/libcollada_dom.a
 
 
 #########################################################
@@ -114,8 +128,9 @@ endif
 endif
 
 #########################################################
-# check rule: can be used to perform some basic checks and tests
-check:
+# check_build rule: can be used to perform some basic checks and tests
+# when doing a build.
+check_build:
 	@echo building $(TARGET) - $(PLATFORM_NAME) $(CONF_NAME)
 #	@echo TARGET = $(TARGET)
 #	@echo EXECUTABLE = $(EXECUTABLE)
@@ -123,6 +138,18 @@ check:
 #	@echo DEBUG = $(DEBUG)
 #	@echo SRC = $(SRC)
 #	@echo OBJS = $(OBJS)
+
+#########################################################
+# check_install rule: can be used to perform some basic checks and tests
+# when doing an install.
+check_install:
+	@echo Adding $(CONF_NAME) $(COLLADA_DOM_VERSION) files to /usr/include and /usr/lib
+
+#########################################################
+# check_uninstall rule: can be used to perform some basic checks and tests
+# when doing an uninstall.
+check_uninstall:
+	@echo Removing files from /usr/include and /usr/lib
 
 #########################################################
 # run rule: can be used to run the target

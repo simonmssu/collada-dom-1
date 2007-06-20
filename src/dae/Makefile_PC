@@ -42,7 +42,11 @@ SRC				 := dae.cpp \
 					daeStringRef.cpp \
 					daeStringTable.cpp \
 					daeURI.cpp \
-					domAny.cpp
+					domAny.cpp \
+					../modules/stdErrPlugin/stdErrPlugin.cpp \
+					../modules/STLDatabase/daeSTLDatabase.cpp \
+					../modules/LIBXMLPlugin/daeLIBXMLPlugin.cpp \
+					../modules/LIBXMLPlugin/daeLIBXMLResolver.cpp
 
 INCLUDE_DIR		 += $(ROOT_DIR)/include
 #INCLUDE_DIR		 += $(ROOT_DIR)/include/$(COLLADA_DOM_VERSION)
