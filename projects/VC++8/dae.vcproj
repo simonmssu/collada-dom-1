@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
+				AdditionalIncludeDirectories="../../include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -106,7 +106,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
+				AdditionalIncludeDirectories="../../include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -171,7 +171,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
+				AdditionalIncludeDirectories="../../include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -234,7 +234,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
+				AdditionalIncludeDirectories="../../include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -298,7 +298,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
+				AdditionalIncludeDirectories="../../include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -364,7 +364,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
+				AdditionalIncludeDirectories="../../include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT;DOM_INCLUDE_LIBXML"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -388,7 +388,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="libcollada_dom_d.lib libxml2_a.lib iconv.lib zlib.lib wsock32.lib"
 				OutputFile="..\..\bin-dbg\libcollada141dom13_d.dll"
-				AdditionalLibraryDirectories="$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib;../../tmp/win32"
+				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\tinyxml\lib\win32&quot;;../../tmp/win32"
 				IgnoreDefaultLibraryNames="libc.lib, libcmt.lib, msvcrt.lib, libcd.lib, libcmtd.lib"
 				GenerateDebugInformation="true"
 				OptimizeReferences="1"
@@ -445,7 +445,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
+				AdditionalIncludeDirectories="../../include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT;DOM_INCLUDE_LIBXML"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -467,7 +467,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="libcollada_dom.lib libxml2_a.lib iconv.lib zlib.lib wsock32.lib"
 				OutputFile="..\..\bin\libcollada141dom13.dll"
-				AdditionalLibraryDirectories="$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib;../../tmp/win32"
+				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\tinyxml\lib\win32&quot;;../../tmp/win32"
 				ImportLibrary="..\..\lib\libcollada141dom13.lib"
 			/>
 			<Tool

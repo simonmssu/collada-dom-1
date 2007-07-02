@@ -15,6 +15,12 @@
 // require linking against it. By default TinyXML support isn't included.
 #if defined(DOM_INCLUDE_TINYXML)
 
+#if defined(DOM_DYNAMIC)
+#pragma comment(lib, "tinyxml.lib")
+#endif
+
+#pragma warning(disable: 4100) // warning C4100: 'element' : unreferenced formal parameter
+
 #include <string>
 #include <tinyxml.h>
 #include <dae.h>
