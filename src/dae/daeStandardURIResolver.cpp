@@ -11,37 +11,37 @@
  * License. 
  */
 
-#include <modules/daeLIBXMLResolver.h>
+#include <dae/daeStandardURIResolver.h>
 #include <dae/daeDatabase.h>
 #include <dae/daeURI.h>
-#include <modules/daeLIBXMLPlugin.h>
+#include <dae/daeIOPlugin.h>
 #include <dae/daeErrorHandler.h>
 
-daeLIBXMLResolver::daeLIBXMLResolver(daeDatabase* database,daeIOPlugin* plugin)
+daeStandardURIResolver::daeStandardURIResolver(daeDatabase* database,daeIOPlugin* plugin)
 {
 	_database = database;
 	_plugin = plugin;
 }
 
-daeLIBXMLResolver::~daeLIBXMLResolver()
+daeStandardURIResolver::~daeStandardURIResolver()
 {
 }
 
 daeBool
-daeLIBXMLResolver::resolveURI(daeURI& uri)
+daeStandardURIResolver::resolveURI(daeURI& uri)
 {
 	(void)uri;
 	return false;
 }
 
 daeString
-daeLIBXMLResolver::getName()
+daeStandardURIResolver::getName()
 {
 	return "XMLResolver";
 }
 
 daeBool
-daeLIBXMLResolver::isExtensionSupported(daeString extension)
+daeStandardURIResolver::isExtensionSupported(daeString extension)
 {
 	if ((extension!=NULL) &&
 		(strlen(extension) > 0) &&
@@ -54,7 +54,7 @@ daeLIBXMLResolver::isExtensionSupported(daeString extension)
 }
 		
 daeBool
-daeLIBXMLResolver::isProtocolSupported(daeString protocol)
+daeStandardURIResolver::isProtocolSupported(daeString protocol)
 {
 	if ((protocol!=NULL) &&
 		(strlen(protocol) > 0) &&
@@ -65,7 +65,7 @@ daeLIBXMLResolver::isProtocolSupported(daeString protocol)
 }
 
 daeBool
-daeLIBXMLResolver::resolveElement(daeURI& uri, daeString typeNameHint)
+daeStandardURIResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 {
 	// Make sure the URI is validated
 	if (uri.getState() == daeURI::uri_loaded)
@@ -103,7 +103,7 @@ daeLIBXMLResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 			uri.setState(daeURI::uri_failed_missing_container);
 			char msg[256];
 			sprintf(msg,
-					"daeLIBXMLResolver::resolveElement() - failed to resolve %s\n",
+					"daeStandardURIResolver::resolveElement() - failed to resolve %s\n",
 					uri.getURI());
 			daeErrorHandler::get()->handleError( msg );
 			return false;
@@ -123,7 +123,7 @@ daeLIBXMLResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 		uri.setState(daeURI::uri_failed_id_not_found);
 		char msg[256];
 		sprintf(msg,
-				"daeLIBXMLResolver::resolveElement() - failed to resolve %s\n",
+				"daeStandardURIResolver::resolveElement() - failed to resolve %s\n",
 				uri.getURI());
 		daeErrorHandler::get()->handleError( msg );
 		return false;
@@ -132,7 +132,3 @@ daeLIBXMLResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 	uri.setState(daeURI::uri_success);
 	return true;
 }
-
-   
-
-

@@ -11,11 +11,17 @@
  * License. 
  */
 
+// The user can choose whether or not to include libxml support in the DOM. Supporting libxml will
+// require linking against it. By default libxml support is included.
+#if defined(DOM_INCLUDE_LIBXML)
+
 // This is a rework of the XML plugin that contains a complete interface to libxml2 "readXML"
 // This is intended to be a seperate plugin but I'm starting out by rewriting it in daeLIBXMLPlugin
 // because I'm not sure if all the plugin handling stuff has been tested.  Once I get a working
 // plugin I'll look into renaming it so the old daeLIBXMLPlugin can coexist with it.
 //
+#include <string>
+#include <sstream>
 #include <modules/daeLIBXMLPlugin.h>
 #include <dae.h>
 #include <dom.h>
@@ -26,7 +32,32 @@
 #include <dae/daeErrorHandler.h>
 #include <dae/daeMetaElementAttribute.h>
 
-daeLIBXMLPlugin::daeLIBXMLPlugin():topMeta(NULL),database(NULL)
+// Some helper functions for working with libxml
+namespace {
+	daeInt getCurrentLineNumber(xmlTextReaderPtr reader) {
+#if LIBXML_VERSION >= 20620
+		return xmlTextReaderGetParserLineNumber(reader);
+#else
+		return -1;
+#endif
+	}
+
+	// The attributes vector passed in should be empty
+	void packageCurrentAttributes(xmlTextReaderPtr reader,
+																/* out */ std::vector<std::pair<daeString, daeString> >& attributes) {
+		int numAttributes = xmlTextReaderAttributeCount(reader);
+		if (numAttributes == -1 || numAttributes == 0)
+			return;
+		attributes.reserve(numAttributes);
+		
+		while (xmlTextReaderMoveToNextAttribute(reader) == 1) {
+			attributes.push_back(std::pair<daeString, daeString>((daeString)xmlTextReaderConstName(reader),
+																													 (daeString)xmlTextReaderConstValue(reader)));
+		}
+	}
+}
+
+daeLIBXMLPlugin::daeLIBXMLPlugin()
 {
 	 xmlInitParser();
 	 rawFile = NULL;
@@ -37,17 +68,6 @@ daeLIBXMLPlugin::daeLIBXMLPlugin():topMeta(NULL),database(NULL)
 daeLIBXMLPlugin::~daeLIBXMLPlugin()
 {
 	 xmlCleanupParser();
-}
-
-daeInt daeLIBXMLPlugin::setMeta(daeMetaElement *_topMeta)
-{
-	topMeta = _topMeta;
-	return DAE_OK;
-}
-
-void daeLIBXMLPlugin::setDatabase(daeDatabase* _database)
-{
-	database = _database;
 }
 
 daeInt daeLIBXMLPlugin::setOption( daeString option, daeString value )
@@ -104,427 +124,77 @@ void daeLIBXMLPlugin::getProgress(daeInt* bytesParsed,
 	if (totalBytes)
 		*totalBytes = 0; // Not available
 }
-// This function needs to be re-entrant, it can be called recursively from inside of resolveAll
-// to load files that the first file depends on.
-daeInt daeLIBXMLPlugin::read(daeURI& uri, daeString docBuffer)
-{
-    // Make sure topMeta has been set before proceeding
-	
-	if (topMeta == NULL) 
-	{
-		return DAE_ERR_BACKEND_IO;
-	}
 
-	// Generate a version of the URI with the fragment removed
-
-	daeURI fileURI(uri.getURI(),true);
-
-	//check if document already exists
-	if ( database->isDocumentLoaded( fileURI.getURI() ) )
-	{
-		return DAE_ERR_COLLECTION_ALREADY_EXISTS;
-	}
-
-	// Create the right type of xmlTextReader on the stack so this function can be re-entrant
-
-	xmlTextReaderPtr reader;
-
-	if(docBuffer)
-	{
-		// Load from memory (experimental)
-#if 0 //debug stuff
-		printf("Reading %s from memory buffer\n", fileURI.getURI());
-#endif
-		reader = xmlReaderForDoc((xmlChar*)docBuffer, fileURI.getURI(), NULL,0);
-	}
-	else
-	{
-		// Load from URI
-#if 0 //debug stuff
-		printf("Opening %s\n", fileURI.getURI());
-#endif
-		reader = xmlReaderForFile(fileURI.getURI(), NULL,0);
-	}
-
-	if(!reader)
-	{
-		char msg[512];
-		sprintf( msg, "Failed to open %s\n", fileURI.getURI() );
-		daeErrorHandler::get()->handleError( msg );
-		return DAE_ERR_BACKEND_IO;
-	}
-
-	// Start parsing the file
-
-	daeElementRef domObject = startParse(topMeta, reader);
-
-	// Parsing done, free the xmlReader and error check to make sure we got a valid DOM back
-	
-	xmlFreeTextReader(reader);
-
-	if (!domObject)
-	{
-		char msg[512];
-		sprintf(msg,"daeLIBXMLPlugin::read(%s) failed - XML Parse Failed\n",fileURI.getFile());
-		daeErrorHandler::get()->handleError( msg );
-		return DAE_ERR_BACKEND_IO;
-	}
-
-	// Insert the document into the database, the Database will keep a ref on the main dom, so it won't gets deleted
-	// until we clear the database
-
-	daeDocument *document = NULL;
-
-	int res = database->insertDocument(fileURI.getURI(),domObject,&document);
-	if (res!= DAE_OK)
-		return res;
-
-	// Make a vector to store a list of the integration items that need to be processed later
-	// postProcessDom will fill this in for us (this should probably not be done in the IOPlugin)
-	
-	std::vector<INTEGRATION_ITEM> intItems;
-	
-	//insert the elements into the database, for this DB the elements are the Collada object which have
-	//an ID. 
-	//this function will fill the _integrationItems array as well
-	postProcessDom(document, domObject, intItems);
-	daeElement::resolveAll();
-
-	//create the integration objects
-	int size = (int)intItems.size();
-	int i;
-	for (i=0;i<size;i++)
-		intItems[i].intObject->createFromChecked(intItems[i].element);
-	
-	for (i=0;i<size;i++)
-		intItems[i].intObject->fromCOLLADAChecked();
-
-	for (i=0;i<size;i++)
-		intItems[i].intObject->fromCOLLADAPostProcessChecked();
-
-	//clear the temporary integration items array
-	intItems.clear();
-
-	return DAE_OK;
-}
-daeElementRef
-daeLIBXMLPlugin::startParse(daeMetaElement* thisMetaElement, xmlTextReaderPtr reader)
-{
-	// The original parsing system would drop everything up to the first element open, usually <COLLADA>
-	// This behavior will have to be replicated here till we have someplace to put the headers/comments
-
-	int ret = xmlTextReaderRead(reader);
-	if(ret != 1)
-	{
-		// empty or hit end of file
+daeElementRef daeLIBXMLPlugin::readFromFile(const daeURI& uri) {
+	xmlTextReaderPtr reader = xmlReaderForFile(uri.getURI(), NULL, 0);
+	if (!reader) {
+		daeErrorHandler::get()->handleError((std::string("Failed to open ") + uri.getURI() +
+																				 " in daeLIBXMLPlugin::readFromFile\n").c_str());
 		return NULL;
 	}
-	  //printf("xmlTextReaderConstBaseUri is %s\n",xmlTextReaderConstBaseUri(reader));
-	  //printf("xmlTextReaderConstNamespaceUri is %s\n",xmlTextReaderConstNamespaceUri(reader));
-	  //printf("xmlTextReaderConstPrefix is %s\n",xmlTextReaderConstPrefix(reader));
-	  //printf("xmlTextReaderName is %s\n",xmlTextReaderName(reader));
+	return read(reader);
+}
 
-	// Process the current element
-	// Skip over things we don't understand
+daeElementRef daeLIBXMLPlugin::readFromMemory(daeString buffer, const daeURI& baseUri) {
+	xmlTextReaderPtr reader = xmlReaderForDoc((xmlChar*)buffer, baseUri.getURI(), NULL, 0);
+	if (!reader) {
+		daeErrorHandler::get()->handleError("Failed to open XML document from memory buffer in "
+																				"daeLIBXMLPlugin::readFromMemory\n");
+		return NULL;
+	}
+	return read(reader);
+}
+
+daeElementRef daeLIBXMLPlugin::read(_xmlTextReader* reader) {
+	// Drop everything up to the first element. In the future, we should try to store header comments somewhere.
 	while(xmlTextReaderNodeType(reader) != XML_READER_TYPE_ELEMENT)
 	{
-		ret = xmlTextReaderRead(reader);
-		if(ret != 1)
-			return(NULL);
+		if (xmlTextReaderRead(reader) != 1) {
+			daeErrorHandler::get()->handleError("Error parsing XML in daeLIBXMLPlugin::read\n");
+			return NULL;
+		}
 	}
 
-	// Create the element that we found
-	daeElementRef element = thisMetaElement->create((const daeString)xmlTextReaderConstName(reader));
-	if(!element)
-	{
-		char err[512];
-		memset( err, 0, 512 );
-		const xmlChar * mine =xmlTextReaderConstName(reader);
-#if LIBXML_VERSION >= 20620
-		sprintf(err,"The DOM was unable to create an element type %s at line %d\nProbably a schema violation.\n", mine,xmlTextReaderGetParserLineNumber(reader));
-#else
-		sprintf(err,"The DOM was unable to create an element type %s\nProbably a schema violation.\n", mine);
-#endif
-		daeErrorHandler::get()->handleWarning( err );
+	return readElement(reader, NULL);
+}
+
+daeElementRef daeLIBXMLPlugin::readElement(_xmlTextReader* reader, daeElement* parentElement) {
+	assert(xmlTextReaderNodeType(reader) == XML_READER_TYPE_ELEMENT);
+	daeString elementName = (daeString)xmlTextReaderConstName(reader);
+	bool empty = xmlTextReaderIsEmptyElement(reader);
+
+	std::vector<attrPair> attributes;
+	packageCurrentAttributes(reader, /* out */ attributes);
+	
+	daeElementRef element = beginReadElement(parentElement, elementName, attributes, getCurrentLineNumber(reader));
+	if (!element) {
+		// We couldn't create the element. beginReadElement already printed an error message. Just make sure
+		// to skip ahead past the bad element.
 		xmlTextReaderNext(reader);
 		return NULL;
 	}
-	int currentDepth = xmlTextReaderDepth(reader);
 
-	//try and read attributes
-	readAttributes( element, reader );
+	if (xmlTextReaderRead(reader) != 1  ||  empty)
+		return element;
 
-#if 1
-	//Check COLLADA Version
-	if ( strcmp( element->getTypeName(), "COLLADA" ) != 0 ) {
-		//invalid root
-		daeErrorHandler::get()->handleError("Loading document with invalid root element!");
-		return NULL;
-	}
-	daeURI *xmlns = (daeURI*)(element->getMeta()->getMetaAttribute( "xmlns" )->getWritableMemory( element ));
-	if ( strcmp( xmlns->getURI(), COLLADA_NAMESPACE ) != 0 ) {
-		//invalid COLLADA version
-		daeErrorHandler::get()->handleError("Trying to load an invalid COLLADA version for this DOM build!");
-		return NULL;
-	}
-#endif
-
-	
-	ret = xmlTextReaderRead(reader);
-	// If we're out of data, return the element
-	if(ret != 1)
-		return(element);
-
-	// Read all the tags that are part of this tag
-	bool trew = true;
-	while(trew)
-	{
-		int thisType = xmlTextReaderNodeType(reader);
-		if(thisType == XML_READER_TYPE_ELEMENT)
-		{
-			// Is the new element at the same depth as this one?
-			if(currentDepth == xmlTextReaderDepth(reader))
-			{
-				// Same depth means the current element ended in a /> so this is a sibling
-				// so we return and let our parent process it.
-				return(element);
-			}
-			else
-			{
-				// The element is a child of this one, so we recurse
-				if(!element->placeElement(nextElement(element->getMeta(), reader)))
-				{
-					char err[512];
-					memset( err, 0, 512 );
-#if LIBXML_VERSION >= 20620
-				sprintf(err,"placeElement failed at line %d\n", xmlTextReaderGetParserLineNumber(reader));
-#else
-				sprintf(err,"placeElement failed\n");
-#endif
-				daeErrorHandler::get()->handleWarning(err);
-				ret = xmlTextReaderRead(reader);
-				if ( ret != 1 ) {
-					return element;
-				}
-				}
-			}
+	int nodeType = xmlTextReaderNodeType(reader);
+	while (nodeType != -1  &&  nodeType != XML_READER_TYPE_END_ELEMENT) {
+		if (nodeType == XML_READER_TYPE_ELEMENT) {
+			element->placeElement(readElement(reader, element));
+		} else if (nodeType == XML_READER_TYPE_TEXT) {
+			readElementText(element, (daeString)xmlTextReaderConstValue(reader), getCurrentLineNumber(reader));
+			xmlTextReaderRead(reader);
+		}	else {
+			xmlTextReaderRead(reader);
 		}
-		else if(thisType == XML_READER_TYPE_TEXT)
-		{
-			readValue( element, reader );
-		}
-		else if(thisType == XML_READER_TYPE_END_ELEMENT)
-		{
-			// Done with this element so read again and return
-			ret = xmlTextReaderRead(reader);
-			return(element);
-		}
-		else
-		{	// Skip element types we don't care about
-			ret = xmlTextReaderRead(reader);
-			// If we're out of data, return the element
-			if(ret != 1)
-				return(element);
-		}
-	}
-	// Return NULL on an error
-	return NULL;
-}
 
-void daeLIBXMLPlugin::readAttributes( daeElement *element, xmlTextReaderPtr reader ) {
-	// See if the element has attributes
-	if(xmlTextReaderHasAttributes(reader))
-	{
-		// Read in and set all the attributes
-		while(xmlTextReaderMoveToNextAttribute(reader))
-		{
-			daeMetaAttribute *ma = element->getMeta()->getMetaAttribute((const daeString)xmlTextReaderConstName(reader));
-			if( ( ( ma == NULL || ma->getType() == NULL ) && strcmp(element->getMeta()->getName(), "any") ) ||
-				!element->setAttribute( (const daeString)xmlTextReaderConstName(reader), 
-										(const daeString)xmlTextReaderConstValue(reader) ) )
-			{
-				{
-					const xmlChar * attName	 = xmlTextReaderConstName(reader);
-					const xmlChar * attValue = xmlTextReaderConstValue(reader);
-					char err[512];
-					memset( err, 0, 512 );
-#if LIBXML_VERSION >= 20620
-					sprintf(err,"The DOM was unable to create an attribute %s = %s at line %d\nProbably a schema violation.\n", attName, attValue ,xmlTextReaderGetParserLineNumber(reader));
-#else
-					sprintf(err,"The DOM was unable to create an attribute %s = %s \nProbably a schema violation.\n", attName, attValue);
-#endif
-					daeErrorHandler::get()->handleWarning( err );
-				}
-			}
-		}
-	}
-}
-
-void daeLIBXMLPlugin::readValue( daeElement *element, xmlTextReaderPtr reader ) {
-	if ( element->getMeta()->getValueAttribute() == NULL ) {
-		char err[512];
-		memset( err, 0, 512 );
-#if LIBXML_VERSION >= 20620
-		sprintf(err,"The DOM was unable to set a value for element of type %s at line %d\nProbably a schema violation.\n", element->getTypeName() ,xmlTextReaderGetParserLineNumber(reader));
-#else
-		sprintf(err,"The DOM was unable to set a value for element of type %s at line %d\nProbably a schema violation.\n", element->getTypeName() );
-#endif
-		daeErrorHandler::get()->handleWarning( err );
-	}
-	else
-	{
-		element->getMeta()->getValueAttribute()->set(element,(const daeString)xmlTextReaderConstValue(reader));
-	}
-	int ret = xmlTextReaderRead(reader);
-	assert(ret==1);
-	ret; // To fix warning C4189 - 'ret' : local variable is initialized but not referenced
-}
-
-
-
-daeElementRef
-daeLIBXMLPlugin::nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr reader)
-{
-	int ret;
-	// Process the current element
-	// Skip over things we don't understand
-	while(xmlTextReaderNodeType(reader) != XML_READER_TYPE_ELEMENT)
-	{
-		ret = xmlTextReaderRead(reader);
-		if(ret != 1)
-			return(NULL);
+		nodeType = xmlTextReaderNodeType(reader);
 	}
 
-	// Create the element that we found
-	const daeString elName = (const daeString)xmlTextReaderConstName(reader); //helps with debugging
-	daeElementRef element = thisMetaElement->create(elName);
-	if(!element)
-	{
-		const xmlChar * mine =xmlTextReaderConstName(reader);
-		char err[512];
-		memset( err, 0, 512 );
-#if LIBXML_VERSION >= 20620
-		sprintf(err,"The DOM was unable to create an element type %s at line %d\nProbably a schema violation.\n", mine,xmlTextReaderGetParserLineNumber(reader));
-#else
-		sprintf(err,"The DOM was unable to create an element type %s\nProbably a schema violation.\n", mine);
-#endif
-		daeErrorHandler::get()->handleWarning( err );
-		xmlTextReaderNext(reader);
-		return NULL;
-	}
-	int currentDepth = xmlTextReaderDepth(reader);
+	if (nodeType == XML_READER_TYPE_END_ELEMENT)
+		xmlTextReaderRead(reader);
 
-	//try and read attributes
-	readAttributes( element, reader );
-	
-	ret = xmlTextReaderRead(reader);
-	// If we're out of data, return the element
-	if(ret != 1)
-		return(element);
-
-	// Read all the tags that are part of this tag
-	bool trew = true;
-	while(trew)
-	{
-		int thisType = xmlTextReaderNodeType(reader);
-		if(thisType == XML_READER_TYPE_ELEMENT)
-		{
-			// Is the new element at the same depth as this one?
-			if(currentDepth == xmlTextReaderDepth(reader))
-			{
-				// Same depth means the current element ended in a /> so this is a sibling
-				// so we return and let our parent process it.
-				return(element);
-			}
-			else
-			{
-				// The element is a child of this one, so we recurse
-				daeElementRef newEl = nextElement(element->getMeta(), reader);
-				if( newEl != NULL && !element->placeElement(newEl) )
-				{
-					char err[512];
-					memset( err, 0, 512 );
-					sprintf(err,"placeElement failed placing element %s in element %s\n", newEl->getTypeName(), element->getTypeName() );
-					daeErrorHandler::get()->handleWarning( err );
-					ret = xmlTextReaderRead(reader);
-					if ( ret != 1 ) {
-						return element;
-					}
-				}
-			}
-		}
-		else if(thisType == XML_READER_TYPE_TEXT)
-		{
-			readValue( element, reader );
-		}
-		else if(thisType == XML_READER_TYPE_END_ELEMENT)
-		{
-			// Done with this element so read again and return
-			ret = xmlTextReaderRead(reader);
-			return(element);
-		}
-		else
-		{	// Skip element types we don't care about
-			ret = xmlTextReaderRead(reader);
-			// If we're out of data, return the element
-			if(ret != 1)
-				return(element);
-		}
-	}
-	//program will never get here but this line is needed to supress a warning
-	return NULL;
-}
-// postProcessDom traverses all elements below the passed in one and creates a list of all the integration objects.
-// this should probably NOT be done in the IO plugin.
-void daeLIBXMLPlugin::postProcessDom(daeDocument *document, daeElement* element, std::vector<INTEGRATION_ITEM> &intItems)
-{
-	// Null element?  Return
-
-	if (!element)
-		return;
-
-	//element->setDocument(document);
-	// If this element has an integration object, add it to a list so we can process them all in a bunch later
-
-	if (element->getIntObject(daeElement::int_uninitialized))
-	{
-		INTEGRATION_ITEM item;
-		item.element = element;
-		item.intObject = element->getIntObject(daeElement::int_uninitialized);
-		intItems.push_back(item);
-	}
-
-	// Recursively call postProcessDom on all of this element's children
-	daeElementRefArray children;
-	element->getChildren( children );
-	for ( size_t x = 0; x < children.getCount(); x++ ) {
-		postProcessDom(document, children.get(x), intItems);
-	}
-	
-	/*if (element->getMeta()->getContents() != NULL) {
-		daeMetaElementArrayAttribute *contents = element->getMeta()->getContents();
-		for ( int i = 0; i < contents->getCount( element ); i++ ) {
-			//array.append( *(daeElementRef*)contents->get( this, i ) );
-			daeElementRef elem = *(daeElementRef*)contents->get(element,i);
-			postProcessDom(document,elem, intItems);
-		}
-	}
-	else
-	{
-		daeMetaElementAttributeArray& children = element->getMeta()->getMetaElements();
-		int cnt = (int)children.getCount();
-		for(int i=0;i<cnt;i++)
-		{
-			daeMetaElementAttribute* mea = children[i];
-			int elemCnt = mea->getCount(element);
-			int j;
-			for(j=0;j<elemCnt;j++)
-			{
-				daeElementRef elem = *(daeElementRef*)mea->get(element,j);
-				postProcessDom(document,elem, intItems);
-			}
-		}
-	}*/
+	return element;
 }
 
 daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool replace)
@@ -542,11 +212,16 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 		daeErrorHandler::get()->handleError( "can't get path in write\n" );
 		return DAE_ERR_BACKEND_IO;
 	}
+	// !!!steveT: Replace this with real URI to file path conversion code
 	// If replace=false, don't replace existing files
 	if(!replace)
 	{
 		// Using "stat" would be better, but it's not available on all platforms
+#if defined(WIN32)
 		FILE *tempfd = fopen(finalname+1,"r");
+#else
+		FILE *tempfd = fopen(finalname, "r");
+#endif		
 		if(tempfd != NULL)
 		{
 			// File exists, return error
@@ -558,7 +233,11 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 	if ( saveRawFile )
 	{
 		daeFixedName rawFilename;
+#if defined(WIN32)
 		strcpy( rawFilename, finalname+1);
+#else
+		strcpy( rawFilename, finalname);
+#endif
 		strcat( rawFilename, ".raw" );
 		if ( !replace )
 		{
@@ -592,9 +271,8 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 		daeErrorHandler::get()->handleError( msg );
 		return DAE_ERR_BACKEND_IO;
 	}
-	xmlChar indentString[10] = "    ";
-	xmlTextWriterSetIndentString( writer, indentString );
-	xmlTextWriterSetIndent( writer, 1 );
+	xmlTextWriterSetIndentString( writer, (const xmlChar*)"\t" ); // Don't change this to spaces
+	xmlTextWriterSetIndent( writer, 1 ); // Turns indentation on
 	xmlTextWriterStartDocument( writer, NULL, NULL, NULL );
 	
 	writeElement( document->getDomRoot() );
@@ -891,3 +569,5 @@ void daeLIBXMLPlugin::writeRawSource( daeElement *src )
 
 	writeElement( newSrc );
 }
+
+#endif // DOM_INCLUDE_LIBXML

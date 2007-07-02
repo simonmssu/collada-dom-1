@@ -18,18 +18,26 @@
 #include <modules/daeSTLDatabase.h>
 #include <dae/daeErrorHandler.h>
 #include <dae/daeRawResolver.h>
+#include <dae/daeStandardURIResolver.h>
 
 #ifndef NO_DEFAULT_PLUGIN
-#ifndef DEFAULT_BXCEPLUGIN
+
+#ifdef DOM_INCLUDE_LIBXML
 #include <modules/daeLIBXMLPlugin.h>
-#include <modules/daeLIBXMLResolver.h>
-#else
+#endif
+
+#ifdef DOM_INCLUDE_TINYXML
+#include <dae/daeTinyXMLPlugin.h>
+#endif
+
 //This plugin is not provided with the public release. If you don't know about it then you don't need
 //to worry about it.
+#ifdef DEFAULT_BXCEPLUGIN
 #include <modules/daebXCePlugin.h>
 #include <modules/daebXCeResolver.h>
 #endif
-#endif
+
+#endif // NO_DEFAULT_PLUGIN
 
 // Don't include domConstants.h because it varies depending on the dom version,
 // just extern the one thing we need (COLLADA_VERSION) which all versions of
@@ -144,22 +152,36 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 	}
 	else
 	{
-		//create default plugin
 #ifndef NO_DEFAULT_PLUGIN
-#ifndef DEFAULT_BXCEPLUGIN
-		plugin = new daeLIBXMLPlugin;
-		defaultPlugin = true;
-		resolver = new daeLIBXMLResolver(database,plugin);
-#else
+		
+		//create default plugin
+#ifdef DEFAULT_BXCEPLUGIN
 		plugin = new daebXCePlugin();
 		defaultPlugin = true;
 		resolver = new daebXCeResolver(database, plugin);
-#endif
 #else
+#ifdef DOM_INCLUDE_LIBXML
+		plugin = new daeLIBXMLPlugin;
+		defaultPlugin = true;
+		resolver = new daeStandardURIResolver(database, plugin);
+#else
+#ifdef DOM_INCLUDE_TINYXML
+		plugin = new daeTinyXMLPlugin;
+		defaultPlugin = true;
+		resolver = new daeStandardURIResolver(database, plugin);
+#else
+		daeErrorHandler::get()->handleWarning( "No IOPlugin Set! Neither DOM_INCLUDE_LIBXML or DOM_INCLUDE_TINYXML  is defined." );
+		plugin = NULL;
+		return DAE_ERR_BACKEND_IO;
+#endif // DOM_INCLUDE_TINYXML
+#endif // DOM_INCLUDE_LIBXML
+#endif // DEFAULT_BXCEPLUGIN
+
+#else // NO_DEFAULT_PLUGIN
 		daeErrorHandler::get()->handleWarning( "No IOPlugin Set! NO_DEFAULT_PLUGIN is defined." );
 		plugin = NULL;
 		return DAE_ERR_BACKEND_IO;
-#endif
+#endif // NO_DEFAULT_PLUGIN
 	}
 	int res = plugin->setMeta(topMeta);
 	if (res != DAE_OK)

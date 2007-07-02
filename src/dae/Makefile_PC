@@ -43,14 +43,27 @@ SRC				 := dae.cpp \
 					daeStringTable.cpp \
 					daeURI.cpp \
 					domAny.cpp \
+					daeStandardURIResolver.cpp \
+					daeIOPluginCommon.cpp \
 					../modules/stdErrPlugin/stdErrPlugin.cpp \
 					../modules/STLDatabase/daeSTLDatabase.cpp \
 					../modules/LIBXMLPlugin/daeLIBXMLPlugin.cpp \
-					../modules/LIBXMLPlugin/daeLIBXMLResolver.cpp
+					daeTinyXMLPlugin.cpp
 
 INCLUDE_DIR		 += $(ROOT_DIR)/include
 #INCLUDE_DIR		 += $(ROOT_DIR)/include/$(COLLADA_DOM_VERSION)
 INCLUDE_DIR              += /usr/include/libxml2
+INCLUDE_DIR += $(ROOT_DIR)/../external-libs/tinyxml/include
+
+# Do we want libxml, TinyXML, or both?
+# Enable libxml by default
+ifneq ($(LIBXML), 0)
+CCOPT += -D"DOM_INCLUDE_LIBXML"
+endif
+# Disable TinyXML by default
+ifeq ($(TINYXML), 1)
+CCOPT += -D"DOM_INCLUDE_TINYXML"
+endif
 
 # rules
 include          $(ROOT_DIR)/build/makerules.txt

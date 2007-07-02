@@ -11,18 +11,18 @@
  * License. 
  */
 
-#ifndef __DAE_LIBXMLRESOLVER__
-#define __DAE_LIBXMLRESOVLER__
+#ifndef __DAE_STANDARD_URI_RESOLVER__
+#define __DAE_STANDARD_URI_RESOVLER__
 
 #include "dae/daeURI.h"
 class daeIOPlugin;
 class daeDatabase;
 
 /**
- * The @c daeLIBXMLResolver class derives from @c daeURIResolver and implements
+ * The @c daeStandardURIResolver class derives from @c daeURIResolver and implements
  * the default XML backend resolver.
  */
-class daeLIBXMLResolver : public daeURIResolver
+class daeStandardURIResolver : public daeURIResolver
 {
 public:
 	/**
@@ -30,11 +30,11 @@ public:
 	 * @param database The @c daeDatabase used.
 	 * @param plugin The @c daeIOPlugin used.
 	 */
-	DLLSPEC daeLIBXMLResolver(daeDatabase* database, daeIOPlugin* plugin);
+	DLLSPEC daeStandardURIResolver(daeDatabase* database, daeIOPlugin* plugin);
 	/**
 	 * Destructor.
 	 */
-	DLLSPEC ~daeLIBXMLResolver();
+	DLLSPEC ~daeStandardURIResolver();
 
 protected:
 	daeDatabase* _database;
@@ -48,5 +48,4 @@ public: // Abstract Interface
 	virtual DLLSPEC daeBool isExtensionSupported(daeString extension);
 };
 
-#endif //__DAE_XMLRESOLVER__
-
+#endif //__DAE_STANDARD_URI_RESOLVER__

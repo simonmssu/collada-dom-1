@@ -1,5 +1,5 @@
 /*
- * Copyright 2006 Sony Computer Entertainment Inc.
+ * Copyright 2007 Sony Computer Entertainment Inc.
  *
  * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
  * file except in compliance with the License. You may obtain a copy of the License at:
@@ -11,37 +11,30 @@
  * License. 
  */
 
-#ifndef __DAE_LIBXMLPLUGIN__
-#define __DAE_LIBXMLPLUGIN__
+#ifndef __DAE_TINYXMLPLUGIN__
+#define __DAE_TINYXMLPLUGIN__
 
 #include <vector>
+#include <list>
 #include <dae/daeElement.h>
 #include <dae/daeURI.h>
 #include <dae/daeIOPluginCommon.h>
 
-struct _xmlTextReader;
-struct _xmlTextWriter;
+class TiXmlDocument;
+class TiXmlElement;
 
-/**
- * The @c daeLIBXMLPlugin class derives from @c daeIOPluginCommon and implements an XML
- * input/output backend using libxml2 as a parser. When using this plugin, daeInterface::load() expects
- * an rfc 2396 compliant URI,  any URI supported by libxml2 should be properly 
- * handled including ones with network schemes and authority.  If the URI contains a fragment it will be ignored
- * and the entire referenced document will be loaded.  daeInterface::saveAs will only
- * handle a filename path at present (ie: no scheme or authority).
- */
-class daeLIBXMLPlugin : public daeIOPluginCommon
+class daeTinyXMLPlugin : public daeIOPluginCommon
 {
 public:
 	// Constructor / destructor
 	/**
 	 * Constructor.
 	 */
-	DLLSPEC daeLIBXMLPlugin();
+	DLLSPEC daeTinyXMLPlugin();
 	/**
 	 * Destructor.
 	 */
-	virtual DLLSPEC ~daeLIBXMLPlugin();
+	virtual DLLSPEC ~daeTinyXMLPlugin();
 
 	// Operations
 	virtual DLLSPEC daeInt write(daeURI *name, daeDocument *document, daeBool replace);
@@ -71,24 +64,18 @@ public:
 	 * @return Returns the string value of the option or NULL if option is not valid.
 	 */
 	virtual DLLSPEC daeString getOption( daeString option );
-
+	
 private:
-	_xmlTextWriter *writer;
-
-	FILE *rawFile;
-	unsigned long rawByteCount;
-	daeURI rawRelPath;
-	bool saveRawFile;
+  TiXmlDocument*  m_doc;
+  std::list<TiXmlElement*>  m_elements;
 
 	virtual daeElementRef readFromFile(const daeURI& uri);
 	virtual daeElementRef readFromMemory(daeString buffer, const daeURI& baseUri);
-	daeElementRef read(_xmlTextReader* reader);
-	daeElementRef readElement(_xmlTextReader* reader, daeElement* parentElement);
+	daeElementRef readElement(TiXmlElement* tinyXmlElement, daeElement* parentElement);
 
 	void writeElement( daeElement* element ); 
 	void writeAttribute( daeMetaAttribute* attr, daeElement* element, daeInt attrNum = -1 );
-
-	void writeRawSource( daeElement* src );
+  void writeValue( daeMetaAttribute* attr, daeElement* element );
 };
 
-#endif //__DAE_LIBXMLPLUGIN__
+#endif //__DAE_TINYXMLPLUGIN__

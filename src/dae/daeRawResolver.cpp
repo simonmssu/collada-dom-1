@@ -78,7 +78,12 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 		daeErrorHandler::get()->handleError( "can't get path from URI\n" );
 		return false;
 	}
+	// !!!steveT: Replace this with a real URI to file path function
+#if defined(WIN32)
 	FILE *rawFile = fopen(finalname+1, "rb");
+#else
+	FILE *rawFile = fopen(finalname, "rb");
+#endif
 	if (rawFile == NULL )
 	{
 		uri.setState(daeURI::uri_failed_file_not_found);
