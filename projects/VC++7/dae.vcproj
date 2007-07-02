@@ -20,7 +20,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -63,7 +63,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -105,7 +105,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				ProgramDataBaseFileName="../../lib/VC7/1.3/libcollada_dae.pdb"
@@ -145,7 +145,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				ProgramDataBaseFileName="../../lib/VC7/1.4/libcollada_dae.pdb"
@@ -186,7 +186,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT;DOM_INCLUDE_LIBXML"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -237,7 +237,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT;DOM_INCLUDE_LIBXML"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				ProgramDataBaseFileName="../../lib/libcollada141dom13.pdb"
@@ -310,10 +310,10 @@
 				RelativePath="..\..\src\dae\daeIDRef.cpp">
 			</File>
 			<File
-				RelativePath="..\..\src\modules\LIBXMLPlugin\daeLIBXMLPlugin.cpp">
+				RelativePath="..\..\src\dae\daeIOPluginCommon.cpp">
 			</File>
 			<File
-				RelativePath="..\..\src\modules\LIBXMLPlugin\daeLIBXMLResolver.cpp">
+				RelativePath="..\..\src\modules\LIBXMLPlugin\daeLIBXMLPlugin.cpp">
 			</File>
 			<File
 				RelativePath="..\..\src\dae\daeMemorySystem.cpp">
@@ -349,6 +349,9 @@
 				RelativePath="..\..\src\dae\daeSIDResolver.cpp">
 			</File>
 			<File
+				RelativePath="..\..\src\dae\daeStandardURIResolver.cpp">
+			</File>
+			<File
 				RelativePath="..\..\src\modules\STLDatabase\daeSTLDatabase.cpp">
 			</File>
 			<File
@@ -356,6 +359,9 @@
 			</File>
 			<File
 				RelativePath="..\..\src\dae\daeStringTable.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\dae\daeTinyXMLPlugin.cpp">
 			</File>
 			<File
 				RelativePath="..\..\src\dae\daeURI.cpp">
@@ -420,10 +426,10 @@
 				RelativePath="..\..\include\dae\daeIOPlugin.h">
 			</File>
 			<File
-				RelativePath="..\..\include\modules\daeLIBXMLPlugin.h">
+				RelativePath="..\..\include\dae\daeIOPluginCommon.h">
 			</File>
 			<File
-				RelativePath="..\..\include\modules\daeLIBXMLResolver.h">
+				RelativePath="..\..\include\modules\daeLIBXMLPlugin.h">
 			</File>
 			<File
 				RelativePath="..\..\include\dae\daeMemorySystem.h">
@@ -462,6 +468,9 @@
 				RelativePath="..\..\include\dae\daeSmartRef.h">
 			</File>
 			<File
+				RelativePath="..\..\include\dae\daeStandardURIResolver.h">
+			</File>
+			<File
 				RelativePath="..\..\include\modules\daeSTLDatabase.h">
 			</File>
 			<File
@@ -469,6 +478,9 @@
 			</File>
 			<File
 				RelativePath="..\..\include\dae\daeStringTable.h">
+			</File>
+			<File
+				RelativePath="..\..\include\dae\daeTinyXMLPlugin.h">
 			</File>
 			<File
 				RelativePath="..\..\include\dae\daeTypes.h">

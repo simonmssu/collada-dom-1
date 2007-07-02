@@ -161,7 +161,7 @@ daeElementRef daeLIBXMLPlugin::read(_xmlTextReader* reader) {
 daeElementRef daeLIBXMLPlugin::readElement(_xmlTextReader* reader, daeElement* parentElement) {
 	assert(xmlTextReaderNodeType(reader) == XML_READER_TYPE_ELEMENT);
 	daeString elementName = (daeString)xmlTextReaderConstName(reader);
-	bool empty = xmlTextReaderIsEmptyElement(reader);
+	bool empty = xmlTextReaderIsEmptyElement(reader) != 0;
 
 	std::vector<attrPair> attributes;
 	packageCurrentAttributes(reader, /* out */ attributes);
