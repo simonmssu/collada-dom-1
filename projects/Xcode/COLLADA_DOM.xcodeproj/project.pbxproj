@@ -205,13 +205,24 @@
 		AD012D340BCFEE5100BBFE92 /* daeURI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C280BCFEE5100BBFE92 /* daeURI.cpp */; };
 		AD012D350BCFEE5100BBFE92 /* domAny.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C290BCFEE5100BBFE92 /* domAny.cpp */; };
 		AD012D380BCFEE5100BBFE92 /* daeLIBXMLPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C2E0BCFEE5100BBFE92 /* daeLIBXMLPlugin.cpp */; };
-		AD012D390BCFEE5100BBFE92 /* daeLIBXMLResolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C2F0BCFEE5100BBFE92 /* daeLIBXMLResolver.cpp */; };
 		AD012D3E0BCFEE5100BBFE92 /* stdErrPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C350BCFEE5100BBFE92 /* stdErrPlugin.cpp */; };
 		AD012D3F0BCFEE5100BBFE92 /* daeSTLDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C370BCFEE5100BBFE92 /* daeSTLDatabase.cpp */; };
 		AD012F630BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_e.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AD012F5F0BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_e.pdf */; };
 		AD012F640BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_j.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AD012F600BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_j.pdf */; };
 		AD76C7570BD7FE8A00486DB0 /* dae.h in Headers */ = {isa = PBXBuildFile; fileRef = AD76C6810BD7FE7C00486DB0 /* dae.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD76C7580BD7FE8A00486DB0 /* dom.h in Headers */ = {isa = PBXBuildFile; fileRef = AD76C6820BD7FE7C00486DB0 /* dom.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD9A7D7F0C38EA9F00C43196 /* daeIOPluginCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7C0C38EA9F00C43196 /* daeIOPluginCommon.h */; };
+		AD9A7D800C38EA9F00C43196 /* daeStandardURIResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7D0C38EA9F00C43196 /* daeStandardURIResolver.h */; };
+		AD9A7D810C38EA9F00C43196 /* daeTinyXMLPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7E0C38EA9F00C43196 /* daeTinyXMLPlugin.h */; };
+		AD9A7D820C38EA9F00C43196 /* daeIOPluginCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7C0C38EA9F00C43196 /* daeIOPluginCommon.h */; };
+		AD9A7D830C38EA9F00C43196 /* daeStandardURIResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7D0C38EA9F00C43196 /* daeStandardURIResolver.h */; };
+		AD9A7D840C38EA9F00C43196 /* daeTinyXMLPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7E0C38EA9F00C43196 /* daeTinyXMLPlugin.h */; };
+		AD9A7DF90C38EAF900C43196 /* daeTinyXMLPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DF80C38EAF900C43196 /* daeTinyXMLPlugin.cpp */; };
+		AD9A7DFA0C38EAF900C43196 /* daeTinyXMLPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DF80C38EAF900C43196 /* daeTinyXMLPlugin.cpp */; };
+		AD9A7DFD0C38EB0700C43196 /* daeIOPluginCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DFB0C38EB0700C43196 /* daeIOPluginCommon.cpp */; };
+		AD9A7DFE0C38EB0700C43196 /* daeStandardURIResolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DFC0C38EB0700C43196 /* daeStandardURIResolver.cpp */; };
+		AD9A7DFF0C38EB0700C43196 /* daeIOPluginCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DFB0C38EB0700C43196 /* daeIOPluginCommon.cpp */; };
+		AD9A7E000C38EB0700C43196 /* daeStandardURIResolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DFC0C38EB0700C43196 /* daeStandardURIResolver.cpp */; };
 		ADA834C40BDBA82600CA0FB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		ADA834C50BDBA82600CA0FB3 /* COLLADA_DOM_131.chm in Resources */ = {isa = PBXBuildFile; fileRef = AD012F5E0BCFEEA200BBFE92 /* COLLADA_DOM_131.chm */; };
 		ADA834C60BDBA82600CA0FB3 /* COLLADA_DOM-Programming_Guide_e.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AD012F5F0BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_e.pdf */; };
@@ -243,7 +254,6 @@
 		ADA836620BDBA82600CA0FB3 /* daeURI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C280BCFEE5100BBFE92 /* daeURI.cpp */; };
 		ADA836630BDBA82600CA0FB3 /* domAny.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C290BCFEE5100BBFE92 /* domAny.cpp */; };
 		ADA836640BDBA82600CA0FB3 /* daeLIBXMLPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C2E0BCFEE5100BBFE92 /* daeLIBXMLPlugin.cpp */; };
-		ADA836650BDBA82600CA0FB3 /* daeLIBXMLResolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C2F0BCFEE5100BBFE92 /* daeLIBXMLResolver.cpp */; };
 		ADA836660BDBA82600CA0FB3 /* stdErrPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C350BCFEE5100BBFE92 /* stdErrPlugin.cpp */; };
 		ADA836670BDBA82600CA0FB3 /* daeSTLDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C370BCFEE5100BBFE92 /* daeSTLDatabase.cpp */; };
 		ADA836710BDBA87E00CA0FB3 /* domAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01320B0BCFFA3700BBFE92 /* domAccessor.cpp */; };
@@ -503,7 +513,6 @@
 		AD012C280BCFEE5100BBFE92 /* daeURI.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeURI.cpp; sourceTree = "<group>"; };
 		AD012C290BCFEE5100BBFE92 /* domAny.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAny.cpp; sourceTree = "<group>"; };
 		AD012C2E0BCFEE5100BBFE92 /* daeLIBXMLPlugin.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeLIBXMLPlugin.cpp; sourceTree = "<group>"; };
-		AD012C2F0BCFEE5100BBFE92 /* daeLIBXMLResolver.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeLIBXMLResolver.cpp; sourceTree = "<group>"; };
 		AD012C350BCFEE5100BBFE92 /* stdErrPlugin.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = stdErrPlugin.cpp; sourceTree = "<group>"; };
 		AD012C370BCFEE5100BBFE92 /* daeSTLDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeSTLDatabase.cpp; sourceTree = "<group>"; };
 		AD012F5E0BCFEEA200BBFE92 /* COLLADA_DOM_131.chm */ = {isa = PBXFileReference; lastKnownFileType = file; name = COLLADA_DOM_131.chm; path = ../../doc/COLLADA_DOM_131.chm; sourceTree = SOURCE_ROOT; };
@@ -827,9 +836,14 @@
 		AD76C6810BD7FE7C00486DB0 /* dae.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = dae.h; sourceTree = "<group>"; };
 		AD76C6820BD7FE7C00486DB0 /* dom.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = dom.h; sourceTree = "<group>"; };
 		AD76C6840BD7FE7C00486DB0 /* daeLIBXMLPlugin.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeLIBXMLPlugin.h; sourceTree = "<group>"; };
-		AD76C6850BD7FE7C00486DB0 /* daeLIBXMLResolver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeLIBXMLResolver.h; sourceTree = "<group>"; };
 		AD76C6860BD7FE7C00486DB0 /* daeSTLDatabase.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeSTLDatabase.h; sourceTree = "<group>"; };
 		AD76C6870BD7FE7C00486DB0 /* stdErrPlugin.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = stdErrPlugin.h; sourceTree = "<group>"; };
+		AD9A7D7C0C38EA9F00C43196 /* daeIOPluginCommon.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeIOPluginCommon.h; sourceTree = "<group>"; };
+		AD9A7D7D0C38EA9F00C43196 /* daeStandardURIResolver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeStandardURIResolver.h; sourceTree = "<group>"; };
+		AD9A7D7E0C38EA9F00C43196 /* daeTinyXMLPlugin.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeTinyXMLPlugin.h; sourceTree = "<group>"; };
+		AD9A7DF80C38EAF900C43196 /* daeTinyXMLPlugin.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeTinyXMLPlugin.cpp; sourceTree = "<group>"; };
+		AD9A7DFB0C38EB0700C43196 /* daeIOPluginCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeIOPluginCommon.cpp; sourceTree = "<group>"; };
+		AD9A7DFC0C38EB0700C43196 /* daeStandardURIResolver.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeStandardURIResolver.cpp; sourceTree = "<group>"; };
 		ADA8366E0BDBA82600CA0FB3 /* COLLADA_DOM131.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = COLLADA_DOM131.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADA838AA0BDBE03000CA0FB3 /* COLLADA_DOM131.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = COLLADA_DOM131.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1106,6 +1120,9 @@
 				AD012C190BCFEE5100BBFE92 /* daeErrorHandler.cpp */,
 				AD012C1A0BCFEE5100BBFE92 /* daeIDRef.cpp */,
 				AD012C1B0BCFEE5100BBFE92 /* daeMemorySystem.cpp */,
+				AD9A7DFB0C38EB0700C43196 /* daeIOPluginCommon.cpp */,
+				AD9A7DFC0C38EB0700C43196 /* daeStandardURIResolver.cpp */,
+				AD9A7DF80C38EAF900C43196 /* daeTinyXMLPlugin.cpp */,
 				AD012C1C0BCFEE5100BBFE92 /* daeMetaAny.cpp */,
 				AD012C1D0BCFEE5100BBFE92 /* daeMetaAttribute.cpp */,
 				AD012C1E0BCFEE5100BBFE92 /* daeMetaChoice.cpp */,
@@ -1138,7 +1155,6 @@
 			isa = PBXGroup;
 			children = (
 				AD012C2E0BCFEE5100BBFE92 /* daeLIBXMLPlugin.cpp */,
-				AD012C2F0BCFEE5100BBFE92 /* daeLIBXMLResolver.cpp */,
 			);
 			path = LIBXMLPlugin;
 			sourceTree = "<group>";
@@ -1501,6 +1517,9 @@
 		AD76C65E0BD7FE7C00486DB0 /* dae */ = {
 			isa = PBXGroup;
 			children = (
+				AD9A7D7C0C38EA9F00C43196 /* daeIOPluginCommon.h */,
+				AD9A7D7D0C38EA9F00C43196 /* daeStandardURIResolver.h */,
+				AD9A7D7E0C38EA9F00C43196 /* daeTinyXMLPlugin.h */,
 				AD76C65F0BD7FE7C00486DB0 /* daeArray.h */,
 				AD76C6600BD7FE7C00486DB0 /* daeArrayTypes.h */,
 				AD76C6610BD7FE7C00486DB0 /* daeAtomicType.h */,
@@ -1543,7 +1562,6 @@
 			isa = PBXGroup;
 			children = (
 				AD76C6840BD7FE7C00486DB0 /* daeLIBXMLPlugin.h */,
-				AD76C6850BD7FE7C00486DB0 /* daeLIBXMLResolver.h */,
 				AD76C6860BD7FE7C00486DB0 /* daeSTLDatabase.h */,
 				AD76C6870BD7FE7C00486DB0 /* stdErrPlugin.h */,
 			);
@@ -1559,6 +1577,9 @@
 			files = (
 				AD76C7570BD7FE8A00486DB0 /* dae.h in Headers */,
 				AD76C7580BD7FE8A00486DB0 /* dom.h in Headers */,
+				AD9A7D7F0C38EA9F00C43196 /* daeIOPluginCommon.h in Headers */,
+				AD9A7D800C38EA9F00C43196 /* daeStandardURIResolver.h in Headers */,
+				AD9A7D810C38EA9F00C43196 /* daeTinyXMLPlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1568,6 +1589,9 @@
 			files = (
 				ADA835990BDBA82600CA0FB3 /* dae.h in Headers */,
 				ADA8359A0BDBA82600CA0FB3 /* dom.h in Headers */,
+				AD9A7D820C38EA9F00C43196 /* daeIOPluginCommon.h in Headers */,
+				AD9A7D830C38EA9F00C43196 /* daeStandardURIResolver.h in Headers */,
+				AD9A7D840C38EA9F00C43196 /* daeTinyXMLPlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1689,7 +1713,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# move into include-dir of COLLADA_DOM\ncd ${SRCROOT}/../../include\n\n# only copy those headers residing in directories (for COLLADA_DOM141 skip 1.3 headers)\nfor H in `find ./1.4 -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone\n\nfor H in `find ./dae -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone\n\nfor H in `find ./modules -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone";
+			shellScript = "# move into include-dir of COLLADA_DOM\ncd ${SRCROOT}/../../include\n\nfor H in `find ./dae -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone\n\nfor H in `find ./modules -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone\n\n# We copy the 1.4 DOM-Headers only (and thus are able to flatten the header-hierarchie)\n\ncd ${SRCROOT}/../../include/1.4\n\n# only copy those headers residing in directories (for COLLADA_DOM141 skip 1.3 headers)\nfor H in `find ./ -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone";
 		};
 		ADA8366A0BDBA82600CA0FB3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1909,9 +1933,11 @@
 				AD012D340BCFEE5100BBFE92 /* daeURI.cpp in Sources */,
 				AD012D350BCFEE5100BBFE92 /* domAny.cpp in Sources */,
 				AD012D380BCFEE5100BBFE92 /* daeLIBXMLPlugin.cpp in Sources */,
-				AD012D390BCFEE5100BBFE92 /* daeLIBXMLResolver.cpp in Sources */,
 				AD012D3E0BCFEE5100BBFE92 /* stdErrPlugin.cpp in Sources */,
 				AD012D3F0BCFEE5100BBFE92 /* daeSTLDatabase.cpp in Sources */,
+				AD9A7DF90C38EAF900C43196 /* daeTinyXMLPlugin.cpp in Sources */,
+				AD9A7DFD0C38EB0700C43196 /* daeIOPluginCommon.cpp in Sources */,
+				AD9A7DFE0C38EB0700C43196 /* daeStandardURIResolver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1944,7 +1970,6 @@
 				ADA836620BDBA82600CA0FB3 /* daeURI.cpp in Sources */,
 				ADA836630BDBA82600CA0FB3 /* domAny.cpp in Sources */,
 				ADA836640BDBA82600CA0FB3 /* daeLIBXMLPlugin.cpp in Sources */,
-				ADA836650BDBA82600CA0FB3 /* daeLIBXMLResolver.cpp in Sources */,
 				ADA836660BDBA82600CA0FB3 /* stdErrPlugin.cpp in Sources */,
 				ADA836670BDBA82600CA0FB3 /* daeSTLDatabase.cpp in Sources */,
 				ADA836710BDBA87E00CA0FB3 /* domAccessor.cpp in Sources */,
@@ -1999,6 +2024,9 @@
 				ADA836A20BDBA87E00CA0FB3 /* domTristrips.cpp in Sources */,
 				ADA836A30BDBA87E00CA0FB3 /* domTypes.cpp in Sources */,
 				ADA836A40BDBA87E00CA0FB3 /* domVertices.cpp in Sources */,
+				AD9A7DFA0C38EAF900C43196 /* daeTinyXMLPlugin.cpp in Sources */,
+				AD9A7DFF0C38EB0700C43196 /* daeIOPluginCommon.cpp in Sources */,
+				AD9A7E000C38EB0700C43196 /* daeStandardURIResolver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2036,6 +2064,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					$SRCROOT/../../include,
@@ -2084,6 +2113,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				HEADER_SEARCH_PATHS = (
 					$SRCROOT/../../include,
@@ -2125,6 +2155,7 @@
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					$SRCROOT/../../include,
@@ -2168,6 +2199,7 @@
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					$SRCROOT/../../include,
