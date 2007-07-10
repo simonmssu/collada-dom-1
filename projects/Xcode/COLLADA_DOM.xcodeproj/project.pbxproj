@@ -2072,7 +2072,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = COLLADA_DOM141.plist;
-				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				INSTALL_PATH = /Library/Frameworks;
 				LIBRARY_STYLE = DYNAMIC;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = "-lxml2";
@@ -2121,7 +2121,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = COLLADA_DOM131.plist;
-				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				INSTALL_PATH = /Library/Frameworks;
 				LIBRARY_STYLE = DYNAMIC;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = "-lxml2";
@@ -2163,7 +2163,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = COLLADA_DOM141.plist;
-				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				INSTALL_PATH = /Library/Frameworks;
 				LIBRARY_STYLE = DYNAMIC;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = "-lxml2";
@@ -2196,7 +2196,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_SYMBOL_SEPARATION = NO;
 				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
@@ -2207,7 +2207,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = COLLADA_DOM131.plist;
-				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				INSTALL_PATH = /Library/Frameworks;
 				LIBRARY_STYLE = DYNAMIC;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = "-lxml2";
