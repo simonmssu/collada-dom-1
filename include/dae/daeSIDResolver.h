@@ -14,6 +14,7 @@
 #ifndef __DAE_SIDRESOLVER_H__
 #define __DAE_SIDRESOLVER_H__
 
+#include <string>
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
 
@@ -59,15 +60,10 @@ public:
 	DLLSPEC daeSIDResolver( daeElement *container, daeString target, daeString platform = NULL );
 
 	/**
-	 * Destructor.
-	 */
-	DLLSPEC ~daeSIDResolver();
-
-	/**
 	 * Gets the target string.
 	 * @return Returns the target string of this SID resolver.
 	 */
-	daeString getTarget() const			{ return target; }
+	daeString getTarget() const;
 	/**
 	 * Sets the target string.
 	 * @param t The new target string for this resolver.
@@ -78,7 +74,7 @@ public:
 	 * Gets the name of the profile to use when resolving.
 	 * @return Returns the name of the profile or NULL for the common profile.
 	 */
-	daeString getProfile()	const		{ return profile; }
+	daeString getProfile()	const;
 	/**
 	 * Sets the profile to use when resolving.
 	 * @param p The profile name of the technique to use. A NULL value indicates the common profile.
@@ -89,7 +85,7 @@ public:
 	 * Gets a pointer to the @c daeElement that contains the target to resolve.
 	 * @return Returns the pointer to the containing daeElmement.
 	 */
-	daeElement* getContainer() const	{ return container; }
+	daeElement* getContainer() const;
 	/**
 	 * Sets the pointer to the @c daeElement that contains the target to resolve.
 	 * @param element Pointer to the containing @c daeElmement.
@@ -100,7 +96,7 @@ public:
 	 * Gets the resolution state.
 	 * @return Returns the current state of SID resolution.
 	 */
-	ResolveState getState() const		{ return state; }
+	ResolveState getState() const;
 
 	/**
 	 * Gets the element that this SID resolves to.
@@ -125,23 +121,25 @@ public:
 	DLLSPEC daeDouble *getDouble();
 
 private:
-	
+
+	void resetResolveState();
 	void resolve();
+
 	/**
 	 * Recursive function which will find an element with specified sid in the subtree of el.
 	 */
 	daeElement *findSID( daeElement *el, daeString sid );
 
-private:	
-	
-	daeString		target;
-	daeString		profile;	
-	daeElement		*container;
-	ResolveState	state;
+	// This data is provided by the user
+	std::string	 target;
+	std::string	 profile;	
+	daeElement  *container;
 
-	daeElement		*element;
-	daeDoubleArray	*doubleArray;
-	daeDouble		*doublePtr;
+	// This is the output for the user. It gets set after calling the resolve function.
+	ResolveState	  state;
+	daeElement		 *resolvedElement;
+	daeDoubleArray *resolvedDoubleArray;
+	daeDouble		   *resolvedDoublePtr;
 
 };
 

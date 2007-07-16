@@ -11,6 +11,8 @@
  * License. 
  */
 
+#include <vector>
+#include <sstream>
 #include <dae/daeSIDResolver.h>
 #include <dae/daeIDRef.h>
 #include <dae/daeAtomicType.h>
@@ -18,94 +20,49 @@
 #include <dae/daeMetaElement.h>
 #include <dae/daeURI.h>
 
+using namespace std;
+
 daeSIDResolver::daeSIDResolver( daeElement *container, daeString target, daeString profile )
 {
-	element = NULL;
-	doubleArray = NULL;
-	doublePtr = NULL;
-
-	this->container = container;
-	if ( target != NULL ) {
-		this->target = new char[ strlen( target ) +1 ];
-		strcpy( (char*)this->target, target );
-		state = target_loaded;
-	}
-	else {
-		this->target = NULL;
-		state = target_empty;
-	}
-	if ( profile != NULL ) {
-		this->profile = new char[ strlen( profile ) +1 ];
-		strcpy( (char*)this->profile, profile );
-	}
-	else {
-		this->profile = NULL;
-	}
+	setContainer(container);
+	setTarget(target);
+	setProfile(profile);
 }
 
-daeSIDResolver::~daeSIDResolver()
-{
-	if ( target != NULL ) {
-		delete[] target;
-		target = NULL;
-	}
-	if ( profile != NULL ) {
-		delete[] profile;
-		profile = NULL;
-	}
+daeString daeSIDResolver::getTarget() const {
+	return target.empty() ? NULL : target.c_str();
 }
 
 void daeSIDResolver::setTarget( daeString t )
 {
-	if ( target != NULL ) {
-		delete[] target;
-	}
-	if ( t != NULL ) {
-		target = new char[ strlen( t ) +1 ];
-		strcpy( (char*)target, t );
-		state = target_loaded;
-	}
-	else {
-		target = NULL;
-		state = target_empty;
-	}
-	element = NULL;
-	doubleArray = NULL;
-	doublePtr = NULL;
+	target = t ? t : "";
+	resetResolveState();
 }
 
+daeString daeSIDResolver::getProfile() const {
+	return profile.empty() ? NULL : profile.c_str();
+}
 
 void daeSIDResolver::setProfile( daeString p )
 {
-	if ( profile != NULL ) {
-		delete[] target;
-	}
-	if ( p != NULL ) {
-		profile = new char[ strlen( p ) +1 ];
-		strcpy( (char*)profile, p );
-	}
-	else {
-		profile = NULL;
-	}
-	element = NULL;
-	doubleArray = NULL;
-	doublePtr = NULL;
+	profile = p ? p : "";
+	resetResolveState();
+}
+
+daeElement* daeSIDResolver::getContainer() const {
+	return container;
 }
 
 void daeSIDResolver::setContainer(daeElement* element)
 {
 	if ( element != container ) {
 		container = element;
-		element = NULL;
-		doubleArray = NULL;
-		doublePtr = NULL;
-		if ( target != NULL ) {
-			state = target_loaded;
-		}
-		else {
-			state = state = target_empty;
-		}
+		resetResolveState();
 	}
+}
+
+daeSIDResolver::ResolveState daeSIDResolver::getState() const {
+	return state;
 }
 
 daeElementRef daeSIDResolver::getElement()
@@ -113,7 +70,7 @@ daeElementRef daeSIDResolver::getElement()
 	if ( state == target_loaded ) {
 		resolve();
 	}
-	return element;
+	return resolvedElement;
 }
 
 daeDoubleArray *daeSIDResolver::getDoubleArray()
@@ -121,7 +78,7 @@ daeDoubleArray *daeSIDResolver::getDoubleArray()
 	if ( state == target_loaded ) {
 		resolve();
 	}
-	return doubleArray;
+	return resolvedDoubleArray;
 }
 
 daeDouble *daeSIDResolver::getDouble()
@@ -129,93 +86,149 @@ daeDouble *daeSIDResolver::getDouble()
 	if ( state == target_loaded ) {
 		resolve();
 	}
-	return doublePtr;
+	return resolvedDoublePtr;
+}
+
+void daeSIDResolver::resetResolveState() {
+	state = target.empty() ? target_empty : target_loaded;
+	resolvedElement = NULL;
+	resolvedDoubleArray = NULL;
+	resolvedDoublePtr = NULL;
+}
+
+namespace {
+	void tokenizeSIDRef(const string& sidRef, /* out */ vector<string>& tokens) {
+		string separators = "/.()";
+		size_t currentIndex = 0, nextTokenIndex = 0;
+		while (currentIndex < sidRef.length() &&
+					 (nextTokenIndex = sidRef.find_first_of(separators, currentIndex)) != string::npos) {
+			if ((nextTokenIndex - currentIndex) > 0)
+				tokens.push_back(sidRef.substr(currentIndex, nextTokenIndex-currentIndex));
+			tokens.push_back(string(1, sidRef[nextTokenIndex]));
+			currentIndex = nextTokenIndex+1;
+		}
+
+		if (currentIndex < sidRef.length())
+			tokens.push_back(sidRef.substr(currentIndex, sidRef.length()-currentIndex));
+	}
 }
 
 void daeSIDResolver::resolve()
 {
-	char * str = (char *)target;
-	char * pos = strchr( str, '/');
-	char * id;
-	if ( pos == NULL ) {
-		pos = strchr( str, '.' );
-	}
-	if ( pos == NULL ) {
-		pos = strchr( str, '(' );
-	}
-	if ( pos != NULL ) {
-		id = new char[ pos - str + 1 ];
-		strncpy( id, str, pos - str );
-		id[ pos - str ] = 0;
-		str = pos;
-	}
-	else {
-		id = new char[ strlen( str ) + 1 ]; 
-		strcpy( id, str );
-		str = str + strlen( str );
-	}
-	if ( strcmp( id, "." ) == 0 ) {
+	resetResolveState();
+	if (target.empty())
+		return;
+
+	daeElement*     element = 0;
+	daeDoubleArray* doubleArray = 0;
+	daeDouble*      doublePtr = 0;
+	state = sid_failed_not_found; // Assume that we're going to fail
+
+	vector<string> tokens;
+	tokenizeSIDRef(target, /* out */ tokens);
+
+	vector<string>::iterator tok = tokens.begin();
+
+	// The first token should be the ID of the element we want to start our search from, or a '.' to indicate
+	// that we should start the search from the container element.
+	if (tok == tokens.end())
+		return;
+
+	if (*tok == ".") {
 		element = container;
-		state = sid_success_element;
-	}
-	else {
-		daeIDRef idref( id );
+	}	else {
+		daeIDRef idref( (*tok).c_str() );
 		idref.setContainer( container );
 		idref.resolveElement();
-		if ( idref.getState() != daeIDRef::id_success ) {
-			state = sid_failed_not_found;
-			delete[] id;
-			element = NULL;
+		if ( idref.getState() != daeIDRef::id_success )
 			return;
-		}
 		element = idref.getElement();
-		state = sid_success_element;
 	}
 
-	char * next = NULL;
-	while ( *str != '.' && *str != '(' && *str != 0 ) {
-		if ( *str == '/' ) {
-			str++;
-		}
-		if ( next != NULL ) {
-			delete[] next;
-			next = NULL;
-		}
-		pos = strchr( str, '/');
-		if ( pos == NULL ) {
-			pos = strchr( str, '.' );
-		}
-		if ( pos == NULL ) {
-			pos = strchr( str, '(' );
-		}
-		if ( pos != NULL ) {
-			next = new char[ pos - str + 1 ];
-			strncpy( next, str, pos - str );
-			next[ pos - str ] = 0;
-			str = pos;
-		}
-		else {
-			next = new char[ strlen( str ) + 1 ]; 
-			strcpy( next, str );
-			str = str + strlen( str );
-		}
-		//find the child element with SID of next
-		daeElement *el = findSID( element, next );
-		element = el;
-		if ( element == NULL ) {
-			//failed
-			state = sid_failed_not_found;
-			if ( id != NULL ) {
-				delete[] id;
-			}
-			if ( next != NULL ) {
-				delete[] next;
-				next = NULL;
-			}
+	// Next we have a list of SIDs, each one separated by "/". Once we hit one of ".()", we know we're
+	// done with the SID section.
+	tok++;
+	if (tok != tokens.end()  &&  *tok != "/")
+		return;
+	
+	for (; tok != tokens.end() && *tok == "/"; tok++) {
+		tok++; // Read the '/'
+		if (tok == tokens.end())
 			return;
+
+		// Find the element matching the SID
+		string sid = *tok;
+		daeElement* lastElementFound = element;
+		element = findSID(element, sid.c_str());
+		if (element == NULL) {
+			// !!!steveT: This behavior will probably need to change once bug 1293 in Khronos gets resolved.
+			// We weren't able to find an element with a matching SID. Before we bail, try consuming some more
+			// of the target to use as additional SID.
+			tok++;
+			for (; tok != tokens.end()  &&  element == NULL; tok++) {
+				sid += *tok;
+				element = findSID(lastElementFound, sid.c_str());
+			}
+			tok--; // Step back. tok is about to be incremented by the outer for loop.
+		}
+		
+		if (element == NULL)
+			return;
+	}
+
+	// Now we want to parse the member selection tokens. It can either be
+	//   (a) '.' followed by a string representing the member to access
+	//   (b) '(x)' where x is a number, optionally followed by another '(x)'
+	// Anything else is an error.
+	string member;
+	size_t arrayIndex1 = UINT_MAX, arrayIndex2 = UINT_MAX;
+	if (tok != tokens.end()) {
+		if (*tok == ".") {
+			tok++;
+			if (tok == tokens.end())
+				return;
+			member = *tok;
+			tok++;
+		}
+		else if (*tok == "(") {
+			tok++;
+			if (tok == tokens.end())
+				return;
+
+			istringstream stream(*tok);
+			stream >> arrayIndex1;
+			if (!stream.good() && !stream.eof())
+				return;
+			tok++;
+			if (tok == tokens.end()  ||  *tok != ")")
+				return;
+			tok++;
+			
+			if (tok != tokens.end()  &&  *tok == "(") {
+				tok++;
+				if (tok == tokens.end())
+					return;
+
+				stream.clear();
+				stream.str(*tok);
+				stream >> arrayIndex2;
+				if (!stream.good() && !stream.eof())
+					return;
+				tok++;
+				if (tok == tokens.end()  ||  *tok != ")")
+					return;
+				tok++;
+			}
 		}
 	}
-	//check for the double array
+
+	// We shouldn't have any tokens left. If we do it's an error.
+	if (tok != tokens.end())
+		return;
+
+	// At this point we've parsed a correctly formatted SID reference. The only thing left is to resolve
+	// the member selection portion of the SID ref. First, see if the resolved element has a float array we
+	// can use.
 	if ( strcmp( element->getTypeName(), "source" ) == 0 ) {
 		daeElementRefArray children;
 		element->getChildren( children );
@@ -224,7 +237,6 @@ void daeSIDResolver::resolve()
 		for ( size_t x = 0; x < cnt; x++ ) {
 			if ( strcmp( children[x]->getTypeName(), "float_array" ) == 0 ) {
 				doubleArray = (daeDoubleArray*)children[x]->getMeta()->getValueAttribute()->getWritableMemory( children[x] );
-				state = sid_success_array;
 				break;
 			}
 		}
@@ -235,79 +247,71 @@ void daeSIDResolver::resolve()
 		if ( ma != NULL ) {
 			if ( ma->isArrayAttribute() && ma->getType()->getTypeEnum() == daeAtomicType::DoubleType ) {
 				doubleArray = (daeDoubleArray*)ma->getWritableMemory( element );
-				state = sid_success_array;
 			}
 		}
 	}
 
-	if( state == sid_success_array ) {
-		//found the double array
-		if ( *str == '.' ) {
-			//do the double lookup stuff based on COMMON profile offset
-			str++;
-			if ( strcmp( str, "ANGLE" ) == 0 ) {
+	if( doubleArray ) {
+		// We have an array to use for indexing. Let's see if the SID ref uses member selection.
+		if (!member.empty()) {
+			// Do member lookup based on the constants defined in the COMMON profile
+			if (member == "ANGLE") {
 				doublePtr = &(doubleArray->get(3));
-				state = sid_success_double;
-			}
-			else if ( strlen( str ) == 1 ) {
-				switch ( *str ) {
+			}	else if (member.length() == 1) {
+				switch(member[0]) {
 					case 'X':
 					case 'R':
 					case 'U':
 					case 'S':
 						doublePtr = &(doubleArray->get(0));
-						state = sid_success_double;
 						break;
 					case 'Y':
 					case 'G':
 					case 'V':
 					case 'T':
 						doublePtr = &(doubleArray->get(1));
-						state = sid_success_double;
 						break;
 					case 'Z':
 					case 'B':
 					case 'P':
 						doublePtr = &(doubleArray->get(2));
-						state = sid_success_double;
 						break;
 					case 'W':
 					case 'A':
 					case 'Q':
 						doublePtr = &(doubleArray->get(3));
-						state = sid_success_double;
 						break;
 				};
 			}
-		}
-		else if ( *str == '(' ) {
-			//do the double lookup stuff based on the offset given
-			str++;
-			pos = strchr( str, '(' );
-			daeInt i = atoi( str );
-			if ( pos != NULL && doubleArray->getCount() == 16 ) {
-				//we are doing a matrix lookup
-				pos++;
-				daeInt j = atoi( pos );
-				doublePtr = &(doubleArray->get( i*4 + j ));
-				state = sid_success_double;
-			}
-			else {
-				//vector lookup
-				if ( (daeInt)doubleArray->getCount() > i ) {
+		} else if (arrayIndex1 != UINT_MAX) {
+			// Use the indices to lookup a value in the array
+			if (arrayIndex2 != UINT_MAX  &&  doubleArray->getCount() == 16) {
+				// We're doing a matrix lookup. Make sure the index is valid.
+				size_t i = arrayIndex1*4 + arrayIndex2;
+				if (i < doubleArray->getCount())
 					doublePtr = &(doubleArray->get(i));
-					state = sid_success_double;
-				}
+			} else {
+				// Vector lookup. Make sure the index is valid.
+				if (arrayIndex1 < doubleArray->getCount())
+					doublePtr = &(doubleArray->get(arrayIndex1));
 			}
 		}
 	}
 
-	if ( id != NULL ) {
-		delete[] id;
-	}
-	if ( next != NULL ) {
-		delete[] next;
-	}
+	// If we tried to do member selection but we couldn't resolve it to a doublePtr, fail.
+	if ((!member.empty() || arrayIndex1 != UINT_MAX)  &&  doublePtr == NULL)
+		return;
+
+	// SID resolution was successful. Apply the results.
+	resolvedElement = element;
+	resolvedDoubleArray = doubleArray;
+	resolvedDoublePtr = doublePtr;
+	if (resolvedDoublePtr)
+		state = sid_success_double;
+	else if (resolvedDoubleArray)
+		state = sid_success_array;
+	else if (resolvedElement)
+		state = sid_success_element;
 }
 
 daeElement *daeSIDResolver::findSID( daeElement *el, daeString sid ) {
@@ -348,12 +352,12 @@ daeElement *daeSIDResolver::findSID( daeElement *el, daeString sid ) {
 	}
 	for ( size_t x = 0; x < cnt; x++ ) {
 		//if not found look for it in each child
-		if ( profile != NULL && strcmp( children[x]->getTypeName(), "technique_COMMON" ) == 0 ) {
+		if ( !profile.empty() && strcmp( children[x]->getTypeName(), "technique_COMMON" ) == 0 ) {
 			//not looking for common profile
 			continue;
 		}
 		else if ( strcmp( children[x]->getTypeName(), "technique" ) == 0 && children[x]->hasAttribute( "profile" ) ) {
-			if ( profile == NULL || strcmp( profile, children[x]->getAttributeValue( "profile" ) ) != 0 ) {
+			if ( profile.empty() || profile != children[x]->getAttributeValue( "profile" ) ) {
 				//not looking for this technique profile
 				continue;
 			}		
@@ -366,4 +370,3 @@ daeElement *daeSIDResolver::findSID( daeElement *el, daeString sid ) {
 	}
 	return NULL;
 }
-
