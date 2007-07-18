@@ -386,7 +386,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dom_d.lib libxml2_a.lib iconv.lib zlib.lib wsock32.lib"
+				AdditionalDependencies="libcollada_dom_d.lib libxml2_a.lib zlib.lib wsock32.lib"
 				OutputFile="..\..\bin-dbg\libcollada141dom13_d.dll"
 				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\tinyxml\lib\win32&quot;;../../tmp/win32"
 				IgnoreDefaultLibraryNames="libc.lib, libcmt.lib, msvcrt.lib, libcd.lib, libcmtd.lib"
@@ -465,7 +465,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dom.lib libxml2_a.lib iconv.lib zlib.lib wsock32.lib"
+				AdditionalDependencies="libcollada_dom.lib libxml2_a.lib zlib.lib wsock32.lib"
 				OutputFile="..\..\bin\libcollada141dom13.dll"
 				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\tinyxml\lib\win32&quot;;../../tmp/win32"
 				ImportLibrary="..\..\lib\libcollada141dom13.lib"

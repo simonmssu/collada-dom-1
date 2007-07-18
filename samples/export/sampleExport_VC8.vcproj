@@ -64,7 +64,7 @@
 				AdditionalDependencies="libcollada141dom13_d.lib"
 				OutputFile="../../bin-dbg/sampleExport_d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(COLLADA_DOM_LOCATION)/lib-dbg&quot;"
+				AdditionalLibraryDirectories="../../lib-dbg"
 				IgnoreAllDefaultLibraries="false"
 				IgnoreDefaultLibraryNames="library"
 				GenerateDebugInformation="true"
@@ -144,10 +144,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dae_d.lib libcollada_dom_d.lib libxml2_a.lib iconv_a.lib zlib.lib wsock32.lib"
+				AdditionalDependencies="libcollada_dae_d.lib libcollada_dom_d.lib libxml2_a.lib zlib.lib wsock32.lib"
 				OutputFile="../../bin-dbg/sampleExport_staticd.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_DOM_LOCATION)/lib-dbg/vc8/1.4&quot;"
+				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;../../lib-dbg/vc8/1.4"
 				IgnoreAllDefaultLibraries="false"
 				IgnoreDefaultLibraryNames="msvcrt"
 				GenerateDebugInformation="true"
@@ -227,7 +227,7 @@
 				AdditionalDependencies="libcollada141dom13.lib"
 				OutputFile="../../bin/sampleExport.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(COLLADA_DOM_LOCATION)/lib&quot;"
+				AdditionalLibraryDirectories="../../lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -303,10 +303,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libxml2_a.lib zlib.lib iconv_a.lib wsock32.lib"
+				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libxml2_a.lib zlib.lib wsock32.lib"
 				OutputFile="../../bin/sampleExport_static.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_DOM_LOCATION)/lib/vc8/1.4&quot;"
+				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;../../lib/vc8/1.4"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
