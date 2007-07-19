@@ -12,8 +12,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
-			IntermediateDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
+			OutputDirectory="../../tmp/vc7_1.4_debug/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc7_1.4_debug/$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="2">
 			<Tool
@@ -32,7 +32,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib-dbg/sampleIntegration.lib"/>
+				OutputFile="../../lib/vc7_1.4/sampleIntegration.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -54,8 +54,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
-			IntermediateDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
+			OutputDirectory="../../tmp/vc7_1.4/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc7_1.4/$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="2">
 			<Tool
@@ -71,7 +71,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib/sampleIntegration.lib"/>
+				OutputFile="../../lib/vc7_1.4_debug/sampleIntegration.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool

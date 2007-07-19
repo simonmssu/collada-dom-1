@@ -16,8 +16,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug DLL|Win32"
-			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
-			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="../../tmp/vc8_1.4_debug/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc8_1.4_debug/$(ProjectName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
@@ -61,10 +61,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada141dom13_d.lib"
-				OutputFile="../../bin-dbg/sampleExport_d.exe"
+				AdditionalDependencies="libcolladadom13.lib"
+				OutputFile="../../bin/vc8_1.4_debug/$(ProjectName).exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="../../lib-dbg"
+				AdditionalLibraryDirectories="../../lib/vc8_1.4_dll_debug"
 				IgnoreAllDefaultLibraries="false"
 				IgnoreDefaultLibraryNames="library"
 				GenerateDebugInformation="true"
@@ -99,8 +99,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
-			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="../../tmp/vc8_1.4_debug/$(ProjectName)_staticLink"
+			IntermediateDirectory="../../tmp/vc8_1.4_debug/$(ProjectName)_staticLink"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
@@ -144,10 +144,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dae_d.lib libcollada_dom_d.lib libxml2_a.lib zlib.lib wsock32.lib"
-				OutputFile="../../bin-dbg/sampleExport_staticd.exe"
+				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libxml2_a.lib zlib.lib wsock32.lib"
+				OutputFile="../../bin/vc8_1.4_debug/$(ProjectName)_staticLink.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;../../lib-dbg/vc8/1.4"
+				AdditionalLibraryDirectories="../../lib/vc8_1.4_debug;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;"
 				IgnoreAllDefaultLibraries="false"
 				IgnoreDefaultLibraryNames="msvcrt"
 				GenerateDebugInformation="true"
@@ -182,8 +182,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release DLL|Win32"
-			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
-			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="../../tmp/vc8_1.4/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc8_1.4/$(ProjectName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
@@ -224,10 +224,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada141dom13.lib"
-				OutputFile="../../bin/sampleExport.exe"
+				AdditionalDependencies="libcolladadom13.lib"
+				OutputFile="../../bin/vc8_1.4/$(ProjectName).exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="../../lib"
+				AdditionalLibraryDirectories="../../lib/vc8_1.4_dll"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -261,8 +261,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
-			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="../../tmp/vc8_1.4/$(ProjectName)_staticLink"
+			IntermediateDirectory="../../tmp/vc8_1.4/$(ProjectName)_staticLink"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
@@ -304,9 +304,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libxml2_a.lib zlib.lib wsock32.lib"
-				OutputFile="../../bin/sampleExport_static.exe"
+				OutputFile="../../bin/vc8_1.4/$(ProjectName)_staticLink.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;../../lib/vc8/1.4"
+				AdditionalLibraryDirectories="../../lib/vc8_1.4;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"

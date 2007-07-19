@@ -40,8 +40,19 @@ class DAE : public daeInterface
 public:	
 	/** 
 	*  Constructor.
-	*/	
-	DLLSPEC DAE();
+	*/
+	DLLSPEC DAE() {
+		// See the end of the thread linked below for an explanation of why we have the DAE
+		// constructor set up this way. Basically, I'm going to be changing the build output 
+		// location, and when this happens people sometimes continue to link against the old
+		// libraries by accident (e.g. if they just do an svn update). By introducing a new
+		// function that gets called from a function in a header file, I'm ensuring that someone
+		// who tries linking against old libraries will get a link error. This may not sound
+		// very nice, but it's certainly better than getting bizarre runtime crashes.
+		// https://collada.org/public_forum/viewtopic.php?t=771&sid=f13c34f2d17ca720c5021bccbe5128b7
+		init();
+	}
+
 	/** 
 	* Destructor.
 	*/	
@@ -91,6 +102,8 @@ public:
 	virtual DLLSPEC daeInt setDom(daeString name, domCOLLADA* dom);
 
 private:
+	void DLLSPEC init();
+
 	daeDatabase *database;
 	daeIOPlugin *plugin;
 	daeURIResolver* resolver;

@@ -63,16 +63,16 @@ DAE::cleanup()
 //----------------------
 	}
 }
-	
-// constructor
-DAE::DAE() : database(NULL),
-	     plugin(NULL),
-	     resolver(NULL),
-	     idResolver(NULL),
-	     defaultDatabase(false),
-	     defaultPlugin(false),
-	     registerFunc(NULL)
-{
+
+void DAE::init() {
+	database = NULL;
+	plugin = NULL;
+	resolver = NULL;
+	idResolver = NULL;
+	defaultDatabase = false;
+	defaultPlugin = false;
+	registerFunc = NULL;
+
 //Contributed by Nus - Wed, 08 Nov 2006
 	initializeURI();
 	initializeResolveArray();

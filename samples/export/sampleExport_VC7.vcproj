@@ -12,8 +12,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug DLL|Win32"
-			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
-			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="../../tmp/vc7_1.4_debug/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc7_1.4_debug/$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -32,14 +32,14 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada141dom13_d.lib"
-				OutputFile="../../bin-dbg/sampleExport_d.exe"
+				AdditionalDependencies="libcolladadom13.lib"
+				OutputFile="../../bin/vc7_1.4_debug/$(ProjectName).exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="../../lib-dbg"
+				AdditionalLibraryDirectories="../../lib/vc7_1.4_dll_debug"
 				IgnoreAllDefaultLibraries="FALSE"
 				IgnoreDefaultLibraryNames="library"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(OutDir)/sampleExport.pdb"
+				ProgramDatabaseFile="$(TargetDir)/$(TargetName).pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
@@ -65,8 +65,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
-			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="../../tmp/vc7_1.4_debug/$(ProjectName)_staticLink"
+			IntermediateDirectory="../../tmp/vc7_1.4_debug/$(ProjectName)_staticLink"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -85,14 +85,14 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dae_d.lib libcollada_dom_d.lib libxml2_a.lib zlib.lib wsock32.lib"
-				OutputFile="../../bin-dbg/sampleExport_staticd.exe"
+				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libxml2_a.lib zlib.lib wsock32.lib"
+				OutputFile="../../bin/vc7_1.4_debug/$(ProjectName)_staticLink.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;&quot;../../lib-dbg/vc7/1.4&quot;"
+				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;../../lib/vc7_1.4_debug"
 				IgnoreAllDefaultLibraries="FALSE"
 				IgnoreDefaultLibraryNames="msvcrt.lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(OutDir)/sampleExport.pdb"
+				ProgramDatabaseFile="$(TargetDir)/$(TargetName).pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
@@ -118,8 +118,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release DLL|Win32"
-			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
-			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="../../tmp/vc7_1.4/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc7_1.4/$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -135,11 +135,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada141dom13.lib"
-				OutputFile="../../bin/sampleExport.exe"
+				AdditionalDependencies="libcolladadom13.lib"
+				OutputFile="../../bin/vc7_1.4/$(ProjectName).exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="../../lib"
+				AdditionalLibraryDirectories="../../lib/vc7_1.4_dll"
 				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="$(TargetDir)/$(TargetName).pdb"
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -167,8 +168,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
-			IntermediateDirectory="..\..\tmp\win32\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="../../tmp/vc7_1.4/$(ProjectName)_staticLink"
+			IntermediateDirectory="../../tmp/vc7_1.4/$(ProjectName)_staticLink"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -185,10 +186,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libxml2_a.lib zlib.lib wsock32.lib"
-				OutputFile="../../bin/sampleExport_static.exe"
+				OutputFile="../../bin/vc7_1.4/$(ProjectName)_staticLink.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;../../lib/vc7/1.4"
+				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;../../lib/vc7_1.4"
 				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="$(TargetDir)/$(TargetName).pdb"
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"

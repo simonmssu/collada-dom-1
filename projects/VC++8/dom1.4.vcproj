@@ -4,6 +4,7 @@
 	Version="8.00"
 	Name="dom1.4"
 	ProjectGUID="{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}"
+	RootNamespace="dom1.4"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -16,8 +17,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug(1.4)|Win32"
-			OutputDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
-			IntermediateDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
+			OutputDirectory="../../tmp/vc8_1.4_debug/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc8_1.4_debug/$(ProjectName)"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
@@ -46,7 +47,7 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="../../lib-dbg/VC8/1.4/libcollada_dom_d.pdb"
+				ProgramDataBaseFileName="$(IntDir)\vc80.pdb"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
@@ -63,7 +64,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib-dbg/VC8/1.4/libcollada_dom_d.lib"
+				OutputFile="../../lib/vc8_1.4_debug/libcollada_dom.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -83,8 +84,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release(1.4)|Win32"
-			OutputDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
-			IntermediateDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
+			OutputDirectory="../../tmp/vc8_1.4/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc8_1.4/$(ProjectName)"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfATL="0"
@@ -112,7 +113,7 @@
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="../../lib/VC8/1.4/libcollada_dom.pdb"
+				ProgramDataBaseFileName="$(IntDir)\vc80.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="0"
@@ -129,7 +130,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib/VC8/1.4/libcollada_dom.lib"
+				OutputFile="../../lib/vc8_1.4/libcollada_dom.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -216,8 +217,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug DLL|Win32"
-			OutputDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
-			IntermediateDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
+			OutputDirectory="../../tmp/vc8_1.4_dll_debug/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc8_1.4_dll_debug/$(ProjectName)"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
@@ -246,7 +247,7 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="../../tmp/win32/libcollada_dom_d.pdb"
+				ProgramDataBaseFileName="$(IntDir)\vc80.pdb"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
@@ -263,7 +264,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../tmp/win32/libcollada_dom_d.lib"
+				OutputFile="../../lib/vc8_1.4_dll_debug/libcollada_dom.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -283,8 +284,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release DLL|Win32"
-			OutputDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
-			IntermediateDirectory="../../tmp/win32/$(ConfigurationName)/$(ProjectName)"
+			OutputDirectory="../../tmp/vc8_1.4_dll/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc8_1.4_dll/$(ProjectName)"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfATL="0"
@@ -312,7 +313,7 @@
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="../../tmp/win32/libcollada_dom.pdb"
+				ProgramDataBaseFileName="$(IntDir)\vc80.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="0"
@@ -329,7 +330,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../tmp/win32/libcollada_dom.lib"
+				OutputFile="../../lib/vc8_1.4_dll/libcollada_dom.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
