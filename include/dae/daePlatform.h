@@ -11,9 +11,15 @@
  * License. 
  */
 
-#ifndef __DAE_GENERIC_PLATFORM_H__
-#define __DAE_GENERIC_PLATFORM_H__
+#ifndef __DAE_PLATFORM_H__
+#define __DAE_PLATFORM_H__
 
+#ifdef WIN32
+#include <dae/daeWin32Platform.h>
+#elif defined( __GCC__ )
+#include <dae/daeGCCPlatform.h>
+#else
+// Use some generic settings
 #include <limits.h>
 
 #define PLATFORM_INT8	char
@@ -28,5 +34,6 @@
 #define PLATFORM_FLOAT64 double
 
 #define DLLSPEC
+#endif
 
 #endif

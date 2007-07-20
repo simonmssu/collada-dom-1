@@ -14,6 +14,8 @@
 #ifndef __DAE__ERROR__
 #define __DAE__ERROR__
 
+#include <dae/daePlatform.h>
+
 /** Success */
 #define DAE_OK 0 
 /** Fatal Error, should never be returned unless there is a bug in the library. */
@@ -41,10 +43,6 @@
 * @param errorCode Error code returned by a function of the API.
 * @return Returns an English string describing the error.
 */
-#ifdef WIN32
-__declspec( dllexport ) const char *daeErrorString(int errorCode);
-#else
-const char *daeErrorString(int errorCode);
-#endif
+DLLSPEC const char *daeErrorString(int errorCode);
 
 #endif //__DAE__ERROR__

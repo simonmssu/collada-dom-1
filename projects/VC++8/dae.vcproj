@@ -680,10 +680,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\dae\daeGenericPlatform.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\include\dae\daeIDRef.h"
 				>
 			</File>
@@ -741,6 +737,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\dae\daeMetaSequence.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\dae\daePlatform.h"
 				>
 			</File>
 			<File

@@ -14,13 +14,7 @@
 #ifndef __DAE_TYPES_H__
 #define __DAE_TYPES_H__
 
-#ifdef WIN32
-#include <dae/daeWin32Platform.h>
-#elif defined( __GCC__ )
-#include <dae/daeGCCPlatform.h>
-#else
-#include <dae/daeGenericPlatform.h>
-#endif
+#include <dae/daePlatform.h>
 #include <sys/types.h>
 #include <stdio.h>
 #include <stdlib.h>
