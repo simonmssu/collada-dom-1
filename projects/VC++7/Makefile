@@ -16,9 +16,6 @@ include						$(ROOT_DIR)/build/MakeDefs
 PROJECT_FILES				+= \
 							dae.vcproj           \
 							dom1.4.vcproj              \
-							LIBXMLPlugin.vcproj  \
-							stdErrPlugin.vcproj \
-							STLDatabase.vcproj   \
 							
 CLEAN_DIR					+=  ../../bin \
 								../../bin-dbg \
