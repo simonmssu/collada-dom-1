@@ -16,17 +16,18 @@
 # COLLADA DOM base includes 
 #
 CPU_INCDIRS +=	-I$(COLLADA_DOM_DIR)/include
+CPU_INCDIRS +=	-I$(ROOT_DIR)/../COLLADA_DOM/include
 
 
 # Crt Include 
 #
-CPU_INCDIRS +=	-I../../include
-CPU_INCDIRS +=  -I../../include/$(COLLADA_DOM_VERSION)
+CPU_INCDIRS +=	-I$(ROOT_DIR)/../COLLADA_RT/include
+CPU_INCDIRS +=  -I$(ROOT_DIR)/../COLLADA_RT/include/$(COLLADA_DOM_VERSION)
 
 
 # CFX include
 #
-CPU_INCDIRS +=	-I$(PWD)/../COLLADA_FX/include
+CPU_INCDIRS +=	-I$(ROOT_DIR)/../COLLADA_FX/include
 
 
 # To use the right dom version

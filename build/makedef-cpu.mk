@@ -10,7 +10,7 @@
 # License. 
 
 
-CPU_PREFIX              = ccache 
+CPU_PREFIX              =  
 CPU_AR                  = $(CPU_PREFIX)ar
 CPU_AS                  = $(CPU_PREFIX)as
 CPU_CCAS                = $(CPU_PREFIX)gcc
