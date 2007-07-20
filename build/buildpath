@@ -17,7 +17,3 @@ JAVAC				:= "$(JAVA_HOME)/bin/javac.exe"
 JAR				:= "$(JAVA_HOME)/bin/jar.exe"
 JAVA				:= java
 RM				:= rm
-
-# user config
-SDK_VERSION			:= 084_006
-CELL_SDK			:= $(ROOT_DIR)/../$(SDK_VERSION)/cell
