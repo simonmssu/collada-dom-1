@@ -15,10 +15,6 @@ ifeq ($(COLLADA_DOM_PLATFORM),)
 COLLADA_DOM_PLATFORM = PC
 endif
 
-ifeq ($(COLLADA_DOM_VERSION),)
-export COLLADA_DOM_VERSION = 1.4
-endif
-
 MAKEFILE_NAME = $(addsuffix $(COLLADA_DOM_PLATFORM),Makefile_)
 
 include $(MAKEFILE_NAME)

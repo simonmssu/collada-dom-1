@@ -14,7 +14,7 @@
 # target file(s)
 ROOT_DIR         :=	../..
 LIBRARY          := integration
-OUTPUT_DIR       := $(ROOT_DIR)/samples/lib
+OUTPUT_DIR       := $(ROOT_DIR)/lib
 
 # definitions
 include         $(ROOT_DIR)/build/makedefs.txt
