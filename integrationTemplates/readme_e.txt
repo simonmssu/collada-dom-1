@@ -9,17 +9,11 @@
  implied. See the License for the specific language governing permissions and limitations under the 
  License.
 
-We are providing 2 template of integration library generated from the schema.
-
-integrationFull: contains all the collada objects
-integrationSimple: doesn't contain the xml "inline" object.
-
 To use an integration library, you don't have to implement all the classes.
 You need to pick the objects you need out of Collada and implement only those classes.
-Then you need to modify ( and rename ) the main header integrationFull.h or integrationSimple.h
-to match the list of class you have implemented in your integration library.
-same for the makefile / and or Visual Studio project.
+Then you need to modify (and rename) the main header integration.h to match the list
+of classes you have implemented in your integration library.
 
-SEE the sample "integration". It is a very simple integration library which only implements
-the intGeometry object. 
+See the sample "integration". It is a very simple integration library which only implements
+the intGeometry object.
 
