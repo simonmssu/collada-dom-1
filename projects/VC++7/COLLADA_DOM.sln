@@ -8,14 +8,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dom1.4", "dom1.4.vcproj", "
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "integrationFull1.4", "integrationFull1.4.vcproj", "{F5144CB1-FE53-43EC-A6F7-C63E5127F69B}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "integrationSimple1.4", "integrationSimple1.4.vcproj", "{CB72404A-F2AC-417D-833F-F6E716680ACD}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug DLL = Debug DLL
@@ -40,14 +32,6 @@ Global
 		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Release DLL.Build.0 = Release DLL|Win32
 		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Release(1.4).ActiveCfg = Release(1.4)|Win32
 		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Release(1.4).Build.0 = Release(1.4)|Win32
-		{F5144CB1-FE53-43EC-A6F7-C63E5127F69B}.Debug DLL.ActiveCfg = Debug(1.4)|Win32
-		{F5144CB1-FE53-43EC-A6F7-C63E5127F69B}.Debug(1.4).ActiveCfg = Debug(1.4)|Win32
-		{F5144CB1-FE53-43EC-A6F7-C63E5127F69B}.Release DLL.ActiveCfg = Release(1.4)|Win32
-		{F5144CB1-FE53-43EC-A6F7-C63E5127F69B}.Release(1.4).ActiveCfg = Release(1.4)|Win32
-		{CB72404A-F2AC-417D-833F-F6E716680ACD}.Debug DLL.ActiveCfg = Debug(1.4)|Win32
-		{CB72404A-F2AC-417D-833F-F6E716680ACD}.Debug(1.4).ActiveCfg = Debug(1.4)|Win32
-		{CB72404A-F2AC-417D-833F-F6E716680ACD}.Release DLL.ActiveCfg = Release(1.4)|Win32
-		{CB72404A-F2AC-417D-833F-F6E716680ACD}.Release(1.4).ActiveCfg = Release(1.4)|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
