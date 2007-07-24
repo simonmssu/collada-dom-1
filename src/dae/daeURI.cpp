@@ -123,7 +123,7 @@ daeURI::daeURI(int dummy)
 #else
 	#ifdef _WIN32
 		// Windows getcwd always returns a path beginning with a drive letter, so we add file:/// to the beginning 
-		getcwd(&buffer[8],1024-8);
+		_getcwd(&buffer[8],1024-8);
 	#else
 		// Linux getcwd always returns a path beginning with a slash, so we add file:// to the beginning
 		getcwd(&buffer[7],1024-7);
