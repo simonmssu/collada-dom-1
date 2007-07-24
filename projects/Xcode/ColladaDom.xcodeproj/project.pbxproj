@@ -207,115 +207,23 @@
 		AD012D380BCFEE5100BBFE92 /* daeLIBXMLPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C2E0BCFEE5100BBFE92 /* daeLIBXMLPlugin.cpp */; };
 		AD012D3E0BCFEE5100BBFE92 /* stdErrPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C350BCFEE5100BBFE92 /* stdErrPlugin.cpp */; };
 		AD012D3F0BCFEE5100BBFE92 /* daeSTLDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C370BCFEE5100BBFE92 /* daeSTLDatabase.cpp */; };
-		AD012F630BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_e.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AD012F5F0BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_e.pdf */; };
-		AD012F640BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_j.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AD012F600BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_j.pdf */; };
+		AD08E1400C565B5A0090980D /* ColladaDomWiki.url in Resources */ = {isa = PBXBuildFile; fileRef = AD08E13F0C565B5A0090980D /* ColladaDomWiki.url */; };
+		AD08E1510C565D580090980D /* Collada141Dom.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD08E1500C565D580090980D /* Collada141Dom.plist */; };
 		AD76C7570BD7FE8A00486DB0 /* dae.h in Headers */ = {isa = PBXBuildFile; fileRef = AD76C6810BD7FE7C00486DB0 /* dae.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD76C7580BD7FE8A00486DB0 /* dom.h in Headers */ = {isa = PBXBuildFile; fileRef = AD76C6820BD7FE7C00486DB0 /* dom.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD9A7D7F0C38EA9F00C43196 /* daeIOPluginCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7C0C38EA9F00C43196 /* daeIOPluginCommon.h */; };
 		AD9A7D800C38EA9F00C43196 /* daeStandardURIResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7D0C38EA9F00C43196 /* daeStandardURIResolver.h */; };
 		AD9A7D810C38EA9F00C43196 /* daeTinyXMLPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7E0C38EA9F00C43196 /* daeTinyXMLPlugin.h */; };
-		AD9A7D820C38EA9F00C43196 /* daeIOPluginCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7C0C38EA9F00C43196 /* daeIOPluginCommon.h */; };
-		AD9A7D830C38EA9F00C43196 /* daeStandardURIResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7D0C38EA9F00C43196 /* daeStandardURIResolver.h */; };
-		AD9A7D840C38EA9F00C43196 /* daeTinyXMLPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = AD9A7D7E0C38EA9F00C43196 /* daeTinyXMLPlugin.h */; };
 		AD9A7DF90C38EAF900C43196 /* daeTinyXMLPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DF80C38EAF900C43196 /* daeTinyXMLPlugin.cpp */; };
-		AD9A7DFA0C38EAF900C43196 /* daeTinyXMLPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DF80C38EAF900C43196 /* daeTinyXMLPlugin.cpp */; };
 		AD9A7DFD0C38EB0700C43196 /* daeIOPluginCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DFB0C38EB0700C43196 /* daeIOPluginCommon.cpp */; };
 		AD9A7DFE0C38EB0700C43196 /* daeStandardURIResolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DFC0C38EB0700C43196 /* daeStandardURIResolver.cpp */; };
-		AD9A7DFF0C38EB0700C43196 /* daeIOPluginCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DFB0C38EB0700C43196 /* daeIOPluginCommon.cpp */; };
-		AD9A7E000C38EB0700C43196 /* daeStandardURIResolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DFC0C38EB0700C43196 /* daeStandardURIResolver.cpp */; };
-		ADA834C40BDBA82600CA0FB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
-		ADA834C50BDBA82600CA0FB3 /* COLLADA_DOM_131.chm in Resources */ = {isa = PBXBuildFile; fileRef = AD012F5E0BCFEEA200BBFE92 /* COLLADA_DOM_131.chm */; };
-		ADA834C60BDBA82600CA0FB3 /* COLLADA_DOM-Programming_Guide_e.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AD012F5F0BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_e.pdf */; };
-		ADA834C70BDBA82600CA0FB3 /* COLLADA_DOM-Programming_Guide_j.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AD012F600BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_j.pdf */; };
-		ADA835990BDBA82600CA0FB3 /* dae.h in Headers */ = {isa = PBXBuildFile; fileRef = AD76C6810BD7FE7C00486DB0 /* dae.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ADA8359A0BDBA82600CA0FB3 /* dom.h in Headers */ = {isa = PBXBuildFile; fileRef = AD76C6820BD7FE7C00486DB0 /* dom.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ADA8364C0BDBA82600CA0FB3 /* dae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C120BCFEE5100BBFE92 /* dae.cpp */; };
-		ADA8364D0BDBA82600CA0FB3 /* daeArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C130BCFEE5100BBFE92 /* daeArray.cpp */; };
-		ADA8364E0BDBA82600CA0FB3 /* daeAtomicType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C140BCFEE5100BBFE92 /* daeAtomicType.cpp */; };
-		ADA8364F0BDBA82600CA0FB3 /* daeDocument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C150BCFEE5100BBFE92 /* daeDocument.cpp */; };
-		ADA836500BDBA82600CA0FB3 /* daeDom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C160BCFEE5100BBFE92 /* daeDom.cpp */; };
-		ADA836510BDBA82600CA0FB3 /* daeElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C170BCFEE5100BBFE92 /* daeElement.cpp */; };
-		ADA836520BDBA82600CA0FB3 /* daeError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C180BCFEE5100BBFE92 /* daeError.cpp */; };
-		ADA836530BDBA82600CA0FB3 /* daeErrorHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C190BCFEE5100BBFE92 /* daeErrorHandler.cpp */; };
-		ADA836540BDBA82600CA0FB3 /* daeIDRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C1A0BCFEE5100BBFE92 /* daeIDRef.cpp */; };
-		ADA836550BDBA82600CA0FB3 /* daeMemorySystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C1B0BCFEE5100BBFE92 /* daeMemorySystem.cpp */; };
-		ADA836560BDBA82600CA0FB3 /* daeMetaAny.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C1C0BCFEE5100BBFE92 /* daeMetaAny.cpp */; };
-		ADA836570BDBA82600CA0FB3 /* daeMetaAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C1D0BCFEE5100BBFE92 /* daeMetaAttribute.cpp */; };
-		ADA836580BDBA82600CA0FB3 /* daeMetaChoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C1E0BCFEE5100BBFE92 /* daeMetaChoice.cpp */; };
-		ADA836590BDBA82600CA0FB3 /* daeMetaCMPolicy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C1F0BCFEE5100BBFE92 /* daeMetaCMPolicy.cpp */; };
-		ADA8365A0BDBA82600CA0FB3 /* daeMetaElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C200BCFEE5100BBFE92 /* daeMetaElement.cpp */; };
-		ADA8365B0BDBA82600CA0FB3 /* daeMetaElementAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C210BCFEE5100BBFE92 /* daeMetaElementAttribute.cpp */; };
-		ADA8365C0BDBA82600CA0FB3 /* daeMetaGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C220BCFEE5100BBFE92 /* daeMetaGroup.cpp */; };
-		ADA8365D0BDBA82600CA0FB3 /* daeMetaSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C230BCFEE5100BBFE92 /* daeMetaSequence.cpp */; };
-		ADA8365E0BDBA82600CA0FB3 /* daeRawResolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C240BCFEE5100BBFE92 /* daeRawResolver.cpp */; };
-		ADA8365F0BDBA82600CA0FB3 /* daeSIDResolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C250BCFEE5100BBFE92 /* daeSIDResolver.cpp */; };
-		ADA836600BDBA82600CA0FB3 /* daeStringRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C260BCFEE5100BBFE92 /* daeStringRef.cpp */; };
-		ADA836610BDBA82600CA0FB3 /* daeStringTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C270BCFEE5100BBFE92 /* daeStringTable.cpp */; };
-		ADA836620BDBA82600CA0FB3 /* daeURI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C280BCFEE5100BBFE92 /* daeURI.cpp */; };
-		ADA836630BDBA82600CA0FB3 /* domAny.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C290BCFEE5100BBFE92 /* domAny.cpp */; };
-		ADA836640BDBA82600CA0FB3 /* daeLIBXMLPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C2E0BCFEE5100BBFE92 /* daeLIBXMLPlugin.cpp */; };
-		ADA836660BDBA82600CA0FB3 /* stdErrPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C350BCFEE5100BBFE92 /* stdErrPlugin.cpp */; };
-		ADA836670BDBA82600CA0FB3 /* daeSTLDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C370BCFEE5100BBFE92 /* daeSTLDatabase.cpp */; };
-		ADA836710BDBA87E00CA0FB3 /* domAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01320B0BCFFA3700BBFE92 /* domAccessor.cpp */; };
-		ADA836720BDBA87E00CA0FB3 /* domAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01320C0BCFFA3700BBFE92 /* domAnimation.cpp */; };
-		ADA836730BDBA87E00CA0FB3 /* domArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01320D0BCFFA3700BBFE92 /* domArray.cpp */; };
-		ADA836740BDBA87E00CA0FB3 /* domAsset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01320E0BCFFA3700BBFE92 /* domAsset.cpp */; };
-		ADA836750BDBA87E00CA0FB3 /* domBool_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01320F0BCFFA3700BBFE92 /* domBool_array.cpp */; };
-		ADA836760BDBA87E00CA0FB3 /* domBoundingbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132100BCFFA3700BBFE92 /* domBoundingbox.cpp */; };
-		ADA836770BDBA87E00CA0FB3 /* domCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132110BCFFA3700BBFE92 /* domCamera.cpp */; };
-		ADA836780BDBA87E00CA0FB3 /* domChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132120BCFFA3700BBFE92 /* domChannel.cpp */; };
-		ADA836790BDBA87E00CA0FB3 /* domCode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132130BCFFA3700BBFE92 /* domCode.cpp */; };
-		ADA8367A0BDBA87E00CA0FB3 /* domCOLLADA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132140BCFFA3700BBFE92 /* domCOLLADA.cpp */; };
-		ADA8367B0BDBA87E00CA0FB3 /* domCombiner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132150BCFFA3700BBFE92 /* domCombiner.cpp */; };
-		ADA8367C0BDBA87E00CA0FB3 /* domConstants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132160BCFFA3700BBFE92 /* domConstants.cpp */; };
-		ADA8367D0BDBA87E00CA0FB3 /* domController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132170BCFFA3700BBFE92 /* domController.cpp */; };
-		ADA8367E0BDBA87E00CA0FB3 /* domEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132180BCFFA3700BBFE92 /* domEntry.cpp */; };
-		ADA8367F0BDBA87E00CA0FB3 /* domExtra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132190BCFFA3700BBFE92 /* domExtra.cpp */; };
-		ADA836800BDBA87E00CA0FB3 /* domFloat_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01321A0BCFFA3700BBFE92 /* domFloat_array.cpp */; };
-		ADA836810BDBA87E00CA0FB3 /* domGeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01321B0BCFFA3700BBFE92 /* domGeometry.cpp */; };
-		ADA836820BDBA87E00CA0FB3 /* domImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01321C0BCFFA3700BBFE92 /* domImage.cpp */; };
-		ADA836830BDBA87E00CA0FB3 /* domInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01321D0BCFFA3700BBFE92 /* domInput.cpp */; };
-		ADA836840BDBA87E00CA0FB3 /* domInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01321E0BCFFA3700BBFE92 /* domInstance.cpp */; };
-		ADA836850BDBA87E00CA0FB3 /* domInt_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01321F0BCFFA3700BBFE92 /* domInt_array.cpp */; };
-		ADA836860BDBA87E00CA0FB3 /* domJoints.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132200BCFFA3700BBFE92 /* domJoints.cpp */; };
-		ADA836870BDBA87E00CA0FB3 /* domLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132210BCFFA3700BBFE92 /* domLibrary.cpp */; };
-		ADA836880BDBA87E00CA0FB3 /* domLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132220BCFFA3700BBFE92 /* domLight.cpp */; };
-		ADA836890BDBA87E00CA0FB3 /* domLines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132230BCFFA3700BBFE92 /* domLines.cpp */; };
-		ADA8368A0BDBA87E00CA0FB3 /* domLinestrips.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132240BCFFA3700BBFE92 /* domLinestrips.cpp */; };
-		ADA8368B0BDBA87E00CA0FB3 /* domLookat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132250BCFFA3700BBFE92 /* domLookat.cpp */; };
-		ADA8368C0BDBA87E00CA0FB3 /* domMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132260BCFFA3700BBFE92 /* domMaterial.cpp */; };
-		ADA8368D0BDBA87E00CA0FB3 /* domMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132270BCFFA3700BBFE92 /* domMatrix.cpp */; };
-		ADA8368E0BDBA87E00CA0FB3 /* domMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132280BCFFA3700BBFE92 /* domMesh.cpp */; };
-		ADA8368F0BDBA87E00CA0FB3 /* domName_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132290BCFFA3700BBFE92 /* domName_array.cpp */; };
-		ADA836900BDBA87E00CA0FB3 /* domNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01322A0BCFFA3700BBFE92 /* domNode.cpp */; };
-		ADA836910BDBA87E00CA0FB3 /* domParam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01322B0BCFFA3700BBFE92 /* domParam.cpp */; };
-		ADA836920BDBA87E00CA0FB3 /* domPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01322C0BCFFA3700BBFE92 /* domPass.cpp */; };
-		ADA836930BDBA87E00CA0FB3 /* domPerspective.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01322D0BCFFA3700BBFE92 /* domPerspective.cpp */; };
-		ADA836940BDBA87E00CA0FB3 /* domPolygons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01322E0BCFFA3700BBFE92 /* domPolygons.cpp */; };
-		ADA836950BDBA87E00CA0FB3 /* domProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01322F0BCFFA3700BBFE92 /* domProgram.cpp */; };
-		ADA836960BDBA87E00CA0FB3 /* domRotate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132300BCFFA3700BBFE92 /* domRotate.cpp */; };
-		ADA836970BDBA87E00CA0FB3 /* domSampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132310BCFFA3700BBFE92 /* domSampler.cpp */; };
-		ADA836980BDBA87E00CA0FB3 /* domScale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132320BCFFA3700BBFE92 /* domScale.cpp */; };
-		ADA836990BDBA87E00CA0FB3 /* domScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132330BCFFA3700BBFE92 /* domScene.cpp */; };
-		ADA8369A0BDBA87E00CA0FB3 /* domShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132340BCFFA3700BBFE92 /* domShader.cpp */; };
-		ADA8369B0BDBA87E00CA0FB3 /* domSkew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132350BCFFA3700BBFE92 /* domSkew.cpp */; };
-		ADA8369C0BDBA87E00CA0FB3 /* domSkin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132360BCFFA3700BBFE92 /* domSkin.cpp */; };
-		ADA8369D0BDBA87E00CA0FB3 /* domSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132370BCFFA3700BBFE92 /* domSource.cpp */; };
-		ADA8369E0BDBA87E00CA0FB3 /* domTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132380BCFFA3700BBFE92 /* domTexture.cpp */; };
-		ADA8369F0BDBA87E00CA0FB3 /* domTranslate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD0132390BCFFA3700BBFE92 /* domTranslate.cpp */; };
-		ADA836A00BDBA87E00CA0FB3 /* domTriangles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01323A0BCFFA3700BBFE92 /* domTriangles.cpp */; };
-		ADA836A10BDBA87E00CA0FB3 /* domTrifans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01323B0BCFFA3700BBFE92 /* domTrifans.cpp */; };
-		ADA836A20BDBA87E00CA0FB3 /* domTristrips.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01323C0BCFFA3700BBFE92 /* domTristrips.cpp */; };
-		ADA836A30BDBA87E00CA0FB3 /* domTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01323D0BCFFA3700BBFE92 /* domTypes.cpp */; };
-		ADA836A40BDBA87E00CA0FB3 /* domVertices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD01323E0BCFFA3700BBFE92 /* domVertices.cpp */; };
 		ADA8388C0BDBDD0A00CA0FB3 /* COLLADA_DOM.chm in Resources */ = {isa = PBXBuildFile; fileRef = AD012F610BCFEEA200BBFE92 /* COLLADA_DOM.chm */; };
-		ADA838AB0BDBE03000CA0FB3 /* COLLADA_DOM131.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADA838AA0BDBE03000CA0FB3 /* COLLADA_DOM131.plist */; };
+		ADEAEDEB0C53CFED00C55F75 /* daePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = ADEAEDEA0C53CFED00C55F75 /* daePlatform.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8D07F2C70486CC7A007CD1D0 /* COLLADA_DOM141.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = COLLADA_DOM141.plist; sourceTree = "<group>"; };
-		8D07F2C80486CC7A007CD1D0 /* COLLADA_DOM141.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = COLLADA_DOM141.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Collada141Dom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAccessor.cpp; sourceTree = "<group>"; };
 		AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAnimation.cpp; sourceTree = "<group>"; };
 		AD012B650BCFEE5100BBFE92 /* domAnimation_clip.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAnimation_clip.cpp; sourceTree = "<group>"; };
@@ -515,117 +423,9 @@
 		AD012C2E0BCFEE5100BBFE92 /* daeLIBXMLPlugin.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeLIBXMLPlugin.cpp; sourceTree = "<group>"; };
 		AD012C350BCFEE5100BBFE92 /* stdErrPlugin.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = stdErrPlugin.cpp; sourceTree = "<group>"; };
 		AD012C370BCFEE5100BBFE92 /* daeSTLDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeSTLDatabase.cpp; sourceTree = "<group>"; };
-		AD012F5E0BCFEEA200BBFE92 /* COLLADA_DOM_131.chm */ = {isa = PBXFileReference; lastKnownFileType = file; name = COLLADA_DOM_131.chm; path = ../../doc/COLLADA_DOM_131.chm; sourceTree = SOURCE_ROOT; };
-		AD012F5F0BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_e.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "COLLADA_DOM-Programming_Guide_e.pdf"; path = "../../doc/COLLADA_DOM-Programming_Guide_e.pdf"; sourceTree = SOURCE_ROOT; };
-		AD012F600BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_j.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "COLLADA_DOM-Programming_Guide_j.pdf"; path = "../../doc/COLLADA_DOM-Programming_Guide_j.pdf"; sourceTree = SOURCE_ROOT; };
 		AD012F610BCFEEA200BBFE92 /* COLLADA_DOM.chm */ = {isa = PBXFileReference; lastKnownFileType = file; name = COLLADA_DOM.chm; path = ../../doc/COLLADA_DOM.chm; sourceTree = SOURCE_ROOT; };
-		AD01320B0BCFFA3700BBFE92 /* domAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAccessor.cpp; sourceTree = "<group>"; };
-		AD01320C0BCFFA3700BBFE92 /* domAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAnimation.cpp; sourceTree = "<group>"; };
-		AD01320D0BCFFA3700BBFE92 /* domArray.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domArray.cpp; sourceTree = "<group>"; };
-		AD01320E0BCFFA3700BBFE92 /* domAsset.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAsset.cpp; sourceTree = "<group>"; };
-		AD01320F0BCFFA3700BBFE92 /* domBool_array.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domBool_array.cpp; sourceTree = "<group>"; };
-		AD0132100BCFFA3700BBFE92 /* domBoundingbox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domBoundingbox.cpp; sourceTree = "<group>"; };
-		AD0132110BCFFA3700BBFE92 /* domCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domCamera.cpp; sourceTree = "<group>"; };
-		AD0132120BCFFA3700BBFE92 /* domChannel.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domChannel.cpp; sourceTree = "<group>"; };
-		AD0132130BCFFA3700BBFE92 /* domCode.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domCode.cpp; sourceTree = "<group>"; };
-		AD0132140BCFFA3700BBFE92 /* domCOLLADA.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domCOLLADA.cpp; sourceTree = "<group>"; };
-		AD0132150BCFFA3700BBFE92 /* domCombiner.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domCombiner.cpp; sourceTree = "<group>"; };
-		AD0132160BCFFA3700BBFE92 /* domConstants.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domConstants.cpp; sourceTree = "<group>"; };
-		AD0132170BCFFA3700BBFE92 /* domController.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domController.cpp; sourceTree = "<group>"; };
-		AD0132180BCFFA3700BBFE92 /* domEntry.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domEntry.cpp; sourceTree = "<group>"; };
-		AD0132190BCFFA3700BBFE92 /* domExtra.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domExtra.cpp; sourceTree = "<group>"; };
-		AD01321A0BCFFA3700BBFE92 /* domFloat_array.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domFloat_array.cpp; sourceTree = "<group>"; };
-		AD01321B0BCFFA3700BBFE92 /* domGeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domGeometry.cpp; sourceTree = "<group>"; };
-		AD01321C0BCFFA3700BBFE92 /* domImage.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domImage.cpp; sourceTree = "<group>"; };
-		AD01321D0BCFFA3700BBFE92 /* domInput.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domInput.cpp; sourceTree = "<group>"; };
-		AD01321E0BCFFA3700BBFE92 /* domInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domInstance.cpp; sourceTree = "<group>"; };
-		AD01321F0BCFFA3700BBFE92 /* domInt_array.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domInt_array.cpp; sourceTree = "<group>"; };
-		AD0132200BCFFA3700BBFE92 /* domJoints.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domJoints.cpp; sourceTree = "<group>"; };
-		AD0132210BCFFA3700BBFE92 /* domLibrary.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domLibrary.cpp; sourceTree = "<group>"; };
-		AD0132220BCFFA3700BBFE92 /* domLight.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domLight.cpp; sourceTree = "<group>"; };
-		AD0132230BCFFA3700BBFE92 /* domLines.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domLines.cpp; sourceTree = "<group>"; };
-		AD0132240BCFFA3700BBFE92 /* domLinestrips.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domLinestrips.cpp; sourceTree = "<group>"; };
-		AD0132250BCFFA3700BBFE92 /* domLookat.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domLookat.cpp; sourceTree = "<group>"; };
-		AD0132260BCFFA3700BBFE92 /* domMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domMaterial.cpp; sourceTree = "<group>"; };
-		AD0132270BCFFA3700BBFE92 /* domMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domMatrix.cpp; sourceTree = "<group>"; };
-		AD0132280BCFFA3700BBFE92 /* domMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domMesh.cpp; sourceTree = "<group>"; };
-		AD0132290BCFFA3700BBFE92 /* domName_array.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domName_array.cpp; sourceTree = "<group>"; };
-		AD01322A0BCFFA3700BBFE92 /* domNode.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domNode.cpp; sourceTree = "<group>"; };
-		AD01322B0BCFFA3700BBFE92 /* domParam.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domParam.cpp; sourceTree = "<group>"; };
-		AD01322C0BCFFA3700BBFE92 /* domPass.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domPass.cpp; sourceTree = "<group>"; };
-		AD01322D0BCFFA3700BBFE92 /* domPerspective.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domPerspective.cpp; sourceTree = "<group>"; };
-		AD01322E0BCFFA3700BBFE92 /* domPolygons.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domPolygons.cpp; sourceTree = "<group>"; };
-		AD01322F0BCFFA3700BBFE92 /* domProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domProgram.cpp; sourceTree = "<group>"; };
-		AD0132300BCFFA3700BBFE92 /* domRotate.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domRotate.cpp; sourceTree = "<group>"; };
-		AD0132310BCFFA3700BBFE92 /* domSampler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domSampler.cpp; sourceTree = "<group>"; };
-		AD0132320BCFFA3700BBFE92 /* domScale.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domScale.cpp; sourceTree = "<group>"; };
-		AD0132330BCFFA3700BBFE92 /* domScene.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domScene.cpp; sourceTree = "<group>"; };
-		AD0132340BCFFA3700BBFE92 /* domShader.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domShader.cpp; sourceTree = "<group>"; };
-		AD0132350BCFFA3700BBFE92 /* domSkew.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domSkew.cpp; sourceTree = "<group>"; };
-		AD0132360BCFFA3700BBFE92 /* domSkin.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domSkin.cpp; sourceTree = "<group>"; };
-		AD0132370BCFFA3700BBFE92 /* domSource.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domSource.cpp; sourceTree = "<group>"; };
-		AD0132380BCFFA3700BBFE92 /* domTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domTexture.cpp; sourceTree = "<group>"; };
-		AD0132390BCFFA3700BBFE92 /* domTranslate.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domTranslate.cpp; sourceTree = "<group>"; };
-		AD01323A0BCFFA3700BBFE92 /* domTriangles.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domTriangles.cpp; sourceTree = "<group>"; };
-		AD01323B0BCFFA3700BBFE92 /* domTrifans.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domTrifans.cpp; sourceTree = "<group>"; };
-		AD01323C0BCFFA3700BBFE92 /* domTristrips.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domTristrips.cpp; sourceTree = "<group>"; };
-		AD01323D0BCFFA3700BBFE92 /* domTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domTypes.cpp; sourceTree = "<group>"; };
-		AD01323E0BCFFA3700BBFE92 /* domVertices.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domVertices.cpp; sourceTree = "<group>"; };
-		AD01323F0BCFFA3700BBFE92 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		AD0132400BCFFA3700BBFE92 /* Makefile_PC */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Makefile_PC; sourceTree = "<group>"; };
-		AD76C57A0BD7FE7C00486DB0 /* domAccessor.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domAccessor.h; sourceTree = "<group>"; };
-		AD76C57B0BD7FE7C00486DB0 /* domAnimation.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domAnimation.h; sourceTree = "<group>"; };
-		AD76C57C0BD7FE7C00486DB0 /* domArray.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domArray.h; sourceTree = "<group>"; };
-		AD76C57D0BD7FE7C00486DB0 /* domAsset.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domAsset.h; sourceTree = "<group>"; };
-		AD76C57E0BD7FE7C00486DB0 /* domBool_array.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domBool_array.h; sourceTree = "<group>"; };
-		AD76C57F0BD7FE7C00486DB0 /* domBoundingbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domBoundingbox.h; sourceTree = "<group>"; };
-		AD76C5800BD7FE7C00486DB0 /* domCamera.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domCamera.h; sourceTree = "<group>"; };
-		AD76C5810BD7FE7C00486DB0 /* domChannel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domChannel.h; sourceTree = "<group>"; };
-		AD76C5820BD7FE7C00486DB0 /* domCode.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domCode.h; sourceTree = "<group>"; };
-		AD76C5830BD7FE7C00486DB0 /* domCOLLADA.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domCOLLADA.h; sourceTree = "<group>"; };
-		AD76C5840BD7FE7C00486DB0 /* domCombiner.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domCombiner.h; sourceTree = "<group>"; };
-		AD76C5850BD7FE7C00486DB0 /* domConstants.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domConstants.h; sourceTree = "<group>"; };
-		AD76C5860BD7FE7C00486DB0 /* domController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domController.h; sourceTree = "<group>"; };
-		AD76C5870BD7FE7C00486DB0 /* domElements.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domElements.h; sourceTree = "<group>"; };
-		AD76C5880BD7FE7C00486DB0 /* domEntry.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domEntry.h; sourceTree = "<group>"; };
-		AD76C5890BD7FE7C00486DB0 /* domExtra.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domExtra.h; sourceTree = "<group>"; };
-		AD76C58A0BD7FE7C00486DB0 /* domFloat_array.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domFloat_array.h; sourceTree = "<group>"; };
-		AD76C58B0BD7FE7C00486DB0 /* domGeometry.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domGeometry.h; sourceTree = "<group>"; };
-		AD76C58C0BD7FE7C00486DB0 /* domImage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domImage.h; sourceTree = "<group>"; };
-		AD76C58D0BD7FE7C00486DB0 /* domInput.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domInput.h; sourceTree = "<group>"; };
-		AD76C58E0BD7FE7C00486DB0 /* domInstance.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domInstance.h; sourceTree = "<group>"; };
-		AD76C58F0BD7FE7C00486DB0 /* domInt_array.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domInt_array.h; sourceTree = "<group>"; };
-		AD76C5900BD7FE7C00486DB0 /* domJoints.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domJoints.h; sourceTree = "<group>"; };
-		AD76C5910BD7FE7C00486DB0 /* domLibrary.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domLibrary.h; sourceTree = "<group>"; };
-		AD76C5920BD7FE7C00486DB0 /* domLight.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domLight.h; sourceTree = "<group>"; };
-		AD76C5930BD7FE7C00486DB0 /* domLines.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domLines.h; sourceTree = "<group>"; };
-		AD76C5940BD7FE7C00486DB0 /* domLinestrips.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domLinestrips.h; sourceTree = "<group>"; };
-		AD76C5950BD7FE7C00486DB0 /* domLookat.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domLookat.h; sourceTree = "<group>"; };
-		AD76C5960BD7FE7C00486DB0 /* domMaterial.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domMaterial.h; sourceTree = "<group>"; };
-		AD76C5970BD7FE7C00486DB0 /* domMatrix.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domMatrix.h; sourceTree = "<group>"; };
-		AD76C5980BD7FE7C00486DB0 /* domMesh.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domMesh.h; sourceTree = "<group>"; };
-		AD76C5990BD7FE7C00486DB0 /* domName_array.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domName_array.h; sourceTree = "<group>"; };
-		AD76C59A0BD7FE7C00486DB0 /* domNode.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domNode.h; sourceTree = "<group>"; };
-		AD76C59B0BD7FE7C00486DB0 /* domParam.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domParam.h; sourceTree = "<group>"; };
-		AD76C59C0BD7FE7C00486DB0 /* domPass.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domPass.h; sourceTree = "<group>"; };
-		AD76C59D0BD7FE7C00486DB0 /* domPerspective.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domPerspective.h; sourceTree = "<group>"; };
-		AD76C59E0BD7FE7C00486DB0 /* domPolygons.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domPolygons.h; sourceTree = "<group>"; };
-		AD76C59F0BD7FE7C00486DB0 /* domProgram.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domProgram.h; sourceTree = "<group>"; };
-		AD76C5A00BD7FE7C00486DB0 /* domRotate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domRotate.h; sourceTree = "<group>"; };
-		AD76C5A10BD7FE7C00486DB0 /* domSampler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domSampler.h; sourceTree = "<group>"; };
-		AD76C5A20BD7FE7C00486DB0 /* domScale.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domScale.h; sourceTree = "<group>"; };
-		AD76C5A30BD7FE7C00486DB0 /* domScene.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domScene.h; sourceTree = "<group>"; };
-		AD76C5A40BD7FE7C00486DB0 /* domShader.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domShader.h; sourceTree = "<group>"; };
-		AD76C5A50BD7FE7C00486DB0 /* domSkew.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domSkew.h; sourceTree = "<group>"; };
-		AD76C5A60BD7FE7C00486DB0 /* domSkin.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domSkin.h; sourceTree = "<group>"; };
-		AD76C5A70BD7FE7C00486DB0 /* domSource.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domSource.h; sourceTree = "<group>"; };
-		AD76C5A80BD7FE7C00486DB0 /* domTexture.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domTexture.h; sourceTree = "<group>"; };
-		AD76C5A90BD7FE7C00486DB0 /* domTranslate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domTranslate.h; sourceTree = "<group>"; };
-		AD76C5AA0BD7FE7C00486DB0 /* domTriangles.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domTriangles.h; sourceTree = "<group>"; };
-		AD76C5AB0BD7FE7C00486DB0 /* domTrifans.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domTrifans.h; sourceTree = "<group>"; };
-		AD76C5AC0BD7FE7C00486DB0 /* domTristrips.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domTristrips.h; sourceTree = "<group>"; };
-		AD76C5AD0BD7FE7C00486DB0 /* domTypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domTypes.h; sourceTree = "<group>"; };
-		AD76C5AE0BD7FE7C00486DB0 /* domVertices.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domVertices.h; sourceTree = "<group>"; };
+		AD08E13F0C565B5A0090980D /* ColladaDomWiki.url */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = ColladaDomWiki.url; sourceTree = "<group>"; };
+		AD08E1500C565D580090980D /* Collada141Dom.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = Collada141Dom.plist; sourceTree = "<group>"; };
 		AD76C5B10BD7FE7C00486DB0 /* domAccessor.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domAccessor.h; sourceTree = "<group>"; };
 		AD76C5B20BD7FE7C00486DB0 /* domAnimation.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domAnimation.h; sourceTree = "<group>"; };
 		AD76C5B30BD7FE7C00486DB0 /* domAnimation_clip.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = domAnimation_clip.h; sourceTree = "<group>"; };
@@ -810,7 +610,6 @@
 		AD76C6670BD7FE7C00486DB0 /* daeError.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeError.h; sourceTree = "<group>"; };
 		AD76C6680BD7FE7C00486DB0 /* daeErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeErrorHandler.h; sourceTree = "<group>"; };
 		AD76C6690BD7FE7C00486DB0 /* daeGCCPlatform.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeGCCPlatform.h; sourceTree = "<group>"; };
-		AD76C66A0BD7FE7C00486DB0 /* daeGenericPlatform.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeGenericPlatform.h; sourceTree = "<group>"; };
 		AD76C66B0BD7FE7C00486DB0 /* daeIDRef.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeIDRef.h; sourceTree = "<group>"; };
 		AD76C66C0BD7FE7C00486DB0 /* daeIntegrationObject.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeIntegrationObject.h; sourceTree = "<group>"; };
 		AD76C66D0BD7FE7C00486DB0 /* daeInterface.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeInterface.h; sourceTree = "<group>"; };
@@ -844,19 +643,11 @@
 		AD9A7DF80C38EAF900C43196 /* daeTinyXMLPlugin.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeTinyXMLPlugin.cpp; sourceTree = "<group>"; };
 		AD9A7DFB0C38EB0700C43196 /* daeIOPluginCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeIOPluginCommon.cpp; sourceTree = "<group>"; };
 		AD9A7DFC0C38EB0700C43196 /* daeStandardURIResolver.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeStandardURIResolver.cpp; sourceTree = "<group>"; };
-		ADA8366E0BDBA82600CA0FB3 /* COLLADA_DOM131.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = COLLADA_DOM131.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ADA838AA0BDBE03000CA0FB3 /* COLLADA_DOM131.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = COLLADA_DOM131.plist; sourceTree = "<group>"; };
+		ADEAEDEA0C53CFED00C55F75 /* daePlatform.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daePlatform.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8D07F2C30486CC7A007CD1D0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ADA836680BDBA82600CA0FB3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -869,8 +660,7 @@
 		034768DDFF38A45A11DB9C8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D07F2C80486CC7A007CD1D0 /* COLLADA_DOM141.framework */,
-				ADA8366E0BDBA82600CA0FB3 /* COLLADA_DOM131.framework */,
+				8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -897,12 +687,9 @@
 		089C1665FE841158C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AD012F5E0BCFEEA200BBFE92 /* COLLADA_DOM_131.chm */,
-				AD012F5F0BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_e.pdf */,
-				AD012F600BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_j.pdf */,
+				AD08E1500C565D580090980D /* Collada141Dom.plist */,
+				AD08E13F0C565B5A0090980D /* ColladaDomWiki.url */,
 				AD012F610BCFEEA200BBFE92 /* COLLADA_DOM.chm */,
-				8D07F2C70486CC7A007CD1D0 /* COLLADA_DOM141.plist */,
-				ADA838AA0BDBE03000CA0FB3 /* COLLADA_DOM131.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 			);
 			name = Resources;
@@ -911,7 +698,6 @@
 		AD012B280BCFEE5100BBFE92 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				AD0132090BCFFA3700BBFE92 /* 1.3 */,
 				AD012B610BCFEE5100BBFE92 /* 1.4 */,
 				AD012C110BCFEE5100BBFE92 /* dae */,
 				AD012C2C0BCFEE5100BBFE92 /* modules */,
@@ -1175,79 +961,9 @@
 			path = STLDatabase;
 			sourceTree = "<group>";
 		};
-		AD0132090BCFFA3700BBFE92 /* 1.3 */ = {
-			isa = PBXGroup;
-			children = (
-				AD01320A0BCFFA3700BBFE92 /* dom */,
-			);
-			path = 1.3;
-			sourceTree = "<group>";
-		};
-		AD01320A0BCFFA3700BBFE92 /* dom */ = {
-			isa = PBXGroup;
-			children = (
-				AD01320B0BCFFA3700BBFE92 /* domAccessor.cpp */,
-				AD01320C0BCFFA3700BBFE92 /* domAnimation.cpp */,
-				AD01320D0BCFFA3700BBFE92 /* domArray.cpp */,
-				AD01320E0BCFFA3700BBFE92 /* domAsset.cpp */,
-				AD01320F0BCFFA3700BBFE92 /* domBool_array.cpp */,
-				AD0132100BCFFA3700BBFE92 /* domBoundingbox.cpp */,
-				AD0132110BCFFA3700BBFE92 /* domCamera.cpp */,
-				AD0132120BCFFA3700BBFE92 /* domChannel.cpp */,
-				AD0132130BCFFA3700BBFE92 /* domCode.cpp */,
-				AD0132140BCFFA3700BBFE92 /* domCOLLADA.cpp */,
-				AD0132150BCFFA3700BBFE92 /* domCombiner.cpp */,
-				AD0132160BCFFA3700BBFE92 /* domConstants.cpp */,
-				AD0132170BCFFA3700BBFE92 /* domController.cpp */,
-				AD0132180BCFFA3700BBFE92 /* domEntry.cpp */,
-				AD0132190BCFFA3700BBFE92 /* domExtra.cpp */,
-				AD01321A0BCFFA3700BBFE92 /* domFloat_array.cpp */,
-				AD01321B0BCFFA3700BBFE92 /* domGeometry.cpp */,
-				AD01321C0BCFFA3700BBFE92 /* domImage.cpp */,
-				AD01321D0BCFFA3700BBFE92 /* domInput.cpp */,
-				AD01321E0BCFFA3700BBFE92 /* domInstance.cpp */,
-				AD01321F0BCFFA3700BBFE92 /* domInt_array.cpp */,
-				AD0132200BCFFA3700BBFE92 /* domJoints.cpp */,
-				AD0132210BCFFA3700BBFE92 /* domLibrary.cpp */,
-				AD0132220BCFFA3700BBFE92 /* domLight.cpp */,
-				AD0132230BCFFA3700BBFE92 /* domLines.cpp */,
-				AD0132240BCFFA3700BBFE92 /* domLinestrips.cpp */,
-				AD0132250BCFFA3700BBFE92 /* domLookat.cpp */,
-				AD0132260BCFFA3700BBFE92 /* domMaterial.cpp */,
-				AD0132270BCFFA3700BBFE92 /* domMatrix.cpp */,
-				AD0132280BCFFA3700BBFE92 /* domMesh.cpp */,
-				AD0132290BCFFA3700BBFE92 /* domName_array.cpp */,
-				AD01322A0BCFFA3700BBFE92 /* domNode.cpp */,
-				AD01322B0BCFFA3700BBFE92 /* domParam.cpp */,
-				AD01322C0BCFFA3700BBFE92 /* domPass.cpp */,
-				AD01322D0BCFFA3700BBFE92 /* domPerspective.cpp */,
-				AD01322E0BCFFA3700BBFE92 /* domPolygons.cpp */,
-				AD01322F0BCFFA3700BBFE92 /* domProgram.cpp */,
-				AD0132300BCFFA3700BBFE92 /* domRotate.cpp */,
-				AD0132310BCFFA3700BBFE92 /* domSampler.cpp */,
-				AD0132320BCFFA3700BBFE92 /* domScale.cpp */,
-				AD0132330BCFFA3700BBFE92 /* domScene.cpp */,
-				AD0132340BCFFA3700BBFE92 /* domShader.cpp */,
-				AD0132350BCFFA3700BBFE92 /* domSkew.cpp */,
-				AD0132360BCFFA3700BBFE92 /* domSkin.cpp */,
-				AD0132370BCFFA3700BBFE92 /* domSource.cpp */,
-				AD0132380BCFFA3700BBFE92 /* domTexture.cpp */,
-				AD0132390BCFFA3700BBFE92 /* domTranslate.cpp */,
-				AD01323A0BCFFA3700BBFE92 /* domTriangles.cpp */,
-				AD01323B0BCFFA3700BBFE92 /* domTrifans.cpp */,
-				AD01323C0BCFFA3700BBFE92 /* domTristrips.cpp */,
-				AD01323D0BCFFA3700BBFE92 /* domTypes.cpp */,
-				AD01323E0BCFFA3700BBFE92 /* domVertices.cpp */,
-				AD01323F0BCFFA3700BBFE92 /* Makefile */,
-				AD0132400BCFFA3700BBFE92 /* Makefile_PC */,
-			);
-			path = dom;
-			sourceTree = "<group>";
-		};
 		AD76C5770BD7FE7C00486DB0 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				AD76C5780BD7FE7C00486DB0 /* 1.3 */,
 				AD76C5AF0BD7FE7C00486DB0 /* 1.4 */,
 				AD76C65E0BD7FE7C00486DB0 /* dae */,
 				AD76C6810BD7FE7C00486DB0 /* dae.h */,
@@ -1257,74 +973,6 @@
 			name = include;
 			path = ../../include;
 			sourceTree = SOURCE_ROOT;
-		};
-		AD76C5780BD7FE7C00486DB0 /* 1.3 */ = {
-			isa = PBXGroup;
-			children = (
-				AD76C5790BD7FE7C00486DB0 /* dom */,
-			);
-			path = 1.3;
-			sourceTree = "<group>";
-		};
-		AD76C5790BD7FE7C00486DB0 /* dom */ = {
-			isa = PBXGroup;
-			children = (
-				AD76C57A0BD7FE7C00486DB0 /* domAccessor.h */,
-				AD76C57B0BD7FE7C00486DB0 /* domAnimation.h */,
-				AD76C57C0BD7FE7C00486DB0 /* domArray.h */,
-				AD76C57D0BD7FE7C00486DB0 /* domAsset.h */,
-				AD76C57E0BD7FE7C00486DB0 /* domBool_array.h */,
-				AD76C57F0BD7FE7C00486DB0 /* domBoundingbox.h */,
-				AD76C5800BD7FE7C00486DB0 /* domCamera.h */,
-				AD76C5810BD7FE7C00486DB0 /* domChannel.h */,
-				AD76C5820BD7FE7C00486DB0 /* domCode.h */,
-				AD76C5830BD7FE7C00486DB0 /* domCOLLADA.h */,
-				AD76C5840BD7FE7C00486DB0 /* domCombiner.h */,
-				AD76C5850BD7FE7C00486DB0 /* domConstants.h */,
-				AD76C5860BD7FE7C00486DB0 /* domController.h */,
-				AD76C5870BD7FE7C00486DB0 /* domElements.h */,
-				AD76C5880BD7FE7C00486DB0 /* domEntry.h */,
-				AD76C5890BD7FE7C00486DB0 /* domExtra.h */,
-				AD76C58A0BD7FE7C00486DB0 /* domFloat_array.h */,
-				AD76C58B0BD7FE7C00486DB0 /* domGeometry.h */,
-				AD76C58C0BD7FE7C00486DB0 /* domImage.h */,
-				AD76C58D0BD7FE7C00486DB0 /* domInput.h */,
-				AD76C58E0BD7FE7C00486DB0 /* domInstance.h */,
-				AD76C58F0BD7FE7C00486DB0 /* domInt_array.h */,
-				AD76C5900BD7FE7C00486DB0 /* domJoints.h */,
-				AD76C5910BD7FE7C00486DB0 /* domLibrary.h */,
-				AD76C5920BD7FE7C00486DB0 /* domLight.h */,
-				AD76C5930BD7FE7C00486DB0 /* domLines.h */,
-				AD76C5940BD7FE7C00486DB0 /* domLinestrips.h */,
-				AD76C5950BD7FE7C00486DB0 /* domLookat.h */,
-				AD76C5960BD7FE7C00486DB0 /* domMaterial.h */,
-				AD76C5970BD7FE7C00486DB0 /* domMatrix.h */,
-				AD76C5980BD7FE7C00486DB0 /* domMesh.h */,
-				AD76C5990BD7FE7C00486DB0 /* domName_array.h */,
-				AD76C59A0BD7FE7C00486DB0 /* domNode.h */,
-				AD76C59B0BD7FE7C00486DB0 /* domParam.h */,
-				AD76C59C0BD7FE7C00486DB0 /* domPass.h */,
-				AD76C59D0BD7FE7C00486DB0 /* domPerspective.h */,
-				AD76C59E0BD7FE7C00486DB0 /* domPolygons.h */,
-				AD76C59F0BD7FE7C00486DB0 /* domProgram.h */,
-				AD76C5A00BD7FE7C00486DB0 /* domRotate.h */,
-				AD76C5A10BD7FE7C00486DB0 /* domSampler.h */,
-				AD76C5A20BD7FE7C00486DB0 /* domScale.h */,
-				AD76C5A30BD7FE7C00486DB0 /* domScene.h */,
-				AD76C5A40BD7FE7C00486DB0 /* domShader.h */,
-				AD76C5A50BD7FE7C00486DB0 /* domSkew.h */,
-				AD76C5A60BD7FE7C00486DB0 /* domSkin.h */,
-				AD76C5A70BD7FE7C00486DB0 /* domSource.h */,
-				AD76C5A80BD7FE7C00486DB0 /* domTexture.h */,
-				AD76C5A90BD7FE7C00486DB0 /* domTranslate.h */,
-				AD76C5AA0BD7FE7C00486DB0 /* domTriangles.h */,
-				AD76C5AB0BD7FE7C00486DB0 /* domTrifans.h */,
-				AD76C5AC0BD7FE7C00486DB0 /* domTristrips.h */,
-				AD76C5AD0BD7FE7C00486DB0 /* domTypes.h */,
-				AD76C5AE0BD7FE7C00486DB0 /* domVertices.h */,
-			);
-			path = dom;
-			sourceTree = "<group>";
 		};
 		AD76C5AF0BD7FE7C00486DB0 /* 1.4 */ = {
 			isa = PBXGroup;
@@ -1526,12 +1174,12 @@
 				AD76C6620BD7FE7C00486DB0 /* daeDatabase.h */,
 				AD76C6630BD7FE7C00486DB0 /* daeDocument.h */,
 				AD76C6640BD7FE7C00486DB0 /* daeDom.h */,
+				ADEAEDEA0C53CFED00C55F75 /* daePlatform.h */,
 				AD76C6650BD7FE7C00486DB0 /* daeDomTypes.h */,
 				AD76C6660BD7FE7C00486DB0 /* daeElement.h */,
 				AD76C6670BD7FE7C00486DB0 /* daeError.h */,
 				AD76C6680BD7FE7C00486DB0 /* daeErrorHandler.h */,
 				AD76C6690BD7FE7C00486DB0 /* daeGCCPlatform.h */,
-				AD76C66A0BD7FE7C00486DB0 /* daeGenericPlatform.h */,
 				AD76C66B0BD7FE7C00486DB0 /* daeIDRef.h */,
 				AD76C66C0BD7FE7C00486DB0 /* daeIntegrationObject.h */,
 				AD76C66D0BD7FE7C00486DB0 /* daeInterface.h */,
@@ -1580,27 +1228,16 @@
 				AD9A7D7F0C38EA9F00C43196 /* daeIOPluginCommon.h in Headers */,
 				AD9A7D800C38EA9F00C43196 /* daeStandardURIResolver.h in Headers */,
 				AD9A7D810C38EA9F00C43196 /* daeTinyXMLPlugin.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ADA834C90BDBA82600CA0FB3 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ADA835990BDBA82600CA0FB3 /* dae.h in Headers */,
-				ADA8359A0BDBA82600CA0FB3 /* dom.h in Headers */,
-				AD9A7D820C38EA9F00C43196 /* daeIOPluginCommon.h in Headers */,
-				AD9A7D830C38EA9F00C43196 /* daeStandardURIResolver.h in Headers */,
-				AD9A7D840C38EA9F00C43196 /* daeTinyXMLPlugin.h in Headers */,
+				ADEAEDEB0C53CFED00C55F75 /* daePlatform.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8D07F2BC0486CC7A007CD1D0 /* COLLADA_DOM141 */ = {
+		8D07F2BC0486CC7A007CD1D0 /* Collada141Dom */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FADC24208B4156D00ABE55E /* Build configuration list for PBXNativeTarget "COLLADA_DOM141" */;
+			buildConfigurationList = 4FADC24208B4156D00ABE55E /* Build configuration list for PBXNativeTarget "Collada141Dom" */;
 			buildPhases = (
 				8D07F2BF0486CC7A007CD1D0 /* Resources */,
 				AD0140130BD006B600BBFE92 /* Headers */,
@@ -1613,31 +1250,10 @@
 			);
 			dependencies = (
 			);
-			name = COLLADA_DOM141;
+			name = Collada141Dom;
 			productInstallPath = "$(HOME)/Library/Frameworks";
 			productName = COLLADA_DOM;
-			productReference = 8D07F2C80486CC7A007CD1D0 /* COLLADA_DOM141.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		ADA834C20BDBA82600CA0FB3 /* COLLADA_DOM131 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ADA8366B0BDBA82600CA0FB3 /* Build configuration list for PBXNativeTarget "COLLADA_DOM131" */;
-			buildPhases = (
-				ADA834C30BDBA82600CA0FB3 /* Resources */,
-				ADA834C90BDBA82600CA0FB3 /* Headers */,
-				ADA8359F0BDBA82600CA0FB3 /* Sources */,
-				ADA836680BDBA82600CA0FB3 /* Frameworks */,
-				ADA836690BDBA82600CA0FB3 /* Rez */,
-				ADA8366A0BDBA82600CA0FB3 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = COLLADA_DOM131;
-			productInstallPath = "$(HOME)/Library/Frameworks";
-			productName = COLLADA_DOM;
-			productReference = ADA8366E0BDBA82600CA0FB3 /* COLLADA_DOM131.framework */;
+			productReference = 8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1645,14 +1261,13 @@
 /* Begin PBXProject section */
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 4FADC24608B4156D00ABE55E /* Build configuration list for PBXProject "COLLADA_DOM" */;
+			buildConfigurationList = 4FADC24608B4156D00ABE55E /* Build configuration list for PBXProject "ColladaDom" */;
 			hasScannedForEncodings = 1;
 			mainGroup = 0867D691FE84028FC02AAC07 /* COLLADA_DOM */;
 			productRefGroup = 034768DDFF38A45A11DB9C8B /* Products */;
 			projectDirPath = "";
 			targets = (
-				8D07F2BC0486CC7A007CD1D0 /* COLLADA_DOM141 */,
-				ADA834C20BDBA82600CA0FB3 /* COLLADA_DOM131 */,
+				8D07F2BC0486CC7A007CD1D0 /* Collada141Dom */,
 			);
 		};
 /* End PBXProject section */
@@ -1663,21 +1278,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D07F2C00486CC7A007CD1D0 /* InfoPlist.strings in Resources */,
-				AD012F630BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_e.pdf in Resources */,
-				AD012F640BCFEEA200BBFE92 /* COLLADA_DOM-Programming_Guide_j.pdf in Resources */,
 				ADA8388C0BDBDD0A00CA0FB3 /* COLLADA_DOM.chm in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ADA834C30BDBA82600CA0FB3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ADA834C40BDBA82600CA0FB3 /* InfoPlist.strings in Resources */,
-				ADA834C50BDBA82600CA0FB3 /* COLLADA_DOM_131.chm in Resources */,
-				ADA834C60BDBA82600CA0FB3 /* COLLADA_DOM-Programming_Guide_e.pdf in Resources */,
-				ADA834C70BDBA82600CA0FB3 /* COLLADA_DOM-Programming_Guide_j.pdf in Resources */,
-				ADA838AB0BDBE03000CA0FB3 /* COLLADA_DOM131.plist in Resources */,
+				AD08E1400C565B5A0090980D /* ColladaDomWiki.url in Resources */,
+				AD08E1510C565D580090980D /* Collada141Dom.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1685,13 +1288,6 @@
 
 /* Begin PBXRezBuildPhase section */
 		8D07F2C50486CC7A007CD1D0 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ADA836690BDBA82600CA0FB3 /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1714,20 +1310,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# move into include-dir of COLLADA_DOM\ncd ${SRCROOT}/../../include\n\nfor H in `find ./dae -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone\n\nfor H in `find ./modules -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone\n\n# We copy the 1.4 DOM-Headers only (and thus are able to flatten the header-hierarchie)\n\ncd ${SRCROOT}/../../include/1.4\n\n# only copy those headers residing in directories (for COLLADA_DOM141 skip 1.3 headers)\nfor H in `find ./ -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone";
-		};
-		ADA8366A0BDBA82600CA0FB3 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			comments = "This script was taken from the http://lists.apple.com/archives/xcode-users/2005/Jul/msg00025.html posting of the \nXCode users-mailing-list. It handles copying of the whole header directory-structure instead of flattening the dir-hierarchy.\n\nNote dae.h and dom.h gets copied with the usual Copy Headers stage, that way the link to the public headers dir is\nproperly created.";
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# move into include-dir of COLLADA_DOM\ncd ${SRCROOT}/../../include\n\n# only copy those headers residing in directories (for COLLADA_DOM130 skip 1.4 headers)\nfor H in `find ./1.3 -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone\n\nfor H in `find ./dae -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone\n\nfor H in `find ./modules -name \"*.h\"`;  do\n    ditto ${H} ${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${H}\ndone";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1941,95 +1523,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ADA8359F0BDBA82600CA0FB3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ADA8364C0BDBA82600CA0FB3 /* dae.cpp in Sources */,
-				ADA8364D0BDBA82600CA0FB3 /* daeArray.cpp in Sources */,
-				ADA8364E0BDBA82600CA0FB3 /* daeAtomicType.cpp in Sources */,
-				ADA8364F0BDBA82600CA0FB3 /* daeDocument.cpp in Sources */,
-				ADA836500BDBA82600CA0FB3 /* daeDom.cpp in Sources */,
-				ADA836510BDBA82600CA0FB3 /* daeElement.cpp in Sources */,
-				ADA836520BDBA82600CA0FB3 /* daeError.cpp in Sources */,
-				ADA836530BDBA82600CA0FB3 /* daeErrorHandler.cpp in Sources */,
-				ADA836540BDBA82600CA0FB3 /* daeIDRef.cpp in Sources */,
-				ADA836550BDBA82600CA0FB3 /* daeMemorySystem.cpp in Sources */,
-				ADA836560BDBA82600CA0FB3 /* daeMetaAny.cpp in Sources */,
-				ADA836570BDBA82600CA0FB3 /* daeMetaAttribute.cpp in Sources */,
-				ADA836580BDBA82600CA0FB3 /* daeMetaChoice.cpp in Sources */,
-				ADA836590BDBA82600CA0FB3 /* daeMetaCMPolicy.cpp in Sources */,
-				ADA8365A0BDBA82600CA0FB3 /* daeMetaElement.cpp in Sources */,
-				ADA8365B0BDBA82600CA0FB3 /* daeMetaElementAttribute.cpp in Sources */,
-				ADA8365C0BDBA82600CA0FB3 /* daeMetaGroup.cpp in Sources */,
-				ADA8365D0BDBA82600CA0FB3 /* daeMetaSequence.cpp in Sources */,
-				ADA8365E0BDBA82600CA0FB3 /* daeRawResolver.cpp in Sources */,
-				ADA8365F0BDBA82600CA0FB3 /* daeSIDResolver.cpp in Sources */,
-				ADA836600BDBA82600CA0FB3 /* daeStringRef.cpp in Sources */,
-				ADA836610BDBA82600CA0FB3 /* daeStringTable.cpp in Sources */,
-				ADA836620BDBA82600CA0FB3 /* daeURI.cpp in Sources */,
-				ADA836630BDBA82600CA0FB3 /* domAny.cpp in Sources */,
-				ADA836640BDBA82600CA0FB3 /* daeLIBXMLPlugin.cpp in Sources */,
-				ADA836660BDBA82600CA0FB3 /* stdErrPlugin.cpp in Sources */,
-				ADA836670BDBA82600CA0FB3 /* daeSTLDatabase.cpp in Sources */,
-				ADA836710BDBA87E00CA0FB3 /* domAccessor.cpp in Sources */,
-				ADA836720BDBA87E00CA0FB3 /* domAnimation.cpp in Sources */,
-				ADA836730BDBA87E00CA0FB3 /* domArray.cpp in Sources */,
-				ADA836740BDBA87E00CA0FB3 /* domAsset.cpp in Sources */,
-				ADA836750BDBA87E00CA0FB3 /* domBool_array.cpp in Sources */,
-				ADA836760BDBA87E00CA0FB3 /* domBoundingbox.cpp in Sources */,
-				ADA836770BDBA87E00CA0FB3 /* domCamera.cpp in Sources */,
-				ADA836780BDBA87E00CA0FB3 /* domChannel.cpp in Sources */,
-				ADA836790BDBA87E00CA0FB3 /* domCode.cpp in Sources */,
-				ADA8367A0BDBA87E00CA0FB3 /* domCOLLADA.cpp in Sources */,
-				ADA8367B0BDBA87E00CA0FB3 /* domCombiner.cpp in Sources */,
-				ADA8367C0BDBA87E00CA0FB3 /* domConstants.cpp in Sources */,
-				ADA8367D0BDBA87E00CA0FB3 /* domController.cpp in Sources */,
-				ADA8367E0BDBA87E00CA0FB3 /* domEntry.cpp in Sources */,
-				ADA8367F0BDBA87E00CA0FB3 /* domExtra.cpp in Sources */,
-				ADA836800BDBA87E00CA0FB3 /* domFloat_array.cpp in Sources */,
-				ADA836810BDBA87E00CA0FB3 /* domGeometry.cpp in Sources */,
-				ADA836820BDBA87E00CA0FB3 /* domImage.cpp in Sources */,
-				ADA836830BDBA87E00CA0FB3 /* domInput.cpp in Sources */,
-				ADA836840BDBA87E00CA0FB3 /* domInstance.cpp in Sources */,
-				ADA836850BDBA87E00CA0FB3 /* domInt_array.cpp in Sources */,
-				ADA836860BDBA87E00CA0FB3 /* domJoints.cpp in Sources */,
-				ADA836870BDBA87E00CA0FB3 /* domLibrary.cpp in Sources */,
-				ADA836880BDBA87E00CA0FB3 /* domLight.cpp in Sources */,
-				ADA836890BDBA87E00CA0FB3 /* domLines.cpp in Sources */,
-				ADA8368A0BDBA87E00CA0FB3 /* domLinestrips.cpp in Sources */,
-				ADA8368B0BDBA87E00CA0FB3 /* domLookat.cpp in Sources */,
-				ADA8368C0BDBA87E00CA0FB3 /* domMaterial.cpp in Sources */,
-				ADA8368D0BDBA87E00CA0FB3 /* domMatrix.cpp in Sources */,
-				ADA8368E0BDBA87E00CA0FB3 /* domMesh.cpp in Sources */,
-				ADA8368F0BDBA87E00CA0FB3 /* domName_array.cpp in Sources */,
-				ADA836900BDBA87E00CA0FB3 /* domNode.cpp in Sources */,
-				ADA836910BDBA87E00CA0FB3 /* domParam.cpp in Sources */,
-				ADA836920BDBA87E00CA0FB3 /* domPass.cpp in Sources */,
-				ADA836930BDBA87E00CA0FB3 /* domPerspective.cpp in Sources */,
-				ADA836940BDBA87E00CA0FB3 /* domPolygons.cpp in Sources */,
-				ADA836950BDBA87E00CA0FB3 /* domProgram.cpp in Sources */,
-				ADA836960BDBA87E00CA0FB3 /* domRotate.cpp in Sources */,
-				ADA836970BDBA87E00CA0FB3 /* domSampler.cpp in Sources */,
-				ADA836980BDBA87E00CA0FB3 /* domScale.cpp in Sources */,
-				ADA836990BDBA87E00CA0FB3 /* domScene.cpp in Sources */,
-				ADA8369A0BDBA87E00CA0FB3 /* domShader.cpp in Sources */,
-				ADA8369B0BDBA87E00CA0FB3 /* domSkew.cpp in Sources */,
-				ADA8369C0BDBA87E00CA0FB3 /* domSkin.cpp in Sources */,
-				ADA8369D0BDBA87E00CA0FB3 /* domSource.cpp in Sources */,
-				ADA8369E0BDBA87E00CA0FB3 /* domTexture.cpp in Sources */,
-				ADA8369F0BDBA87E00CA0FB3 /* domTranslate.cpp in Sources */,
-				ADA836A00BDBA87E00CA0FB3 /* domTriangles.cpp in Sources */,
-				ADA836A10BDBA87E00CA0FB3 /* domTrifans.cpp in Sources */,
-				ADA836A20BDBA87E00CA0FB3 /* domTristrips.cpp in Sources */,
-				ADA836A30BDBA87E00CA0FB3 /* domTypes.cpp in Sources */,
-				ADA836A40BDBA87E00CA0FB3 /* domVertices.cpp in Sources */,
-				AD9A7DFA0C38EAF900C43196 /* daeTinyXMLPlugin.cpp in Sources */,
-				AD9A7DFF0C38EB0700C43196 /* daeIOPluginCommon.cpp in Sources */,
-				AD9A7E000C38EB0700C43196 /* daeStandardURIResolver.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -2071,12 +1564,12 @@
 					$SRCROOT/../../include/1.4,
 					/usr/include/libxml2,
 				);
-				INFOPLIST_FILE = COLLADA_DOM141.plist;
+				INFOPLIST_FILE = Collada141Dom.plist;
 				INSTALL_PATH = /Library/Frameworks;
 				LIBRARY_STYLE = DYNAMIC;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = COLLADA_DOM141;
+				PRODUCT_NAME = Collada141Dom;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = debugging;
 				WRAPPER_EXTENSION = framework;
@@ -2091,45 +1584,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
-			};
-			name = Debug;
-		};
-		ADA8366C0BDBA82600CA0FB3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPYING_PRESERVES_HFS_DATA = NO;
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = NO;
-				DEPLOYMENT_POSTPROCESSING = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1.2;
-				DYLIB_CURRENT_VERSION = 1.3;
-				FRAMEWORK_VERSION = 1.3;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_SYMBOL_SEPARATION = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				HEADER_SEARCH_PATHS = (
-					$SRCROOT/../../include,
-					$SRCROOT/../../include/1.3,
-					/usr/include/libxml2,
-				);
-				INFOPLIST_FILE = COLLADA_DOM131.plist;
-				INSTALL_PATH = /Library/Frameworks;
-				LIBRARY_STYLE = DYNAMIC;
-				MACH_O_TYPE = mh_dylib;
-				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = COLLADA_DOM131;
-				STRIP_INSTALLED_PRODUCT = NO;
-				STRIP_STYLE = debugging;
-				WRAPPER_EXTENSION = framework;
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
@@ -2162,56 +1616,12 @@
 					$SRCROOT/../../include/1.4,
 					/usr/include/libxml2,
 				);
-				INFOPLIST_FILE = COLLADA_DOM141.plist;
+				INFOPLIST_FILE = Collada141Dom.plist;
 				INSTALL_PATH = /Library/Frameworks;
 				LIBRARY_STYLE = DYNAMIC;
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = COLLADA_DOM141;
-				SEPARATE_STRIP = YES;
-				STRIPFLAGS = "-Xx";
-				STRIP_INSTALLED_PRODUCT = YES;
-				STRIP_STYLE = debugging;
-				WRAPPER_EXTENSION = framework;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		ADA8371B0BDBAA6100CA0FB3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				COPYING_PRESERVES_HFS_DATA = NO;
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
-				DEPLOYMENT_POSTPROCESSING = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1.2;
-				DYLIB_CURRENT_VERSION = 1.3;
-				FRAMEWORK_VERSION = 1.3;
-				GCC_DEBUGGING_SYMBOLS = full;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_SYMBOL_SEPARATION = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					$SRCROOT/../../include,
-					$SRCROOT/../../include/1.3,
-					/usr/include/libxml2,
-				);
-				INFOPLIST_FILE = COLLADA_DOM131.plist;
-				INSTALL_PATH = /Library/Frameworks;
-				LIBRARY_STYLE = DYNAMIC;
-				MACH_O_TYPE = mh_dylib;
-				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = COLLADA_DOM131;
+				PRODUCT_NAME = Collada141Dom;
 				SEPARATE_STRIP = YES;
 				STRIPFLAGS = "-Xx";
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -2234,7 +1644,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4FADC24208B4156D00ABE55E /* Build configuration list for PBXNativeTarget "COLLADA_DOM141" */ = {
+		4FADC24208B4156D00ABE55E /* Build configuration list for PBXNativeTarget "Collada141Dom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FADC24308B4156D00ABE55E /* Debug */,
@@ -2243,20 +1653,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FADC24608B4156D00ABE55E /* Build configuration list for PBXProject "COLLADA_DOM" */ = {
+		4FADC24608B4156D00ABE55E /* Build configuration list for PBXProject "ColladaDom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FADC24708B4156D00ABE55E /* Debug */,
 				ADA8371C0BDBAA6100CA0FB3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ADA8366B0BDBA82600CA0FB3 /* Build configuration list for PBXNativeTarget "COLLADA_DOM131" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ADA8366C0BDBA82600CA0FB3 /* Debug */,
-				ADA8371B0BDBAA6100CA0FB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
