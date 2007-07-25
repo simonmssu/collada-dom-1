@@ -50,31 +50,21 @@ daeArray::removeIndex(size_t index)
 void
 daeArray::grow(size_t sz)
 {
-	
-	if (sz < _capacity)
+	if (sz <= _capacity)
 		return;
 
-	size_t newSize = 4*_elementSize;
-	size_t neccesarySize = (sz+1)*_elementSize;
+	size_t newCapacity = _capacity == 0 ? 1 : _capacity;
+	while(newCapacity < sz)
+		newCapacity *= 2;
 	
-	while(newSize < neccesarySize) {
-		if (newSize < 16384)
-			newSize *= 2;
-		else
-			newSize += 16384;
-	}
-	
-	size_t newCapacity = newSize/_elementSize;
-	daeChar* newData =
-		(daeChar*)daeMemorySystem::malloc("array", newCapacity*_elementSize);
+	daeChar* newData = (daeChar*)daeMemorySystem::malloc("array", newCapacity*_elementSize);
 	
 	if (_data != NULL)
 		memcpy(newData,_data,_capacity*_elementSize);
 	//else
 	//	memset(newData,0,_capacity*_elementSize);
 	
-	memset(newData+_capacity*_elementSize,0,
-		   (newCapacity-_capacity)*_elementSize);
+	memset(newData + _capacity*_elementSize, 0, (newCapacity-_capacity)*_elementSize);
 	
 	if (_data != NULL)
 		daeMemorySystem::free("array",_data);
@@ -82,4 +72,3 @@ daeArray::grow(size_t sz)
 	_data = newData;
 	_capacity = newCapacity;
 }
-
