@@ -334,7 +334,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domPolygons() {}
+	virtual ~domPolygons() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

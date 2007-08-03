@@ -523,7 +523,7 @@ public:
 					/**
 					 * Destructor
 					 */
-					virtual ~domBind() {}
+					virtual ~domBind() { daeElement::deleteCMDataArray(_CMData); }
 					/**
 					 * Copy Constructor
 					 */
@@ -841,7 +841,7 @@ public:
 			/**
 			 * Destructor
 			 */
-			virtual ~domPass() {}
+			virtual ~domPass() { daeElement::deleteCMDataArray(_CMData); }
 			/**
 			 * Copy Constructor
 			 */
@@ -1048,7 +1048,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domTechnique() {}
+		virtual ~domTechnique() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */
@@ -1229,7 +1229,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domProfile_CG() {}
+	virtual ~domProfile_CG() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

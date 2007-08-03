@@ -146,7 +146,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domController() {}
+	virtual ~domController() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

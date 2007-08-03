@@ -604,7 +604,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domTechnique() {}
+		virtual ~domTechnique() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */
@@ -745,7 +745,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domProfile_COMMON() {}
+	virtual ~domProfile_COMMON() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

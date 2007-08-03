@@ -105,7 +105,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domGlsl_newarray_type_complexType() {}
+	virtual ~domGlsl_newarray_type_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

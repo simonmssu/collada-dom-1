@@ -152,7 +152,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domGeometry() {}
+	virtual ~domGeometry() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

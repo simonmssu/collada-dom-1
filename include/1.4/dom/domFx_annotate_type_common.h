@@ -1292,7 +1292,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domFx_annotate_type_common() {}
+	virtual ~domFx_annotate_type_common() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

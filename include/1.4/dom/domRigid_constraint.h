@@ -146,7 +146,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domRef_attachment() {}
+		virtual ~domRef_attachment() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */
@@ -290,7 +290,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domAttachment() {}
+		virtual ~domAttachment() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */

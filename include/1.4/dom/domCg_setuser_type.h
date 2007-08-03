@@ -152,7 +152,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domCg_setuser_type_complexType() {}
+	virtual ~domCg_setuser_type_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

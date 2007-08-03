@@ -510,7 +510,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domTechnique_common() {}
+		virtual ~domTechnique_common() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */

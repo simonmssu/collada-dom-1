@@ -310,7 +310,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domCommon_color_or_texture_type_complexType() {}
+	virtual ~domCommon_color_or_texture_type_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

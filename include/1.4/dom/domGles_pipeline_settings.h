@@ -7034,7 +7034,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domGles_pipeline_settings() {}
+	virtual ~domGles_pipeline_settings() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

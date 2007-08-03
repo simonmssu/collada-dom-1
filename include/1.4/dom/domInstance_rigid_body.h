@@ -360,7 +360,7 @@ public:
 			/**
 			 * Destructor
 			 */
-			virtual ~domMass_frame() {}
+			virtual ~domMass_frame() { daeElement::deleteCMDataArray(_CMData); }
 			/**
 			 * Copy Constructor
 			 */
@@ -638,7 +638,7 @@ public:
 			/**
 			 * Destructor
 			 */
-			virtual ~domShape() {}
+			virtual ~domShape() { daeElement::deleteCMDataArray(_CMData); }
 			/**
 			 * Copy Constructor
 			 */
@@ -775,7 +775,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domTechnique_common() {}
+		virtual ~domTechnique_common() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */

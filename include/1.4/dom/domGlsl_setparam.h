@@ -108,7 +108,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domGlsl_setparam_complexType() {}
+	virtual ~domGlsl_setparam_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

@@ -1341,7 +1341,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domGlsl_param_type() {}
+	virtual ~domGlsl_param_type() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

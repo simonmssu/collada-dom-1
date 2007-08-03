@@ -163,7 +163,7 @@ public:
 				/**
 				 * Destructor
 				 */
-				virtual ~domOrthographic() {}
+				virtual ~domOrthographic() { daeElement::deleteCMDataArray(_CMData); }
 				/**
 				 * Copy Constructor
 				 */
@@ -297,7 +297,7 @@ public:
 				/**
 				 * Destructor
 				 */
-				virtual ~domPerspective() {}
+				virtual ~domPerspective() { daeElement::deleteCMDataArray(_CMData); }
 				/**
 				 * Copy Constructor
 				 */
@@ -386,7 +386,7 @@ public:
 			/**
 			 * Destructor
 			 */
-			virtual ~domTechnique_common() {}
+			virtual ~domTechnique_common() { daeElement::deleteCMDataArray(_CMData); }
 			/**
 			 * Copy Constructor
 			 */

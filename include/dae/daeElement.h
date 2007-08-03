@@ -457,6 +457,8 @@ public:
 	 */
 	static DLLSPEC void appendResolveElement(daeElement* elem);
 
+	// This function is called internally
+	static DLLSPEC void deleteCMDataArray(daeTArray<daeCharArray*>& cmData);
 };
 #include <dae/daeSmartRef.h>
 typedef daeSmartRef<daeElement> daeElementRef;

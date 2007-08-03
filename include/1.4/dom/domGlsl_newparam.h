@@ -244,7 +244,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domGlsl_newparam_complexType() {}
+	virtual ~domGlsl_newparam_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

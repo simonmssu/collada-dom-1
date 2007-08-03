@@ -249,7 +249,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domFx_surface_init_common() {}
+	virtual ~domFx_surface_init_common() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

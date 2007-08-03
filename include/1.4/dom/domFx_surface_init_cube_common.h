@@ -400,7 +400,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domFx_surface_init_cube_common_complexType() {}
+	virtual ~domFx_surface_init_cube_common_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

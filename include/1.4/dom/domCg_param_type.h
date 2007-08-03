@@ -8399,7 +8399,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domCg_param_type() {}
+	virtual ~domCg_param_type() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

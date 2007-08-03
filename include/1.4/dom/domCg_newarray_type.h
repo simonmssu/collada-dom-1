@@ -131,7 +131,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domCg_newarray_type_complexType() {}
+	virtual ~domCg_newarray_type_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

@@ -119,7 +119,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domCg_setarray_type_complexType() {}
+	virtual ~domCg_setarray_type_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

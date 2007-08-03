@@ -2329,7 +2329,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domGles_basic_type_common() {}
+	virtual ~domGles_basic_type_common() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

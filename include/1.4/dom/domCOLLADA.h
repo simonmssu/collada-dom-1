@@ -503,7 +503,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domCOLLADA() {}
+	virtual ~domCOLLADA() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

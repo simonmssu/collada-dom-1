@@ -273,7 +273,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domCg_newparam_complexType() {}
+	virtual ~domCg_newparam_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

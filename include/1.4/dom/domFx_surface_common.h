@@ -550,7 +550,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domFx_surface_common_complexType() {}
+	virtual ~domFx_surface_common_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

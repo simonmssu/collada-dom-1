@@ -125,24 +125,42 @@ void daeLIBXMLPlugin::getProgress(daeInt* bytesParsed,
 		*totalBytes = 0; // Not available
 }
 
+// A simple structure to help alloc/free xmlTextReader objects
+struct xmlTextReaderHelper {
+	xmlTextReaderHelper(const daeURI& uri) {
+		reader = xmlReaderForFile(uri.getURI(), NULL, 0);
+	}
+
+	xmlTextReaderHelper(daeString buffer, const daeURI& baseUri) {
+		reader = xmlReaderForDoc((xmlChar*)buffer, baseUri.getURI(), NULL, 0);
+	};
+
+	~xmlTextReaderHelper() {
+		if (reader)
+			xmlFreeTextReader(reader);
+	}
+
+	xmlTextReaderPtr reader;
+};
+
 daeElementRef daeLIBXMLPlugin::readFromFile(const daeURI& uri) {
-	xmlTextReaderPtr reader = xmlReaderForFile(uri.getURI(), NULL, 0);
-	if (!reader) {
+	xmlTextReaderHelper readerHelper(uri);
+	if (!readerHelper.reader) {
 		daeErrorHandler::get()->handleError((std::string("Failed to open ") + uri.getURI() +
 																				 " in daeLIBXMLPlugin::readFromFile\n").c_str());
 		return NULL;
 	}
-	return read(reader);
+	return read(readerHelper.reader);
 }
 
 daeElementRef daeLIBXMLPlugin::readFromMemory(daeString buffer, const daeURI& baseUri) {
-	xmlTextReaderPtr reader = xmlReaderForDoc((xmlChar*)buffer, baseUri.getURI(), NULL, 0);
-	if (!reader) {
+	xmlTextReaderHelper readerHelper(buffer, baseUri);
+	if (!readerHelper.reader) {
 		daeErrorHandler::get()->handleError("Failed to open XML document from memory buffer in "
 																				"daeLIBXMLPlugin::readFromMemory\n");
 		return NULL;
 	}
-	return read(reader);
+	return read(readerHelper.reader);
 }
 
 daeElementRef daeLIBXMLPlugin::read(_xmlTextReader* reader) {

@@ -251,6 +251,12 @@ void daeElement::setDocument( daeDocument *c, bool notifyDocument ) {
 	}
 }
 
+void daeElement::deleteCMDataArray(daeTArray<daeCharArray*>& cmData) {
+	for (unsigned int i = 0; i < cmData.getCount(); i++)
+		delete cmData.get(i);
+	cmData.clear();
+}
+
 daeBool
 daeElement::setAttribute(daeString attrName, daeString attrValue)
 {
@@ -473,15 +479,6 @@ daeElement::~daeElement()
 	if (_elementName) {
 		delete[] _elementName;
 		_elementName = NULL;
-	}
-
-	if ( _meta != NULL && _meta->getMetaCMData() != NULL )
-	{
-		daeTArray< daeCharArray *> *CMData = (daeTArray< daeCharArray *>*)_meta->getMetaCMData()->getWritableMemory(this);
-		for ( unsigned int i = 0; i < CMData->getCount(); i++ )
-		{
-			delete CMData->get(i);
-		}
 	}
 }
 

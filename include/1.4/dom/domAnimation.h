@@ -189,7 +189,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domAnimation() {}
+	virtual ~domAnimation() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

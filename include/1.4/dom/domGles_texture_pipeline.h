@@ -127,7 +127,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domGles_texture_pipeline_complexType() {}
+	virtual ~domGles_texture_pipeline_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

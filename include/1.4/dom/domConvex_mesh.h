@@ -206,7 +206,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domConvex_mesh() {}
+	virtual ~domConvex_mesh() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

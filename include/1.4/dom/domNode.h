@@ -362,7 +362,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domNode() {}
+	virtual ~domNode() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */

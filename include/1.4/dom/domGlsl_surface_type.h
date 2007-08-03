@@ -233,7 +233,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domGenerator() {}
+		virtual ~domGenerator() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */

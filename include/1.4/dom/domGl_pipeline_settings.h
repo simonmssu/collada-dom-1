@@ -4904,7 +4904,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domTexture1D() {}
+		virtual ~domTexture1D() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */
@@ -5075,7 +5075,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domTexture2D() {}
+		virtual ~domTexture2D() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */
@@ -5246,7 +5246,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domTexture3D() {}
+		virtual ~domTexture3D() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */
@@ -5417,7 +5417,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domTextureCUBE() {}
+		virtual ~domTextureCUBE() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */
@@ -5588,7 +5588,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domTextureRECT() {}
+		virtual ~domTextureRECT() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */
@@ -5759,7 +5759,7 @@ public:
 		/**
 		 * Destructor
 		 */
-		virtual ~domTextureDEPTH() {}
+		virtual ~domTextureDEPTH() { daeElement::deleteCMDataArray(_CMData); }
 		/**
 		 * Copy Constructor
 		 */
@@ -12093,7 +12093,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domGl_pipeline_settings() {}
+	virtual ~domGl_pipeline_settings() { daeElement::deleteCMDataArray(_CMData); }
 	/**
 	 * Copy Constructor
 	 */
