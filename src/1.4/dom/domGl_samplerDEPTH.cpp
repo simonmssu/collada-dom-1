@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGl_samplerDEPTH::create(daeInt bytes)
+domGl_samplerDEPTH::create(daeInt)
 {
-	domGl_samplerDEPTHRef ref = new(bytes) domGl_samplerDEPTH;
+	domGl_samplerDEPTHRef ref = new domGl_samplerDEPTH;
 	return ref;
 }
 

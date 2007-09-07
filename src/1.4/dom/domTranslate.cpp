@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTranslate::create(daeInt bytes)
+domTranslate::create(daeInt)
 {
-	domTranslateRef ref = new(bytes) domTranslate;
+	domTranslateRef ref = new domTranslate;
 	return ref;
 }
 

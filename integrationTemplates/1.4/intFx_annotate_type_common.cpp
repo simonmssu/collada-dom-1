@@ -38,9 +38,9 @@ daeMetaElement * intFx_annotate_type_common::intString::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_annotate_type_common::create(daeInt bytes)
+intFx_annotate_type_common::create(daeInt)
 {
-	intFx_annotate_type_commonRef ref = new(bytes) intFx_annotate_type_common;
+	intFx_annotate_type_commonRef ref = new intFx_annotate_type_common;
 	return ref;
 }
 
@@ -62,9 +62,9 @@ intFx_annotate_type_common::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intBool::create(daeInt bytes)
+intFx_annotate_type_common::intBool::create(daeInt)
 {
-	intFx_annotate_type_common::intBoolRef ref = new(bytes) intFx_annotate_type_common::intBool;
+	intFx_annotate_type_common::intBoolRef ref = new intFx_annotate_type_common::intBool;
 	return ref;
 }
 
@@ -86,9 +86,9 @@ intFx_annotate_type_common::intBool::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intBool2::create(daeInt bytes)
+intFx_annotate_type_common::intBool2::create(daeInt)
 {
-	intFx_annotate_type_common::intBool2Ref ref = new(bytes) intFx_annotate_type_common::intBool2;
+	intFx_annotate_type_common::intBool2Ref ref = new intFx_annotate_type_common::intBool2;
 	return ref;
 }
 
@@ -110,9 +110,9 @@ intFx_annotate_type_common::intBool2::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intBool3::create(daeInt bytes)
+intFx_annotate_type_common::intBool3::create(daeInt)
 {
-	intFx_annotate_type_common::intBool3Ref ref = new(bytes) intFx_annotate_type_common::intBool3;
+	intFx_annotate_type_common::intBool3Ref ref = new intFx_annotate_type_common::intBool3;
 	return ref;
 }
 
@@ -134,9 +134,9 @@ intFx_annotate_type_common::intBool3::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intBool4::create(daeInt bytes)
+intFx_annotate_type_common::intBool4::create(daeInt)
 {
-	intFx_annotate_type_common::intBool4Ref ref = new(bytes) intFx_annotate_type_common::intBool4;
+	intFx_annotate_type_common::intBool4Ref ref = new intFx_annotate_type_common::intBool4;
 	return ref;
 }
 
@@ -158,9 +158,9 @@ intFx_annotate_type_common::intBool4::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intInt::create(daeInt bytes)
+intFx_annotate_type_common::intInt::create(daeInt)
 {
-	intFx_annotate_type_common::intIntRef ref = new(bytes) intFx_annotate_type_common::intInt;
+	intFx_annotate_type_common::intIntRef ref = new intFx_annotate_type_common::intInt;
 	return ref;
 }
 
@@ -182,9 +182,9 @@ intFx_annotate_type_common::intInt::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intInt2::create(daeInt bytes)
+intFx_annotate_type_common::intInt2::create(daeInt)
 {
-	intFx_annotate_type_common::intInt2Ref ref = new(bytes) intFx_annotate_type_common::intInt2;
+	intFx_annotate_type_common::intInt2Ref ref = new intFx_annotate_type_common::intInt2;
 	return ref;
 }
 
@@ -206,9 +206,9 @@ intFx_annotate_type_common::intInt2::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intInt3::create(daeInt bytes)
+intFx_annotate_type_common::intInt3::create(daeInt)
 {
-	intFx_annotate_type_common::intInt3Ref ref = new(bytes) intFx_annotate_type_common::intInt3;
+	intFx_annotate_type_common::intInt3Ref ref = new intFx_annotate_type_common::intInt3;
 	return ref;
 }
 
@@ -230,9 +230,9 @@ intFx_annotate_type_common::intInt3::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intInt4::create(daeInt bytes)
+intFx_annotate_type_common::intInt4::create(daeInt)
 {
-	intFx_annotate_type_common::intInt4Ref ref = new(bytes) intFx_annotate_type_common::intInt4;
+	intFx_annotate_type_common::intInt4Ref ref = new intFx_annotate_type_common::intInt4;
 	return ref;
 }
 
@@ -254,9 +254,9 @@ intFx_annotate_type_common::intInt4::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intFloat::create(daeInt bytes)
+intFx_annotate_type_common::intFloat::create(daeInt)
 {
-	intFx_annotate_type_common::intFloatRef ref = new(bytes) intFx_annotate_type_common::intFloat;
+	intFx_annotate_type_common::intFloatRef ref = new intFx_annotate_type_common::intFloat;
 	return ref;
 }
 
@@ -278,9 +278,9 @@ intFx_annotate_type_common::intFloat::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intFloat2::create(daeInt bytes)
+intFx_annotate_type_common::intFloat2::create(daeInt)
 {
-	intFx_annotate_type_common::intFloat2Ref ref = new(bytes) intFx_annotate_type_common::intFloat2;
+	intFx_annotate_type_common::intFloat2Ref ref = new intFx_annotate_type_common::intFloat2;
 	return ref;
 }
 
@@ -302,9 +302,9 @@ intFx_annotate_type_common::intFloat2::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intFloat3::create(daeInt bytes)
+intFx_annotate_type_common::intFloat3::create(daeInt)
 {
-	intFx_annotate_type_common::intFloat3Ref ref = new(bytes) intFx_annotate_type_common::intFloat3;
+	intFx_annotate_type_common::intFloat3Ref ref = new intFx_annotate_type_common::intFloat3;
 	return ref;
 }
 
@@ -326,9 +326,9 @@ intFx_annotate_type_common::intFloat3::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intFloat4::create(daeInt bytes)
+intFx_annotate_type_common::intFloat4::create(daeInt)
 {
-	intFx_annotate_type_common::intFloat4Ref ref = new(bytes) intFx_annotate_type_common::intFloat4;
+	intFx_annotate_type_common::intFloat4Ref ref = new intFx_annotate_type_common::intFloat4;
 	return ref;
 }
 
@@ -350,9 +350,9 @@ intFx_annotate_type_common::intFloat4::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intFloat2x2::create(daeInt bytes)
+intFx_annotate_type_common::intFloat2x2::create(daeInt)
 {
-	intFx_annotate_type_common::intFloat2x2Ref ref = new(bytes) intFx_annotate_type_common::intFloat2x2;
+	intFx_annotate_type_common::intFloat2x2Ref ref = new intFx_annotate_type_common::intFloat2x2;
 	return ref;
 }
 
@@ -374,9 +374,9 @@ intFx_annotate_type_common::intFloat2x2::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intFloat3x3::create(daeInt bytes)
+intFx_annotate_type_common::intFloat3x3::create(daeInt)
 {
-	intFx_annotate_type_common::intFloat3x3Ref ref = new(bytes) intFx_annotate_type_common::intFloat3x3;
+	intFx_annotate_type_common::intFloat3x3Ref ref = new intFx_annotate_type_common::intFloat3x3;
 	return ref;
 }
 
@@ -398,9 +398,9 @@ intFx_annotate_type_common::intFloat3x3::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intFloat4x4::create(daeInt bytes)
+intFx_annotate_type_common::intFloat4x4::create(daeInt)
 {
-	intFx_annotate_type_common::intFloat4x4Ref ref = new(bytes) intFx_annotate_type_common::intFloat4x4;
+	intFx_annotate_type_common::intFloat4x4Ref ref = new intFx_annotate_type_common::intFloat4x4;
 	return ref;
 }
 
@@ -422,9 +422,9 @@ intFx_annotate_type_common::intFloat4x4::registerElement()
 }
 
 daeElementRef
-intFx_annotate_type_common::intString::create(daeInt bytes)
+intFx_annotate_type_common::intString::create(daeInt)
 {
-	intFx_annotate_type_common::intStringRef ref = new(bytes) intFx_annotate_type_common::intString;
+	intFx_annotate_type_common::intStringRef ref = new intFx_annotate_type_common::intString;
 	return ref;
 }
 

@@ -22,9 +22,9 @@ daeMetaElement * intGles_texcombiner_commandRGB_type::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGles_texcombiner_commandRGB_type::create(daeInt bytes)
+intGles_texcombiner_commandRGB_type::create(daeInt)
 {
-	intGles_texcombiner_commandRGB_typeRef ref = new(bytes) intGles_texcombiner_commandRGB_type;
+	intGles_texcombiner_commandRGB_typeRef ref = new intGles_texcombiner_commandRGB_type;
 	return ref;
 }
 

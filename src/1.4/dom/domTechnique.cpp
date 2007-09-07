@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTechnique::create(daeInt bytes)
+domTechnique::create(daeInt)
 {
-	domTechniqueRef ref = new(bytes) domTechnique;
+	domTechniqueRef ref = new domTechnique;
 	ref->attrXmlns.setContainer( (domTechnique*)ref );
 	return ref;
 }
@@ -53,7 +53,7 @@ domTechnique::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domTechnique,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domTechnique,_contentsOrder));
-
+        
     //	Add attribute: xmlns
     {
 		daeMetaAttribute* ma = new daeMetaAttribute;

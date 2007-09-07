@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_clearstencil_common::create(daeInt bytes)
+domFx_clearstencil_common::create(daeInt)
 {
-	domFx_clearstencil_commonRef ref = new(bytes) domFx_clearstencil_common;
+	domFx_clearstencil_commonRef ref = new domFx_clearstencil_common;
 	return ref;
 }
 

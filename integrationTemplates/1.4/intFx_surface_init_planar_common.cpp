@@ -23,9 +23,9 @@ daeMetaElement * intFx_surface_init_planar_common::intAll::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_surface_init_planar_common::create(daeInt bytes)
+intFx_surface_init_planar_common::create(daeInt)
 {
-	intFx_surface_init_planar_commonRef ref = new(bytes) intFx_surface_init_planar_common;
+	intFx_surface_init_planar_commonRef ref = new intFx_surface_init_planar_common;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intFx_surface_init_planar_common::registerElement()
 }
 
 daeElementRef
-intFx_surface_init_planar_common::intAll::create(daeInt bytes)
+intFx_surface_init_planar_common::intAll::create(daeInt)
 {
-	intFx_surface_init_planar_common::intAllRef ref = new(bytes) intFx_surface_init_planar_common::intAll;
+	intFx_surface_init_planar_common::intAllRef ref = new intFx_surface_init_planar_common::intAll;
 	return ref;
 }
 

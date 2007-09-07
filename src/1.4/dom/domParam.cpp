@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domParam::create(daeInt bytes)
+domParam::create(daeInt)
 {
-	domParamRef ref = new(bytes) domParam;
+	domParamRef ref = new domParam;
 	return ref;
 }
 

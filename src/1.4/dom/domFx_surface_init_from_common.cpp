@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_init_from_common::create(daeInt bytes)
+domFx_surface_init_from_common::create(daeInt)
 {
-	domFx_surface_init_from_commonRef ref = new(bytes) domFx_surface_init_from_common;
+	domFx_surface_init_from_commonRef ref = new domFx_surface_init_from_common;
 	return ref;
 }
 

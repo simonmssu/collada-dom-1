@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLookat::create(daeInt bytes)
+domLookat::create(daeInt)
 {
-	domLookatRef ref = new(bytes) domLookat;
+	domLookatRef ref = new domLookat;
 	return ref;
 }
 

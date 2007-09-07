@@ -22,9 +22,9 @@ daeMetaElement * intInputLocal::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intInputLocal::create(daeInt bytes)
+intInputLocal::create(daeInt)
 {
-	intInputLocalRef ref = new(bytes) intInputLocal;
+	intInputLocalRef ref = new intInputLocal;
 	return ref;
 }
 

@@ -24,9 +24,9 @@ daeMetaElement * intFx_surface_init_common::intInit_as_target::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_surface_init_common::create(daeInt bytes)
+intFx_surface_init_common::create(daeInt)
 {
-	intFx_surface_init_commonRef ref = new(bytes) intFx_surface_init_common;
+	intFx_surface_init_commonRef ref = new intFx_surface_init_common;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intFx_surface_init_common::registerElement()
 }
 
 daeElementRef
-intFx_surface_init_common::intInit_as_null::create(daeInt bytes)
+intFx_surface_init_common::intInit_as_null::create(daeInt)
 {
-	intFx_surface_init_common::intInit_as_nullRef ref = new(bytes) intFx_surface_init_common::intInit_as_null;
+	intFx_surface_init_common::intInit_as_nullRef ref = new intFx_surface_init_common::intInit_as_null;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intFx_surface_init_common::intInit_as_null::registerElement()
 }
 
 daeElementRef
-intFx_surface_init_common::intInit_as_target::create(daeInt bytes)
+intFx_surface_init_common::intInit_as_target::create(daeInt)
 {
-	intFx_surface_init_common::intInit_as_targetRef ref = new(bytes) intFx_surface_init_common::intInit_as_target;
+	intFx_surface_init_common::intInit_as_targetRef ref = new intFx_surface_init_common::intInit_as_target;
 	return ref;
 }
 

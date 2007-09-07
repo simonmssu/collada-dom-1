@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_param_type::create(daeInt bytes)
+domGlsl_param_type::create(daeInt)
 {
-	domGlsl_param_typeRef ref = new(bytes) domGlsl_param_type;
+	domGlsl_param_typeRef ref = new domGlsl_param_type;
 	return ref;
 }
 
@@ -185,7 +185,7 @@ domGlsl_param_type::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domGlsl_param_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGlsl_param_type,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domGlsl_param_type,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domGlsl_param_type));
@@ -195,9 +195,9 @@ domGlsl_param_type::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domBool::create(daeInt bytes)
+domGlsl_param_type::domBool::create(daeInt)
 {
-	domGlsl_param_type::domBoolRef ref = new(bytes) domGlsl_param_type::domBool;
+	domGlsl_param_type::domBoolRef ref = new domGlsl_param_type::domBool;
 	return ref;
 }
 
@@ -230,9 +230,9 @@ domGlsl_param_type::domBool::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domBool2::create(daeInt bytes)
+domGlsl_param_type::domBool2::create(daeInt)
 {
-	domGlsl_param_type::domBool2Ref ref = new(bytes) domGlsl_param_type::domBool2;
+	domGlsl_param_type::domBool2Ref ref = new domGlsl_param_type::domBool2;
 	return ref;
 }
 
@@ -265,9 +265,9 @@ domGlsl_param_type::domBool2::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domBool3::create(daeInt bytes)
+domGlsl_param_type::domBool3::create(daeInt)
 {
-	domGlsl_param_type::domBool3Ref ref = new(bytes) domGlsl_param_type::domBool3;
+	domGlsl_param_type::domBool3Ref ref = new domGlsl_param_type::domBool3;
 	return ref;
 }
 
@@ -300,9 +300,9 @@ domGlsl_param_type::domBool3::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domBool4::create(daeInt bytes)
+domGlsl_param_type::domBool4::create(daeInt)
 {
-	domGlsl_param_type::domBool4Ref ref = new(bytes) domGlsl_param_type::domBool4;
+	domGlsl_param_type::domBool4Ref ref = new domGlsl_param_type::domBool4;
 	return ref;
 }
 
@@ -335,9 +335,9 @@ domGlsl_param_type::domBool4::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domFloat::create(daeInt bytes)
+domGlsl_param_type::domFloat::create(daeInt)
 {
-	domGlsl_param_type::domFloatRef ref = new(bytes) domGlsl_param_type::domFloat;
+	domGlsl_param_type::domFloatRef ref = new domGlsl_param_type::domFloat;
 	return ref;
 }
 
@@ -370,9 +370,9 @@ domGlsl_param_type::domFloat::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domFloat2::create(daeInt bytes)
+domGlsl_param_type::domFloat2::create(daeInt)
 {
-	domGlsl_param_type::domFloat2Ref ref = new(bytes) domGlsl_param_type::domFloat2;
+	domGlsl_param_type::domFloat2Ref ref = new domGlsl_param_type::domFloat2;
 	return ref;
 }
 
@@ -405,9 +405,9 @@ domGlsl_param_type::domFloat2::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domFloat3::create(daeInt bytes)
+domGlsl_param_type::domFloat3::create(daeInt)
 {
-	domGlsl_param_type::domFloat3Ref ref = new(bytes) domGlsl_param_type::domFloat3;
+	domGlsl_param_type::domFloat3Ref ref = new domGlsl_param_type::domFloat3;
 	return ref;
 }
 
@@ -440,9 +440,9 @@ domGlsl_param_type::domFloat3::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domFloat4::create(daeInt bytes)
+domGlsl_param_type::domFloat4::create(daeInt)
 {
-	domGlsl_param_type::domFloat4Ref ref = new(bytes) domGlsl_param_type::domFloat4;
+	domGlsl_param_type::domFloat4Ref ref = new domGlsl_param_type::domFloat4;
 	return ref;
 }
 
@@ -475,9 +475,9 @@ domGlsl_param_type::domFloat4::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domFloat2x2::create(daeInt bytes)
+domGlsl_param_type::domFloat2x2::create(daeInt)
 {
-	domGlsl_param_type::domFloat2x2Ref ref = new(bytes) domGlsl_param_type::domFloat2x2;
+	domGlsl_param_type::domFloat2x2Ref ref = new domGlsl_param_type::domFloat2x2;
 	return ref;
 }
 
@@ -510,9 +510,9 @@ domGlsl_param_type::domFloat2x2::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domFloat3x3::create(daeInt bytes)
+domGlsl_param_type::domFloat3x3::create(daeInt)
 {
-	domGlsl_param_type::domFloat3x3Ref ref = new(bytes) domGlsl_param_type::domFloat3x3;
+	domGlsl_param_type::domFloat3x3Ref ref = new domGlsl_param_type::domFloat3x3;
 	return ref;
 }
 
@@ -545,9 +545,9 @@ domGlsl_param_type::domFloat3x3::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domFloat4x4::create(daeInt bytes)
+domGlsl_param_type::domFloat4x4::create(daeInt)
 {
-	domGlsl_param_type::domFloat4x4Ref ref = new(bytes) domGlsl_param_type::domFloat4x4;
+	domGlsl_param_type::domFloat4x4Ref ref = new domGlsl_param_type::domFloat4x4;
 	return ref;
 }
 
@@ -580,9 +580,9 @@ domGlsl_param_type::domFloat4x4::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domInt::create(daeInt bytes)
+domGlsl_param_type::domInt::create(daeInt)
 {
-	domGlsl_param_type::domIntRef ref = new(bytes) domGlsl_param_type::domInt;
+	domGlsl_param_type::domIntRef ref = new domGlsl_param_type::domInt;
 	return ref;
 }
 
@@ -615,9 +615,9 @@ domGlsl_param_type::domInt::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domInt2::create(daeInt bytes)
+domGlsl_param_type::domInt2::create(daeInt)
 {
-	domGlsl_param_type::domInt2Ref ref = new(bytes) domGlsl_param_type::domInt2;
+	domGlsl_param_type::domInt2Ref ref = new domGlsl_param_type::domInt2;
 	return ref;
 }
 
@@ -650,9 +650,9 @@ domGlsl_param_type::domInt2::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domInt3::create(daeInt bytes)
+domGlsl_param_type::domInt3::create(daeInt)
 {
-	domGlsl_param_type::domInt3Ref ref = new(bytes) domGlsl_param_type::domInt3;
+	domGlsl_param_type::domInt3Ref ref = new domGlsl_param_type::domInt3;
 	return ref;
 }
 
@@ -685,9 +685,9 @@ domGlsl_param_type::domInt3::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domInt4::create(daeInt bytes)
+domGlsl_param_type::domInt4::create(daeInt)
 {
-	domGlsl_param_type::domInt4Ref ref = new(bytes) domGlsl_param_type::domInt4;
+	domGlsl_param_type::domInt4Ref ref = new domGlsl_param_type::domInt4;
 	return ref;
 }
 
@@ -720,9 +720,9 @@ domGlsl_param_type::domInt4::registerElement()
 }
 
 daeElementRef
-domGlsl_param_type::domEnum::create(daeInt bytes)
+domGlsl_param_type::domEnum::create(daeInt)
 {
-	domGlsl_param_type::domEnumRef ref = new(bytes) domGlsl_param_type::domEnum;
+	domGlsl_param_type::domEnumRef ref = new domGlsl_param_type::domEnum;
 	return ref;
 }
 

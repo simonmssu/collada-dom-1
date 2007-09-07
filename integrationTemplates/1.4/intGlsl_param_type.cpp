@@ -38,9 +38,9 @@ daeMetaElement * intGlsl_param_type::intEnum::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGlsl_param_type::create(daeInt bytes)
+intGlsl_param_type::create(daeInt)
 {
-	intGlsl_param_typeRef ref = new(bytes) intGlsl_param_type;
+	intGlsl_param_typeRef ref = new intGlsl_param_type;
 	return ref;
 }
 
@@ -62,9 +62,9 @@ intGlsl_param_type::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intBool::create(daeInt bytes)
+intGlsl_param_type::intBool::create(daeInt)
 {
-	intGlsl_param_type::intBoolRef ref = new(bytes) intGlsl_param_type::intBool;
+	intGlsl_param_type::intBoolRef ref = new intGlsl_param_type::intBool;
 	return ref;
 }
 
@@ -86,9 +86,9 @@ intGlsl_param_type::intBool::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intBool2::create(daeInt bytes)
+intGlsl_param_type::intBool2::create(daeInt)
 {
-	intGlsl_param_type::intBool2Ref ref = new(bytes) intGlsl_param_type::intBool2;
+	intGlsl_param_type::intBool2Ref ref = new intGlsl_param_type::intBool2;
 	return ref;
 }
 
@@ -110,9 +110,9 @@ intGlsl_param_type::intBool2::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intBool3::create(daeInt bytes)
+intGlsl_param_type::intBool3::create(daeInt)
 {
-	intGlsl_param_type::intBool3Ref ref = new(bytes) intGlsl_param_type::intBool3;
+	intGlsl_param_type::intBool3Ref ref = new intGlsl_param_type::intBool3;
 	return ref;
 }
 
@@ -134,9 +134,9 @@ intGlsl_param_type::intBool3::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intBool4::create(daeInt bytes)
+intGlsl_param_type::intBool4::create(daeInt)
 {
-	intGlsl_param_type::intBool4Ref ref = new(bytes) intGlsl_param_type::intBool4;
+	intGlsl_param_type::intBool4Ref ref = new intGlsl_param_type::intBool4;
 	return ref;
 }
 
@@ -158,9 +158,9 @@ intGlsl_param_type::intBool4::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intFloat::create(daeInt bytes)
+intGlsl_param_type::intFloat::create(daeInt)
 {
-	intGlsl_param_type::intFloatRef ref = new(bytes) intGlsl_param_type::intFloat;
+	intGlsl_param_type::intFloatRef ref = new intGlsl_param_type::intFloat;
 	return ref;
 }
 
@@ -182,9 +182,9 @@ intGlsl_param_type::intFloat::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intFloat2::create(daeInt bytes)
+intGlsl_param_type::intFloat2::create(daeInt)
 {
-	intGlsl_param_type::intFloat2Ref ref = new(bytes) intGlsl_param_type::intFloat2;
+	intGlsl_param_type::intFloat2Ref ref = new intGlsl_param_type::intFloat2;
 	return ref;
 }
 
@@ -206,9 +206,9 @@ intGlsl_param_type::intFloat2::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intFloat3::create(daeInt bytes)
+intGlsl_param_type::intFloat3::create(daeInt)
 {
-	intGlsl_param_type::intFloat3Ref ref = new(bytes) intGlsl_param_type::intFloat3;
+	intGlsl_param_type::intFloat3Ref ref = new intGlsl_param_type::intFloat3;
 	return ref;
 }
 
@@ -230,9 +230,9 @@ intGlsl_param_type::intFloat3::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intFloat4::create(daeInt bytes)
+intGlsl_param_type::intFloat4::create(daeInt)
 {
-	intGlsl_param_type::intFloat4Ref ref = new(bytes) intGlsl_param_type::intFloat4;
+	intGlsl_param_type::intFloat4Ref ref = new intGlsl_param_type::intFloat4;
 	return ref;
 }
 
@@ -254,9 +254,9 @@ intGlsl_param_type::intFloat4::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intFloat2x2::create(daeInt bytes)
+intGlsl_param_type::intFloat2x2::create(daeInt)
 {
-	intGlsl_param_type::intFloat2x2Ref ref = new(bytes) intGlsl_param_type::intFloat2x2;
+	intGlsl_param_type::intFloat2x2Ref ref = new intGlsl_param_type::intFloat2x2;
 	return ref;
 }
 
@@ -278,9 +278,9 @@ intGlsl_param_type::intFloat2x2::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intFloat3x3::create(daeInt bytes)
+intGlsl_param_type::intFloat3x3::create(daeInt)
 {
-	intGlsl_param_type::intFloat3x3Ref ref = new(bytes) intGlsl_param_type::intFloat3x3;
+	intGlsl_param_type::intFloat3x3Ref ref = new intGlsl_param_type::intFloat3x3;
 	return ref;
 }
 
@@ -302,9 +302,9 @@ intGlsl_param_type::intFloat3x3::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intFloat4x4::create(daeInt bytes)
+intGlsl_param_type::intFloat4x4::create(daeInt)
 {
-	intGlsl_param_type::intFloat4x4Ref ref = new(bytes) intGlsl_param_type::intFloat4x4;
+	intGlsl_param_type::intFloat4x4Ref ref = new intGlsl_param_type::intFloat4x4;
 	return ref;
 }
 
@@ -326,9 +326,9 @@ intGlsl_param_type::intFloat4x4::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intInt::create(daeInt bytes)
+intGlsl_param_type::intInt::create(daeInt)
 {
-	intGlsl_param_type::intIntRef ref = new(bytes) intGlsl_param_type::intInt;
+	intGlsl_param_type::intIntRef ref = new intGlsl_param_type::intInt;
 	return ref;
 }
 
@@ -350,9 +350,9 @@ intGlsl_param_type::intInt::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intInt2::create(daeInt bytes)
+intGlsl_param_type::intInt2::create(daeInt)
 {
-	intGlsl_param_type::intInt2Ref ref = new(bytes) intGlsl_param_type::intInt2;
+	intGlsl_param_type::intInt2Ref ref = new intGlsl_param_type::intInt2;
 	return ref;
 }
 
@@ -374,9 +374,9 @@ intGlsl_param_type::intInt2::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intInt3::create(daeInt bytes)
+intGlsl_param_type::intInt3::create(daeInt)
 {
-	intGlsl_param_type::intInt3Ref ref = new(bytes) intGlsl_param_type::intInt3;
+	intGlsl_param_type::intInt3Ref ref = new intGlsl_param_type::intInt3;
 	return ref;
 }
 
@@ -398,9 +398,9 @@ intGlsl_param_type::intInt3::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intInt4::create(daeInt bytes)
+intGlsl_param_type::intInt4::create(daeInt)
 {
-	intGlsl_param_type::intInt4Ref ref = new(bytes) intGlsl_param_type::intInt4;
+	intGlsl_param_type::intInt4Ref ref = new intGlsl_param_type::intInt4;
 	return ref;
 }
 
@@ -422,9 +422,9 @@ intGlsl_param_type::intInt4::registerElement()
 }
 
 daeElementRef
-intGlsl_param_type::intEnum::create(daeInt bytes)
+intGlsl_param_type::intEnum::create(daeInt)
 {
-	intGlsl_param_type::intEnumRef ref = new(bytes) intGlsl_param_type::intEnum;
+	intGlsl_param_type::intEnumRef ref = new intGlsl_param_type::intEnum;
 	return ref;
 }
 

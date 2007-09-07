@@ -22,9 +22,9 @@ daeMetaElement * intFx_include_common::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_include_common::create(daeInt bytes)
+intFx_include_common::create(daeInt)
 {
-	intFx_include_commonRef ref = new(bytes) intFx_include_common;
+	intFx_include_commonRef ref = new intFx_include_common;
 	return ref;
 }
 

@@ -22,9 +22,9 @@ daeMetaElement * intGles_texenv_command_type::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGles_texenv_command_type::create(daeInt bytes)
+intGles_texenv_command_type::create(daeInt)
 {
-	intGles_texenv_command_typeRef ref = new(bytes) intGles_texenv_command_type;
+	intGles_texenv_command_typeRef ref = new intGles_texenv_command_type;
 	return ref;
 }
 

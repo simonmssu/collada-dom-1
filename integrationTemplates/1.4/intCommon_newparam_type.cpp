@@ -27,9 +27,9 @@ daeMetaElement * intCommon_newparam_type::intFloat4::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCommon_newparam_type::create(daeInt bytes)
+intCommon_newparam_type::create(daeInt)
 {
-	intCommon_newparam_typeRef ref = new(bytes) intCommon_newparam_type;
+	intCommon_newparam_typeRef ref = new intCommon_newparam_type;
 	return ref;
 }
 
@@ -51,9 +51,9 @@ intCommon_newparam_type::registerElement()
 }
 
 daeElementRef
-intCommon_newparam_type::intSemantic::create(daeInt bytes)
+intCommon_newparam_type::intSemantic::create(daeInt)
 {
-	intCommon_newparam_type::intSemanticRef ref = new(bytes) intCommon_newparam_type::intSemantic;
+	intCommon_newparam_type::intSemanticRef ref = new intCommon_newparam_type::intSemantic;
 	return ref;
 }
 
@@ -75,9 +75,9 @@ intCommon_newparam_type::intSemantic::registerElement()
 }
 
 daeElementRef
-intCommon_newparam_type::intFloat::create(daeInt bytes)
+intCommon_newparam_type::intFloat::create(daeInt)
 {
-	intCommon_newparam_type::intFloatRef ref = new(bytes) intCommon_newparam_type::intFloat;
+	intCommon_newparam_type::intFloatRef ref = new intCommon_newparam_type::intFloat;
 	return ref;
 }
 
@@ -99,9 +99,9 @@ intCommon_newparam_type::intFloat::registerElement()
 }
 
 daeElementRef
-intCommon_newparam_type::intFloat2::create(daeInt bytes)
+intCommon_newparam_type::intFloat2::create(daeInt)
 {
-	intCommon_newparam_type::intFloat2Ref ref = new(bytes) intCommon_newparam_type::intFloat2;
+	intCommon_newparam_type::intFloat2Ref ref = new intCommon_newparam_type::intFloat2;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ intCommon_newparam_type::intFloat2::registerElement()
 }
 
 daeElementRef
-intCommon_newparam_type::intFloat3::create(daeInt bytes)
+intCommon_newparam_type::intFloat3::create(daeInt)
 {
-	intCommon_newparam_type::intFloat3Ref ref = new(bytes) intCommon_newparam_type::intFloat3;
+	intCommon_newparam_type::intFloat3Ref ref = new intCommon_newparam_type::intFloat3;
 	return ref;
 }
 
@@ -147,9 +147,9 @@ intCommon_newparam_type::intFloat3::registerElement()
 }
 
 daeElementRef
-intCommon_newparam_type::intFloat4::create(daeInt bytes)
+intCommon_newparam_type::intFloat4::create(daeInt)
 {
-	intCommon_newparam_type::intFloat4Ref ref = new(bytes) intCommon_newparam_type::intFloat4;
+	intCommon_newparam_type::intFloat4Ref ref = new intCommon_newparam_type::intFloat4;
 	return ref;
 }
 

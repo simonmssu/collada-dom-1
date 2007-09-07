@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_visual_scenes::create(daeInt bytes)
+domLibrary_visual_scenes::create(daeInt)
 {
-	domLibrary_visual_scenesRef ref = new(bytes) domLibrary_visual_scenes;
+	domLibrary_visual_scenesRef ref = new domLibrary_visual_scenes;
 	return ref;
 }
 

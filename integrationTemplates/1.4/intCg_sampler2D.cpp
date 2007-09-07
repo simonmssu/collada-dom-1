@@ -22,9 +22,9 @@ daeMetaElement * intCg_sampler2D::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCg_sampler2D::create(daeInt bytes)
+intCg_sampler2D::create(daeInt)
 {
-	intCg_sampler2DRef ref = new(bytes) intCg_sampler2D;
+	intCg_sampler2DRef ref = new intCg_sampler2D;
 	return ref;
 }
 

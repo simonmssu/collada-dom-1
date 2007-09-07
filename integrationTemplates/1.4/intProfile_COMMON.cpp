@@ -27,9 +27,9 @@ daeMetaElement * intProfile_COMMON::intTechnique::intBlinn::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intProfile_COMMON::create(daeInt bytes)
+intProfile_COMMON::create(daeInt)
 {
-	intProfile_COMMONRef ref = new(bytes) intProfile_COMMON;
+	intProfile_COMMONRef ref = new intProfile_COMMON;
 	return ref;
 }
 
@@ -51,9 +51,9 @@ intProfile_COMMON::registerElement()
 }
 
 daeElementRef
-intProfile_COMMON::intTechnique::create(daeInt bytes)
+intProfile_COMMON::intTechnique::create(daeInt)
 {
-	intProfile_COMMON::intTechniqueRef ref = new(bytes) intProfile_COMMON::intTechnique;
+	intProfile_COMMON::intTechniqueRef ref = new intProfile_COMMON::intTechnique;
 	return ref;
 }
 
@@ -75,9 +75,9 @@ intProfile_COMMON::intTechnique::registerElement()
 }
 
 daeElementRef
-intProfile_COMMON::intTechnique::intConstant::create(daeInt bytes)
+intProfile_COMMON::intTechnique::intConstant::create(daeInt)
 {
-	intProfile_COMMON::intTechnique::intConstantRef ref = new(bytes) intProfile_COMMON::intTechnique::intConstant;
+	intProfile_COMMON::intTechnique::intConstantRef ref = new intProfile_COMMON::intTechnique::intConstant;
 	return ref;
 }
 
@@ -99,9 +99,9 @@ intProfile_COMMON::intTechnique::intConstant::registerElement()
 }
 
 daeElementRef
-intProfile_COMMON::intTechnique::intLambert::create(daeInt bytes)
+intProfile_COMMON::intTechnique::intLambert::create(daeInt)
 {
-	intProfile_COMMON::intTechnique::intLambertRef ref = new(bytes) intProfile_COMMON::intTechnique::intLambert;
+	intProfile_COMMON::intTechnique::intLambertRef ref = new intProfile_COMMON::intTechnique::intLambert;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ intProfile_COMMON::intTechnique::intLambert::registerElement()
 }
 
 daeElementRef
-intProfile_COMMON::intTechnique::intPhong::create(daeInt bytes)
+intProfile_COMMON::intTechnique::intPhong::create(daeInt)
 {
-	intProfile_COMMON::intTechnique::intPhongRef ref = new(bytes) intProfile_COMMON::intTechnique::intPhong;
+	intProfile_COMMON::intTechnique::intPhongRef ref = new intProfile_COMMON::intTechnique::intPhong;
 	return ref;
 }
 
@@ -147,9 +147,9 @@ intProfile_COMMON::intTechnique::intPhong::registerElement()
 }
 
 daeElementRef
-intProfile_COMMON::intTechnique::intBlinn::create(daeInt bytes)
+intProfile_COMMON::intTechnique::intBlinn::create(daeInt)
 {
-	intProfile_COMMON::intTechnique::intBlinnRef ref = new(bytes) intProfile_COMMON::intTechnique::intBlinn;
+	intProfile_COMMON::intTechnique::intBlinnRef ref = new intProfile_COMMON::intTechnique::intBlinn;
 	return ref;
 }
 

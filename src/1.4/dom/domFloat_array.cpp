@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFloat_array::create(daeInt bytes)
+domFloat_array::create(daeInt)
 {
-	domFloat_arrayRef ref = new(bytes) domFloat_array;
+	domFloat_arrayRef ref = new domFloat_array;
 	return ref;
 }
 

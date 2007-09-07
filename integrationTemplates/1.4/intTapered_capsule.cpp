@@ -25,9 +25,9 @@ daeMetaElement * intTapered_capsule::intRadius2::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intTapered_capsule::create(daeInt bytes)
+intTapered_capsule::create(daeInt)
 {
-	intTapered_capsuleRef ref = new(bytes) intTapered_capsule;
+	intTapered_capsuleRef ref = new intTapered_capsule;
 	return ref;
 }
 
@@ -49,9 +49,9 @@ intTapered_capsule::registerElement()
 }
 
 daeElementRef
-intTapered_capsule::intHeight::create(daeInt bytes)
+intTapered_capsule::intHeight::create(daeInt)
 {
-	intTapered_capsule::intHeightRef ref = new(bytes) intTapered_capsule::intHeight;
+	intTapered_capsule::intHeightRef ref = new intTapered_capsule::intHeight;
 	return ref;
 }
 
@@ -73,9 +73,9 @@ intTapered_capsule::intHeight::registerElement()
 }
 
 daeElementRef
-intTapered_capsule::intRadius1::create(daeInt bytes)
+intTapered_capsule::intRadius1::create(daeInt)
 {
-	intTapered_capsule::intRadius1Ref ref = new(bytes) intTapered_capsule::intRadius1;
+	intTapered_capsule::intRadius1Ref ref = new intTapered_capsule::intRadius1;
 	return ref;
 }
 
@@ -97,9 +97,9 @@ intTapered_capsule::intRadius1::registerElement()
 }
 
 daeElementRef
-intTapered_capsule::intRadius2::create(daeInt bytes)
+intTapered_capsule::intRadius2::create(daeInt)
 {
-	intTapered_capsule::intRadius2Ref ref = new(bytes) intTapered_capsule::intRadius2;
+	intTapered_capsule::intRadius2Ref ref = new intTapered_capsule::intRadius2;
 	return ref;
 }
 

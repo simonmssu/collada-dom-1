@@ -22,9 +22,9 @@ daeMetaElement * intFx_cleardepth_common::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_cleardepth_common::create(daeInt bytes)
+intFx_cleardepth_common::create(daeInt)
 {
-	intFx_cleardepth_commonRef ref = new(bytes) intFx_cleardepth_common;
+	intFx_cleardepth_commonRef ref = new intFx_cleardepth_common;
 	return ref;
 }
 

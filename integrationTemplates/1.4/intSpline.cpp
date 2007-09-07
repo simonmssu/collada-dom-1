@@ -23,9 +23,9 @@ daeMetaElement * intSpline::intControl_vertices::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intSpline::create(daeInt bytes)
+intSpline::create(daeInt)
 {
-	intSplineRef ref = new(bytes) intSpline;
+	intSplineRef ref = new intSpline;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intSpline::registerElement()
 }
 
 daeElementRef
-intSpline::intControl_vertices::create(daeInt bytes)
+intSpline::intControl_vertices::create(daeInt)
 {
-	intSpline::intControl_verticesRef ref = new(bytes) intSpline::intControl_vertices;
+	intSpline::intControl_verticesRef ref = new intSpline::intControl_vertices;
 	return ref;
 }
 

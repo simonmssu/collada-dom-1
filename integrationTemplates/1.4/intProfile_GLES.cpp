@@ -32,9 +32,9 @@ daeMetaElement * intProfile_GLES::intTechnique::intPass::intDraw::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intProfile_GLES::create(daeInt bytes)
+intProfile_GLES::create(daeInt)
 {
-	intProfile_GLESRef ref = new(bytes) intProfile_GLES;
+	intProfile_GLESRef ref = new intProfile_GLES;
 	return ref;
 }
 
@@ -56,9 +56,9 @@ intProfile_GLES::registerElement()
 }
 
 daeElementRef
-intProfile_GLES::intTechnique::create(daeInt bytes)
+intProfile_GLES::intTechnique::create(daeInt)
 {
-	intProfile_GLES::intTechniqueRef ref = new(bytes) intProfile_GLES::intTechnique;
+	intProfile_GLES::intTechniqueRef ref = new intProfile_GLES::intTechnique;
 	return ref;
 }
 
@@ -80,9 +80,9 @@ intProfile_GLES::intTechnique::registerElement()
 }
 
 daeElementRef
-intProfile_GLES::intTechnique::intSetparam::create(daeInt bytes)
+intProfile_GLES::intTechnique::intSetparam::create(daeInt)
 {
-	intProfile_GLES::intTechnique::intSetparamRef ref = new(bytes) intProfile_GLES::intTechnique::intSetparam;
+	intProfile_GLES::intTechnique::intSetparamRef ref = new intProfile_GLES::intTechnique::intSetparam;
 	return ref;
 }
 
@@ -104,9 +104,9 @@ intProfile_GLES::intTechnique::intSetparam::registerElement()
 }
 
 daeElementRef
-intProfile_GLES::intTechnique::intPass::create(daeInt bytes)
+intProfile_GLES::intTechnique::intPass::create(daeInt)
 {
-	intProfile_GLES::intTechnique::intPassRef ref = new(bytes) intProfile_GLES::intTechnique::intPass;
+	intProfile_GLES::intTechnique::intPassRef ref = new intProfile_GLES::intTechnique::intPass;
 	return ref;
 }
 
@@ -128,9 +128,9 @@ intProfile_GLES::intTechnique::intPass::registerElement()
 }
 
 daeElementRef
-intProfile_GLES::intTechnique::intPass::intColor_target::create(daeInt bytes)
+intProfile_GLES::intTechnique::intPass::intColor_target::create(daeInt)
 {
-	intProfile_GLES::intTechnique::intPass::intColor_targetRef ref = new(bytes) intProfile_GLES::intTechnique::intPass::intColor_target;
+	intProfile_GLES::intTechnique::intPass::intColor_targetRef ref = new intProfile_GLES::intTechnique::intPass::intColor_target;
 	return ref;
 }
 
@@ -152,9 +152,9 @@ intProfile_GLES::intTechnique::intPass::intColor_target::registerElement()
 }
 
 daeElementRef
-intProfile_GLES::intTechnique::intPass::intDepth_target::create(daeInt bytes)
+intProfile_GLES::intTechnique::intPass::intDepth_target::create(daeInt)
 {
-	intProfile_GLES::intTechnique::intPass::intDepth_targetRef ref = new(bytes) intProfile_GLES::intTechnique::intPass::intDepth_target;
+	intProfile_GLES::intTechnique::intPass::intDepth_targetRef ref = new intProfile_GLES::intTechnique::intPass::intDepth_target;
 	return ref;
 }
 
@@ -176,9 +176,9 @@ intProfile_GLES::intTechnique::intPass::intDepth_target::registerElement()
 }
 
 daeElementRef
-intProfile_GLES::intTechnique::intPass::intStencil_target::create(daeInt bytes)
+intProfile_GLES::intTechnique::intPass::intStencil_target::create(daeInt)
 {
-	intProfile_GLES::intTechnique::intPass::intStencil_targetRef ref = new(bytes) intProfile_GLES::intTechnique::intPass::intStencil_target;
+	intProfile_GLES::intTechnique::intPass::intStencil_targetRef ref = new intProfile_GLES::intTechnique::intPass::intStencil_target;
 	return ref;
 }
 
@@ -200,9 +200,9 @@ intProfile_GLES::intTechnique::intPass::intStencil_target::registerElement()
 }
 
 daeElementRef
-intProfile_GLES::intTechnique::intPass::intColor_clear::create(daeInt bytes)
+intProfile_GLES::intTechnique::intPass::intColor_clear::create(daeInt)
 {
-	intProfile_GLES::intTechnique::intPass::intColor_clearRef ref = new(bytes) intProfile_GLES::intTechnique::intPass::intColor_clear;
+	intProfile_GLES::intTechnique::intPass::intColor_clearRef ref = new intProfile_GLES::intTechnique::intPass::intColor_clear;
 	return ref;
 }
 
@@ -224,9 +224,9 @@ intProfile_GLES::intTechnique::intPass::intColor_clear::registerElement()
 }
 
 daeElementRef
-intProfile_GLES::intTechnique::intPass::intDepth_clear::create(daeInt bytes)
+intProfile_GLES::intTechnique::intPass::intDepth_clear::create(daeInt)
 {
-	intProfile_GLES::intTechnique::intPass::intDepth_clearRef ref = new(bytes) intProfile_GLES::intTechnique::intPass::intDepth_clear;
+	intProfile_GLES::intTechnique::intPass::intDepth_clearRef ref = new intProfile_GLES::intTechnique::intPass::intDepth_clear;
 	return ref;
 }
 
@@ -248,9 +248,9 @@ intProfile_GLES::intTechnique::intPass::intDepth_clear::registerElement()
 }
 
 daeElementRef
-intProfile_GLES::intTechnique::intPass::intStencil_clear::create(daeInt bytes)
+intProfile_GLES::intTechnique::intPass::intStencil_clear::create(daeInt)
 {
-	intProfile_GLES::intTechnique::intPass::intStencil_clearRef ref = new(bytes) intProfile_GLES::intTechnique::intPass::intStencil_clear;
+	intProfile_GLES::intTechnique::intPass::intStencil_clearRef ref = new intProfile_GLES::intTechnique::intPass::intStencil_clear;
 	return ref;
 }
 
@@ -272,9 +272,9 @@ intProfile_GLES::intTechnique::intPass::intStencil_clear::registerElement()
 }
 
 daeElementRef
-intProfile_GLES::intTechnique::intPass::intDraw::create(daeInt bytes)
+intProfile_GLES::intTechnique::intPass::intDraw::create(daeInt)
 {
-	intProfile_GLES::intTechnique::intPass::intDrawRef ref = new(bytes) intProfile_GLES::intTechnique::intPass::intDraw;
+	intProfile_GLES::intTechnique::intPass::intDrawRef ref = new intProfile_GLES::intTechnique::intPass::intDraw;
 	return ref;
 }
 

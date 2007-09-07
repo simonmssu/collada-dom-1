@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domMesh::create(daeInt bytes)
+domMesh::create(daeInt)
 {
-	domMeshRef ref = new(bytes) domMesh;
+	domMeshRef ref = new domMesh;
 	return ref;
 }
 
@@ -112,7 +112,7 @@ domMesh::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domMesh,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domMesh,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domMesh,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domMesh));

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCommon_newparam_type::create(daeInt bytes)
+domCommon_newparam_type::create(daeInt)
 {
-	domCommon_newparam_typeRef ref = new(bytes) domCommon_newparam_type;
+	domCommon_newparam_typeRef ref = new domCommon_newparam_type;
 	return ref;
 }
 
@@ -94,7 +94,7 @@ domCommon_newparam_type::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCommon_newparam_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCommon_newparam_type,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domCommon_newparam_type,_CMData), 1);
 	//	Add attribute: sid
  	{
@@ -116,9 +116,9 @@ domCommon_newparam_type::registerElement()
 }
 
 daeElementRef
-domCommon_newparam_type::domSemantic::create(daeInt bytes)
+domCommon_newparam_type::domSemantic::create(daeInt)
 {
-	domCommon_newparam_type::domSemanticRef ref = new(bytes) domCommon_newparam_type::domSemantic;
+	domCommon_newparam_type::domSemanticRef ref = new domCommon_newparam_type::domSemantic;
 	return ref;
 }
 
@@ -151,9 +151,9 @@ domCommon_newparam_type::domSemantic::registerElement()
 }
 
 daeElementRef
-domCommon_newparam_type::domFloat::create(daeInt bytes)
+domCommon_newparam_type::domFloat::create(daeInt)
 {
-	domCommon_newparam_type::domFloatRef ref = new(bytes) domCommon_newparam_type::domFloat;
+	domCommon_newparam_type::domFloatRef ref = new domCommon_newparam_type::domFloat;
 	return ref;
 }
 
@@ -186,9 +186,9 @@ domCommon_newparam_type::domFloat::registerElement()
 }
 
 daeElementRef
-domCommon_newparam_type::domFloat2::create(daeInt bytes)
+domCommon_newparam_type::domFloat2::create(daeInt)
 {
-	domCommon_newparam_type::domFloat2Ref ref = new(bytes) domCommon_newparam_type::domFloat2;
+	domCommon_newparam_type::domFloat2Ref ref = new domCommon_newparam_type::domFloat2;
 	return ref;
 }
 
@@ -221,9 +221,9 @@ domCommon_newparam_type::domFloat2::registerElement()
 }
 
 daeElementRef
-domCommon_newparam_type::domFloat3::create(daeInt bytes)
+domCommon_newparam_type::domFloat3::create(daeInt)
 {
-	domCommon_newparam_type::domFloat3Ref ref = new(bytes) domCommon_newparam_type::domFloat3;
+	domCommon_newparam_type::domFloat3Ref ref = new domCommon_newparam_type::domFloat3;
 	return ref;
 }
 
@@ -256,9 +256,9 @@ domCommon_newparam_type::domFloat3::registerElement()
 }
 
 daeElementRef
-domCommon_newparam_type::domFloat4::create(daeInt bytes)
+domCommon_newparam_type::domFloat4::create(daeInt)
 {
-	domCommon_newparam_type::domFloat4Ref ref = new(bytes) domCommon_newparam_type::domFloat4;
+	domCommon_newparam_type::domFloat4Ref ref = new domCommon_newparam_type::domFloat4;
 	return ref;
 }
 

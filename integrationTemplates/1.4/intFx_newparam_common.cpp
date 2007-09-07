@@ -24,9 +24,9 @@ daeMetaElement * intFx_newparam_common::intModifier::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_newparam_common::create(daeInt bytes)
+intFx_newparam_common::create(daeInt)
 {
-	intFx_newparam_commonRef ref = new(bytes) intFx_newparam_common;
+	intFx_newparam_commonRef ref = new intFx_newparam_common;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intFx_newparam_common::registerElement()
 }
 
 daeElementRef
-intFx_newparam_common::intSemantic::create(daeInt bytes)
+intFx_newparam_common::intSemantic::create(daeInt)
 {
-	intFx_newparam_common::intSemanticRef ref = new(bytes) intFx_newparam_common::intSemantic;
+	intFx_newparam_common::intSemanticRef ref = new intFx_newparam_common::intSemantic;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intFx_newparam_common::intSemantic::registerElement()
 }
 
 daeElementRef
-intFx_newparam_common::intModifier::create(daeInt bytes)
+intFx_newparam_common::intModifier::create(daeInt)
 {
-	intFx_newparam_common::intModifierRef ref = new(bytes) intFx_newparam_common::intModifier;
+	intFx_newparam_common::intModifierRef ref = new intFx_newparam_common::intModifier;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_sampler3D_common::create(daeInt bytes)
+domFx_sampler3D_common::create(daeInt)
 {
-	domFx_sampler3D_commonRef ref = new(bytes) domFx_sampler3D_common;
+	domFx_sampler3D_commonRef ref = new domFx_sampler3D_common;
 	return ref;
 }
 
@@ -118,9 +118,9 @@ domFx_sampler3D_common::registerElement()
 }
 
 daeElementRef
-domFx_sampler3D_common::domSource::create(daeInt bytes)
+domFx_sampler3D_common::domSource::create(daeInt)
 {
-	domFx_sampler3D_common::domSourceRef ref = new(bytes) domFx_sampler3D_common::domSource;
+	domFx_sampler3D_common::domSourceRef ref = new domFx_sampler3D_common::domSource;
 	return ref;
 }
 
@@ -153,9 +153,9 @@ domFx_sampler3D_common::domSource::registerElement()
 }
 
 daeElementRef
-domFx_sampler3D_common::domWrap_s::create(daeInt bytes)
+domFx_sampler3D_common::domWrap_s::create(daeInt)
 {
-	domFx_sampler3D_common::domWrap_sRef ref = new(bytes) domFx_sampler3D_common::domWrap_s;
+	domFx_sampler3D_common::domWrap_sRef ref = new domFx_sampler3D_common::domWrap_s;
 	return ref;
 }
 
@@ -188,9 +188,9 @@ domFx_sampler3D_common::domWrap_s::registerElement()
 }
 
 daeElementRef
-domFx_sampler3D_common::domWrap_t::create(daeInt bytes)
+domFx_sampler3D_common::domWrap_t::create(daeInt)
 {
-	domFx_sampler3D_common::domWrap_tRef ref = new(bytes) domFx_sampler3D_common::domWrap_t;
+	domFx_sampler3D_common::domWrap_tRef ref = new domFx_sampler3D_common::domWrap_t;
 	return ref;
 }
 
@@ -223,9 +223,9 @@ domFx_sampler3D_common::domWrap_t::registerElement()
 }
 
 daeElementRef
-domFx_sampler3D_common::domWrap_p::create(daeInt bytes)
+domFx_sampler3D_common::domWrap_p::create(daeInt)
 {
-	domFx_sampler3D_common::domWrap_pRef ref = new(bytes) domFx_sampler3D_common::domWrap_p;
+	domFx_sampler3D_common::domWrap_pRef ref = new domFx_sampler3D_common::domWrap_p;
 	return ref;
 }
 
@@ -258,9 +258,9 @@ domFx_sampler3D_common::domWrap_p::registerElement()
 }
 
 daeElementRef
-domFx_sampler3D_common::domMinfilter::create(daeInt bytes)
+domFx_sampler3D_common::domMinfilter::create(daeInt)
 {
-	domFx_sampler3D_common::domMinfilterRef ref = new(bytes) domFx_sampler3D_common::domMinfilter;
+	domFx_sampler3D_common::domMinfilterRef ref = new domFx_sampler3D_common::domMinfilter;
 	return ref;
 }
 
@@ -293,9 +293,9 @@ domFx_sampler3D_common::domMinfilter::registerElement()
 }
 
 daeElementRef
-domFx_sampler3D_common::domMagfilter::create(daeInt bytes)
+domFx_sampler3D_common::domMagfilter::create(daeInt)
 {
-	domFx_sampler3D_common::domMagfilterRef ref = new(bytes) domFx_sampler3D_common::domMagfilter;
+	domFx_sampler3D_common::domMagfilterRef ref = new domFx_sampler3D_common::domMagfilter;
 	return ref;
 }
 
@@ -328,9 +328,9 @@ domFx_sampler3D_common::domMagfilter::registerElement()
 }
 
 daeElementRef
-domFx_sampler3D_common::domMipfilter::create(daeInt bytes)
+domFx_sampler3D_common::domMipfilter::create(daeInt)
 {
-	domFx_sampler3D_common::domMipfilterRef ref = new(bytes) domFx_sampler3D_common::domMipfilter;
+	domFx_sampler3D_common::domMipfilterRef ref = new domFx_sampler3D_common::domMipfilter;
 	return ref;
 }
 
@@ -363,9 +363,9 @@ domFx_sampler3D_common::domMipfilter::registerElement()
 }
 
 daeElementRef
-domFx_sampler3D_common::domBorder_color::create(daeInt bytes)
+domFx_sampler3D_common::domBorder_color::create(daeInt)
 {
-	domFx_sampler3D_common::domBorder_colorRef ref = new(bytes) domFx_sampler3D_common::domBorder_color;
+	domFx_sampler3D_common::domBorder_colorRef ref = new domFx_sampler3D_common::domBorder_color;
 	return ref;
 }
 
@@ -398,9 +398,9 @@ domFx_sampler3D_common::domBorder_color::registerElement()
 }
 
 daeElementRef
-domFx_sampler3D_common::domMipmap_maxlevel::create(daeInt bytes)
+domFx_sampler3D_common::domMipmap_maxlevel::create(daeInt)
 {
-	domFx_sampler3D_common::domMipmap_maxlevelRef ref = new(bytes) domFx_sampler3D_common::domMipmap_maxlevel;
+	domFx_sampler3D_common::domMipmap_maxlevelRef ref = new domFx_sampler3D_common::domMipmap_maxlevel;
 	return ref;
 }
 
@@ -433,9 +433,9 @@ domFx_sampler3D_common::domMipmap_maxlevel::registerElement()
 }
 
 daeElementRef
-domFx_sampler3D_common::domMipmap_bias::create(daeInt bytes)
+domFx_sampler3D_common::domMipmap_bias::create(daeInt)
 {
-	domFx_sampler3D_common::domMipmap_biasRef ref = new(bytes) domFx_sampler3D_common::domMipmap_bias;
+	domFx_sampler3D_common::domMipmap_biasRef ref = new domFx_sampler3D_common::domMipmap_bias;
 	return ref;
 }
 

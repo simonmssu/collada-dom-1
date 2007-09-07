@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domMatrix::create(daeInt bytes)
+domMatrix::create(daeInt)
 {
-	domMatrixRef ref = new(bytes) domMatrix;
+	domMatrixRef ref = new domMatrix;
 	return ref;
 }
 

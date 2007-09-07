@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_newparam::create(daeInt bytes)
+domGlsl_newparam::create(daeInt)
 {
-	domGlsl_newparamRef ref = new(bytes) domGlsl_newparam;
+	domGlsl_newparamRef ref = new domGlsl_newparam;
 	return ref;
 }
 
@@ -82,7 +82,7 @@ domGlsl_newparam::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domGlsl_newparam,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGlsl_newparam,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domGlsl_newparam,_CMData), 1);
 	//	Add attribute: sid
  	{
@@ -104,9 +104,9 @@ domGlsl_newparam::registerElement()
 }
 
 daeElementRef
-domGlsl_newparam::domSemantic::create(daeInt bytes)
+domGlsl_newparam::domSemantic::create(daeInt)
 {
-	domGlsl_newparam::domSemanticRef ref = new(bytes) domGlsl_newparam::domSemantic;
+	domGlsl_newparam::domSemanticRef ref = new domGlsl_newparam::domSemantic;
 	return ref;
 }
 
@@ -139,9 +139,9 @@ domGlsl_newparam::domSemantic::registerElement()
 }
 
 daeElementRef
-domGlsl_newparam::domModifier::create(daeInt bytes)
+domGlsl_newparam::domModifier::create(daeInt)
 {
-	domGlsl_newparam::domModifierRef ref = new(bytes) domGlsl_newparam::domModifier;
+	domGlsl_newparam::domModifierRef ref = new domGlsl_newparam::domModifier;
 	return ref;
 }
 

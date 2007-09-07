@@ -22,9 +22,9 @@ daeMetaElement * intInt_array::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intInt_array::create(daeInt bytes)
+intInt_array::create(daeInt)
 {
-	intInt_arrayRef ref = new(bytes) intInt_array;
+	intInt_arrayRef ref = new intInt_array;
 	return ref;
 }
 

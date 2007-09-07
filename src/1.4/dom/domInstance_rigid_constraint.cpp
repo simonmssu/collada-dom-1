@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_rigid_constraint::create(daeInt bytes)
+domInstance_rigid_constraint::create(daeInt)
 {
-	domInstance_rigid_constraintRef ref = new(bytes) domInstance_rigid_constraint;
+	domInstance_rigid_constraintRef ref = new domInstance_rigid_constraint;
 	return ref;
 }
 

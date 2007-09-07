@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_common::create(daeInt bytes)
+domFx_surface_common::create(daeInt)
 {
-	domFx_surface_commonRef ref = new(bytes) domFx_surface_common;
+	domFx_surface_commonRef ref = new domFx_surface_common;
 	return ref;
 }
 
@@ -100,7 +100,7 @@ domFx_surface_common::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domFx_surface_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domFx_surface_common,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domFx_surface_common,_CMData), 1);
 	//	Add attribute: type
  	{
@@ -122,9 +122,9 @@ domFx_surface_common::registerElement()
 }
 
 daeElementRef
-domFx_surface_common::domFormat::create(daeInt bytes)
+domFx_surface_common::domFormat::create(daeInt)
 {
-	domFx_surface_common::domFormatRef ref = new(bytes) domFx_surface_common::domFormat;
+	domFx_surface_common::domFormatRef ref = new domFx_surface_common::domFormat;
 	return ref;
 }
 
@@ -157,9 +157,9 @@ domFx_surface_common::domFormat::registerElement()
 }
 
 daeElementRef
-domFx_surface_common::domSize::create(daeInt bytes)
+domFx_surface_common::domSize::create(daeInt)
 {
-	domFx_surface_common::domSizeRef ref = new(bytes) domFx_surface_common::domSize;
+	domFx_surface_common::domSizeRef ref = new domFx_surface_common::domSize;
 	return ref;
 }
 
@@ -192,9 +192,9 @@ domFx_surface_common::domSize::registerElement()
 }
 
 daeElementRef
-domFx_surface_common::domViewport_ratio::create(daeInt bytes)
+domFx_surface_common::domViewport_ratio::create(daeInt)
 {
-	domFx_surface_common::domViewport_ratioRef ref = new(bytes) domFx_surface_common::domViewport_ratio;
+	domFx_surface_common::domViewport_ratioRef ref = new domFx_surface_common::domViewport_ratio;
 	return ref;
 }
 
@@ -227,9 +227,9 @@ domFx_surface_common::domViewport_ratio::registerElement()
 }
 
 daeElementRef
-domFx_surface_common::domMip_levels::create(daeInt bytes)
+domFx_surface_common::domMip_levels::create(daeInt)
 {
-	domFx_surface_common::domMip_levelsRef ref = new(bytes) domFx_surface_common::domMip_levels;
+	domFx_surface_common::domMip_levelsRef ref = new domFx_surface_common::domMip_levels;
 	return ref;
 }
 
@@ -262,9 +262,9 @@ domFx_surface_common::domMip_levels::registerElement()
 }
 
 daeElementRef
-domFx_surface_common::domMipmap_generate::create(daeInt bytes)
+domFx_surface_common::domMipmap_generate::create(daeInt)
 {
-	domFx_surface_common::domMipmap_generateRef ref = new(bytes) domFx_surface_common::domMipmap_generate;
+	domFx_surface_common::domMipmap_generateRef ref = new domFx_surface_common::domMipmap_generate;
 	return ref;
 }
 

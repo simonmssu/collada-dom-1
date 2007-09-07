@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domPhysics_scene::create(daeInt bytes)
+domPhysics_scene::create(daeInt)
 {
-	domPhysics_sceneRef ref = new(bytes) domPhysics_scene;
+	domPhysics_sceneRef ref = new domPhysics_scene;
 	return ref;
 }
 
@@ -110,9 +110,9 @@ domPhysics_scene::registerElement()
 }
 
 daeElementRef
-domPhysics_scene::domTechnique_common::create(daeInt bytes)
+domPhysics_scene::domTechnique_common::create(daeInt)
 {
-	domPhysics_scene::domTechnique_commonRef ref = new(bytes) domPhysics_scene::domTechnique_common;
+	domPhysics_scene::domTechnique_commonRef ref = new domPhysics_scene::domTechnique_common;
 	return ref;
 }
 

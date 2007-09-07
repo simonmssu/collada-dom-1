@@ -23,9 +23,9 @@ daeMetaElement * intSource::intTechnique_common::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intSource::create(daeInt bytes)
+intSource::create(daeInt)
 {
-	intSourceRef ref = new(bytes) intSource;
+	intSourceRef ref = new intSource;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intSource::registerElement()
 }
 
 daeElementRef
-intSource::intTechnique_common::create(daeInt bytes)
+intSource::intTechnique_common::create(daeInt)
 {
-	intSource::intTechnique_commonRef ref = new(bytes) intSource::intTechnique_common;
+	intSource::intTechnique_commonRef ref = new intSource::intTechnique_common;
 	return ref;
 }
 

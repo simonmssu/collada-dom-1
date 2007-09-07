@@ -22,9 +22,9 @@ daeMetaElement * intLines::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLines::create(daeInt bytes)
+intLines::create(daeInt)
 {
-	intLinesRef ref = new(bytes) intLines;
+	intLinesRef ref = new intLines;
 	return ref;
 }
 

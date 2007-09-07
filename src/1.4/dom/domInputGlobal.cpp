@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInputGlobal::create(daeInt bytes)
+domInputGlobal::create(daeInt)
 {
-	domInputGlobalRef ref = new(bytes) domInputGlobal;
+	domInputGlobalRef ref = new domInputGlobal;
 	ref->attrSource.setContainer( (domInputGlobal*)ref );
 	return ref;
 }

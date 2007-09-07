@@ -22,9 +22,9 @@ daeMetaElement * intInstance_geometry::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intInstance_geometry::create(daeInt bytes)
+intInstance_geometry::create(daeInt)
 {
-	intInstance_geometryRef ref = new(bytes) intInstance_geometry;
+	intInstance_geometryRef ref = new intInstance_geometry;
 	return ref;
 }
 

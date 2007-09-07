@@ -22,9 +22,9 @@ daeMetaElement * intCg_setuser_type::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCg_setuser_type::create(daeInt bytes)
+intCg_setuser_type::create(daeInt)
 {
-	intCg_setuser_typeRef ref = new(bytes) intCg_setuser_type;
+	intCg_setuser_typeRef ref = new intCg_setuser_type;
 	return ref;
 }
 

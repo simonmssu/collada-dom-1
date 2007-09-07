@@ -22,9 +22,9 @@ daeMetaElement * intLibrary_geometries::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLibrary_geometries::create(daeInt bytes)
+intLibrary_geometries::create(daeInt)
 {
-	intLibrary_geometriesRef ref = new(bytes) intLibrary_geometries;
+	intLibrary_geometriesRef ref = new intLibrary_geometries;
 	return ref;
 }
 

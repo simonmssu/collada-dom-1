@@ -24,9 +24,9 @@ extern daeString COLLADA_VERSION;
 extern daeString COLLADA_NAMESPACE;
 
 daeElementRef
-domCOLLADA::create(daeInt bytes)
+domCOLLADA::create(daeInt)
 {
-	domCOLLADARef ref = new(bytes) domCOLLADA;
+	domCOLLADARef ref = new domCOLLADA;
 	ref->attrXmlns.setContainer( (domCOLLADA*)ref );
 	ref->attrXml_base.setContainer( (domCOLLADA*)ref );
 	ref->_meta = _Meta;
@@ -169,7 +169,7 @@ domCOLLADA::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCOLLADA,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCOLLADA,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domCOLLADA,_CMData), 1);    //	Add attribute: xmlns
     {
 		daeMetaAttribute* ma = new daeMetaAttribute;
@@ -212,9 +212,9 @@ domCOLLADA::registerElement()
 }
 
 daeElementRef
-domCOLLADA::domScene::create(daeInt bytes)
+domCOLLADA::domScene::create(daeInt)
 {
-	domCOLLADA::domSceneRef ref = new(bytes) domCOLLADA::domScene;
+	domCOLLADA::domSceneRef ref = new domCOLLADA::domScene;
 	return ref;
 }
 

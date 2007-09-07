@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domEffect::create(daeInt bytes)
+domEffect::create(daeInt)
 {
-	domEffectRef ref = new(bytes) domEffect;
+	domEffectRef ref = new domEffect;
 	return ref;
 }
 
@@ -114,7 +114,7 @@ domEffect::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domEffect,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domEffect,_contentsOrder));
-
+        
 
 	//	Add attribute: id
  	{

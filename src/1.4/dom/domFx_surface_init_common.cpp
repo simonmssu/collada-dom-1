@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_init_common::create(daeInt bytes)
+domFx_surface_init_common::create(daeInt)
 {
-	domFx_surface_init_commonRef ref = new(bytes) domFx_surface_init_common;
+	domFx_surface_init_commonRef ref = new domFx_surface_init_common;
 	return ref;
 }
 
@@ -83,7 +83,7 @@ domFx_surface_init_common::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domFx_surface_init_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domFx_surface_init_common,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domFx_surface_init_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domFx_surface_init_common));
@@ -93,9 +93,9 @@ domFx_surface_init_common::registerElement()
 }
 
 daeElementRef
-domFx_surface_init_common::domInit_as_null::create(daeInt bytes)
+domFx_surface_init_common::domInit_as_null::create(daeInt)
 {
-	domFx_surface_init_common::domInit_as_nullRef ref = new(bytes) domFx_surface_init_common::domInit_as_null;
+	domFx_surface_init_common::domInit_as_nullRef ref = new domFx_surface_init_common::domInit_as_null;
 	return ref;
 }
 
@@ -119,9 +119,9 @@ domFx_surface_init_common::domInit_as_null::registerElement()
 }
 
 daeElementRef
-domFx_surface_init_common::domInit_as_target::create(daeInt bytes)
+domFx_surface_init_common::domInit_as_target::create(daeInt)
 {
-	domFx_surface_init_common::domInit_as_targetRef ref = new(bytes) domFx_surface_init_common::domInit_as_target;
+	domFx_surface_init_common::domInit_as_targetRef ref = new domFx_surface_init_common::domInit_as_target;
 	return ref;
 }
 

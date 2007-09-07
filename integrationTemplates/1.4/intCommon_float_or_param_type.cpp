@@ -24,9 +24,9 @@ daeMetaElement * intCommon_float_or_param_type::intParam::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCommon_float_or_param_type::create(daeInt bytes)
+intCommon_float_or_param_type::create(daeInt)
 {
-	intCommon_float_or_param_typeRef ref = new(bytes) intCommon_float_or_param_type;
+	intCommon_float_or_param_typeRef ref = new intCommon_float_or_param_type;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intCommon_float_or_param_type::registerElement()
 }
 
 daeElementRef
-intCommon_float_or_param_type::intFloat::create(daeInt bytes)
+intCommon_float_or_param_type::intFloat::create(daeInt)
 {
-	intCommon_float_or_param_type::intFloatRef ref = new(bytes) intCommon_float_or_param_type::intFloat;
+	intCommon_float_or_param_type::intFloatRef ref = new intCommon_float_or_param_type::intFloat;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intCommon_float_or_param_type::intFloat::registerElement()
 }
 
 daeElementRef
-intCommon_float_or_param_type::intParam::create(daeInt bytes)
+intCommon_float_or_param_type::intParam::create(daeInt)
 {
-	intCommon_float_or_param_type::intParamRef ref = new(bytes) intCommon_float_or_param_type::intParam;
+	intCommon_float_or_param_type::intParamRef ref = new intCommon_float_or_param_type::intParam;
 	return ref;
 }
 

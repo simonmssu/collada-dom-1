@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domProfile_GLSL::create(daeInt bytes)
+domProfile_GLSL::create(daeInt)
 {
-	domProfile_GLSLRef ref = new(bytes) domProfile_GLSL;
+	domProfile_GLSLRef ref = new domProfile_GLSL;
 	return ref;
 }
 
@@ -100,7 +100,7 @@ domProfile_GLSL::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_GLSL,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLSL,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_GLSL,_CMData), 2);
 	//	Add attribute: id
  	{
@@ -122,9 +122,9 @@ domProfile_GLSL::registerElement()
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::create(daeInt bytes)
+domProfile_GLSL::domTechnique::create(daeInt)
 {
-	domProfile_GLSL::domTechniqueRef ref = new(bytes) domProfile_GLSL::domTechnique;
+	domProfile_GLSL::domTechniqueRef ref = new domProfile_GLSL::domTechnique;
 	return ref;
 }
 
@@ -208,7 +208,7 @@ domProfile_GLSL::domTechnique::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_GLSL::domTechnique,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLSL::domTechnique,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_GLSL::domTechnique,_CMData), 2);
 	//	Add attribute: id
  	{
@@ -241,9 +241,9 @@ domProfile_GLSL::domTechnique::registerElement()
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::create(daeInt bytes)
+domProfile_GLSL::domTechnique::domPass::create(daeInt)
 {
-	domProfile_GLSL::domTechnique::domPassRef ref = new(bytes) domProfile_GLSL::domTechnique::domPass;
+	domProfile_GLSL::domTechnique::domPassRef ref = new domProfile_GLSL::domTechnique::domPass;
 	return ref;
 }
 
@@ -339,7 +339,7 @@ domProfile_GLSL::domTechnique::domPass::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_GLSL::domTechnique::domPass,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLSL::domTechnique::domPass,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_GLSL::domTechnique::domPass,_CMData), 1);
 	//	Add attribute: sid
  	{
@@ -361,9 +361,9 @@ domProfile_GLSL::domTechnique::domPass::registerElement()
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domDraw::create(daeInt bytes)
+domProfile_GLSL::domTechnique::domPass::domDraw::create(daeInt)
 {
-	domProfile_GLSL::domTechnique::domPass::domDrawRef ref = new(bytes) domProfile_GLSL::domTechnique::domPass::domDraw;
+	domProfile_GLSL::domTechnique::domPass::domDrawRef ref = new domProfile_GLSL::domTechnique::domPass::domDraw;
 	return ref;
 }
 
@@ -396,9 +396,9 @@ domProfile_GLSL::domTechnique::domPass::domDraw::registerElement()
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::create(daeInt bytes)
+domProfile_GLSL::domTechnique::domPass::domShader::create(daeInt)
 {
-	domProfile_GLSL::domTechnique::domPass::domShaderRef ref = new(bytes) domProfile_GLSL::domTechnique::domPass::domShader;
+	domProfile_GLSL::domTechnique::domPass::domShaderRef ref = new domProfile_GLSL::domTechnique::domPass::domShader;
 	return ref;
 }
 
@@ -475,9 +475,9 @@ domProfile_GLSL::domTechnique::domPass::domShader::registerElement()
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::create(daeInt bytes)
+domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::create(daeInt)
 {
-	domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_targetRef ref = new(bytes) domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target;
+	domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_targetRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target;
 	return ref;
 }
 
@@ -510,9 +510,9 @@ domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::registerE
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::create(daeInt bytes)
+domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::create(daeInt)
 {
-	domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_optionsRef ref = new(bytes) domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options;
+	domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_optionsRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options;
 	return ref;
 }
 
@@ -545,9 +545,9 @@ domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::register
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::domName::create(daeInt bytes)
+domProfile_GLSL::domTechnique::domPass::domShader::domName::create(daeInt)
 {
-	domProfile_GLSL::domTechnique::domPass::domShader::domNameRef ref = new(bytes) domProfile_GLSL::domTechnique::domPass::domShader::domName;
+	domProfile_GLSL::domTechnique::domPass::domShader::domNameRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domName;
 	return ref;
 }
 
@@ -592,9 +592,9 @@ domProfile_GLSL::domTechnique::domPass::domShader::domName::registerElement()
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::domBind::create(daeInt bytes)
+domProfile_GLSL::domTechnique::domPass::domShader::domBind::create(daeInt)
 {
-	domProfile_GLSL::domTechnique::domPass::domShader::domBindRef ref = new(bytes) domProfile_GLSL::domTechnique::domPass::domShader::domBind;
+	domProfile_GLSL::domTechnique::domPass::domShader::domBindRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domBind;
 	return ref;
 }
 
@@ -630,7 +630,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domBind::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_GLSL::domTechnique::domPass::domShader::domBind,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLSL::domTechnique::domPass::domShader::domBind,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_GLSL::domTechnique::domPass::domShader::domBind,_CMData), 1);
 	//	Add attribute: symbol
  	{
@@ -652,9 +652,9 @@ domProfile_GLSL::domTechnique::domPass::domShader::domBind::registerElement()
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam::create(daeInt bytes)
+domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam::create(daeInt)
 {
-	domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParamRef ref = new(bytes) domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam;
+	domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParamRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam;
 	return ref;
 }
 

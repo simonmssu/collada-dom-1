@@ -24,9 +24,9 @@ daeMetaElement * intFx_surface_init_volume_common::intPrimary::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_surface_init_volume_common::create(daeInt bytes)
+intFx_surface_init_volume_common::create(daeInt)
 {
-	intFx_surface_init_volume_commonRef ref = new(bytes) intFx_surface_init_volume_common;
+	intFx_surface_init_volume_commonRef ref = new intFx_surface_init_volume_common;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intFx_surface_init_volume_common::registerElement()
 }
 
 daeElementRef
-intFx_surface_init_volume_common::intAll::create(daeInt bytes)
+intFx_surface_init_volume_common::intAll::create(daeInt)
 {
-	intFx_surface_init_volume_common::intAllRef ref = new(bytes) intFx_surface_init_volume_common::intAll;
+	intFx_surface_init_volume_common::intAllRef ref = new intFx_surface_init_volume_common::intAll;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intFx_surface_init_volume_common::intAll::registerElement()
 }
 
 daeElementRef
-intFx_surface_init_volume_common::intPrimary::create(daeInt bytes)
+intFx_surface_init_volume_common::intPrimary::create(daeInt)
 {
-	intFx_surface_init_volume_common::intPrimaryRef ref = new(bytes) intFx_surface_init_volume_common::intPrimary;
+	intFx_surface_init_volume_common::intPrimaryRef ref = new intFx_surface_init_volume_common::intPrimary;
 	return ref;
 }
 

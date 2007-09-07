@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domRigid_constraint::create(daeInt bytes)
+domRigid_constraint::create(daeInt)
 {
-	domRigid_constraintRef ref = new(bytes) domRigid_constraint;
+	domRigid_constraintRef ref = new domRigid_constraint;
 	return ref;
 }
 
@@ -105,9 +105,9 @@ domRigid_constraint::registerElement()
 }
 
 daeElementRef
-domRigid_constraint::domRef_attachment::create(daeInt bytes)
+domRigid_constraint::domRef_attachment::create(daeInt)
 {
-	domRigid_constraint::domRef_attachmentRef ref = new(bytes) domRigid_constraint::domRef_attachment;
+	domRigid_constraint::domRef_attachmentRef ref = new domRigid_constraint::domRef_attachment;
 	ref->attrRigid_body.setContainer( (domRigid_constraint::domRef_attachment*)ref );
 	return ref;
 }
@@ -150,7 +150,7 @@ domRigid_constraint::domRef_attachment::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domRigid_constraint::domRef_attachment,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domRigid_constraint::domRef_attachment,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domRigid_constraint::domRef_attachment,_CMData), 1);
 	//	Add attribute: rigid_body
  	{
@@ -171,9 +171,9 @@ domRigid_constraint::domRef_attachment::registerElement()
 }
 
 daeElementRef
-domRigid_constraint::domAttachment::create(daeInt bytes)
+domRigid_constraint::domAttachment::create(daeInt)
 {
-	domRigid_constraint::domAttachmentRef ref = new(bytes) domRigid_constraint::domAttachment;
+	domRigid_constraint::domAttachmentRef ref = new domRigid_constraint::domAttachment;
 	ref->attrRigid_body.setContainer( (domRigid_constraint::domAttachment*)ref );
 	return ref;
 }
@@ -216,7 +216,7 @@ domRigid_constraint::domAttachment::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domRigid_constraint::domAttachment,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domRigid_constraint::domAttachment,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domRigid_constraint::domAttachment,_CMData), 1);
 	//	Add attribute: rigid_body
  	{
@@ -237,9 +237,9 @@ domRigid_constraint::domAttachment::registerElement()
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::create(daeInt bytes)
+domRigid_constraint::domTechnique_common::create(daeInt)
 {
-	domRigid_constraint::domTechnique_commonRef ref = new(bytes) domRigid_constraint::domTechnique_common;
+	domRigid_constraint::domTechnique_commonRef ref = new domRigid_constraint::domTechnique_common;
 	return ref;
 }
 
@@ -293,9 +293,9 @@ domRigid_constraint::domTechnique_common::registerElement()
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domEnabled::create(daeInt bytes)
+domRigid_constraint::domTechnique_common::domEnabled::create(daeInt)
 {
-	domRigid_constraint::domTechnique_common::domEnabledRef ref = new(bytes) domRigid_constraint::domTechnique_common::domEnabled;
+	domRigid_constraint::domTechnique_common::domEnabledRef ref = new domRigid_constraint::domTechnique_common::domEnabled;
 	return ref;
 }
 
@@ -339,9 +339,9 @@ domRigid_constraint::domTechnique_common::domEnabled::registerElement()
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domInterpenetrate::create(daeInt bytes)
+domRigid_constraint::domTechnique_common::domInterpenetrate::create(daeInt)
 {
-	domRigid_constraint::domTechnique_common::domInterpenetrateRef ref = new(bytes) domRigid_constraint::domTechnique_common::domInterpenetrate;
+	domRigid_constraint::domTechnique_common::domInterpenetrateRef ref = new domRigid_constraint::domTechnique_common::domInterpenetrate;
 	return ref;
 }
 
@@ -385,9 +385,9 @@ domRigid_constraint::domTechnique_common::domInterpenetrate::registerElement()
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domLimits::create(daeInt bytes)
+domRigid_constraint::domTechnique_common::domLimits::create(daeInt)
 {
-	domRigid_constraint::domTechnique_common::domLimitsRef ref = new(bytes) domRigid_constraint::domTechnique_common::domLimits;
+	domRigid_constraint::domTechnique_common::domLimitsRef ref = new domRigid_constraint::domTechnique_common::domLimits;
 	return ref;
 }
 
@@ -429,9 +429,9 @@ domRigid_constraint::domTechnique_common::domLimits::registerElement()
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::create(daeInt bytes)
+domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::create(daeInt)
 {
-	domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twistRef ref = new(bytes) domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist;
+	domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twistRef ref = new domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist;
 	return ref;
 }
 
@@ -473,9 +473,9 @@ domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::re
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domLimits::domLinear::create(daeInt bytes)
+domRigid_constraint::domTechnique_common::domLimits::domLinear::create(daeInt)
 {
-	domRigid_constraint::domTechnique_common::domLimits::domLinearRef ref = new(bytes) domRigid_constraint::domTechnique_common::domLimits::domLinear;
+	domRigid_constraint::domTechnique_common::domLimits::domLinearRef ref = new domRigid_constraint::domTechnique_common::domLimits::domLinear;
 	return ref;
 }
 
@@ -517,9 +517,9 @@ domRigid_constraint::domTechnique_common::domLimits::domLinear::registerElement(
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domSpring::create(daeInt bytes)
+domRigid_constraint::domTechnique_common::domSpring::create(daeInt)
 {
-	domRigid_constraint::domTechnique_common::domSpringRef ref = new(bytes) domRigid_constraint::domTechnique_common::domSpring;
+	domRigid_constraint::domTechnique_common::domSpringRef ref = new domRigid_constraint::domTechnique_common::domSpring;
 	return ref;
 }
 
@@ -561,9 +561,9 @@ domRigid_constraint::domTechnique_common::domSpring::registerElement()
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domSpring::domAngular::create(daeInt bytes)
+domRigid_constraint::domTechnique_common::domSpring::domAngular::create(daeInt)
 {
-	domRigid_constraint::domTechnique_common::domSpring::domAngularRef ref = new(bytes) domRigid_constraint::domTechnique_common::domSpring::domAngular;
+	domRigid_constraint::domTechnique_common::domSpring::domAngularRef ref = new domRigid_constraint::domTechnique_common::domSpring::domAngular;
 	return ref;
 }
 
@@ -611,9 +611,9 @@ domRigid_constraint::domTechnique_common::domSpring::domAngular::registerElement
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domSpring::domLinear::create(daeInt bytes)
+domRigid_constraint::domTechnique_common::domSpring::domLinear::create(daeInt)
 {
-	domRigid_constraint::domTechnique_common::domSpring::domLinearRef ref = new(bytes) domRigid_constraint::domTechnique_common::domSpring::domLinear;
+	domRigid_constraint::domTechnique_common::domSpring::domLinearRef ref = new domRigid_constraint::domTechnique_common::domSpring::domLinear;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSkew::create(daeInt bytes)
+domSkew::create(daeInt)
 {
-	domSkewRef ref = new(bytes) domSkew;
+	domSkewRef ref = new domSkew;
 	return ref;
 }
 

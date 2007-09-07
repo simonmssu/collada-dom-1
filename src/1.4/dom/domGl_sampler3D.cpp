@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGl_sampler3D::create(daeInt bytes)
+domGl_sampler3D::create(daeInt)
 {
-	domGl_sampler3DRef ref = new(bytes) domGl_sampler3D;
+	domGl_sampler3DRef ref = new domGl_sampler3D;
 	return ref;
 }
 

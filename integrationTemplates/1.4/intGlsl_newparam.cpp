@@ -24,9 +24,9 @@ daeMetaElement * intGlsl_newparam::intModifier::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGlsl_newparam::create(daeInt bytes)
+intGlsl_newparam::create(daeInt)
 {
-	intGlsl_newparamRef ref = new(bytes) intGlsl_newparam;
+	intGlsl_newparamRef ref = new intGlsl_newparam;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intGlsl_newparam::registerElement()
 }
 
 daeElementRef
-intGlsl_newparam::intSemantic::create(daeInt bytes)
+intGlsl_newparam::intSemantic::create(daeInt)
 {
-	intGlsl_newparam::intSemanticRef ref = new(bytes) intGlsl_newparam::intSemantic;
+	intGlsl_newparam::intSemanticRef ref = new intGlsl_newparam::intSemantic;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intGlsl_newparam::intSemantic::registerElement()
 }
 
 daeElementRef
-intGlsl_newparam::intModifier::create(daeInt bytes)
+intGlsl_newparam::intModifier::create(daeInt)
 {
-	intGlsl_newparam::intModifierRef ref = new(bytes) intGlsl_newparam::intModifier;
+	intGlsl_newparam::intModifierRef ref = new intGlsl_newparam::intModifier;
 	return ref;
 }
 

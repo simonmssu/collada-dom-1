@@ -22,9 +22,9 @@ daeMetaElement * intTargetableFloat3::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intTargetableFloat3::create(daeInt bytes)
+intTargetableFloat3::create(daeInt)
 {
-	intTargetableFloat3Ref ref = new(bytes) intTargetableFloat3;
+	intTargetableFloat3Ref ref = new intTargetableFloat3;
 	return ref;
 }
 

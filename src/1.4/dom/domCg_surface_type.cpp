@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_surface_type::create(daeInt bytes)
+domCg_surface_type::create(daeInt)
 {
-	domCg_surface_typeRef ref = new(bytes) domCg_surface_type;
+	domCg_surface_typeRef ref = new domCg_surface_type;
 	return ref;
 }
 
@@ -118,7 +118,7 @@ domCg_surface_type::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCg_surface_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCg_surface_type,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domCg_surface_type,_CMData), 1);
 	//	Add attribute: type
  	{
@@ -140,9 +140,9 @@ domCg_surface_type::registerElement()
 }
 
 daeElementRef
-domCg_surface_type::domGenerator::create(daeInt bytes)
+domCg_surface_type::domGenerator::create(daeInt)
 {
-	domCg_surface_type::domGeneratorRef ref = new(bytes) domCg_surface_type::domGenerator;
+	domCg_surface_type::domGeneratorRef ref = new domCg_surface_type::domGenerator;
 	return ref;
 }
 
@@ -202,8 +202,8 @@ domCg_surface_type::domGenerator::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCg_surface_type::domGenerator,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCg_surface_type::domGenerator,_contentsOrder));
-
-    _Meta->addCMDataArray(daeOffsetOf(domCg_surface_type::domGenerator,_CMData), 1);
+        
+    _Meta->addCMDataArray(daeOffsetOf(domCg_surface_type::domGenerator,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domCg_surface_type::domGenerator));
 	_Meta->validate();
@@ -212,9 +212,9 @@ domCg_surface_type::domGenerator::registerElement()
 }
 
 daeElementRef
-domCg_surface_type::domGenerator::domName::create(daeInt bytes)
+domCg_surface_type::domGenerator::domName::create(daeInt)
 {
-	domCg_surface_type::domGenerator::domNameRef ref = new(bytes) domCg_surface_type::domGenerator::domName;
+	domCg_surface_type::domGenerator::domNameRef ref = new domCg_surface_type::domGenerator::domName;
 	return ref;
 }
 

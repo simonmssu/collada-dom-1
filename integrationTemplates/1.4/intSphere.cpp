@@ -23,9 +23,9 @@ daeMetaElement * intSphere::intRadius::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intSphere::create(daeInt bytes)
+intSphere::create(daeInt)
 {
-	intSphereRef ref = new(bytes) intSphere;
+	intSphereRef ref = new intSphere;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intSphere::registerElement()
 }
 
 daeElementRef
-intSphere::intRadius::create(daeInt bytes)
+intSphere::intRadius::create(daeInt)
 {
-	intSphere::intRadiusRef ref = new(bytes) intSphere::intRadius;
+	intSphere::intRadiusRef ref = new intSphere::intRadius;
 	return ref;
 }
 

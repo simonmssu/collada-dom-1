@@ -22,9 +22,9 @@ daeMetaElement * intLibrary_force_fields::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLibrary_force_fields::create(daeInt bytes)
+intLibrary_force_fields::create(daeInt)
 {
-	intLibrary_force_fieldsRef ref = new(bytes) intLibrary_force_fields;
+	intLibrary_force_fieldsRef ref = new intLibrary_force_fields;
 	return ref;
 }
 

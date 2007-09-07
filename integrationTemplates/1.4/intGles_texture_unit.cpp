@@ -25,9 +25,9 @@ daeMetaElement * intGles_texture_unit::intTexcoord::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGles_texture_unit::create(daeInt bytes)
+intGles_texture_unit::create(daeInt)
 {
-	intGles_texture_unitRef ref = new(bytes) intGles_texture_unit;
+	intGles_texture_unitRef ref = new intGles_texture_unit;
 	return ref;
 }
 
@@ -49,9 +49,9 @@ intGles_texture_unit::registerElement()
 }
 
 daeElementRef
-intGles_texture_unit::intSurface::create(daeInt bytes)
+intGles_texture_unit::intSurface::create(daeInt)
 {
-	intGles_texture_unit::intSurfaceRef ref = new(bytes) intGles_texture_unit::intSurface;
+	intGles_texture_unit::intSurfaceRef ref = new intGles_texture_unit::intSurface;
 	return ref;
 }
 
@@ -73,9 +73,9 @@ intGles_texture_unit::intSurface::registerElement()
 }
 
 daeElementRef
-intGles_texture_unit::intSampler_state::create(daeInt bytes)
+intGles_texture_unit::intSampler_state::create(daeInt)
 {
-	intGles_texture_unit::intSampler_stateRef ref = new(bytes) intGles_texture_unit::intSampler_state;
+	intGles_texture_unit::intSampler_stateRef ref = new intGles_texture_unit::intSampler_state;
 	return ref;
 }
 
@@ -97,9 +97,9 @@ intGles_texture_unit::intSampler_state::registerElement()
 }
 
 daeElementRef
-intGles_texture_unit::intTexcoord::create(daeInt bytes)
+intGles_texture_unit::intTexcoord::create(daeInt)
 {
-	intGles_texture_unit::intTexcoordRef ref = new(bytes) intGles_texture_unit::intTexcoord;
+	intGles_texture_unit::intTexcoordRef ref = new intGles_texture_unit::intTexcoord;
 	return ref;
 }
 

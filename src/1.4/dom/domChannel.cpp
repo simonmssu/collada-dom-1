@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domChannel::create(daeInt bytes)
+domChannel::create(daeInt)
 {
-	domChannelRef ref = new(bytes) domChannel;
+	domChannelRef ref = new domChannel;
 	ref->attrSource.setContainer( (domChannel*)ref );
 	return ref;
 }

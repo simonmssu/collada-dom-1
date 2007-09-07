@@ -22,9 +22,9 @@ daeMetaElement * intMaterial::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intMaterial::create(daeInt bytes)
+intMaterial::create(daeInt)
 {
-	intMaterialRef ref = new(bytes) intMaterial;
+	intMaterialRef ref = new intMaterial;
 	return ref;
 }
 

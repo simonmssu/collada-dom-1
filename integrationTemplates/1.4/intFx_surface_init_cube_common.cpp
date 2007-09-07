@@ -26,9 +26,9 @@ daeMetaElement * intFx_surface_init_cube_common::intFace::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_surface_init_cube_common::create(daeInt bytes)
+intFx_surface_init_cube_common::create(daeInt)
 {
-	intFx_surface_init_cube_commonRef ref = new(bytes) intFx_surface_init_cube_common;
+	intFx_surface_init_cube_commonRef ref = new intFx_surface_init_cube_common;
 	return ref;
 }
 
@@ -50,9 +50,9 @@ intFx_surface_init_cube_common::registerElement()
 }
 
 daeElementRef
-intFx_surface_init_cube_common::intAll::create(daeInt bytes)
+intFx_surface_init_cube_common::intAll::create(daeInt)
 {
-	intFx_surface_init_cube_common::intAllRef ref = new(bytes) intFx_surface_init_cube_common::intAll;
+	intFx_surface_init_cube_common::intAllRef ref = new intFx_surface_init_cube_common::intAll;
 	return ref;
 }
 
@@ -74,9 +74,9 @@ intFx_surface_init_cube_common::intAll::registerElement()
 }
 
 daeElementRef
-intFx_surface_init_cube_common::intPrimary::create(daeInt bytes)
+intFx_surface_init_cube_common::intPrimary::create(daeInt)
 {
-	intFx_surface_init_cube_common::intPrimaryRef ref = new(bytes) intFx_surface_init_cube_common::intPrimary;
+	intFx_surface_init_cube_common::intPrimaryRef ref = new intFx_surface_init_cube_common::intPrimary;
 	return ref;
 }
 
@@ -98,9 +98,9 @@ intFx_surface_init_cube_common::intPrimary::registerElement()
 }
 
 daeElementRef
-intFx_surface_init_cube_common::intPrimary::intOrder::create(daeInt bytes)
+intFx_surface_init_cube_common::intPrimary::intOrder::create(daeInt)
 {
-	intFx_surface_init_cube_common::intPrimary::intOrderRef ref = new(bytes) intFx_surface_init_cube_common::intPrimary::intOrder;
+	intFx_surface_init_cube_common::intPrimary::intOrderRef ref = new intFx_surface_init_cube_common::intPrimary::intOrder;
 	return ref;
 }
 
@@ -122,9 +122,9 @@ intFx_surface_init_cube_common::intPrimary::intOrder::registerElement()
 }
 
 daeElementRef
-intFx_surface_init_cube_common::intFace::create(daeInt bytes)
+intFx_surface_init_cube_common::intFace::create(daeInt)
 {
-	intFx_surface_init_cube_common::intFaceRef ref = new(bytes) intFx_surface_init_cube_common::intFace;
+	intFx_surface_init_cube_common::intFaceRef ref = new intFx_surface_init_cube_common::intFace;
 	return ref;
 }
 

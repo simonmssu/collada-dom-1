@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_surface_type::create(daeInt bytes)
+domGlsl_surface_type::create(daeInt)
 {
-	domGlsl_surface_typeRef ref = new(bytes) domGlsl_surface_type;
+	domGlsl_surface_typeRef ref = new domGlsl_surface_type;
 	return ref;
 }
 
@@ -118,7 +118,7 @@ domGlsl_surface_type::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domGlsl_surface_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGlsl_surface_type,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domGlsl_surface_type,_CMData), 1);
 	//	Add attribute: type
  	{
@@ -140,9 +140,9 @@ domGlsl_surface_type::registerElement()
 }
 
 daeElementRef
-domGlsl_surface_type::domGenerator::create(daeInt bytes)
+domGlsl_surface_type::domGenerator::create(daeInt)
 {
-	domGlsl_surface_type::domGeneratorRef ref = new(bytes) domGlsl_surface_type::domGenerator;
+	domGlsl_surface_type::domGeneratorRef ref = new domGlsl_surface_type::domGenerator;
 	return ref;
 }
 
@@ -202,7 +202,7 @@ domGlsl_surface_type::domGenerator::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domGlsl_surface_type::domGenerator,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGlsl_surface_type::domGenerator,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domGlsl_surface_type::domGenerator,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domGlsl_surface_type::domGenerator));
@@ -212,9 +212,9 @@ domGlsl_surface_type::domGenerator::registerElement()
 }
 
 daeElementRef
-domGlsl_surface_type::domGenerator::domName::create(daeInt bytes)
+domGlsl_surface_type::domGenerator::domName::create(daeInt)
 {
-	domGlsl_surface_type::domGenerator::domNameRef ref = new(bytes) domGlsl_surface_type::domGenerator::domName;
+	domGlsl_surface_type::domGenerator::domNameRef ref = new domGlsl_surface_type::domGenerator::domName;
 	return ref;
 }
 

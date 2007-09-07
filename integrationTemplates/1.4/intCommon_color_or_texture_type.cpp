@@ -25,9 +25,9 @@ daeMetaElement * intCommon_color_or_texture_type::intTexture::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCommon_color_or_texture_type::create(daeInt bytes)
+intCommon_color_or_texture_type::create(daeInt)
 {
-	intCommon_color_or_texture_typeRef ref = new(bytes) intCommon_color_or_texture_type;
+	intCommon_color_or_texture_typeRef ref = new intCommon_color_or_texture_type;
 	return ref;
 }
 
@@ -49,9 +49,9 @@ intCommon_color_or_texture_type::registerElement()
 }
 
 daeElementRef
-intCommon_color_or_texture_type::intColor::create(daeInt bytes)
+intCommon_color_or_texture_type::intColor::create(daeInt)
 {
-	intCommon_color_or_texture_type::intColorRef ref = new(bytes) intCommon_color_or_texture_type::intColor;
+	intCommon_color_or_texture_type::intColorRef ref = new intCommon_color_or_texture_type::intColor;
 	return ref;
 }
 
@@ -73,9 +73,9 @@ intCommon_color_or_texture_type::intColor::registerElement()
 }
 
 daeElementRef
-intCommon_color_or_texture_type::intParam::create(daeInt bytes)
+intCommon_color_or_texture_type::intParam::create(daeInt)
 {
-	intCommon_color_or_texture_type::intParamRef ref = new(bytes) intCommon_color_or_texture_type::intParam;
+	intCommon_color_or_texture_type::intParamRef ref = new intCommon_color_or_texture_type::intParam;
 	return ref;
 }
 
@@ -97,9 +97,9 @@ intCommon_color_or_texture_type::intParam::registerElement()
 }
 
 daeElementRef
-intCommon_color_or_texture_type::intTexture::create(daeInt bytes)
+intCommon_color_or_texture_type::intTexture::create(daeInt)
 {
-	intCommon_color_or_texture_type::intTextureRef ref = new(bytes) intCommon_color_or_texture_type::intTexture;
+	intCommon_color_or_texture_type::intTextureRef ref = new intCommon_color_or_texture_type::intTexture;
 	return ref;
 }
 

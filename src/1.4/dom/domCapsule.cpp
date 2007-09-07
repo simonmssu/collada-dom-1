@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCapsule::create(daeInt bytes)
+domCapsule::create(daeInt)
 {
-	domCapsuleRef ref = new(bytes) domCapsule;
+	domCapsuleRef ref = new domCapsule;
 	return ref;
 }
 
@@ -70,9 +70,9 @@ domCapsule::registerElement()
 }
 
 daeElementRef
-domCapsule::domHeight::create(daeInt bytes)
+domCapsule::domHeight::create(daeInt)
 {
-	domCapsule::domHeightRef ref = new(bytes) domCapsule::domHeight;
+	domCapsule::domHeightRef ref = new domCapsule::domHeight;
 	return ref;
 }
 
@@ -105,9 +105,9 @@ domCapsule::domHeight::registerElement()
 }
 
 daeElementRef
-domCapsule::domRadius::create(daeInt bytes)
+domCapsule::domRadius::create(daeInt)
 {
-	domCapsule::domRadiusRef ref = new(bytes) domCapsule::domRadius;
+	domCapsule::domRadiusRef ref = new domCapsule::domRadius;
 	return ref;
 }
 

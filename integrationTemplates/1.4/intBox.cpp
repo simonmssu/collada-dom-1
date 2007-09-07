@@ -23,9 +23,9 @@ daeMetaElement * intBox::intHalf_extents::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intBox::create(daeInt bytes)
+intBox::create(daeInt)
 {
-	intBoxRef ref = new(bytes) intBox;
+	intBoxRef ref = new intBox;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intBox::registerElement()
 }
 
 daeElementRef
-intBox::intHalf_extents::create(daeInt bytes)
+intBox::intHalf_extents::create(daeInt)
 {
-	intBox::intHalf_extentsRef ref = new(bytes) intBox::intHalf_extents;
+	intBox::intHalf_extentsRef ref = new intBox::intHalf_extents;
 	return ref;
 }
 

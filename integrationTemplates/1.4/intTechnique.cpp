@@ -22,9 +22,9 @@ daeMetaElement * intTechnique::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intTechnique::create(daeInt bytes)
+intTechnique::create(daeInt)
 {
-	intTechniqueRef ref = new(bytes) intTechnique;
+	intTechniqueRef ref = new intTechnique;
 	return ref;
 }
 

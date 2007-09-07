@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_physics_scenes::create(daeInt bytes)
+domLibrary_physics_scenes::create(daeInt)
 {
-	domLibrary_physics_scenesRef ref = new(bytes) domLibrary_physics_scenes;
+	domLibrary_physics_scenesRef ref = new domLibrary_physics_scenes;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_rigid_body::create(daeInt bytes)
+domInstance_rigid_body::create(daeInt)
 {
-	domInstance_rigid_bodyRef ref = new(bytes) domInstance_rigid_body;
+	domInstance_rigid_bodyRef ref = new domInstance_rigid_body;
 	ref->attrTarget.setContainer( (domInstance_rigid_body*)ref );
 	return ref;
 }
@@ -117,9 +117,9 @@ domInstance_rigid_body::registerElement()
 }
 
 daeElementRef
-domInstance_rigid_body::domTechnique_common::create(daeInt bytes)
+domInstance_rigid_body::domTechnique_common::create(daeInt)
 {
-	domInstance_rigid_body::domTechnique_commonRef ref = new(bytes) domInstance_rigid_body::domTechnique_common;
+	domInstance_rigid_body::domTechnique_commonRef ref = new domInstance_rigid_body::domTechnique_common;
 	return ref;
 }
 
@@ -203,7 +203,7 @@ domInstance_rigid_body::domTechnique_common::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domInstance_rigid_body::domTechnique_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domInstance_rigid_body::domTechnique_common,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domInstance_rigid_body::domTechnique_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domInstance_rigid_body::domTechnique_common));
@@ -213,9 +213,9 @@ domInstance_rigid_body::domTechnique_common::registerElement()
 }
 
 daeElementRef
-domInstance_rigid_body::domTechnique_common::domAngular_velocity::create(daeInt bytes)
+domInstance_rigid_body::domTechnique_common::domAngular_velocity::create(daeInt)
 {
-	domInstance_rigid_body::domTechnique_common::domAngular_velocityRef ref = new(bytes) domInstance_rigid_body::domTechnique_common::domAngular_velocity;
+	domInstance_rigid_body::domTechnique_common::domAngular_velocityRef ref = new domInstance_rigid_body::domTechnique_common::domAngular_velocity;
 	return ref;
 }
 
@@ -248,9 +248,9 @@ domInstance_rigid_body::domTechnique_common::domAngular_velocity::registerElemen
 }
 
 daeElementRef
-domInstance_rigid_body::domTechnique_common::domVelocity::create(daeInt bytes)
+domInstance_rigid_body::domTechnique_common::domVelocity::create(daeInt)
 {
-	domInstance_rigid_body::domTechnique_common::domVelocityRef ref = new(bytes) domInstance_rigid_body::domTechnique_common::domVelocity;
+	domInstance_rigid_body::domTechnique_common::domVelocityRef ref = new domInstance_rigid_body::domTechnique_common::domVelocity;
 	return ref;
 }
 
@@ -283,9 +283,9 @@ domInstance_rigid_body::domTechnique_common::domVelocity::registerElement()
 }
 
 daeElementRef
-domInstance_rigid_body::domTechnique_common::domDynamic::create(daeInt bytes)
+domInstance_rigid_body::domTechnique_common::domDynamic::create(daeInt)
 {
-	domInstance_rigid_body::domTechnique_common::domDynamicRef ref = new(bytes) domInstance_rigid_body::domTechnique_common::domDynamic;
+	domInstance_rigid_body::domTechnique_common::domDynamicRef ref = new domInstance_rigid_body::domTechnique_common::domDynamic;
 	return ref;
 }
 
@@ -329,9 +329,9 @@ domInstance_rigid_body::domTechnique_common::domDynamic::registerElement()
 }
 
 daeElementRef
-domInstance_rigid_body::domTechnique_common::domMass_frame::create(daeInt bytes)
+domInstance_rigid_body::domTechnique_common::domMass_frame::create(daeInt)
 {
-	domInstance_rigid_body::domTechnique_common::domMass_frameRef ref = new(bytes) domInstance_rigid_body::domTechnique_common::domMass_frame;
+	domInstance_rigid_body::domTechnique_common::domMass_frameRef ref = new domInstance_rigid_body::domTechnique_common::domMass_frame;
 	return ref;
 }
 
@@ -367,7 +367,7 @@ domInstance_rigid_body::domTechnique_common::domMass_frame::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domInstance_rigid_body::domTechnique_common::domMass_frame,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domInstance_rigid_body::domTechnique_common::domMass_frame,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domInstance_rigid_body::domTechnique_common::domMass_frame,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domInstance_rigid_body::domTechnique_common::domMass_frame));
@@ -377,9 +377,9 @@ domInstance_rigid_body::domTechnique_common::domMass_frame::registerElement()
 }
 
 daeElementRef
-domInstance_rigid_body::domTechnique_common::domShape::create(daeInt bytes)
+domInstance_rigid_body::domTechnique_common::domShape::create(daeInt)
 {
-	domInstance_rigid_body::domTechnique_common::domShapeRef ref = new(bytes) domInstance_rigid_body::domTechnique_common::domShape;
+	domInstance_rigid_body::domTechnique_common::domShapeRef ref = new domInstance_rigid_body::domTechnique_common::domShape;
 	return ref;
 }
 
@@ -517,7 +517,7 @@ domInstance_rigid_body::domTechnique_common::domShape::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domInstance_rigid_body::domTechnique_common::domShape,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domInstance_rigid_body::domTechnique_common::domShape,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domInstance_rigid_body::domTechnique_common::domShape,_CMData), 3);	
 	
 	_Meta->setElementSize(sizeof(domInstance_rigid_body::domTechnique_common::domShape));
@@ -527,9 +527,9 @@ domInstance_rigid_body::domTechnique_common::domShape::registerElement()
 }
 
 daeElementRef
-domInstance_rigid_body::domTechnique_common::domShape::domHollow::create(daeInt bytes)
+domInstance_rigid_body::domTechnique_common::domShape::domHollow::create(daeInt)
 {
-	domInstance_rigid_body::domTechnique_common::domShape::domHollowRef ref = new(bytes) domInstance_rigid_body::domTechnique_common::domShape::domHollow;
+	domInstance_rigid_body::domTechnique_common::domShape::domHollowRef ref = new domInstance_rigid_body::domTechnique_common::domShape::domHollow;
 	return ref;
 }
 

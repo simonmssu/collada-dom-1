@@ -22,9 +22,9 @@ daeMetaElement * intLibrary_visual_scenes::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLibrary_visual_scenes::create(daeInt bytes)
+intLibrary_visual_scenes::create(daeInt)
 {
-	intLibrary_visual_scenesRef ref = new(bytes) intLibrary_visual_scenes;
+	intLibrary_visual_scenesRef ref = new intLibrary_visual_scenes;
 	return ref;
 }
 

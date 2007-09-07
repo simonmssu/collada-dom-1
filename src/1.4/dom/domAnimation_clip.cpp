@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domAnimation_clip::create(daeInt bytes)
+domAnimation_clip::create(daeInt)
 {
-	domAnimation_clipRef ref = new(bytes) domAnimation_clip;
+	domAnimation_clipRef ref = new domAnimation_clip;
 	return ref;
 }
 

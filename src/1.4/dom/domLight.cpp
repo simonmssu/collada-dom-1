@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLight::create(daeInt bytes)
+domLight::create(daeInt)
 {
-	domLightRef ref = new(bytes) domLight;
+	domLightRef ref = new domLight;
 	return ref;
 }
 
@@ -98,9 +98,9 @@ domLight::registerElement()
 }
 
 daeElementRef
-domLight::domTechnique_common::create(daeInt bytes)
+domLight::domTechnique_common::create(daeInt)
 {
-	domLight::domTechnique_commonRef ref = new(bytes) domLight::domTechnique_common;
+	domLight::domTechnique_commonRef ref = new domLight::domTechnique_common;
 	return ref;
 }
 
@@ -148,7 +148,7 @@ domLight::domTechnique_common::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domLight::domTechnique_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domLight::domTechnique_common,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domLight::domTechnique_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domLight::domTechnique_common));
@@ -158,9 +158,9 @@ domLight::domTechnique_common::registerElement()
 }
 
 daeElementRef
-domLight::domTechnique_common::domAmbient::create(daeInt bytes)
+domLight::domTechnique_common::domAmbient::create(daeInt)
 {
-	domLight::domTechnique_common::domAmbientRef ref = new(bytes) domLight::domTechnique_common::domAmbient;
+	domLight::domTechnique_common::domAmbientRef ref = new domLight::domTechnique_common::domAmbient;
 	return ref;
 }
 
@@ -196,9 +196,9 @@ domLight::domTechnique_common::domAmbient::registerElement()
 }
 
 daeElementRef
-domLight::domTechnique_common::domDirectional::create(daeInt bytes)
+domLight::domTechnique_common::domDirectional::create(daeInt)
 {
-	domLight::domTechnique_common::domDirectionalRef ref = new(bytes) domLight::domTechnique_common::domDirectional;
+	domLight::domTechnique_common::domDirectionalRef ref = new domLight::domTechnique_common::domDirectional;
 	return ref;
 }
 
@@ -234,9 +234,9 @@ domLight::domTechnique_common::domDirectional::registerElement()
 }
 
 daeElementRef
-domLight::domTechnique_common::domPoint::create(daeInt bytes)
+domLight::domTechnique_common::domPoint::create(daeInt)
 {
-	domLight::domTechnique_common::domPointRef ref = new(bytes) domLight::domTechnique_common::domPoint;
+	domLight::domTechnique_common::domPointRef ref = new domLight::domTechnique_common::domPoint;
 	return ref;
 }
 
@@ -290,9 +290,9 @@ domLight::domTechnique_common::domPoint::registerElement()
 }
 
 daeElementRef
-domLight::domTechnique_common::domSpot::create(daeInt bytes)
+domLight::domTechnique_common::domSpot::create(daeInt)
 {
-	domLight::domTechnique_common::domSpotRef ref = new(bytes) domLight::domTechnique_common::domSpot;
+	domLight::domTechnique_common::domSpotRef ref = new domLight::domTechnique_common::domSpot;
 	return ref;
 }
 

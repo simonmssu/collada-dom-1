@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domRotate::create(daeInt bytes)
+domRotate::create(daeInt)
 {
-	domRotateRef ref = new(bytes) domRotate;
+	domRotateRef ref = new domRotate;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_init_planar_common::create(daeInt bytes)
+domFx_surface_init_planar_common::create(daeInt)
 {
-	domFx_surface_init_planar_commonRef ref = new(bytes) domFx_surface_init_planar_common;
+	domFx_surface_init_planar_commonRef ref = new domFx_surface_init_planar_common;
 	return ref;
 }
 
@@ -62,9 +62,9 @@ domFx_surface_init_planar_common::registerElement()
 }
 
 daeElementRef
-domFx_surface_init_planar_common::domAll::create(daeInt bytes)
+domFx_surface_init_planar_common::domAll::create(daeInt)
 {
-	domFx_surface_init_planar_common::domAllRef ref = new(bytes) domFx_surface_init_planar_common::domAll;
+	domFx_surface_init_planar_common::domAllRef ref = new domFx_surface_init_planar_common::domAll;
 	return ref;
 }
 

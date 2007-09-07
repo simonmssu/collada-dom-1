@@ -24,9 +24,9 @@ daeMetaElement * intCapsule::intRadius::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCapsule::create(daeInt bytes)
+intCapsule::create(daeInt)
 {
-	intCapsuleRef ref = new(bytes) intCapsule;
+	intCapsuleRef ref = new intCapsule;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intCapsule::registerElement()
 }
 
 daeElementRef
-intCapsule::intHeight::create(daeInt bytes)
+intCapsule::intHeight::create(daeInt)
 {
-	intCapsule::intHeightRef ref = new(bytes) intCapsule::intHeight;
+	intCapsule::intHeightRef ref = new intCapsule::intHeight;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intCapsule::intHeight::registerElement()
 }
 
 daeElementRef
-intCapsule::intRadius::create(daeInt bytes)
+intCapsule::intRadius::create(daeInt)
 {
-	intCapsule::intRadiusRef ref = new(bytes) intCapsule::intRadius;
+	intCapsule::intRadiusRef ref = new intCapsule::intRadius;
 	return ref;
 }
 

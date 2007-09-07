@@ -22,9 +22,9 @@ daeMetaElement * intMatrix::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intMatrix::create(daeInt bytes)
+intMatrix::create(daeInt)
 {
-	intMatrixRef ref = new(bytes) intMatrix;
+	intMatrixRef ref = new intMatrix;
 	return ref;
 }
 

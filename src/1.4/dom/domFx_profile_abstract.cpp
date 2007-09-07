@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_profile_abstract::create(daeInt bytes)
+domFx_profile_abstract::create(daeInt)
 {
-	domFx_profile_abstractRef ref = new(bytes) domFx_profile_abstract;
+	domFx_profile_abstractRef ref = new domFx_profile_abstract;
 	return ref;
 }
 

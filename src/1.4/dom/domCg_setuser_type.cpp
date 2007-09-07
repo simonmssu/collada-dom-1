@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_setuser_type::create(daeInt bytes)
+domCg_setuser_type::create(daeInt)
 {
-	domCg_setuser_typeRef ref = new(bytes) domCg_setuser_type;
+	domCg_setuser_typeRef ref = new domCg_setuser_type;
 	return ref;
 }
 
@@ -82,7 +82,7 @@ domCg_setuser_type::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCg_setuser_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCg_setuser_type,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domCg_setuser_type,_CMData), 2);
 	//	Add attribute: name
  	{

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_setarray_type::create(daeInt bytes)
+domGlsl_setarray_type::create(daeInt)
 {
-	domGlsl_setarray_typeRef ref = new(bytes) domGlsl_setarray_type;
+	domGlsl_setarray_typeRef ref = new domGlsl_setarray_type;
 	return ref;
 }
 
@@ -58,7 +58,7 @@ domGlsl_setarray_type::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domGlsl_setarray_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGlsl_setarray_type,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domGlsl_setarray_type,_CMData), 1);
 	//	Add attribute: length
  	{

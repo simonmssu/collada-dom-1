@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texture_pipeline::create(daeInt bytes)
+domGles_texture_pipeline::create(daeInt)
 {
-	domGles_texture_pipelineRef ref = new(bytes) domGles_texture_pipeline;
+	domGles_texture_pipelineRef ref = new domGles_texture_pipeline;
 	return ref;
 }
 
@@ -64,7 +64,7 @@ domGles_texture_pipeline::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domGles_texture_pipeline,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGles_texture_pipeline,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domGles_texture_pipeline,_CMData), 1);
 	//	Add attribute: sid
  	{

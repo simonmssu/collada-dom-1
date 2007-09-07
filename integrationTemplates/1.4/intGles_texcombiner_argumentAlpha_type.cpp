@@ -22,9 +22,9 @@ daeMetaElement * intGles_texcombiner_argumentAlpha_type::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGles_texcombiner_argumentAlpha_type::create(daeInt bytes)
+intGles_texcombiner_argumentAlpha_type::create(daeInt)
 {
-	intGles_texcombiner_argumentAlpha_typeRef ref = new(bytes) intGles_texcombiner_argumentAlpha_type;
+	intGles_texcombiner_argumentAlpha_typeRef ref = new intGles_texcombiner_argumentAlpha_type;
 	return ref;
 }
 

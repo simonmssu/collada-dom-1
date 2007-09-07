@@ -27,9 +27,9 @@ daeMetaElement * intCamera::intImager::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCamera::create(daeInt bytes)
+intCamera::create(daeInt)
 {
-	intCameraRef ref = new(bytes) intCamera;
+	intCameraRef ref = new intCamera;
 	return ref;
 }
 
@@ -51,9 +51,9 @@ intCamera::registerElement()
 }
 
 daeElementRef
-intCamera::intOptics::create(daeInt bytes)
+intCamera::intOptics::create(daeInt)
 {
-	intCamera::intOpticsRef ref = new(bytes) intCamera::intOptics;
+	intCamera::intOpticsRef ref = new intCamera::intOptics;
 	return ref;
 }
 
@@ -75,9 +75,9 @@ intCamera::intOptics::registerElement()
 }
 
 daeElementRef
-intCamera::intOptics::intTechnique_common::create(daeInt bytes)
+intCamera::intOptics::intTechnique_common::create(daeInt)
 {
-	intCamera::intOptics::intTechnique_commonRef ref = new(bytes) intCamera::intOptics::intTechnique_common;
+	intCamera::intOptics::intTechnique_commonRef ref = new intCamera::intOptics::intTechnique_common;
 	return ref;
 }
 
@@ -99,9 +99,9 @@ intCamera::intOptics::intTechnique_common::registerElement()
 }
 
 daeElementRef
-intCamera::intOptics::intTechnique_common::intOrthographic::create(daeInt bytes)
+intCamera::intOptics::intTechnique_common::intOrthographic::create(daeInt)
 {
-	intCamera::intOptics::intTechnique_common::intOrthographicRef ref = new(bytes) intCamera::intOptics::intTechnique_common::intOrthographic;
+	intCamera::intOptics::intTechnique_common::intOrthographicRef ref = new intCamera::intOptics::intTechnique_common::intOrthographic;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ intCamera::intOptics::intTechnique_common::intOrthographic::registerElement()
 }
 
 daeElementRef
-intCamera::intOptics::intTechnique_common::intPerspective::create(daeInt bytes)
+intCamera::intOptics::intTechnique_common::intPerspective::create(daeInt)
 {
-	intCamera::intOptics::intTechnique_common::intPerspectiveRef ref = new(bytes) intCamera::intOptics::intTechnique_common::intPerspective;
+	intCamera::intOptics::intTechnique_common::intPerspectiveRef ref = new intCamera::intOptics::intTechnique_common::intPerspective;
 	return ref;
 }
 
@@ -147,9 +147,9 @@ intCamera::intOptics::intTechnique_common::intPerspective::registerElement()
 }
 
 daeElementRef
-intCamera::intImager::create(daeInt bytes)
+intCamera::intImager::create(daeInt)
 {
-	intCamera::intImagerRef ref = new(bytes) intCamera::intImager;
+	intCamera::intImagerRef ref = new intCamera::intImager;
 	return ref;
 }
 

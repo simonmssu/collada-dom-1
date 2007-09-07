@@ -24,9 +24,9 @@ daeMetaElement * intGlsl_surface_type::intGenerator::intName::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGlsl_surface_type::create(daeInt bytes)
+intGlsl_surface_type::create(daeInt)
 {
-	intGlsl_surface_typeRef ref = new(bytes) intGlsl_surface_type;
+	intGlsl_surface_typeRef ref = new intGlsl_surface_type;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intGlsl_surface_type::registerElement()
 }
 
 daeElementRef
-intGlsl_surface_type::intGenerator::create(daeInt bytes)
+intGlsl_surface_type::intGenerator::create(daeInt)
 {
-	intGlsl_surface_type::intGeneratorRef ref = new(bytes) intGlsl_surface_type::intGenerator;
+	intGlsl_surface_type::intGeneratorRef ref = new intGlsl_surface_type::intGenerator;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intGlsl_surface_type::intGenerator::registerElement()
 }
 
 daeElementRef
-intGlsl_surface_type::intGenerator::intName::create(daeInt bytes)
+intGlsl_surface_type::intGenerator::intName::create(daeInt)
 {
-	intGlsl_surface_type::intGenerator::intNameRef ref = new(bytes) intGlsl_surface_type::intGenerator::intName;
+	intGlsl_surface_type::intGenerator::intNameRef ref = new intGlsl_surface_type::intGenerator::intName;
 	return ref;
 }
 

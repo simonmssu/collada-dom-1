@@ -22,9 +22,9 @@ daeMetaElement * intInputGlobal::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intInputGlobal::create(daeInt bytes)
+intInputGlobal::create(daeInt)
 {
-	intInputGlobalRef ref = new(bytes) intInputGlobal;
+	intInputGlobalRef ref = new intInputGlobal;
 	return ref;
 }
 

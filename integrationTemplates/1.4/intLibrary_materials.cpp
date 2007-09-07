@@ -22,9 +22,9 @@ daeMetaElement * intLibrary_materials::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLibrary_materials::create(daeInt bytes)
+intLibrary_materials::create(daeInt)
 {
-	intLibrary_materialsRef ref = new(bytes) intLibrary_materials;
+	intLibrary_materialsRef ref = new intLibrary_materials;
 	return ref;
 }
 

@@ -22,9 +22,9 @@ daeMetaElement * intLibrary_physics_scenes::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLibrary_physics_scenes::create(daeInt bytes)
+intLibrary_physics_scenes::create(daeInt)
 {
-	intLibrary_physics_scenesRef ref = new(bytes) intLibrary_physics_scenes;
+	intLibrary_physics_scenesRef ref = new intLibrary_physics_scenes;
 	return ref;
 }
 

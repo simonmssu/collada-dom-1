@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCommon_transparent_type::create(daeInt bytes)
+domCommon_transparent_type::create(daeInt)
 {
-	domCommon_transparent_typeRef ref = new(bytes) domCommon_transparent_type;
+	domCommon_transparent_typeRef ref = new domCommon_transparent_type;
 	return ref;
 }
 
@@ -70,8 +70,8 @@ domCommon_transparent_type::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCommon_transparent_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCommon_transparent_type,_contentsOrder));
-
-	_Meta->addCMDataArray(daeOffsetOf(domCommon_transparent_type,_CMData), 1);
+        
+    _Meta->addCMDataArray(daeOffsetOf(domCommon_transparent_type,_CMData), 1);
 	//	Add attribute: opaque
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_images::create(daeInt bytes)
+domLibrary_images::create(daeInt)
 {
-	domLibrary_imagesRef ref = new(bytes) domLibrary_images;
+	domLibrary_imagesRef ref = new domLibrary_images;
 	return ref;
 }
 

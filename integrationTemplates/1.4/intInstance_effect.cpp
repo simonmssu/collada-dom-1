@@ -24,9 +24,9 @@ daeMetaElement * intInstance_effect::intSetparam::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intInstance_effect::create(daeInt bytes)
+intInstance_effect::create(daeInt)
 {
-	intInstance_effectRef ref = new(bytes) intInstance_effect;
+	intInstance_effectRef ref = new intInstance_effect;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intInstance_effect::registerElement()
 }
 
 daeElementRef
-intInstance_effect::intTechnique_hint::create(daeInt bytes)
+intInstance_effect::intTechnique_hint::create(daeInt)
 {
-	intInstance_effect::intTechnique_hintRef ref = new(bytes) intInstance_effect::intTechnique_hint;
+	intInstance_effect::intTechnique_hintRef ref = new intInstance_effect::intTechnique_hint;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intInstance_effect::intTechnique_hint::registerElement()
 }
 
 daeElementRef
-intInstance_effect::intSetparam::create(daeInt bytes)
+intInstance_effect::intSetparam::create(daeInt)
 {
-	intInstance_effect::intSetparamRef ref = new(bytes) intInstance_effect::intSetparam;
+	intInstance_effect::intSetparamRef ref = new intInstance_effect::intSetparam;
 	return ref;
 }
 

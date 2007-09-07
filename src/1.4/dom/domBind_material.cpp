@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domBind_material::create(daeInt bytes)
+domBind_material::create(daeInt)
 {
-	domBind_materialRef ref = new(bytes) domBind_material;
+	domBind_materialRef ref = new domBind_material;
 	return ref;
 }
 
@@ -76,9 +76,9 @@ domBind_material::registerElement()
 }
 
 daeElementRef
-domBind_material::domTechnique_common::create(daeInt bytes)
+domBind_material::domTechnique_common::create(daeInt)
 {
-	domBind_material::domTechnique_commonRef ref = new(bytes) domBind_material::domTechnique_common;
+	domBind_material::domTechnique_commonRef ref = new domBind_material::domTechnique_common;
 	return ref;
 }
 

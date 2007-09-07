@@ -22,9 +22,9 @@ daeMetaElement * intSkew::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intSkew::create(daeInt bytes)
+intSkew::create(daeInt)
 {
-	intSkewRef ref = new(bytes) intSkew;
+	intSkewRef ref = new intSkew;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domAnimation::create(daeInt bytes)
+domAnimation::create(daeInt)
 {
-	domAnimationRef ref = new(bytes) domAnimation;
+	domAnimationRef ref = new domAnimation;
 	return ref;
 }
 
@@ -142,7 +142,7 @@ domAnimation::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domAnimation,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domAnimation,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domAnimation,_CMData), 2);
 	//	Add attribute: id
  	{

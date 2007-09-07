@@ -25,9 +25,9 @@ daeMetaElement * intTapered_cylinder::intRadius2::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intTapered_cylinder::create(daeInt bytes)
+intTapered_cylinder::create(daeInt)
 {
-	intTapered_cylinderRef ref = new(bytes) intTapered_cylinder;
+	intTapered_cylinderRef ref = new intTapered_cylinder;
 	return ref;
 }
 
@@ -49,9 +49,9 @@ intTapered_cylinder::registerElement()
 }
 
 daeElementRef
-intTapered_cylinder::intHeight::create(daeInt bytes)
+intTapered_cylinder::intHeight::create(daeInt)
 {
-	intTapered_cylinder::intHeightRef ref = new(bytes) intTapered_cylinder::intHeight;
+	intTapered_cylinder::intHeightRef ref = new intTapered_cylinder::intHeight;
 	return ref;
 }
 
@@ -73,9 +73,9 @@ intTapered_cylinder::intHeight::registerElement()
 }
 
 daeElementRef
-intTapered_cylinder::intRadius1::create(daeInt bytes)
+intTapered_cylinder::intRadius1::create(daeInt)
 {
-	intTapered_cylinder::intRadius1Ref ref = new(bytes) intTapered_cylinder::intRadius1;
+	intTapered_cylinder::intRadius1Ref ref = new intTapered_cylinder::intRadius1;
 	return ref;
 }
 
@@ -97,9 +97,9 @@ intTapered_cylinder::intRadius1::registerElement()
 }
 
 daeElementRef
-intTapered_cylinder::intRadius2::create(daeInt bytes)
+intTapered_cylinder::intRadius2::create(daeInt)
 {
-	intTapered_cylinder::intRadius2Ref ref = new(bytes) intTapered_cylinder::intRadius2;
+	intTapered_cylinder::intRadius2Ref ref = new intTapered_cylinder::intRadius2;
 	return ref;
 }
 

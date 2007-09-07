@@ -22,9 +22,9 @@ daeMetaElement * intNode::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intNode::create(daeInt bytes)
+intNode::create(daeInt)
 {
-	intNodeRef ref = new(bytes) intNode;
+	intNodeRef ref = new intNode;
 	return ref;
 }
 

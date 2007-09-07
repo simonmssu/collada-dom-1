@@ -22,9 +22,9 @@ daeMetaElement * intLibrary_effects::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLibrary_effects::create(daeInt bytes)
+intLibrary_effects::create(daeInt)
 {
-	intLibrary_effectsRef ref = new(bytes) intLibrary_effects;
+	intLibrary_effectsRef ref = new intLibrary_effects;
 	return ref;
 }
 

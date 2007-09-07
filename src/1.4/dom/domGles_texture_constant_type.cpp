@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texture_constant_type::create(daeInt bytes)
+domGles_texture_constant_type::create(daeInt)
 {
-	domGles_texture_constant_typeRef ref = new(bytes) domGles_texture_constant_type;
+	domGles_texture_constant_typeRef ref = new domGles_texture_constant_type;
 	return ref;
 }
 

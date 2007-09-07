@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_newparam_common::create(daeInt bytes)
+domFx_newparam_common::create(daeInt)
 {
-	domFx_newparam_commonRef ref = new(bytes) domFx_newparam_common;
+	domFx_newparam_commonRef ref = new domFx_newparam_common;
 	return ref;
 }
 
@@ -88,9 +88,9 @@ domFx_newparam_common::registerElement()
 }
 
 daeElementRef
-domFx_newparam_common::domSemantic::create(daeInt bytes)
+domFx_newparam_common::domSemantic::create(daeInt)
 {
-	domFx_newparam_common::domSemanticRef ref = new(bytes) domFx_newparam_common::domSemantic;
+	domFx_newparam_common::domSemanticRef ref = new domFx_newparam_common::domSemantic;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ domFx_newparam_common::domSemantic::registerElement()
 }
 
 daeElementRef
-domFx_newparam_common::domModifier::create(daeInt bytes)
+domFx_newparam_common::domModifier::create(daeInt)
 {
-	domFx_newparam_common::domModifierRef ref = new(bytes) domFx_newparam_common::domModifier;
+	domFx_newparam_common::domModifierRef ref = new domFx_newparam_common::domModifier;
 	return ref;
 }
 

@@ -22,9 +22,9 @@ daeMetaElement * intFx_surface_init_from_common::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_surface_init_from_common::create(daeInt bytes)
+intFx_surface_init_from_common::create(daeInt)
 {
-	intFx_surface_init_from_commonRef ref = new(bytes) intFx_surface_init_from_common;
+	intFx_surface_init_from_commonRef ref = new intFx_surface_init_from_common;
 	return ref;
 }
 

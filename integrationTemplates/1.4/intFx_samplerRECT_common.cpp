@@ -31,9 +31,9 @@ daeMetaElement * intFx_samplerRECT_common::intMipmap_bias::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_samplerRECT_common::create(daeInt bytes)
+intFx_samplerRECT_common::create(daeInt)
 {
-	intFx_samplerRECT_commonRef ref = new(bytes) intFx_samplerRECT_common;
+	intFx_samplerRECT_commonRef ref = new intFx_samplerRECT_common;
 	return ref;
 }
 
@@ -55,9 +55,9 @@ intFx_samplerRECT_common::registerElement()
 }
 
 daeElementRef
-intFx_samplerRECT_common::intSource::create(daeInt bytes)
+intFx_samplerRECT_common::intSource::create(daeInt)
 {
-	intFx_samplerRECT_common::intSourceRef ref = new(bytes) intFx_samplerRECT_common::intSource;
+	intFx_samplerRECT_common::intSourceRef ref = new intFx_samplerRECT_common::intSource;
 	return ref;
 }
 
@@ -79,9 +79,9 @@ intFx_samplerRECT_common::intSource::registerElement()
 }
 
 daeElementRef
-intFx_samplerRECT_common::intWrap_s::create(daeInt bytes)
+intFx_samplerRECT_common::intWrap_s::create(daeInt)
 {
-	intFx_samplerRECT_common::intWrap_sRef ref = new(bytes) intFx_samplerRECT_common::intWrap_s;
+	intFx_samplerRECT_common::intWrap_sRef ref = new intFx_samplerRECT_common::intWrap_s;
 	return ref;
 }
 
@@ -103,9 +103,9 @@ intFx_samplerRECT_common::intWrap_s::registerElement()
 }
 
 daeElementRef
-intFx_samplerRECT_common::intWrap_t::create(daeInt bytes)
+intFx_samplerRECT_common::intWrap_t::create(daeInt)
 {
-	intFx_samplerRECT_common::intWrap_tRef ref = new(bytes) intFx_samplerRECT_common::intWrap_t;
+	intFx_samplerRECT_common::intWrap_tRef ref = new intFx_samplerRECT_common::intWrap_t;
 	return ref;
 }
 
@@ -127,9 +127,9 @@ intFx_samplerRECT_common::intWrap_t::registerElement()
 }
 
 daeElementRef
-intFx_samplerRECT_common::intMinfilter::create(daeInt bytes)
+intFx_samplerRECT_common::intMinfilter::create(daeInt)
 {
-	intFx_samplerRECT_common::intMinfilterRef ref = new(bytes) intFx_samplerRECT_common::intMinfilter;
+	intFx_samplerRECT_common::intMinfilterRef ref = new intFx_samplerRECT_common::intMinfilter;
 	return ref;
 }
 
@@ -151,9 +151,9 @@ intFx_samplerRECT_common::intMinfilter::registerElement()
 }
 
 daeElementRef
-intFx_samplerRECT_common::intMagfilter::create(daeInt bytes)
+intFx_samplerRECT_common::intMagfilter::create(daeInt)
 {
-	intFx_samplerRECT_common::intMagfilterRef ref = new(bytes) intFx_samplerRECT_common::intMagfilter;
+	intFx_samplerRECT_common::intMagfilterRef ref = new intFx_samplerRECT_common::intMagfilter;
 	return ref;
 }
 
@@ -175,9 +175,9 @@ intFx_samplerRECT_common::intMagfilter::registerElement()
 }
 
 daeElementRef
-intFx_samplerRECT_common::intMipfilter::create(daeInt bytes)
+intFx_samplerRECT_common::intMipfilter::create(daeInt)
 {
-	intFx_samplerRECT_common::intMipfilterRef ref = new(bytes) intFx_samplerRECT_common::intMipfilter;
+	intFx_samplerRECT_common::intMipfilterRef ref = new intFx_samplerRECT_common::intMipfilter;
 	return ref;
 }
 
@@ -199,9 +199,9 @@ intFx_samplerRECT_common::intMipfilter::registerElement()
 }
 
 daeElementRef
-intFx_samplerRECT_common::intBorder_color::create(daeInt bytes)
+intFx_samplerRECT_common::intBorder_color::create(daeInt)
 {
-	intFx_samplerRECT_common::intBorder_colorRef ref = new(bytes) intFx_samplerRECT_common::intBorder_color;
+	intFx_samplerRECT_common::intBorder_colorRef ref = new intFx_samplerRECT_common::intBorder_color;
 	return ref;
 }
 
@@ -223,9 +223,9 @@ intFx_samplerRECT_common::intBorder_color::registerElement()
 }
 
 daeElementRef
-intFx_samplerRECT_common::intMipmap_maxlevel::create(daeInt bytes)
+intFx_samplerRECT_common::intMipmap_maxlevel::create(daeInt)
 {
-	intFx_samplerRECT_common::intMipmap_maxlevelRef ref = new(bytes) intFx_samplerRECT_common::intMipmap_maxlevel;
+	intFx_samplerRECT_common::intMipmap_maxlevelRef ref = new intFx_samplerRECT_common::intMipmap_maxlevel;
 	return ref;
 }
 
@@ -247,9 +247,9 @@ intFx_samplerRECT_common::intMipmap_maxlevel::registerElement()
 }
 
 daeElementRef
-intFx_samplerRECT_common::intMipmap_bias::create(daeInt bytes)
+intFx_samplerRECT_common::intMipmap_bias::create(daeInt)
 {
-	intFx_samplerRECT_common::intMipmap_biasRef ref = new(bytes) intFx_samplerRECT_common::intMipmap_bias;
+	intFx_samplerRECT_common::intMipmap_biasRef ref = new intFx_samplerRECT_common::intMipmap_bias;
 	return ref;
 }
 

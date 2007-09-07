@@ -22,9 +22,9 @@ daeMetaElement * intTristrips::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intTristrips::create(daeInt bytes)
+intTristrips::create(daeInt)
 {
-	intTristripsRef ref = new(bytes) intTristrips;
+	intTristripsRef ref = new intTristrips;
 	return ref;
 }
 

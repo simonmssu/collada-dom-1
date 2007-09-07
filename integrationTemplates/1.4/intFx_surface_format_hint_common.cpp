@@ -26,9 +26,9 @@ daeMetaElement * intFx_surface_format_hint_common::intOption::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_surface_format_hint_common::create(daeInt bytes)
+intFx_surface_format_hint_common::create(daeInt)
 {
-	intFx_surface_format_hint_commonRef ref = new(bytes) intFx_surface_format_hint_common;
+	intFx_surface_format_hint_commonRef ref = new intFx_surface_format_hint_common;
 	return ref;
 }
 
@@ -50,9 +50,9 @@ intFx_surface_format_hint_common::registerElement()
 }
 
 daeElementRef
-intFx_surface_format_hint_common::intChannels::create(daeInt bytes)
+intFx_surface_format_hint_common::intChannels::create(daeInt)
 {
-	intFx_surface_format_hint_common::intChannelsRef ref = new(bytes) intFx_surface_format_hint_common::intChannels;
+	intFx_surface_format_hint_common::intChannelsRef ref = new intFx_surface_format_hint_common::intChannels;
 	return ref;
 }
 
@@ -74,9 +74,9 @@ intFx_surface_format_hint_common::intChannels::registerElement()
 }
 
 daeElementRef
-intFx_surface_format_hint_common::intRange::create(daeInt bytes)
+intFx_surface_format_hint_common::intRange::create(daeInt)
 {
-	intFx_surface_format_hint_common::intRangeRef ref = new(bytes) intFx_surface_format_hint_common::intRange;
+	intFx_surface_format_hint_common::intRangeRef ref = new intFx_surface_format_hint_common::intRange;
 	return ref;
 }
 
@@ -98,9 +98,9 @@ intFx_surface_format_hint_common::intRange::registerElement()
 }
 
 daeElementRef
-intFx_surface_format_hint_common::intPrecision::create(daeInt bytes)
+intFx_surface_format_hint_common::intPrecision::create(daeInt)
 {
-	intFx_surface_format_hint_common::intPrecisionRef ref = new(bytes) intFx_surface_format_hint_common::intPrecision;
+	intFx_surface_format_hint_common::intPrecisionRef ref = new intFx_surface_format_hint_common::intPrecision;
 	return ref;
 }
 
@@ -122,9 +122,9 @@ intFx_surface_format_hint_common::intPrecision::registerElement()
 }
 
 daeElementRef
-intFx_surface_format_hint_common::intOption::create(daeInt bytes)
+intFx_surface_format_hint_common::intOption::create(daeInt)
 {
-	intFx_surface_format_hint_common::intOptionRef ref = new(bytes) intFx_surface_format_hint_common::intOption;
+	intFx_surface_format_hint_common::intOptionRef ref = new intFx_surface_format_hint_common::intOption;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domAccessor::create(daeInt bytes)
+domAccessor::create(daeInt)
 {
-	domAccessorRef ref = new(bytes) domAccessor;
+	domAccessorRef ref = new domAccessor;
 	ref->attrSource.setContainer( (domAccessor*)ref );
 	return ref;
 }

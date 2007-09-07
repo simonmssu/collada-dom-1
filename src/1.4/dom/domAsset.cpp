@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domAsset::create(daeInt bytes)
+domAsset::create(daeInt)
 {
-	domAssetRef ref = new(bytes) domAsset;
+	domAssetRef ref = new domAsset;
 	return ref;
 }
 
@@ -106,9 +106,9 @@ domAsset::registerElement()
 }
 
 daeElementRef
-domAsset::domContributor::create(daeInt bytes)
+domAsset::domContributor::create(daeInt)
 {
-	domAsset::domContributorRef ref = new(bytes) domAsset::domContributor;
+	domAsset::domContributorRef ref = new domAsset::domContributor;
 	return ref;
 }
 
@@ -168,9 +168,9 @@ domAsset::domContributor::registerElement()
 }
 
 daeElementRef
-domAsset::domContributor::domAuthor::create(daeInt bytes)
+domAsset::domContributor::domAuthor::create(daeInt)
 {
-	domAsset::domContributor::domAuthorRef ref = new(bytes) domAsset::domContributor::domAuthor;
+	domAsset::domContributor::domAuthorRef ref = new domAsset::domContributor::domAuthor;
 	return ref;
 }
 
@@ -203,9 +203,9 @@ domAsset::domContributor::domAuthor::registerElement()
 }
 
 daeElementRef
-domAsset::domContributor::domAuthoring_tool::create(daeInt bytes)
+domAsset::domContributor::domAuthoring_tool::create(daeInt)
 {
-	domAsset::domContributor::domAuthoring_toolRef ref = new(bytes) domAsset::domContributor::domAuthoring_tool;
+	domAsset::domContributor::domAuthoring_toolRef ref = new domAsset::domContributor::domAuthoring_tool;
 	return ref;
 }
 
@@ -238,9 +238,9 @@ domAsset::domContributor::domAuthoring_tool::registerElement()
 }
 
 daeElementRef
-domAsset::domContributor::domComments::create(daeInt bytes)
+domAsset::domContributor::domComments::create(daeInt)
 {
-	domAsset::domContributor::domCommentsRef ref = new(bytes) domAsset::domContributor::domComments;
+	domAsset::domContributor::domCommentsRef ref = new domAsset::domContributor::domComments;
 	return ref;
 }
 
@@ -273,9 +273,9 @@ domAsset::domContributor::domComments::registerElement()
 }
 
 daeElementRef
-domAsset::domContributor::domCopyright::create(daeInt bytes)
+domAsset::domContributor::domCopyright::create(daeInt)
 {
-	domAsset::domContributor::domCopyrightRef ref = new(bytes) domAsset::domContributor::domCopyright;
+	domAsset::domContributor::domCopyrightRef ref = new domAsset::domContributor::domCopyright;
 	return ref;
 }
 
@@ -308,9 +308,9 @@ domAsset::domContributor::domCopyright::registerElement()
 }
 
 daeElementRef
-domAsset::domContributor::domSource_data::create(daeInt bytes)
+domAsset::domContributor::domSource_data::create(daeInt)
 {
-	domAsset::domContributor::domSource_dataRef ref = new(bytes) domAsset::domContributor::domSource_data;
+	domAsset::domContributor::domSource_dataRef ref = new domAsset::domContributor::domSource_data;
 	ref->_value.setContainer( (domAsset::domContributor::domSource_data*)ref );
 	return ref;
 }
@@ -344,9 +344,9 @@ domAsset::domContributor::domSource_data::registerElement()
 }
 
 daeElementRef
-domAsset::domCreated::create(daeInt bytes)
+domAsset::domCreated::create(daeInt)
 {
-	domAsset::domCreatedRef ref = new(bytes) domAsset::domCreated;
+	domAsset::domCreatedRef ref = new domAsset::domCreated;
 	return ref;
 }
 
@@ -379,9 +379,9 @@ domAsset::domCreated::registerElement()
 }
 
 daeElementRef
-domAsset::domKeywords::create(daeInt bytes)
+domAsset::domKeywords::create(daeInt)
 {
-	domAsset::domKeywordsRef ref = new(bytes) domAsset::domKeywords;
+	domAsset::domKeywordsRef ref = new domAsset::domKeywords;
 	return ref;
 }
 
@@ -414,9 +414,9 @@ domAsset::domKeywords::registerElement()
 }
 
 daeElementRef
-domAsset::domModified::create(daeInt bytes)
+domAsset::domModified::create(daeInt)
 {
-	domAsset::domModifiedRef ref = new(bytes) domAsset::domModified;
+	domAsset::domModifiedRef ref = new domAsset::domModified;
 	return ref;
 }
 
@@ -449,9 +449,9 @@ domAsset::domModified::registerElement()
 }
 
 daeElementRef
-domAsset::domRevision::create(daeInt bytes)
+domAsset::domRevision::create(daeInt)
 {
-	domAsset::domRevisionRef ref = new(bytes) domAsset::domRevision;
+	domAsset::domRevisionRef ref = new domAsset::domRevision;
 	return ref;
 }
 
@@ -484,9 +484,9 @@ domAsset::domRevision::registerElement()
 }
 
 daeElementRef
-domAsset::domSubject::create(daeInt bytes)
+domAsset::domSubject::create(daeInt)
 {
-	domAsset::domSubjectRef ref = new(bytes) domAsset::domSubject;
+	domAsset::domSubjectRef ref = new domAsset::domSubject;
 	return ref;
 }
 
@@ -519,9 +519,9 @@ domAsset::domSubject::registerElement()
 }
 
 daeElementRef
-domAsset::domTitle::create(daeInt bytes)
+domAsset::domTitle::create(daeInt)
 {
-	domAsset::domTitleRef ref = new(bytes) domAsset::domTitle;
+	domAsset::domTitleRef ref = new domAsset::domTitle;
 	return ref;
 }
 
@@ -554,9 +554,9 @@ domAsset::domTitle::registerElement()
 }
 
 daeElementRef
-domAsset::domUnit::create(daeInt bytes)
+domAsset::domUnit::create(daeInt)
 {
-	domAsset::domUnitRef ref = new(bytes) domAsset::domUnit;
+	domAsset::domUnitRef ref = new domAsset::domUnit;
 	return ref;
 }
 
@@ -604,9 +604,9 @@ domAsset::domUnit::registerElement()
 }
 
 daeElementRef
-domAsset::domUp_axis::create(daeInt bytes)
+domAsset::domUp_axis::create(daeInt)
 {
-	domAsset::domUp_axisRef ref = new(bytes) domAsset::domUp_axis;
+	domAsset::domUp_axisRef ref = new domAsset::domUp_axis;
 	return ref;
 }
 

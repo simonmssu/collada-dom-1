@@ -22,9 +22,9 @@ daeMetaElement * intRotate::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intRotate::create(daeInt bytes)
+intRotate::create(daeInt)
 {
-	intRotateRef ref = new(bytes) intRotate;
+	intRotateRef ref = new intRotate;
 	return ref;
 }
 

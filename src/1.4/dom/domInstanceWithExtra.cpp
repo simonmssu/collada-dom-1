@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstanceWithExtra::create(daeInt bytes)
+domInstanceWithExtra::create(daeInt)
 {
-	domInstanceWithExtraRef ref = new(bytes) domInstanceWithExtra;
+	domInstanceWithExtraRef ref = new domInstanceWithExtra;
 	ref->attrUrl.setContainer( (domInstanceWithExtra*)ref );
 	return ref;
 }

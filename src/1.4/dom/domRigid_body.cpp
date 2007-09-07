@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domRigid_body::create(daeInt bytes)
+domRigid_body::create(daeInt)
 {
-	domRigid_bodyRef ref = new(bytes) domRigid_body;
+	domRigid_bodyRef ref = new domRigid_body;
 	return ref;
 }
 
@@ -93,9 +93,9 @@ domRigid_body::registerElement()
 }
 
 daeElementRef
-domRigid_body::domTechnique_common::create(daeInt bytes)
+domRigid_body::domTechnique_common::create(daeInt)
 {
-	domRigid_body::domTechnique_commonRef ref = new(bytes) domRigid_body::domTechnique_common;
+	domRigid_body::domTechnique_commonRef ref = new domRigid_body::domTechnique_common;
 	return ref;
 }
 
@@ -167,7 +167,7 @@ domRigid_body::domTechnique_common::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domRigid_body::domTechnique_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domRigid_body::domTechnique_common,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domRigid_body::domTechnique_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domRigid_body::domTechnique_common));
@@ -177,9 +177,9 @@ domRigid_body::domTechnique_common::registerElement()
 }
 
 daeElementRef
-domRigid_body::domTechnique_common::domDynamic::create(daeInt bytes)
+domRigid_body::domTechnique_common::domDynamic::create(daeInt)
 {
-	domRigid_body::domTechnique_common::domDynamicRef ref = new(bytes) domRigid_body::domTechnique_common::domDynamic;
+	domRigid_body::domTechnique_common::domDynamicRef ref = new domRigid_body::domTechnique_common::domDynamic;
 	return ref;
 }
 
@@ -223,9 +223,9 @@ domRigid_body::domTechnique_common::domDynamic::registerElement()
 }
 
 daeElementRef
-domRigid_body::domTechnique_common::domMass_frame::create(daeInt bytes)
+domRigid_body::domTechnique_common::domMass_frame::create(daeInt)
 {
-	domRigid_body::domTechnique_common::domMass_frameRef ref = new(bytes) domRigid_body::domTechnique_common::domMass_frame;
+	domRigid_body::domTechnique_common::domMass_frameRef ref = new domRigid_body::domTechnique_common::domMass_frame;
 	return ref;
 }
 
@@ -261,7 +261,7 @@ domRigid_body::domTechnique_common::domMass_frame::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domRigid_body::domTechnique_common::domMass_frame,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domRigid_body::domTechnique_common::domMass_frame,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domRigid_body::domTechnique_common::domMass_frame,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domRigid_body::domTechnique_common::domMass_frame));
@@ -271,9 +271,9 @@ domRigid_body::domTechnique_common::domMass_frame::registerElement()
 }
 
 daeElementRef
-domRigid_body::domTechnique_common::domShape::create(daeInt bytes)
+domRigid_body::domTechnique_common::domShape::create(daeInt)
 {
-	domRigid_body::domTechnique_common::domShapeRef ref = new(bytes) domRigid_body::domTechnique_common::domShape;
+	domRigid_body::domTechnique_common::domShapeRef ref = new domRigid_body::domTechnique_common::domShape;
 	return ref;
 }
 
@@ -411,7 +411,7 @@ domRigid_body::domTechnique_common::domShape::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domRigid_body::domTechnique_common::domShape,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domRigid_body::domTechnique_common::domShape,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domRigid_body::domTechnique_common::domShape,_CMData), 3);	
 	
 	_Meta->setElementSize(sizeof(domRigid_body::domTechnique_common::domShape));
@@ -421,9 +421,9 @@ domRigid_body::domTechnique_common::domShape::registerElement()
 }
 
 daeElementRef
-domRigid_body::domTechnique_common::domShape::domHollow::create(daeInt bytes)
+domRigid_body::domTechnique_common::domShape::domHollow::create(daeInt)
 {
-	domRigid_body::domTechnique_common::domShape::domHollowRef ref = new(bytes) domRigid_body::domTechnique_common::domShape::domHollow;
+	domRigid_body::domTechnique_common::domShape::domHollowRef ref = new domRigid_body::domTechnique_common::domShape::domHollow;
 	return ref;
 }
 

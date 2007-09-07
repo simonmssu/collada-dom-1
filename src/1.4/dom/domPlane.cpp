@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domPlane::create(daeInt bytes)
+domPlane::create(daeInt)
 {
-	domPlaneRef ref = new(bytes) domPlane;
+	domPlaneRef ref = new domPlane;
 	return ref;
 }
 
@@ -64,9 +64,9 @@ domPlane::registerElement()
 }
 
 daeElementRef
-domPlane::domEquation::create(daeInt bytes)
+domPlane::domEquation::create(daeInt)
 {
-	domPlane::domEquationRef ref = new(bytes) domPlane::domEquation;
+	domPlane::domEquationRef ref = new domPlane::domEquation;
 	return ref;
 }
 

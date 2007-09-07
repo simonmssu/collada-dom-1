@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_geometry::create(daeInt bytes)
+domInstance_geometry::create(daeInt)
 {
-	domInstance_geometryRef ref = new(bytes) domInstance_geometry;
+	domInstance_geometryRef ref = new domInstance_geometry;
 	ref->attrUrl.setContainer( (domInstance_geometry*)ref );
 	return ref;
 }

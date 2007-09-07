@@ -22,9 +22,9 @@ daeMetaElement * intGlsl_setparam_simple::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGlsl_setparam_simple::create(daeInt bytes)
+intGlsl_setparam_simple::create(daeInt)
 {
-	intGlsl_setparam_simpleRef ref = new(bytes) intGlsl_setparam_simple;
+	intGlsl_setparam_simpleRef ref = new intGlsl_setparam_simple;
 	return ref;
 }
 

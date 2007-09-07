@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domPolygons::create(daeInt bytes)
+domPolygons::create(daeInt)
 {
-	domPolygonsRef ref = new(bytes) domPolygons;
+	domPolygonsRef ref = new domPolygons;
 	return ref;
 }
 
@@ -76,7 +76,7 @@ domPolygons::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domPolygons,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domPolygons,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domPolygons,_CMData), 1);
 	//	Add attribute: name
  	{
@@ -120,9 +120,9 @@ domPolygons::registerElement()
 }
 
 daeElementRef
-domPolygons::domPh::create(daeInt bytes)
+domPolygons::domPh::create(daeInt)
 {
-	domPolygons::domPhRef ref = new(bytes) domPolygons::domPh;
+	domPolygons::domPhRef ref = new domPolygons::domPh;
 	return ref;
 }
 
@@ -164,9 +164,9 @@ domPolygons::domPh::registerElement()
 }
 
 daeElementRef
-domPolygons::domPh::domH::create(daeInt bytes)
+domPolygons::domPh::domH::create(daeInt)
 {
-	domPolygons::domPh::domHRef ref = new(bytes) domPolygons::domPh::domH;
+	domPolygons::domPh::domHRef ref = new domPolygons::domPh::domH;
 	return ref;
 }
 

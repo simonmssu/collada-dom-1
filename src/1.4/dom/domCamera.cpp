@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCamera::create(daeInt bytes)
+domCamera::create(daeInt)
 {
-	domCameraRef ref = new(bytes) domCamera;
+	domCameraRef ref = new domCamera;
 	return ref;
 }
 
@@ -98,9 +98,9 @@ domCamera::registerElement()
 }
 
 daeElementRef
-domCamera::domOptics::create(daeInt bytes)
+domCamera::domOptics::create(daeInt)
 {
-	domCamera::domOpticsRef ref = new(bytes) domCamera::domOptics;
+	domCamera::domOpticsRef ref = new domCamera::domOptics;
 	return ref;
 }
 
@@ -148,9 +148,9 @@ domCamera::domOptics::registerElement()
 }
 
 daeElementRef
-domCamera::domOptics::domTechnique_common::create(daeInt bytes)
+domCamera::domOptics::domTechnique_common::create(daeInt)
 {
-	domCamera::domOptics::domTechnique_commonRef ref = new(bytes) domCamera::domOptics::domTechnique_common;
+	domCamera::domOptics::domTechnique_commonRef ref = new domCamera::domOptics::domTechnique_common;
 	return ref;
 }
 
@@ -186,8 +186,8 @@ domCamera::domOptics::domTechnique_common::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCamera::domOptics::domTechnique_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCamera::domOptics::domTechnique_common,_contentsOrder));
-
-    _Meta->addCMDataArray(daeOffsetOf(domCamera::domOptics::domTechnique_common,_CMData), 1);
+        
+    _Meta->addCMDataArray(daeOffsetOf(domCamera::domOptics::domTechnique_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domCamera::domOptics::domTechnique_common));
 	_Meta->validate();
@@ -196,9 +196,9 @@ domCamera::domOptics::domTechnique_common::registerElement()
 }
 
 daeElementRef
-domCamera::domOptics::domTechnique_common::domOrthographic::create(daeInt bytes)
+domCamera::domOptics::domTechnique_common::domOrthographic::create(daeInt)
 {
-	domCamera::domOptics::domTechnique_common::domOrthographicRef ref = new(bytes) domCamera::domOptics::domTechnique_common::domOrthographic;
+	domCamera::domOptics::domTechnique_common::domOrthographicRef ref = new domCamera::domOptics::domTechnique_common::domOrthographic;
 	return ref;
 }
 
@@ -288,8 +288,8 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,_contentsOrder));
-
-    _Meta->addCMDataArray(daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,_CMData), 2);
+        
+    _Meta->addCMDataArray(daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,_CMData), 2);	
 	
 	_Meta->setElementSize(sizeof(domCamera::domOptics::domTechnique_common::domOrthographic));
 	_Meta->validate();
@@ -298,9 +298,9 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement()
 }
 
 daeElementRef
-domCamera::domOptics::domTechnique_common::domPerspective::create(daeInt bytes)
+domCamera::domOptics::domTechnique_common::domPerspective::create(daeInt)
 {
-	domCamera::domOptics::domTechnique_common::domPerspectiveRef ref = new(bytes) domCamera::domOptics::domTechnique_common::domPerspective;
+	domCamera::domOptics::domTechnique_common::domPerspectiveRef ref = new domCamera::domOptics::domTechnique_common::domPerspective;
 	return ref;
 }
 
@@ -390,8 +390,8 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,_contentsOrder));
-
-    _Meta->addCMDataArray(daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,_CMData), 2);
+        
+    _Meta->addCMDataArray(daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,_CMData), 2);	
 	
 	_Meta->setElementSize(sizeof(domCamera::domOptics::domTechnique_common::domPerspective));
 	_Meta->validate();
@@ -400,9 +400,9 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement()
 }
 
 daeElementRef
-domCamera::domImager::create(daeInt bytes)
+domCamera::domImager::create(daeInt)
 {
-	domCamera::domImagerRef ref = new(bytes) domCamera::domImager;
+	domCamera::domImagerRef ref = new domCamera::domImager;
 	return ref;
 }
 

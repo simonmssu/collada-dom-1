@@ -22,9 +22,9 @@ daeMetaElement * intExtra::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intExtra::create(daeInt bytes)
+intExtra::create(daeInt)
 {
-	intExtraRef ref = new(bytes) intExtra;
+	intExtraRef ref = new intExtra;
 	return ref;
 }
 

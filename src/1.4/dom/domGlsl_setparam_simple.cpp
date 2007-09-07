@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_setparam_simple::create(daeInt bytes)
+domGlsl_setparam_simple::create(daeInt)
 {
-	domGlsl_setparam_simpleRef ref = new(bytes) domGlsl_setparam_simple;
+	domGlsl_setparam_simpleRef ref = new domGlsl_setparam_simple;
 	return ref;
 }
 

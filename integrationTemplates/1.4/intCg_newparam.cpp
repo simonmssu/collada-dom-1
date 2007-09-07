@@ -24,9 +24,9 @@ daeMetaElement * intCg_newparam::intModifier::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCg_newparam::create(daeInt bytes)
+intCg_newparam::create(daeInt)
 {
-	intCg_newparamRef ref = new(bytes) intCg_newparam;
+	intCg_newparamRef ref = new intCg_newparam;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intCg_newparam::registerElement()
 }
 
 daeElementRef
-intCg_newparam::intSemantic::create(daeInt bytes)
+intCg_newparam::intSemantic::create(daeInt)
 {
-	intCg_newparam::intSemanticRef ref = new(bytes) intCg_newparam::intSemantic;
+	intCg_newparam::intSemanticRef ref = new intCg_newparam::intSemantic;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intCg_newparam::intSemantic::registerElement()
 }
 
 daeElementRef
-intCg_newparam::intModifier::create(daeInt bytes)
+intCg_newparam::intModifier::create(daeInt)
 {
-	intCg_newparam::intModifierRef ref = new(bytes) intCg_newparam::intModifier;
+	intCg_newparam::intModifierRef ref = new intCg_newparam::intModifier;
 	return ref;
 }
 

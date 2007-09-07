@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_annotate_common::create(daeInt bytes)
+domFx_annotate_common::create(daeInt)
 {
-	domFx_annotate_commonRef ref = new(bytes) domFx_annotate_common;
+	domFx_annotate_commonRef ref = new domFx_annotate_common;
 	return ref;
 }
 

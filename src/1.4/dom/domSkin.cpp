@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSkin::create(daeInt bytes)
+domSkin::create(daeInt)
 {
-	domSkinRef ref = new(bytes) domSkin;
+	domSkinRef ref = new domSkin;
 	ref->attrSource.setContainer( (domSkin*)ref );
 	return ref;
 }
@@ -95,9 +95,9 @@ domSkin::registerElement()
 }
 
 daeElementRef
-domSkin::domBind_shape_matrix::create(daeInt bytes)
+domSkin::domBind_shape_matrix::create(daeInt)
 {
-	domSkin::domBind_shape_matrixRef ref = new(bytes) domSkin::domBind_shape_matrix;
+	domSkin::domBind_shape_matrixRef ref = new domSkin::domBind_shape_matrix;
 	return ref;
 }
 
@@ -130,9 +130,9 @@ domSkin::domBind_shape_matrix::registerElement()
 }
 
 daeElementRef
-domSkin::domJoints::create(daeInt bytes)
+domSkin::domJoints::create(daeInt)
 {
-	domSkin::domJointsRef ref = new(bytes) domSkin::domJoints;
+	domSkin::domJointsRef ref = new domSkin::domJoints;
 	return ref;
 }
 
@@ -174,9 +174,9 @@ domSkin::domJoints::registerElement()
 }
 
 daeElementRef
-domSkin::domVertex_weights::create(daeInt bytes)
+domSkin::domVertex_weights::create(daeInt)
 {
-	domSkin::domVertex_weightsRef ref = new(bytes) domSkin::domVertex_weights;
+	domSkin::domVertex_weightsRef ref = new domSkin::domVertex_weights;
 	return ref;
 }
 
@@ -242,9 +242,9 @@ domSkin::domVertex_weights::registerElement()
 }
 
 daeElementRef
-domSkin::domVertex_weights::domVcount::create(daeInt bytes)
+domSkin::domVertex_weights::domVcount::create(daeInt)
 {
-	domSkin::domVertex_weights::domVcountRef ref = new(bytes) domSkin::domVertex_weights::domVcount;
+	domSkin::domVertex_weights::domVcountRef ref = new domSkin::domVertex_weights::domVcount;
 	return ref;
 }
 
@@ -277,9 +277,9 @@ domSkin::domVertex_weights::domVcount::registerElement()
 }
 
 daeElementRef
-domSkin::domVertex_weights::domV::create(daeInt bytes)
+domSkin::domVertex_weights::domV::create(daeInt)
 {
-	domSkin::domVertex_weights::domVRef ref = new(bytes) domSkin::domVertex_weights::domV;
+	domSkin::domVertex_weights::domVRef ref = new domSkin::domVertex_weights::domV;
 	return ref;
 }
 

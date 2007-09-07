@@ -25,9 +25,9 @@ daeMetaElement * intVisual_scene::intEvaluate_scene::intRender::intLayer::_Meta 
 // ********************************************************
 
 daeElementRef
-intVisual_scene::create(daeInt bytes)
+intVisual_scene::create(daeInt)
 {
-	intVisual_sceneRef ref = new(bytes) intVisual_scene;
+	intVisual_sceneRef ref = new intVisual_scene;
 	return ref;
 }
 
@@ -49,9 +49,9 @@ intVisual_scene::registerElement()
 }
 
 daeElementRef
-intVisual_scene::intEvaluate_scene::create(daeInt bytes)
+intVisual_scene::intEvaluate_scene::create(daeInt)
 {
-	intVisual_scene::intEvaluate_sceneRef ref = new(bytes) intVisual_scene::intEvaluate_scene;
+	intVisual_scene::intEvaluate_sceneRef ref = new intVisual_scene::intEvaluate_scene;
 	return ref;
 }
 
@@ -73,9 +73,9 @@ intVisual_scene::intEvaluate_scene::registerElement()
 }
 
 daeElementRef
-intVisual_scene::intEvaluate_scene::intRender::create(daeInt bytes)
+intVisual_scene::intEvaluate_scene::intRender::create(daeInt)
 {
-	intVisual_scene::intEvaluate_scene::intRenderRef ref = new(bytes) intVisual_scene::intEvaluate_scene::intRender;
+	intVisual_scene::intEvaluate_scene::intRenderRef ref = new intVisual_scene::intEvaluate_scene::intRender;
 	return ref;
 }
 
@@ -97,9 +97,9 @@ intVisual_scene::intEvaluate_scene::intRender::registerElement()
 }
 
 daeElementRef
-intVisual_scene::intEvaluate_scene::intRender::intLayer::create(daeInt bytes)
+intVisual_scene::intEvaluate_scene::intRender::intLayer::create(daeInt)
 {
-	intVisual_scene::intEvaluate_scene::intRender::intLayerRef ref = new(bytes) intVisual_scene::intEvaluate_scene::intRender::intLayer;
+	intVisual_scene::intEvaluate_scene::intRender::intLayerRef ref = new intVisual_scene::intEvaluate_scene::intRender::intLayer;
 	return ref;
 }
 

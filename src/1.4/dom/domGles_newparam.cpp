@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_newparam::create(daeInt bytes)
+domGles_newparam::create(daeInt)
 {
-	domGles_newparamRef ref = new(bytes) domGles_newparam;
+	domGles_newparamRef ref = new domGles_newparam;
 	return ref;
 }
 
@@ -88,9 +88,9 @@ domGles_newparam::registerElement()
 }
 
 daeElementRef
-domGles_newparam::domSemantic::create(daeInt bytes)
+domGles_newparam::domSemantic::create(daeInt)
 {
-	domGles_newparam::domSemanticRef ref = new(bytes) domGles_newparam::domSemantic;
+	domGles_newparam::domSemanticRef ref = new domGles_newparam::domSemantic;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ domGles_newparam::domSemantic::registerElement()
 }
 
 daeElementRef
-domGles_newparam::domModifier::create(daeInt bytes)
+domGles_newparam::domModifier::create(daeInt)
 {
-	domGles_newparam::domModifierRef ref = new(bytes) domGles_newparam::domModifier;
+	domGles_newparam::domModifierRef ref = new domGles_newparam::domModifier;
 	return ref;
 }
 

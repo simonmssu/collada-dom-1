@@ -22,9 +22,9 @@ daeMetaElement * intLinestrips::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLinestrips::create(daeInt bytes)
+intLinestrips::create(daeInt)
 {
-	intLinestripsRef ref = new(bytes) intLinestrips;
+	intLinestripsRef ref = new intLinestrips;
 	return ref;
 }
 

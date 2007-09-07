@@ -22,9 +22,9 @@ daeMetaElement * intGles_texture_constant_type::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGles_texture_constant_type::create(daeInt bytes)
+intGles_texture_constant_type::create(daeInt)
 {
-	intGles_texture_constant_typeRef ref = new(bytes) intGles_texture_constant_type;
+	intGles_texture_constant_typeRef ref = new intGles_texture_constant_type;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domBox::create(daeInt bytes)
+domBox::create(daeInt)
 {
-	domBoxRef ref = new(bytes) domBox;
+	domBoxRef ref = new domBox;
 	return ref;
 }
 
@@ -64,9 +64,9 @@ domBox::registerElement()
 }
 
 daeElementRef
-domBox::domHalf_extents::create(daeInt bytes)
+domBox::domHalf_extents::create(daeInt)
 {
-	domBox::domHalf_extentsRef ref = new(bytes) domBox::domHalf_extents;
+	domBox::domHalf_extentsRef ref = new domBox::domHalf_extents;
 	return ref;
 }
 

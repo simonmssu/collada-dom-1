@@ -22,9 +22,9 @@ daeMetaElement * intChannel::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intChannel::create(daeInt bytes)
+intChannel::create(daeInt)
 {
-	intChannelRef ref = new(bytes) intChannel;
+	intChannelRef ref = new intChannel;
 	return ref;
 }
 

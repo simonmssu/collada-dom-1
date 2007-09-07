@@ -22,9 +22,9 @@ daeMetaElement * intGlsl_newarray_type::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGlsl_newarray_type::create(daeInt bytes)
+intGlsl_newarray_type::create(daeInt)
 {
-	intGlsl_newarray_typeRef ref = new(bytes) intGlsl_newarray_type;
+	intGlsl_newarray_typeRef ref = new intGlsl_newarray_type;
 	return ref;
 }
 

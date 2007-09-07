@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_physics_models::create(daeInt bytes)
+domLibrary_physics_models::create(daeInt)
 {
-	domLibrary_physics_modelsRef ref = new(bytes) domLibrary_physics_models;
+	domLibrary_physics_modelsRef ref = new domLibrary_physics_models;
 	return ref;
 }
 

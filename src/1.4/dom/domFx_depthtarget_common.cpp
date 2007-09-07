@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_depthtarget_common::create(daeInt bytes)
+domFx_depthtarget_common::create(daeInt)
 {
-	domFx_depthtarget_commonRef ref = new(bytes) domFx_depthtarget_common;
+	domFx_depthtarget_commonRef ref = new domFx_depthtarget_common;
 	return ref;
 }
 

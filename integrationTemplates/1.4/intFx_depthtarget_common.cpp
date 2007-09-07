@@ -22,9 +22,9 @@ daeMetaElement * intFx_depthtarget_common::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_depthtarget_common::create(daeInt bytes)
+intFx_depthtarget_common::create(daeInt)
 {
-	intFx_depthtarget_commonRef ref = new(bytes) intFx_depthtarget_common;
+	intFx_depthtarget_commonRef ref = new intFx_depthtarget_common;
 	return ref;
 }
 

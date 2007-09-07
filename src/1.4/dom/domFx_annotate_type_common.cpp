@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_annotate_type_common::create(daeInt bytes)
+domFx_annotate_type_common::create(daeInt)
 {
-	domFx_annotate_type_commonRef ref = new(bytes) domFx_annotate_type_common;
+	domFx_annotate_type_commonRef ref = new domFx_annotate_type_common;
 	return ref;
 }
 
@@ -143,7 +143,7 @@ domFx_annotate_type_common::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domFx_annotate_type_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domFx_annotate_type_common,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domFx_annotate_type_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domFx_annotate_type_common));
@@ -153,9 +153,9 @@ domFx_annotate_type_common::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domBool::create(daeInt bytes)
+domFx_annotate_type_common::domBool::create(daeInt)
 {
-	domFx_annotate_type_common::domBoolRef ref = new(bytes) domFx_annotate_type_common::domBool;
+	domFx_annotate_type_common::domBoolRef ref = new domFx_annotate_type_common::domBool;
 	return ref;
 }
 
@@ -188,9 +188,9 @@ domFx_annotate_type_common::domBool::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domBool2::create(daeInt bytes)
+domFx_annotate_type_common::domBool2::create(daeInt)
 {
-	domFx_annotate_type_common::domBool2Ref ref = new(bytes) domFx_annotate_type_common::domBool2;
+	domFx_annotate_type_common::domBool2Ref ref = new domFx_annotate_type_common::domBool2;
 	return ref;
 }
 
@@ -223,9 +223,9 @@ domFx_annotate_type_common::domBool2::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domBool3::create(daeInt bytes)
+domFx_annotate_type_common::domBool3::create(daeInt)
 {
-	domFx_annotate_type_common::domBool3Ref ref = new(bytes) domFx_annotate_type_common::domBool3;
+	domFx_annotate_type_common::domBool3Ref ref = new domFx_annotate_type_common::domBool3;
 	return ref;
 }
 
@@ -258,9 +258,9 @@ domFx_annotate_type_common::domBool3::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domBool4::create(daeInt bytes)
+domFx_annotate_type_common::domBool4::create(daeInt)
 {
-	domFx_annotate_type_common::domBool4Ref ref = new(bytes) domFx_annotate_type_common::domBool4;
+	domFx_annotate_type_common::domBool4Ref ref = new domFx_annotate_type_common::domBool4;
 	return ref;
 }
 
@@ -293,9 +293,9 @@ domFx_annotate_type_common::domBool4::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domInt::create(daeInt bytes)
+domFx_annotate_type_common::domInt::create(daeInt)
 {
-	domFx_annotate_type_common::domIntRef ref = new(bytes) domFx_annotate_type_common::domInt;
+	domFx_annotate_type_common::domIntRef ref = new domFx_annotate_type_common::domInt;
 	return ref;
 }
 
@@ -328,9 +328,9 @@ domFx_annotate_type_common::domInt::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domInt2::create(daeInt bytes)
+domFx_annotate_type_common::domInt2::create(daeInt)
 {
-	domFx_annotate_type_common::domInt2Ref ref = new(bytes) domFx_annotate_type_common::domInt2;
+	domFx_annotate_type_common::domInt2Ref ref = new domFx_annotate_type_common::domInt2;
 	return ref;
 }
 
@@ -363,9 +363,9 @@ domFx_annotate_type_common::domInt2::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domInt3::create(daeInt bytes)
+domFx_annotate_type_common::domInt3::create(daeInt)
 {
-	domFx_annotate_type_common::domInt3Ref ref = new(bytes) domFx_annotate_type_common::domInt3;
+	domFx_annotate_type_common::domInt3Ref ref = new domFx_annotate_type_common::domInt3;
 	return ref;
 }
 
@@ -398,9 +398,9 @@ domFx_annotate_type_common::domInt3::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domInt4::create(daeInt bytes)
+domFx_annotate_type_common::domInt4::create(daeInt)
 {
-	domFx_annotate_type_common::domInt4Ref ref = new(bytes) domFx_annotate_type_common::domInt4;
+	domFx_annotate_type_common::domInt4Ref ref = new domFx_annotate_type_common::domInt4;
 	return ref;
 }
 
@@ -433,9 +433,9 @@ domFx_annotate_type_common::domInt4::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domFloat::create(daeInt bytes)
+domFx_annotate_type_common::domFloat::create(daeInt)
 {
-	domFx_annotate_type_common::domFloatRef ref = new(bytes) domFx_annotate_type_common::domFloat;
+	domFx_annotate_type_common::domFloatRef ref = new domFx_annotate_type_common::domFloat;
 	return ref;
 }
 
@@ -468,9 +468,9 @@ domFx_annotate_type_common::domFloat::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domFloat2::create(daeInt bytes)
+domFx_annotate_type_common::domFloat2::create(daeInt)
 {
-	domFx_annotate_type_common::domFloat2Ref ref = new(bytes) domFx_annotate_type_common::domFloat2;
+	domFx_annotate_type_common::domFloat2Ref ref = new domFx_annotate_type_common::domFloat2;
 	return ref;
 }
 
@@ -503,9 +503,9 @@ domFx_annotate_type_common::domFloat2::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domFloat3::create(daeInt bytes)
+domFx_annotate_type_common::domFloat3::create(daeInt)
 {
-	domFx_annotate_type_common::domFloat3Ref ref = new(bytes) domFx_annotate_type_common::domFloat3;
+	domFx_annotate_type_common::domFloat3Ref ref = new domFx_annotate_type_common::domFloat3;
 	return ref;
 }
 
@@ -538,9 +538,9 @@ domFx_annotate_type_common::domFloat3::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domFloat4::create(daeInt bytes)
+domFx_annotate_type_common::domFloat4::create(daeInt)
 {
-	domFx_annotate_type_common::domFloat4Ref ref = new(bytes) domFx_annotate_type_common::domFloat4;
+	domFx_annotate_type_common::domFloat4Ref ref = new domFx_annotate_type_common::domFloat4;
 	return ref;
 }
 
@@ -573,9 +573,9 @@ domFx_annotate_type_common::domFloat4::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domFloat2x2::create(daeInt bytes)
+domFx_annotate_type_common::domFloat2x2::create(daeInt)
 {
-	domFx_annotate_type_common::domFloat2x2Ref ref = new(bytes) domFx_annotate_type_common::domFloat2x2;
+	domFx_annotate_type_common::domFloat2x2Ref ref = new domFx_annotate_type_common::domFloat2x2;
 	return ref;
 }
 
@@ -608,9 +608,9 @@ domFx_annotate_type_common::domFloat2x2::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domFloat3x3::create(daeInt bytes)
+domFx_annotate_type_common::domFloat3x3::create(daeInt)
 {
-	domFx_annotate_type_common::domFloat3x3Ref ref = new(bytes) domFx_annotate_type_common::domFloat3x3;
+	domFx_annotate_type_common::domFloat3x3Ref ref = new domFx_annotate_type_common::domFloat3x3;
 	return ref;
 }
 
@@ -643,9 +643,9 @@ domFx_annotate_type_common::domFloat3x3::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domFloat4x4::create(daeInt bytes)
+domFx_annotate_type_common::domFloat4x4::create(daeInt)
 {
-	domFx_annotate_type_common::domFloat4x4Ref ref = new(bytes) domFx_annotate_type_common::domFloat4x4;
+	domFx_annotate_type_common::domFloat4x4Ref ref = new domFx_annotate_type_common::domFloat4x4;
 	return ref;
 }
 
@@ -678,9 +678,9 @@ domFx_annotate_type_common::domFloat4x4::registerElement()
 }
 
 daeElementRef
-domFx_annotate_type_common::domString::create(daeInt bytes)
+domFx_annotate_type_common::domString::create(daeInt)
 {
-	domFx_annotate_type_common::domStringRef ref = new(bytes) domFx_annotate_type_common::domString;
+	domFx_annotate_type_common::domStringRef ref = new domFx_annotate_type_common::domString;
 	return ref;
 }
 

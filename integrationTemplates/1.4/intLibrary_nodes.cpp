@@ -22,9 +22,9 @@ daeMetaElement * intLibrary_nodes::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLibrary_nodes::create(daeInt bytes)
+intLibrary_nodes::create(daeInt)
 {
-	intLibrary_nodesRef ref = new(bytes) intLibrary_nodes;
+	intLibrary_nodesRef ref = new intLibrary_nodes;
 	return ref;
 }
 

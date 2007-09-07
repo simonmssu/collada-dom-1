@@ -22,9 +22,9 @@ daeMetaElement * intTranslate::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intTranslate::create(daeInt bytes)
+intTranslate::create(daeInt)
 {
-	intTranslateRef ref = new(bytes) intTranslate;
+	intTranslateRef ref = new intTranslate;
 	return ref;
 }
 

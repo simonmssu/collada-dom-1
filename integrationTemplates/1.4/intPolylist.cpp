@@ -23,9 +23,9 @@ daeMetaElement * intPolylist::intVcount::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intPolylist::create(daeInt bytes)
+intPolylist::create(daeInt)
 {
-	intPolylistRef ref = new(bytes) intPolylist;
+	intPolylistRef ref = new intPolylist;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intPolylist::registerElement()
 }
 
 daeElementRef
-intPolylist::intVcount::create(daeInt bytes)
+intPolylist::intVcount::create(daeInt)
 {
-	intPolylist::intVcountRef ref = new(bytes) intPolylist::intVcount;
+	intPolylist::intVcountRef ref = new intPolylist::intVcount;
 	return ref;
 }
 

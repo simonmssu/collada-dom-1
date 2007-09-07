@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_newparam::create(daeInt bytes)
+domCg_newparam::create(daeInt)
 {
-	domCg_newparamRef ref = new(bytes) domCg_newparam;
+	domCg_newparamRef ref = new domCg_newparam;
 	return ref;
 }
 
@@ -88,7 +88,7 @@ domCg_newparam::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCg_newparam,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCg_newparam,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domCg_newparam,_CMData), 1);
 	//	Add attribute: sid
  	{
@@ -110,9 +110,9 @@ domCg_newparam::registerElement()
 }
 
 daeElementRef
-domCg_newparam::domSemantic::create(daeInt bytes)
+domCg_newparam::domSemantic::create(daeInt)
 {
-	domCg_newparam::domSemanticRef ref = new(bytes) domCg_newparam::domSemantic;
+	domCg_newparam::domSemanticRef ref = new domCg_newparam::domSemantic;
 	return ref;
 }
 
@@ -145,9 +145,9 @@ domCg_newparam::domSemantic::registerElement()
 }
 
 daeElementRef
-domCg_newparam::domModifier::create(daeInt bytes)
+domCg_newparam::domModifier::create(daeInt)
 {
-	domCg_newparam::domModifierRef ref = new(bytes) domCg_newparam::domModifier;
+	domCg_newparam::domModifierRef ref = new domCg_newparam::domModifier;
 	return ref;
 }
 

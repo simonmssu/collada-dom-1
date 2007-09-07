@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_format_hint_common::create(daeInt bytes)
+domFx_surface_format_hint_common::create(daeInt)
 {
-	domFx_surface_format_hint_commonRef ref = new(bytes) domFx_surface_format_hint_common;
+	domFx_surface_format_hint_commonRef ref = new domFx_surface_format_hint_common;
 	return ref;
 }
 
@@ -82,9 +82,9 @@ domFx_surface_format_hint_common::registerElement()
 }
 
 daeElementRef
-domFx_surface_format_hint_common::domChannels::create(daeInt bytes)
+domFx_surface_format_hint_common::domChannels::create(daeInt)
 {
-	domFx_surface_format_hint_common::domChannelsRef ref = new(bytes) domFx_surface_format_hint_common::domChannels;
+	domFx_surface_format_hint_common::domChannelsRef ref = new domFx_surface_format_hint_common::domChannels;
 	return ref;
 }
 
@@ -117,9 +117,9 @@ domFx_surface_format_hint_common::domChannels::registerElement()
 }
 
 daeElementRef
-domFx_surface_format_hint_common::domRange::create(daeInt bytes)
+domFx_surface_format_hint_common::domRange::create(daeInt)
 {
-	domFx_surface_format_hint_common::domRangeRef ref = new(bytes) domFx_surface_format_hint_common::domRange;
+	domFx_surface_format_hint_common::domRangeRef ref = new domFx_surface_format_hint_common::domRange;
 	return ref;
 }
 
@@ -152,9 +152,9 @@ domFx_surface_format_hint_common::domRange::registerElement()
 }
 
 daeElementRef
-domFx_surface_format_hint_common::domPrecision::create(daeInt bytes)
+domFx_surface_format_hint_common::domPrecision::create(daeInt)
 {
-	domFx_surface_format_hint_common::domPrecisionRef ref = new(bytes) domFx_surface_format_hint_common::domPrecision;
+	domFx_surface_format_hint_common::domPrecisionRef ref = new domFx_surface_format_hint_common::domPrecision;
 	return ref;
 }
 
@@ -187,9 +187,9 @@ domFx_surface_format_hint_common::domPrecision::registerElement()
 }
 
 daeElementRef
-domFx_surface_format_hint_common::domOption::create(daeInt bytes)
+domFx_surface_format_hint_common::domOption::create(daeInt)
 {
-	domFx_surface_format_hint_common::domOptionRef ref = new(bytes) domFx_surface_format_hint_common::domOption;
+	domFx_surface_format_hint_common::domOptionRef ref = new domFx_surface_format_hint_common::domOption;
 	return ref;
 }
 

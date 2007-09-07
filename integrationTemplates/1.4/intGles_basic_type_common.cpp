@@ -51,9 +51,9 @@ daeMetaElement * intGles_basic_type_common::intEnum::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGles_basic_type_common::create(daeInt bytes)
+intGles_basic_type_common::create(daeInt)
 {
-	intGles_basic_type_commonRef ref = new(bytes) intGles_basic_type_common;
+	intGles_basic_type_commonRef ref = new intGles_basic_type_common;
 	return ref;
 }
 
@@ -75,9 +75,9 @@ intGles_basic_type_common::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intBool::create(daeInt bytes)
+intGles_basic_type_common::intBool::create(daeInt)
 {
-	intGles_basic_type_common::intBoolRef ref = new(bytes) intGles_basic_type_common::intBool;
+	intGles_basic_type_common::intBoolRef ref = new intGles_basic_type_common::intBool;
 	return ref;
 }
 
@@ -99,9 +99,9 @@ intGles_basic_type_common::intBool::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intBool2::create(daeInt bytes)
+intGles_basic_type_common::intBool2::create(daeInt)
 {
-	intGles_basic_type_common::intBool2Ref ref = new(bytes) intGles_basic_type_common::intBool2;
+	intGles_basic_type_common::intBool2Ref ref = new intGles_basic_type_common::intBool2;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ intGles_basic_type_common::intBool2::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intBool3::create(daeInt bytes)
+intGles_basic_type_common::intBool3::create(daeInt)
 {
-	intGles_basic_type_common::intBool3Ref ref = new(bytes) intGles_basic_type_common::intBool3;
+	intGles_basic_type_common::intBool3Ref ref = new intGles_basic_type_common::intBool3;
 	return ref;
 }
 
@@ -147,9 +147,9 @@ intGles_basic_type_common::intBool3::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intBool4::create(daeInt bytes)
+intGles_basic_type_common::intBool4::create(daeInt)
 {
-	intGles_basic_type_common::intBool4Ref ref = new(bytes) intGles_basic_type_common::intBool4;
+	intGles_basic_type_common::intBool4Ref ref = new intGles_basic_type_common::intBool4;
 	return ref;
 }
 
@@ -171,9 +171,9 @@ intGles_basic_type_common::intBool4::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intInt::create(daeInt bytes)
+intGles_basic_type_common::intInt::create(daeInt)
 {
-	intGles_basic_type_common::intIntRef ref = new(bytes) intGles_basic_type_common::intInt;
+	intGles_basic_type_common::intIntRef ref = new intGles_basic_type_common::intInt;
 	return ref;
 }
 
@@ -195,9 +195,9 @@ intGles_basic_type_common::intInt::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intInt2::create(daeInt bytes)
+intGles_basic_type_common::intInt2::create(daeInt)
 {
-	intGles_basic_type_common::intInt2Ref ref = new(bytes) intGles_basic_type_common::intInt2;
+	intGles_basic_type_common::intInt2Ref ref = new intGles_basic_type_common::intInt2;
 	return ref;
 }
 
@@ -219,9 +219,9 @@ intGles_basic_type_common::intInt2::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intInt3::create(daeInt bytes)
+intGles_basic_type_common::intInt3::create(daeInt)
 {
-	intGles_basic_type_common::intInt3Ref ref = new(bytes) intGles_basic_type_common::intInt3;
+	intGles_basic_type_common::intInt3Ref ref = new intGles_basic_type_common::intInt3;
 	return ref;
 }
 
@@ -243,9 +243,9 @@ intGles_basic_type_common::intInt3::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intInt4::create(daeInt bytes)
+intGles_basic_type_common::intInt4::create(daeInt)
 {
-	intGles_basic_type_common::intInt4Ref ref = new(bytes) intGles_basic_type_common::intInt4;
+	intGles_basic_type_common::intInt4Ref ref = new intGles_basic_type_common::intInt4;
 	return ref;
 }
 
@@ -267,9 +267,9 @@ intGles_basic_type_common::intInt4::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat::create(daeInt bytes)
+intGles_basic_type_common::intFloat::create(daeInt)
 {
-	intGles_basic_type_common::intFloatRef ref = new(bytes) intGles_basic_type_common::intFloat;
+	intGles_basic_type_common::intFloatRef ref = new intGles_basic_type_common::intFloat;
 	return ref;
 }
 
@@ -291,9 +291,9 @@ intGles_basic_type_common::intFloat::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat2::create(daeInt bytes)
+intGles_basic_type_common::intFloat2::create(daeInt)
 {
-	intGles_basic_type_common::intFloat2Ref ref = new(bytes) intGles_basic_type_common::intFloat2;
+	intGles_basic_type_common::intFloat2Ref ref = new intGles_basic_type_common::intFloat2;
 	return ref;
 }
 
@@ -315,9 +315,9 @@ intGles_basic_type_common::intFloat2::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat3::create(daeInt bytes)
+intGles_basic_type_common::intFloat3::create(daeInt)
 {
-	intGles_basic_type_common::intFloat3Ref ref = new(bytes) intGles_basic_type_common::intFloat3;
+	intGles_basic_type_common::intFloat3Ref ref = new intGles_basic_type_common::intFloat3;
 	return ref;
 }
 
@@ -339,9 +339,9 @@ intGles_basic_type_common::intFloat3::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat4::create(daeInt bytes)
+intGles_basic_type_common::intFloat4::create(daeInt)
 {
-	intGles_basic_type_common::intFloat4Ref ref = new(bytes) intGles_basic_type_common::intFloat4;
+	intGles_basic_type_common::intFloat4Ref ref = new intGles_basic_type_common::intFloat4;
 	return ref;
 }
 
@@ -363,9 +363,9 @@ intGles_basic_type_common::intFloat4::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat1x1::create(daeInt bytes)
+intGles_basic_type_common::intFloat1x1::create(daeInt)
 {
-	intGles_basic_type_common::intFloat1x1Ref ref = new(bytes) intGles_basic_type_common::intFloat1x1;
+	intGles_basic_type_common::intFloat1x1Ref ref = new intGles_basic_type_common::intFloat1x1;
 	return ref;
 }
 
@@ -387,9 +387,9 @@ intGles_basic_type_common::intFloat1x1::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat1x2::create(daeInt bytes)
+intGles_basic_type_common::intFloat1x2::create(daeInt)
 {
-	intGles_basic_type_common::intFloat1x2Ref ref = new(bytes) intGles_basic_type_common::intFloat1x2;
+	intGles_basic_type_common::intFloat1x2Ref ref = new intGles_basic_type_common::intFloat1x2;
 	return ref;
 }
 
@@ -411,9 +411,9 @@ intGles_basic_type_common::intFloat1x2::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat1x3::create(daeInt bytes)
+intGles_basic_type_common::intFloat1x3::create(daeInt)
 {
-	intGles_basic_type_common::intFloat1x3Ref ref = new(bytes) intGles_basic_type_common::intFloat1x3;
+	intGles_basic_type_common::intFloat1x3Ref ref = new intGles_basic_type_common::intFloat1x3;
 	return ref;
 }
 
@@ -435,9 +435,9 @@ intGles_basic_type_common::intFloat1x3::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat1x4::create(daeInt bytes)
+intGles_basic_type_common::intFloat1x4::create(daeInt)
 {
-	intGles_basic_type_common::intFloat1x4Ref ref = new(bytes) intGles_basic_type_common::intFloat1x4;
+	intGles_basic_type_common::intFloat1x4Ref ref = new intGles_basic_type_common::intFloat1x4;
 	return ref;
 }
 
@@ -459,9 +459,9 @@ intGles_basic_type_common::intFloat1x4::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat2x1::create(daeInt bytes)
+intGles_basic_type_common::intFloat2x1::create(daeInt)
 {
-	intGles_basic_type_common::intFloat2x1Ref ref = new(bytes) intGles_basic_type_common::intFloat2x1;
+	intGles_basic_type_common::intFloat2x1Ref ref = new intGles_basic_type_common::intFloat2x1;
 	return ref;
 }
 
@@ -483,9 +483,9 @@ intGles_basic_type_common::intFloat2x1::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat2x2::create(daeInt bytes)
+intGles_basic_type_common::intFloat2x2::create(daeInt)
 {
-	intGles_basic_type_common::intFloat2x2Ref ref = new(bytes) intGles_basic_type_common::intFloat2x2;
+	intGles_basic_type_common::intFloat2x2Ref ref = new intGles_basic_type_common::intFloat2x2;
 	return ref;
 }
 
@@ -507,9 +507,9 @@ intGles_basic_type_common::intFloat2x2::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat2x3::create(daeInt bytes)
+intGles_basic_type_common::intFloat2x3::create(daeInt)
 {
-	intGles_basic_type_common::intFloat2x3Ref ref = new(bytes) intGles_basic_type_common::intFloat2x3;
+	intGles_basic_type_common::intFloat2x3Ref ref = new intGles_basic_type_common::intFloat2x3;
 	return ref;
 }
 
@@ -531,9 +531,9 @@ intGles_basic_type_common::intFloat2x3::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat2x4::create(daeInt bytes)
+intGles_basic_type_common::intFloat2x4::create(daeInt)
 {
-	intGles_basic_type_common::intFloat2x4Ref ref = new(bytes) intGles_basic_type_common::intFloat2x4;
+	intGles_basic_type_common::intFloat2x4Ref ref = new intGles_basic_type_common::intFloat2x4;
 	return ref;
 }
 
@@ -555,9 +555,9 @@ intGles_basic_type_common::intFloat2x4::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat3x1::create(daeInt bytes)
+intGles_basic_type_common::intFloat3x1::create(daeInt)
 {
-	intGles_basic_type_common::intFloat3x1Ref ref = new(bytes) intGles_basic_type_common::intFloat3x1;
+	intGles_basic_type_common::intFloat3x1Ref ref = new intGles_basic_type_common::intFloat3x1;
 	return ref;
 }
 
@@ -579,9 +579,9 @@ intGles_basic_type_common::intFloat3x1::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat3x2::create(daeInt bytes)
+intGles_basic_type_common::intFloat3x2::create(daeInt)
 {
-	intGles_basic_type_common::intFloat3x2Ref ref = new(bytes) intGles_basic_type_common::intFloat3x2;
+	intGles_basic_type_common::intFloat3x2Ref ref = new intGles_basic_type_common::intFloat3x2;
 	return ref;
 }
 
@@ -603,9 +603,9 @@ intGles_basic_type_common::intFloat3x2::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat3x3::create(daeInt bytes)
+intGles_basic_type_common::intFloat3x3::create(daeInt)
 {
-	intGles_basic_type_common::intFloat3x3Ref ref = new(bytes) intGles_basic_type_common::intFloat3x3;
+	intGles_basic_type_common::intFloat3x3Ref ref = new intGles_basic_type_common::intFloat3x3;
 	return ref;
 }
 
@@ -627,9 +627,9 @@ intGles_basic_type_common::intFloat3x3::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat3x4::create(daeInt bytes)
+intGles_basic_type_common::intFloat3x4::create(daeInt)
 {
-	intGles_basic_type_common::intFloat3x4Ref ref = new(bytes) intGles_basic_type_common::intFloat3x4;
+	intGles_basic_type_common::intFloat3x4Ref ref = new intGles_basic_type_common::intFloat3x4;
 	return ref;
 }
 
@@ -651,9 +651,9 @@ intGles_basic_type_common::intFloat3x4::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat4x1::create(daeInt bytes)
+intGles_basic_type_common::intFloat4x1::create(daeInt)
 {
-	intGles_basic_type_common::intFloat4x1Ref ref = new(bytes) intGles_basic_type_common::intFloat4x1;
+	intGles_basic_type_common::intFloat4x1Ref ref = new intGles_basic_type_common::intFloat4x1;
 	return ref;
 }
 
@@ -675,9 +675,9 @@ intGles_basic_type_common::intFloat4x1::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat4x2::create(daeInt bytes)
+intGles_basic_type_common::intFloat4x2::create(daeInt)
 {
-	intGles_basic_type_common::intFloat4x2Ref ref = new(bytes) intGles_basic_type_common::intFloat4x2;
+	intGles_basic_type_common::intFloat4x2Ref ref = new intGles_basic_type_common::intFloat4x2;
 	return ref;
 }
 
@@ -699,9 +699,9 @@ intGles_basic_type_common::intFloat4x2::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat4x3::create(daeInt bytes)
+intGles_basic_type_common::intFloat4x3::create(daeInt)
 {
-	intGles_basic_type_common::intFloat4x3Ref ref = new(bytes) intGles_basic_type_common::intFloat4x3;
+	intGles_basic_type_common::intFloat4x3Ref ref = new intGles_basic_type_common::intFloat4x3;
 	return ref;
 }
 
@@ -723,9 +723,9 @@ intGles_basic_type_common::intFloat4x3::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intFloat4x4::create(daeInt bytes)
+intGles_basic_type_common::intFloat4x4::create(daeInt)
 {
-	intGles_basic_type_common::intFloat4x4Ref ref = new(bytes) intGles_basic_type_common::intFloat4x4;
+	intGles_basic_type_common::intFloat4x4Ref ref = new intGles_basic_type_common::intFloat4x4;
 	return ref;
 }
 
@@ -747,9 +747,9 @@ intGles_basic_type_common::intFloat4x4::registerElement()
 }
 
 daeElementRef
-intGles_basic_type_common::intEnum::create(daeInt bytes)
+intGles_basic_type_common::intEnum::create(daeInt)
 {
-	intGles_basic_type_common::intEnumRef ref = new(bytes) intGles_basic_type_common::intEnum;
+	intGles_basic_type_common::intEnumRef ref = new intGles_basic_type_common::intEnum;
 	return ref;
 }
 

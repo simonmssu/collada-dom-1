@@ -23,9 +23,9 @@ daeMetaElement * intInstance_controller::intSkeleton::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intInstance_controller::create(daeInt bytes)
+intInstance_controller::create(daeInt)
 {
-	intInstance_controllerRef ref = new(bytes) intInstance_controller;
+	intInstance_controllerRef ref = new intInstance_controller;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intInstance_controller::registerElement()
 }
 
 daeElementRef
-intInstance_controller::intSkeleton::create(daeInt bytes)
+intInstance_controller::intSkeleton::create(daeInt)
 {
-	intInstance_controller::intSkeletonRef ref = new(bytes) intInstance_controller::intSkeleton;
+	intInstance_controller::intSkeletonRef ref = new intInstance_controller::intSkeleton;
 	return ref;
 }
 

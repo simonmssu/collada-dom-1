@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domScale::create(daeInt bytes)
+domScale::create(daeInt)
 {
-	domScaleRef ref = new(bytes) domScale;
+	domScaleRef ref = new domScale;
 	return ref;
 }
 

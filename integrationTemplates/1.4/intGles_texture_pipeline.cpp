@@ -22,9 +22,9 @@ daeMetaElement * intGles_texture_pipeline::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGles_texture_pipeline::create(daeInt bytes)
+intGles_texture_pipeline::create(daeInt)
 {
-	intGles_texture_pipelineRef ref = new(bytes) intGles_texture_pipeline;
+	intGles_texture_pipelineRef ref = new intGles_texture_pipeline;
 	return ref;
 }
 

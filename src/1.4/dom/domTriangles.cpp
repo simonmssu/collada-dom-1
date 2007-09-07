@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTriangles::create(daeInt bytes)
+domTriangles::create(daeInt)
 {
-	domTrianglesRef ref = new(bytes) domTriangles;
+	domTrianglesRef ref = new domTriangles;
 	return ref;
 }
 

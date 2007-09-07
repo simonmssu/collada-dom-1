@@ -22,9 +22,9 @@ daeMetaElement * intInstance_physics_material::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intInstance_physics_material::create(daeInt bytes)
+intInstance_physics_material::create(daeInt)
 {
-	intInstance_physics_materialRef ref = new(bytes) intInstance_physics_material;
+	intInstance_physics_materialRef ref = new intInstance_physics_material;
 	return ref;
 }
 

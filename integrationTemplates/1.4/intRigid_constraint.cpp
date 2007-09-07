@@ -33,9 +33,9 @@ daeMetaElement * intRigid_constraint::intTechnique_common::intSpring::intLinear:
 // ********************************************************
 
 daeElementRef
-intRigid_constraint::create(daeInt bytes)
+intRigid_constraint::create(daeInt)
 {
-	intRigid_constraintRef ref = new(bytes) intRigid_constraint;
+	intRigid_constraintRef ref = new intRigid_constraint;
 	return ref;
 }
 
@@ -57,9 +57,9 @@ intRigid_constraint::registerElement()
 }
 
 daeElementRef
-intRigid_constraint::intRef_attachment::create(daeInt bytes)
+intRigid_constraint::intRef_attachment::create(daeInt)
 {
-	intRigid_constraint::intRef_attachmentRef ref = new(bytes) intRigid_constraint::intRef_attachment;
+	intRigid_constraint::intRef_attachmentRef ref = new intRigid_constraint::intRef_attachment;
 	return ref;
 }
 
@@ -81,9 +81,9 @@ intRigid_constraint::intRef_attachment::registerElement()
 }
 
 daeElementRef
-intRigid_constraint::intAttachment::create(daeInt bytes)
+intRigid_constraint::intAttachment::create(daeInt)
 {
-	intRigid_constraint::intAttachmentRef ref = new(bytes) intRigid_constraint::intAttachment;
+	intRigid_constraint::intAttachmentRef ref = new intRigid_constraint::intAttachment;
 	return ref;
 }
 
@@ -105,9 +105,9 @@ intRigid_constraint::intAttachment::registerElement()
 }
 
 daeElementRef
-intRigid_constraint::intTechnique_common::create(daeInt bytes)
+intRigid_constraint::intTechnique_common::create(daeInt)
 {
-	intRigid_constraint::intTechnique_commonRef ref = new(bytes) intRigid_constraint::intTechnique_common;
+	intRigid_constraint::intTechnique_commonRef ref = new intRigid_constraint::intTechnique_common;
 	return ref;
 }
 
@@ -129,9 +129,9 @@ intRigid_constraint::intTechnique_common::registerElement()
 }
 
 daeElementRef
-intRigid_constraint::intTechnique_common::intEnabled::create(daeInt bytes)
+intRigid_constraint::intTechnique_common::intEnabled::create(daeInt)
 {
-	intRigid_constraint::intTechnique_common::intEnabledRef ref = new(bytes) intRigid_constraint::intTechnique_common::intEnabled;
+	intRigid_constraint::intTechnique_common::intEnabledRef ref = new intRigid_constraint::intTechnique_common::intEnabled;
 	return ref;
 }
 
@@ -153,9 +153,9 @@ intRigid_constraint::intTechnique_common::intEnabled::registerElement()
 }
 
 daeElementRef
-intRigid_constraint::intTechnique_common::intInterpenetrate::create(daeInt bytes)
+intRigid_constraint::intTechnique_common::intInterpenetrate::create(daeInt)
 {
-	intRigid_constraint::intTechnique_common::intInterpenetrateRef ref = new(bytes) intRigid_constraint::intTechnique_common::intInterpenetrate;
+	intRigid_constraint::intTechnique_common::intInterpenetrateRef ref = new intRigid_constraint::intTechnique_common::intInterpenetrate;
 	return ref;
 }
 
@@ -177,9 +177,9 @@ intRigid_constraint::intTechnique_common::intInterpenetrate::registerElement()
 }
 
 daeElementRef
-intRigid_constraint::intTechnique_common::intLimits::create(daeInt bytes)
+intRigid_constraint::intTechnique_common::intLimits::create(daeInt)
 {
-	intRigid_constraint::intTechnique_common::intLimitsRef ref = new(bytes) intRigid_constraint::intTechnique_common::intLimits;
+	intRigid_constraint::intTechnique_common::intLimitsRef ref = new intRigid_constraint::intTechnique_common::intLimits;
 	return ref;
 }
 
@@ -201,9 +201,9 @@ intRigid_constraint::intTechnique_common::intLimits::registerElement()
 }
 
 daeElementRef
-intRigid_constraint::intTechnique_common::intLimits::intSwing_cone_and_twist::create(daeInt bytes)
+intRigid_constraint::intTechnique_common::intLimits::intSwing_cone_and_twist::create(daeInt)
 {
-	intRigid_constraint::intTechnique_common::intLimits::intSwing_cone_and_twistRef ref = new(bytes) intRigid_constraint::intTechnique_common::intLimits::intSwing_cone_and_twist;
+	intRigid_constraint::intTechnique_common::intLimits::intSwing_cone_and_twistRef ref = new intRigid_constraint::intTechnique_common::intLimits::intSwing_cone_and_twist;
 	return ref;
 }
 
@@ -225,9 +225,9 @@ intRigid_constraint::intTechnique_common::intLimits::intSwing_cone_and_twist::re
 }
 
 daeElementRef
-intRigid_constraint::intTechnique_common::intLimits::intLinear::create(daeInt bytes)
+intRigid_constraint::intTechnique_common::intLimits::intLinear::create(daeInt)
 {
-	intRigid_constraint::intTechnique_common::intLimits::intLinearRef ref = new(bytes) intRigid_constraint::intTechnique_common::intLimits::intLinear;
+	intRigid_constraint::intTechnique_common::intLimits::intLinearRef ref = new intRigid_constraint::intTechnique_common::intLimits::intLinear;
 	return ref;
 }
 
@@ -249,9 +249,9 @@ intRigid_constraint::intTechnique_common::intLimits::intLinear::registerElement(
 }
 
 daeElementRef
-intRigid_constraint::intTechnique_common::intSpring::create(daeInt bytes)
+intRigid_constraint::intTechnique_common::intSpring::create(daeInt)
 {
-	intRigid_constraint::intTechnique_common::intSpringRef ref = new(bytes) intRigid_constraint::intTechnique_common::intSpring;
+	intRigid_constraint::intTechnique_common::intSpringRef ref = new intRigid_constraint::intTechnique_common::intSpring;
 	return ref;
 }
 
@@ -273,9 +273,9 @@ intRigid_constraint::intTechnique_common::intSpring::registerElement()
 }
 
 daeElementRef
-intRigid_constraint::intTechnique_common::intSpring::intAngular::create(daeInt bytes)
+intRigid_constraint::intTechnique_common::intSpring::intAngular::create(daeInt)
 {
-	intRigid_constraint::intTechnique_common::intSpring::intAngularRef ref = new(bytes) intRigid_constraint::intTechnique_common::intSpring::intAngular;
+	intRigid_constraint::intTechnique_common::intSpring::intAngularRef ref = new intRigid_constraint::intTechnique_common::intSpring::intAngular;
 	return ref;
 }
 
@@ -297,9 +297,9 @@ intRigid_constraint::intTechnique_common::intSpring::intAngular::registerElement
 }
 
 daeElementRef
-intRigid_constraint::intTechnique_common::intSpring::intLinear::create(daeInt bytes)
+intRigid_constraint::intTechnique_common::intSpring::intLinear::create(daeInt)
 {
-	intRigid_constraint::intTechnique_common::intSpring::intLinearRef ref = new(bytes) intRigid_constraint::intTechnique_common::intSpring::intLinear;
+	intRigid_constraint::intTechnique_common::intSpring::intLinearRef ref = new intRigid_constraint::intTechnique_common::intSpring::intLinear;
 	return ref;
 }
 

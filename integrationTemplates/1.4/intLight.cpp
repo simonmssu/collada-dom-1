@@ -27,9 +27,9 @@ daeMetaElement * intLight::intTechnique_common::intSpot::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLight::create(daeInt bytes)
+intLight::create(daeInt)
 {
-	intLightRef ref = new(bytes) intLight;
+	intLightRef ref = new intLight;
 	return ref;
 }
 
@@ -51,9 +51,9 @@ intLight::registerElement()
 }
 
 daeElementRef
-intLight::intTechnique_common::create(daeInt bytes)
+intLight::intTechnique_common::create(daeInt)
 {
-	intLight::intTechnique_commonRef ref = new(bytes) intLight::intTechnique_common;
+	intLight::intTechnique_commonRef ref = new intLight::intTechnique_common;
 	return ref;
 }
 
@@ -75,9 +75,9 @@ intLight::intTechnique_common::registerElement()
 }
 
 daeElementRef
-intLight::intTechnique_common::intAmbient::create(daeInt bytes)
+intLight::intTechnique_common::intAmbient::create(daeInt)
 {
-	intLight::intTechnique_common::intAmbientRef ref = new(bytes) intLight::intTechnique_common::intAmbient;
+	intLight::intTechnique_common::intAmbientRef ref = new intLight::intTechnique_common::intAmbient;
 	return ref;
 }
 
@@ -99,9 +99,9 @@ intLight::intTechnique_common::intAmbient::registerElement()
 }
 
 daeElementRef
-intLight::intTechnique_common::intDirectional::create(daeInt bytes)
+intLight::intTechnique_common::intDirectional::create(daeInt)
 {
-	intLight::intTechnique_common::intDirectionalRef ref = new(bytes) intLight::intTechnique_common::intDirectional;
+	intLight::intTechnique_common::intDirectionalRef ref = new intLight::intTechnique_common::intDirectional;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ intLight::intTechnique_common::intDirectional::registerElement()
 }
 
 daeElementRef
-intLight::intTechnique_common::intPoint::create(daeInt bytes)
+intLight::intTechnique_common::intPoint::create(daeInt)
 {
-	intLight::intTechnique_common::intPointRef ref = new(bytes) intLight::intTechnique_common::intPoint;
+	intLight::intTechnique_common::intPointRef ref = new intLight::intTechnique_common::intPoint;
 	return ref;
 }
 
@@ -147,9 +147,9 @@ intLight::intTechnique_common::intPoint::registerElement()
 }
 
 daeElementRef
-intLight::intTechnique_common::intSpot::create(daeInt bytes)
+intLight::intTechnique_common::intSpot::create(daeInt)
 {
-	intLight::intTechnique_common::intSpotRef ref = new(bytes) intLight::intTechnique_common::intSpot;
+	intLight::intTechnique_common::intSpotRef ref = new intLight::intTechnique_common::intSpot;
 	return ref;
 }
 

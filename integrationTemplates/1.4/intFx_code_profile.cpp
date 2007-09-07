@@ -22,9 +22,9 @@ daeMetaElement * intFx_code_profile::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_code_profile::create(daeInt bytes)
+intFx_code_profile::create(daeInt)
 {
-	intFx_code_profileRef ref = new(bytes) intFx_code_profile;
+	intFx_code_profileRef ref = new intFx_code_profile;
 	return ref;
 }
 

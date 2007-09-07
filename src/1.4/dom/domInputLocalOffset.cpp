@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInputLocalOffset::create(daeInt bytes)
+domInputLocalOffset::create(daeInt)
 {
-	domInputLocalOffsetRef ref = new(bytes) domInputLocalOffset;
+	domInputLocalOffsetRef ref = new domInputLocalOffset;
 	ref->attrSource.setContainer( (domInputLocalOffset*)ref );
 	return ref;
 }

@@ -22,9 +22,9 @@ daeMetaElement * intTrifans::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intTrifans::create(daeInt bytes)
+intTrifans::create(daeInt)
 {
-	intTrifansRef ref = new(bytes) intTrifans;
+	intTrifansRef ref = new intTrifans;
 	return ref;
 }
 

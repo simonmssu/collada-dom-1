@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_init_cube_common::create(daeInt bytes)
+domFx_surface_init_cube_common::create(daeInt)
 {
-	domFx_surface_init_cube_commonRef ref = new(bytes) domFx_surface_init_cube_common;
+	domFx_surface_init_cube_commonRef ref = new domFx_surface_init_cube_common;
 	return ref;
 }
 
@@ -64,7 +64,7 @@ domFx_surface_init_cube_common::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domFx_surface_init_cube_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domFx_surface_init_cube_common,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domFx_surface_init_cube_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domFx_surface_init_cube_common));
@@ -74,9 +74,9 @@ domFx_surface_init_cube_common::registerElement()
 }
 
 daeElementRef
-domFx_surface_init_cube_common::domAll::create(daeInt bytes)
+domFx_surface_init_cube_common::domAll::create(daeInt)
 {
-	domFx_surface_init_cube_common::domAllRef ref = new(bytes) domFx_surface_init_cube_common::domAll;
+	domFx_surface_init_cube_common::domAllRef ref = new domFx_surface_init_cube_common::domAll;
 	return ref;
 }
 
@@ -112,9 +112,9 @@ domFx_surface_init_cube_common::domAll::registerElement()
 }
 
 daeElementRef
-domFx_surface_init_cube_common::domPrimary::create(daeInt bytes)
+domFx_surface_init_cube_common::domPrimary::create(daeInt)
 {
-	domFx_surface_init_cube_common::domPrimaryRef ref = new(bytes) domFx_surface_init_cube_common::domPrimary;
+	domFx_surface_init_cube_common::domPrimaryRef ref = new domFx_surface_init_cube_common::domPrimary;
 	return ref;
 }
 
@@ -162,9 +162,9 @@ domFx_surface_init_cube_common::domPrimary::registerElement()
 }
 
 daeElementRef
-domFx_surface_init_cube_common::domPrimary::domOrder::create(daeInt bytes)
+domFx_surface_init_cube_common::domPrimary::domOrder::create(daeInt)
 {
-	domFx_surface_init_cube_common::domPrimary::domOrderRef ref = new(bytes) domFx_surface_init_cube_common::domPrimary::domOrder;
+	domFx_surface_init_cube_common::domPrimary::domOrderRef ref = new domFx_surface_init_cube_common::domPrimary::domOrder;
 	return ref;
 }
 
@@ -197,9 +197,9 @@ domFx_surface_init_cube_common::domPrimary::domOrder::registerElement()
 }
 
 daeElementRef
-domFx_surface_init_cube_common::domFace::create(daeInt bytes)
+domFx_surface_init_cube_common::domFace::create(daeInt)
 {
-	domFx_surface_init_cube_common::domFaceRef ref = new(bytes) domFx_surface_init_cube_common::domFace;
+	domFx_surface_init_cube_common::domFaceRef ref = new domFx_surface_init_cube_common::domFace;
 	return ref;
 }
 

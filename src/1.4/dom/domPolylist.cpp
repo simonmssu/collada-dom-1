@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domPolylist::create(daeInt bytes)
+domPolylist::create(daeInt)
 {
-	domPolylistRef ref = new(bytes) domPolylist;
+	domPolylistRef ref = new domPolylist;
 	return ref;
 }
 
@@ -110,9 +110,9 @@ domPolylist::registerElement()
 }
 
 daeElementRef
-domPolylist::domVcount::create(daeInt bytes)
+domPolylist::domVcount::create(daeInt)
 {
-	domPolylist::domVcountRef ref = new(bytes) domPolylist::domVcount;
+	domPolylist::domVcountRef ref = new domPolylist::domVcount;
 	return ref;
 }
 

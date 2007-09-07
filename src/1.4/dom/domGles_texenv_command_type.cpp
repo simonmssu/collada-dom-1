@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texenv_command_type::create(daeInt bytes)
+domGles_texenv_command_type::create(daeInt)
 {
-	domGles_texenv_command_typeRef ref = new(bytes) domGles_texenv_command_type;
+	domGles_texenv_command_typeRef ref = new domGles_texenv_command_type;
 	return ref;
 }
 

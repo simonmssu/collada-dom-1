@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_material::create(daeInt bytes)
+domInstance_material::create(daeInt)
 {
-	domInstance_materialRef ref = new(bytes) domInstance_material;
+	domInstance_materialRef ref = new domInstance_material;
 	ref->attrTarget.setContainer( (domInstance_material*)ref );
 	return ref;
 }
@@ -117,9 +117,9 @@ domInstance_material::registerElement()
 }
 
 daeElementRef
-domInstance_material::domBind::create(daeInt bytes)
+domInstance_material::domBind::create(daeInt)
 {
-	domInstance_material::domBindRef ref = new(bytes) domInstance_material::domBind;
+	domInstance_material::domBindRef ref = new domInstance_material::domBind;
 	return ref;
 }
 
@@ -167,9 +167,9 @@ domInstance_material::domBind::registerElement()
 }
 
 daeElementRef
-domInstance_material::domBind_vertex_input::create(daeInt bytes)
+domInstance_material::domBind_vertex_input::create(daeInt)
 {
-	domInstance_material::domBind_vertex_inputRef ref = new(bytes) domInstance_material::domBind_vertex_input;
+	domInstance_material::domBind_vertex_inputRef ref = new domInstance_material::domBind_vertex_input;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSphere::create(daeInt bytes)
+domSphere::create(daeInt)
 {
-	domSphereRef ref = new(bytes) domSphere;
+	domSphereRef ref = new domSphere;
 	return ref;
 }
 
@@ -64,9 +64,9 @@ domSphere::registerElement()
 }
 
 daeElementRef
-domSphere::domRadius::create(daeInt bytes)
+domSphere::domRadius::create(daeInt)
 {
-	domSphere::domRadiusRef ref = new(bytes) domSphere::domRadius;
+	domSphere::domRadiusRef ref = new domSphere::domRadius;
 	return ref;
 }
 

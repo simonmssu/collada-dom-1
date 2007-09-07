@@ -22,9 +22,9 @@ daeMetaElement * intInstance_node::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intInstance_node::create(daeInt bytes)
+intInstance_node::create(daeInt)
 {
-	intInstance_nodeRef ref = new(bytes) intInstance_node;
+	intInstance_nodeRef ref = new intInstance_node;
 	return ref;
 }
 

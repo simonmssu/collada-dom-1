@@ -27,9 +27,9 @@ daeMetaElement * intRigid_body::intTechnique_common::intShape::intHollow::_Meta 
 // ********************************************************
 
 daeElementRef
-intRigid_body::create(daeInt bytes)
+intRigid_body::create(daeInt)
 {
-	intRigid_bodyRef ref = new(bytes) intRigid_body;
+	intRigid_bodyRef ref = new intRigid_body;
 	return ref;
 }
 
@@ -51,9 +51,9 @@ intRigid_body::registerElement()
 }
 
 daeElementRef
-intRigid_body::intTechnique_common::create(daeInt bytes)
+intRigid_body::intTechnique_common::create(daeInt)
 {
-	intRigid_body::intTechnique_commonRef ref = new(bytes) intRigid_body::intTechnique_common;
+	intRigid_body::intTechnique_commonRef ref = new intRigid_body::intTechnique_common;
 	return ref;
 }
 
@@ -75,9 +75,9 @@ intRigid_body::intTechnique_common::registerElement()
 }
 
 daeElementRef
-intRigid_body::intTechnique_common::intDynamic::create(daeInt bytes)
+intRigid_body::intTechnique_common::intDynamic::create(daeInt)
 {
-	intRigid_body::intTechnique_common::intDynamicRef ref = new(bytes) intRigid_body::intTechnique_common::intDynamic;
+	intRigid_body::intTechnique_common::intDynamicRef ref = new intRigid_body::intTechnique_common::intDynamic;
 	return ref;
 }
 
@@ -99,9 +99,9 @@ intRigid_body::intTechnique_common::intDynamic::registerElement()
 }
 
 daeElementRef
-intRigid_body::intTechnique_common::intMass_frame::create(daeInt bytes)
+intRigid_body::intTechnique_common::intMass_frame::create(daeInt)
 {
-	intRigid_body::intTechnique_common::intMass_frameRef ref = new(bytes) intRigid_body::intTechnique_common::intMass_frame;
+	intRigid_body::intTechnique_common::intMass_frameRef ref = new intRigid_body::intTechnique_common::intMass_frame;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ intRigid_body::intTechnique_common::intMass_frame::registerElement()
 }
 
 daeElementRef
-intRigid_body::intTechnique_common::intShape::create(daeInt bytes)
+intRigid_body::intTechnique_common::intShape::create(daeInt)
 {
-	intRigid_body::intTechnique_common::intShapeRef ref = new(bytes) intRigid_body::intTechnique_common::intShape;
+	intRigid_body::intTechnique_common::intShapeRef ref = new intRigid_body::intTechnique_common::intShape;
 	return ref;
 }
 
@@ -147,9 +147,9 @@ intRigid_body::intTechnique_common::intShape::registerElement()
 }
 
 daeElementRef
-intRigid_body::intTechnique_common::intShape::intHollow::create(daeInt bytes)
+intRigid_body::intTechnique_common::intShape::intHollow::create(daeInt)
 {
-	intRigid_body::intTechnique_common::intShape::intHollowRef ref = new(bytes) intRigid_body::intTechnique_common::intShape::intHollow;
+	intRigid_body::intTechnique_common::intShape::intHollowRef ref = new intRigid_body::intTechnique_common::intShape::intHollow;
 	return ref;
 }
 

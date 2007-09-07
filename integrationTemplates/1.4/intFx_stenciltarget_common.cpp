@@ -22,9 +22,9 @@ daeMetaElement * intFx_stenciltarget_common::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_stenciltarget_common::create(daeInt bytes)
+intFx_stenciltarget_common::create(daeInt)
 {
-	intFx_stenciltarget_commonRef ref = new(bytes) intFx_stenciltarget_common;
+	intFx_stenciltarget_commonRef ref = new intFx_stenciltarget_common;
 	return ref;
 }
 

@@ -22,9 +22,9 @@ daeMetaElement * intInstance_rigid_constraint::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intInstance_rigid_constraint::create(daeInt bytes)
+intInstance_rigid_constraint::create(daeInt)
 {
-	intInstance_rigid_constraintRef ref = new(bytes) intInstance_rigid_constraint;
+	intInstance_rigid_constraintRef ref = new intInstance_rigid_constraint;
 	return ref;
 }
 

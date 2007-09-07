@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domConvex_mesh::create(daeInt bytes)
+domConvex_mesh::create(daeInt)
 {
-	domConvex_meshRef ref = new(bytes) domConvex_mesh;
+	domConvex_meshRef ref = new domConvex_mesh;
 	ref->attrConvex_hull_of.setContainer( (domConvex_mesh*)ref );
 	return ref;
 }
@@ -113,7 +113,7 @@ domConvex_mesh::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domConvex_mesh,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domConvex_mesh,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domConvex_mesh,_CMData), 1);
 	//	Add attribute: convex_hull_of
  	{

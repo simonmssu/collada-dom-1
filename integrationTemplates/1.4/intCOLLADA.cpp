@@ -23,9 +23,9 @@ daeMetaElement * intCOLLADA::intScene::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCOLLADA::create(daeInt bytes)
+intCOLLADA::create(daeInt)
 {
-	intCOLLADARef ref = new(bytes) intCOLLADA;
+	intCOLLADARef ref = new intCOLLADA;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intCOLLADA::registerElement()
 }
 
 daeElementRef
-intCOLLADA::intScene::create(daeInt bytes)
+intCOLLADA::intScene::create(daeInt)
 {
-	intCOLLADA::intSceneRef ref = new(bytes) intCOLLADA::intScene;
+	intCOLLADA::intSceneRef ref = new intCOLLADA::intScene;
 	return ref;
 }
 

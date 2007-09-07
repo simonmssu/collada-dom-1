@@ -22,9 +22,9 @@ daeMetaElement * intAccessor::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intAccessor::create(daeInt bytes)
+intAccessor::create(daeInt)
 {
-	intAccessorRef ref = new(bytes) intAccessor;
+	intAccessorRef ref = new intAccessor;
 	return ref;
 }
 

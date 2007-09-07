@@ -23,9 +23,9 @@ daeMetaElement * intEllipsoid::intSize::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intEllipsoid::create(daeInt bytes)
+intEllipsoid::create(daeInt)
 {
-	intEllipsoidRef ref = new(bytes) intEllipsoid;
+	intEllipsoidRef ref = new intEllipsoid;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intEllipsoid::registerElement()
 }
 
 daeElementRef
-intEllipsoid::intSize::create(daeInt bytes)
+intEllipsoid::intSize::create(daeInt)
 {
-	intEllipsoid::intSizeRef ref = new(bytes) intEllipsoid::intSize;
+	intEllipsoid::intSizeRef ref = new intEllipsoid::intSize;
 	return ref;
 }
 

@@ -23,9 +23,9 @@ daeMetaElement * intPlane::intEquation::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intPlane::create(daeInt bytes)
+intPlane::create(daeInt)
 {
-	intPlaneRef ref = new(bytes) intPlane;
+	intPlaneRef ref = new intPlane;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intPlane::registerElement()
 }
 
 daeElementRef
-intPlane::intEquation::create(daeInt bytes)
+intPlane::intEquation::create(daeInt)
 {
-	intPlane::intEquationRef ref = new(bytes) intPlane::intEquation;
+	intPlane::intEquationRef ref = new intPlane::intEquation;
 	return ref;
 }
 

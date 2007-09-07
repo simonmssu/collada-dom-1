@@ -22,9 +22,9 @@ daeMetaElement * intTriangles::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intTriangles::create(daeInt bytes)
+intTriangles::create(daeInt)
 {
-	intTrianglesRef ref = new(bytes) intTriangles;
+	intTrianglesRef ref = new intTriangles;
 	return ref;
 }
 

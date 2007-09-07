@@ -36,9 +36,9 @@ daeMetaElement * intAsset::intUp_axis::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intAsset::create(daeInt bytes)
+intAsset::create(daeInt)
 {
-	intAssetRef ref = new(bytes) intAsset;
+	intAssetRef ref = new intAsset;
 	return ref;
 }
 
@@ -60,9 +60,9 @@ intAsset::registerElement()
 }
 
 daeElementRef
-intAsset::intContributor::create(daeInt bytes)
+intAsset::intContributor::create(daeInt)
 {
-	intAsset::intContributorRef ref = new(bytes) intAsset::intContributor;
+	intAsset::intContributorRef ref = new intAsset::intContributor;
 	return ref;
 }
 
@@ -84,9 +84,9 @@ intAsset::intContributor::registerElement()
 }
 
 daeElementRef
-intAsset::intContributor::intAuthor::create(daeInt bytes)
+intAsset::intContributor::intAuthor::create(daeInt)
 {
-	intAsset::intContributor::intAuthorRef ref = new(bytes) intAsset::intContributor::intAuthor;
+	intAsset::intContributor::intAuthorRef ref = new intAsset::intContributor::intAuthor;
 	return ref;
 }
 
@@ -108,9 +108,9 @@ intAsset::intContributor::intAuthor::registerElement()
 }
 
 daeElementRef
-intAsset::intContributor::intAuthoring_tool::create(daeInt bytes)
+intAsset::intContributor::intAuthoring_tool::create(daeInt)
 {
-	intAsset::intContributor::intAuthoring_toolRef ref = new(bytes) intAsset::intContributor::intAuthoring_tool;
+	intAsset::intContributor::intAuthoring_toolRef ref = new intAsset::intContributor::intAuthoring_tool;
 	return ref;
 }
 
@@ -132,9 +132,9 @@ intAsset::intContributor::intAuthoring_tool::registerElement()
 }
 
 daeElementRef
-intAsset::intContributor::intComments::create(daeInt bytes)
+intAsset::intContributor::intComments::create(daeInt)
 {
-	intAsset::intContributor::intCommentsRef ref = new(bytes) intAsset::intContributor::intComments;
+	intAsset::intContributor::intCommentsRef ref = new intAsset::intContributor::intComments;
 	return ref;
 }
 
@@ -156,9 +156,9 @@ intAsset::intContributor::intComments::registerElement()
 }
 
 daeElementRef
-intAsset::intContributor::intCopyright::create(daeInt bytes)
+intAsset::intContributor::intCopyright::create(daeInt)
 {
-	intAsset::intContributor::intCopyrightRef ref = new(bytes) intAsset::intContributor::intCopyright;
+	intAsset::intContributor::intCopyrightRef ref = new intAsset::intContributor::intCopyright;
 	return ref;
 }
 
@@ -180,9 +180,9 @@ intAsset::intContributor::intCopyright::registerElement()
 }
 
 daeElementRef
-intAsset::intContributor::intSource_data::create(daeInt bytes)
+intAsset::intContributor::intSource_data::create(daeInt)
 {
-	intAsset::intContributor::intSource_dataRef ref = new(bytes) intAsset::intContributor::intSource_data;
+	intAsset::intContributor::intSource_dataRef ref = new intAsset::intContributor::intSource_data;
 	return ref;
 }
 
@@ -204,9 +204,9 @@ intAsset::intContributor::intSource_data::registerElement()
 }
 
 daeElementRef
-intAsset::intCreated::create(daeInt bytes)
+intAsset::intCreated::create(daeInt)
 {
-	intAsset::intCreatedRef ref = new(bytes) intAsset::intCreated;
+	intAsset::intCreatedRef ref = new intAsset::intCreated;
 	return ref;
 }
 
@@ -228,9 +228,9 @@ intAsset::intCreated::registerElement()
 }
 
 daeElementRef
-intAsset::intKeywords::create(daeInt bytes)
+intAsset::intKeywords::create(daeInt)
 {
-	intAsset::intKeywordsRef ref = new(bytes) intAsset::intKeywords;
+	intAsset::intKeywordsRef ref = new intAsset::intKeywords;
 	return ref;
 }
 
@@ -252,9 +252,9 @@ intAsset::intKeywords::registerElement()
 }
 
 daeElementRef
-intAsset::intModified::create(daeInt bytes)
+intAsset::intModified::create(daeInt)
 {
-	intAsset::intModifiedRef ref = new(bytes) intAsset::intModified;
+	intAsset::intModifiedRef ref = new intAsset::intModified;
 	return ref;
 }
 
@@ -276,9 +276,9 @@ intAsset::intModified::registerElement()
 }
 
 daeElementRef
-intAsset::intRevision::create(daeInt bytes)
+intAsset::intRevision::create(daeInt)
 {
-	intAsset::intRevisionRef ref = new(bytes) intAsset::intRevision;
+	intAsset::intRevisionRef ref = new intAsset::intRevision;
 	return ref;
 }
 
@@ -300,9 +300,9 @@ intAsset::intRevision::registerElement()
 }
 
 daeElementRef
-intAsset::intSubject::create(daeInt bytes)
+intAsset::intSubject::create(daeInt)
 {
-	intAsset::intSubjectRef ref = new(bytes) intAsset::intSubject;
+	intAsset::intSubjectRef ref = new intAsset::intSubject;
 	return ref;
 }
 
@@ -324,9 +324,9 @@ intAsset::intSubject::registerElement()
 }
 
 daeElementRef
-intAsset::intTitle::create(daeInt bytes)
+intAsset::intTitle::create(daeInt)
 {
-	intAsset::intTitleRef ref = new(bytes) intAsset::intTitle;
+	intAsset::intTitleRef ref = new intAsset::intTitle;
 	return ref;
 }
 
@@ -348,9 +348,9 @@ intAsset::intTitle::registerElement()
 }
 
 daeElementRef
-intAsset::intUnit::create(daeInt bytes)
+intAsset::intUnit::create(daeInt)
 {
-	intAsset::intUnitRef ref = new(bytes) intAsset::intUnit;
+	intAsset::intUnitRef ref = new intAsset::intUnit;
 	return ref;
 }
 
@@ -372,9 +372,9 @@ intAsset::intUnit::registerElement()
 }
 
 daeElementRef
-intAsset::intUp_axis::create(daeInt bytes)
+intAsset::intUp_axis::create(daeInt)
 {
-	intAsset::intUp_axisRef ref = new(bytes) intAsset::intUp_axis;
+	intAsset::intUp_axisRef ref = new intAsset::intUp_axis;
 	return ref;
 }
 

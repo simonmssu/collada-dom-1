@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domVisual_scene::create(daeInt bytes)
+domVisual_scene::create(daeInt)
 {
-	domVisual_sceneRef ref = new(bytes) domVisual_scene;
+	domVisual_sceneRef ref = new domVisual_scene;
 	return ref;
 }
 
@@ -99,9 +99,9 @@ domVisual_scene::registerElement()
 }
 
 daeElementRef
-domVisual_scene::domEvaluate_scene::create(daeInt bytes)
+domVisual_scene::domEvaluate_scene::create(daeInt)
 {
-	domVisual_scene::domEvaluate_sceneRef ref = new(bytes) domVisual_scene::domEvaluate_scene;
+	domVisual_scene::domEvaluate_sceneRef ref = new domVisual_scene::domEvaluate_scene;
 	return ref;
 }
 
@@ -148,9 +148,9 @@ domVisual_scene::domEvaluate_scene::registerElement()
 }
 
 daeElementRef
-domVisual_scene::domEvaluate_scene::domRender::create(daeInt bytes)
+domVisual_scene::domEvaluate_scene::domRender::create(daeInt)
 {
-	domVisual_scene::domEvaluate_scene::domRenderRef ref = new(bytes) domVisual_scene::domEvaluate_scene::domRender;
+	domVisual_scene::domEvaluate_scene::domRenderRef ref = new domVisual_scene::domEvaluate_scene::domRender;
 	ref->attrCamera_node.setContainer( (domVisual_scene::domEvaluate_scene::domRender*)ref );
 	return ref;
 }
@@ -205,9 +205,9 @@ domVisual_scene::domEvaluate_scene::domRender::registerElement()
 }
 
 daeElementRef
-domVisual_scene::domEvaluate_scene::domRender::domLayer::create(daeInt bytes)
+domVisual_scene::domEvaluate_scene::domRender::domLayer::create(daeInt)
 {
-	domVisual_scene::domEvaluate_scene::domRender::domLayerRef ref = new(bytes) domVisual_scene::domEvaluate_scene::domRender::domLayer;
+	domVisual_scene::domEvaluate_scene::domRender::domLayerRef ref = new domVisual_scene::domEvaluate_scene::domRender::domLayer;
 	return ref;
 }
 

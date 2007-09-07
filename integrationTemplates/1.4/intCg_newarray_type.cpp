@@ -22,9 +22,9 @@ daeMetaElement * intCg_newarray_type::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCg_newarray_type::create(daeInt bytes)
+intCg_newarray_type::create(daeInt)
 {
-	intCg_newarray_typeRef ref = new(bytes) intCg_newarray_type;
+	intCg_newarray_typeRef ref = new intCg_newarray_type;
 	return ref;
 }
 

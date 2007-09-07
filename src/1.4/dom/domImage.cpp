@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domImage::create(daeInt bytes)
+domImage::create(daeInt)
 {
-	domImageRef ref = new(bytes) domImage;
+	domImageRef ref = new domImage;
 	return ref;
 }
 
@@ -76,7 +76,7 @@ domImage::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domImage,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domImage,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domImage,_CMData), 1);
 	//	Add attribute: id
  	{
@@ -153,9 +153,9 @@ domImage::registerElement()
 }
 
 daeElementRef
-domImage::domData::create(daeInt bytes)
+domImage::domData::create(daeInt)
 {
-	domImage::domDataRef ref = new(bytes) domImage::domData;
+	domImage::domDataRef ref = new domImage::domData;
 	return ref;
 }
 
@@ -188,9 +188,9 @@ domImage::domData::registerElement()
 }
 
 daeElementRef
-domImage::domInit_from::create(daeInt bytes)
+domImage::domInit_from::create(daeInt)
 {
-	domImage::domInit_fromRef ref = new(bytes) domImage::domInit_from;
+	domImage::domInit_fromRef ref = new domImage::domInit_from;
 	ref->_value.setContainer( (domImage::domInit_from*)ref );
 	return ref;
 }

@@ -24,9 +24,9 @@ daeMetaElement * intCg_surface_type::intGenerator::intName::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCg_surface_type::create(daeInt bytes)
+intCg_surface_type::create(daeInt)
 {
-	intCg_surface_typeRef ref = new(bytes) intCg_surface_type;
+	intCg_surface_typeRef ref = new intCg_surface_type;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intCg_surface_type::registerElement()
 }
 
 daeElementRef
-intCg_surface_type::intGenerator::create(daeInt bytes)
+intCg_surface_type::intGenerator::create(daeInt)
 {
-	intCg_surface_type::intGeneratorRef ref = new(bytes) intCg_surface_type::intGenerator;
+	intCg_surface_type::intGeneratorRef ref = new intCg_surface_type::intGenerator;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intCg_surface_type::intGenerator::registerElement()
 }
 
 daeElementRef
-intCg_surface_type::intGenerator::intName::create(daeInt bytes)
+intCg_surface_type::intGenerator::intName::create(daeInt)
 {
-	intCg_surface_type::intGenerator::intNameRef ref = new(bytes) intCg_surface_type::intGenerator::intName;
+	intCg_surface_type::intGenerator::intNameRef ref = new intCg_surface_type::intGenerator::intName;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_setparam_simple::create(daeInt bytes)
+domCg_setparam_simple::create(daeInt)
 {
-	domCg_setparam_simpleRef ref = new(bytes) domCg_setparam_simple;
+	domCg_setparam_simpleRef ref = new domCg_setparam_simple;
 	return ref;
 }
 

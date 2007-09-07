@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_controllers::create(daeInt bytes)
+domLibrary_controllers::create(daeInt)
 {
-	domLibrary_controllersRef ref = new(bytes) domLibrary_controllers;
+	domLibrary_controllersRef ref = new domLibrary_controllers;
 	return ref;
 }
 

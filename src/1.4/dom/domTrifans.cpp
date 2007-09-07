@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTrifans::create(daeInt bytes)
+domTrifans::create(daeInt)
 {
-	domTrifansRef ref = new(bytes) domTrifans;
+	domTrifansRef ref = new domTrifans;
 	return ref;
 }
 

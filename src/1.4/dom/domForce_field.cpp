@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domForce_field::create(daeInt bytes)
+domForce_field::create(daeInt)
 {
-	domForce_fieldRef ref = new(bytes) domForce_field;
+	domForce_fieldRef ref = new domForce_field;
 	return ref;
 }
 

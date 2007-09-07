@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_param_type::create(daeInt bytes)
+domCg_param_type::create(daeInt)
 {
-	domCg_param_typeRef ref = new(bytes) domCg_param_type;
+	domCg_param_typeRef ref = new domCg_param_type;
 	return ref;
 }
 
@@ -731,8 +731,8 @@ domCg_param_type::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCg_param_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCg_param_type,_contentsOrder));
-
-    _Meta->addCMDataArray(daeOffsetOf(domCg_param_type,_CMData), 1);
+        
+    _Meta->addCMDataArray(daeOffsetOf(domCg_param_type,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domCg_param_type));
 	_Meta->validate();
@@ -741,9 +741,9 @@ domCg_param_type::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool::create(daeInt bytes)
+domCg_param_type::domBool::create(daeInt)
 {
-	domCg_param_type::domBoolRef ref = new(bytes) domCg_param_type::domBool;
+	domCg_param_type::domBoolRef ref = new domCg_param_type::domBool;
 	return ref;
 }
 
@@ -776,9 +776,9 @@ domCg_param_type::domBool::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool1::create(daeInt bytes)
+domCg_param_type::domBool1::create(daeInt)
 {
-	domCg_param_type::domBool1Ref ref = new(bytes) domCg_param_type::domBool1;
+	domCg_param_type::domBool1Ref ref = new domCg_param_type::domBool1;
 	return ref;
 }
 
@@ -811,9 +811,9 @@ domCg_param_type::domBool1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool2::create(daeInt bytes)
+domCg_param_type::domBool2::create(daeInt)
 {
-	domCg_param_type::domBool2Ref ref = new(bytes) domCg_param_type::domBool2;
+	domCg_param_type::domBool2Ref ref = new domCg_param_type::domBool2;
 	return ref;
 }
 
@@ -846,9 +846,9 @@ domCg_param_type::domBool2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool3::create(daeInt bytes)
+domCg_param_type::domBool3::create(daeInt)
 {
-	domCg_param_type::domBool3Ref ref = new(bytes) domCg_param_type::domBool3;
+	domCg_param_type::domBool3Ref ref = new domCg_param_type::domBool3;
 	return ref;
 }
 
@@ -881,9 +881,9 @@ domCg_param_type::domBool3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool4::create(daeInt bytes)
+domCg_param_type::domBool4::create(daeInt)
 {
-	domCg_param_type::domBool4Ref ref = new(bytes) domCg_param_type::domBool4;
+	domCg_param_type::domBool4Ref ref = new domCg_param_type::domBool4;
 	return ref;
 }
 
@@ -916,9 +916,9 @@ domCg_param_type::domBool4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool1x1::create(daeInt bytes)
+domCg_param_type::domBool1x1::create(daeInt)
 {
-	domCg_param_type::domBool1x1Ref ref = new(bytes) domCg_param_type::domBool1x1;
+	domCg_param_type::domBool1x1Ref ref = new domCg_param_type::domBool1x1;
 	return ref;
 }
 
@@ -951,9 +951,9 @@ domCg_param_type::domBool1x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool1x2::create(daeInt bytes)
+domCg_param_type::domBool1x2::create(daeInt)
 {
-	domCg_param_type::domBool1x2Ref ref = new(bytes) domCg_param_type::domBool1x2;
+	domCg_param_type::domBool1x2Ref ref = new domCg_param_type::domBool1x2;
 	return ref;
 }
 
@@ -986,9 +986,9 @@ domCg_param_type::domBool1x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool1x3::create(daeInt bytes)
+domCg_param_type::domBool1x3::create(daeInt)
 {
-	domCg_param_type::domBool1x3Ref ref = new(bytes) domCg_param_type::domBool1x3;
+	domCg_param_type::domBool1x3Ref ref = new domCg_param_type::domBool1x3;
 	return ref;
 }
 
@@ -1021,9 +1021,9 @@ domCg_param_type::domBool1x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool1x4::create(daeInt bytes)
+domCg_param_type::domBool1x4::create(daeInt)
 {
-	domCg_param_type::domBool1x4Ref ref = new(bytes) domCg_param_type::domBool1x4;
+	domCg_param_type::domBool1x4Ref ref = new domCg_param_type::domBool1x4;
 	return ref;
 }
 
@@ -1056,9 +1056,9 @@ domCg_param_type::domBool1x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool2x1::create(daeInt bytes)
+domCg_param_type::domBool2x1::create(daeInt)
 {
-	domCg_param_type::domBool2x1Ref ref = new(bytes) domCg_param_type::domBool2x1;
+	domCg_param_type::domBool2x1Ref ref = new domCg_param_type::domBool2x1;
 	return ref;
 }
 
@@ -1091,9 +1091,9 @@ domCg_param_type::domBool2x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool2x2::create(daeInt bytes)
+domCg_param_type::domBool2x2::create(daeInt)
 {
-	domCg_param_type::domBool2x2Ref ref = new(bytes) domCg_param_type::domBool2x2;
+	domCg_param_type::domBool2x2Ref ref = new domCg_param_type::domBool2x2;
 	return ref;
 }
 
@@ -1126,9 +1126,9 @@ domCg_param_type::domBool2x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool2x3::create(daeInt bytes)
+domCg_param_type::domBool2x3::create(daeInt)
 {
-	domCg_param_type::domBool2x3Ref ref = new(bytes) domCg_param_type::domBool2x3;
+	domCg_param_type::domBool2x3Ref ref = new domCg_param_type::domBool2x3;
 	return ref;
 }
 
@@ -1161,9 +1161,9 @@ domCg_param_type::domBool2x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool2x4::create(daeInt bytes)
+domCg_param_type::domBool2x4::create(daeInt)
 {
-	domCg_param_type::domBool2x4Ref ref = new(bytes) domCg_param_type::domBool2x4;
+	domCg_param_type::domBool2x4Ref ref = new domCg_param_type::domBool2x4;
 	return ref;
 }
 
@@ -1196,9 +1196,9 @@ domCg_param_type::domBool2x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool3x1::create(daeInt bytes)
+domCg_param_type::domBool3x1::create(daeInt)
 {
-	domCg_param_type::domBool3x1Ref ref = new(bytes) domCg_param_type::domBool3x1;
+	domCg_param_type::domBool3x1Ref ref = new domCg_param_type::domBool3x1;
 	return ref;
 }
 
@@ -1231,9 +1231,9 @@ domCg_param_type::domBool3x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool3x2::create(daeInt bytes)
+domCg_param_type::domBool3x2::create(daeInt)
 {
-	domCg_param_type::domBool3x2Ref ref = new(bytes) domCg_param_type::domBool3x2;
+	domCg_param_type::domBool3x2Ref ref = new domCg_param_type::domBool3x2;
 	return ref;
 }
 
@@ -1266,9 +1266,9 @@ domCg_param_type::domBool3x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool3x3::create(daeInt bytes)
+domCg_param_type::domBool3x3::create(daeInt)
 {
-	domCg_param_type::domBool3x3Ref ref = new(bytes) domCg_param_type::domBool3x3;
+	domCg_param_type::domBool3x3Ref ref = new domCg_param_type::domBool3x3;
 	return ref;
 }
 
@@ -1301,9 +1301,9 @@ domCg_param_type::domBool3x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool3x4::create(daeInt bytes)
+domCg_param_type::domBool3x4::create(daeInt)
 {
-	domCg_param_type::domBool3x4Ref ref = new(bytes) domCg_param_type::domBool3x4;
+	domCg_param_type::domBool3x4Ref ref = new domCg_param_type::domBool3x4;
 	return ref;
 }
 
@@ -1336,9 +1336,9 @@ domCg_param_type::domBool3x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool4x1::create(daeInt bytes)
+domCg_param_type::domBool4x1::create(daeInt)
 {
-	domCg_param_type::domBool4x1Ref ref = new(bytes) domCg_param_type::domBool4x1;
+	domCg_param_type::domBool4x1Ref ref = new domCg_param_type::domBool4x1;
 	return ref;
 }
 
@@ -1371,9 +1371,9 @@ domCg_param_type::domBool4x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool4x2::create(daeInt bytes)
+domCg_param_type::domBool4x2::create(daeInt)
 {
-	domCg_param_type::domBool4x2Ref ref = new(bytes) domCg_param_type::domBool4x2;
+	domCg_param_type::domBool4x2Ref ref = new domCg_param_type::domBool4x2;
 	return ref;
 }
 
@@ -1406,9 +1406,9 @@ domCg_param_type::domBool4x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool4x3::create(daeInt bytes)
+domCg_param_type::domBool4x3::create(daeInt)
 {
-	domCg_param_type::domBool4x3Ref ref = new(bytes) domCg_param_type::domBool4x3;
+	domCg_param_type::domBool4x3Ref ref = new domCg_param_type::domBool4x3;
 	return ref;
 }
 
@@ -1441,9 +1441,9 @@ domCg_param_type::domBool4x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domBool4x4::create(daeInt bytes)
+domCg_param_type::domBool4x4::create(daeInt)
 {
-	domCg_param_type::domBool4x4Ref ref = new(bytes) domCg_param_type::domBool4x4;
+	domCg_param_type::domBool4x4Ref ref = new domCg_param_type::domBool4x4;
 	return ref;
 }
 
@@ -1476,9 +1476,9 @@ domCg_param_type::domBool4x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat::create(daeInt bytes)
+domCg_param_type::domFloat::create(daeInt)
 {
-	domCg_param_type::domFloatRef ref = new(bytes) domCg_param_type::domFloat;
+	domCg_param_type::domFloatRef ref = new domCg_param_type::domFloat;
 	return ref;
 }
 
@@ -1511,9 +1511,9 @@ domCg_param_type::domFloat::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat1::create(daeInt bytes)
+domCg_param_type::domFloat1::create(daeInt)
 {
-	domCg_param_type::domFloat1Ref ref = new(bytes) domCg_param_type::domFloat1;
+	domCg_param_type::domFloat1Ref ref = new domCg_param_type::domFloat1;
 	return ref;
 }
 
@@ -1546,9 +1546,9 @@ domCg_param_type::domFloat1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat2::create(daeInt bytes)
+domCg_param_type::domFloat2::create(daeInt)
 {
-	domCg_param_type::domFloat2Ref ref = new(bytes) domCg_param_type::domFloat2;
+	domCg_param_type::domFloat2Ref ref = new domCg_param_type::domFloat2;
 	return ref;
 }
 
@@ -1581,9 +1581,9 @@ domCg_param_type::domFloat2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat3::create(daeInt bytes)
+domCg_param_type::domFloat3::create(daeInt)
 {
-	domCg_param_type::domFloat3Ref ref = new(bytes) domCg_param_type::domFloat3;
+	domCg_param_type::domFloat3Ref ref = new domCg_param_type::domFloat3;
 	return ref;
 }
 
@@ -1616,9 +1616,9 @@ domCg_param_type::domFloat3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat4::create(daeInt bytes)
+domCg_param_type::domFloat4::create(daeInt)
 {
-	domCg_param_type::domFloat4Ref ref = new(bytes) domCg_param_type::domFloat4;
+	domCg_param_type::domFloat4Ref ref = new domCg_param_type::domFloat4;
 	return ref;
 }
 
@@ -1651,9 +1651,9 @@ domCg_param_type::domFloat4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat1x1::create(daeInt bytes)
+domCg_param_type::domFloat1x1::create(daeInt)
 {
-	domCg_param_type::domFloat1x1Ref ref = new(bytes) domCg_param_type::domFloat1x1;
+	domCg_param_type::domFloat1x1Ref ref = new domCg_param_type::domFloat1x1;
 	return ref;
 }
 
@@ -1686,9 +1686,9 @@ domCg_param_type::domFloat1x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat1x2::create(daeInt bytes)
+domCg_param_type::domFloat1x2::create(daeInt)
 {
-	domCg_param_type::domFloat1x2Ref ref = new(bytes) domCg_param_type::domFloat1x2;
+	domCg_param_type::domFloat1x2Ref ref = new domCg_param_type::domFloat1x2;
 	return ref;
 }
 
@@ -1721,9 +1721,9 @@ domCg_param_type::domFloat1x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat1x3::create(daeInt bytes)
+domCg_param_type::domFloat1x3::create(daeInt)
 {
-	domCg_param_type::domFloat1x3Ref ref = new(bytes) domCg_param_type::domFloat1x3;
+	domCg_param_type::domFloat1x3Ref ref = new domCg_param_type::domFloat1x3;
 	return ref;
 }
 
@@ -1756,9 +1756,9 @@ domCg_param_type::domFloat1x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat1x4::create(daeInt bytes)
+domCg_param_type::domFloat1x4::create(daeInt)
 {
-	domCg_param_type::domFloat1x4Ref ref = new(bytes) domCg_param_type::domFloat1x4;
+	domCg_param_type::domFloat1x4Ref ref = new domCg_param_type::domFloat1x4;
 	return ref;
 }
 
@@ -1791,9 +1791,9 @@ domCg_param_type::domFloat1x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat2x1::create(daeInt bytes)
+domCg_param_type::domFloat2x1::create(daeInt)
 {
-	domCg_param_type::domFloat2x1Ref ref = new(bytes) domCg_param_type::domFloat2x1;
+	domCg_param_type::domFloat2x1Ref ref = new domCg_param_type::domFloat2x1;
 	return ref;
 }
 
@@ -1826,9 +1826,9 @@ domCg_param_type::domFloat2x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat2x2::create(daeInt bytes)
+domCg_param_type::domFloat2x2::create(daeInt)
 {
-	domCg_param_type::domFloat2x2Ref ref = new(bytes) domCg_param_type::domFloat2x2;
+	domCg_param_type::domFloat2x2Ref ref = new domCg_param_type::domFloat2x2;
 	return ref;
 }
 
@@ -1861,9 +1861,9 @@ domCg_param_type::domFloat2x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat2x3::create(daeInt bytes)
+domCg_param_type::domFloat2x3::create(daeInt)
 {
-	domCg_param_type::domFloat2x3Ref ref = new(bytes) domCg_param_type::domFloat2x3;
+	domCg_param_type::domFloat2x3Ref ref = new domCg_param_type::domFloat2x3;
 	return ref;
 }
 
@@ -1896,9 +1896,9 @@ domCg_param_type::domFloat2x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat2x4::create(daeInt bytes)
+domCg_param_type::domFloat2x4::create(daeInt)
 {
-	domCg_param_type::domFloat2x4Ref ref = new(bytes) domCg_param_type::domFloat2x4;
+	domCg_param_type::domFloat2x4Ref ref = new domCg_param_type::domFloat2x4;
 	return ref;
 }
 
@@ -1931,9 +1931,9 @@ domCg_param_type::domFloat2x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat3x1::create(daeInt bytes)
+domCg_param_type::domFloat3x1::create(daeInt)
 {
-	domCg_param_type::domFloat3x1Ref ref = new(bytes) domCg_param_type::domFloat3x1;
+	domCg_param_type::domFloat3x1Ref ref = new domCg_param_type::domFloat3x1;
 	return ref;
 }
 
@@ -1966,9 +1966,9 @@ domCg_param_type::domFloat3x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat3x2::create(daeInt bytes)
+domCg_param_type::domFloat3x2::create(daeInt)
 {
-	domCg_param_type::domFloat3x2Ref ref = new(bytes) domCg_param_type::domFloat3x2;
+	domCg_param_type::domFloat3x2Ref ref = new domCg_param_type::domFloat3x2;
 	return ref;
 }
 
@@ -2001,9 +2001,9 @@ domCg_param_type::domFloat3x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat3x3::create(daeInt bytes)
+domCg_param_type::domFloat3x3::create(daeInt)
 {
-	domCg_param_type::domFloat3x3Ref ref = new(bytes) domCg_param_type::domFloat3x3;
+	domCg_param_type::domFloat3x3Ref ref = new domCg_param_type::domFloat3x3;
 	return ref;
 }
 
@@ -2036,9 +2036,9 @@ domCg_param_type::domFloat3x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat3x4::create(daeInt bytes)
+domCg_param_type::domFloat3x4::create(daeInt)
 {
-	domCg_param_type::domFloat3x4Ref ref = new(bytes) domCg_param_type::domFloat3x4;
+	domCg_param_type::domFloat3x4Ref ref = new domCg_param_type::domFloat3x4;
 	return ref;
 }
 
@@ -2071,9 +2071,9 @@ domCg_param_type::domFloat3x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat4x1::create(daeInt bytes)
+domCg_param_type::domFloat4x1::create(daeInt)
 {
-	domCg_param_type::domFloat4x1Ref ref = new(bytes) domCg_param_type::domFloat4x1;
+	domCg_param_type::domFloat4x1Ref ref = new domCg_param_type::domFloat4x1;
 	return ref;
 }
 
@@ -2106,9 +2106,9 @@ domCg_param_type::domFloat4x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat4x2::create(daeInt bytes)
+domCg_param_type::domFloat4x2::create(daeInt)
 {
-	domCg_param_type::domFloat4x2Ref ref = new(bytes) domCg_param_type::domFloat4x2;
+	domCg_param_type::domFloat4x2Ref ref = new domCg_param_type::domFloat4x2;
 	return ref;
 }
 
@@ -2141,9 +2141,9 @@ domCg_param_type::domFloat4x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat4x3::create(daeInt bytes)
+domCg_param_type::domFloat4x3::create(daeInt)
 {
-	domCg_param_type::domFloat4x3Ref ref = new(bytes) domCg_param_type::domFloat4x3;
+	domCg_param_type::domFloat4x3Ref ref = new domCg_param_type::domFloat4x3;
 	return ref;
 }
 
@@ -2176,9 +2176,9 @@ domCg_param_type::domFloat4x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFloat4x4::create(daeInt bytes)
+domCg_param_type::domFloat4x4::create(daeInt)
 {
-	domCg_param_type::domFloat4x4Ref ref = new(bytes) domCg_param_type::domFloat4x4;
+	domCg_param_type::domFloat4x4Ref ref = new domCg_param_type::domFloat4x4;
 	return ref;
 }
 
@@ -2211,9 +2211,9 @@ domCg_param_type::domFloat4x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt::create(daeInt bytes)
+domCg_param_type::domInt::create(daeInt)
 {
-	domCg_param_type::domIntRef ref = new(bytes) domCg_param_type::domInt;
+	domCg_param_type::domIntRef ref = new domCg_param_type::domInt;
 	return ref;
 }
 
@@ -2246,9 +2246,9 @@ domCg_param_type::domInt::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt1::create(daeInt bytes)
+domCg_param_type::domInt1::create(daeInt)
 {
-	domCg_param_type::domInt1Ref ref = new(bytes) domCg_param_type::domInt1;
+	domCg_param_type::domInt1Ref ref = new domCg_param_type::domInt1;
 	return ref;
 }
 
@@ -2281,9 +2281,9 @@ domCg_param_type::domInt1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt2::create(daeInt bytes)
+domCg_param_type::domInt2::create(daeInt)
 {
-	domCg_param_type::domInt2Ref ref = new(bytes) domCg_param_type::domInt2;
+	domCg_param_type::domInt2Ref ref = new domCg_param_type::domInt2;
 	return ref;
 }
 
@@ -2316,9 +2316,9 @@ domCg_param_type::domInt2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt3::create(daeInt bytes)
+domCg_param_type::domInt3::create(daeInt)
 {
-	domCg_param_type::domInt3Ref ref = new(bytes) domCg_param_type::domInt3;
+	domCg_param_type::domInt3Ref ref = new domCg_param_type::domInt3;
 	return ref;
 }
 
@@ -2351,9 +2351,9 @@ domCg_param_type::domInt3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt4::create(daeInt bytes)
+domCg_param_type::domInt4::create(daeInt)
 {
-	domCg_param_type::domInt4Ref ref = new(bytes) domCg_param_type::domInt4;
+	domCg_param_type::domInt4Ref ref = new domCg_param_type::domInt4;
 	return ref;
 }
 
@@ -2386,9 +2386,9 @@ domCg_param_type::domInt4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt1x1::create(daeInt bytes)
+domCg_param_type::domInt1x1::create(daeInt)
 {
-	domCg_param_type::domInt1x1Ref ref = new(bytes) domCg_param_type::domInt1x1;
+	domCg_param_type::domInt1x1Ref ref = new domCg_param_type::domInt1x1;
 	return ref;
 }
 
@@ -2421,9 +2421,9 @@ domCg_param_type::domInt1x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt1x2::create(daeInt bytes)
+domCg_param_type::domInt1x2::create(daeInt)
 {
-	domCg_param_type::domInt1x2Ref ref = new(bytes) domCg_param_type::domInt1x2;
+	domCg_param_type::domInt1x2Ref ref = new domCg_param_type::domInt1x2;
 	return ref;
 }
 
@@ -2456,9 +2456,9 @@ domCg_param_type::domInt1x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt1x3::create(daeInt bytes)
+domCg_param_type::domInt1x3::create(daeInt)
 {
-	domCg_param_type::domInt1x3Ref ref = new(bytes) domCg_param_type::domInt1x3;
+	domCg_param_type::domInt1x3Ref ref = new domCg_param_type::domInt1x3;
 	return ref;
 }
 
@@ -2491,9 +2491,9 @@ domCg_param_type::domInt1x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt1x4::create(daeInt bytes)
+domCg_param_type::domInt1x4::create(daeInt)
 {
-	domCg_param_type::domInt1x4Ref ref = new(bytes) domCg_param_type::domInt1x4;
+	domCg_param_type::domInt1x4Ref ref = new domCg_param_type::domInt1x4;
 	return ref;
 }
 
@@ -2526,9 +2526,9 @@ domCg_param_type::domInt1x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt2x1::create(daeInt bytes)
+domCg_param_type::domInt2x1::create(daeInt)
 {
-	domCg_param_type::domInt2x1Ref ref = new(bytes) domCg_param_type::domInt2x1;
+	domCg_param_type::domInt2x1Ref ref = new domCg_param_type::domInt2x1;
 	return ref;
 }
 
@@ -2561,9 +2561,9 @@ domCg_param_type::domInt2x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt2x2::create(daeInt bytes)
+domCg_param_type::domInt2x2::create(daeInt)
 {
-	domCg_param_type::domInt2x2Ref ref = new(bytes) domCg_param_type::domInt2x2;
+	domCg_param_type::domInt2x2Ref ref = new domCg_param_type::domInt2x2;
 	return ref;
 }
 
@@ -2596,9 +2596,9 @@ domCg_param_type::domInt2x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt2x3::create(daeInt bytes)
+domCg_param_type::domInt2x3::create(daeInt)
 {
-	domCg_param_type::domInt2x3Ref ref = new(bytes) domCg_param_type::domInt2x3;
+	domCg_param_type::domInt2x3Ref ref = new domCg_param_type::domInt2x3;
 	return ref;
 }
 
@@ -2631,9 +2631,9 @@ domCg_param_type::domInt2x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt2x4::create(daeInt bytes)
+domCg_param_type::domInt2x4::create(daeInt)
 {
-	domCg_param_type::domInt2x4Ref ref = new(bytes) domCg_param_type::domInt2x4;
+	domCg_param_type::domInt2x4Ref ref = new domCg_param_type::domInt2x4;
 	return ref;
 }
 
@@ -2666,9 +2666,9 @@ domCg_param_type::domInt2x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt3x1::create(daeInt bytes)
+domCg_param_type::domInt3x1::create(daeInt)
 {
-	domCg_param_type::domInt3x1Ref ref = new(bytes) domCg_param_type::domInt3x1;
+	domCg_param_type::domInt3x1Ref ref = new domCg_param_type::domInt3x1;
 	return ref;
 }
 
@@ -2701,9 +2701,9 @@ domCg_param_type::domInt3x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt3x2::create(daeInt bytes)
+domCg_param_type::domInt3x2::create(daeInt)
 {
-	domCg_param_type::domInt3x2Ref ref = new(bytes) domCg_param_type::domInt3x2;
+	domCg_param_type::domInt3x2Ref ref = new domCg_param_type::domInt3x2;
 	return ref;
 }
 
@@ -2736,9 +2736,9 @@ domCg_param_type::domInt3x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt3x3::create(daeInt bytes)
+domCg_param_type::domInt3x3::create(daeInt)
 {
-	domCg_param_type::domInt3x3Ref ref = new(bytes) domCg_param_type::domInt3x3;
+	domCg_param_type::domInt3x3Ref ref = new domCg_param_type::domInt3x3;
 	return ref;
 }
 
@@ -2771,9 +2771,9 @@ domCg_param_type::domInt3x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt3x4::create(daeInt bytes)
+domCg_param_type::domInt3x4::create(daeInt)
 {
-	domCg_param_type::domInt3x4Ref ref = new(bytes) domCg_param_type::domInt3x4;
+	domCg_param_type::domInt3x4Ref ref = new domCg_param_type::domInt3x4;
 	return ref;
 }
 
@@ -2806,9 +2806,9 @@ domCg_param_type::domInt3x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt4x1::create(daeInt bytes)
+domCg_param_type::domInt4x1::create(daeInt)
 {
-	domCg_param_type::domInt4x1Ref ref = new(bytes) domCg_param_type::domInt4x1;
+	domCg_param_type::domInt4x1Ref ref = new domCg_param_type::domInt4x1;
 	return ref;
 }
 
@@ -2841,9 +2841,9 @@ domCg_param_type::domInt4x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt4x2::create(daeInt bytes)
+domCg_param_type::domInt4x2::create(daeInt)
 {
-	domCg_param_type::domInt4x2Ref ref = new(bytes) domCg_param_type::domInt4x2;
+	domCg_param_type::domInt4x2Ref ref = new domCg_param_type::domInt4x2;
 	return ref;
 }
 
@@ -2876,9 +2876,9 @@ domCg_param_type::domInt4x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt4x3::create(daeInt bytes)
+domCg_param_type::domInt4x3::create(daeInt)
 {
-	domCg_param_type::domInt4x3Ref ref = new(bytes) domCg_param_type::domInt4x3;
+	domCg_param_type::domInt4x3Ref ref = new domCg_param_type::domInt4x3;
 	return ref;
 }
 
@@ -2911,9 +2911,9 @@ domCg_param_type::domInt4x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domInt4x4::create(daeInt bytes)
+domCg_param_type::domInt4x4::create(daeInt)
 {
-	domCg_param_type::domInt4x4Ref ref = new(bytes) domCg_param_type::domInt4x4;
+	domCg_param_type::domInt4x4Ref ref = new domCg_param_type::domInt4x4;
 	return ref;
 }
 
@@ -2946,9 +2946,9 @@ domCg_param_type::domInt4x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf::create(daeInt bytes)
+domCg_param_type::domHalf::create(daeInt)
 {
-	domCg_param_type::domHalfRef ref = new(bytes) domCg_param_type::domHalf;
+	domCg_param_type::domHalfRef ref = new domCg_param_type::domHalf;
 	return ref;
 }
 
@@ -2981,9 +2981,9 @@ domCg_param_type::domHalf::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf1::create(daeInt bytes)
+domCg_param_type::domHalf1::create(daeInt)
 {
-	domCg_param_type::domHalf1Ref ref = new(bytes) domCg_param_type::domHalf1;
+	domCg_param_type::domHalf1Ref ref = new domCg_param_type::domHalf1;
 	return ref;
 }
 
@@ -3016,9 +3016,9 @@ domCg_param_type::domHalf1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf2::create(daeInt bytes)
+domCg_param_type::domHalf2::create(daeInt)
 {
-	domCg_param_type::domHalf2Ref ref = new(bytes) domCg_param_type::domHalf2;
+	domCg_param_type::domHalf2Ref ref = new domCg_param_type::domHalf2;
 	return ref;
 }
 
@@ -3051,9 +3051,9 @@ domCg_param_type::domHalf2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf3::create(daeInt bytes)
+domCg_param_type::domHalf3::create(daeInt)
 {
-	domCg_param_type::domHalf3Ref ref = new(bytes) domCg_param_type::domHalf3;
+	domCg_param_type::domHalf3Ref ref = new domCg_param_type::domHalf3;
 	return ref;
 }
 
@@ -3086,9 +3086,9 @@ domCg_param_type::domHalf3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf4::create(daeInt bytes)
+domCg_param_type::domHalf4::create(daeInt)
 {
-	domCg_param_type::domHalf4Ref ref = new(bytes) domCg_param_type::domHalf4;
+	domCg_param_type::domHalf4Ref ref = new domCg_param_type::domHalf4;
 	return ref;
 }
 
@@ -3121,9 +3121,9 @@ domCg_param_type::domHalf4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf1x1::create(daeInt bytes)
+domCg_param_type::domHalf1x1::create(daeInt)
 {
-	domCg_param_type::domHalf1x1Ref ref = new(bytes) domCg_param_type::domHalf1x1;
+	domCg_param_type::domHalf1x1Ref ref = new domCg_param_type::domHalf1x1;
 	return ref;
 }
 
@@ -3156,9 +3156,9 @@ domCg_param_type::domHalf1x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf1x2::create(daeInt bytes)
+domCg_param_type::domHalf1x2::create(daeInt)
 {
-	domCg_param_type::domHalf1x2Ref ref = new(bytes) domCg_param_type::domHalf1x2;
+	domCg_param_type::domHalf1x2Ref ref = new domCg_param_type::domHalf1x2;
 	return ref;
 }
 
@@ -3191,9 +3191,9 @@ domCg_param_type::domHalf1x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf1x3::create(daeInt bytes)
+domCg_param_type::domHalf1x3::create(daeInt)
 {
-	domCg_param_type::domHalf1x3Ref ref = new(bytes) domCg_param_type::domHalf1x3;
+	domCg_param_type::domHalf1x3Ref ref = new domCg_param_type::domHalf1x3;
 	return ref;
 }
 
@@ -3226,9 +3226,9 @@ domCg_param_type::domHalf1x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf1x4::create(daeInt bytes)
+domCg_param_type::domHalf1x4::create(daeInt)
 {
-	domCg_param_type::domHalf1x4Ref ref = new(bytes) domCg_param_type::domHalf1x4;
+	domCg_param_type::domHalf1x4Ref ref = new domCg_param_type::domHalf1x4;
 	return ref;
 }
 
@@ -3261,9 +3261,9 @@ domCg_param_type::domHalf1x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf2x1::create(daeInt bytes)
+domCg_param_type::domHalf2x1::create(daeInt)
 {
-	domCg_param_type::domHalf2x1Ref ref = new(bytes) domCg_param_type::domHalf2x1;
+	domCg_param_type::domHalf2x1Ref ref = new domCg_param_type::domHalf2x1;
 	return ref;
 }
 
@@ -3296,9 +3296,9 @@ domCg_param_type::domHalf2x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf2x2::create(daeInt bytes)
+domCg_param_type::domHalf2x2::create(daeInt)
 {
-	domCg_param_type::domHalf2x2Ref ref = new(bytes) domCg_param_type::domHalf2x2;
+	domCg_param_type::domHalf2x2Ref ref = new domCg_param_type::domHalf2x2;
 	return ref;
 }
 
@@ -3331,9 +3331,9 @@ domCg_param_type::domHalf2x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf2x3::create(daeInt bytes)
+domCg_param_type::domHalf2x3::create(daeInt)
 {
-	domCg_param_type::domHalf2x3Ref ref = new(bytes) domCg_param_type::domHalf2x3;
+	domCg_param_type::domHalf2x3Ref ref = new domCg_param_type::domHalf2x3;
 	return ref;
 }
 
@@ -3366,9 +3366,9 @@ domCg_param_type::domHalf2x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf2x4::create(daeInt bytes)
+domCg_param_type::domHalf2x4::create(daeInt)
 {
-	domCg_param_type::domHalf2x4Ref ref = new(bytes) domCg_param_type::domHalf2x4;
+	domCg_param_type::domHalf2x4Ref ref = new domCg_param_type::domHalf2x4;
 	return ref;
 }
 
@@ -3401,9 +3401,9 @@ domCg_param_type::domHalf2x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf3x1::create(daeInt bytes)
+domCg_param_type::domHalf3x1::create(daeInt)
 {
-	domCg_param_type::domHalf3x1Ref ref = new(bytes) domCg_param_type::domHalf3x1;
+	domCg_param_type::domHalf3x1Ref ref = new domCg_param_type::domHalf3x1;
 	return ref;
 }
 
@@ -3436,9 +3436,9 @@ domCg_param_type::domHalf3x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf3x2::create(daeInt bytes)
+domCg_param_type::domHalf3x2::create(daeInt)
 {
-	domCg_param_type::domHalf3x2Ref ref = new(bytes) domCg_param_type::domHalf3x2;
+	domCg_param_type::domHalf3x2Ref ref = new domCg_param_type::domHalf3x2;
 	return ref;
 }
 
@@ -3471,9 +3471,9 @@ domCg_param_type::domHalf3x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf3x3::create(daeInt bytes)
+domCg_param_type::domHalf3x3::create(daeInt)
 {
-	domCg_param_type::domHalf3x3Ref ref = new(bytes) domCg_param_type::domHalf3x3;
+	domCg_param_type::domHalf3x3Ref ref = new domCg_param_type::domHalf3x3;
 	return ref;
 }
 
@@ -3506,9 +3506,9 @@ domCg_param_type::domHalf3x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf3x4::create(daeInt bytes)
+domCg_param_type::domHalf3x4::create(daeInt)
 {
-	domCg_param_type::domHalf3x4Ref ref = new(bytes) domCg_param_type::domHalf3x4;
+	domCg_param_type::domHalf3x4Ref ref = new domCg_param_type::domHalf3x4;
 	return ref;
 }
 
@@ -3541,9 +3541,9 @@ domCg_param_type::domHalf3x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf4x1::create(daeInt bytes)
+domCg_param_type::domHalf4x1::create(daeInt)
 {
-	domCg_param_type::domHalf4x1Ref ref = new(bytes) domCg_param_type::domHalf4x1;
+	domCg_param_type::domHalf4x1Ref ref = new domCg_param_type::domHalf4x1;
 	return ref;
 }
 
@@ -3576,9 +3576,9 @@ domCg_param_type::domHalf4x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf4x2::create(daeInt bytes)
+domCg_param_type::domHalf4x2::create(daeInt)
 {
-	domCg_param_type::domHalf4x2Ref ref = new(bytes) domCg_param_type::domHalf4x2;
+	domCg_param_type::domHalf4x2Ref ref = new domCg_param_type::domHalf4x2;
 	return ref;
 }
 
@@ -3611,9 +3611,9 @@ domCg_param_type::domHalf4x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf4x3::create(daeInt bytes)
+domCg_param_type::domHalf4x3::create(daeInt)
 {
-	domCg_param_type::domHalf4x3Ref ref = new(bytes) domCg_param_type::domHalf4x3;
+	domCg_param_type::domHalf4x3Ref ref = new domCg_param_type::domHalf4x3;
 	return ref;
 }
 
@@ -3646,9 +3646,9 @@ domCg_param_type::domHalf4x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domHalf4x4::create(daeInt bytes)
+domCg_param_type::domHalf4x4::create(daeInt)
 {
-	domCg_param_type::domHalf4x4Ref ref = new(bytes) domCg_param_type::domHalf4x4;
+	domCg_param_type::domHalf4x4Ref ref = new domCg_param_type::domHalf4x4;
 	return ref;
 }
 
@@ -3681,9 +3681,9 @@ domCg_param_type::domHalf4x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed::create(daeInt bytes)
+domCg_param_type::domFixed::create(daeInt)
 {
-	domCg_param_type::domFixedRef ref = new(bytes) domCg_param_type::domFixed;
+	domCg_param_type::domFixedRef ref = new domCg_param_type::domFixed;
 	return ref;
 }
 
@@ -3716,9 +3716,9 @@ domCg_param_type::domFixed::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed1::create(daeInt bytes)
+domCg_param_type::domFixed1::create(daeInt)
 {
-	domCg_param_type::domFixed1Ref ref = new(bytes) domCg_param_type::domFixed1;
+	domCg_param_type::domFixed1Ref ref = new domCg_param_type::domFixed1;
 	return ref;
 }
 
@@ -3751,9 +3751,9 @@ domCg_param_type::domFixed1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed2::create(daeInt bytes)
+domCg_param_type::domFixed2::create(daeInt)
 {
-	domCg_param_type::domFixed2Ref ref = new(bytes) domCg_param_type::domFixed2;
+	domCg_param_type::domFixed2Ref ref = new domCg_param_type::domFixed2;
 	return ref;
 }
 
@@ -3786,9 +3786,9 @@ domCg_param_type::domFixed2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed3::create(daeInt bytes)
+domCg_param_type::domFixed3::create(daeInt)
 {
-	domCg_param_type::domFixed3Ref ref = new(bytes) domCg_param_type::domFixed3;
+	domCg_param_type::domFixed3Ref ref = new domCg_param_type::domFixed3;
 	return ref;
 }
 
@@ -3821,9 +3821,9 @@ domCg_param_type::domFixed3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed4::create(daeInt bytes)
+domCg_param_type::domFixed4::create(daeInt)
 {
-	domCg_param_type::domFixed4Ref ref = new(bytes) domCg_param_type::domFixed4;
+	domCg_param_type::domFixed4Ref ref = new domCg_param_type::domFixed4;
 	return ref;
 }
 
@@ -3856,9 +3856,9 @@ domCg_param_type::domFixed4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed1x1::create(daeInt bytes)
+domCg_param_type::domFixed1x1::create(daeInt)
 {
-	domCg_param_type::domFixed1x1Ref ref = new(bytes) domCg_param_type::domFixed1x1;
+	domCg_param_type::domFixed1x1Ref ref = new domCg_param_type::domFixed1x1;
 	return ref;
 }
 
@@ -3891,9 +3891,9 @@ domCg_param_type::domFixed1x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed1x2::create(daeInt bytes)
+domCg_param_type::domFixed1x2::create(daeInt)
 {
-	domCg_param_type::domFixed1x2Ref ref = new(bytes) domCg_param_type::domFixed1x2;
+	domCg_param_type::domFixed1x2Ref ref = new domCg_param_type::domFixed1x2;
 	return ref;
 }
 
@@ -3926,9 +3926,9 @@ domCg_param_type::domFixed1x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed1x3::create(daeInt bytes)
+domCg_param_type::domFixed1x3::create(daeInt)
 {
-	domCg_param_type::domFixed1x3Ref ref = new(bytes) domCg_param_type::domFixed1x3;
+	domCg_param_type::domFixed1x3Ref ref = new domCg_param_type::domFixed1x3;
 	return ref;
 }
 
@@ -3961,9 +3961,9 @@ domCg_param_type::domFixed1x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed1x4::create(daeInt bytes)
+domCg_param_type::domFixed1x4::create(daeInt)
 {
-	domCg_param_type::domFixed1x4Ref ref = new(bytes) domCg_param_type::domFixed1x4;
+	domCg_param_type::domFixed1x4Ref ref = new domCg_param_type::domFixed1x4;
 	return ref;
 }
 
@@ -3996,9 +3996,9 @@ domCg_param_type::domFixed1x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed2x1::create(daeInt bytes)
+domCg_param_type::domFixed2x1::create(daeInt)
 {
-	domCg_param_type::domFixed2x1Ref ref = new(bytes) domCg_param_type::domFixed2x1;
+	domCg_param_type::domFixed2x1Ref ref = new domCg_param_type::domFixed2x1;
 	return ref;
 }
 
@@ -4031,9 +4031,9 @@ domCg_param_type::domFixed2x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed2x2::create(daeInt bytes)
+domCg_param_type::domFixed2x2::create(daeInt)
 {
-	domCg_param_type::domFixed2x2Ref ref = new(bytes) domCg_param_type::domFixed2x2;
+	domCg_param_type::domFixed2x2Ref ref = new domCg_param_type::domFixed2x2;
 	return ref;
 }
 
@@ -4066,9 +4066,9 @@ domCg_param_type::domFixed2x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed2x3::create(daeInt bytes)
+domCg_param_type::domFixed2x3::create(daeInt)
 {
-	domCg_param_type::domFixed2x3Ref ref = new(bytes) domCg_param_type::domFixed2x3;
+	domCg_param_type::domFixed2x3Ref ref = new domCg_param_type::domFixed2x3;
 	return ref;
 }
 
@@ -4101,9 +4101,9 @@ domCg_param_type::domFixed2x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed2x4::create(daeInt bytes)
+domCg_param_type::domFixed2x4::create(daeInt)
 {
-	domCg_param_type::domFixed2x4Ref ref = new(bytes) domCg_param_type::domFixed2x4;
+	domCg_param_type::domFixed2x4Ref ref = new domCg_param_type::domFixed2x4;
 	return ref;
 }
 
@@ -4136,9 +4136,9 @@ domCg_param_type::domFixed2x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed3x1::create(daeInt bytes)
+domCg_param_type::domFixed3x1::create(daeInt)
 {
-	domCg_param_type::domFixed3x1Ref ref = new(bytes) domCg_param_type::domFixed3x1;
+	domCg_param_type::domFixed3x1Ref ref = new domCg_param_type::domFixed3x1;
 	return ref;
 }
 
@@ -4171,9 +4171,9 @@ domCg_param_type::domFixed3x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed3x2::create(daeInt bytes)
+domCg_param_type::domFixed3x2::create(daeInt)
 {
-	domCg_param_type::domFixed3x2Ref ref = new(bytes) domCg_param_type::domFixed3x2;
+	domCg_param_type::domFixed3x2Ref ref = new domCg_param_type::domFixed3x2;
 	return ref;
 }
 
@@ -4206,9 +4206,9 @@ domCg_param_type::domFixed3x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed3x3::create(daeInt bytes)
+domCg_param_type::domFixed3x3::create(daeInt)
 {
-	domCg_param_type::domFixed3x3Ref ref = new(bytes) domCg_param_type::domFixed3x3;
+	domCg_param_type::domFixed3x3Ref ref = new domCg_param_type::domFixed3x3;
 	return ref;
 }
 
@@ -4241,9 +4241,9 @@ domCg_param_type::domFixed3x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed3x4::create(daeInt bytes)
+domCg_param_type::domFixed3x4::create(daeInt)
 {
-	domCg_param_type::domFixed3x4Ref ref = new(bytes) domCg_param_type::domFixed3x4;
+	domCg_param_type::domFixed3x4Ref ref = new domCg_param_type::domFixed3x4;
 	return ref;
 }
 
@@ -4276,9 +4276,9 @@ domCg_param_type::domFixed3x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed4x1::create(daeInt bytes)
+domCg_param_type::domFixed4x1::create(daeInt)
 {
-	domCg_param_type::domFixed4x1Ref ref = new(bytes) domCg_param_type::domFixed4x1;
+	domCg_param_type::domFixed4x1Ref ref = new domCg_param_type::domFixed4x1;
 	return ref;
 }
 
@@ -4311,9 +4311,9 @@ domCg_param_type::domFixed4x1::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed4x2::create(daeInt bytes)
+domCg_param_type::domFixed4x2::create(daeInt)
 {
-	domCg_param_type::domFixed4x2Ref ref = new(bytes) domCg_param_type::domFixed4x2;
+	domCg_param_type::domFixed4x2Ref ref = new domCg_param_type::domFixed4x2;
 	return ref;
 }
 
@@ -4346,9 +4346,9 @@ domCg_param_type::domFixed4x2::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed4x3::create(daeInt bytes)
+domCg_param_type::domFixed4x3::create(daeInt)
 {
-	domCg_param_type::domFixed4x3Ref ref = new(bytes) domCg_param_type::domFixed4x3;
+	domCg_param_type::domFixed4x3Ref ref = new domCg_param_type::domFixed4x3;
 	return ref;
 }
 
@@ -4381,9 +4381,9 @@ domCg_param_type::domFixed4x3::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domFixed4x4::create(daeInt bytes)
+domCg_param_type::domFixed4x4::create(daeInt)
 {
-	domCg_param_type::domFixed4x4Ref ref = new(bytes) domCg_param_type::domFixed4x4;
+	domCg_param_type::domFixed4x4Ref ref = new domCg_param_type::domFixed4x4;
 	return ref;
 }
 
@@ -4416,9 +4416,9 @@ domCg_param_type::domFixed4x4::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domString::create(daeInt bytes)
+domCg_param_type::domString::create(daeInt)
 {
-	domCg_param_type::domStringRef ref = new(bytes) domCg_param_type::domString;
+	domCg_param_type::domStringRef ref = new domCg_param_type::domString;
 	return ref;
 }
 
@@ -4451,9 +4451,9 @@ domCg_param_type::domString::registerElement()
 }
 
 daeElementRef
-domCg_param_type::domEnum::create(daeInt bytes)
+domCg_param_type::domEnum::create(daeInt)
 {
-	domCg_param_type::domEnumRef ref = new(bytes) domCg_param_type::domEnum;
+	domCg_param_type::domEnumRef ref = new domCg_param_type::domEnum;
 	return ref;
 }
 

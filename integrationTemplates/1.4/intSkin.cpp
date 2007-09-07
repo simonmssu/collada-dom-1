@@ -27,9 +27,9 @@ daeMetaElement * intSkin::intVertex_weights::intV::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intSkin::create(daeInt bytes)
+intSkin::create(daeInt)
 {
-	intSkinRef ref = new(bytes) intSkin;
+	intSkinRef ref = new intSkin;
 	return ref;
 }
 
@@ -51,9 +51,9 @@ intSkin::registerElement()
 }
 
 daeElementRef
-intSkin::intBind_shape_matrix::create(daeInt bytes)
+intSkin::intBind_shape_matrix::create(daeInt)
 {
-	intSkin::intBind_shape_matrixRef ref = new(bytes) intSkin::intBind_shape_matrix;
+	intSkin::intBind_shape_matrixRef ref = new intSkin::intBind_shape_matrix;
 	return ref;
 }
 
@@ -75,9 +75,9 @@ intSkin::intBind_shape_matrix::registerElement()
 }
 
 daeElementRef
-intSkin::intJoints::create(daeInt bytes)
+intSkin::intJoints::create(daeInt)
 {
-	intSkin::intJointsRef ref = new(bytes) intSkin::intJoints;
+	intSkin::intJointsRef ref = new intSkin::intJoints;
 	return ref;
 }
 
@@ -99,9 +99,9 @@ intSkin::intJoints::registerElement()
 }
 
 daeElementRef
-intSkin::intVertex_weights::create(daeInt bytes)
+intSkin::intVertex_weights::create(daeInt)
 {
-	intSkin::intVertex_weightsRef ref = new(bytes) intSkin::intVertex_weights;
+	intSkin::intVertex_weightsRef ref = new intSkin::intVertex_weights;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ intSkin::intVertex_weights::registerElement()
 }
 
 daeElementRef
-intSkin::intVertex_weights::intVcount::create(daeInt bytes)
+intSkin::intVertex_weights::intVcount::create(daeInt)
 {
-	intSkin::intVertex_weights::intVcountRef ref = new(bytes) intSkin::intVertex_weights::intVcount;
+	intSkin::intVertex_weights::intVcountRef ref = new intSkin::intVertex_weights::intVcount;
 	return ref;
 }
 
@@ -147,9 +147,9 @@ intSkin::intVertex_weights::intVcount::registerElement()
 }
 
 daeElementRef
-intSkin::intVertex_weights::intV::create(daeInt bytes)
+intSkin::intVertex_weights::intV::create(daeInt)
 {
-	intSkin::intVertex_weights::intVRef ref = new(bytes) intSkin::intVertex_weights::intV;
+	intSkin::intVertex_weights::intVRef ref = new intSkin::intVertex_weights::intV;
 	return ref;
 }
 

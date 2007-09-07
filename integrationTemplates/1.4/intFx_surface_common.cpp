@@ -27,9 +27,9 @@ daeMetaElement * intFx_surface_common::intMipmap_generate::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_surface_common::create(daeInt bytes)
+intFx_surface_common::create(daeInt)
 {
-	intFx_surface_commonRef ref = new(bytes) intFx_surface_common;
+	intFx_surface_commonRef ref = new intFx_surface_common;
 	return ref;
 }
 
@@ -51,9 +51,9 @@ intFx_surface_common::registerElement()
 }
 
 daeElementRef
-intFx_surface_common::intFormat::create(daeInt bytes)
+intFx_surface_common::intFormat::create(daeInt)
 {
-	intFx_surface_common::intFormatRef ref = new(bytes) intFx_surface_common::intFormat;
+	intFx_surface_common::intFormatRef ref = new intFx_surface_common::intFormat;
 	return ref;
 }
 
@@ -75,9 +75,9 @@ intFx_surface_common::intFormat::registerElement()
 }
 
 daeElementRef
-intFx_surface_common::intSize::create(daeInt bytes)
+intFx_surface_common::intSize::create(daeInt)
 {
-	intFx_surface_common::intSizeRef ref = new(bytes) intFx_surface_common::intSize;
+	intFx_surface_common::intSizeRef ref = new intFx_surface_common::intSize;
 	return ref;
 }
 
@@ -99,9 +99,9 @@ intFx_surface_common::intSize::registerElement()
 }
 
 daeElementRef
-intFx_surface_common::intViewport_ratio::create(daeInt bytes)
+intFx_surface_common::intViewport_ratio::create(daeInt)
 {
-	intFx_surface_common::intViewport_ratioRef ref = new(bytes) intFx_surface_common::intViewport_ratio;
+	intFx_surface_common::intViewport_ratioRef ref = new intFx_surface_common::intViewport_ratio;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ intFx_surface_common::intViewport_ratio::registerElement()
 }
 
 daeElementRef
-intFx_surface_common::intMip_levels::create(daeInt bytes)
+intFx_surface_common::intMip_levels::create(daeInt)
 {
-	intFx_surface_common::intMip_levelsRef ref = new(bytes) intFx_surface_common::intMip_levels;
+	intFx_surface_common::intMip_levelsRef ref = new intFx_surface_common::intMip_levels;
 	return ref;
 }
 
@@ -147,9 +147,9 @@ intFx_surface_common::intMip_levels::registerElement()
 }
 
 daeElementRef
-intFx_surface_common::intMipmap_generate::create(daeInt bytes)
+intFx_surface_common::intMipmap_generate::create(daeInt)
 {
-	intFx_surface_common::intMipmap_generateRef ref = new(bytes) intFx_surface_common::intMipmap_generate;
+	intFx_surface_common::intMipmap_generateRef ref = new intFx_surface_common::intMipmap_generate;
 	return ref;
 }
 

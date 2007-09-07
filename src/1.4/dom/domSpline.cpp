@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSpline::create(daeInt bytes)
+domSpline::create(daeInt)
 {
-	domSplineRef ref = new(bytes) domSpline;
+	domSplineRef ref = new domSpline;
 	return ref;
 }
 
@@ -82,9 +82,9 @@ domSpline::registerElement()
 }
 
 daeElementRef
-domSpline::domControl_vertices::create(daeInt bytes)
+domSpline::domControl_vertices::create(daeInt)
 {
-	domSpline::domControl_verticesRef ref = new(bytes) domSpline::domControl_vertices;
+	domSpline::domControl_verticesRef ref = new domSpline::domControl_vertices;
 	return ref;
 }
 

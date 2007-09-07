@@ -31,9 +31,9 @@ daeMetaElement * intProfile_GLSL::intTechnique::intPass::intShader::intBind::int
 // ********************************************************
 
 daeElementRef
-intProfile_GLSL::create(daeInt bytes)
+intProfile_GLSL::create(daeInt)
 {
-	intProfile_GLSLRef ref = new(bytes) intProfile_GLSL;
+	intProfile_GLSLRef ref = new intProfile_GLSL;
 	return ref;
 }
 
@@ -55,9 +55,9 @@ intProfile_GLSL::registerElement()
 }
 
 daeElementRef
-intProfile_GLSL::intTechnique::create(daeInt bytes)
+intProfile_GLSL::intTechnique::create(daeInt)
 {
-	intProfile_GLSL::intTechniqueRef ref = new(bytes) intProfile_GLSL::intTechnique;
+	intProfile_GLSL::intTechniqueRef ref = new intProfile_GLSL::intTechnique;
 	return ref;
 }
 
@@ -79,9 +79,9 @@ intProfile_GLSL::intTechnique::registerElement()
 }
 
 daeElementRef
-intProfile_GLSL::intTechnique::intPass::create(daeInt bytes)
+intProfile_GLSL::intTechnique::intPass::create(daeInt)
 {
-	intProfile_GLSL::intTechnique::intPassRef ref = new(bytes) intProfile_GLSL::intTechnique::intPass;
+	intProfile_GLSL::intTechnique::intPassRef ref = new intProfile_GLSL::intTechnique::intPass;
 	return ref;
 }
 
@@ -103,9 +103,9 @@ intProfile_GLSL::intTechnique::intPass::registerElement()
 }
 
 daeElementRef
-intProfile_GLSL::intTechnique::intPass::intDraw::create(daeInt bytes)
+intProfile_GLSL::intTechnique::intPass::intDraw::create(daeInt)
 {
-	intProfile_GLSL::intTechnique::intPass::intDrawRef ref = new(bytes) intProfile_GLSL::intTechnique::intPass::intDraw;
+	intProfile_GLSL::intTechnique::intPass::intDrawRef ref = new intProfile_GLSL::intTechnique::intPass::intDraw;
 	return ref;
 }
 
@@ -127,9 +127,9 @@ intProfile_GLSL::intTechnique::intPass::intDraw::registerElement()
 }
 
 daeElementRef
-intProfile_GLSL::intTechnique::intPass::intShader::create(daeInt bytes)
+intProfile_GLSL::intTechnique::intPass::intShader::create(daeInt)
 {
-	intProfile_GLSL::intTechnique::intPass::intShaderRef ref = new(bytes) intProfile_GLSL::intTechnique::intPass::intShader;
+	intProfile_GLSL::intTechnique::intPass::intShaderRef ref = new intProfile_GLSL::intTechnique::intPass::intShader;
 	return ref;
 }
 
@@ -151,9 +151,9 @@ intProfile_GLSL::intTechnique::intPass::intShader::registerElement()
 }
 
 daeElementRef
-intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_target::create(daeInt bytes)
+intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_target::create(daeInt)
 {
-	intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_targetRef ref = new(bytes) intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_target;
+	intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_targetRef ref = new intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_target;
 	return ref;
 }
 
@@ -175,9 +175,9 @@ intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_target::registerE
 }
 
 daeElementRef
-intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_options::create(daeInt bytes)
+intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_options::create(daeInt)
 {
-	intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_optionsRef ref = new(bytes) intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_options;
+	intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_optionsRef ref = new intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_options;
 	return ref;
 }
 
@@ -199,9 +199,9 @@ intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_options::register
 }
 
 daeElementRef
-intProfile_GLSL::intTechnique::intPass::intShader::intName::create(daeInt bytes)
+intProfile_GLSL::intTechnique::intPass::intShader::intName::create(daeInt)
 {
-	intProfile_GLSL::intTechnique::intPass::intShader::intNameRef ref = new(bytes) intProfile_GLSL::intTechnique::intPass::intShader::intName;
+	intProfile_GLSL::intTechnique::intPass::intShader::intNameRef ref = new intProfile_GLSL::intTechnique::intPass::intShader::intName;
 	return ref;
 }
 
@@ -223,9 +223,9 @@ intProfile_GLSL::intTechnique::intPass::intShader::intName::registerElement()
 }
 
 daeElementRef
-intProfile_GLSL::intTechnique::intPass::intShader::intBind::create(daeInt bytes)
+intProfile_GLSL::intTechnique::intPass::intShader::intBind::create(daeInt)
 {
-	intProfile_GLSL::intTechnique::intPass::intShader::intBindRef ref = new(bytes) intProfile_GLSL::intTechnique::intPass::intShader::intBind;
+	intProfile_GLSL::intTechnique::intPass::intShader::intBindRef ref = new intProfile_GLSL::intTechnique::intPass::intShader::intBind;
 	return ref;
 }
 
@@ -247,9 +247,9 @@ intProfile_GLSL::intTechnique::intPass::intShader::intBind::registerElement()
 }
 
 daeElementRef
-intProfile_GLSL::intTechnique::intPass::intShader::intBind::intParam::create(daeInt bytes)
+intProfile_GLSL::intTechnique::intPass::intShader::intBind::intParam::create(daeInt)
 {
-	intProfile_GLSL::intTechnique::intPass::intShader::intBind::intParamRef ref = new(bytes) intProfile_GLSL::intTechnique::intPass::intShader::intBind::intParam;
+	intProfile_GLSL::intTechnique::intPass::intShader::intBind::intParamRef ref = new intProfile_GLSL::intTechnique::intPass::intShader::intBind::intParam;
 	return ref;
 }
 

@@ -23,9 +23,9 @@ daeMetaElement * intBind_material::intTechnique_common::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intBind_material::create(daeInt bytes)
+intBind_material::create(daeInt)
 {
-	intBind_materialRef ref = new(bytes) intBind_material;
+	intBind_materialRef ref = new intBind_material;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intBind_material::registerElement()
 }
 
 daeElementRef
-intBind_material::intTechnique_common::create(daeInt bytes)
+intBind_material::intTechnique_common::create(daeInt)
 {
-	intBind_material::intTechnique_commonRef ref = new(bytes) intBind_material::intTechnique_common;
+	intBind_material::intTechnique_commonRef ref = new intBind_material::intTechnique_common;
 	return ref;
 }
 

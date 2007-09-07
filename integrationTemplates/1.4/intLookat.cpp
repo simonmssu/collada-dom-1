@@ -22,9 +22,9 @@ daeMetaElement * intLookat::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLookat::create(daeInt bytes)
+intLookat::create(daeInt)
 {
-	intLookatRef ref = new(bytes) intLookat;
+	intLookatRef ref = new intLookat;
 	return ref;
 }
 

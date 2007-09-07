@@ -23,9 +23,9 @@ daeMetaElement * intPhysics_material::intTechnique_common::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intPhysics_material::create(daeInt bytes)
+intPhysics_material::create(daeInt)
 {
-	intPhysics_materialRef ref = new(bytes) intPhysics_material;
+	intPhysics_materialRef ref = new intPhysics_material;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intPhysics_material::registerElement()
 }
 
 daeElementRef
-intPhysics_material::intTechnique_common::create(daeInt bytes)
+intPhysics_material::intTechnique_common::create(daeInt)
 {
-	intPhysics_material::intTechnique_commonRef ref = new(bytes) intPhysics_material::intTechnique_common;
+	intPhysics_material::intTechnique_commonRef ref = new intPhysics_material::intTechnique_common;
 	return ref;
 }
 

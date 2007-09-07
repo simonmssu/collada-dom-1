@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domController::create(daeInt bytes)
+domController::create(daeInt)
 {
-	domControllerRef ref = new(bytes) domController;
+	domControllerRef ref = new domController;
 	return ref;
 }
 
@@ -76,7 +76,7 @@ domController::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domController,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domController,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domController,_CMData), 1);
 	//	Add attribute: id
  	{

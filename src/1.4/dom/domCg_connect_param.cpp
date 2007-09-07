@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_connect_param::create(daeInt bytes)
+domCg_connect_param::create(daeInt)
 {
-	domCg_connect_paramRef ref = new(bytes) domCg_connect_param;
+	domCg_connect_paramRef ref = new domCg_connect_param;
 	return ref;
 }
 

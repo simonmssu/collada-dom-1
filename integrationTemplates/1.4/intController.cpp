@@ -22,9 +22,9 @@ daeMetaElement * intController::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intController::create(daeInt bytes)
+intController::create(daeInt)
 {
-	intControllerRef ref = new(bytes) intController;
+	intControllerRef ref = new intController;
 	return ref;
 }
 

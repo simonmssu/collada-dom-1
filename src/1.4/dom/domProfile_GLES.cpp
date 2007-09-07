@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domProfile_GLES::create(daeInt bytes)
+domProfile_GLES::create(daeInt)
 {
-	domProfile_GLESRef ref = new(bytes) domProfile_GLES;
+	domProfile_GLESRef ref = new domProfile_GLES;
 	return ref;
 }
 
@@ -82,7 +82,7 @@ domProfile_GLES::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_GLES,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLES,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_GLES,_CMData), 1);
 	//	Add attribute: id
  	{
@@ -117,9 +117,9 @@ domProfile_GLES::registerElement()
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::create(daeInt bytes)
+domProfile_GLES::domTechnique::create(daeInt)
 {
-	domProfile_GLES::domTechniqueRef ref = new(bytes) domProfile_GLES::domTechnique;
+	domProfile_GLES::domTechniqueRef ref = new domProfile_GLES::domTechnique;
 	return ref;
 }
 
@@ -191,7 +191,7 @@ domProfile_GLES::domTechnique::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_GLES::domTechnique,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLES::domTechnique,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_GLES::domTechnique,_CMData), 1);
 	//	Add attribute: id
  	{
@@ -224,9 +224,9 @@ domProfile_GLES::domTechnique::registerElement()
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domSetparam::create(daeInt bytes)
+domProfile_GLES::domTechnique::domSetparam::create(daeInt)
 {
-	domProfile_GLES::domTechnique::domSetparamRef ref = new(bytes) domProfile_GLES::domTechnique::domSetparam;
+	domProfile_GLES::domTechnique::domSetparamRef ref = new domProfile_GLES::domTechnique::domSetparam;
 	return ref;
 }
 
@@ -280,9 +280,9 @@ domProfile_GLES::domTechnique::domSetparam::registerElement()
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::create(daeInt bytes)
+domProfile_GLES::domTechnique::domPass::create(daeInt)
 {
-	domProfile_GLES::domTechnique::domPassRef ref = new(bytes) domProfile_GLES::domTechnique::domPass;
+	domProfile_GLES::domTechnique::domPassRef ref = new domProfile_GLES::domTechnique::domPass;
 	return ref;
 }
 
@@ -372,7 +372,7 @@ domProfile_GLES::domTechnique::domPass::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_GLES::domTechnique::domPass,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLES::domTechnique::domPass,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_GLES::domTechnique::domPass,_CMData), 1);
 	//	Add attribute: sid
  	{
@@ -394,9 +394,9 @@ domProfile_GLES::domTechnique::domPass::registerElement()
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domColor_target::create(daeInt bytes)
+domProfile_GLES::domTechnique::domPass::domColor_target::create(daeInt)
 {
-	domProfile_GLES::domTechnique::domPass::domColor_targetRef ref = new(bytes) domProfile_GLES::domTechnique::domPass::domColor_target;
+	domProfile_GLES::domTechnique::domPass::domColor_targetRef ref = new domProfile_GLES::domTechnique::domPass::domColor_target;
 	return ref;
 }
 
@@ -429,9 +429,9 @@ domProfile_GLES::domTechnique::domPass::domColor_target::registerElement()
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domDepth_target::create(daeInt bytes)
+domProfile_GLES::domTechnique::domPass::domDepth_target::create(daeInt)
 {
-	domProfile_GLES::domTechnique::domPass::domDepth_targetRef ref = new(bytes) domProfile_GLES::domTechnique::domPass::domDepth_target;
+	domProfile_GLES::domTechnique::domPass::domDepth_targetRef ref = new domProfile_GLES::domTechnique::domPass::domDepth_target;
 	return ref;
 }
 
@@ -464,9 +464,9 @@ domProfile_GLES::domTechnique::domPass::domDepth_target::registerElement()
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domStencil_target::create(daeInt bytes)
+domProfile_GLES::domTechnique::domPass::domStencil_target::create(daeInt)
 {
-	domProfile_GLES::domTechnique::domPass::domStencil_targetRef ref = new(bytes) domProfile_GLES::domTechnique::domPass::domStencil_target;
+	domProfile_GLES::domTechnique::domPass::domStencil_targetRef ref = new domProfile_GLES::domTechnique::domPass::domStencil_target;
 	return ref;
 }
 
@@ -499,9 +499,9 @@ domProfile_GLES::domTechnique::domPass::domStencil_target::registerElement()
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domColor_clear::create(daeInt bytes)
+domProfile_GLES::domTechnique::domPass::domColor_clear::create(daeInt)
 {
-	domProfile_GLES::domTechnique::domPass::domColor_clearRef ref = new(bytes) domProfile_GLES::domTechnique::domPass::domColor_clear;
+	domProfile_GLES::domTechnique::domPass::domColor_clearRef ref = new domProfile_GLES::domTechnique::domPass::domColor_clear;
 	return ref;
 }
 
@@ -534,9 +534,9 @@ domProfile_GLES::domTechnique::domPass::domColor_clear::registerElement()
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domDepth_clear::create(daeInt bytes)
+domProfile_GLES::domTechnique::domPass::domDepth_clear::create(daeInt)
 {
-	domProfile_GLES::domTechnique::domPass::domDepth_clearRef ref = new(bytes) domProfile_GLES::domTechnique::domPass::domDepth_clear;
+	domProfile_GLES::domTechnique::domPass::domDepth_clearRef ref = new domProfile_GLES::domTechnique::domPass::domDepth_clear;
 	return ref;
 }
 
@@ -569,9 +569,9 @@ domProfile_GLES::domTechnique::domPass::domDepth_clear::registerElement()
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domStencil_clear::create(daeInt bytes)
+domProfile_GLES::domTechnique::domPass::domStencil_clear::create(daeInt)
 {
-	domProfile_GLES::domTechnique::domPass::domStencil_clearRef ref = new(bytes) domProfile_GLES::domTechnique::domPass::domStencil_clear;
+	domProfile_GLES::domTechnique::domPass::domStencil_clearRef ref = new domProfile_GLES::domTechnique::domPass::domStencil_clear;
 	return ref;
 }
 
@@ -604,9 +604,9 @@ domProfile_GLES::domTechnique::domPass::domStencil_clear::registerElement()
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domDraw::create(daeInt bytes)
+domProfile_GLES::domTechnique::domPass::domDraw::create(daeInt)
 {
-	domProfile_GLES::domTechnique::domPass::domDrawRef ref = new(bytes) domProfile_GLES::domTechnique::domPass::domDraw;
+	domProfile_GLES::domTechnique::domPass::domDrawRef ref = new domProfile_GLES::domTechnique::domPass::domDraw;
 	return ref;
 }
 

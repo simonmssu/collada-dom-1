@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_controller::create(daeInt bytes)
+domInstance_controller::create(daeInt)
 {
-	domInstance_controllerRef ref = new(bytes) domInstance_controller;
+	domInstance_controllerRef ref = new domInstance_controller;
 	ref->attrUrl.setContainer( (domInstance_controller*)ref );
 	return ref;
 }
@@ -105,9 +105,9 @@ domInstance_controller::registerElement()
 }
 
 daeElementRef
-domInstance_controller::domSkeleton::create(daeInt bytes)
+domInstance_controller::domSkeleton::create(daeInt)
 {
-	domInstance_controller::domSkeletonRef ref = new(bytes) domInstance_controller::domSkeleton;
+	domInstance_controller::domSkeletonRef ref = new domInstance_controller::domSkeleton;
 	ref->_value.setContainer( (domInstance_controller::domSkeleton*)ref );
 	return ref;
 }

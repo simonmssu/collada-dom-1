@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_setparam::create(daeInt bytes)
+domCg_setparam::create(daeInt)
 {
-	domCg_setparamRef ref = new(bytes) domCg_setparam;
+	domCg_setparamRef ref = new domCg_setparam;
 	return ref;
 }
 
@@ -70,7 +70,7 @@ domCg_setparam::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCg_setparam,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCg_setparam,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domCg_setparam,_CMData), 1);
 	//	Add attribute: ref
  	{

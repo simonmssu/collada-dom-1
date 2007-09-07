@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_newarray_type::create(daeInt bytes)
+domCg_newarray_type::create(daeInt)
 {
-	domCg_newarray_typeRef ref = new(bytes) domCg_newarray_type;
+	domCg_newarray_typeRef ref = new domCg_newarray_type;
 	return ref;
 }
 
@@ -70,7 +70,7 @@ domCg_newarray_type::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCg_newarray_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCg_newarray_type,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domCg_newarray_type,_CMData), 1);
 	//	Add attribute: length
  	{

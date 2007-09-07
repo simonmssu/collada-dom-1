@@ -22,9 +22,9 @@ daeMetaElement * intConvex_mesh::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intConvex_mesh::create(daeInt bytes)
+intConvex_mesh::create(daeInt)
 {
-	intConvex_meshRef ref = new(bytes) intConvex_mesh;
+	intConvex_meshRef ref = new intConvex_mesh;
 	return ref;
 }
 

@@ -22,9 +22,9 @@ daeMetaElement * intParam::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intParam::create(daeInt bytes)
+intParam::create(daeInt)
 {
-	intParamRef ref = new(bytes) intParam;
+	intParamRef ref = new intParam;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_physics_model::create(daeInt bytes)
+domInstance_physics_model::create(daeInt)
 {
-	domInstance_physics_modelRef ref = new(bytes) domInstance_physics_model;
+	domInstance_physics_modelRef ref = new domInstance_physics_model;
 	ref->attrUrl.setContainer( (domInstance_physics_model*)ref );
 	ref->attrParent.setContainer( (domInstance_physics_model*)ref );
 	return ref;

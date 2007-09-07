@@ -22,9 +22,9 @@ daeMetaElement * intInstance_camera::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intInstance_camera::create(daeInt bytes)
+intInstance_camera::create(daeInt)
 {
-	intInstance_cameraRef ref = new(bytes) intInstance_camera;
+	intInstance_cameraRef ref = new intInstance_camera;
 	return ref;
 }
 

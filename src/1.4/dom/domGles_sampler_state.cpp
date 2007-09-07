@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_sampler_state::create(daeInt bytes)
+domGles_sampler_state::create(daeInt)
 {
-	domGles_sampler_stateRef ref = new(bytes) domGles_sampler_state;
+	domGles_sampler_stateRef ref = new domGles_sampler_state;
 	return ref;
 }
 
@@ -111,9 +111,9 @@ domGles_sampler_state::registerElement()
 }
 
 daeElementRef
-domGles_sampler_state::domWrap_s::create(daeInt bytes)
+domGles_sampler_state::domWrap_s::create(daeInt)
 {
-	domGles_sampler_state::domWrap_sRef ref = new(bytes) domGles_sampler_state::domWrap_s;
+	domGles_sampler_state::domWrap_sRef ref = new domGles_sampler_state::domWrap_s;
 	return ref;
 }
 
@@ -146,9 +146,9 @@ domGles_sampler_state::domWrap_s::registerElement()
 }
 
 daeElementRef
-domGles_sampler_state::domWrap_t::create(daeInt bytes)
+domGles_sampler_state::domWrap_t::create(daeInt)
 {
-	domGles_sampler_state::domWrap_tRef ref = new(bytes) domGles_sampler_state::domWrap_t;
+	domGles_sampler_state::domWrap_tRef ref = new domGles_sampler_state::domWrap_t;
 	return ref;
 }
 
@@ -181,9 +181,9 @@ domGles_sampler_state::domWrap_t::registerElement()
 }
 
 daeElementRef
-domGles_sampler_state::domMinfilter::create(daeInt bytes)
+domGles_sampler_state::domMinfilter::create(daeInt)
 {
-	domGles_sampler_state::domMinfilterRef ref = new(bytes) domGles_sampler_state::domMinfilter;
+	domGles_sampler_state::domMinfilterRef ref = new domGles_sampler_state::domMinfilter;
 	return ref;
 }
 
@@ -216,9 +216,9 @@ domGles_sampler_state::domMinfilter::registerElement()
 }
 
 daeElementRef
-domGles_sampler_state::domMagfilter::create(daeInt bytes)
+domGles_sampler_state::domMagfilter::create(daeInt)
 {
-	domGles_sampler_state::domMagfilterRef ref = new(bytes) domGles_sampler_state::domMagfilter;
+	domGles_sampler_state::domMagfilterRef ref = new domGles_sampler_state::domMagfilter;
 	return ref;
 }
 
@@ -251,9 +251,9 @@ domGles_sampler_state::domMagfilter::registerElement()
 }
 
 daeElementRef
-domGles_sampler_state::domMipfilter::create(daeInt bytes)
+domGles_sampler_state::domMipfilter::create(daeInt)
 {
-	domGles_sampler_state::domMipfilterRef ref = new(bytes) domGles_sampler_state::domMipfilter;
+	domGles_sampler_state::domMipfilterRef ref = new domGles_sampler_state::domMipfilter;
 	return ref;
 }
 
@@ -286,9 +286,9 @@ domGles_sampler_state::domMipfilter::registerElement()
 }
 
 daeElementRef
-domGles_sampler_state::domMipmap_maxlevel::create(daeInt bytes)
+domGles_sampler_state::domMipmap_maxlevel::create(daeInt)
 {
-	domGles_sampler_state::domMipmap_maxlevelRef ref = new(bytes) domGles_sampler_state::domMipmap_maxlevel;
+	domGles_sampler_state::domMipmap_maxlevelRef ref = new domGles_sampler_state::domMipmap_maxlevel;
 	return ref;
 }
 
@@ -321,9 +321,9 @@ domGles_sampler_state::domMipmap_maxlevel::registerElement()
 }
 
 daeElementRef
-domGles_sampler_state::domMipmap_bias::create(daeInt bytes)
+domGles_sampler_state::domMipmap_bias::create(daeInt)
 {
-	domGles_sampler_state::domMipmap_biasRef ref = new(bytes) domGles_sampler_state::domMipmap_bias;
+	domGles_sampler_state::domMipmap_biasRef ref = new domGles_sampler_state::domMipmap_bias;
 	return ref;
 }
 

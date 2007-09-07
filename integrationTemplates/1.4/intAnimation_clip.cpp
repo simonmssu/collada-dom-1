@@ -22,9 +22,9 @@ daeMetaElement * intAnimation_clip::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intAnimation_clip::create(daeInt bytes)
+intAnimation_clip::create(daeInt)
 {
-	intAnimation_clipRef ref = new(bytes) intAnimation_clip;
+	intAnimation_clipRef ref = new intAnimation_clip;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGl_samplerCUBE::create(daeInt bytes)
+domGl_samplerCUBE::create(daeInt)
 {
-	domGl_samplerCUBERef ref = new(bytes) domGl_samplerCUBE;
+	domGl_samplerCUBERef ref = new domGl_samplerCUBE;
 	return ref;
 }
 

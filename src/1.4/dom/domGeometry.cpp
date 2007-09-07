@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGeometry::create(daeInt bytes)
+domGeometry::create(daeInt)
 {
-	domGeometryRef ref = new(bytes) domGeometry;
+	domGeometryRef ref = new domGeometry;
 	return ref;
 }
 
@@ -82,7 +82,7 @@ domGeometry::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domGeometry,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGeometry,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domGeometry,_CMData), 1);
 	//	Add attribute: id
  	{

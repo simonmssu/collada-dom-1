@@ -24,9 +24,9 @@ daeMetaElement * intPolygons::intPh::intH::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intPolygons::create(daeInt bytes)
+intPolygons::create(daeInt)
 {
-	intPolygonsRef ref = new(bytes) intPolygons;
+	intPolygonsRef ref = new intPolygons;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intPolygons::registerElement()
 }
 
 daeElementRef
-intPolygons::intPh::create(daeInt bytes)
+intPolygons::intPh::create(daeInt)
 {
-	intPolygons::intPhRef ref = new(bytes) intPolygons::intPh;
+	intPolygons::intPhRef ref = new intPolygons::intPh;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intPolygons::intPh::registerElement()
 }
 
 daeElementRef
-intPolygons::intPh::intH::create(daeInt bytes)
+intPolygons::intPh::intH::create(daeInt)
 {
-	intPolygons::intPh::intHRef ref = new(bytes) intPolygons::intPh::intH;
+	intPolygons::intPh::intHRef ref = new intPolygons::intPh::intH;
 	return ref;
 }
 

@@ -22,9 +22,9 @@ daeMetaElement * intVertices::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intVertices::create(daeInt bytes)
+intVertices::create(daeInt)
 {
-	intVerticesRef ref = new(bytes) intVertices;
+	intVerticesRef ref = new intVertices;
 	return ref;
 }
 

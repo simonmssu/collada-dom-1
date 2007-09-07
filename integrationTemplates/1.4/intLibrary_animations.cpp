@@ -22,9 +22,9 @@ daeMetaElement * intLibrary_animations::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intLibrary_animations::create(daeInt bytes)
+intLibrary_animations::create(daeInt)
 {
-	intLibrary_animationsRef ref = new(bytes) intLibrary_animations;
+	intLibrary_animationsRef ref = new intLibrary_animations;
 	return ref;
 }
 

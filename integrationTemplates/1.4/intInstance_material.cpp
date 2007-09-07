@@ -24,9 +24,9 @@ daeMetaElement * intInstance_material::intBind_vertex_input::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intInstance_material::create(daeInt bytes)
+intInstance_material::create(daeInt)
 {
-	intInstance_materialRef ref = new(bytes) intInstance_material;
+	intInstance_materialRef ref = new intInstance_material;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intInstance_material::registerElement()
 }
 
 daeElementRef
-intInstance_material::intBind::create(daeInt bytes)
+intInstance_material::intBind::create(daeInt)
 {
-	intInstance_material::intBindRef ref = new(bytes) intInstance_material::intBind;
+	intInstance_material::intBindRef ref = new intInstance_material::intBind;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intInstance_material::intBind::registerElement()
 }
 
 daeElementRef
-intInstance_material::intBind_vertex_input::create(daeInt bytes)
+intInstance_material::intBind_vertex_input::create(daeInt)
 {
-	intInstance_material::intBind_vertex_inputRef ref = new(bytes) intInstance_material::intBind_vertex_input;
+	intInstance_material::intBind_vertex_inputRef ref = new intInstance_material::intBind_vertex_input;
 	return ref;
 }
 

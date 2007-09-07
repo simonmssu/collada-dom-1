@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGl_hook_abstract::create(daeInt bytes)
+domGl_hook_abstract::create(daeInt)
 {
-	domGl_hook_abstractRef ref = new(bytes) domGl_hook_abstract;
+	domGl_hook_abstractRef ref = new domGl_hook_abstract;
 	return ref;
 }
 

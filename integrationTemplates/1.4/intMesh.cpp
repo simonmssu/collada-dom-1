@@ -22,9 +22,9 @@ daeMetaElement * intMesh::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intMesh::create(daeInt bytes)
+intMesh::create(daeInt)
 {
-	intMeshRef ref = new(bytes) intMesh;
+	intMeshRef ref = new intMesh;
 	return ref;
 }
 

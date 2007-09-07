@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domProfile_CG::create(daeInt bytes)
+domProfile_CG::create(daeInt)
 {
-	domProfile_CGRef ref = new(bytes) domProfile_CG;
+	domProfile_CGRef ref = new domProfile_CG;
 	return ref;
 }
 
@@ -100,7 +100,7 @@ domProfile_CG::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_CG,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_CG,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_CG,_CMData), 2);
 	//	Add attribute: id
  	{
@@ -135,9 +135,9 @@ domProfile_CG::registerElement()
 }
 
 daeElementRef
-domProfile_CG::domTechnique::create(daeInt bytes)
+domProfile_CG::domTechnique::create(daeInt)
 {
-	domProfile_CG::domTechniqueRef ref = new(bytes) domProfile_CG::domTechnique;
+	domProfile_CG::domTechniqueRef ref = new domProfile_CG::domTechnique;
 	return ref;
 }
 
@@ -227,7 +227,7 @@ domProfile_CG::domTechnique::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_CG::domTechnique,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_CG::domTechnique,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_CG::domTechnique,_CMData), 2);
 	//	Add attribute: id
  	{
@@ -260,9 +260,9 @@ domProfile_CG::domTechnique::registerElement()
 }
 
 daeElementRef
-domProfile_CG::domTechnique::domPass::create(daeInt bytes)
+domProfile_CG::domTechnique::domPass::create(daeInt)
 {
-	domProfile_CG::domTechnique::domPassRef ref = new(bytes) domProfile_CG::domTechnique::domPass;
+	domProfile_CG::domTechnique::domPassRef ref = new domProfile_CG::domTechnique::domPass;
 	return ref;
 }
 
@@ -358,7 +358,7 @@ domProfile_CG::domTechnique::domPass::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_CG::domTechnique::domPass,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_CG::domTechnique::domPass,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_CG::domTechnique::domPass,_CMData), 1);
 	//	Add attribute: sid
  	{
@@ -380,9 +380,9 @@ domProfile_CG::domTechnique::domPass::registerElement()
 }
 
 daeElementRef
-domProfile_CG::domTechnique::domPass::domDraw::create(daeInt bytes)
+domProfile_CG::domTechnique::domPass::domDraw::create(daeInt)
 {
-	domProfile_CG::domTechnique::domPass::domDrawRef ref = new(bytes) domProfile_CG::domTechnique::domPass::domDraw;
+	domProfile_CG::domTechnique::domPass::domDrawRef ref = new domProfile_CG::domTechnique::domPass::domDraw;
 	return ref;
 }
 
@@ -415,9 +415,9 @@ domProfile_CG::domTechnique::domPass::domDraw::registerElement()
 }
 
 daeElementRef
-domProfile_CG::domTechnique::domPass::domShader::create(daeInt bytes)
+domProfile_CG::domTechnique::domPass::domShader::create(daeInt)
 {
-	domProfile_CG::domTechnique::domPass::domShaderRef ref = new(bytes) domProfile_CG::domTechnique::domPass::domShader;
+	domProfile_CG::domTechnique::domPass::domShaderRef ref = new domProfile_CG::domTechnique::domPass::domShader;
 	return ref;
 }
 
@@ -494,9 +494,9 @@ domProfile_CG::domTechnique::domPass::domShader::registerElement()
 }
 
 daeElementRef
-domProfile_CG::domTechnique::domPass::domShader::domCompiler_target::create(daeInt bytes)
+domProfile_CG::domTechnique::domPass::domShader::domCompiler_target::create(daeInt)
 {
-	domProfile_CG::domTechnique::domPass::domShader::domCompiler_targetRef ref = new(bytes) domProfile_CG::domTechnique::domPass::domShader::domCompiler_target;
+	domProfile_CG::domTechnique::domPass::domShader::domCompiler_targetRef ref = new domProfile_CG::domTechnique::domPass::domShader::domCompiler_target;
 	return ref;
 }
 
@@ -529,9 +529,9 @@ domProfile_CG::domTechnique::domPass::domShader::domCompiler_target::registerEle
 }
 
 daeElementRef
-domProfile_CG::domTechnique::domPass::domShader::domCompiler_options::create(daeInt bytes)
+domProfile_CG::domTechnique::domPass::domShader::domCompiler_options::create(daeInt)
 {
-	domProfile_CG::domTechnique::domPass::domShader::domCompiler_optionsRef ref = new(bytes) domProfile_CG::domTechnique::domPass::domShader::domCompiler_options;
+	domProfile_CG::domTechnique::domPass::domShader::domCompiler_optionsRef ref = new domProfile_CG::domTechnique::domPass::domShader::domCompiler_options;
 	return ref;
 }
 
@@ -564,9 +564,9 @@ domProfile_CG::domTechnique::domPass::domShader::domCompiler_options::registerEl
 }
 
 daeElementRef
-domProfile_CG::domTechnique::domPass::domShader::domName::create(daeInt bytes)
+domProfile_CG::domTechnique::domPass::domShader::domName::create(daeInt)
 {
-	domProfile_CG::domTechnique::domPass::domShader::domNameRef ref = new(bytes) domProfile_CG::domTechnique::domPass::domShader::domName;
+	domProfile_CG::domTechnique::domPass::domShader::domNameRef ref = new domProfile_CG::domTechnique::domPass::domShader::domName;
 	return ref;
 }
 
@@ -611,9 +611,9 @@ domProfile_CG::domTechnique::domPass::domShader::domName::registerElement()
 }
 
 daeElementRef
-domProfile_CG::domTechnique::domPass::domShader::domBind::create(daeInt bytes)
+domProfile_CG::domTechnique::domPass::domShader::domBind::create(daeInt)
 {
-	domProfile_CG::domTechnique::domPass::domShader::domBindRef ref = new(bytes) domProfile_CG::domTechnique::domPass::domShader::domBind;
+	domProfile_CG::domTechnique::domPass::domShader::domBindRef ref = new domProfile_CG::domTechnique::domPass::domShader::domBind;
 	return ref;
 }
 
@@ -649,7 +649,7 @@ domProfile_CG::domTechnique::domPass::domShader::domBind::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_CG::domTechnique::domPass::domShader::domBind,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_CG::domTechnique::domPass::domShader::domBind,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_CG::domTechnique::domPass::domShader::domBind,_CMData), 1);
 	//	Add attribute: symbol
  	{
@@ -671,9 +671,9 @@ domProfile_CG::domTechnique::domPass::domShader::domBind::registerElement()
 }
 
 daeElementRef
-domProfile_CG::domTechnique::domPass::domShader::domBind::domParam::create(daeInt bytes)
+domProfile_CG::domTechnique::domPass::domShader::domBind::domParam::create(daeInt)
 {
-	domProfile_CG::domTechnique::domPass::domShader::domBind::domParamRef ref = new(bytes) domProfile_CG::domTechnique::domPass::domShader::domBind::domParam;
+	domProfile_CG::domTechnique::domPass::domShader::domBind::domParamRef ref = new domProfile_CG::domTechnique::domPass::domShader::domBind::domParam;
 	return ref;
 }
 

@@ -22,9 +22,9 @@ daeMetaElement * intCommon_transparent_type::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCommon_transparent_type::create(daeInt bytes)
+intCommon_transparent_type::create(daeInt)
 {
-	intCommon_transparent_typeRef ref = new(bytes) intCommon_transparent_type;
+	intCommon_transparent_typeRef ref = new intCommon_transparent_type;
 	return ref;
 }
 

@@ -27,9 +27,9 @@ daeMetaElement * intFx_samplerDEPTH_common::intMagfilter::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_samplerDEPTH_common::create(daeInt bytes)
+intFx_samplerDEPTH_common::create(daeInt)
 {
-	intFx_samplerDEPTH_commonRef ref = new(bytes) intFx_samplerDEPTH_common;
+	intFx_samplerDEPTH_commonRef ref = new intFx_samplerDEPTH_common;
 	return ref;
 }
 
@@ -51,9 +51,9 @@ intFx_samplerDEPTH_common::registerElement()
 }
 
 daeElementRef
-intFx_samplerDEPTH_common::intSource::create(daeInt bytes)
+intFx_samplerDEPTH_common::intSource::create(daeInt)
 {
-	intFx_samplerDEPTH_common::intSourceRef ref = new(bytes) intFx_samplerDEPTH_common::intSource;
+	intFx_samplerDEPTH_common::intSourceRef ref = new intFx_samplerDEPTH_common::intSource;
 	return ref;
 }
 
@@ -75,9 +75,9 @@ intFx_samplerDEPTH_common::intSource::registerElement()
 }
 
 daeElementRef
-intFx_samplerDEPTH_common::intWrap_s::create(daeInt bytes)
+intFx_samplerDEPTH_common::intWrap_s::create(daeInt)
 {
-	intFx_samplerDEPTH_common::intWrap_sRef ref = new(bytes) intFx_samplerDEPTH_common::intWrap_s;
+	intFx_samplerDEPTH_common::intWrap_sRef ref = new intFx_samplerDEPTH_common::intWrap_s;
 	return ref;
 }
 
@@ -99,9 +99,9 @@ intFx_samplerDEPTH_common::intWrap_s::registerElement()
 }
 
 daeElementRef
-intFx_samplerDEPTH_common::intWrap_t::create(daeInt bytes)
+intFx_samplerDEPTH_common::intWrap_t::create(daeInt)
 {
-	intFx_samplerDEPTH_common::intWrap_tRef ref = new(bytes) intFx_samplerDEPTH_common::intWrap_t;
+	intFx_samplerDEPTH_common::intWrap_tRef ref = new intFx_samplerDEPTH_common::intWrap_t;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ intFx_samplerDEPTH_common::intWrap_t::registerElement()
 }
 
 daeElementRef
-intFx_samplerDEPTH_common::intMinfilter::create(daeInt bytes)
+intFx_samplerDEPTH_common::intMinfilter::create(daeInt)
 {
-	intFx_samplerDEPTH_common::intMinfilterRef ref = new(bytes) intFx_samplerDEPTH_common::intMinfilter;
+	intFx_samplerDEPTH_common::intMinfilterRef ref = new intFx_samplerDEPTH_common::intMinfilter;
 	return ref;
 }
 
@@ -147,9 +147,9 @@ intFx_samplerDEPTH_common::intMinfilter::registerElement()
 }
 
 daeElementRef
-intFx_samplerDEPTH_common::intMagfilter::create(daeInt bytes)
+intFx_samplerDEPTH_common::intMagfilter::create(daeInt)
 {
-	intFx_samplerDEPTH_common::intMagfilterRef ref = new(bytes) intFx_samplerDEPTH_common::intMagfilter;
+	intFx_samplerDEPTH_common::intMagfilterRef ref = new intFx_samplerDEPTH_common::intMagfilter;
 	return ref;
 }
 

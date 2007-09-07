@@ -22,9 +22,9 @@ daeMetaElement * intCg_setparam::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCg_setparam::create(daeInt bytes)
+intCg_setparam::create(daeInt)
 {
-	intCg_setparamRef ref = new(bytes) intCg_setparam;
+	intCg_setparamRef ref = new intCg_setparam;
 	return ref;
 }
 

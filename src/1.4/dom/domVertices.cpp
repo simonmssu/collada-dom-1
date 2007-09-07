@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domVertices::create(daeInt bytes)
+domVertices::create(daeInt)
 {
-	domVerticesRef ref = new(bytes) domVertices;
+	domVerticesRef ref = new domVertices;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTapered_cylinder::create(daeInt bytes)
+domTapered_cylinder::create(daeInt)
 {
-	domTapered_cylinderRef ref = new(bytes) domTapered_cylinder;
+	domTapered_cylinderRef ref = new domTapered_cylinder;
 	return ref;
 }
 
@@ -76,9 +76,9 @@ domTapered_cylinder::registerElement()
 }
 
 daeElementRef
-domTapered_cylinder::domHeight::create(daeInt bytes)
+domTapered_cylinder::domHeight::create(daeInt)
 {
-	domTapered_cylinder::domHeightRef ref = new(bytes) domTapered_cylinder::domHeight;
+	domTapered_cylinder::domHeightRef ref = new domTapered_cylinder::domHeight;
 	return ref;
 }
 
@@ -111,9 +111,9 @@ domTapered_cylinder::domHeight::registerElement()
 }
 
 daeElementRef
-domTapered_cylinder::domRadius1::create(daeInt bytes)
+domTapered_cylinder::domRadius1::create(daeInt)
 {
-	domTapered_cylinder::domRadius1Ref ref = new(bytes) domTapered_cylinder::domRadius1;
+	domTapered_cylinder::domRadius1Ref ref = new domTapered_cylinder::domRadius1;
 	return ref;
 }
 
@@ -146,9 +146,9 @@ domTapered_cylinder::domRadius1::registerElement()
 }
 
 daeElementRef
-domTapered_cylinder::domRadius2::create(daeInt bytes)
+domTapered_cylinder::domRadius2::create(daeInt)
 {
-	domTapered_cylinder::domRadius2Ref ref = new(bytes) domTapered_cylinder::domRadius2;
+	domTapered_cylinder::domRadius2Ref ref = new domTapered_cylinder::domRadius2;
 	return ref;
 }
 

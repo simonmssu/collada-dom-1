@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_effects::create(daeInt bytes)
+domLibrary_effects::create(daeInt)
 {
-	domLibrary_effectsRef ref = new(bytes) domLibrary_effects;
+	domLibrary_effectsRef ref = new domLibrary_effects;
 	return ref;
 }
 

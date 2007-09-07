@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_clearcolor_common::create(daeInt bytes)
+domFx_clearcolor_common::create(daeInt)
 {
-	domFx_clearcolor_commonRef ref = new(bytes) domFx_clearcolor_common;
+	domFx_clearcolor_commonRef ref = new domFx_clearcolor_common;
 	return ref;
 }
 

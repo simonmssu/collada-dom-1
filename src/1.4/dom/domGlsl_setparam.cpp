@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_setparam::create(daeInt bytes)
+domGlsl_setparam::create(daeInt)
 {
-	domGlsl_setparamRef ref = new(bytes) domGlsl_setparam;
+	domGlsl_setparamRef ref = new domGlsl_setparam;
 	return ref;
 }
 
@@ -70,7 +70,7 @@ domGlsl_setparam::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domGlsl_setparam,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGlsl_setparam,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domGlsl_setparam,_CMData), 1);
 	//	Add attribute: ref
  	{

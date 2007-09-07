@@ -22,9 +22,9 @@ daeMetaElement * intGl_hook_abstract::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intGl_hook_abstract::create(daeInt bytes)
+intGl_hook_abstract::create(daeInt)
 {
-	intGl_hook_abstractRef ref = new(bytes) intGl_hook_abstract;
+	intGl_hook_abstractRef ref = new intGl_hook_abstract;
 	return ref;
 }
 

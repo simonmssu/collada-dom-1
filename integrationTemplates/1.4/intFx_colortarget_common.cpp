@@ -22,9 +22,9 @@ daeMetaElement * intFx_colortarget_common::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intFx_colortarget_common::create(daeInt bytes)
+intFx_colortarget_common::create(daeInt)
 {
-	intFx_colortarget_commonRef ref = new(bytes) intFx_colortarget_common;
+	intFx_colortarget_commonRef ref = new intFx_colortarget_common;
 	return ref;
 }
 

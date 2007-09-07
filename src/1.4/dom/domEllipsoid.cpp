@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domEllipsoid::create(daeInt bytes)
+domEllipsoid::create(daeInt)
 {
-	domEllipsoidRef ref = new(bytes) domEllipsoid;
+	domEllipsoidRef ref = new domEllipsoid;
 	return ref;
 }
 
@@ -58,9 +58,9 @@ domEllipsoid::registerElement()
 }
 
 daeElementRef
-domEllipsoid::domSize::create(daeInt bytes)
+domEllipsoid::domSize::create(daeInt)
 {
-	domEllipsoid::domSizeRef ref = new(bytes) domEllipsoid::domSize;
+	domEllipsoid::domSizeRef ref = new domEllipsoid::domSize;
 	return ref;
 }
 

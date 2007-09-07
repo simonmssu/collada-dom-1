@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_samplerDEPTH_common::create(daeInt bytes)
+domFx_samplerDEPTH_common::create(daeInt)
 {
-	domFx_samplerDEPTH_commonRef ref = new(bytes) domFx_samplerDEPTH_common;
+	domFx_samplerDEPTH_commonRef ref = new domFx_samplerDEPTH_common;
 	return ref;
 }
 
@@ -88,9 +88,9 @@ domFx_samplerDEPTH_common::registerElement()
 }
 
 daeElementRef
-domFx_samplerDEPTH_common::domSource::create(daeInt bytes)
+domFx_samplerDEPTH_common::domSource::create(daeInt)
 {
-	domFx_samplerDEPTH_common::domSourceRef ref = new(bytes) domFx_samplerDEPTH_common::domSource;
+	domFx_samplerDEPTH_common::domSourceRef ref = new domFx_samplerDEPTH_common::domSource;
 	return ref;
 }
 
@@ -123,9 +123,9 @@ domFx_samplerDEPTH_common::domSource::registerElement()
 }
 
 daeElementRef
-domFx_samplerDEPTH_common::domWrap_s::create(daeInt bytes)
+domFx_samplerDEPTH_common::domWrap_s::create(daeInt)
 {
-	domFx_samplerDEPTH_common::domWrap_sRef ref = new(bytes) domFx_samplerDEPTH_common::domWrap_s;
+	domFx_samplerDEPTH_common::domWrap_sRef ref = new domFx_samplerDEPTH_common::domWrap_s;
 	return ref;
 }
 
@@ -158,9 +158,9 @@ domFx_samplerDEPTH_common::domWrap_s::registerElement()
 }
 
 daeElementRef
-domFx_samplerDEPTH_common::domWrap_t::create(daeInt bytes)
+domFx_samplerDEPTH_common::domWrap_t::create(daeInt)
 {
-	domFx_samplerDEPTH_common::domWrap_tRef ref = new(bytes) domFx_samplerDEPTH_common::domWrap_t;
+	domFx_samplerDEPTH_common::domWrap_tRef ref = new domFx_samplerDEPTH_common::domWrap_t;
 	return ref;
 }
 
@@ -193,9 +193,9 @@ domFx_samplerDEPTH_common::domWrap_t::registerElement()
 }
 
 daeElementRef
-domFx_samplerDEPTH_common::domMinfilter::create(daeInt bytes)
+domFx_samplerDEPTH_common::domMinfilter::create(daeInt)
 {
-	domFx_samplerDEPTH_common::domMinfilterRef ref = new(bytes) domFx_samplerDEPTH_common::domMinfilter;
+	domFx_samplerDEPTH_common::domMinfilterRef ref = new domFx_samplerDEPTH_common::domMinfilter;
 	return ref;
 }
 
@@ -228,9 +228,9 @@ domFx_samplerDEPTH_common::domMinfilter::registerElement()
 }
 
 daeElementRef
-domFx_samplerDEPTH_common::domMagfilter::create(daeInt bytes)
+domFx_samplerDEPTH_common::domMagfilter::create(daeInt)
 {
-	domFx_samplerDEPTH_common::domMagfilterRef ref = new(bytes) domFx_samplerDEPTH_common::domMagfilter;
+	domFx_samplerDEPTH_common::domMagfilterRef ref = new domFx_samplerDEPTH_common::domMagfilter;
 	return ref;
 }
 

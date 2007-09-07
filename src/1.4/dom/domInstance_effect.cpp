@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_effect::create(daeInt bytes)
+domInstance_effect::create(daeInt)
 {
-	domInstance_effectRef ref = new(bytes) domInstance_effect;
+	domInstance_effectRef ref = new domInstance_effect;
 	ref->attrUrl.setContainer( (domInstance_effect*)ref );
 	return ref;
 }
@@ -105,9 +105,9 @@ domInstance_effect::registerElement()
 }
 
 daeElementRef
-domInstance_effect::domTechnique_hint::create(daeInt bytes)
+domInstance_effect::domTechnique_hint::create(daeInt)
 {
-	domInstance_effect::domTechnique_hintRef ref = new(bytes) domInstance_effect::domTechnique_hint;
+	domInstance_effect::domTechnique_hintRef ref = new domInstance_effect::domTechnique_hint;
 	return ref;
 }
 
@@ -167,9 +167,9 @@ domInstance_effect::domTechnique_hint::registerElement()
 }
 
 daeElementRef
-domInstance_effect::domSetparam::create(daeInt bytes)
+domInstance_effect::domSetparam::create(daeInt)
 {
-	domInstance_effect::domSetparamRef ref = new(bytes) domInstance_effect::domSetparam;
+	domInstance_effect::domSetparamRef ref = new domInstance_effect::domSetparam;
 	return ref;
 }
 

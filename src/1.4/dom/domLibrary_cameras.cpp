@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_cameras::create(daeInt bytes)
+domLibrary_cameras::create(daeInt)
 {
-	domLibrary_camerasRef ref = new(bytes) domLibrary_cameras;
+	domLibrary_camerasRef ref = new domLibrary_cameras;
 	return ref;
 }
 

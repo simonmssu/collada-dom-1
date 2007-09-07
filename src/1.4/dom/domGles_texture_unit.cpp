@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texture_unit::create(daeInt bytes)
+domGles_texture_unit::create(daeInt)
 {
-	domGles_texture_unitRef ref = new(bytes) domGles_texture_unit;
+	domGles_texture_unitRef ref = new domGles_texture_unit;
 	return ref;
 }
 
@@ -87,9 +87,9 @@ domGles_texture_unit::registerElement()
 }
 
 daeElementRef
-domGles_texture_unit::domSurface::create(daeInt bytes)
+domGles_texture_unit::domSurface::create(daeInt)
 {
-	domGles_texture_unit::domSurfaceRef ref = new(bytes) domGles_texture_unit::domSurface;
+	domGles_texture_unit::domSurfaceRef ref = new domGles_texture_unit::domSurface;
 	return ref;
 }
 
@@ -122,9 +122,9 @@ domGles_texture_unit::domSurface::registerElement()
 }
 
 daeElementRef
-domGles_texture_unit::domSampler_state::create(daeInt bytes)
+domGles_texture_unit::domSampler_state::create(daeInt)
 {
-	domGles_texture_unit::domSampler_stateRef ref = new(bytes) domGles_texture_unit::domSampler_state;
+	domGles_texture_unit::domSampler_stateRef ref = new domGles_texture_unit::domSampler_state;
 	return ref;
 }
 
@@ -157,9 +157,9 @@ domGles_texture_unit::domSampler_state::registerElement()
 }
 
 daeElementRef
-domGles_texture_unit::domTexcoord::create(daeInt bytes)
+domGles_texture_unit::domTexcoord::create(daeInt)
 {
-	domGles_texture_unit::domTexcoordRef ref = new(bytes) domGles_texture_unit::domTexcoord;
+	domGles_texture_unit::domTexcoordRef ref = new domGles_texture_unit::domTexcoord;
 	return ref;
 }
 

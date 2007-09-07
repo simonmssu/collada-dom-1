@@ -105,9 +105,9 @@ daeMetaElement * intGles_pipeline_settings::intStencil_test_enable::_Meta = NULL
 // ********************************************************
 
 daeElementRef
-intGles_pipeline_settings::create(daeInt bytes)
+intGles_pipeline_settings::create(daeInt)
 {
-	intGles_pipeline_settingsRef ref = new(bytes) intGles_pipeline_settings;
+	intGles_pipeline_settingsRef ref = new intGles_pipeline_settings;
 	return ref;
 }
 
@@ -129,9 +129,9 @@ intGles_pipeline_settings::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intAlpha_func::create(daeInt bytes)
+intGles_pipeline_settings::intAlpha_func::create(daeInt)
 {
-	intGles_pipeline_settings::intAlpha_funcRef ref = new(bytes) intGles_pipeline_settings::intAlpha_func;
+	intGles_pipeline_settings::intAlpha_funcRef ref = new intGles_pipeline_settings::intAlpha_func;
 	return ref;
 }
 
@@ -153,9 +153,9 @@ intGles_pipeline_settings::intAlpha_func::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intAlpha_func::intFunc::create(daeInt bytes)
+intGles_pipeline_settings::intAlpha_func::intFunc::create(daeInt)
 {
-	intGles_pipeline_settings::intAlpha_func::intFuncRef ref = new(bytes) intGles_pipeline_settings::intAlpha_func::intFunc;
+	intGles_pipeline_settings::intAlpha_func::intFuncRef ref = new intGles_pipeline_settings::intAlpha_func::intFunc;
 	return ref;
 }
 
@@ -177,9 +177,9 @@ intGles_pipeline_settings::intAlpha_func::intFunc::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intAlpha_func::intValue::create(daeInt bytes)
+intGles_pipeline_settings::intAlpha_func::intValue::create(daeInt)
 {
-	intGles_pipeline_settings::intAlpha_func::intValueRef ref = new(bytes) intGles_pipeline_settings::intAlpha_func::intValue;
+	intGles_pipeline_settings::intAlpha_func::intValueRef ref = new intGles_pipeline_settings::intAlpha_func::intValue;
 	return ref;
 }
 
@@ -201,9 +201,9 @@ intGles_pipeline_settings::intAlpha_func::intValue::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intBlend_func::create(daeInt bytes)
+intGles_pipeline_settings::intBlend_func::create(daeInt)
 {
-	intGles_pipeline_settings::intBlend_funcRef ref = new(bytes) intGles_pipeline_settings::intBlend_func;
+	intGles_pipeline_settings::intBlend_funcRef ref = new intGles_pipeline_settings::intBlend_func;
 	return ref;
 }
 
@@ -225,9 +225,9 @@ intGles_pipeline_settings::intBlend_func::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intBlend_func::intSrc::create(daeInt bytes)
+intGles_pipeline_settings::intBlend_func::intSrc::create(daeInt)
 {
-	intGles_pipeline_settings::intBlend_func::intSrcRef ref = new(bytes) intGles_pipeline_settings::intBlend_func::intSrc;
+	intGles_pipeline_settings::intBlend_func::intSrcRef ref = new intGles_pipeline_settings::intBlend_func::intSrc;
 	return ref;
 }
 
@@ -249,9 +249,9 @@ intGles_pipeline_settings::intBlend_func::intSrc::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intBlend_func::intDest::create(daeInt bytes)
+intGles_pipeline_settings::intBlend_func::intDest::create(daeInt)
 {
-	intGles_pipeline_settings::intBlend_func::intDestRef ref = new(bytes) intGles_pipeline_settings::intBlend_func::intDest;
+	intGles_pipeline_settings::intBlend_func::intDestRef ref = new intGles_pipeline_settings::intBlend_func::intDest;
 	return ref;
 }
 
@@ -273,9 +273,9 @@ intGles_pipeline_settings::intBlend_func::intDest::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intClear_color::create(daeInt bytes)
+intGles_pipeline_settings::intClear_color::create(daeInt)
 {
-	intGles_pipeline_settings::intClear_colorRef ref = new(bytes) intGles_pipeline_settings::intClear_color;
+	intGles_pipeline_settings::intClear_colorRef ref = new intGles_pipeline_settings::intClear_color;
 	return ref;
 }
 
@@ -297,9 +297,9 @@ intGles_pipeline_settings::intClear_color::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intClear_stencil::create(daeInt bytes)
+intGles_pipeline_settings::intClear_stencil::create(daeInt)
 {
-	intGles_pipeline_settings::intClear_stencilRef ref = new(bytes) intGles_pipeline_settings::intClear_stencil;
+	intGles_pipeline_settings::intClear_stencilRef ref = new intGles_pipeline_settings::intClear_stencil;
 	return ref;
 }
 
@@ -321,9 +321,9 @@ intGles_pipeline_settings::intClear_stencil::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intClear_depth::create(daeInt bytes)
+intGles_pipeline_settings::intClear_depth::create(daeInt)
 {
-	intGles_pipeline_settings::intClear_depthRef ref = new(bytes) intGles_pipeline_settings::intClear_depth;
+	intGles_pipeline_settings::intClear_depthRef ref = new intGles_pipeline_settings::intClear_depth;
 	return ref;
 }
 
@@ -345,9 +345,9 @@ intGles_pipeline_settings::intClear_depth::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intClip_plane::create(daeInt bytes)
+intGles_pipeline_settings::intClip_plane::create(daeInt)
 {
-	intGles_pipeline_settings::intClip_planeRef ref = new(bytes) intGles_pipeline_settings::intClip_plane;
+	intGles_pipeline_settings::intClip_planeRef ref = new intGles_pipeline_settings::intClip_plane;
 	return ref;
 }
 
@@ -369,9 +369,9 @@ intGles_pipeline_settings::intClip_plane::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intColor_mask::create(daeInt bytes)
+intGles_pipeline_settings::intColor_mask::create(daeInt)
 {
-	intGles_pipeline_settings::intColor_maskRef ref = new(bytes) intGles_pipeline_settings::intColor_mask;
+	intGles_pipeline_settings::intColor_maskRef ref = new intGles_pipeline_settings::intColor_mask;
 	return ref;
 }
 
@@ -393,9 +393,9 @@ intGles_pipeline_settings::intColor_mask::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intCull_face::create(daeInt bytes)
+intGles_pipeline_settings::intCull_face::create(daeInt)
 {
-	intGles_pipeline_settings::intCull_faceRef ref = new(bytes) intGles_pipeline_settings::intCull_face;
+	intGles_pipeline_settings::intCull_faceRef ref = new intGles_pipeline_settings::intCull_face;
 	return ref;
 }
 
@@ -417,9 +417,9 @@ intGles_pipeline_settings::intCull_face::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intDepth_func::create(daeInt bytes)
+intGles_pipeline_settings::intDepth_func::create(daeInt)
 {
-	intGles_pipeline_settings::intDepth_funcRef ref = new(bytes) intGles_pipeline_settings::intDepth_func;
+	intGles_pipeline_settings::intDepth_funcRef ref = new intGles_pipeline_settings::intDepth_func;
 	return ref;
 }
 
@@ -441,9 +441,9 @@ intGles_pipeline_settings::intDepth_func::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intDepth_mask::create(daeInt bytes)
+intGles_pipeline_settings::intDepth_mask::create(daeInt)
 {
-	intGles_pipeline_settings::intDepth_maskRef ref = new(bytes) intGles_pipeline_settings::intDepth_mask;
+	intGles_pipeline_settings::intDepth_maskRef ref = new intGles_pipeline_settings::intDepth_mask;
 	return ref;
 }
 
@@ -465,9 +465,9 @@ intGles_pipeline_settings::intDepth_mask::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intDepth_range::create(daeInt bytes)
+intGles_pipeline_settings::intDepth_range::create(daeInt)
 {
-	intGles_pipeline_settings::intDepth_rangeRef ref = new(bytes) intGles_pipeline_settings::intDepth_range;
+	intGles_pipeline_settings::intDepth_rangeRef ref = new intGles_pipeline_settings::intDepth_range;
 	return ref;
 }
 
@@ -489,9 +489,9 @@ intGles_pipeline_settings::intDepth_range::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intFog_color::create(daeInt bytes)
+intGles_pipeline_settings::intFog_color::create(daeInt)
 {
-	intGles_pipeline_settings::intFog_colorRef ref = new(bytes) intGles_pipeline_settings::intFog_color;
+	intGles_pipeline_settings::intFog_colorRef ref = new intGles_pipeline_settings::intFog_color;
 	return ref;
 }
 
@@ -513,9 +513,9 @@ intGles_pipeline_settings::intFog_color::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intFog_density::create(daeInt bytes)
+intGles_pipeline_settings::intFog_density::create(daeInt)
 {
-	intGles_pipeline_settings::intFog_densityRef ref = new(bytes) intGles_pipeline_settings::intFog_density;
+	intGles_pipeline_settings::intFog_densityRef ref = new intGles_pipeline_settings::intFog_density;
 	return ref;
 }
 
@@ -537,9 +537,9 @@ intGles_pipeline_settings::intFog_density::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intFog_mode::create(daeInt bytes)
+intGles_pipeline_settings::intFog_mode::create(daeInt)
 {
-	intGles_pipeline_settings::intFog_modeRef ref = new(bytes) intGles_pipeline_settings::intFog_mode;
+	intGles_pipeline_settings::intFog_modeRef ref = new intGles_pipeline_settings::intFog_mode;
 	return ref;
 }
 
@@ -561,9 +561,9 @@ intGles_pipeline_settings::intFog_mode::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intFog_start::create(daeInt bytes)
+intGles_pipeline_settings::intFog_start::create(daeInt)
 {
-	intGles_pipeline_settings::intFog_startRef ref = new(bytes) intGles_pipeline_settings::intFog_start;
+	intGles_pipeline_settings::intFog_startRef ref = new intGles_pipeline_settings::intFog_start;
 	return ref;
 }
 
@@ -585,9 +585,9 @@ intGles_pipeline_settings::intFog_start::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intFog_end::create(daeInt bytes)
+intGles_pipeline_settings::intFog_end::create(daeInt)
 {
-	intGles_pipeline_settings::intFog_endRef ref = new(bytes) intGles_pipeline_settings::intFog_end;
+	intGles_pipeline_settings::intFog_endRef ref = new intGles_pipeline_settings::intFog_end;
 	return ref;
 }
 
@@ -609,9 +609,9 @@ intGles_pipeline_settings::intFog_end::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intFront_face::create(daeInt bytes)
+intGles_pipeline_settings::intFront_face::create(daeInt)
 {
-	intGles_pipeline_settings::intFront_faceRef ref = new(bytes) intGles_pipeline_settings::intFront_face;
+	intGles_pipeline_settings::intFront_faceRef ref = new intGles_pipeline_settings::intFront_face;
 	return ref;
 }
 
@@ -633,9 +633,9 @@ intGles_pipeline_settings::intFront_face::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intTexture_pipeline::create(daeInt bytes)
+intGles_pipeline_settings::intTexture_pipeline::create(daeInt)
 {
-	intGles_pipeline_settings::intTexture_pipelineRef ref = new(bytes) intGles_pipeline_settings::intTexture_pipeline;
+	intGles_pipeline_settings::intTexture_pipelineRef ref = new intGles_pipeline_settings::intTexture_pipeline;
 	return ref;
 }
 
@@ -657,9 +657,9 @@ intGles_pipeline_settings::intTexture_pipeline::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLogic_op::create(daeInt bytes)
+intGles_pipeline_settings::intLogic_op::create(daeInt)
 {
-	intGles_pipeline_settings::intLogic_opRef ref = new(bytes) intGles_pipeline_settings::intLogic_op;
+	intGles_pipeline_settings::intLogic_opRef ref = new intGles_pipeline_settings::intLogic_op;
 	return ref;
 }
 
@@ -681,9 +681,9 @@ intGles_pipeline_settings::intLogic_op::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_ambient::create(daeInt bytes)
+intGles_pipeline_settings::intLight_ambient::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_ambientRef ref = new(bytes) intGles_pipeline_settings::intLight_ambient;
+	intGles_pipeline_settings::intLight_ambientRef ref = new intGles_pipeline_settings::intLight_ambient;
 	return ref;
 }
 
@@ -705,9 +705,9 @@ intGles_pipeline_settings::intLight_ambient::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_diffuse::create(daeInt bytes)
+intGles_pipeline_settings::intLight_diffuse::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_diffuseRef ref = new(bytes) intGles_pipeline_settings::intLight_diffuse;
+	intGles_pipeline_settings::intLight_diffuseRef ref = new intGles_pipeline_settings::intLight_diffuse;
 	return ref;
 }
 
@@ -729,9 +729,9 @@ intGles_pipeline_settings::intLight_diffuse::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_specular::create(daeInt bytes)
+intGles_pipeline_settings::intLight_specular::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_specularRef ref = new(bytes) intGles_pipeline_settings::intLight_specular;
+	intGles_pipeline_settings::intLight_specularRef ref = new intGles_pipeline_settings::intLight_specular;
 	return ref;
 }
 
@@ -753,9 +753,9 @@ intGles_pipeline_settings::intLight_specular::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_position::create(daeInt bytes)
+intGles_pipeline_settings::intLight_position::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_positionRef ref = new(bytes) intGles_pipeline_settings::intLight_position;
+	intGles_pipeline_settings::intLight_positionRef ref = new intGles_pipeline_settings::intLight_position;
 	return ref;
 }
 
@@ -777,9 +777,9 @@ intGles_pipeline_settings::intLight_position::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_constant_attenuation::create(daeInt bytes)
+intGles_pipeline_settings::intLight_constant_attenuation::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_constant_attenuationRef ref = new(bytes) intGles_pipeline_settings::intLight_constant_attenuation;
+	intGles_pipeline_settings::intLight_constant_attenuationRef ref = new intGles_pipeline_settings::intLight_constant_attenuation;
 	return ref;
 }
 
@@ -801,9 +801,9 @@ intGles_pipeline_settings::intLight_constant_attenuation::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_linear_attenutation::create(daeInt bytes)
+intGles_pipeline_settings::intLight_linear_attenutation::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_linear_attenutationRef ref = new(bytes) intGles_pipeline_settings::intLight_linear_attenutation;
+	intGles_pipeline_settings::intLight_linear_attenutationRef ref = new intGles_pipeline_settings::intLight_linear_attenutation;
 	return ref;
 }
 
@@ -825,9 +825,9 @@ intGles_pipeline_settings::intLight_linear_attenutation::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_quadratic_attenuation::create(daeInt bytes)
+intGles_pipeline_settings::intLight_quadratic_attenuation::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_quadratic_attenuationRef ref = new(bytes) intGles_pipeline_settings::intLight_quadratic_attenuation;
+	intGles_pipeline_settings::intLight_quadratic_attenuationRef ref = new intGles_pipeline_settings::intLight_quadratic_attenuation;
 	return ref;
 }
 
@@ -849,9 +849,9 @@ intGles_pipeline_settings::intLight_quadratic_attenuation::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_spot_cutoff::create(daeInt bytes)
+intGles_pipeline_settings::intLight_spot_cutoff::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_spot_cutoffRef ref = new(bytes) intGles_pipeline_settings::intLight_spot_cutoff;
+	intGles_pipeline_settings::intLight_spot_cutoffRef ref = new intGles_pipeline_settings::intLight_spot_cutoff;
 	return ref;
 }
 
@@ -873,9 +873,9 @@ intGles_pipeline_settings::intLight_spot_cutoff::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_spot_direction::create(daeInt bytes)
+intGles_pipeline_settings::intLight_spot_direction::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_spot_directionRef ref = new(bytes) intGles_pipeline_settings::intLight_spot_direction;
+	intGles_pipeline_settings::intLight_spot_directionRef ref = new intGles_pipeline_settings::intLight_spot_direction;
 	return ref;
 }
 
@@ -897,9 +897,9 @@ intGles_pipeline_settings::intLight_spot_direction::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_spot_exponent::create(daeInt bytes)
+intGles_pipeline_settings::intLight_spot_exponent::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_spot_exponentRef ref = new(bytes) intGles_pipeline_settings::intLight_spot_exponent;
+	intGles_pipeline_settings::intLight_spot_exponentRef ref = new intGles_pipeline_settings::intLight_spot_exponent;
 	return ref;
 }
 
@@ -921,9 +921,9 @@ intGles_pipeline_settings::intLight_spot_exponent::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_model_ambient::create(daeInt bytes)
+intGles_pipeline_settings::intLight_model_ambient::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_model_ambientRef ref = new(bytes) intGles_pipeline_settings::intLight_model_ambient;
+	intGles_pipeline_settings::intLight_model_ambientRef ref = new intGles_pipeline_settings::intLight_model_ambient;
 	return ref;
 }
 
@@ -945,9 +945,9 @@ intGles_pipeline_settings::intLight_model_ambient::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLine_width::create(daeInt bytes)
+intGles_pipeline_settings::intLine_width::create(daeInt)
 {
-	intGles_pipeline_settings::intLine_widthRef ref = new(bytes) intGles_pipeline_settings::intLine_width;
+	intGles_pipeline_settings::intLine_widthRef ref = new intGles_pipeline_settings::intLine_width;
 	return ref;
 }
 
@@ -969,9 +969,9 @@ intGles_pipeline_settings::intLine_width::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intMaterial_ambient::create(daeInt bytes)
+intGles_pipeline_settings::intMaterial_ambient::create(daeInt)
 {
-	intGles_pipeline_settings::intMaterial_ambientRef ref = new(bytes) intGles_pipeline_settings::intMaterial_ambient;
+	intGles_pipeline_settings::intMaterial_ambientRef ref = new intGles_pipeline_settings::intMaterial_ambient;
 	return ref;
 }
 
@@ -993,9 +993,9 @@ intGles_pipeline_settings::intMaterial_ambient::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intMaterial_diffuse::create(daeInt bytes)
+intGles_pipeline_settings::intMaterial_diffuse::create(daeInt)
 {
-	intGles_pipeline_settings::intMaterial_diffuseRef ref = new(bytes) intGles_pipeline_settings::intMaterial_diffuse;
+	intGles_pipeline_settings::intMaterial_diffuseRef ref = new intGles_pipeline_settings::intMaterial_diffuse;
 	return ref;
 }
 
@@ -1017,9 +1017,9 @@ intGles_pipeline_settings::intMaterial_diffuse::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intMaterial_emission::create(daeInt bytes)
+intGles_pipeline_settings::intMaterial_emission::create(daeInt)
 {
-	intGles_pipeline_settings::intMaterial_emissionRef ref = new(bytes) intGles_pipeline_settings::intMaterial_emission;
+	intGles_pipeline_settings::intMaterial_emissionRef ref = new intGles_pipeline_settings::intMaterial_emission;
 	return ref;
 }
 
@@ -1041,9 +1041,9 @@ intGles_pipeline_settings::intMaterial_emission::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intMaterial_shininess::create(daeInt bytes)
+intGles_pipeline_settings::intMaterial_shininess::create(daeInt)
 {
-	intGles_pipeline_settings::intMaterial_shininessRef ref = new(bytes) intGles_pipeline_settings::intMaterial_shininess;
+	intGles_pipeline_settings::intMaterial_shininessRef ref = new intGles_pipeline_settings::intMaterial_shininess;
 	return ref;
 }
 
@@ -1065,9 +1065,9 @@ intGles_pipeline_settings::intMaterial_shininess::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intMaterial_specular::create(daeInt bytes)
+intGles_pipeline_settings::intMaterial_specular::create(daeInt)
 {
-	intGles_pipeline_settings::intMaterial_specularRef ref = new(bytes) intGles_pipeline_settings::intMaterial_specular;
+	intGles_pipeline_settings::intMaterial_specularRef ref = new intGles_pipeline_settings::intMaterial_specular;
 	return ref;
 }
 
@@ -1089,9 +1089,9 @@ intGles_pipeline_settings::intMaterial_specular::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intModel_view_matrix::create(daeInt bytes)
+intGles_pipeline_settings::intModel_view_matrix::create(daeInt)
 {
-	intGles_pipeline_settings::intModel_view_matrixRef ref = new(bytes) intGles_pipeline_settings::intModel_view_matrix;
+	intGles_pipeline_settings::intModel_view_matrixRef ref = new intGles_pipeline_settings::intModel_view_matrix;
 	return ref;
 }
 
@@ -1113,9 +1113,9 @@ intGles_pipeline_settings::intModel_view_matrix::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intPoint_distance_attenuation::create(daeInt bytes)
+intGles_pipeline_settings::intPoint_distance_attenuation::create(daeInt)
 {
-	intGles_pipeline_settings::intPoint_distance_attenuationRef ref = new(bytes) intGles_pipeline_settings::intPoint_distance_attenuation;
+	intGles_pipeline_settings::intPoint_distance_attenuationRef ref = new intGles_pipeline_settings::intPoint_distance_attenuation;
 	return ref;
 }
 
@@ -1137,9 +1137,9 @@ intGles_pipeline_settings::intPoint_distance_attenuation::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intPoint_fade_threshold_size::create(daeInt bytes)
+intGles_pipeline_settings::intPoint_fade_threshold_size::create(daeInt)
 {
-	intGles_pipeline_settings::intPoint_fade_threshold_sizeRef ref = new(bytes) intGles_pipeline_settings::intPoint_fade_threshold_size;
+	intGles_pipeline_settings::intPoint_fade_threshold_sizeRef ref = new intGles_pipeline_settings::intPoint_fade_threshold_size;
 	return ref;
 }
 
@@ -1161,9 +1161,9 @@ intGles_pipeline_settings::intPoint_fade_threshold_size::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intPoint_size::create(daeInt bytes)
+intGles_pipeline_settings::intPoint_size::create(daeInt)
 {
-	intGles_pipeline_settings::intPoint_sizeRef ref = new(bytes) intGles_pipeline_settings::intPoint_size;
+	intGles_pipeline_settings::intPoint_sizeRef ref = new intGles_pipeline_settings::intPoint_size;
 	return ref;
 }
 
@@ -1185,9 +1185,9 @@ intGles_pipeline_settings::intPoint_size::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intPoint_size_min::create(daeInt bytes)
+intGles_pipeline_settings::intPoint_size_min::create(daeInt)
 {
-	intGles_pipeline_settings::intPoint_size_minRef ref = new(bytes) intGles_pipeline_settings::intPoint_size_min;
+	intGles_pipeline_settings::intPoint_size_minRef ref = new intGles_pipeline_settings::intPoint_size_min;
 	return ref;
 }
 
@@ -1209,9 +1209,9 @@ intGles_pipeline_settings::intPoint_size_min::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intPoint_size_max::create(daeInt bytes)
+intGles_pipeline_settings::intPoint_size_max::create(daeInt)
 {
-	intGles_pipeline_settings::intPoint_size_maxRef ref = new(bytes) intGles_pipeline_settings::intPoint_size_max;
+	intGles_pipeline_settings::intPoint_size_maxRef ref = new intGles_pipeline_settings::intPoint_size_max;
 	return ref;
 }
 
@@ -1233,9 +1233,9 @@ intGles_pipeline_settings::intPoint_size_max::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intPolygon_offset::create(daeInt bytes)
+intGles_pipeline_settings::intPolygon_offset::create(daeInt)
 {
-	intGles_pipeline_settings::intPolygon_offsetRef ref = new(bytes) intGles_pipeline_settings::intPolygon_offset;
+	intGles_pipeline_settings::intPolygon_offsetRef ref = new intGles_pipeline_settings::intPolygon_offset;
 	return ref;
 }
 
@@ -1257,9 +1257,9 @@ intGles_pipeline_settings::intPolygon_offset::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intProjection_matrix::create(daeInt bytes)
+intGles_pipeline_settings::intProjection_matrix::create(daeInt)
 {
-	intGles_pipeline_settings::intProjection_matrixRef ref = new(bytes) intGles_pipeline_settings::intProjection_matrix;
+	intGles_pipeline_settings::intProjection_matrixRef ref = new intGles_pipeline_settings::intProjection_matrix;
 	return ref;
 }
 
@@ -1281,9 +1281,9 @@ intGles_pipeline_settings::intProjection_matrix::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intScissor::create(daeInt bytes)
+intGles_pipeline_settings::intScissor::create(daeInt)
 {
-	intGles_pipeline_settings::intScissorRef ref = new(bytes) intGles_pipeline_settings::intScissor;
+	intGles_pipeline_settings::intScissorRef ref = new intGles_pipeline_settings::intScissor;
 	return ref;
 }
 
@@ -1305,9 +1305,9 @@ intGles_pipeline_settings::intScissor::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intShade_model::create(daeInt bytes)
+intGles_pipeline_settings::intShade_model::create(daeInt)
 {
-	intGles_pipeline_settings::intShade_modelRef ref = new(bytes) intGles_pipeline_settings::intShade_model;
+	intGles_pipeline_settings::intShade_modelRef ref = new intGles_pipeline_settings::intShade_model;
 	return ref;
 }
 
@@ -1329,9 +1329,9 @@ intGles_pipeline_settings::intShade_model::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intStencil_func::create(daeInt bytes)
+intGles_pipeline_settings::intStencil_func::create(daeInt)
 {
-	intGles_pipeline_settings::intStencil_funcRef ref = new(bytes) intGles_pipeline_settings::intStencil_func;
+	intGles_pipeline_settings::intStencil_funcRef ref = new intGles_pipeline_settings::intStencil_func;
 	return ref;
 }
 
@@ -1353,9 +1353,9 @@ intGles_pipeline_settings::intStencil_func::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intStencil_func::intFunc::create(daeInt bytes)
+intGles_pipeline_settings::intStencil_func::intFunc::create(daeInt)
 {
-	intGles_pipeline_settings::intStencil_func::intFuncRef ref = new(bytes) intGles_pipeline_settings::intStencil_func::intFunc;
+	intGles_pipeline_settings::intStencil_func::intFuncRef ref = new intGles_pipeline_settings::intStencil_func::intFunc;
 	return ref;
 }
 
@@ -1377,9 +1377,9 @@ intGles_pipeline_settings::intStencil_func::intFunc::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intStencil_func::intRef::create(daeInt bytes)
+intGles_pipeline_settings::intStencil_func::intRef::create(daeInt)
 {
-	intGles_pipeline_settings::intStencil_func::intRefRef ref = new(bytes) intGles_pipeline_settings::intStencil_func::intRef;
+	intGles_pipeline_settings::intStencil_func::intRefRef ref = new intGles_pipeline_settings::intStencil_func::intRef;
 	return ref;
 }
 
@@ -1401,9 +1401,9 @@ intGles_pipeline_settings::intStencil_func::intRef::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intStencil_func::intMask::create(daeInt bytes)
+intGles_pipeline_settings::intStencil_func::intMask::create(daeInt)
 {
-	intGles_pipeline_settings::intStencil_func::intMaskRef ref = new(bytes) intGles_pipeline_settings::intStencil_func::intMask;
+	intGles_pipeline_settings::intStencil_func::intMaskRef ref = new intGles_pipeline_settings::intStencil_func::intMask;
 	return ref;
 }
 
@@ -1425,9 +1425,9 @@ intGles_pipeline_settings::intStencil_func::intMask::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intStencil_mask::create(daeInt bytes)
+intGles_pipeline_settings::intStencil_mask::create(daeInt)
 {
-	intGles_pipeline_settings::intStencil_maskRef ref = new(bytes) intGles_pipeline_settings::intStencil_mask;
+	intGles_pipeline_settings::intStencil_maskRef ref = new intGles_pipeline_settings::intStencil_mask;
 	return ref;
 }
 
@@ -1449,9 +1449,9 @@ intGles_pipeline_settings::intStencil_mask::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intStencil_op::create(daeInt bytes)
+intGles_pipeline_settings::intStencil_op::create(daeInt)
 {
-	intGles_pipeline_settings::intStencil_opRef ref = new(bytes) intGles_pipeline_settings::intStencil_op;
+	intGles_pipeline_settings::intStencil_opRef ref = new intGles_pipeline_settings::intStencil_op;
 	return ref;
 }
 
@@ -1473,9 +1473,9 @@ intGles_pipeline_settings::intStencil_op::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intStencil_op::intFail::create(daeInt bytes)
+intGles_pipeline_settings::intStencil_op::intFail::create(daeInt)
 {
-	intGles_pipeline_settings::intStencil_op::intFailRef ref = new(bytes) intGles_pipeline_settings::intStencil_op::intFail;
+	intGles_pipeline_settings::intStencil_op::intFailRef ref = new intGles_pipeline_settings::intStencil_op::intFail;
 	return ref;
 }
 
@@ -1497,9 +1497,9 @@ intGles_pipeline_settings::intStencil_op::intFail::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intStencil_op::intZfail::create(daeInt bytes)
+intGles_pipeline_settings::intStencil_op::intZfail::create(daeInt)
 {
-	intGles_pipeline_settings::intStencil_op::intZfailRef ref = new(bytes) intGles_pipeline_settings::intStencil_op::intZfail;
+	intGles_pipeline_settings::intStencil_op::intZfailRef ref = new intGles_pipeline_settings::intStencil_op::intZfail;
 	return ref;
 }
 
@@ -1521,9 +1521,9 @@ intGles_pipeline_settings::intStencil_op::intZfail::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intStencil_op::intZpass::create(daeInt bytes)
+intGles_pipeline_settings::intStencil_op::intZpass::create(daeInt)
 {
-	intGles_pipeline_settings::intStencil_op::intZpassRef ref = new(bytes) intGles_pipeline_settings::intStencil_op::intZpass;
+	intGles_pipeline_settings::intStencil_op::intZpassRef ref = new intGles_pipeline_settings::intStencil_op::intZpass;
 	return ref;
 }
 
@@ -1545,9 +1545,9 @@ intGles_pipeline_settings::intStencil_op::intZpass::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intAlpha_test_enable::create(daeInt bytes)
+intGles_pipeline_settings::intAlpha_test_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intAlpha_test_enableRef ref = new(bytes) intGles_pipeline_settings::intAlpha_test_enable;
+	intGles_pipeline_settings::intAlpha_test_enableRef ref = new intGles_pipeline_settings::intAlpha_test_enable;
 	return ref;
 }
 
@@ -1569,9 +1569,9 @@ intGles_pipeline_settings::intAlpha_test_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intBlend_enable::create(daeInt bytes)
+intGles_pipeline_settings::intBlend_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intBlend_enableRef ref = new(bytes) intGles_pipeline_settings::intBlend_enable;
+	intGles_pipeline_settings::intBlend_enableRef ref = new intGles_pipeline_settings::intBlend_enable;
 	return ref;
 }
 
@@ -1593,9 +1593,9 @@ intGles_pipeline_settings::intBlend_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intClip_plane_enable::create(daeInt bytes)
+intGles_pipeline_settings::intClip_plane_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intClip_plane_enableRef ref = new(bytes) intGles_pipeline_settings::intClip_plane_enable;
+	intGles_pipeline_settings::intClip_plane_enableRef ref = new intGles_pipeline_settings::intClip_plane_enable;
 	return ref;
 }
 
@@ -1617,9 +1617,9 @@ intGles_pipeline_settings::intClip_plane_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intColor_logic_op_enable::create(daeInt bytes)
+intGles_pipeline_settings::intColor_logic_op_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intColor_logic_op_enableRef ref = new(bytes) intGles_pipeline_settings::intColor_logic_op_enable;
+	intGles_pipeline_settings::intColor_logic_op_enableRef ref = new intGles_pipeline_settings::intColor_logic_op_enable;
 	return ref;
 }
 
@@ -1641,9 +1641,9 @@ intGles_pipeline_settings::intColor_logic_op_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intColor_material_enable::create(daeInt bytes)
+intGles_pipeline_settings::intColor_material_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intColor_material_enableRef ref = new(bytes) intGles_pipeline_settings::intColor_material_enable;
+	intGles_pipeline_settings::intColor_material_enableRef ref = new intGles_pipeline_settings::intColor_material_enable;
 	return ref;
 }
 
@@ -1665,9 +1665,9 @@ intGles_pipeline_settings::intColor_material_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intCull_face_enable::create(daeInt bytes)
+intGles_pipeline_settings::intCull_face_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intCull_face_enableRef ref = new(bytes) intGles_pipeline_settings::intCull_face_enable;
+	intGles_pipeline_settings::intCull_face_enableRef ref = new intGles_pipeline_settings::intCull_face_enable;
 	return ref;
 }
 
@@ -1689,9 +1689,9 @@ intGles_pipeline_settings::intCull_face_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intDepth_test_enable::create(daeInt bytes)
+intGles_pipeline_settings::intDepth_test_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intDepth_test_enableRef ref = new(bytes) intGles_pipeline_settings::intDepth_test_enable;
+	intGles_pipeline_settings::intDepth_test_enableRef ref = new intGles_pipeline_settings::intDepth_test_enable;
 	return ref;
 }
 
@@ -1713,9 +1713,9 @@ intGles_pipeline_settings::intDepth_test_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intDither_enable::create(daeInt bytes)
+intGles_pipeline_settings::intDither_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intDither_enableRef ref = new(bytes) intGles_pipeline_settings::intDither_enable;
+	intGles_pipeline_settings::intDither_enableRef ref = new intGles_pipeline_settings::intDither_enable;
 	return ref;
 }
 
@@ -1737,9 +1737,9 @@ intGles_pipeline_settings::intDither_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intFog_enable::create(daeInt bytes)
+intGles_pipeline_settings::intFog_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intFog_enableRef ref = new(bytes) intGles_pipeline_settings::intFog_enable;
+	intGles_pipeline_settings::intFog_enableRef ref = new intGles_pipeline_settings::intFog_enable;
 	return ref;
 }
 
@@ -1761,9 +1761,9 @@ intGles_pipeline_settings::intFog_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intTexture_pipeline_enable::create(daeInt bytes)
+intGles_pipeline_settings::intTexture_pipeline_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intTexture_pipeline_enableRef ref = new(bytes) intGles_pipeline_settings::intTexture_pipeline_enable;
+	intGles_pipeline_settings::intTexture_pipeline_enableRef ref = new intGles_pipeline_settings::intTexture_pipeline_enable;
 	return ref;
 }
 
@@ -1785,9 +1785,9 @@ intGles_pipeline_settings::intTexture_pipeline_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_enable::create(daeInt bytes)
+intGles_pipeline_settings::intLight_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_enableRef ref = new(bytes) intGles_pipeline_settings::intLight_enable;
+	intGles_pipeline_settings::intLight_enableRef ref = new intGles_pipeline_settings::intLight_enable;
 	return ref;
 }
 
@@ -1809,9 +1809,9 @@ intGles_pipeline_settings::intLight_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLighting_enable::create(daeInt bytes)
+intGles_pipeline_settings::intLighting_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intLighting_enableRef ref = new(bytes) intGles_pipeline_settings::intLighting_enable;
+	intGles_pipeline_settings::intLighting_enableRef ref = new intGles_pipeline_settings::intLighting_enable;
 	return ref;
 }
 
@@ -1833,9 +1833,9 @@ intGles_pipeline_settings::intLighting_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLight_model_two_side_enable::create(daeInt bytes)
+intGles_pipeline_settings::intLight_model_two_side_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intLight_model_two_side_enableRef ref = new(bytes) intGles_pipeline_settings::intLight_model_two_side_enable;
+	intGles_pipeline_settings::intLight_model_two_side_enableRef ref = new intGles_pipeline_settings::intLight_model_two_side_enable;
 	return ref;
 }
 
@@ -1857,9 +1857,9 @@ intGles_pipeline_settings::intLight_model_two_side_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intLine_smooth_enable::create(daeInt bytes)
+intGles_pipeline_settings::intLine_smooth_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intLine_smooth_enableRef ref = new(bytes) intGles_pipeline_settings::intLine_smooth_enable;
+	intGles_pipeline_settings::intLine_smooth_enableRef ref = new intGles_pipeline_settings::intLine_smooth_enable;
 	return ref;
 }
 
@@ -1881,9 +1881,9 @@ intGles_pipeline_settings::intLine_smooth_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intMultisample_enable::create(daeInt bytes)
+intGles_pipeline_settings::intMultisample_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intMultisample_enableRef ref = new(bytes) intGles_pipeline_settings::intMultisample_enable;
+	intGles_pipeline_settings::intMultisample_enableRef ref = new intGles_pipeline_settings::intMultisample_enable;
 	return ref;
 }
 
@@ -1905,9 +1905,9 @@ intGles_pipeline_settings::intMultisample_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intNormalize_enable::create(daeInt bytes)
+intGles_pipeline_settings::intNormalize_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intNormalize_enableRef ref = new(bytes) intGles_pipeline_settings::intNormalize_enable;
+	intGles_pipeline_settings::intNormalize_enableRef ref = new intGles_pipeline_settings::intNormalize_enable;
 	return ref;
 }
 
@@ -1929,9 +1929,9 @@ intGles_pipeline_settings::intNormalize_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intPoint_smooth_enable::create(daeInt bytes)
+intGles_pipeline_settings::intPoint_smooth_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intPoint_smooth_enableRef ref = new(bytes) intGles_pipeline_settings::intPoint_smooth_enable;
+	intGles_pipeline_settings::intPoint_smooth_enableRef ref = new intGles_pipeline_settings::intPoint_smooth_enable;
 	return ref;
 }
 
@@ -1953,9 +1953,9 @@ intGles_pipeline_settings::intPoint_smooth_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intPolygon_offset_fill_enable::create(daeInt bytes)
+intGles_pipeline_settings::intPolygon_offset_fill_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intPolygon_offset_fill_enableRef ref = new(bytes) intGles_pipeline_settings::intPolygon_offset_fill_enable;
+	intGles_pipeline_settings::intPolygon_offset_fill_enableRef ref = new intGles_pipeline_settings::intPolygon_offset_fill_enable;
 	return ref;
 }
 
@@ -1977,9 +1977,9 @@ intGles_pipeline_settings::intPolygon_offset_fill_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intRescale_normal_enable::create(daeInt bytes)
+intGles_pipeline_settings::intRescale_normal_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intRescale_normal_enableRef ref = new(bytes) intGles_pipeline_settings::intRescale_normal_enable;
+	intGles_pipeline_settings::intRescale_normal_enableRef ref = new intGles_pipeline_settings::intRescale_normal_enable;
 	return ref;
 }
 
@@ -2001,9 +2001,9 @@ intGles_pipeline_settings::intRescale_normal_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intSample_alpha_to_coverage_enable::create(daeInt bytes)
+intGles_pipeline_settings::intSample_alpha_to_coverage_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intSample_alpha_to_coverage_enableRef ref = new(bytes) intGles_pipeline_settings::intSample_alpha_to_coverage_enable;
+	intGles_pipeline_settings::intSample_alpha_to_coverage_enableRef ref = new intGles_pipeline_settings::intSample_alpha_to_coverage_enable;
 	return ref;
 }
 
@@ -2025,9 +2025,9 @@ intGles_pipeline_settings::intSample_alpha_to_coverage_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intSample_alpha_to_one_enable::create(daeInt bytes)
+intGles_pipeline_settings::intSample_alpha_to_one_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intSample_alpha_to_one_enableRef ref = new(bytes) intGles_pipeline_settings::intSample_alpha_to_one_enable;
+	intGles_pipeline_settings::intSample_alpha_to_one_enableRef ref = new intGles_pipeline_settings::intSample_alpha_to_one_enable;
 	return ref;
 }
 
@@ -2049,9 +2049,9 @@ intGles_pipeline_settings::intSample_alpha_to_one_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intSample_coverage_enable::create(daeInt bytes)
+intGles_pipeline_settings::intSample_coverage_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intSample_coverage_enableRef ref = new(bytes) intGles_pipeline_settings::intSample_coverage_enable;
+	intGles_pipeline_settings::intSample_coverage_enableRef ref = new intGles_pipeline_settings::intSample_coverage_enable;
 	return ref;
 }
 
@@ -2073,9 +2073,9 @@ intGles_pipeline_settings::intSample_coverage_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intScissor_test_enable::create(daeInt bytes)
+intGles_pipeline_settings::intScissor_test_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intScissor_test_enableRef ref = new(bytes) intGles_pipeline_settings::intScissor_test_enable;
+	intGles_pipeline_settings::intScissor_test_enableRef ref = new intGles_pipeline_settings::intScissor_test_enable;
 	return ref;
 }
 
@@ -2097,9 +2097,9 @@ intGles_pipeline_settings::intScissor_test_enable::registerElement()
 }
 
 daeElementRef
-intGles_pipeline_settings::intStencil_test_enable::create(daeInt bytes)
+intGles_pipeline_settings::intStencil_test_enable::create(daeInt)
 {
-	intGles_pipeline_settings::intStencil_test_enableRef ref = new(bytes) intGles_pipeline_settings::intStencil_test_enable;
+	intGles_pipeline_settings::intStencil_test_enableRef ref = new intGles_pipeline_settings::intStencil_test_enable;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTristrips::create(daeInt bytes)
+domTristrips::create(daeInt)
 {
-	domTristripsRef ref = new(bytes) domTristrips;
+	domTristripsRef ref = new domTristrips;
 	return ref;
 }
 

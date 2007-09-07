@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domProfile_COMMON::create(daeInt bytes)
+domProfile_COMMON::create(daeInt)
 {
-	domProfile_COMMONRef ref = new(bytes) domProfile_COMMON;
+	domProfile_COMMONRef ref = new domProfile_COMMON;
 	return ref;
 }
 
@@ -82,7 +82,7 @@ domProfile_COMMON::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_COMMON,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_COMMON,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_COMMON,_CMData), 1);
 	//	Add attribute: id
  	{
@@ -104,9 +104,9 @@ domProfile_COMMON::registerElement()
 }
 
 daeElementRef
-domProfile_COMMON::domTechnique::create(daeInt bytes)
+domProfile_COMMON::domTechnique::create(daeInt)
 {
-	domProfile_COMMON::domTechniqueRef ref = new(bytes) domProfile_COMMON::domTechnique;
+	domProfile_COMMON::domTechniqueRef ref = new domProfile_COMMON::domTechnique;
 	return ref;
 }
 
@@ -190,7 +190,7 @@ domProfile_COMMON::domTechnique::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_COMMON::domTechnique,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_COMMON::domTechnique,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domProfile_COMMON::domTechnique,_CMData), 2);
 	//	Add attribute: id
  	{
@@ -223,9 +223,9 @@ domProfile_COMMON::domTechnique::registerElement()
 }
 
 daeElementRef
-domProfile_COMMON::domTechnique::domConstant::create(daeInt bytes)
+domProfile_COMMON::domTechnique::domConstant::create(daeInt)
 {
-	domProfile_COMMON::domTechnique::domConstantRef ref = new(bytes) domProfile_COMMON::domTechnique::domConstant;
+	domProfile_COMMON::domTechnique::domConstantRef ref = new domProfile_COMMON::domTechnique::domConstant;
 	return ref;
 }
 
@@ -291,9 +291,9 @@ domProfile_COMMON::domTechnique::domConstant::registerElement()
 }
 
 daeElementRef
-domProfile_COMMON::domTechnique::domLambert::create(daeInt bytes)
+domProfile_COMMON::domTechnique::domLambert::create(daeInt)
 {
-	domProfile_COMMON::domTechnique::domLambertRef ref = new(bytes) domProfile_COMMON::domTechnique::domLambert;
+	domProfile_COMMON::domTechnique::domLambertRef ref = new domProfile_COMMON::domTechnique::domLambert;
 	return ref;
 }
 
@@ -371,9 +371,9 @@ domProfile_COMMON::domTechnique::domLambert::registerElement()
 }
 
 daeElementRef
-domProfile_COMMON::domTechnique::domPhong::create(daeInt bytes)
+domProfile_COMMON::domTechnique::domPhong::create(daeInt)
 {
-	domProfile_COMMON::domTechnique::domPhongRef ref = new(bytes) domProfile_COMMON::domTechnique::domPhong;
+	domProfile_COMMON::domTechnique::domPhongRef ref = new domProfile_COMMON::domTechnique::domPhong;
 	return ref;
 }
 
@@ -463,9 +463,9 @@ domProfile_COMMON::domTechnique::domPhong::registerElement()
 }
 
 daeElementRef
-domProfile_COMMON::domTechnique::domBlinn::create(daeInt bytes)
+domProfile_COMMON::domTechnique::domBlinn::create(daeInt)
 {
-	domProfile_COMMON::domTechnique::domBlinnRef ref = new(bytes) domProfile_COMMON::domTechnique::domBlinn;
+	domProfile_COMMON::domTechnique::domBlinnRef ref = new domProfile_COMMON::domTechnique::domBlinn;
 	return ref;
 }
 

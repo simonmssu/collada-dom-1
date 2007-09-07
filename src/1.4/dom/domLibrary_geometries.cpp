@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_geometries::create(daeInt bytes)
+domLibrary_geometries::create(daeInt)
 {
-	domLibrary_geometriesRef ref = new(bytes) domLibrary_geometries;
+	domLibrary_geometriesRef ref = new domLibrary_geometries;
 	return ref;
 }
 

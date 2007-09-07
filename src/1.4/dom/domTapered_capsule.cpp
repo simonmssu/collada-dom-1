@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTapered_capsule::create(daeInt bytes)
+domTapered_capsule::create(daeInt)
 {
-	domTapered_capsuleRef ref = new(bytes) domTapered_capsule;
+	domTapered_capsuleRef ref = new domTapered_capsule;
 	return ref;
 }
 
@@ -76,9 +76,9 @@ domTapered_capsule::registerElement()
 }
 
 daeElementRef
-domTapered_capsule::domHeight::create(daeInt bytes)
+domTapered_capsule::domHeight::create(daeInt)
 {
-	domTapered_capsule::domHeightRef ref = new(bytes) domTapered_capsule::domHeight;
+	domTapered_capsule::domHeightRef ref = new domTapered_capsule::domHeight;
 	return ref;
 }
 
@@ -111,9 +111,9 @@ domTapered_capsule::domHeight::registerElement()
 }
 
 daeElementRef
-domTapered_capsule::domRadius1::create(daeInt bytes)
+domTapered_capsule::domRadius1::create(daeInt)
 {
-	domTapered_capsule::domRadius1Ref ref = new(bytes) domTapered_capsule::domRadius1;
+	domTapered_capsule::domRadius1Ref ref = new domTapered_capsule::domRadius1;
 	return ref;
 }
 
@@ -146,9 +146,9 @@ domTapered_capsule::domRadius1::registerElement()
 }
 
 daeElementRef
-domTapered_capsule::domRadius2::create(daeInt bytes)
+domTapered_capsule::domRadius2::create(daeInt)
 {
-	domTapered_capsule::domRadius2Ref ref = new(bytes) domTapered_capsule::domRadius2;
+	domTapered_capsule::domRadius2Ref ref = new domTapered_capsule::domRadius2;
 	return ref;
 }
 

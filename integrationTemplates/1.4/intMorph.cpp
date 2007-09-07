@@ -23,9 +23,9 @@ daeMetaElement * intMorph::intTargets::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intMorph::create(daeInt bytes)
+intMorph::create(daeInt)
 {
-	intMorphRef ref = new(bytes) intMorph;
+	intMorphRef ref = new intMorph;
 	return ref;
 }
 
@@ -47,9 +47,9 @@ intMorph::registerElement()
 }
 
 daeElementRef
-intMorph::intTargets::create(daeInt bytes)
+intMorph::intTargets::create(daeInt)
 {
-	intMorph::intTargetsRef ref = new(bytes) intMorph::intTargets;
+	intMorph::intTargetsRef ref = new intMorph::intTargets;
 	return ref;
 }
 

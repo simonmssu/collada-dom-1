@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domMorph::create(daeInt bytes)
+domMorph::create(daeInt)
 {
-	domMorphRef ref = new(bytes) domMorph;
+	domMorphRef ref = new domMorph;
 	ref->attrSource.setContainer( (domMorph*)ref );
 	return ref;
 }
@@ -95,9 +95,9 @@ domMorph::registerElement()
 }
 
 daeElementRef
-domMorph::domTargets::create(daeInt bytes)
+domMorph::domTargets::create(daeInt)
 {
-	domMorph::domTargetsRef ref = new(bytes) domMorph::domTargets;
+	domMorph::domTargetsRef ref = new domMorph::domTargets;
 	return ref;
 }
 

@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_init_volume_common::create(daeInt bytes)
+domFx_surface_init_volume_common::create(daeInt)
 {
-	domFx_surface_init_volume_commonRef ref = new(bytes) domFx_surface_init_volume_common;
+	domFx_surface_init_volume_commonRef ref = new domFx_surface_init_volume_common;
 	return ref;
 }
 
@@ -58,7 +58,7 @@ domFx_surface_init_volume_common::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domFx_surface_init_volume_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domFx_surface_init_volume_common,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domFx_surface_init_volume_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domFx_surface_init_volume_common));
@@ -68,9 +68,9 @@ domFx_surface_init_volume_common::registerElement()
 }
 
 daeElementRef
-domFx_surface_init_volume_common::domAll::create(daeInt bytes)
+domFx_surface_init_volume_common::domAll::create(daeInt)
 {
-	domFx_surface_init_volume_common::domAllRef ref = new(bytes) domFx_surface_init_volume_common::domAll;
+	domFx_surface_init_volume_common::domAllRef ref = new domFx_surface_init_volume_common::domAll;
 	return ref;
 }
 
@@ -106,9 +106,9 @@ domFx_surface_init_volume_common::domAll::registerElement()
 }
 
 daeElementRef
-domFx_surface_init_volume_common::domPrimary::create(daeInt bytes)
+domFx_surface_init_volume_common::domPrimary::create(daeInt)
 {
-	domFx_surface_init_volume_common::domPrimaryRef ref = new(bytes) domFx_surface_init_volume_common::domPrimary;
+	domFx_surface_init_volume_common::domPrimaryRef ref = new domFx_surface_init_volume_common::domPrimary;
 	return ref;
 }
 

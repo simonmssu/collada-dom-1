@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texcombiner_argumentRGB_type::create(daeInt bytes)
+domGles_texcombiner_argumentRGB_type::create(daeInt)
 {
-	domGles_texcombiner_argumentRGB_typeRef ref = new(bytes) domGles_texcombiner_argumentRGB_type;
+	domGles_texcombiner_argumentRGB_typeRef ref = new domGles_texcombiner_argumentRGB_type;
 	return ref;
 }
 

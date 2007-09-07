@@ -24,9 +24,9 @@ daeMetaElement * intImage::intInit_from::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intImage::create(daeInt bytes)
+intImage::create(daeInt)
 {
-	intImageRef ref = new(bytes) intImage;
+	intImageRef ref = new intImage;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intImage::registerElement()
 }
 
 daeElementRef
-intImage::intData::create(daeInt bytes)
+intImage::intData::create(daeInt)
 {
-	intImage::intDataRef ref = new(bytes) intImage::intData;
+	intImage::intDataRef ref = new intImage::intData;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intImage::intData::registerElement()
 }
 
 daeElementRef
-intImage::intInit_from::create(daeInt bytes)
+intImage::intInit_from::create(daeInt)
 {
-	intImage::intInit_fromRef ref = new(bytes) intImage::intInit_from;
+	intImage::intInit_fromRef ref = new intImage::intInit_from;
 	return ref;
 }
 

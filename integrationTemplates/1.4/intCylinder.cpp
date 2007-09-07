@@ -24,9 +24,9 @@ daeMetaElement * intCylinder::intRadius::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intCylinder::create(daeInt bytes)
+intCylinder::create(daeInt)
 {
-	intCylinderRef ref = new(bytes) intCylinder;
+	intCylinderRef ref = new intCylinder;
 	return ref;
 }
 
@@ -48,9 +48,9 @@ intCylinder::registerElement()
 }
 
 daeElementRef
-intCylinder::intHeight::create(daeInt bytes)
+intCylinder::intHeight::create(daeInt)
 {
-	intCylinder::intHeightRef ref = new(bytes) intCylinder::intHeight;
+	intCylinder::intHeightRef ref = new intCylinder::intHeight;
 	return ref;
 }
 
@@ -72,9 +72,9 @@ intCylinder::intHeight::registerElement()
 }
 
 daeElementRef
-intCylinder::intRadius::create(daeInt bytes)
+intCylinder::intRadius::create(daeInt)
 {
-	intCylinder::intRadiusRef ref = new(bytes) intCylinder::intRadius;
+	intCylinder::intRadiusRef ref = new intCylinder::intRadius;
 	return ref;
 }
 

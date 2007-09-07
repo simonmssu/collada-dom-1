@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCommon_float_or_param_type::create(daeInt bytes)
+domCommon_float_or_param_type::create(daeInt)
 {
-	domCommon_float_or_param_typeRef ref = new(bytes) domCommon_float_or_param_type;
+	domCommon_float_or_param_typeRef ref = new domCommon_float_or_param_type;
 	return ref;
 }
 
@@ -58,7 +58,7 @@ domCommon_float_or_param_type::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCommon_float_or_param_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCommon_float_or_param_type,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domCommon_float_or_param_type,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domCommon_float_or_param_type));
@@ -68,9 +68,9 @@ domCommon_float_or_param_type::registerElement()
 }
 
 daeElementRef
-domCommon_float_or_param_type::domFloat::create(daeInt bytes)
+domCommon_float_or_param_type::domFloat::create(daeInt)
 {
-	domCommon_float_or_param_type::domFloatRef ref = new(bytes) domCommon_float_or_param_type::domFloat;
+	domCommon_float_or_param_type::domFloatRef ref = new domCommon_float_or_param_type::domFloat;
 	return ref;
 }
 
@@ -114,9 +114,9 @@ domCommon_float_or_param_type::domFloat::registerElement()
 }
 
 daeElementRef
-domCommon_float_or_param_type::domParam::create(daeInt bytes)
+domCommon_float_or_param_type::domParam::create(daeInt)
 {
-	domCommon_float_or_param_type::domParamRef ref = new(bytes) domCommon_float_or_param_type::domParam;
+	domCommon_float_or_param_type::domParamRef ref = new domCommon_float_or_param_type::domParam;
 	return ref;
 }
 

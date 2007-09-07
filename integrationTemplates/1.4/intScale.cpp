@@ -22,9 +22,9 @@ daeMetaElement * intScale::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intScale::create(daeInt bytes)
+intScale::create(daeInt)
 {
-	intScaleRef ref = new(bytes) intScale;
+	intScaleRef ref = new intScale;
 	return ref;
 }
 

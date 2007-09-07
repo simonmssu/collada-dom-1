@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSource::create(daeInt bytes)
+domSource::create(daeInt)
 {
-	domSourceRef ref = new(bytes) domSource;
+	domSourceRef ref = new domSource;
 	return ref;
 }
 
@@ -100,7 +100,7 @@ domSource::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domSource,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domSource,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domSource,_CMData), 1);
 	//	Add attribute: id
  	{
@@ -133,9 +133,9 @@ domSource::registerElement()
 }
 
 daeElementRef
-domSource::domTechnique_common::create(daeInt bytes)
+domSource::domTechnique_common::create(daeInt)
 {
-	domSource::domTechnique_commonRef ref = new(bytes) domSource::domTechnique_common;
+	domSource::domTechnique_commonRef ref = new domSource::domTechnique_common;
 	return ref;
 }
 

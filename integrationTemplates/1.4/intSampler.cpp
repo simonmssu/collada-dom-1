@@ -22,9 +22,9 @@ daeMetaElement * intSampler::_Meta = NULL;
 // ********************************************************
 
 daeElementRef
-intSampler::create(daeInt bytes)
+intSampler::create(daeInt)
 {
-	intSamplerRef ref = new(bytes) intSampler;
+	intSamplerRef ref = new intSampler;
 	return ref;
 }
 

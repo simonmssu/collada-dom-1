@@ -21,9 +21,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCommon_color_or_texture_type::create(daeInt bytes)
+domCommon_color_or_texture_type::create(daeInt)
 {
-	domCommon_color_or_texture_typeRef ref = new(bytes) domCommon_color_or_texture_type;
+	domCommon_color_or_texture_typeRef ref = new domCommon_color_or_texture_type;
 	return ref;
 }
 
@@ -64,7 +64,7 @@ domCommon_color_or_texture_type::registerElement()
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCommon_color_or_texture_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCommon_color_or_texture_type,_contentsOrder));
-
+        
     _Meta->addCMDataArray(daeOffsetOf(domCommon_color_or_texture_type,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domCommon_color_or_texture_type));
@@ -74,9 +74,9 @@ domCommon_color_or_texture_type::registerElement()
 }
 
 daeElementRef
-domCommon_color_or_texture_type::domColor::create(daeInt bytes)
+domCommon_color_or_texture_type::domColor::create(daeInt)
 {
-	domCommon_color_or_texture_type::domColorRef ref = new(bytes) domCommon_color_or_texture_type::domColor;
+	domCommon_color_or_texture_type::domColorRef ref = new domCommon_color_or_texture_type::domColor;
 	return ref;
 }
 
@@ -120,9 +120,9 @@ domCommon_color_or_texture_type::domColor::registerElement()
 }
 
 daeElementRef
-domCommon_color_or_texture_type::domParam::create(daeInt bytes)
+domCommon_color_or_texture_type::domParam::create(daeInt)
 {
-	domCommon_color_or_texture_type::domParamRef ref = new(bytes) domCommon_color_or_texture_type::domParam;
+	domCommon_color_or_texture_type::domParamRef ref = new domCommon_color_or_texture_type::domParam;
 	return ref;
 }
 
@@ -158,9 +158,9 @@ domCommon_color_or_texture_type::domParam::registerElement()
 }
 
 daeElementRef
-domCommon_color_or_texture_type::domTexture::create(daeInt bytes)
+domCommon_color_or_texture_type::domTexture::create(daeInt)
 {
-	domCommon_color_or_texture_type::domTextureRef ref = new(bytes) domCommon_color_or_texture_type::domTexture;
+	domCommon_color_or_texture_type::domTextureRef ref = new domCommon_color_or_texture_type::domTexture;
 	return ref;
 }
 
