@@ -25,7 +25,7 @@
 daeElementRef
 domAny::create(daeInt bytes)
 {
-	domAnyRef ref = new(bytes) domAny;
+	domAnyRef ref = new domAny;
 	return ref;
 }
 

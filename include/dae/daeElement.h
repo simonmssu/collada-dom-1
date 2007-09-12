@@ -17,6 +17,7 @@
 #include <dae/daeMemorySystem.h>
 #include <wchar.h>
 #include <dae/daeArray.h>
+#include <dae/daeRefCountedObj.h>
 
 //#ifndef NO_MALLOC_HEADER
 //#include <malloc.h>
@@ -59,7 +60,7 @@ extern "C" void terminateResolveArray(void);
  * - Reference counted via daeSmartRef
  * - Contains information for XML base URI, and XML containing element
  */
-class daeElement
+class daeElement : public daeRefCountedObj
 {
 public:
 	/**
@@ -67,7 +68,6 @@ public:
 	 */
 	DAE_ALLOC;
 protected:
-	mutable daeInt			_refCount;
 	daeIntegrationObject*	_intObject;
 	daeElement*				_parent;
 	daeDocument*			_document;
@@ -110,19 +110,6 @@ public:
 
 	// sthomas (see https://collada.org/public_forum/viewtopic.php?t=325&)
 	static void releaseElements();
-	/**
-	 * Decrements the reference count and deletes the object if reference count is zero.
-	 * @note Should not be used externally if daeSmartRefs are being used, they call it
-	 * automatically.
-	 */
-	DLLSPEC void release() const;
-
-	/**
-	 * Increments the reference count of this element.
-	 * @note Should not be used externally if daeSmartRefs are being used, they call it
-	 * automatically.
-	 */
-	inline void ref() const {_refCount++;}
 
 	/**
 	 * Resolves all fields of type daeURI and IDRef.
@@ -439,7 +426,7 @@ public:
 	 * if it is not NULL.
 	 * @param elem Element to call @c release() for, if the element exists.
 	 */
-	static DLLSPEC void release(const daeElement* elem) {if (elem != NULL) elem->release();}
+	static DLLSPEC void releaseElem(const daeElement* elem) {if (elem != NULL) elem->release();}
 	
 	/**
 	 * Increments the reference counter for the element passed in. This function is a static wrapper
@@ -447,7 +434,7 @@ public:
 	 * if it is not NULL.
 	 * @param elem Element to call @c ref() for, if the element exists.
 	 */
-	static DLLSPEC void ref(const daeElement* elem) { if (elem != NULL) elem->ref(); }
+	static DLLSPEC void refElem(const daeElement* elem) { if (elem != NULL) elem->ref(); }
 
 	/**
 	 * Appends the passed in element to the list of elements that need to be resolved.

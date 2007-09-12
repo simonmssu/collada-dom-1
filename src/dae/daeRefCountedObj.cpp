@@ -11,18 +11,18 @@
  * License. 
  */
 
-#include <dae/daeArrayTypes.h>
-#include <dae/daeArray.h>
+#include <dae/daeRefCountedObj.h>
 
-daeArray::daeArray():_count(0),_capacity(0),_data(NULL),_elementSize(4),_type(NULL)
-{
+daeRefCountedObj::daeRefCountedObj() : _refCount(0) { }
+
+daeRefCountedObj::~daeRefCountedObj() { }
+
+void daeRefCountedObj::release() const {
+	if (--_refCount <= 0)
+		delete this;
 }
 
-daeArray::~daeArray()
-{
+void daeRefCountedObj::ref() const {
+	_refCount++;
 }
 
-void daeArray::setElementSize(size_t elementSize) {
-	clear();
-	_elementSize = elementSize;
-}

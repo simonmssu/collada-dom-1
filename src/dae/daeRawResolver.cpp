@@ -128,7 +128,7 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 	array->setAttribute( "id", arrayName );
 
 	daeArray *valArray = (daeArray*)array->getValuePointer();
-	valArray->setRawCount( (size_t)(count*stride) );
+	valArray->setCount( (size_t)(count*stride) );
 
 	fseek( rawFile, byteOffset, SEEK_SET );
 	if ( hasInts )
@@ -137,7 +137,7 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 		for ( unsigned int i = 0; i < count*stride; i++ )
 		{
 			fread( &val, sizeof(daeInt), 1, rawFile );
-			*(daeLong*)(valArray->getRawData()+i*sizeof(daeLong)) = (daeLong)val;
+			*(daeLong*)(valArray->getRaw(i)) = (daeLong)val;
 		}
 	}
 	else
@@ -146,7 +146,7 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 		for ( unsigned int i = 0; i < count*stride; i++ )
 		{
 			fread( &val, sizeof(daeFloat), 1, rawFile );
-			*(daeDouble*)(valArray->getRawData()+i*sizeof(daeDouble)) = (daeDouble)val;
+			*(daeDouble*)(valArray->getRaw(i)) = (daeDouble)val;
 		}
 	}
 

@@ -48,7 +48,8 @@ SRC				 := dae.cpp \
 					../modules/stdErrPlugin/stdErrPlugin.cpp \
 					../modules/STLDatabase/daeSTLDatabase.cpp \
 					../modules/LIBXMLPlugin/daeLIBXMLPlugin.cpp \
-					daeTinyXMLPlugin.cpp
+					daeTinyXMLPlugin.cpp \
+					daeRefCountedObj.cpp
 
 INCLUDE_DIR		 += $(ROOT_DIR)/include
 #INCLUDE_DIR		 += $(ROOT_DIR)/include/$(COLLADA_DOM_VERSION)

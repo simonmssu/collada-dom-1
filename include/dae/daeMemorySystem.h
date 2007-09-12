@@ -44,20 +44,14 @@ public:
 // Shorthand for defining new and delete overrides for classes, bad use of macros!
 
 #define DAE_ALLOC \
-	inline void* operator new(size_t n) { \
-		return daeMemorySystem::malloc("meta",n); \
+	inline void* operator new(size_t size) { \
+		return daeMemorySystem::malloc("meta", size); \
 	} \
-	inline void* operator new(size_t , size_t runtimeSize) { \
-		return daeMemorySystem::malloc("meta",runtimeSize); \
+	inline void* operator new(size_t, void* p) { \
+		return p; \
 	} \
-	inline void operator delete(void* p) { \
-		daeMemorySystem::free("meta",p); \
-	} \
-	inline void operator delete(void* p, size_t runtimeSize) { \
-	(void)runtimeSize; \
-	daeMemorySystem::free("meta",p); \
+	inline void operator delete(void* p, size_t) { \
+		daeMemorySystem::free("meta",p);						 \
 	}
-
-
 
 #endif // __DAE_MEMORY_H__

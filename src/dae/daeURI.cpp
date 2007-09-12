@@ -179,7 +179,7 @@ daeURI::daeURI(daeURI& baseURI, daeString uriString)
 	setURI(uriString);
 	validate(&baseURI);
 }
-daeURI::daeURI(daeURI& copyFrom)
+daeURI::daeURI(const daeURI& copyFrom)
 {
 	initialize();
 	setURI(copyFrom.getOriginalURI());

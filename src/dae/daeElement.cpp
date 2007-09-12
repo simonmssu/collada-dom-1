@@ -22,16 +22,9 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeURI.h>
 
-void
-daeElement::release() const
-{
-	if (--_refCount <= 0)
-
-		delete this;
-}
 daeElementRef DAECreateElement(int nbytes)
 {
-	return new(nbytes) daeElement;
+	return new daeElement;
 }
 
 //Contributed by Nus - Wed, 08 Nov 2006
@@ -463,7 +456,6 @@ daeElement::setup(daeMetaElement* meta)
 }
 
 daeElement::daeElement():
-		_refCount(0),
 		_intObject(0),
 		_parent(NULL),
 		_document(NULL),

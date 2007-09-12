@@ -99,10 +99,17 @@ public:
 	virtual daeInt compare(daeChar* value1, daeChar* value2);
 
 	/**
+	 * Creates a daeTArray of the appropriate type (e.g. daeTArray<int>, daeTArray<daeIDRef>)
+	 * and returns it as a daeArray*.
+	 * @return Returns a daeArray*. This array should be freed by the caller with
+	 * operator delete.
+	 */
+	virtual daeArray* createArray() = 0;
+
+	/**
 	 * Resolves a reference, if indeed this type is a reference type.
 	 * @param element The containing element.
 	 * @param src Source of the raw data to resolve.
-	 * should be placed.
 	 */
 	virtual void resolve(daeElementRef element, daeChar* src);
 	
@@ -308,7 +315,8 @@ public:
 	 * @return Returns true if the operation was successful, false if not successful.
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
-								   
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -332,6 +340,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -355,6 +365,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -378,6 +390,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -401,6 +415,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -424,6 +440,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -455,6 +473,8 @@ public:
 	 * @return Returns true if the operation was successful, false if not successful.
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -486,6 +506,8 @@ public:
 	 * @return Returns true if the operation was successful, false if not successful.
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -526,6 +548,7 @@ public:
 	 */
 	virtual daeInt compare(daeChar* value1, daeChar* value2);
 								   
+	virtual daeArray* createArray();
 };
 
 /**
@@ -551,6 +574,7 @@ public:
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 	
+	virtual daeArray* createArray();
 };
 
 /**
@@ -580,6 +604,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -627,7 +653,8 @@ public:
 	 * @return Returns true if the operation was successful, false if not successful.
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
-								   
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -652,6 +679,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -692,6 +721,8 @@ public:
 	 * should be placed.
 	 */
 	virtual void resolve(daeElementRef element, daeChar* src);
+
+	virtual daeArray* createArray();
 };
 
 /**
@@ -732,6 +763,10 @@ public:
 	 * should be placed.
 	 */
 	virtual void resolve(daeElementRef element, daeChar* src);
+
+	virtual daeInt compare(daeChar* value1, daeChar* value2);
+
+	virtual daeArray* createArray();
 };
 
 

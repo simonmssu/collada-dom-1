@@ -182,7 +182,7 @@ public:
 	 * Constructs a daeURI object based on a simple copy from an existing @c daeURI. 
 	 * @param constructFromURI  URI to copy into this one.
 	 */
-	DLLSPEC daeURI(daeURI& constructFromURI);
+	DLLSPEC daeURI(const daeURI& constructFromURI);
 
 	/**
 	 * Gets the ID string parsed from the URI.

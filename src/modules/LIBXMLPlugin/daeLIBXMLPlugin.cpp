@@ -449,17 +449,15 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 						return;
 					}
 				} else {
-					daeArray defaultArray;
-					attr->getType()->stringToArray((daeChar*)attr->getDefault(), defaultArray);
+					std::auto_ptr<daeArray> defaultArray(attr->getType()->createArray());
+					attr->getType()->stringToArray((daeChar*)attr->getDefault(), *defaultArray);
 
 					daeArray* attrArray = (daeArray*)attr->getWritableMemory(element);
-					if (attrArray->getCount() == defaultArray.getCount()) {
+					if (attrArray->getCount() == defaultArray->getCount()) {
 						size_t i = 0;
 						for (; i < attrArray->getCount(); i++) {
-							if (attr->getType()->compare(attrArray->getRawData() + i*attr->getSize(),
-														 defaultArray.getRawData() + i*attr->getSize()) != 0) {
+							if (attr->getType()->compare(attrArray->getRaw(i), defaultArray->getRaw(i)) != 0) 
 									break;
-							}
 						}
 
 						// We made it to the end without detecting a mismatch, so it's the same as the
@@ -572,7 +570,7 @@ void daeLIBXMLPlugin::writeRawSource( daeElement *src )
 	{
 		for( daeULong i = 0; i < count; i++ )
 		{
-			daeInt tmp = (daeInt)*(daeLong*)(valArray->getRawData() + i*sizeof(daeLong));
+			daeInt tmp = (daeInt)*(daeLong*)(valArray->getRaw(i));
 			rawByteCount += (unsigned long)(fwrite( &tmp, sizeof(daeInt), 1, rawFile ) * sizeof(daeInt));
 		}
 	}
@@ -580,7 +578,7 @@ void daeLIBXMLPlugin::writeRawSource( daeElement *src )
 	{
 		for( daeULong i = 0; i < count; i++ )
 		{
-			daeFloat tmp = (daeFloat)*(daeDouble*)(valArray->getRawData() + i*sizeof(daeDouble));
+			daeFloat tmp = (daeFloat)*(daeDouble*)(valArray->getRaw(i));
 			rawByteCount += (unsigned long)(fwrite( &tmp, sizeof(daeFloat), 1, rawFile ) * sizeof(daeFloat));
 		}
 	}

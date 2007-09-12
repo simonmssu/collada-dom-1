@@ -11,6 +11,7 @@
  * License. 
  */
 
+#include <sstream>
 #include <dae/daeIDRef.h>
 #include <dae/daeDatabase.h>
 #include <dae/daeErrorHandler.h>
@@ -22,120 +23,129 @@ daeIDRefResolverPtrArray* daeIDRefResolver::_KnownResolvers = NULL;
 void
 daeIDRef::initialize()
 {
-	id = NULL;
+	id = "";
 	element = NULL;
 	container = NULL;
-}
-
-daeIDRef::~daeIDRef()
-{
-	reset();
 }
 
 daeIDRef::daeIDRef()
 {
 	initialize();
-	reset();
 }
 
 daeIDRef::daeIDRef(daeString IDRefString)
 {
 	initialize();
 	setID(IDRefString);
-	validate();
 }
 
-daeIDRef::daeIDRef(daeIDRef& copyFrom)
+daeIDRef::daeIDRef(const daeIDRef& copyFrom_)
 {
 	initialize();
-	element = copyFrom.element;
-	setID(copyFrom.getID());
-	state = copyFrom.state;
-	container = copyFrom.container;
+	copyFrom(copyFrom_);
 }
-
-void
-daeIDRef::copyFrom(daeIDRef& copyFrom)
-{
-	element = copyFrom.element;
-	setID(copyFrom.getID());
-	state = copyFrom.state;
-	container = copyFrom.container;
-}
-
-daeString emptyID = "";
 
 void
 daeIDRef::reset()
 {
-	if ((id != NULL) && (strcmp(id, emptyID) != 0))
-	  daeMemorySystem::free("idref",(void*)id);
-
-	id = emptyID;
+	setID("");
 }
 
-daeString safeCreateID(daeString src)
-{
-	if (src == NULL)
-		return emptyID;
-	daeChar* ret = (daeChar*)daeMemorySystem::malloc("idref",strlen(src)+1);
-	if (ret == NULL)
-		return emptyID;
-	strcpy(ret,src);
-	
-	return ret;
+bool daeIDRef::operator==(const daeIDRef& other) const {
+	return (!strcmp(other.getID(), getID()));
 }
 
-void
-daeIDRef::setID(daeString _IDString)
-{
-	reset();
-
-	id = safeCreateID(_IDString);
-	
-	state = id_loaded;
-}
-
-void
-daeIDRef::print()
-{
-	fprintf(stderr,"id = %s\n",id);
-	fflush(stderr);
+daeIDRef &daeIDRef::operator=( const daeIDRef& other) {
+	container = other.container;
+	id = other.getID();
+	element = other.element;
+	return *this;
 }
 
 daeString
 daeIDRef::getID() const
 {
-	return id;
-}
-
-void
-daeIDRef::validate()
-{
-	state = id_pending;
-}
-
-void
-daeIDRef::resolveElement( daeString typeNameHint )
-{
-	if (state == id_empty)
-		return;
-	
-	if (state == id_loaded)
-		validate();
-	
-	daeIDRefResolver::attemptResolveElement(*((daeIDRef*)this), typeNameHint );
-}
-
-void
-daeIDRef::resolveID()
-{
-	if (state == id_empty) {
-		if (element != NULL)
-			setID(element->getID());
-		else
-			state = id_failed_invalid_reference;
+	// If we have an element, ask what its ID is. This way we're always using the up-to-date ID,
+	// even if a user changes the ID of the element on us.
+	if (element) {
+		daeString elementID = element->getID();
+		return elementID ? elementID : "";
 	}
+
+	return id.c_str();
+}
+
+void
+daeIDRef::setID(daeString _IDString)
+{
+	id = _IDString ? _IDString : "";
+	element = NULL;
+}
+
+daeElementRef daeIDRef::getElement() const {
+	if (!element && container)
+		element = daeIDRefResolver::attemptResolveElement(id.c_str(), container->getDocumentURI()->getURI());
+	return element;
+}
+	
+void daeIDRef::setElement(daeElementRef newref) {
+	element = newref;
+	id = element->getID() ? element->getID() : "";
+}
+
+daeIDRef::ResolveState daeIDRef::getState() const {
+	if (element)
+		return id_success;
+
+	if (!container)
+		return id_failed_no_document;
+	
+	// Try to resolve the ID
+	ResolveState result;
+	element = daeIDRefResolver::attemptResolveElement(id.c_str(), container->getDocumentURI()->getURI(), &result);
+	return result;
+}
+
+daeElement* daeIDRef::getContainer() const {
+	return(container);
+}
+
+void daeIDRef::setContainer(daeElement* cont) {
+	container = cont;
+	element = NULL; // Force a resolve since the container changed
+}
+
+void
+daeIDRef::print()
+{
+	fprintf(stderr,"id = %s\n",id.c_str());
+	fflush(stderr);
+}
+
+// These methods are provided for backward compatibility only.
+void daeIDRef::validate() { }
+
+void daeIDRef::resolveElement( daeString typeNameHint ) { }
+
+void daeIDRef::resolveID() { }
+
+daeIDRef &daeIDRef::get( daeUInt idx ) {
+	(void)idx;
+	return *this;
+}
+
+size_t daeIDRef::getCount() const {
+	return 1;
+}
+
+daeIDRef& daeIDRef::operator[](size_t index) {
+	(void)index;
+	return *this;
+}
+
+void
+daeIDRef::copyFrom(const daeIDRef& copyFrom) {
+	*this = copyFrom;
 }
 
 //Contributed by Nus - Wed, 08 Nov 2006
@@ -153,47 +163,18 @@ void daeIDRefResolver::terminateIDRefSolver(void)
     _KnownResolvers = NULL;
   }
 }
+
 //-------------------------------------
 
-void
-daeIDRefResolver::attemptResolveElement(daeIDRef& id, daeString typeNameHint)
+daeElement* daeIDRefResolver::attemptResolveElement(daeString id, 
+																										daeString docURI, 
+																										daeIDRef::ResolveState* result /* = NULL */)
 {
-	int i;
 //Contributed by Nus - Wed, 08 Nov 2006
-	// int cnt = (int)_KnownResolvers.getCount();
-	int cnt = (int)_KnownResolvers->getCount();
-//-------------------------------
-
-	for(i=0;i<cnt;i++)
-//Contributed by Nus - Wed, 08 Nov 2006
-		// if (_KnownResolvers[i]->resolveElement(id, typeNameHint))
-		if ((*_KnownResolvers)[i]->resolveElement(id, typeNameHint))
+	for(size_t i = 0; i < _KnownResolvers->getCount(); i++)
+		if (daeElement* el = (*_KnownResolvers)[i]->resolveElement(id, docURI, result))
+			return el;
 //-------------------------
-			return;
-}
-
-void
-daeIDRefResolver::attemptResolveID(daeIDRef& id)
-{
-//Contributed by Nus - Wed, 08 Nov 2006
-	// int i,cnt = (int)_KnownResolvers.getCount();
-	int i,cnt = (int)_KnownResolvers->getCount();
-//-------------------------------
-
-//	daeBool foundProtocol = false;
-	for(i=0;i<cnt;i++)
-//Contributed by Nus - Wed, 08 Nov 2006
-		// if (_KnownResolvers[i]->resolveID(id))
-		if ((*_KnownResolvers)[i]->resolveID(id))
-//-----------------------------
-			return;
-
-#if defined(_DEBUG) && defined(WIN32)
-	char msg[128];
-	sprintf(msg,"daeIDRefResolver::attemptResolveID(%s) - failed\n",id.getID());
-	daeErrorHandler::get()->handleWarning( msg );
-#endif
-			
 }
 
 daeIDRefResolver::daeIDRefResolver()
@@ -223,52 +204,43 @@ daeDefaultIDRefResolver::~daeDefaultIDRefResolver()
 {
 }
 
-daeBool
-daeDefaultIDRefResolver::resolveID(daeIDRef& id)
-{
-	(void)id; 
-	return false;
-}
-
 daeString
 daeDefaultIDRefResolver::getName()
 {
 	return "DefaultIDRefResolver";
 }
 
-daeBool
-daeDefaultIDRefResolver::resolveElement(daeIDRef& idref, daeString typeNameHint)
+daeElement* daeDefaultIDRefResolver::resolveElement(daeString id, 
+																										daeString docURI, 
+																										daeIDRef::ResolveState* result /* = NULL */)
 {
-	if (idref.getState() == daeIDRef::id_loaded)
-		idref.validate();
+	daeElement* el = NULL;
+	daeIDRef::ResolveState state = daeIDRef::id_success;
+
 	
-	daeElement* resolved = NULL;
-	int status;
-
-	daeString id = idref.getID();
-
-	if ( idref.getContainer() == NULL ) 
-	{
-		char msg[1024];
-		sprintf(msg,"daeDefaultIDRefResolver::resolveElement() - failed to resolve %s\n",idref.getID(), ". IDRef needs a container element!" );
-		daeErrorHandler::get()->handleWarning( msg );
-		return false;
+	if (!id || strcmp(id, "") == 0)
+		state = daeIDRef::id_failed_invalid_id;
+	else {
+		if (!docURI) {
+			state = daeIDRef::id_failed_no_document;
+			std::ostringstream msg;
+			msg << "daeDefaultIDRefResolver::resolveElement() - failed to resolve "
+					<< id << ". IDRef needs a container element!\n";
+			daeErrorHandler::get()->handleWarning(msg.str().c_str());
+		} else {
+			_database->getElement(&el, 0, id, NULL, docURI);
+			if (!el) {
+				state = daeIDRef::id_failed_id_not_found;
+				std::ostringstream msg;
+				msg << "daeDefaultIDRefResolver::resolveElement() - failed to resolve " << id << "\n";
+				daeErrorHandler::get()->handleWarning(msg.str().c_str());
+			}
+		}
 	}
 
-	status = _database->getElement( &resolved, 0, id, typeNameHint, idref.getContainer()->getDocumentURI()->getURI() );
-
-	idref.setElement( resolved );
-
-	if (status||(resolved==NULL)) {
-		idref.setState( daeIDRef::id_failed_id_not_found );
-		char msg[1024];
-		sprintf(msg,"daeDefaultIDRefResolver::resolveElement() - failed to resolve %s\n",idref.getID());
-		daeErrorHandler::get()->handleWarning( msg );
-		return false;
-	}
-
-	idref.setState( daeIDRef::id_success );
-	return true;
+	if (result)
+		*result = state;
+	return el;
 }
 
 

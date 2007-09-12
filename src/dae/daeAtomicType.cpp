@@ -187,8 +187,8 @@ daeAtomicType::stringToArray(daeChar* src, daeArray& array) {
 			daeChar temp = *src;
 			*src = 0;
 
-			array.setRawCount(array.getCount()+1);
-			if (!stringToMemory(token, array.getRawData()+(array.getCount()-1)*_size)) {
+			array.setCount(array.getCount()+1);
+			if (!stringToMemory(token, array.getRaw(array.getCount()-1))) {
 				delete[] srcDup;
 				return false;
 			}
@@ -695,8 +695,6 @@ daeResolverType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
 daeBool
 daeIDResolverType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
 {
-	((daeIDRef*)src)->resolveID();
-
 	daeString s = ((daeIDRef *)src)->getID();
 	char tmp[64];
 	sprintf(tmp,"%%.%ds",dstSize-1);
@@ -756,7 +754,6 @@ daeIDResolverType::resolve(daeElementRef element, daeChar* src)
 {
 	daeIDRef* resolver = (daeIDRef*)src;
 	resolver->setContainer( element );
-	resolver->resolveElement();
 }
 
 daeBool
@@ -874,4 +871,68 @@ daeStringRefType::compare(daeChar* value1, daeChar* value2) {
 	daeString s1 = *((daeStringRef *)value1);
 	daeString s2 = *((daeStringRef *)value2);
 	return strcmp(s1, s2);
+}
+
+daeInt daeIDResolverType::compare(daeChar* value1, daeChar* value2) {
+	return (daeIDRef&)*value1 == (daeIDRef&)*value2;
+}
+
+daeArray* daeBoolType::createArray() {
+	return new daeTArray<daeBool>;
+}
+
+daeArray* daeIntType::createArray() {
+	return new daeTArray<daeInt>;
+}
+
+daeArray* daeLongType::createArray() {
+	return new daeTArray<daeLong>;
+}
+
+daeArray* daeUIntType::createArray() {
+	return new daeTArray<daeUInt>;
+}
+
+daeArray* daeULongType::createArray() {
+	return new daeTArray<daeULong>;
+}
+
+daeArray* daeShortType::createArray() {
+	return new daeTArray<daeShort>;
+}
+
+daeArray* daeFloatType::createArray() {
+	return new daeTArray<daeFloat>;
+}
+
+daeArray* daeDoubleType::createArray() {
+	return new daeTArray<daeDouble>;
+}
+
+daeArray* daeStringRefType::createArray() {
+	return new daeTArray<daeStringRef>;
+}
+
+daeArray* daeTokenType::createArray() {
+	return new daeTArray<daeStringRef>;
+}
+
+daeArray* daeElementRefType::createArray() {
+	return new daeTArray<daeElementRef>;
+}
+
+daeArray* daeEnumType::createArray() {
+	return new daeTArray<daeEnum>;
+}
+
+daeArray* daeRawRefType::createArray() {
+	return new daeTArray<daeRawRef>;
+}
+
+daeArray* daeResolverType::createArray() {
+	return new daeTArray<daeURI>;
+}
+
+daeArray* daeIDResolverType::createArray() {
+	return new daeTArray<daeIDRef>;
 }

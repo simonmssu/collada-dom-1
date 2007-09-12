@@ -14,6 +14,7 @@
 #ifndef __DAE_IDREF_H__
 #define __DAE_IDREF_H__
 
+#include <string>
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
 
@@ -51,76 +52,27 @@ public:
 		/** Resoltion failed due to invalid reference */
 		id_failed_invalid_reference,
 		/** Resolution failed due to an external error */
-		id_failed_externalization
+		id_failed_externalization,
+		/** Resolution failed because we don't have a document in which to search for the element.
+				This means you probably forgot to set a container element. */
+		id_failed_no_document
 	};
 	
 private:	
-	/** Id used to refer to another element */
-	daeString id;
+	/** ID used to refer to another element */
+	std::string id;
 
 	/** Reference to the actual element the ID refers to */
-	daeElementRef element;
+	mutable daeElementRef element;
 
 	/** Element that owns this ID (if any) */
 	daeElement* container;
-	
-	/** Current state of this id's resolution */ 
-	ResolveState state;
-
-public:
-	/** 
-	 * Gets the element that this URI resolves to in memory.
-	 * @return Returns a ref to the element.
-	 */
-	inline daeElementRef getElement(){return(element);};
-	
-	/** 
-	 * Gets the element that this URI resolves to in memory.
-	 * @return Returns a ref to the element.
-	 */
-	inline daeElementConstRef getElement() const {return(element);};
-
-	/** 
-	 * Sets the element that this URI resolves to in memory.
-	 * @param newref A ref to the element.
-	 */
-	inline void setElement(daeElementRef newref){element=newref;};
-
-	/**
-	 * Gets the resolve state of the URI.
-	 * @return Returns the current state.
-	 * @note This will be removed when daeURI starts managing its state internally.
-	 */
-	inline ResolveState getState() const {return(state);};
-
-	/** 
-	 * Sets the resolve state of the URI.
-	 * @param newState The new state.
-	 * @note This will be removed when daeURI starts managing its state internally.
-	 */
-	inline void setState(ResolveState newState){state=newState;};
-
-	/**
-	 * Gets a pointer to the @c daeElement that contains this URI.
-	 * @return Returns the pointer to the containing daeElmement.
-	 */
-
-	inline daeElement* getContainer() const {return(container);};
-	/**
-	 * Sets the pointer to the @c daeElement that contains this URI.
-	 * @param cont Pointer to the containing @c daeElmement.
-	 */
-	inline void setContainer(daeElement* cont){container=cont;};
 
 public:
 	/**
 	 * Simple Constructor
 	 */
 	DLLSPEC daeIDRef();
-	/**
-	 * Destructor
-	 */
-	DLLSPEC ~daeIDRef();
 
 	/**
 	 * Constructs an id reference via a string, using @c setID(); loads the status.
@@ -132,14 +84,7 @@ public:
 	 * Constructs a new id reference by copying an existing one. 
 	 * @param constructFromIDRef @c daeIDRef to copy into this one.
 	 */
-	DLLSPEC daeIDRef(daeIDRef& constructFromIDRef);
-
-	/**
-	 * Copies <tt><i>ID</i></tt> into the  <tt><i>id	</i></tt> data member.
-	 * After the call to @c setID(), the <tt><i>state</i></tt> is set to @c id_loaded
-	 * @param ID String to use to configure this @c daeIDRef.
-	 */
-	DLLSPEC void setID(daeString ID);
+	DLLSPEC daeIDRef(const daeIDRef& constructFromIDRef);
 
 	/**
 	 * Gets the ID string
@@ -148,33 +93,42 @@ public:
 	DLLSPEC daeString getID() const;
 
 	/**
-	 * Uses the @c daeIDRefResolver static API to try to resolve this ID
-	 * into a @c daeElement reference.
-	 * This function can effectively force a load of a file, perform
-	 * a database query, et cetera based on the @c daeIDRefResolver plugins
-	 * implemented.
+	 * Copies <tt><i>ID</i></tt> into the  <tt><i>id	</i></tt> data member.
+	 * After the call to @c setID(), the <tt><i>state</i></tt> is set to @c id_loaded
+	 * @param ID String to use to configure this @c daeIDRef.
 	 */
-	DLLSPEC void resolveElement( daeString typeNameHint = NULL );
+	DLLSPEC void setID(daeString ID);
+
+	/** 
+	 * Gets the element that this URI resolves to in memory.
+	 * @return Returns a ref to the element.
+	 */
+	daeElementRef getElement() const;
+
+	/** 
+	 * Sets the element that this URI resolves to in memory.
+	 * @param newref A ref to the element.
+	 */
+	void setElement(daeElementRef newref);
 
 	/**
-	 * Configures the <tt><i>id</i></tt> string of this @c daeIDRef based on the element set its <tt><i>element</i></tt> data member.
-	 * Uses  @c daeElement::getID() to get the element's ID information to configure
-	 * the <tt><i>id</i></tt> string.
+	 * Gets the resolve state of the URI.
+	 * @return Returns the current state.
+	 * @note This will be removed when daeURI starts managing its state internally.
 	 */
-	DLLSPEC void resolveID();
+	ResolveState getState() const;
 
 	/**
-	 * Sets the <tt><i>state</i></tt> of this @c daeIDRef to @c id_pending, as it is awaiting a call to
-	 * @c resolveElement().
+	 * Gets a pointer to the @c daeElement that contains this URI.
+	 * @return Returns the pointer to the containing daeElmement.
 	 */
-	DLLSPEC void validate();
+	daeElement* getContainer() const;
 
 	/**
-	 * Copies <tt><i>from</i></tt> into <tt><i>this.</i></tt> 
-	 * The function does a simple copy, and not "base validation".
-	 * @param from  @c daeIDRef to copy from.
+	 * Sets the pointer to the @c daeElement that contains this URI.
+	 * @param cont Pointer to the containing @c daeElmement.
 	 */
-	DLLSPEC void copyFrom(daeIDRef& from);
+	void setContainer(daeElement* cont);
 
 	/**
 	 * Outputs all components of this @c daeIDRef to stderr.
@@ -196,20 +150,22 @@ public:
 	 * Comparison operator.
 	 * @return Returns true if URI's are equal.
 	 */
-	inline bool operator==(const daeIDRef& other) const{
-		return (!strcmp(other.getID(), getID())); }
+	bool operator==(const daeIDRef& other) const;
 
-	daeIDRef &operator=( const daeIDRef& other) {
-		setID(other.getID());
-		element = other.element;
-		state = other.state;
-		return *this;
-	}
+	/**
+	 * Assignment operator.
+	 * @return Returns a reference to this object.
+	 */
+	daeIDRef &operator=( const daeIDRef& other);
 
-	//Backwards Compatibility
-	daeIDRef &get( daeUInt idx ) { (void)idx; return *this; }
-	size_t getCount() const { return 1; }
-	daeIDRef& operator[](size_t index) { (void)index; return *this; }
+	// These methods are only provided for backwards compatibility. Use the listed alternatives.
+	DLLSPEC daeIDRef &get( daeUInt idx ); // Never should have existed. No alternative.
+	DLLSPEC size_t getCount() const; // Never should have existed. No alternative.
+	DLLSPEC daeIDRef& operator[](size_t index); // Never should have existed. No alternative.
+	DLLSPEC void resolveElement( daeString typeNameHint = NULL ); // Call getElement. No separate "resolve" step needed.
+	DLLSPEC void resolveID(); // Never should have existed. No alternative.
+	DLLSPEC void validate(); // Never should have existed. No alternative.
+	DLLSPEC void copyFrom(const daeIDRef& from); // Use the assignment operator instead.
 };
 
 class daeIDRefResolver;
@@ -220,7 +176,7 @@ typedef daeTArray<daeIDRefResolver*> daeIDRefResolverPtrArray;
  * This class is an abstract base class that defines an interface for
  * resolving @c daeIDRefs.
  * All instances of @c daeIDRefResolvers are tracked centrally.
- * Every @c daeIDRef is passed through this list of @c aeIDRefResolvers for resolution.
+ * Every @c daeIDRef is passed through this list of @c daeIDRefResolvers for resolution.
  * The list is ordered on a first come, first serve basis, and resolution
  * terminates after any resolver instance is able to resolve the ID.
  */
@@ -254,34 +210,27 @@ protected:
 	
 public:
 	/**
-	 * Iterates through known resolvers
-	 * calling @c resolveElement().
-	 * @param id @c daeIDRef to resolve.
+	 * Iterates through known resolvers calling resolveElement().
+	 * @param id The ID of the element to find.
+	 * @param docURI The URI of the document containing the element.
+	 * @param result A ResolveState value indicating the result.
+	 * @return Returns a daeElement with matching ID, if one is found.
 	 */
-	static DLLSPEC void attemptResolveElement(daeIDRef &id, daeString typeNameHint = NULL );
-
-	/**
-	 * attemptResolveID iterates through known resolvers
-	 * calling resolveID().
-	 * @param id @c daeIDRef to resolve.
-	 */
-	static DLLSPEC void	attemptResolveID(daeIDRef &id);
+	static DLLSPEC daeElement* attemptResolveElement(daeString id, 
+																									 daeString docURI, 
+																									 daeIDRef::ResolveState* result = NULL);
 
 public: // Abstract Interface
 	/**
 	 * Provides an abstract interface to convert a @c daeIDRef into a @c daeElement.
-	 * @param IDRef @c daeIDRef to resolve.
-	 * @return Returns true if the @c daeIDRefResolver successfully resolved the IDRef,
-	 * returns false otherwise.
+	 * @param id The ID of the element to find.
+	 * @param docURI The URI of the document containing the element.
+	 * @param result A ResolveState value indicating the result.
+	 * @return Returns a daeElement with matching ID, if one is found.
 	 */
-	virtual DLLSPEC daeBool resolveElement(daeIDRef& IDRef, daeString typeNameHint = NULL ) = 0;
-	/**
-	 * Provides an abstract interface to convert a @c daeElement into a @c daeIDRef.
-	 * @param IDRef @c daeIDRef to resolve.
-	 * @return Returns true if the @c daeIDRefResolver successfully resolved the element
-	 * into a @c daeIDRef, returns false otherwise. 
-	 */
-	virtual DLLSPEC daeBool resolveID(daeIDRef& IDRef) = 0;
+	virtual DLLSPEC daeElement* resolveElement(daeString id,
+																						 daeString docURI,
+																						 daeIDRef::ResolveState* result = NULL) = 0;
 
 	/**
 	 * Gets the name of this resolver.
@@ -320,12 +269,9 @@ public: // Abstract Interface
 	/*
 	 * Implements base class abstract routine from @c daeIDRefResolver.
 	 */
-	virtual DLLSPEC daeBool resolveElement(daeIDRef& id, daeString typeNameHint = NULL );
-	
-	/*
-	 * Implements base class abstract routine from @c daeIDRefResolver.
-	 */
-	virtual DLLSPEC daeBool resolveID(daeIDRef& id);
+	virtual DLLSPEC daeElement* resolveElement(daeString id,
+																						 daeString docURI,
+																						 daeIDRef::ResolveState* result = NULL);
 	
 	/*
 	 * Implements base class abstract routine from @c daeIDRefResolver.

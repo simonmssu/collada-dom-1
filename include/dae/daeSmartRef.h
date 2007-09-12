@@ -35,7 +35,7 @@ public:
 	 * Destructor
 	 */
 	inline ~daeSmartRef() {
-		daeElement::release((daeElement*)_ptr); }
+		daeElement::releaseElem((daeElement*)_ptr); }
 
 	/**
 	 * Constructor that will convert from one template to the other.
@@ -51,7 +51,7 @@ public:
 	 */
 	template<class U>
 	inline daeSmartRef(const daeSmartRef<U>& smartRef) : _ptr(smartRef.cast()){
-		daeElement::ref((const daeElement*)_ptr); }
+		daeElement::refElem((const daeElement*)_ptr); }
 
 	/**
 	 * Function that returns a pointer to object being reference counted.
@@ -64,14 +64,14 @@ public:
 	 * @param smartRef a daeSmartRef of the same template type to copy from
 	 */
 	inline daeSmartRef(const daeSmartRef<T>& smartRef) : _ptr(smartRef._ptr){
-		daeElement::ref((const daeElement*)_ptr); }
+		daeElement::refElem((const daeElement*)_ptr); }
 
 	/**
 	 * Constructor
 	 * @param ptr a pointer to an object of the same template type.
 	 */
 	inline daeSmartRef(T* ptr) : _ptr(ptr) {
-		daeElement::ref((const daeElement*)_ptr); }
+		daeElement::refElem((const daeElement*)_ptr); }
 
 	/**
 	 * Overloaded assignment operator which will convert between template types.
@@ -80,7 +80,7 @@ public:
 	 */
 	template<class U>
 	inline const daeSmartRef<T>& operator=(const daeElementWrapper<U>&){
-		daeElement::release((const daeElement*)_ptr);
+		daeElement::releaseElem((const daeElement*)_ptr);
 		_ptr = U::instance();
 		return *this; }
 
@@ -92,8 +92,8 @@ public:
 	template<class U>
 	inline const daeSmartRef<T>& operator=(const daeSmartRef<U>& smartRef) {
 		T* ptr = smartRef.cast();
-		daeElement::ref((const daeElement*)ptr);
-		daeElement::release((const daeElement*)_ptr);
+		daeElement::refElem((const daeElement*)ptr);
+		daeElement::releaseElem((const daeElement*)_ptr);
 		_ptr = ptr;
 		return *this; }
 
@@ -104,8 +104,8 @@ public:
 	 */
 	inline const daeSmartRef<T>& operator=(const daeSmartRef<T>& other) {
 		T* ptr = other._ptr;
-		daeElement::ref((const daeElement*)ptr);
-		daeElement::release((const daeElement *)_ptr);
+		daeElement::refElem((const daeElement*)ptr);
+		daeElement::releaseElem((const daeElement *)_ptr);
 		_ptr = ptr;
 		return *this; }
 
@@ -115,8 +115,8 @@ public:
 	 * @return Returns a reference to this object.
 	 */
 	inline const daeSmartRef<T>& operator=(T* ptr) {
-		daeElement::ref((const daeElement*)ptr);
-		daeElement::release((const daeElement*)_ptr);
+		daeElement::refElem((const daeElement*)ptr);
+		daeElement::releaseElem((const daeElement*)_ptr);
 		_ptr = ptr;
 		return *this; }
 
