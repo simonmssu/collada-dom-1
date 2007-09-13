@@ -47,13 +47,15 @@ public:
 // fact that we currently don't benefit in any way from overriding new and delete, this
 // code is currently disabled.
 
-//#define DAE_ALLOC \
-//	/* Standard new/delete */ \
-//	inline void* operator new(size_t size) { return daeMemorySystem::malloc("meta", size); } \
-//	inline void operator delete(void* p) { daeMemorySystem::free("meta", p); } \
-//	/* Placement new/delete */ \
-//	inline void* operator new(size_t, void* p) { return p; } \
-//	inline void operator delete(void*, void*) { }
+#if 0
+#define DAE_ALLOC \
+	/* Standard new/delete */ \
+	inline void* operator new(size_t size) { return daeMemorySystem::malloc("meta", size); } \
+	inline void operator delete(void* p) { daeMemorySystem::free("meta", p); } \
+	/* Placement new/delete */ \
+	inline void* operator new(size_t, void* p) { return p; } \
+	inline void operator delete(void*, void*) { }
+#endif
 
 #define DAE_ALLOC
 
