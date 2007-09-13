@@ -395,6 +395,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\dae\daeRefCountedObj.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\dae\daeSIDResolver.cpp"
 				>
 			</File>
@@ -550,6 +554,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\dae\daeRawResolver.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\dae\daeRefCountedObj.h"
 				>
 			</File>
 			<File

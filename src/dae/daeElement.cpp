@@ -22,7 +22,7 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeURI.h>
 
-daeElementRef DAECreateElement(int nbytes)
+daeElementRef DAECreateElement(int)
 {
 	return new daeElement;
 }

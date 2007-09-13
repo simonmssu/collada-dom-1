@@ -23,7 +23,7 @@
 #include <dae/daeErrorHandler.h>
 
 daeElementRef
-domAny::create(daeInt bytes)
+domAny::create(daeInt)
 {
 	domAnyRef ref = new domAny;
 	return ref;

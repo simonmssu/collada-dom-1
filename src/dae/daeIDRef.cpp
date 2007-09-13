@@ -125,7 +125,7 @@ daeIDRef::print()
 // These methods are provided for backward compatibility only.
 void daeIDRef::validate() { }
 
-void daeIDRef::resolveElement( daeString typeNameHint ) { }
+void daeIDRef::resolveElement( daeString ) { }
 
 void daeIDRef::resolveID() { }
 
@@ -167,13 +167,14 @@ void daeIDRefResolver::terminateIDRefSolver(void)
 //-------------------------------------
 
 daeElement* daeIDRefResolver::attemptResolveElement(daeString id, 
-																										daeString docURI, 
-																										daeIDRef::ResolveState* result /* = NULL */)
+                                                    daeString docURI, 
+                                                    daeIDRef::ResolveState* result /* = NULL */)
 {
 //Contributed by Nus - Wed, 08 Nov 2006
 	for(size_t i = 0; i < _KnownResolvers->getCount(); i++)
 		if (daeElement* el = (*_KnownResolvers)[i]->resolveElement(id, docURI, result))
 			return el;
+	return NULL;
 //-------------------------
 }
 

@@ -568,7 +568,7 @@ void daeLIBXMLPlugin::writeRawSource( daeElement *src )
 	//TODO: pay attention to precision for the array.
 	if ( isInt )
 	{
-		for( daeULong i = 0; i < count; i++ )
+		for( size_t i = 0; i < count; i++ )
 		{
 			daeInt tmp = (daeInt)*(daeLong*)(valArray->getRaw(i));
 			rawByteCount += (unsigned long)(fwrite( &tmp, sizeof(daeInt), 1, rawFile ) * sizeof(daeInt));
@@ -576,7 +576,7 @@ void daeLIBXMLPlugin::writeRawSource( daeElement *src )
 	}
 	else
 	{
-		for( daeULong i = 0; i < count; i++ )
+		for( size_t i = 0; i < count; i++ )
 		{
 			daeFloat tmp = (daeFloat)*(daeDouble*)(valArray->getRaw(i));
 			rawByteCount += (unsigned long)(fwrite( &tmp, sizeof(daeFloat), 1, rawFile ) * sizeof(daeFloat));

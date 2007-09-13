@@ -335,14 +335,13 @@ public:
 	 * @param index Index into the array where the elements will be inserted
 	 * @param n The number of elements to insert
 	 */
-	void insert(size_t index, size_t n) {
+	void insert(size_t index, size_t n, const T& val = T()) {
 		if (index >= _count)
 			setCount(index + n); // Just append to the end of the array
 		else {
 			setCount(_count + n);
 			for (size_t i = _count-1; i >= index+n; i--)
 				get(i) = get(i-1);
-			T val;
 			for (size_t i = index; i < index+n; i++)
 				get(i) = val;
 		}

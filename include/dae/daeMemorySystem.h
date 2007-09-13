@@ -41,17 +41,20 @@ public:
 	static DLLSPEC void free(daeString pool, daeRawRef mem);
 };
 
-// Shorthand for defining new and delete overrides for classes, bad use of macros!
+// (steveT) These new/delete overrides aren't complete. What about new[] and delete[]?
+// Standard new should throw a bad_alloc exception, and a nothrow new should be provided
+// that returns null instead of throwing bad_alloc. Because of these problems, plus the
+// fact that we currently don't benefit in any way from overriding new and delete, this
+// code is currently disabled.
 
-#define DAE_ALLOC \
-	inline void* operator new(size_t size) { \
-		return daeMemorySystem::malloc("meta", size); \
-	} \
-	inline void* operator new(size_t, void* p) { \
-		return p; \
-	} \
-	inline void operator delete(void* p, size_t) { \
-		daeMemorySystem::free("meta",p);						 \
-	}
+//#define DAE_ALLOC \
+//	/* Standard new/delete */ \
+//	inline void* operator new(size_t size) { return daeMemorySystem::malloc("meta", size); } \
+//	inline void operator delete(void* p) { daeMemorySystem::free("meta", p); } \
+//	/* Placement new/delete */ \
+//	inline void* operator new(size_t, void* p) { return p; } \
+//	inline void operator delete(void*, void*) { }
+
+#define DAE_ALLOC
 
 #endif // __DAE_MEMORY_H__
