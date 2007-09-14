@@ -17,7 +17,7 @@ ROOT_DIR         :=	.
 include         $(ROOT_DIR)/build/makedefs.txt
 
 # files
-SUBDIRS		+= $(ROOT_DIR)/src/$(COLLADA_DOM_VERSION)/dom \
+SUBDIRS		+= $(ROOT_DIR)/src/$(COLLADA_VERSION)/dom \
 			   $(ROOT_DIR)/src/dae
 
 

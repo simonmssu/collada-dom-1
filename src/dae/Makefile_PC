@@ -52,18 +52,19 @@ SRC				 := dae.cpp \
 					daeRefCountedObj.cpp
 
 INCLUDE_DIR		 += $(ROOT_DIR)/include
-#INCLUDE_DIR		 += $(ROOT_DIR)/include/$(COLLADA_DOM_VERSION)
-INCLUDE_DIR              += /usr/include/libxml2
-INCLUDE_DIR += $(ROOT_DIR)/../external-libs/tinyxml/include
 
 # Do we want libxml, TinyXML, or both?
 # Enable libxml by default
 ifneq ($(LIBXML), 0)
 CCOPT += -D"DOM_INCLUDE_LIBXML"
+INCLUDE_DIR              += /usr/include/libxml2
+LIBRARIES += -lxml2
 endif
 # Disable TinyXML by default
 ifeq ($(TINYXML), 1)
 CCOPT += -D"DOM_INCLUDE_TINYXML"
+INCLUDE_DIR += $(ROOT_DIR)/../external-libs/tinyxml/include
+LIBRARIES += $(ROOT_DIR)/../external-libs/tinyxml/lib/linux/libtinyxml.a
 endif
 
 # rules

@@ -21,7 +21,7 @@
 
 OBJS  = $(addprefix $(INTERMEDIATE_DIR), $(notdir $(addsuffix $(OBJ_SUFFIX), $(basename $(SRC)))))
 OBJS += $(addprefix $(INTERMEDIATE_DIR), $(notdir $(addsuffix .res, $(basename $(RES)))))
-CLEAN_LIST  = $(OBJS) $(TARGET)
+CLEAN_LIST  = $(OBJS) $(TARGET) $(TARGET_DYN)
 
 # Tell make where to find our source files
 SRC_DIRS = $(sort $(dir $(SRC))) # Generate a unique list of the paths containing our source files
@@ -37,12 +37,13 @@ vpath %.rc $(subst $(space),:,$(RES_DIRS))
 .PHONY:	all $(SUBDIRS)
 
 all: $(SUBDIRS) nosubs
-nosubs: check_build createdirs $(SUBDIR) $(TARGET) done
+nosubs: check_build createdirs $(SUBDIR) $(TARGET) $(TARGET_DYN) done
 install: check_install uninstall_headers uninstall_libraries \
 				 install_headers install_libraries done
 uninstall: check_uninstall uninstall_headers uninstall_libraries done
 
 $(TARGET): $(OBJS)
+$(TARGET_DYN): $(OBJS)
 
 #########################################################
 # build install
@@ -52,7 +53,7 @@ install_headers:
 	mkdir /usr/include/collada/dae -p
 	cp include/dae/*.h /usr/include/collada/dae
 	mkdir /usr/include/collada/dom  -p
-	cp include/$(COLLADA_DOM_VERSION)/dom/*.h /usr/include/collada/dom 
+	cp include/$(COLLADA_VERSION)/dom/*.h /usr/include/collada/dom 
 	mkdir /usr/include/collada/modules  -p
 	cp include/modules/*.h /usr/include/collada/modules
 	cp include/dae.h /usr/include/collada
@@ -84,11 +85,16 @@ $(INTERMEDIATE_DIR)%.res : %.rc
 
 $(OUTDIR)%$(LIB_SUFFIX):
 				@echo $@
-				@$(QUIET)$(AR) $(LCOUT)$@ $(OBJS) $(LCQUIET)
+				$(QUIET)$(AR)          $(LCOUT) $@ $^
+
+$(OUTDIR)%$(LIB_DYN_SUFFIX_VERSION):
+				echo $@
+				$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $^ $(LIBRARIES)
+				$(ROOT_DIR)/build/create_so_links $@
 
 $(OUTDIR)%$(EXE_SUFFIX):
 				@echo $@
-				$(LD) $(OBJS) $(LIBRARIES) $(EXEOUT)$@ $(LCOPT) $(LCQUIET)
+				$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $^ $(LIBRARIES)
 
 
 #########################################################
@@ -100,6 +106,9 @@ ifeq ($(USE_SHELL),)
 else
 	@echo cleaning $(notdir $(CLEAN_LIST))
 	@rm -f $(CLEAN_LIST)
+# Remove the .so links. It'd be better to have a list of the links we built, and delete
+# only that list of files instead of deleting *.so*
+	@rm -f $(OUTDIR)*.so*
 endif
 endif
 
@@ -132,7 +141,7 @@ endif
 # check_build rule: can be used to perform some basic checks and tests
 # when doing a build.
 check_build:
-	@echo building $(TARGET) - $(CONF_NAME)
+	@echo building $(TARGET) $(TARGET_DYN) - $(CONF_NAME)
 #	@echo TARGET = $(TARGET)
 #	@echo EXECUTABLE = $(EXECUTABLE)
 #	@echo LIBRARY = $(LIBRARY)
