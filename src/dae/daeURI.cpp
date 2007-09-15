@@ -332,8 +332,6 @@ daeChar *validScheme(daeString uri_string)
 void
 daeURI::internalSetURI(daeString _URIString)
 {
-	daeChar* tmp;
-
 	// Store the originalURI so you can fix it post Reset
 	daeString oURI = originalURIString;
 	originalURIString = NULL;
@@ -345,11 +343,10 @@ daeURI::internalSetURI(daeString _URIString)
 	originalURIString = oURI;
 	
 	uriString = safeCreate(_URIString);
-	
-	tmp = (daeChar*)daeMemorySystem::malloc("tmp",strlen(_URIString)+1);
+
+	daeChar* tmp = (daeChar*)safeCreate(uriString);
 	if ((uriString == NULL)||(tmp == NULL))
 		return;
-	strcpy(tmp,uriString);
 	
 	daeChar* curSrc = tmp;
 	

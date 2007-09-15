@@ -508,13 +508,11 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 	//use meta system to copy attributes
 	daeMetaAttributeRefArray &attrs = _meta->getMetaAttributes();
 	for ( unsigned int i = 0; i < attrs.getCount(); i++ ) {
-		//memcpy( attrs[i]->getWritableMemory( ret ), attrs[i]->getWritableMemory( this ), attrs[i]->getSize() );
 		attrs[i]->copy( ret, this );
 		ret->_validAttributeArray[i] = _validAttributeArray[i];
 	}
 	if ( _meta->getValueAttribute() != NULL ) {
 		daeMetaAttribute *val = _meta->getValueAttribute();
-		//memcpy( val->getWritableMemory( ret ), val->getWritableMemory( this ), val->getSize() );
 		val->copy( ret, this );
 	}
 	daeElementRefArray children;

@@ -936,3 +936,64 @@ daeArray* daeResolverType::createArray() {
 daeArray* daeIDResolverType::createArray() {
 	return new daeTArray<daeIDRef>;
 }
+
+
+void daeBoolType::copy(daeChar* src, daeChar* dst) {
+	(daeBool&)*dst = (daeBool&)*src;
+}
+
+void daeIntType::copy(daeChar* src, daeChar* dst) {
+	(daeInt&)*dst = (daeInt&)*src;
+}
+
+void daeLongType::copy(daeChar* src, daeChar* dst) {
+	(daeLong&)*dst = (daeLong&)*src;
+}
+
+void daeUIntType::copy(daeChar* src, daeChar* dst) {
+	(daeUInt&)*dst = (daeUInt&)*src;
+}
+
+void daeULongType::copy(daeChar* src, daeChar* dst) {
+	(daeULong&)*dst = (daeULong&)*src;
+}
+
+void daeShortType::copy(daeChar* src, daeChar* dst) {
+	(daeShort&)*dst = (daeShort&)*src;
+}
+
+void daeFloatType::copy(daeChar* src, daeChar* dst) {
+	(daeFloat&)*dst = (daeFloat&)*src;
+}
+
+void daeDoubleType::copy(daeChar* src, daeChar* dst) {
+	(daeDouble&)*dst = (daeDouble&)*src;
+}
+
+void daeStringRefType::copy(daeChar* src, daeChar* dst) {
+	(daeStringRef&)*dst = (daeStringRef&)*src;
+}
+
+void daeTokenType::copy(daeChar* src, daeChar* dst) {
+	(daeStringRef&)*dst = (daeStringRef&)*src;
+}
+
+void daeElementRefType::copy(daeChar* src, daeChar* dst) {
+	(daeElementRef&)*dst = (daeElementRef&)*src;
+}
+
+void daeEnumType::copy(daeChar* src, daeChar* dst) {
+	(daeEnum&)*dst = (daeEnum&)*src;
+}
+
+void daeRawRefType::copy(daeChar* src, daeChar* dst) {
+	(daeRawRef&)*dst = (daeRawRef&)*src;
+}
+
+void daeResolverType::copy(daeChar* src, daeChar* dst) {
+	(daeURI&)*dst = (daeURI&)*src;
+}
+
+void daeIDResolverType::copy(daeChar* src, daeChar* dst) {
+	(daeIDRef&)*dst = (daeIDRef&)*src;
+}

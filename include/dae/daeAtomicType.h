@@ -99,6 +99,13 @@ public:
 	virtual daeInt compare(daeChar* value1, daeChar* value2);
 
 	/**
+	 * Performs a virtual copy operation.
+	 * @param src Memory location of the value to copy from.
+	 * @param dst Memory location of the value to copy to.
+	 */
+	virtual void copy(daeChar* src, daeChar* dst) = 0;
+
+	/**
 	 * Creates a daeTArray of the appropriate type (e.g. daeTArray<int>, daeTArray<daeIDRef>)
 	 * and returns it as a daeArray*.
 	 * @return Returns a daeArray*. This array should be freed by the caller with
@@ -316,6 +323,8 @@ public:
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 
+	virtual void copy(daeChar* src, daeChar* dst);
+
 	virtual daeArray* createArray();
 };
 
@@ -340,6 +349,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual void copy(daeChar* src, daeChar* dst);
 
 	virtual daeArray* createArray();
 };
@@ -366,6 +377,8 @@ public:
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
 
+	virtual void copy(daeChar* src, daeChar* dst);
+
 	virtual daeArray* createArray();
 };
 
@@ -390,6 +403,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual void copy(daeChar* src, daeChar* dst);
 
 	virtual daeArray* createArray();
 };
@@ -416,6 +431,8 @@ public:
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
 
+	virtual void copy(daeChar* src, daeChar* dst);
+
 	virtual daeArray* createArray();
 };
 
@@ -440,6 +457,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual void copy(daeChar* src, daeChar* dst);
 
 	virtual daeArray* createArray();
 };
@@ -474,6 +493,8 @@ public:
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 
+	virtual void copy(daeChar* src, daeChar* dst);
+
 	virtual daeArray* createArray();
 };
 
@@ -506,6 +527,8 @@ public:
 	 * @return Returns true if the operation was successful, false if not successful.
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
+
+	virtual void copy(daeChar* src, daeChar* dst);
 
 	virtual daeArray* createArray();
 };
@@ -547,7 +570,9 @@ public:
 	 * value1 < value2, and 0 if value1 == value2.
 	 */
 	virtual daeInt compare(daeChar* value1, daeChar* value2);
-								   
+
+	virtual void copy(daeChar* src, daeChar* dst);
+
 	virtual daeArray* createArray();
 };
 
@@ -574,6 +599,8 @@ public:
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 	
+	virtual void copy(daeChar* src, daeChar* dst);
+
 	virtual daeArray* createArray();
 };
 
@@ -604,6 +631,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual void copy(daeChar* src, daeChar* dst);
 
 	virtual daeArray* createArray();
 };
@@ -654,6 +683,8 @@ public:
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 
+	virtual void copy(daeChar* src, daeChar* dst);
+
 	virtual daeArray* createArray();
 };
 
@@ -679,6 +710,8 @@ public:
 	 * false if the operation would cause the destination buffer to overflow.
 	 */
 	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+
+	virtual void copy(daeChar* src, daeChar* dst);
 
 	virtual daeArray* createArray();
 };
@@ -721,6 +754,8 @@ public:
 	 * should be placed.
 	 */
 	virtual void resolve(daeElementRef element, daeChar* src);
+
+	virtual void copy(daeChar* src, daeChar* dst);
 
 	virtual daeArray* createArray();
 };
@@ -765,6 +800,8 @@ public:
 	virtual void resolve(daeElementRef element, daeChar* src);
 
 	virtual daeInt compare(daeChar* value1, daeChar* value2);
+
+	virtual void copy(daeChar* src, daeChar* dst);
 
 	virtual daeArray* createArray();
 };
