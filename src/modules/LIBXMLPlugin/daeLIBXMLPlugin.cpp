@@ -347,12 +347,7 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 	}
 
 	if (!_meta->getIsTransparent() ) {
-		if ( element->getElementName() ) {
-			xmlTextWriterStartElement(writer, (xmlChar*)element->getElementName());
-		}
-		else {
-            xmlTextWriterStartElement(writer, (xmlChar*)(daeString)_meta->getName());
-		}
+		xmlTextWriterStartElement(writer, (xmlChar*)element->getElementName());
 		daeMetaAttributeRefArray& attrs = _meta->getMetaAttributes();
 		
 		int acnt = (int)attrs.getCount();

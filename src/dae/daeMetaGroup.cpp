@@ -30,9 +30,6 @@ daeMetaGroup::~daeMetaGroup()
 daeElement *daeMetaGroup::placeElement( daeElement *parent, daeElement *child, daeUInt &ordinal, daeInt offset, daeElement* before, daeElement *after ) {
 	(void)offset;
 	daeString nm = child->getElementName();
-	if ( nm == NULL ) {
-		nm = child->getTypeName();
-	}
 	if ( findChild( nm ) == NULL ) {
 		return false;
 	}

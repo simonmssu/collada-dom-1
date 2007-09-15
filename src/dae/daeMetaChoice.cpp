@@ -25,11 +25,7 @@ daeElement *daeMetaChoice::placeElement( daeElement *parent, daeElement *child, 
 	(void)offset;
 	if ( _maxOccurs == -1 ) {
 		//Needed to prevent infinate loops. If unbounded check to see if you have the child before just trying to place
-		daeString nm = child->getElementName();
-		if ( nm == NULL ) {
-			nm = child->getTypeName();
-		}
-		if ( findChild( nm ) == NULL ) {
+		if ( findChild( child->getElementName() ) == NULL ) {
 			return NULL;
 		}
 	}
@@ -94,11 +90,7 @@ daeElement *daeMetaChoice::placeElement( daeElement *parent, daeElement *child, 
 	}
 	if ( retVal == NULL )
 	{
-		daeString nm = child->getElementName();
-		if ( nm == NULL ) {
-			nm = child->getTypeName();
-		}
-		if ( findChild( nm ) == NULL ) {
+		if ( findChild( child->getElementName() ) == NULL ) {
 			return NULL;
 		}
 		for ( daeInt i = 0; ( i < _maxOccurs || _maxOccurs == -1 ); i++ ) 

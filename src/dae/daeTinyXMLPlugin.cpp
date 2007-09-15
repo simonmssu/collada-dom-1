@@ -186,29 +186,16 @@ void daeTinyXMLPlugin::writeElement( daeElement* element )
 
   if (!_meta->getIsTransparent() ) 
   {
-		if ( element->getElementName() ) 
-    {
-      	TiXmlElement* tiElm = new TiXmlElement( element->getElementName() );  
+		TiXmlElement* tiElm = new TiXmlElement( element->getElementName() );  
         
-        if (m_elements.empty() == true)
-        {
-          m_doc->LinkEndChild(tiElm);
-        } else {
-          TiXmlElement* first = m_elements.front();
-          first->LinkEndChild(tiElm);
-        }
-        m_elements.push_front(tiElm);
-		} else {
-      	TiXmlElement* tiElm = new TiXmlElement( _meta->getName() );  
-        if (m_elements.empty() == true)
-        {
-          m_doc->LinkEndChild(tiElm);
-        } else {
-          TiXmlElement* first = m_elements.front();
-          first->LinkEndChild(tiElm);
-        }
-        m_elements.push_front(tiElm);
+		if (m_elements.empty() == true) {
+				m_doc->LinkEndChild(tiElm);
+			} else {
+			TiXmlElement* first = m_elements.front();
+			first->LinkEndChild(tiElm);
 		}
+		m_elements.push_front(tiElm);
+
 		daeMetaAttributeRefArray& attrs = _meta->getMetaAttributes();
 		
 		int acnt = (int)attrs.getCount();

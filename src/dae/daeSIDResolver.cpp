@@ -322,11 +322,7 @@ daeElement *daeSIDResolver::findSID( daeElement *el, daeString sid ) {
 		return el;
 	}
 	//and if you are a instance_* then check what you point to
-	daeString nm = el->getElementName();
-	if ( nm == NULL ) {
-		nm = el->getTypeName();
-	}
-	if ( strncmp( nm, "instance_", 9 ) == 0 ) {
+	if ( strncmp( el->getElementName(), "instance_", 9 ) == 0 ) {
 		daeURI *uri = (daeURI*)el->getAttributeValue("url");
 		if ( uri != NULL && uri->getElement() != NULL ) {
 			daeElement *e = findSID( uri->getElement(), sid );

@@ -195,11 +195,7 @@ daeInt daeElement::findLastIndexOf( daeString elementName ) {
 		daeElementRefArray* contents =
 						(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
 		for ( int i = (int)contents->getCount()-1; i >= 0; --i ) {
-			daeString nm = contents->get(i)->getElementName();
-			if ( nm == NULL ) {
-				nm = contents->get(i)->getTypeName();
-			}
-			if ( strcmp( nm, elementName ) == 0 ) {
+			if ( strcmp( contents->get(i)->getElementName(), elementName ) == 0 ) {
 				return i;
 			}
 		}
@@ -481,7 +477,7 @@ daeString daeElement::getTypeName() const
 }
 daeString daeElement::getElementName() const
 {
-	return _elementName;
+	return _elementName ? _elementName : (daeString)_meta->getName();
 }
 void daeElement::setElementName( daeString nm ) {
 	if ( nm == NULL ) {
@@ -508,7 +504,7 @@ void daeElement::getChildren( daeElementRefArray &array ) {
 daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuffix) {
 	//use the meta object system to create a new instance of this element
 	daeElementRef ret = _meta->create();
-	ret->setElementName( getElementName() );
+	ret->setElementName( _elementName );
 	//use meta system to copy attributes
 	daeMetaAttributeRefArray &attrs = _meta->getMetaAttributes();
 	for ( unsigned int i = 0; i < attrs.getCount(); i++ ) {

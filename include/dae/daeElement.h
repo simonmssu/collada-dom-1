@@ -173,10 +173,10 @@ public:
 	DLLSPEC daeBool placeElementAfter( daeElement* marker, daeElement *element );
 
 	/**
-	 * Finds the last index into the array of children of the type specified.
+	 * Finds the last index into the array of children of the name specified.
 	 * @param elementName The name to look for.
-	 * @return Returns the index into the children array of the last element of type typeName. -1 if
-	 *         there are no children of type typeName.
+	 * @return Returns the index into the children array of the last element with name elementName. -1 if
+	 *         there are no children of name elementName.
 	 */
 	DLLSPEC daeInt findLastIndexOf( daeString elementName );
 

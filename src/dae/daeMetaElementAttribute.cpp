@@ -115,7 +115,7 @@ daeMetaElementAttribute::placeElement(daeElement* parent, daeElement* child, dae
 	(void)after;
 	if ((parent == NULL)||(child == NULL))
 		return NULL;
-	if ( child->getMeta() != _elementType || ( child->getElementName() != NULL && strcmp( child->getElementName(), _name ) != 0 )  ) {
+	if ( child->getMeta() != _elementType || strcmp( child->getElementName(), _name ) != 0 ) {
 		return NULL;
 	}
 	if (child->getParentElement() == parent) {
@@ -143,7 +143,7 @@ daeMetaElementArrayAttribute::placeElement(daeElement* parent, daeElement* child
 {
 	if ((parent == NULL)||(child == NULL))
 		return NULL;
-	if ( child->getMeta() != _elementType || ( child->getElementName() != NULL && strcmp( child->getElementName(), _name ) != 0 )  ) {
+	if ( child->getMeta() != _elementType || strcmp( child->getElementName(), _name ) != 0 ) {
 		return NULL;
 	}
 	daeElement *p = child->getParentElement();
