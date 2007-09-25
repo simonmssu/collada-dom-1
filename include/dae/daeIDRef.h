@@ -103,32 +103,32 @@ public:
 	 * Gets the element that this URI resolves to in memory.
 	 * @return Returns a ref to the element.
 	 */
-	daeElementRef getElement() const;
+	DLLSPEC daeElementRef getElement() const;
 
 	/** 
 	 * Sets the element that this URI resolves to in memory.
 	 * @param newref A ref to the element.
 	 */
-	void setElement(daeElementRef newref);
+	DLLSPEC void setElement(daeElementRef newref);
 
 	/**
 	 * Gets the resolve state of the URI.
 	 * @return Returns the current state.
 	 * @note This will be removed when daeURI starts managing its state internally.
 	 */
-	ResolveState getState() const;
+	DLLSPEC ResolveState getState() const;
 
 	/**
 	 * Gets a pointer to the @c daeElement that contains this URI.
 	 * @return Returns the pointer to the containing daeElmement.
 	 */
-	daeElement* getContainer() const;
+	DLLSPEC daeElement* getContainer() const;
 
 	/**
 	 * Sets the pointer to the @c daeElement that contains this URI.
 	 * @param cont Pointer to the containing @c daeElmement.
 	 */
-	void setContainer(daeElement* cont);
+	DLLSPEC void setContainer(daeElement* cont);
 
 	/**
 	 * Outputs all components of this @c daeIDRef to stderr.
@@ -150,13 +150,13 @@ public:
 	 * Comparison operator.
 	 * @return Returns true if URI's are equal.
 	 */
-	bool operator==(const daeIDRef& other) const;
+	DLLSPEC bool operator==(const daeIDRef& other) const;
 
 	/**
 	 * Assignment operator.
 	 * @return Returns a reference to this object.
 	 */
-	daeIDRef &operator=( const daeIDRef& other);
+	DLLSPEC daeIDRef &operator=( const daeIDRef& other);
 
 	// These methods are only provided for backwards compatibility. Use the listed alternatives.
 	DLLSPEC daeIDRef &get( daeUInt idx ); // Never should have existed. No alternative.
