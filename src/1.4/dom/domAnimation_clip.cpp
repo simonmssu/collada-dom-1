@@ -91,7 +91,7 @@ domAnimation_clip::registerElement()
 		ma->setType( daeAtomicType::get("xsDouble"));
 		ma->setOffset( daeOffsetOf( domAnimation_clip , attrStart ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0.0");
+		ma->setDefaultString( "0.0");
 	
 		_Meta->appendAttribute(ma);
 	}

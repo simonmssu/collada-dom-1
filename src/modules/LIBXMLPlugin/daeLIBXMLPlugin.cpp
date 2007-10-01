@@ -353,12 +353,10 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 		int acnt = (int)attrs.getCount();
 		
 		for(int i=0;i<acnt;i++) {
-			writeAttribute( attrs[i], element, i );
+			writeAttribute(attrs[i], element);
 		}
 	}
-	daeMetaAttribute* valueAttr = _meta->getValueAttribute();
-	if (valueAttr!=NULL)
-		writeAttribute(valueAttr, element);
+	writeValue(element);
 	
 	daeElementRefArray children;
 	element->getChildren( children );
@@ -394,120 +392,45 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 	}
 }
 
-#define TYPE_BUFFER_SIZE 1024*1024
-
-void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element, daeInt attrNum )
+void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element)
 {
-	static daeChar atomicTypeBuf[TYPE_BUFFER_SIZE+1];
-	daeChar *buf = atomicTypeBuf;
-	daeUInt bufSz = TYPE_BUFFER_SIZE;
-
-	size_t valCount = attr->getCount(element);
 	//don't write if !required and is set && is default
-
-	int typeSize = attr->getType()->getSize();
-	if ( typeSize >= TYPE_BUFFER_SIZE )
+	if ( !attr->getIsRequired() )
 	{
-		char msg[512];
-		sprintf(msg,
-			"daeMetaAttribute::print() - buffer too small for %s in %s\n",
-			(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
-		daeErrorHandler::get()->handleError( msg );
-		return;
-	}
-
-	//always print value
-	if ( attrNum != -1 )
-	{
-		//not value attribute
-		if ( !attr->getIsRequired() )
+		//not required
+		if ( !element->isAttributeSet( attr->getName() ) )
 		{
-			//not required
-			if ( !element->isAttributeSet( attr->getName() ) )
-			{
-				//early out if !value && !required && !set
+			//early out if !value && !required && !set
+			return;
+		}
+			
+		//is set
+		//check for default suppression
+		if ( attr->getDefaultValue() != NULL )
+		{
+			//has a default value
+			if (attr->compareToDefault(element) == 0) {
+				// We match the default value, so exit early
 				return;
 			}
-			
-			//is set
-			//check for default suppression
-			if ( attr->getDefault() != NULL )
-			{
-				//has a default value
+		}
+	}
 
-				if (!attr->isArrayAttribute()) {
-					attr->getType()->stringToMemory( (daeChar*)attr->getDefault(), buf );
-					char* elemMem = attr->get( element, 0 );
-					if( attr->getType()->compare( buf, elemMem ) == 0 )
-					{
-						//is the default value so exit early
-						return;
-					}
-				} else {
-					std::auto_ptr<daeArray> defaultArray(attr->getType()->createArray());
-					attr->getType()->stringToArray((daeChar*)attr->getDefault(), *defaultArray);
+	xmlTextWriterStartAttribute(writer, (xmlChar*)(daeString)attr->getName());
+	std::ostringstream buffer;
+	attr->memoryToString(element, buffer);
+	xmlTextWriterWriteString(writer, (xmlChar*)buffer.str().c_str());
+	xmlTextWriterEndAttribute(writer);
+}
 
-					daeArray* attrArray = (daeArray*)attr->getWritableMemory(element);
-					if (attrArray->getCount() == defaultArray->getCount()) {
-						size_t i = 0;
-						for (; i < attrArray->getCount(); i++) {
-							if (attr->getType()->compare(attrArray->getRaw(i), defaultArray->getRaw(i)) != 0) 
-									break;
-						}
-
-						// We made it to the end without detecting a mismatch, so it's the same as the
-						// default value. Exit early.
-						if (i == attrArray->getCount())
-							return;
-					}
-				}
+void daeLIBXMLPlugin::writeValue(daeElement* element) {
+	if (daeMetaAttribute* attr = element->getMeta()->getValueAttribute()) {
+			std::ostringstream buffer;
+			attr->memoryToString(element, buffer);
+			std::string s = buffer.str();
+			if (!s.empty()) {
+				xmlTextWriterWriteString(writer, (xmlChar*)buffer.str().c_str());
 			}
-
-			//not default so print
-			xmlTextWriterStartAttribute( writer, (xmlChar*)(daeString)attr->getName() );
-		}
-		else {
-			//print it because its required
-			xmlTextWriterStartAttribute( writer, (xmlChar*)(daeString)attr->getName() );
-		}
-	}
-	if (valCount>0) 
-	{
-		// If buf isn't big enough, make it bigger
-		if ( !attr->isArrayAttribute() && ( attr->getType()->getTypeEnum() == daeAtomicType::StringRefType || 
-			 attr->getType()->getTypeEnum() == daeAtomicType::TokenType ) &&
-			 *(char**)attr->getWritableMemory( element ) != NULL )
-		{
-			daeUInt sz = (daeUInt)strlen( *(char**)attr->getWritableMemory( element ) ) +1;
-			if ( sz > TYPE_BUFFER_SIZE ) {
-				buf = new char[ sz ];
-				bufSz = sz;
-			}
-		}
-
-		//do val 0 first then space and the rest of the vals.
-		char* elemMem = attr->get( element, 0 );
-		attr->getType()->memoryToString( elemMem, buf, bufSz );
-		if ( buf[0] != 0 ) //null string check
-		{
-			xmlTextWriterWriteString( writer, (xmlChar*)buf );
-		}
-
-		*buf = ' ';
-		for( size_t i = 1; i < valCount; i++ ) 
-		{
-			elemMem = attr->get( element, (int)i );
-			attr->getType()->memoryToString( elemMem, buf+1, bufSz );
-			xmlTextWriterWriteString( writer, (xmlChar*)buf );
-		}
-	}
-	if ( attrNum != -1 )
-	{
-		xmlTextWriterEndAttribute( writer );
-	}
-	if ( buf != atomicTypeBuf )
-	{
-		delete[] buf;
 	}
 }
 

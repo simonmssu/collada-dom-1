@@ -88,7 +88,7 @@ domFloat_array::registerElement()
 		ma->setType( daeAtomicType::get("xsShort"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrDigits ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "6");
+		ma->setDefaultString( "6");
 	
 		_Meta->appendAttribute(ma);
 	}
@@ -100,7 +100,7 @@ domFloat_array::registerElement()
 		ma->setType( daeAtomicType::get("xsShort"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrMagnitude ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "38");
+		ma->setDefaultString( "38");
 	
 		_Meta->appendAttribute(ma);
 	}

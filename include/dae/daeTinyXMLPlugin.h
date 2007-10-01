@@ -66,16 +66,16 @@ public:
 	virtual DLLSPEC daeString getOption( daeString option );
 	
 private:
-  TiXmlDocument*  m_doc;
-  std::list<TiXmlElement*>  m_elements;
+	TiXmlDocument*  m_doc;
+	std::list<TiXmlElement*>  m_elements;
 
 	virtual daeElementRef readFromFile(const daeURI& uri);
 	virtual daeElementRef readFromMemory(daeString buffer, const daeURI& baseUri);
 	daeElementRef readElement(TiXmlElement* tinyXmlElement, daeElement* parentElement);
 
 	void writeElement( daeElement* element ); 
-	void writeAttribute( daeMetaAttribute* attr, daeElement* element, daeInt attrNum = -1 );
-  void writeValue( daeMetaAttribute* attr, daeElement* element );
+	void writeAttribute( daeMetaAttribute* attr, daeElement* element );
+	void writeValue( daeElement* element );
 };
 
 #endif //__DAE_TINYXMLPLUGIN__

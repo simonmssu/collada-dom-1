@@ -14,6 +14,8 @@
 #ifndef __DAE_META_ATTRIBUTE_H__
 #define __DAE_META_ATTRIBUTE_H__
 
+#include <string>
+#include <sstream>
 #include <dae/daeTypes.h>
 #include <dae/daeStringRef.h>
 #include <dae/daeAtomicType.h>
@@ -41,15 +43,16 @@ class daeMetaElementAttribute;
  * of the atomic types into the C++ dom classes such as offset, and
  * array information.
  */
-class daeMetaAttribute : public daeElement
+class DLLSPEC daeMetaAttribute : public daeElement
 {
 protected:
-	daeStringRef			_name;
-	daeInt					_offset;
-	daeAtomicType*			_type;
-	daeMetaElement*			_container;
-	daeString				_default;
-	daeBool					_isRequired;
+	daeStringRef    _name;
+	daeInt          _offset;
+	daeAtomicType*  _type;
+	daeMetaElement*	_container;
+	std::string     _defaultString;
+	daeMemoryRef    _defaultValue;
+	daeBool         _isRequired;
 
 public:
 	/**
@@ -60,7 +63,7 @@ public:
 	/**
 	 * Destructor
 	 */
-	~daeMetaAttribute() {}
+	virtual ~daeMetaAttribute();
 public:
 	/** 
 	 * Determines if the schema indicates that this is a required attribute.
@@ -115,20 +118,28 @@ public:
 	daeAtomicType* getType() { return _type; }
 
 	/**
-	 * Sets the default for this attribute via a string.  The attribute's
-	 * type is used to convert the string into a binary value
-	 * inside of an element.
+	 * Sets the default for this attribute via a string.
 	 * @param defaultVal @c daeString representing the default value.
 	 */
-	void setDefault(daeString defaultVal) { _default = defaultVal; }
+	virtual void setDefaultString(daeString defaultVal);
 
 	/**
-	 * Gets the default for this attribute via a string.  The attribute's
-	 * type is used to convert the string into a binary value
-	 * inside of an element.
+	 * Sets the default for this attribute via a memory pointer.
+	 * @param defaultVal @c daeMemoryRef representing the default value.
+	 */
+	virtual void setDefaultValue(daeMemoryRef defaultVal);
+
+	/**
+	 * Gets the default for this attribute as a string.
 	 * @return Returns a @c daeString representing the default value.
 	 */
-	daeString getDefault() { return _default; }
+	daeString getDefaultString();
+
+	/**
+	 * Gets the default for this attribute as a memory value.
+	 * @return Returns a @c daeMemoryRef representing the default value.
+	 */
+	daeMemoryRef getDefaultValue();
 
 	/**
 	 * Sets the containing @c daeMetaElement for this attribute.
@@ -143,12 +154,14 @@ public:
 	daeMetaElement* getContainer() { return _container; }
 	  
 	/**
-	 * Gets the number of particles associated with this attribute in instance <tt><i>e.</i></tt> 
-	 * @param e Containing element to run the operation on.
-	 * @return Returns the number of particles associated with this attribute
-	 * in instance <tt><i>e.</i></tt> 
+	 * Converts an element's attribute value to a string.
 	 */
-	virtual daeInt getCount(daeElement* e);
+	virtual void memoryToString(daeElement* e, std::ostringstream& buffer);
+
+	/**
+	 * Converts a string to a memory value in the specified element.
+	 */
+	virtual void stringToMemory(daeElement* e, daeString s);
 
 	/**
 	 * Gets a particle from containing element <tt><i>e</i></tt> based on <tt><i>index.</i></tt> 
@@ -157,7 +170,7 @@ public:
 	 * there is an array of elements rather than a singleton.
 	 * @return Returns the associated particle out of parent element e, based on index, if necessary.
 	 */
-	virtual daeMemoryRef get(daeElement* e, daeInt index);
+	virtual daeMemoryRef get(daeElement* e, daeInt index = 0);
 
 	/**
 	 * Gets if this attribute is an array attribute.
@@ -165,6 +178,14 @@ public:
 	 */
 	virtual daeBool isArrayAttribute()		{ return false; }
 	  
+	/**
+	 * Gets the number of particles associated with this attribute in instance <tt><i>e.</i></tt> 
+	 * @param e Containing element to run the operation on.
+	 * @return Returns the number of particles associated with this attribute
+	 * in instance <tt><i>e.</i></tt> 
+	 */
+	virtual daeInt getCount(daeElement* e);
+
 public:
 	/**
 	 * Resolves a reference (if there is one) in the attribute type;
@@ -187,22 +208,39 @@ public:
 	 */
 	virtual daeInt getAlignment();
 
-	/**
-	 * Sets the value of this attribute on <tt><i>element</i></tt> by converting string <tt><i>s</i></tt> 
-	 * to a binary value and assigning it via the underlying @c daeAtomicType
-	 * system.
-	 * @param element Element on which to set this attribute.
-	 * @param s String containing the value to be converted via the
-	 * atomic type system.
-	 */
+	// This is deprecated. Use stringToMemory instead.
 	virtual void set(daeElement* element, daeString s);
 
 	/**
-	 * Copys the value of this attribute from fromElement into toElement.
+	 * Copies the value of this attribute from fromElement into toElement.
 	 * @param toElement Pointer to a @c daeElement to copy this attribute to.
 	 * @param fromElement Pointer to a @c daeElement to copy this attribute from.
 	 */
 	virtual void copy(daeElement* toElement, daeElement* fromElement);
+
+	/**
+	 * Copies the default value of this attribute to the element
+	 * @param element Pointer to a @c daeElement to copy the default value to.
+	 */
+	virtual void copyDefault(daeElement* element);
+
+	/**
+	 * Compares the value of this attribute in the given elements.
+	 * @param elt1 The first element whose attribute value should be compared.
+	 * @param elt2 The second element whose attribute value should be compared.
+	 * @return Returns a positive integer if value1 > value2, a negative integer if 
+	 * value1 < value2, and 0 if value1 == value2.
+	 */
+	virtual daeInt compare(daeElement* elt1, daeElement* elt2);
+
+	/**
+	 * Compares the value of this attribute from the given element to the default value
+	 * of this attribute (if one exists).
+	 * @param e The element whose value should be compared to the default value.
+	 * @return Returns a positive integer if value > default, a negative integer if 
+	 * value < default, and 0 if value == default.
+	 */
+	virtual daeInt compareToDefault(daeElement* e);
 	
 public:
 	/**
@@ -213,8 +251,7 @@ public:
 	 * @param e Element from which to apply this attributes offset.
 	 * @return Returns the storage associate with this attribute in <tt><i>e.</i></tt> 
 	 */
-	inline daeChar* getWritableMemory(daeElement* e) {
-		return (daeChar*)e+_offset; }
+	virtual daeChar* getWritableMemory(daeElement* e);
 };
 
 
@@ -225,22 +262,42 @@ public:
  * and the corresponding operations are implemented on the array
  * data structure rather than on inlined storage in elements.
  */
-class daeMetaArrayAttribute : public daeMetaAttribute
+class DLLSPEC daeMetaArrayAttribute : public daeMetaAttribute
 {
 public:
-	/**
-	 * Defines the override version of this method from @c daeMetaAttribute.
-	 * @param element Element on which to set this attribute.
-	 * @param s String containing the value to be converted via the
-	 * atomic type system.
-	 */
-	virtual void set(daeElement* element, daeString s);
+	virtual ~daeMetaArrayAttribute();
+
 	/**
 	 * Defines the override version of this method from @c daeMetaAttribute.
 	 * @param toElement Pointer to a @c daeElement to copy this attribute to.
 	 * @param fromElement Pointer to a @c daeElement to copy this attribute from.
 	 */
 	virtual void copy(daeElement* toElement, daeElement* fromElement);
+
+	/**
+	 * Copies the default value of this attribute to the element
+	 * @param element Pointer to a @c daeElement to copy the default value to.
+	 */
+	virtual void copyDefault(daeElement* element);
+
+	/**
+	 * Compares the value of this attribute in the given elements.
+	 * @param elt1 The first element whose attribute value should be compared.
+	 * @param elt2 The second element whose attribute value should be compared.
+	 * @return Returns a positive integer if value1 > value2, a negative integer if 
+	 * value1 < value2, and 0 if value1 == value2.
+	 */
+	virtual daeInt compare(daeElement* elt1, daeElement* elt2);
+
+	/**
+	 * Compares the value of this attribute from the given element to the default value
+	 * of this attribute (if one exists).
+	 * @param e The element whose value should be compared to the default value.
+	 * @return Returns a positive integer if value > default, a negative integer if 
+	 * value < default, and 0 if value == default.
+	 */
+	virtual daeInt compareToDefault(daeElement* e);
+
 	/**
 	 * Defines the override version of this method from @c daeMetaElement.
 	 * @param e Containing element to run the operation on.
@@ -248,6 +305,17 @@ public:
 	 * in instance <tt><i>e.</i></tt> 
 	 */
 	virtual daeInt getCount(daeElement* e);
+
+	/**
+	 * Converts an element's attribute value to a string.
+	 */
+	virtual void memoryToString(daeElement* e, std::ostringstream& buffer);
+
+	/**
+	 * Converts a string to a memory value in the specified element.
+	 */
+	virtual void stringToMemory(daeElement* e, daeString s);
+
 	/**
 	 * Defines the override version of this method from @c daeMetaElement.
 	 * @param e Containing element from which to get the element.
@@ -255,7 +323,19 @@ public:
 	 * there is an array of elements rather than a singleton.
 	 * @return Returns the associated particle out of parent element e, based on index, if necessary.
 	 */
-	virtual daeMemoryRef get(daeElement* e, daeInt index);
+	virtual daeMemoryRef get(daeElement* e, daeInt index = 0);
+
+	/**
+	 * Sets the default for this attribute via a string.
+	 * @param defaultVal @c daeString representing the default value.
+	 */
+	virtual void setDefaultString(daeString defaultVal);
+
+	/**
+	 * Sets the default for this attribute via a memory pointer.
+	 * @param defaultVal @c daeMemoryRef representing the default value.
+	 */
+	virtual void setDefaultValue(daeMemoryRef defaultVal);
 
 	/**
 	 * Gets if this attribute is an array attribute.

@@ -70,7 +70,7 @@ domAccessor::registerElement()
 		ma->setType( daeAtomicType::get("Uint"));
 		ma->setOffset( daeOffsetOf( domAccessor , attrOffset ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 	
 		_Meta->appendAttribute(ma);
 	}
@@ -93,7 +93,7 @@ domAccessor::registerElement()
 		ma->setType( daeAtomicType::get("Uint"));
 		ma->setOffset( daeOffsetOf( domAccessor , attrStride ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1");
+		ma->setDefaultString( "1");
 	
 		_Meta->appendAttribute(ma);
 	}

@@ -140,7 +140,7 @@ domImage::registerElement()
 		ma->setType( daeAtomicType::get("Uint"));
 		ma->setOffset( daeOffsetOf( domImage , attrDepth ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1");
+		ma->setDefaultString( "1");
 	
 		_Meta->appendAttribute(ma);
 	}

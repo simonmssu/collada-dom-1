@@ -54,7 +54,7 @@ domFx_surface_init_from_common::registerElement()
 		ma->setType( daeAtomicType::get("xsUnsignedInt"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_from_common , attrMip ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 	
 		_Meta->appendAttribute(ma);
 	}
@@ -66,7 +66,7 @@ domFx_surface_init_from_common::registerElement()
 		ma->setType( daeAtomicType::get("xsUnsignedInt"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_from_common , attrSlice ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 	
 		_Meta->appendAttribute(ma);
 	}
@@ -78,7 +78,7 @@ domFx_surface_init_from_common::registerElement()
 		ma->setType( daeAtomicType::get("Fx_surface_face_enum"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_from_common , attrFace ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "POSITIVE_X");
+		ma->setDefaultString( "POSITIVE_X");
 	
 		_Meta->appendAttribute(ma);
 	}

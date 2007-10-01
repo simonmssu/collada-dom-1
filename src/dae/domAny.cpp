@@ -33,10 +33,8 @@ domAny::create(daeInt)
 daeMetaElement *
 domAny::registerElement()
 {
-    //if ( _Meta != NULL ) return _Meta;
-    daeMetaElement *_Meta = new daeMetaElement;
-    _Meta->setName( "any" );
-	//_Meta->setStaticPointerAddress(&domAny::_Meta);
+	daeMetaElement *_Meta = new daeMetaElement;
+	_Meta->setName( "any" );
 	_Meta->registerClass(domAny::create);
 	_Meta->setIsInnerClass( true );
 
@@ -44,8 +42,8 @@ domAny::registerElement()
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
 	cm = new daeMetaAny( _Meta, cm, 0, 0, -1 );
-    cm->getParent()->appendChild( cm ); // sthomas
-    cm = cm->getParent();
+	cm->getParent()->appendChild( cm );
+	cm = cm->getParent();
 
 	cm->setMaxOrdinal( 0 );
 	_Meta->setCMRoot( cm );
@@ -70,44 +68,37 @@ domAny::registerElement()
 	return _Meta;
 }
 
-//daeMetaElement * domAny::_Meta = NULL;
+// Implementation of daeMetaAttribute that understands how domAny works
+class domAnyAttribute : public daeMetaAttribute {
+public:
+	virtual daeChar* getWritableMemory(daeElement* e) {
+		return (daeChar*)&((domAny*)e)->attrs[_offset];
+	}
+};
 
 daeBool domAny::setAttribute(daeString attrName, daeString attrValue) {
 	if (_meta == NULL)
 		return false;
 	
 	//if the attribute already exists set it.
-	daeMetaAttributeRefArray& metaAttrs = _meta->getMetaAttributes();
-	int n = (int)metaAttrs.getCount();
-	int i;
-	for(i=0;i<n;i++) {
-		//fflush(stdout);
-		if ((metaAttrs[i]->getName() != NULL) && (strcmp(metaAttrs[i]->getName(),attrName)==0)) {
-			if (metaAttrs[i]->getType() != NULL) {
-				metaAttrs[i]->set(this,attrValue);
-				_validAttributeArray[i] = true;
-			}
-			return true;
-		}
-	}
+	if (daeElement::setAttribute(attrName, attrValue))
+		return true;
+
 	//else register it and then set it.
-	if ( n >= MAX_ATTRIBUTES ) {
-		daeErrorHandler::get()->handleWarning( "domAny::setAttribute() - too many attributes on this domAny.  The maximum number of attributes allowed is MAX_ATTRIBUTES" );
-		return false;
-	}
-	attrs[n] = 0;
-	daeMetaAttribute *ma = new daeMetaAttribute;
+	attrs.append("");
+	daeMetaAttribute *ma = new domAnyAttribute;
 	ma->setName( attrName );
 	ma->setType( daeAtomicType::get("xsString"));
-	ma->setOffset( (daeInt)daeOffsetOf( domAny , attrs[n] ));
+	ma->setOffset(attrs.getCount()-1);
 	ma->setContainer( _meta );
-	_meta->appendAttribute(ma);
-	_validAttributeArray.append( true );
-	if (metaAttrs[i]->getType() != NULL) {
-		metaAttrs[i]->set(this,attrValue);
+	if (ma->getType()) {
+		_meta->appendAttribute(ma);
+		_validAttributeArray.append( true );
+		ma->stringToMemory(this, attrValue);
 		return true;
 	}
-	
+
+	delete ma;
 	return false;
 }
 

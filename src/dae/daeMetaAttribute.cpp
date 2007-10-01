@@ -11,42 +11,58 @@
  * License. 
  */
 
+#include <sstream>
 #include <dae/daeMetaAttribute.h>
 #include <dae/daeMetaElement.h>
 #include <dae/daeErrorHandler.h>
 #include <dae/daeDocument.h>
 
-void
-daeMetaAttribute::set(daeElement* e, daeString s)
-{
-	if (!strcmp(_name, "id") && e->getDocument()) {
-		e->getDocument()->changeElementID(e, s);
-	}
-	_type->stringToMemory((char*)s, getWritableMemory(e));
+void daeMetaAttribute::set(daeElement* e, daeString s) {
+	stringToMemory(e, s);
 }
 
 void daeMetaAttribute::copy(daeElement* to, daeElement *from) {
 	_type->copy(getWritableMemory(from), getWritableMemory(to));
 }
 
-void
-daeMetaArrayAttribute::set(daeElement* e, daeString s)
-{
-	daeArray* array = (daeArray*)getWritableMemory(e);
-	_type->stringToArray((daeChar*)s, *array);
+void daeMetaArrayAttribute::copy(daeElement* to, daeElement *from) {
+	daeArray& fromArray = (daeArray&)*getWritableMemory(from);
+	daeArray& toArray = (daeArray&)*getWritableMemory(to);
+	_type->copyArray(fromArray, toArray);
 }
 
-void daeMetaArrayAttribute::copy(daeElement* to, daeElement *from) {
-	daeArray* toArray = (daeArray*)getWritableMemory(to);
-	daeArray* fromArray = (daeArray*)getWritableMemory(from);
-	daeInt typeSize = _type->getSize();
-	daeInt cnt = (daeInt)fromArray->getCount();
-	toArray->setCount( cnt );
-	daeChar *toData = toArray->getRaw(0);
-	daeChar *fromData = fromArray->getRaw(0);
-	for ( int i = 0; i < cnt; i++ ) {
-		_type->copy(fromData + i*typeSize, toData + i*typeSize);
-	}
+void daeMetaAttribute::copyDefault(daeElement* element) {
+	if (_defaultValue)
+		_type->copy(_defaultValue, get(element));
+}
+
+void daeMetaArrayAttribute::copyDefault(daeElement* element) {
+	if (_defaultValue)
+		_type->copyArray((daeArray&)*_defaultValue, (daeArray&)*getWritableMemory(element));
+}
+	
+daeInt daeMetaAttribute::compare(daeElement* elt1, daeElement* elt2) {
+	return _type->compare(get(elt1), get(elt2));
+}
+
+daeInt daeMetaArrayAttribute::compare(daeElement* elt1, daeElement* elt2) {
+	daeArray& value1 = (daeArray&)*getWritableMemory(elt1);
+	daeArray& value2 = (daeArray&)*getWritableMemory(elt2);
+	return _type->compareArray(value1, value2);
+}
+
+daeInt daeMetaAttribute::compareToDefault(daeElement* e) {
+	if (!_defaultValue)
+		return 1;
+	return _type->compare(get(e), _defaultValue);
+}
+
+daeInt daeMetaArrayAttribute::compareToDefault(daeElement* e) {
+	if (!_defaultValue)
+		return 1;
+	daeArray& value1 = (daeArray&)*getWritableMemory(e);
+	daeArray& value2 = (daeArray&)*_defaultValue;
+	return _type->compareArray(value1, value2);
 }
 
 daeMetaAttribute::daeMetaAttribute()
@@ -55,8 +71,20 @@ daeMetaAttribute::daeMetaAttribute()
 	_offset = -1;
 	_type = NULL;
 	_container = NULL;
-	_default = NULL;
+	_defaultString = "";
+	_defaultValue = NULL;
 	_isRequired = false;
+}
+
+daeMetaAttribute::~daeMetaAttribute() {
+	if (_defaultValue)
+		_type->destroy(_defaultValue);
+	_defaultValue = NULL;
+}
+
+daeMetaArrayAttribute::~daeMetaArrayAttribute() {
+	delete (daeArray*)_defaultValue;
+	_defaultValue = NULL;
 }
 
 void
@@ -96,6 +124,22 @@ daeMetaAttribute::getCount(daeElement* e)
 	return (getWritableMemory(e) != NULL);
 }
 
+void daeMetaAttribute::memoryToString(daeElement* e, std::ostringstream& buffer) {
+	_type->memoryToString(get(e), buffer);
+}
+
+void daeMetaAttribute::stringToMemory(daeElement* e, daeString s) {
+	if (!strcmp(_name, "id") && e->getDocument()) {
+		e->getDocument()->changeElementID(e, s);
+	}
+
+	_type->stringToMemory((daeChar*)s, get(e));
+}
+
+daeChar* daeMetaAttribute::getWritableMemory(daeElement* e) {
+	return (daeChar*)e + _offset;
+}
+
 daeMemoryRef
 daeMetaAttribute::get(daeElement *e, daeInt index)
 {
@@ -103,25 +147,70 @@ daeMetaAttribute::get(daeElement *e, daeInt index)
 	return getWritableMemory(e);
 }
 
+void daeMetaAttribute::setDefaultString(daeString defaultVal) {
+	_defaultString = defaultVal;
+	if (!_defaultValue)
+		_defaultValue = _type->create();
+	_type->stringToMemory((daeChar*)_defaultString.c_str(), _defaultValue);
+}
+
+void daeMetaAttribute::setDefaultValue(daeMemoryRef defaultVal) {
+	if (!_defaultValue)
+		_defaultValue = _type->create();
+	_type->copy(defaultVal, _defaultValue);
+	std::ostringstream buffer;
+	_type->memoryToString(_defaultValue, buffer);
+	_defaultString = buffer.str();
+}
+
 daeInt
 daeMetaArrayAttribute::getCount(daeElement *e)
 {
 	if (e == NULL)
 		return 0;
-	daeArray* era = (daeArray*)getWritableMemory(e);
-	if (era == NULL)
-		return 0;
-	return (daeInt)era->getCount();
+	return (daeInt)((daeArray*)getWritableMemory(e))->getCount();
 }
 
-daeMemoryRef
-daeMetaArrayAttribute::get(daeElement* e, daeInt index)
-{
-	if (e == NULL)
-		return NULL;
-	daeArray* era = (daeArray*)getWritableMemory(e);
-	if (era == NULL || index >= (daeInt)era->getCount() )
-		return NULL;
-	return era->getRaw(index);
+void daeMetaArrayAttribute::memoryToString(daeElement* e, std::ostringstream& buffer) {
+	if (e)
+		_type->arrayToString(*(daeArray*)getWritableMemory(e), buffer);
 }
 
+void daeMetaArrayAttribute::stringToMemory(daeElement* e, daeString s) {
+	if (e)
+		_type->stringToArray((daeChar*)s, *(daeArray*)getWritableMemory(e));
+}
+
+daeMemoryRef daeMetaArrayAttribute::get(daeElement* e, daeInt index) {
+	if (e) {
+		daeArray* array = (daeArray*)getWritableMemory(e);
+		if (index < (daeInt)array->getCount())
+			return array->getRaw(index);
+	}
+
+	return NULL;
+}
+
+void daeMetaArrayAttribute::setDefaultString(daeString defaultVal) {
+	_defaultString = defaultVal;
+	if (!_defaultValue)
+		_defaultValue = (daeMemoryRef)_type->createArray();
+	_type->stringToArray((daeChar*)_defaultString.c_str(), (daeArray&)*_defaultValue);
+}
+
+void daeMetaArrayAttribute::setDefaultValue(daeMemoryRef defaultVal) {
+	if (!_defaultValue)
+		_defaultValue = (daeMemoryRef)_type->createArray();
+	_type->copyArray((daeArray&)*defaultVal, (daeArray&)*_defaultValue);
+	std::ostringstream buffer;
+	_type->arrayToString((daeArray&)*_defaultValue, buffer);
+	_defaultString = buffer.str();
+}
+
+daeString daeMetaAttribute::getDefaultString() {
+	return _defaultString.c_str();
+}
+
+daeMemoryRef daeMetaAttribute::getDefaultValue() {
+	return _defaultValue;
+}

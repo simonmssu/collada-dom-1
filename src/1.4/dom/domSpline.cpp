@@ -69,7 +69,7 @@ domSpline::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domSpline , attrClosed ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 	
 		_Meta->appendAttribute(ma);
 	}

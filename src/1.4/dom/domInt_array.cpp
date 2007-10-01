@@ -88,7 +88,7 @@ domInt_array::registerElement()
 		ma->setType( daeAtomicType::get("xsInteger"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrMinInclusive ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "-2147483648");
+		ma->setDefaultString( "-2147483648");
 	
 		_Meta->appendAttribute(ma);
 	}
@@ -100,7 +100,7 @@ domInt_array::registerElement()
 		ma->setType( daeAtomicType::get("xsInteger"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrMaxInclusive ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "2147483647");
+		ma->setDefaultString( "2147483647");
 	
 		_Meta->appendAttribute(ma);
 	}

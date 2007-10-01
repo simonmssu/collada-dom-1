@@ -70,7 +70,7 @@ domMorph::registerElement()
 		ma->setType( daeAtomicType::get("MorphMethodType"));
 		ma->setOffset( daeOffsetOf( domMorph , attrMethod ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "NORMALIZED");
+		ma->setDefaultString( "NORMALIZED");
 	
 		_Meta->appendAttribute(ma);
 	}

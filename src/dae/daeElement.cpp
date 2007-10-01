@@ -21,6 +21,7 @@
 
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeURI.h>
+#include <dae/domAny.h>
 
 daeElementRef DAECreateElement(int)
 {
@@ -246,104 +247,114 @@ void daeElement::deleteCMDataArray(daeTArray<daeCharArray*>& cmData) {
 	cmData.clear();
 }
 
-daeBool
-daeElement::setAttribute(daeString attrName, daeString attrValue)
-{
-	if (_meta == NULL)
-		return false;
-	
-	daeMetaAttributeRefArray& metaAttrs = _meta->getMetaAttributes();
-	int n = (int)metaAttrs.getCount();
-	int i;
-	for(i=0;i<n;i++) {
-		//fflush(stdout);
-		if ((metaAttrs[i]->getName() != NULL) &&
-			(strcmp(metaAttrs[i]->getName(),attrName)==0)) {
-#if 0		//debug stuff
-			printf("%s(%s)->setAttr(%s,%s)\n",
-				   (const char*)_meta->getName(),
-				   metaAttrs[i]->getType()->getTypeString(),
-				   attrName,
-				   attrValue);
-#endif
-			if (metaAttrs[i]->getType() != NULL)
-			{
-				metaAttrs[i]->set(this,attrValue);
-				_validAttributeArray.set(i, true);
-			}
-			return true;
+namespace {
+	// A helper function that implements daeElement::getAttributeObject's interface but also
+	// optionally returns the index of the attribute.
+	daeMetaAttribute* getAttributeObjectWithIndex(daeElement& el,
+																								daeString name,
+																								/* out */ size_t* index = 0) {
+		if (el.getMeta()) {
+			daeMetaAttributeRefArray& metaAttrs = el.getMeta()->getMetaAttributes();
+			for (size_t i = 0; i < metaAttrs.getCount(); i++)
+				if (metaAttrs[i]->getName()  &&  strcmp(metaAttrs[i]->getName(), name) == 0) {
+					if (index)
+						*index = i;
+					return metaAttrs[i];
+				}
 		}
+		if (index)
+			*index = (size_t)-1;
+		return NULL;
 	}
+}
+
+daeMetaAttribute* daeElement::getAttributeObject(daeString name) {
+	return getAttributeObjectWithIndex(*this, name);
+}
+
+daeBool daeElement::hasAttribute(daeString name) {
+	return getAttributeObject(name) != 0;
+}
+
+daeBool daeElement::isAttributeSet(daeString name) {
+	size_t i;
+	if (getAttributeObjectWithIndex(*this, name, &i))
+		return _validAttributeArray[i];
 	return false;
 }
 
-daeBool daeElement::isAttributeSet( daeString attrName ) {
-	if (_meta == NULL)
-		return false;
-	
-	daeMetaAttributeRefArray& metaAttrs = _meta->getMetaAttributes();
-	int n = (int)metaAttrs.getCount();
-	int i;
-	for(i=0;i<n;i++) {
-		if ((metaAttrs[i]->getName() != NULL) &&
-			(strcmp(metaAttrs[i]->getName(),attrName)==0)) {
-		
-			return _validAttributeArray[i];
-		}
-	}
-	return false;
+std::string daeElement::getAttribute(daeString name) {
+	std::string value;
+	getAttribute(name, value);
+	return value;
 }
 
-daeBool daeElement::hasAttribute( daeString attrName ) {
-	if (_meta == NULL)
-		return false;
-	
-	daeMetaAttributeRefArray& metaAttrs = _meta->getMetaAttributes();
-	int n = (int)metaAttrs.getCount();
-	int i;
-	for(i=0;i<n;i++) {
-		if ((metaAttrs[i]->getName() != NULL) &&
-			(strcmp(metaAttrs[i]->getName(),attrName)==0)) {
-		
-			return true;
-		}
+void daeElement::getAttribute(daeString name, std::string& value) {
+	value = "";
+	if (daeMetaAttribute* attr = getAttributeObject(name)) {
+		std::ostringstream buffer;
+		attr->memoryToString(this, buffer);
+		value = buffer.str();
 	}
-	return false;
 }
 
-daeMemoryRef daeElement::getAttributeValue( daeString attrName ) {
-	if (_meta == NULL)
-		return false;
-	
-	daeMetaAttributeRefArray& metaAttrs = _meta->getMetaAttributes();
-	int n = (int)metaAttrs.getCount();
-	int i;
-	for(i=0;i<n;i++) {
-		if ((metaAttrs[i]->getName() != NULL) &&
-			(strcmp(metaAttrs[i]->getName(),attrName)==0)) {
-		
-			return metaAttrs[i]->getWritableMemory(this);
-		}
-	}
+daeMemoryRef daeElement::getAttributeValue(daeString name) {
+	if (daeMetaAttribute* attr = getAttributeObject(name))
+		return attr->get(this);
 	return NULL;
 }
 
+daeBool daeElement::setAttribute(daeString name, daeString value) {
+	size_t index;
+	if (daeMetaAttribute* attr = getAttributeObjectWithIndex(*this, name, &index)) {
+		if (attr->getType()) {
+			attr->stringToMemory(this, value);
+			_validAttributeArray.set(index, true);
+			return true;
+		}
+	}
+	return false;
+}
+
+daeMetaAttribute* daeElement::getCharDataObject() {
+	if (_meta)
+		return _meta->getValueAttribute();
+	return NULL;
+}
+
+daeBool daeElement::hasCharData() {
+	return getCharDataObject() != NULL;
+}
+
+std::string daeElement::getCharData() {
+	std::string result;
+	getCharData(result);
+	return result;
+}		
+
+void daeElement::getCharData(std::string& data) {
+	data = "";
+	if (daeMetaAttribute* charDataAttr = getCharDataObject()) {
+		std::ostringstream buffer;
+		charDataAttr->memoryToString(this, buffer);
+		data = buffer.str();
+	}
+}
+
+void daeElement::setCharData(const std::string& data) {
+	if (daeMetaAttribute* charDataAttr = getCharDataObject()) {
+		charDataAttr->stringToMemory(this, data.c_str());
+	}
+}
+
 daeBool daeElement::hasValue() {
-	if (_meta == NULL)
-		return false;
-	
-	return (_meta->getValueAttribute() != NULL );
+	return hasCharData();
 }
 
 daeMemoryRef daeElement::getValuePointer() {
-	if (_meta == NULL)
-		return false;
-	
-	if ( _meta->getValueAttribute() != NULL )
-	{
-		return _meta->getValueAttribute()->getWritableMemory(this);
-	}
-	return NULL;	
+	if (daeMetaAttribute* charDataAttr = getCharDataObject())
+		return charDataAttr->get(this);
+	return NULL;
 }
 
 void
@@ -421,8 +432,8 @@ daeElement::setup(daeMetaElement* meta)
 
 	int i;
 	for(i=0;i<macnt;i++) {
-		if (attrs[i]->getDefault() != NULL) {
-			attrs[i]->set(this, attrs[i]->getDefault());
+		if (attrs[i]->getDefaultValue() != NULL) {
+			attrs[i]->copyDefault(this);
 			_validAttributeArray[i] = true;
 		}
 //		else {
@@ -502,48 +513,51 @@ void daeElement::getChildren( daeElementRefArray &array ) {
 }
 
 daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuffix) {
-	//use the meta object system to create a new instance of this element
-	daeElementRef ret = _meta->create();
+	// Use the meta object system to create a new instance of this element. We need to
+	// create a new meta if we're cloning a domAny object because domAnys never share meta objects.
+	// Ideally we'd be able to clone the _meta for domAny objects. Then we wouldn't need
+	// any additional special case code for cloning domAny. Unfortunately, we don't have a
+	// daeMetaElement::clone method.
+	bool any = strcmp(getTypeName(), "any") == 0;
+	daeElementRef ret = any ? domAny::registerElement()->create() : _meta->create();
 	ret->setElementName( _elementName );
-	//use meta system to copy attributes
-	daeMetaAttributeRefArray &attrs = _meta->getMetaAttributes();
-	for ( unsigned int i = 0; i < attrs.getCount(); i++ ) {
-		attrs[i]->copy( ret, this );
-		ret->_validAttributeArray[i] = _validAttributeArray[i];
+
+	// Copy the attributes and character data. Requires special care for domAny.
+	if (any) {
+		domAny* thisAny = (domAny*)this;
+		domAny* retAny = (domAny*)ret.cast();
+		for (size_t i = 0; i < thisAny->getAttributeCount(); i++)
+			retAny->setAttribute(thisAny->getAttributeName(i), thisAny->getAttributeValue(i));
+		retAny->setValue(thisAny->getValue());
+	} else {
+		// Use the meta system to copy attributes
+		daeMetaAttributeRefArray &attrs = _meta->getMetaAttributes();
+		for (unsigned int i = 0; i < attrs.getCount(); i++) {
+			attrs[i]->copy( ret, this );
+			ret->_validAttributeArray[i] = _validAttributeArray[i];
+		}
+		if (daeMetaAttribute* valueAttr = getCharDataObject())
+			valueAttr->copy( ret, this );
 	}
-	if ( _meta->getValueAttribute() != NULL ) {
-		daeMetaAttribute *val = _meta->getValueAttribute();
-		val->copy( ret, this );
-	}
+	
 	daeElementRefArray children;
 	_meta->getChildren( this, children );
 	for ( size_t x = 0; x < children.getCount(); x++ ) {
 		ret->placeElement( children.get(x)->clone( idSuffix, nameSuffix ) );
 	}
 
-	//mangle the id
-	daeMetaAttribute *id = _meta->getIDAttribute();
-	if ( idSuffix != NULL && id != NULL ) {
-		daeChar str[2048];
-		id->getType()->memoryToString( id->getWritableMemory( ret ), str, 2048 );
-		if ( strcmp( str, "" ) ) {
-			strcat( str, idSuffix );
-		}
-		//id->getType()->stringToMemory( str, id->getWritableMemory( ret ) );
-		id->set( ret, str );
+	// Mangle the id
+	if (idSuffix) {
+		std::string id = ret->getAttribute("id");
+		if (!id.empty())
+			ret->setAttribute("id", (id + idSuffix).c_str());
 	}
-	//mangle the name
-	daeMetaAttribute *nm = _meta->getMetaAttribute("name");
-	if ( nameSuffix != NULL && nm != NULL ) {
-		daeChar str[2048];
-		nm->getType()->memoryToString( nm->getWritableMemory( ret ), str, 2048 );
-		if ( strcmp( str, "" ) ) {
-			strcat( str, nameSuffix );
-		}
-		//nm->getType()->stringToMemory( str, nm->getWritableMemory( ret ) );
-		nm->set( ret, str );
+	// Mangle the name
+	if (nameSuffix) {
+		std::string name = ret->getAttribute("name");
+		if (!name.empty())
+			ret->setAttribute("name", (name + nameSuffix).c_str());
 	}
-	//ret->_intObject = _intObject;
 	return ret;
 }
 

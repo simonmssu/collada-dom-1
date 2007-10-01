@@ -54,7 +54,7 @@ domFx_colortarget_common::registerElement()
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_colortarget_common , attrIndex ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -67,7 +67,7 @@ domFx_colortarget_common::registerElement()
 		ma->setType( daeAtomicType::get("Fx_surface_face_enum"));
 		ma->setOffset( daeOffsetOf( domFx_colortarget_common , attrFace ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "POSITIVE_X");
+		ma->setDefaultString( "POSITIVE_X");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -80,7 +80,7 @@ domFx_colortarget_common::registerElement()
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_colortarget_common , attrMip ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -93,7 +93,7 @@ domFx_colortarget_common::registerElement()
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_colortarget_common , attrSlice ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);

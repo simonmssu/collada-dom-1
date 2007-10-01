@@ -121,7 +121,7 @@ domProfile_CG::registerElement()
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domProfile_CG , attrPlatform ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "PC");
+		ma->setDefaultString( "PC");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);

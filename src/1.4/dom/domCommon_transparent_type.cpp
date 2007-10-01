@@ -79,7 +79,7 @@ domCommon_transparent_type::registerElement()
 		ma->setType( daeAtomicType::get("Fx_opaque_enum"));
 		ma->setOffset( daeOffsetOf( domCommon_transparent_type , attrOpaque ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "A_ONE");
+		ma->setDefaultString( "A_ONE");
 	
 		_Meta->appendAttribute(ma);
 	}

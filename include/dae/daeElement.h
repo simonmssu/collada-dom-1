@@ -13,6 +13,7 @@
 
 #ifndef __DAE_ELEMENT_H__
 #define __DAE_ELEMENT_H__
+#include <string>
 #include <dae/daeTypes.h>
 #include <dae/daeMemorySystem.h>
 #include <wchar.h>
@@ -33,6 +34,7 @@ namespace COLLADA_TYPE
 };
 
 class daeMetaElement;
+class daeMetaAttribute;
 class daeIntegrationObject;
 class daeDocument;
 class daeURI;
@@ -214,50 +216,92 @@ public:
 	};
 
 	/**
-	 * Looks up an attribute field via its meta name and assign its value
-	 * as the <tt><i> attrValue </i></tt> String.
-	 * @param attrName Attribute to set.
-	 * @param attrValue String-based value to apply to the attribute.
-	 * @return Returns true if the attribute was found and the value was set, false otherwise.
+	 * Returns the daeMetaAttribute object corresponding to the attribute specified.
+	 * @param name The name of the attribute to find.
+	 * @return Returns the corresponding daeMetaAttribute object or NULL if this element
+	 * doesn't have the specified attribute.
 	 */
-	virtual DLLSPEC daeBool setAttribute(daeString attrName, daeString attrValue);
+	DLLSPEC daeMetaAttribute* getAttributeObject(daeString name);
+
+	/**
+	 * Checks if this element can have the attribute specified.
+	 * @param name The name of the attribute to look for.
+	 * @return Returns true is this element can have an attribute with the name specified. False otherwise.
+	 */
+	DLLSPEC daeBool hasAttribute(daeString name);
 
 	/**
 	 * Checks if an attribute has been set either by being loaded from the COLLADA document or set
 	 * programmatically.
-	 * @param attrName The name of the attribute to check.
+	 * @param name The name of the attribute to check.
 	 * @return Returns true if the attribute has been set. False if the attribute hasn't been set 
 	 * or doesn't exist for this element.
 	 */
-	DLLSPEC daeBool isAttributeSet( daeString attrName );
+	DLLSPEC daeBool isAttributeSet(daeString name);
 
 	/**
-	 * Checks if this element can have the attribute specified.
-	 * @param attrName The name of the attribute to look for.
-	 * @return Returns true is this element can have an attribute with the name specified. False otherwise.
+	 * Gets an attribute's value as a string.
+	 * @param name The name of the attribute.
+	 * @return The value of the attribute. Returns an empty string if this element doesn't
+	 * have the specified attribute.
 	 */
-	DLLSPEC daeBool hasAttribute( daeString attrName );
+	DLLSPEC std::string getAttribute(daeString name);
 
 	/**
-	 * Gets a pointer to the value of the attribute specified.
-	 * @param attrName The name of the attribute to look for.
-	 * @return Returns a daeMemoryRef (char *) to the value of the attribute. The return value will need 
-	 * to be typecast to the appropriate type. Returns NULL if the attribute does not exist.
+	 * Just like the previous method, this method gets an attribute's value as a string. It
+	 * takes the string as a reference parameter instead of returning it, for extra efficiency.
+	 * @param name The name of the attribute.
+	 * @param A string in which to store the value of the attribute. This will be set to an empty 
+	 * string if this element doesn't have the specified attribute.
 	 */
-	DLLSPEC daeMemoryRef getAttributeValue( daeString attrName );
+	DLLSPEC void getAttribute(daeString name, std::string& value);
 
 	/**
-	 * Checks if this element can have a value.
-	 * @return Returns true is this element can have a value. False otherwise.
+	 * Looks up an attribute field via its meta name and assign its value
+	 * as the <tt><i> attrValue </i></tt> String.
+	 * @param name Attribute to set.
+	 * @param value String-based value to apply to the attribute.
+	 * @return Returns true if the attribute was found and the value was set, false otherwise.
 	 */
-	DLLSPEC daeBool hasValue();
+	virtual DLLSPEC daeBool setAttribute(daeString name, daeString value);
 
 	/**
-	 * Gets a pointer to the element's value.
-	 * @return Returns a daeMemoryRef (char *) to the value of the element. The return value will need 
-	 * to be typecast to the appropriate type. Returns NULL if the element does not allow a value.
+	 * Returns the daeMetaAttribute object corresponding to the character data for this element.
+	 * @return Returns a daeMetaAttribute object or NULL if this element doesn't have
+	 * character data.
 	 */
-	DLLSPEC daeMemoryRef getValuePointer();
+	DLLSPEC daeMetaAttribute* getCharDataObject();
+
+	/**
+	 * Checks if this element can have character data.
+	 * @return Returns true if this element can have character data, false otherwise.
+	 */
+	DLLSPEC daeBool hasCharData();
+
+	/**
+	 * Returns this element's character data as a string.
+	 * @return A string containing this element's character data, or an empty string
+	 * if this element can't have character data.
+	 */
+	DLLSPEC std::string getCharData();
+
+	/**
+	 * Similar to the previous method, but fills a string passed in by the user for efficiency.
+	 * @param data The string to be filled with this element's character content. The
+	 * string is set to an empty string if this element can't have character data.
+	 */
+	DLLSPEC void getCharData(std::string& data);
+
+	/**
+	 * Sets this element's character data.
+	 * @param data The new character data of this element.
+	 */
+	DLLSPEC void setCharData(const std::string& data);
+
+	// These functions are deprecated.
+	DLLSPEC daeMemoryRef getAttributeValue(daeString name); // Use getAttribute or getAttributeObject instead.
+	DLLSPEC daeBool hasValue(); // Use hasCharData instead.
+	DLLSPEC daeMemoryRef getValuePointer(); // Use getCharData or getCharDataObject instead.
 
 	/**
 	 * Finds the database document associated with @c this element.

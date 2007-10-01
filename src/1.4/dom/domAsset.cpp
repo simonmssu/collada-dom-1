@@ -579,7 +579,7 @@ domAsset::domUnit::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domAsset::domUnit , attrMeter ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1.0");
+		ma->setDefaultString( "1.0");
 	
 		_Meta->appendAttribute(ma);
 	}
@@ -591,7 +591,7 @@ domAsset::domUnit::registerElement()
 		ma->setType( daeAtomicType::get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domAsset::domUnit , attrName ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "meter");
+		ma->setDefaultString( "meter");
 	
 		_Meta->appendAttribute(ma);
 	}

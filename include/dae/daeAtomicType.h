@@ -14,6 +14,7 @@
 #ifndef __DAE_ATOMIC_TYPE_H__
 #define __DAE_ATOMIC_TYPE_H__
 
+#include <sstream>
 #include <dae/daeTypes.h>
 #include <dae/daeStringRef.h>
 #include <dae/daeArray.h>
@@ -67,10 +68,9 @@ public:
 	 * Prints an atomic typed element into a destination string.
 	 * @param src Source of the raw data from which to get the typed items.
 	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
 	 * @return Returns true if the operation was successful, false if not successful.  
 	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst) = 0;
 
 	/**
 	 * Reads an atomic typed item into the destination runtime memory.
@@ -79,6 +79,13 @@ public:
 	 * @return Returns true if the operation was successful, false if not successful.
 	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
+
+	/**
+	 * Converts an array of atomic items into a whitespace separated string.
+	 * @param array The array of data.
+	 * @param buffer The buffer to write into.
+	 */
+	virtual void arrayToString(daeArray& array, std::ostringstream& buffer);
 
 	/**
 	 * Reads a whitespace separated list of atomic items into an array. The array is
@@ -90,6 +97,27 @@ public:
 	virtual daeBool stringToArray(daeChar* src, daeArray& array);
 
 	/**
+	 * Creates a new object of the appropriate type for this daeAtomicType and returns it
+	 * as a pointer. The return value must be freed by calling destroy.
+	 * @return Returns a pointer to a new value. The memory must be freed by calling destroy.
+	 */
+	virtual daeMemoryRef create() = 0;
+
+	/**
+	 * Deletes an object previously allocated with create.
+	 * @param obj The object previously allocated with create.
+	 */
+	virtual void destroy(daeMemoryRef obj) = 0;
+
+	/**
+	 * Creates a daeTArray of the appropriate type (e.g. daeTArray<int>, daeTArray<daeIDRef>)
+	 * and returns it as a daeArray*.
+	 * @return Returns a daeArray*. This array should be freed by the caller with
+	 * operator delete.
+	 */
+	virtual daeArray* createArray() = 0;
+
+	/**
 	 * Performs a virtual comparison operation between two values of the same atomic type.
 	 * @param value1 Memory location of the first value.
 	 * @param value2 Memory location of the second value.
@@ -99,6 +127,15 @@ public:
 	virtual daeInt compare(daeChar* value1, daeChar* value2);
 
 	/**
+	 * Array version of the compare function.
+	 * @param value1 First array to compare.
+	 * @param value2 Second array to compare.
+	 * @return Returns a positive integer if value1 > value2, a negative integer if 
+	 * value1 < value2, and 0 if value1 == value2.
+	 */
+	virtual daeInt compareArray(daeArray& value1, daeArray& value2);
+
+	/**
 	 * Performs a virtual copy operation.
 	 * @param src Memory location of the value to copy from.
 	 * @param dst Memory location of the value to copy to.
@@ -106,12 +143,11 @@ public:
 	virtual void copy(daeChar* src, daeChar* dst) = 0;
 
 	/**
-	 * Creates a daeTArray of the appropriate type (e.g. daeTArray<int>, daeTArray<daeIDRef>)
-	 * and returns it as a daeArray*.
-	 * @return Returns a daeArray*. This array should be freed by the caller with
-	 * operator delete.
+	 * Array version of the copy function.
+	 * @param src Array to copy from.
+	 * @param dst Array to copy to.
 	 */
-	virtual daeArray* createArray() = 0;
+	virtual void copyArray(daeArray& src, daeArray& dst);
 
 	/**
 	 * Resolves a reference, if indeed this type is a reference type.
@@ -304,24 +340,13 @@ public:
 	 */
 	daeBoolType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 	
-	/**
-	 * Overrides the base class @c stringToMemoryFunction().
-	 * Reads an atomic typed item into the destination runtime memory.
-	 * @param src Source string.
-	 * @param dst Raw binary to store the resulting value.
-	 * @return Returns true if the operation was successful, false if not successful.
-	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -340,15 +365,11 @@ public:
 	 */
 	daeIntType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -367,15 +388,11 @@ public:
 	 */
 	daeLongType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -394,15 +411,11 @@ public:
 	 */
 	daeUIntType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -421,15 +434,11 @@ public:
 	 */
 	daeULongType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -448,15 +457,11 @@ public:
 	 */
 	daeShortType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -475,23 +480,13 @@ public:
 	 */
 	daeFloatType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
-	/**
-	 * Overrides the base class @c stringToMemoryFunction().
-	 * Reads an atomic typed item into the destination runtime memory.
-	 * @param src Source string.
-	 * @param dst Raw binary to store the resulting value.
-	 * @return Returns true if the operation was successful, false if not successful.
-	 */
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -510,23 +505,13 @@ public:
 	 */
 	daeDoubleType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
-	/**
-	 * Overrides the base class @c stringToMemoryFunction().
-	 * Reads an atomic typed item into the destination runtime memory.
-	 * @param src Source string.
-	 * @param dst Raw binary to store the resulting value.
-	 * @return Returns true if the operation was successful, false if not successful.
-	 */
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -545,31 +530,15 @@ public:
 	 */
 	daeStringRefType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
-	/**
-	 * Overrides the base class @c stringToMemoryFunction().
-	 * Reads an atomic typed item into the destination runtime memory.
-	 * @param src Source string.
-	 * @param dst Raw binary to store the resulting value.
-	 * @return Returns true if the operation was successful, false if not successful.
-	 */
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
-	/**
-	 * Performs a virtual comparison operation between two values of the same atomic type.
-	 * @param value1 Memory location of the first value.
-	 * @param value2 Memory location of the second value.
-	 * @return Returns a positive integer if value1 > value2, a negative integer if 
-	 * value1 < value2, and 0 if value1 == value2.
-	 */
+
 	virtual daeInt compare(daeChar* value1, daeChar* value2);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -590,15 +559,12 @@ public:
 	daeTokenType();
 	
 public:
-	/**
-	 * Overrides the base class @c stringToMemoryFunction().
-	 * Reads an atomic typed item into the destination runtime memory.
-	 * @param src Source string.
-	 * @param dst Raw binary to store the resulting value.
-	 * @return Returns true if the operation was successful, false if not successful.
-	 */
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 	
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
+
 	virtual void copy(daeChar* src, daeChar* dst);
 
 	virtual daeArray* createArray();
@@ -622,15 +588,11 @@ public:
 	 */
 	daeElementRefType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -665,23 +627,13 @@ public:
 	~daeEnumType();
 	
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
-	/**
-	 * Overrides the base class @c stringToMemoryFunction().
-	 * Reads an atomic typed item into the destination runtime memory.
-	 * @param src Source string.
-	 * @param dst Raw binary to store the resulting value.
-	 * @return Returns true if the operation was successful, false if not successful.
-	 */
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -701,15 +653,11 @@ public:
 	daeRawRefType();
 	
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -728,32 +676,15 @@ public:
 	*/	
 	daeResolverType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
-	/**
-	 * Overrides the base class @c stringToMemoryFunction().
-	 * Reads an atomic typed item into the destination runtime memory.
-	 * @param src Source string.
-	 * @param dst Raw binary to store the resulting value.
-	 * @return Returns true if the operation was successful, false if not successful.
-	 */
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 	
-	/**
-	 * Overrides the base class @c resolve() function
-	 * Resolves a reference, if indeed this type is a reference type
-	 * @param element The containing element.
-	 * @param src Source of the raw data to resolve.
-	 * should be placed.
-	 */
 	virtual void resolve(daeElementRef element, daeChar* src);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 
@@ -772,34 +703,17 @@ public:
 	*/	
 	daeIDResolverType();
 public:
-	/**
-	 * Overrides the base class memory to string conversion function.
-	 * @param src Raw data from which to get the typed items.
-	 * @param dst Destination to output the string version of the elements to.
-	 * @param dstSize Number of bytes available in the destination memory.
-	 * @return Returns true if the operation was successful, 
-	 * false if the operation would cause the destination buffer to overflow.
-	 */
-	virtual daeBool memoryToString(daeChar* src, daeChar* dst, daeInt dstSize);
-	/**
-	 * Overrides the base class @c stringToMemoryFunction().
-	 * Reads an atomic typed item into the destination runtime memory.
-	 * @param src Source string.
-	 * @param dst Raw binary to store the resulting value.
-	 * @return Returns true if the operation was successful, false if not successful.
-	 */
+	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
+
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 	
-	/**
-	 * Overrides the base class @c resolve() function
-	 * Resolves a reference, if indeed this type is a reference type.
-	 * @param element The containing element.
-	 * @param src Source of the raw data to resolve.
-	 * should be placed.
-	 */
 	virtual void resolve(daeElementRef element, daeChar* src);
 
 	virtual daeInt compare(daeChar* value1, daeChar* value2);
+
+	virtual daeMemoryRef create();
+
+	virtual void destroy(daeMemoryRef obj);
 
 	virtual void copy(daeChar* src, daeChar* dst);
 

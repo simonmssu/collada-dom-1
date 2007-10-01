@@ -161,7 +161,7 @@ bool daeIOPluginCommon::readElementText(daeElement* element, daeString text, dae
 	}
 	else
 	{
-		element->getMeta()->getValueAttribute()->set(element, text);
+		element->getMeta()->getValueAttribute()->stringToMemory(element, text);
 		return true;
 	}
 }

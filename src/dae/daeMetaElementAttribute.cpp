@@ -39,7 +39,7 @@ void daeMetaElementAttribute::set(daeElement* e, daeString s)
 	if ((*ref) == NULL) {
 		(*ref) = _elementType->create();
 	}
-	(*ref)->getMeta()->getValueAttribute()->set((*ref), s);
+	(*ref)->getMeta()->getValueAttribute()->stringToMemory((*ref), s);
 }
 
 void daeMetaElementAttribute::copy(daeElement* to, daeElement *from) {

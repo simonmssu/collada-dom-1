@@ -178,7 +178,7 @@ domNode::registerElement()
 		ma->setType( daeAtomicType::get("NodeType"));
 		ma->setOffset( daeOffsetOf( domNode , attrType ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "NODE");
+		ma->setDefaultString( "NODE");
 	
 		_Meta->appendAttribute(ma);
 	}

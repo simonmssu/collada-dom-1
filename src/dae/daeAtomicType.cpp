@@ -11,6 +11,7 @@
  * License. 
  */
 
+#include <sstream>
 #include <dae/daeAtomicType.h>
 #include <dae/daeElement.h>
 #include <dae/daeURI.h>
@@ -92,7 +93,6 @@ daeAtomicType::initializeKnownBaseTypes()
 	_Types->append(new daeIntType);
 	_Types->append(new daeLongType);
 	_Types->append(new daeShortType);
-	_Types->append(new daeUIntType);
 	_Types->append(new daeULongType);
 	_Types->append(new daeFloatType);
 	_Types->append(new daeDoubleType);
@@ -161,6 +161,15 @@ daeAtomicType::stringToMemory(daeChar *src, daeChar* dstMemory)
 	return true;
 }
 
+void daeAtomicType::arrayToString(daeArray& array, std::ostringstream& buffer) {
+	if (array.getCount() > 0)
+		memoryToString(array.getRaw(0), buffer);
+	for (size_t i = 1; i < array.getCount(); i++) {
+		buffer << ' ';
+		memoryToString(array.getRaw(i), buffer);
+	}
+}
+
 daeBool
 daeAtomicType::stringToArray(daeChar* src, daeArray& array) {
 	array.clear();
@@ -201,20 +210,28 @@ daeAtomicType::stringToArray(daeChar* src, daeArray& array) {
 	return true;
 }
 
+daeInt daeAtomicType::compareArray(daeArray& value1, daeArray& value2) {
+	if (value1.getCount() != value2.getCount())
+		return value1.getCount() > value2.getCount() ? 1 : -1;
+
+	for (size_t i = 0; i < value1.getCount(); i++) {
+		daeInt result = compare(value1.getRaw(i), value2.getRaw(i));
+		if (result != 0)
+			return result;
+	}
+
+	return 0;
+}
+
+void daeAtomicType::copyArray(daeArray& src, daeArray& dst) {
+	dst.setCount(src.getCount());
+	for (size_t i = 0; i < src.getCount(); i++)
+		copy(src.getRaw(i), dst.getRaw(i));
+}
+
 daeInt
 daeAtomicType::compare(daeChar* value1, daeChar* value2) {
 	return memcmp(value1, value2, _size);
-}
-
-daeBool
-daeAtomicType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
-{
-	// just to remove the warnings 
-	(void)src;
-	
-	if (dstSize > 32)
-		sprintf(dst,"unknown type string conversion\n");
-	return true;
 }
 
 daeInt
@@ -446,61 +463,48 @@ daeIDResolverType::daeIDResolverType()
 	_scanFormat = "%s";
 	_typeString = "idref_resolver";
 }
-daeBool 
-	daeIntType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize) 
-{ 
-	if (_maxStringLength > dstSize) return false;
-	sprintf(dst,_printFormat,*((daeInt*)src));
+
+daeBool daeIntType::memoryToString(daeChar* src, std::ostringstream& dst) {
+	dst << *(daeInt*)src;
 	return true;
 }
-daeBool 
-	daeLongType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize) 
-{ 
-	if (_maxStringLength > dstSize) return false;
-	sprintf(dst,_printFormat,*((daeLong*)src));
+
+daeBool daeLongType::memoryToString(daeChar* src, std::ostringstream& dst) {
+	dst << *(daeLong*)src;
 	return true;
 }
-daeBool 
-	daeShortType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize) 
-{ 
-	if (_maxStringLength > dstSize) return false;
-	sprintf(dst,_printFormat,*((daeShort*)src));
+
+daeBool daeShortType::memoryToString(daeChar* src, std::ostringstream& dst) {
+	dst << *(daeShort*)src;
 	return true;
 }
-daeBool 
-	daeUIntType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize) 
-{ 
-	if (_maxStringLength > dstSize) return false;
-	sprintf(dst,_printFormat,*((daeUInt*)src));
+
+daeBool daeUIntType::memoryToString(daeChar* src, std::ostringstream& dst) {
+	dst << *(daeUInt*)src;
 	return true;
 }
-daeBool 
-	daeULongType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize) 
-{ 
-	if (_maxStringLength > dstSize) return false;
-	sprintf(dst,_printFormat,*((daeULong*)src));
+
+daeBool daeULongType::memoryToString(daeChar* src, std::ostringstream& dst) {
+#ifdef WIN32
+	// Microsoft's stringstream implementation has weird performance issues
+	static char buffer[64];
+	_snprintf(buffer, 64, _printFormat, *((daeULong*)src));
+	dst << buffer;
+#else
+	dst << *(daeULong*)src;
+#endif
 	return true;
 }
-daeBool 
-	daeFloatType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize) 
-{ 
-	if (_maxStringLength > dstSize) return false;
-	if ( *(daeFloat*)src != *(daeFloat*)src ) //NAN
-	{
-		strcpy( dst, "NaN" );
-	}
-	else if ( *(daeInt*)src == 0x7f800000 ) //+INF
-	{
-		strcpy( dst, "INF" );
-	}
-	else if ( *(daeInt*)src == 0xff800000 ) //-INF
-	{
-		strcpy( dst, "-INF" );
-	}
+
+daeBool daeFloatType::memoryToString(daeChar* src, std::ostringstream& dst) {
+	if ( *(daeFloat*)src != *(daeFloat*)src ) // NAN
+		dst << "NaN";
+	else if ( *(daeInt*)src == 0x7f800000 ) // +INF
+		dst << "INF";
+	else if ( *(daeInt*)src == 0xff800000 ) // -INF
+		dst << "-INF";
 	else
-	{
-		sprintf(dst,_printFormat,*((daeFloat*)src));
-	}
+		dst << *(daeFloat*)src;
 	return true;
 }
 
@@ -528,25 +532,22 @@ daeFloatType::stringToMemory(daeChar *src, daeChar* dstMemory)
 	return true;
 }
 
-daeBool 
-	daeDoubleType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize) 
-{ 
-	if (_maxStringLength > dstSize) return false;
-	if ( *(daeDouble*)src != *(daeDouble*)src ) //NAN
-	{
-		strcpy( dst, "NaN" );
-	}
-	else if ( *(daeLong*)src == 0x7ff0000000000000LL ) //+INF
-	{
-		strcpy( dst, "INF" );
-	}
-	else if ( *(daeLong*)src == 0xfff0000000000000LL ) //-INF
-	{
-		strcpy( dst, "-INF" );
-	}
-	else
-	{
-		sprintf(dst,_printFormat,*((daeDouble*)src));
+daeBool daeDoubleType::memoryToString(daeChar* src, std::ostringstream& dst) {
+	if ( *(daeDouble*)src != *(daeDouble*)src ) // NAN
+		dst << "NaN";
+	else if ( *(daeLong*)src == 0x7ff0000000000000LL ) // +INF
+		dst << "INF";
+	else if ( *(daeLong*)src == 0xfff0000000000000LL ) // -INF
+		dst << "-INF";
+	else {
+#ifdef WIN32
+		// Microsoft's stringstream implementation has weird performance issues
+		static char buffer[64];
+		_snprintf(buffer, 64, _printFormat, *((daeDouble*)src));
+		dst << buffer;
+#else
+		dst << *(daeDouble*)src;
+#endif
 	}
 	return true;
 }
@@ -575,38 +576,42 @@ daeDoubleType::stringToMemory(daeChar *src, daeChar* dstMemory)
 	return true;
 }
 
-daeBool 
-	daeRawRefType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
-{
-	if (_maxStringLength > dstSize) return false;
-	sprintf(dst,"%p",(void *)(*((daeRawRef*)src)));
+daeBool daeRawRefType::memoryToString(daeChar* src, std::ostringstream& dst) {
+	dst << (void *)(*((daeRawRef*)src));
 	return true;
 }
 
-daeBool
-daeStringRefType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
-{
+daeBool daeStringRefType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	daeString s = *((daeStringRef *)src);
-	if (!s || strlen(s) == 0)
-		dst[0] = '\0';
-	else {
-		char tmp[64];
-		sprintf(tmp,"%%.%ds",dstSize-1);
-		sprintf(dst,tmp,(const char*)s);
-		
-		if ((daeInt)(strlen(s)+1) > dstSize)
-			return false;
-	}
+	if (s)
+		dst << s;
 	return true;
 }
 
-daeBool
-daeResolverType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
-{
-#if 1
+namespace {
+	// String replace function. Usage: replace("abcdef", "cd", "12") --> "ab12ef"
+	std::string replace(const std::string& s, const std::string& replace, const std::string& replaceWith) {
+		if (replace.empty())
+			return s;
+	
+		std::string result;
+		size_t pos1 = 0, pos2 = s.find(replace);
+		while (pos2 != std::string::npos) {
+			result += s.substr(pos1, pos2-pos1);
+			result += replaceWith;
+			pos1 = pos2 + replace.length();
+			pos2 = s.find(replace, pos1);
+		}
+
+		result += s.substr(pos1, s.length()-pos1);
+		return result;
+	}
+}
+
+daeBool daeResolverType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	// Get the URI we are trying to write
 	daeURI *thisURI = ((daeURI *)src);
-	daeString s;
+	std::string s;
 
 	// !!!GAC We may want to re-resolve the URI before writing, if so call thisURI->resolveURI() here
 	// !!!GAC if you're willing to trust that everything is properly resolved, this isn't needed
@@ -615,8 +620,7 @@ daeResolverType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
 	if(thisURI->getState() != daeURI::uri_success || !(thisURI->getElement()) || !(thisURI->getContainer()))
 	{
 		// This URI was never successfully resolved, so write out it's original value
-		s = thisURI->getOriginalURI();
-		if ( s == NULL ) s = "";
+		s = thisURI->getOriginalURI() ? thisURI->getOriginalURI() : "";
 	}
 	else
 	{
@@ -627,81 +631,22 @@ daeResolverType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
 		if(thisURI->getElement()->getDocument() == thisURI->getContainer()->getDocument())
 		{
 			// we will send back the original URI if we're pointing at ourselves
-			s = thisURI->getOriginalURI();
-			if ( s == NULL ) s = "";
+			s = thisURI->getOriginalURI() ? thisURI->getOriginalURI() : "";
 		}
 		else
 		{
-			// !!!GAC change this to test outputting of relative URIs, NOT FULLY TESTED!!!
-#if 1
 			// we will send back the full resolved URI
-			s = thisURI->getURI();
-			if ( s == NULL ) s = "";
-#else
-			// Makes the URI relative to the document being written, EXPERIMENTAL, not fully tested!!!
-			thisURI->makeRelativeTo(thisURI->getDocument()->getCollection()->getDocumentURI());
-			s = thisURI->getOriginalURI();
-			if ( s == NULL ) s = "";
-#endif
+			s = thisURI->getURI() ? thisURI->getURI() : "";
 		}
 	}
-	// Copy at most dstSize-1 characters, null terminate and return error if the string was too long
-	daeChar *d;
-	int i;
-	for(d = dst, i = 1; *s != 0 && i<dstSize; s++, d++, i++)
-	{
-		// If the URI contains spaces, substitute %20
-		if(*s == ' ')
-		{
-			if( (i+2)<dstSize)
-			{
-				*(d++)='%';
-				*(d++)='2';
-				*d = '0';
-			}
-			else
-			{
-				// not enough space to escape the string so null terminate and return error
-				*d = 0;
-				return(false);
-			}
-		}
-		else
-		{			
-			*d = *s;
-		}
-	}
-	*d = 0;
-	if( *s == 0)
-		return(true);
-	else
-		return(false);
-#else
-	// !!!GAC This is the old code which doesn't work for cross document references
-	//	((daeURI*)src)->resolveURI();
 
-	// Get the URI String as set, not the composited one from the base
-	// as per SCEA request
-	daeString s = ((daeURI *)src)->getOriginalURI();
-	char tmp[64];
-	sprintf(tmp,"%%.%ds",dstSize-1);
-	sprintf(dst,tmp,s);
-	
-	if ((daeInt)(strlen(s)+1) > dstSize)
-		return false;
+	// Encode spaces with %20
+	dst << replace(s, " ", "%20");
 	return true;
-#endif
 }
-daeBool
-daeIDResolverType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
-{
-	daeString s = ((daeIDRef *)src)->getID();
-	char tmp[64];
-	sprintf(tmp,"%%.%ds",dstSize-1);
-	sprintf(dst,tmp,s);
-	
-	if ((daeInt)(strlen(s)+1) > dstSize)
-		return false;
+
+daeBool daeIDResolverType::memoryToString(daeChar* src, std::ostringstream& dst) {
+	dst << ((daeIDRef *)src)->getID();
 	return true;
 }
 
@@ -802,19 +747,17 @@ daeEnumType::stringToMemory(daeChar* src, daeChar* dst )
 	return true;
 }
 
-daeBool
-daeEnumType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
-{	
+daeBool daeEnumType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	daeStringRef s = "unknown";
 	if (_strings != NULL) {
 		size_t index;
 		if (_values->find(*((daeEnum*)src), index) == DAE_OK)
 			s = _strings->get(index);
 	}
-	sprintf(dst,_printFormat,(const char*)s);
-	(void)dstSize;
+	dst << (const char*)s;
 	return true;
 }
+
 daeBool
 daeBoolType::stringToMemory(daeChar* srcChars, daeChar* dstMemory)
 {
@@ -825,46 +768,143 @@ daeBoolType::stringToMemory(daeChar* srcChars, daeChar* dstMemory)
 	return true;
 }
 
-daeBool
-daeBoolType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
-{
-	if (*((daeBool*)src)) {
-		if (dstSize < 5)
-			return false;
-		else
-			sprintf(dst,"true");
-	}
-	else {
-		if (dstSize < 6)
-			return false;
-		else
-			sprintf(dst,"false");
-	}
+daeBool daeBoolType::memoryToString(daeChar* src, std::ostringstream& dst) {
+	if (*((daeBool*)src))
+		dst << "true";
+	else
+		dst << "false";
 	return true;
 }
 //!!!ACL added for 1.4 complex types and groups
 
-//unImplemented
-daeBool
-daeElementRefType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
-{
-	/*if (*((daeBool*)src)) {
-		if (dstSize < 5)
-			return false;
-		else
-			sprintf(dst,"true");
-	}
-	else {
-		if (dstSize < 6)
-			return false;
-		else
-			sprintf(dst,"false");
-	}*/
+// Unimplemented
+daeBool daeElementRefType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	(void)src;
 	(void)dst;
-	(void)dstSize;
 	return false;
 }
+
+daeMemoryRef daeBoolType::create() {
+	return (daeMemoryRef)new daeBool;
+}
+
+daeMemoryRef daeIntType::create() {
+	return (daeMemoryRef)new daeInt;
+}
+
+daeMemoryRef daeLongType::create() {
+	return (daeMemoryRef)new daeLong;
+}
+
+daeMemoryRef daeUIntType::create() {
+	return (daeMemoryRef)new daeUInt;
+}
+
+daeMemoryRef daeULongType::create() {
+	return (daeMemoryRef)new daeULong;
+}
+
+daeMemoryRef daeShortType::create() {
+	return (daeMemoryRef)new daeShort;
+}
+
+daeMemoryRef daeFloatType::create() {
+	return (daeMemoryRef)new daeFloat;
+}
+
+daeMemoryRef daeDoubleType::create() {
+	return (daeMemoryRef)new daeDouble;
+}
+
+daeMemoryRef daeStringRefType::create() {
+	return (daeMemoryRef)new daeStringRef;
+}
+
+daeMemoryRef daeTokenType::create() {
+	return (daeMemoryRef)new daeStringRef;
+}
+
+daeMemoryRef daeElementRefType::create() {
+	return (daeMemoryRef)new daeElementRef;
+}
+
+daeMemoryRef daeEnumType::create() {
+	return (daeMemoryRef)new daeEnum;
+}
+
+daeMemoryRef daeRawRefType::create() {
+	return (daeMemoryRef)new daeRawRef;
+}
+
+daeMemoryRef daeResolverType::create() {
+	return (daeMemoryRef)new daeURI;
+}
+
+daeMemoryRef daeIDResolverType::create() {
+	return (daeMemoryRef)new daeIDRef;
+}
+
+
+void daeBoolType::destroy(daeMemoryRef obj) {
+	delete (daeBool*)obj;
+}
+
+void daeIntType::destroy(daeMemoryRef obj) {
+	delete (daeInt*)obj;
+}
+
+void daeLongType::destroy(daeMemoryRef obj) {
+	delete (daeLong*)obj;
+}
+
+void daeUIntType::destroy(daeMemoryRef obj) {
+	delete (daeUInt*)obj;
+}
+
+void daeULongType::destroy(daeMemoryRef obj) {
+	delete (daeULong*)obj;
+}
+
+void daeShortType::destroy(daeMemoryRef obj) {
+	delete (daeShort*)obj;
+}
+
+void daeFloatType::destroy(daeMemoryRef obj) {
+	delete (daeFloat*)obj;
+}
+
+void daeDoubleType::destroy(daeMemoryRef obj) {
+	delete (daeDouble*)obj;
+}
+
+void daeStringRefType::destroy(daeMemoryRef obj) {
+	delete (daeStringRef*)obj;
+}
+
+void daeTokenType::destroy(daeMemoryRef obj) {
+	delete (daeStringRef*)obj;
+}
+
+void daeElementRefType::destroy(daeMemoryRef obj) {
+	delete (daeElementRef*)obj;
+}
+
+void daeEnumType::destroy(daeMemoryRef obj) {
+	delete (daeEnum*)obj;
+}
+
+void daeRawRefType::destroy(daeMemoryRef obj) {
+	delete (daeRawRef*)obj;
+}
+
+void daeResolverType::destroy(daeMemoryRef obj) {
+	delete (daeURI*)obj;
+}
+
+void daeIDResolverType::destroy(daeMemoryRef obj) {
+	delete (daeIDRef*)obj;
+}
+
 
 daeInt
 daeStringRefType::compare(daeChar* value1, daeChar* value2) {
@@ -876,6 +916,7 @@ daeStringRefType::compare(daeChar* value1, daeChar* value2) {
 daeInt daeIDResolverType::compare(daeChar* value1, daeChar* value2) {
 	return (daeIDRef&)*value1 == (daeIDRef&)*value2;
 }
+
 
 daeArray* daeBoolType::createArray() {
 	return new daeTArray<daeBool>;

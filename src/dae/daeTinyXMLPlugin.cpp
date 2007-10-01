@@ -30,8 +30,6 @@
 #include <dae/daeMetaElementAttribute.h>
 #include <dae/daeTinyXMLPlugin.h>
 
-#define TYPE_BUFFER_SIZE 1024*1024
-
 namespace {
 	daeInt getCurrentLineNumber(TiXmlElement* element) {
 		return -1;
@@ -202,14 +200,10 @@ void daeTinyXMLPlugin::writeElement( daeElement* element )
 		
 		for(int i=0;i<acnt;i++) 
     {
-			writeAttribute( attrs[i], element, i );
+			writeAttribute( attrs[i], element );
 		}
 	}
-	daeMetaAttribute* valueAttr = _meta->getValueAttribute();
-  if (valueAttr != NULL)
-  {
-    writeValue(valueAttr, element);
-  }
+	writeValue(element);
 	
 	daeElementRefArray children;
 	element->getChildren( children );
@@ -248,144 +242,44 @@ void daeTinyXMLPlugin::writeElement( daeElement* element )
 }
 
 
-void daeTinyXMLPlugin::writeValue( daeMetaAttribute* attr, daeElement* element )
+void daeTinyXMLPlugin::writeValue( daeElement* element )
 {
-  char buffer[1024];
-  char* elemMem;
-  size_t valCount = attr->getCount(element);
-  std::string str;
-
-  if (valCount > 0)
-  {
-    for( size_t i = 0; i < valCount; i++ ) 
-    {
-      elemMem = attr->get( element, (int)i );
-	    attr->getType()->memoryToString( elemMem, buffer, 1024);
-      if (i > 0)
-      {
-        str += ' ';
-      }
-      str += buffer;
-    }
-    if (buffer[0] != 0)
-    {
-      TiXmlText * text = new TiXmlText( str.c_str() );
-      m_elements.front()->LinkEndChild( text );
-    }
-  }
+	if (daeMetaAttribute* attr = element->getMeta()->getValueAttribute()) {
+		std::ostringstream buffer;
+		attr->memoryToString(element, buffer);
+		std::string s = buffer.str();
+		if (!s.empty())
+			m_elements.front()->LinkEndChild( new TiXmlText(buffer.str().c_str()) );
+	}
 }
 
-void daeTinyXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element, daeInt attrNum )
+void daeTinyXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element )
 {
-	static daeChar atomicTypeBuf[TYPE_BUFFER_SIZE+1];
-	daeChar *buf = atomicTypeBuf;
-	daeUInt bufSz = TYPE_BUFFER_SIZE;
-
-	size_t valCount = attr->getCount(element);
-	//default values will not check correctly if they are arrays. Luckily there is only one array attribute in COLLADA.
 	//don't write if !required and is set && is default
-
-	int typeSize = attr->getType()->getSize();
-	if ( typeSize >= TYPE_BUFFER_SIZE )
+	if ( !attr->getIsRequired() )
 	{
-		char msg[512];
-		sprintf(msg,
-			"daeMetaAttribute::print() - buffer too small for %s in %s\n",
-			(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
-		daeErrorHandler::get()->handleError( msg );
-		return;
-	}
-
-	if ( !attr->isArrayAttribute() && ( attr->getType()->getTypeEnum() == daeAtomicType::StringRefType || 
-		 attr->getType()->getTypeEnum() == daeAtomicType::TokenType ) &&
-		 *(char**)attr->getWritableMemory( element ) != NULL )
-	{
-		daeUInt sz = (daeUInt)strlen( *(char**)attr->getWritableMemory( element ) ) +1;
-		if ( bufSz > TYPE_BUFFER_SIZE ) {
-			buf = new char[ bufSz ];
-			bufSz = sz;
-		}
-	}
-
-	//always print value
-//	if ( attrNum != -1 )
-	{
-		//not value attribute
-		if ( !attr->getIsRequired() )
+		//not required
+		if ( !element->isAttributeSet( attr->getName() ) )
 		{
-			//not required
-			if ( !element->isAttributeSet( attr->getName() ) )
-			{
-				//early out if !value && !required && !set
+			//early out if !value && !required && !set
+			return;
+		}
+		
+		//is set
+		//check for default suppression
+		if ( attr->getDefaultValue() != NULL )
+		{
+			//has a default value
+			if (attr->compareToDefault(element) == 0) {
+				// We match the default value, so exit early
 				return;
 			}
-			
-			//is set
-			//check for default suppression
-			if ( attr->getDefault() != NULL )
-			{
-				//has a default value
-				attr->getType()->stringToMemory( (daeChar*)attr->getDefault(), buf );
-				char* elemMem = attr->get( element, 0 );
-				if( memcmp( buf, elemMem, typeSize ) == 0 )
-				{
-					//is the default value so exit early
-					return;
-				}
-			}
-
-			//not default so print
-//			xmlTextWriterStartAttribute( writer, (xmlChar*)(daeString)attr->getName() );
-		//do val 0 first then space and the rest of the vals.
-		  char* elemMem = attr->get( element, 0 );
-		  attr->getType()->memoryToString( elemMem, buf, bufSz );
-		  if ( buf[0] != 0 ) //null string check
-		  {
-        m_elements.front()->SetAttribute(attr->getName(), buf);
-		  }
-
-		}
-		else {
-		  char* elemMem = attr->get( element, 0 );
-		  attr->getType()->memoryToString( elemMem, buf, bufSz );
-		  if ( buf[0] != 0 ) //null string check
-		  {
-        m_elements.front()->SetAttribute(attr->getName(), buf);
-		  }
-
-			//print it because its required
-//			xmlTextWriterStartAttribute( writer, (xmlChar*)(daeString)attr->getName() );
 		}
 	}
-	if (valCount > 0) 
-	{
-		//do val 0 first then space and the rest of the vals.
-		char* elemMem = attr->get( element, 0 );
-		attr->getType()->memoryToString( elemMem, buf, bufSz );
-		if ( buf[0] != 0 ) //null string check
-		{
-//			xmlTextWriterWriteString( writer, (xmlChar*)buf );
-      m_elements.front()->SetAttribute(attr->getName(), buf);
-		}
 
-		*buf = ' ';
-		for( size_t i = 1; i < valCount; i++ ) 
-		{
-			// !!!steveT: This isn't going to work at all.
-			elemMem = attr->get( element, (int)i );
-			attr->getType()->memoryToString( elemMem, buf+1, bufSz );
-      m_elements.front()->SetValue(buf);
-//			xmlTextWriterWriteString( writer, (xmlChar*)buf );
-		}
-	}
-	if ( attrNum != -1 )
-	{
-//		xmlTextWriterEndAttribute( writer );
-	}
-	if ( buf != atomicTypeBuf )
-	{
-		delete[] buf;
-	}
+	std::ostringstream buffer;
+	attr->memoryToString(element, buffer);
+	m_elements.front()->SetAttribute(attr->getName(), buffer.str().c_str());
 }
 
 #endif // DOM_INCLUDE_TINYXML

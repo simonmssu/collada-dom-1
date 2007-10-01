@@ -56,7 +56,7 @@ domGles_texcombiner_argumentAlpha_type::registerElement()
 		ma->setType( daeAtomicType::get("Gles_texcombiner_operandAlpha_enums"));
 		ma->setOffset( daeOffsetOf( domGles_texcombiner_argumentAlpha_type , attrOperand ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "SRC_ALPHA");
+		ma->setDefaultString( "SRC_ALPHA");
 	
 		_Meta->appendAttribute(ma);
 	}

@@ -19,8 +19,6 @@
 #include <dae/daeURI.h>
 #include <dae/daeIDRef.h>
 
-#define MAX_ATTRIBUTES 32
-
 /**
  * The domAny class allows for weakly typed xml elements.  This class is used anywhere in the 
  * COLLADA schema where an xs:any element appears. The content and type information for a domAny
@@ -28,12 +26,12 @@
  */
 class domAny : public daeElement
 {
+	friend class domAnyAttribute;
 protected:  // Attribute
-	
 	/**
 	 * The array of daeStrings to hold attribute data for this element.
 	 */
-	daeString attrs[MAX_ATTRIBUTES];
+	daeTArray<daeString> attrs;
 	/**
 	 * The domString value of the text data of this element. 
 	 */

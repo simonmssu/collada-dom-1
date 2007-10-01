@@ -86,7 +86,8 @@ private:
 	daeElementRef readElement(_xmlTextReader* reader, daeElement* parentElement);
 
 	void writeElement( daeElement* element ); 
-	void writeAttribute( daeMetaAttribute* attr, daeElement* element, daeInt attrNum = -1 );
+	void writeAttribute( daeMetaAttribute* attr, daeElement* element);
+	void writeValue(daeElement* element);
 
 	void writeRawSource( daeElement* src );
 };

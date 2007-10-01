@@ -54,7 +54,7 @@ domFx_clearcolor_common::registerElement()
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_clearcolor_common , attrIndex ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);

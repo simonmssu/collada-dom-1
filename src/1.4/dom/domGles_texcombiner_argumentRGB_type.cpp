@@ -56,7 +56,7 @@ domGles_texcombiner_argumentRGB_type::registerElement()
 		ma->setType( daeAtomicType::get("Gles_texcombiner_operandRGB_enums"));
 		ma->setOffset( daeOffsetOf( domGles_texcombiner_argumentRGB_type , attrOperand ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "SRC_COLOR");
+		ma->setDefaultString( "SRC_COLOR");
 	
 		_Meta->appendAttribute(ma);
 	}

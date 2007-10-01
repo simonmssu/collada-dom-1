@@ -564,7 +564,7 @@ domGles_pipeline_settings::domAlpha_func::domFunc::registerElement()
 		ma->setType( daeAtomicType::get("Gl_func_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domAlpha_func::domFunc , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "ALWAYS");
+		ma->setDefaultString( "ALWAYS");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -615,7 +615,7 @@ domGles_pipeline_settings::domAlpha_func::domValue::registerElement()
 		ma->setType( daeAtomicType::get("Gl_alpha_value_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domAlpha_func::domValue , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0.0");
+		ma->setDefaultString( "0.0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -710,7 +710,7 @@ domGles_pipeline_settings::domBlend_func::domSrc::registerElement()
 		ma->setType( daeAtomicType::get("Gl_blend_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domBlend_func::domSrc , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "ONE");
+		ma->setDefaultString( "ONE");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -761,7 +761,7 @@ domGles_pipeline_settings::domBlend_func::domDest::registerElement()
 		ma->setType( daeAtomicType::get("Gl_blend_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domBlend_func::domDest , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "ZERO");
+		ma->setDefaultString( "ZERO");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1074,7 +1074,7 @@ domGles_pipeline_settings::domCull_face::registerElement()
 		ma->setType( daeAtomicType::get("Gl_face_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domCull_face , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "BACK");
+		ma->setDefaultString( "BACK");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1125,7 +1125,7 @@ domGles_pipeline_settings::domDepth_func::registerElement()
 		ma->setType( daeAtomicType::get("Gl_func_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_func , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "ALWAYS");
+		ma->setDefaultString( "ALWAYS");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1176,7 +1176,7 @@ domGles_pipeline_settings::domDepth_mask::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_mask , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1227,7 +1227,7 @@ domGles_pipeline_settings::domDepth_range::registerElement()
 		ma->setType( daeAtomicType::get("Float2"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_range , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0 1");
+		ma->setDefaultString( "0 1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1278,7 +1278,7 @@ domGles_pipeline_settings::domFog_color::registerElement()
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_color , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0 0 0 0");
+		ma->setDefaultString( "0 0 0 0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1329,7 +1329,7 @@ domGles_pipeline_settings::domFog_density::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_density , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1");
+		ma->setDefaultString( "1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1380,7 +1380,7 @@ domGles_pipeline_settings::domFog_mode::registerElement()
 		ma->setType( daeAtomicType::get("Gl_fog_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_mode , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "EXP");
+		ma->setDefaultString( "EXP");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1431,7 +1431,7 @@ domGles_pipeline_settings::domFog_start::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_start , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1482,7 +1482,7 @@ domGles_pipeline_settings::domFog_end::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_end , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1");
+		ma->setDefaultString( "1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1533,7 +1533,7 @@ domGles_pipeline_settings::domFront_face::registerElement()
 		ma->setType( daeAtomicType::get("Gl_front_face_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFront_face , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "CCW");
+		ma->setDefaultString( "CCW");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1634,7 +1634,7 @@ domGles_pipeline_settings::domLogic_op::registerElement()
 		ma->setType( daeAtomicType::get("Gl_logic_op_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLogic_op , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "COPY");
+		ma->setDefaultString( "COPY");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1685,7 +1685,7 @@ domGles_pipeline_settings::domLight_ambient::registerElement()
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_ambient , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0 0 0 1");
+		ma->setDefaultString( "0 0 0 1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1748,7 +1748,7 @@ domGles_pipeline_settings::domLight_diffuse::registerElement()
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_diffuse , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0 0 0 0");
+		ma->setDefaultString( "0 0 0 0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1811,7 +1811,7 @@ domGles_pipeline_settings::domLight_specular::registerElement()
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_specular , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0 0 0 0");
+		ma->setDefaultString( "0 0 0 0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1874,7 +1874,7 @@ domGles_pipeline_settings::domLight_position::registerElement()
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_position , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0 0 1 0");
+		ma->setDefaultString( "0 0 1 0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -1937,7 +1937,7 @@ domGles_pipeline_settings::domLight_constant_attenuation::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_constant_attenuation , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1");
+		ma->setDefaultString( "1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2000,7 +2000,7 @@ domGles_pipeline_settings::domLight_linear_attenutation::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_linear_attenutation , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1");
+		ma->setDefaultString( "1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2063,7 +2063,7 @@ domGles_pipeline_settings::domLight_quadratic_attenuation::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_quadratic_attenuation , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1");
+		ma->setDefaultString( "1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2126,7 +2126,7 @@ domGles_pipeline_settings::domLight_spot_cutoff::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_cutoff , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "180");
+		ma->setDefaultString( "180");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2189,7 +2189,7 @@ domGles_pipeline_settings::domLight_spot_direction::registerElement()
 		ma->setType( daeAtomicType::get("Float3"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_direction , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0 0 -1");
+		ma->setDefaultString( "0 0 -1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2252,7 +2252,7 @@ domGles_pipeline_settings::domLight_spot_exponent::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_exponent , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2315,7 +2315,7 @@ domGles_pipeline_settings::domLight_model_ambient::registerElement()
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_model_ambient , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0.2 0.2 0.2 1.0");
+		ma->setDefaultString( "0.2 0.2 0.2 1.0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2366,7 +2366,7 @@ domGles_pipeline_settings::domLine_width::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLine_width , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1");
+		ma->setDefaultString( "1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2417,7 +2417,7 @@ domGles_pipeline_settings::domMaterial_ambient::registerElement()
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_ambient , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0.2 0.2 0.2 1.0");
+		ma->setDefaultString( "0.2 0.2 0.2 1.0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2468,7 +2468,7 @@ domGles_pipeline_settings::domMaterial_diffuse::registerElement()
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_diffuse , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0.8 0.8 0.8 1.0");
+		ma->setDefaultString( "0.8 0.8 0.8 1.0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2519,7 +2519,7 @@ domGles_pipeline_settings::domMaterial_emission::registerElement()
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_emission , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0 0 0 1");
+		ma->setDefaultString( "0 0 0 1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2570,7 +2570,7 @@ domGles_pipeline_settings::domMaterial_shininess::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_shininess , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2621,7 +2621,7 @@ domGles_pipeline_settings::domMaterial_specular::registerElement()
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_specular , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0 0 0 1");
+		ma->setDefaultString( "0 0 0 1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2672,7 +2672,7 @@ domGles_pipeline_settings::domModel_view_matrix::registerElement()
 		ma->setType( daeAtomicType::get("Float4x4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domModel_view_matrix , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
+		ma->setDefaultString( "1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2723,7 +2723,7 @@ domGles_pipeline_settings::domPoint_distance_attenuation::registerElement()
 		ma->setType( daeAtomicType::get("Float3"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_distance_attenuation , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1 0 0");
+		ma->setDefaultString( "1 0 0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2774,7 +2774,7 @@ domGles_pipeline_settings::domPoint_fade_threshold_size::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_fade_threshold_size , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1");
+		ma->setDefaultString( "1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2825,7 +2825,7 @@ domGles_pipeline_settings::domPoint_size::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_size , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1");
+		ma->setDefaultString( "1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2876,7 +2876,7 @@ domGles_pipeline_settings::domPoint_size_min::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_size_min , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2927,7 +2927,7 @@ domGles_pipeline_settings::domPoint_size_max::registerElement()
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_size_max , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1");
+		ma->setDefaultString( "1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -2978,7 +2978,7 @@ domGles_pipeline_settings::domPolygon_offset::registerElement()
 		ma->setType( daeAtomicType::get("Float2"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPolygon_offset , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0 0");
+		ma->setDefaultString( "0 0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3029,7 +3029,7 @@ domGles_pipeline_settings::domProjection_matrix::registerElement()
 		ma->setType( daeAtomicType::get("Float4x4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domProjection_matrix , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
+		ma->setDefaultString( "1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3130,7 +3130,7 @@ domGles_pipeline_settings::domShade_model::registerElement()
 		ma->setType( daeAtomicType::get("Gl_shade_model_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domShade_model , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "SMOOTH");
+		ma->setDefaultString( "SMOOTH");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3231,7 +3231,7 @@ domGles_pipeline_settings::domStencil_func::domFunc::registerElement()
 		ma->setType( daeAtomicType::get("Gl_func_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_func::domFunc , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "ALWAYS");
+		ma->setDefaultString( "ALWAYS");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3282,7 +3282,7 @@ domGles_pipeline_settings::domStencil_func::domRef::registerElement()
 		ma->setType( daeAtomicType::get("xsUnsignedByte"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_func::domRef , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "0");
+		ma->setDefaultString( "0");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3333,7 +3333,7 @@ domGles_pipeline_settings::domStencil_func::domMask::registerElement()
 		ma->setType( daeAtomicType::get("xsUnsignedByte"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_func::domMask , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "255");
+		ma->setDefaultString( "255");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3384,7 +3384,7 @@ domGles_pipeline_settings::domStencil_mask::registerElement()
 		ma->setType( daeAtomicType::get("Int"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_mask , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "4294967295");
+		ma->setDefaultString( "4294967295");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3485,7 +3485,7 @@ domGles_pipeline_settings::domStencil_op::domFail::registerElement()
 		ma->setType( daeAtomicType::get("Gles_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_op::domFail , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "KEEP");
+		ma->setDefaultString( "KEEP");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3536,7 +3536,7 @@ domGles_pipeline_settings::domStencil_op::domZfail::registerElement()
 		ma->setType( daeAtomicType::get("Gles_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_op::domZfail , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "KEEP");
+		ma->setDefaultString( "KEEP");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3587,7 +3587,7 @@ domGles_pipeline_settings::domStencil_op::domZpass::registerElement()
 		ma->setType( daeAtomicType::get("Gles_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_op::domZpass , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "KEEP");
+		ma->setDefaultString( "KEEP");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3638,7 +3638,7 @@ domGles_pipeline_settings::domAlpha_test_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domAlpha_test_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3689,7 +3689,7 @@ domGles_pipeline_settings::domBlend_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domBlend_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3740,7 +3740,7 @@ domGles_pipeline_settings::domClip_plane_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClip_plane_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3802,7 +3802,7 @@ domGles_pipeline_settings::domColor_logic_op_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domColor_logic_op_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3853,7 +3853,7 @@ domGles_pipeline_settings::domColor_material_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domColor_material_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "true");
+		ma->setDefaultString( "true");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3904,7 +3904,7 @@ domGles_pipeline_settings::domCull_face_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domCull_face_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -3955,7 +3955,7 @@ domGles_pipeline_settings::domDepth_test_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_test_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4006,7 +4006,7 @@ domGles_pipeline_settings::domDither_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDither_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4057,7 +4057,7 @@ domGles_pipeline_settings::domFog_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4108,7 +4108,7 @@ domGles_pipeline_settings::domTexture_pipeline_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domTexture_pipeline_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4159,7 +4159,7 @@ domGles_pipeline_settings::domLight_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4222,7 +4222,7 @@ domGles_pipeline_settings::domLighting_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLighting_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4273,7 +4273,7 @@ domGles_pipeline_settings::domLight_model_two_side_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_model_two_side_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4324,7 +4324,7 @@ domGles_pipeline_settings::domLine_smooth_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLine_smooth_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4375,7 +4375,7 @@ domGles_pipeline_settings::domMultisample_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMultisample_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4426,7 +4426,7 @@ domGles_pipeline_settings::domNormalize_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domNormalize_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4477,7 +4477,7 @@ domGles_pipeline_settings::domPoint_smooth_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_smooth_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4528,7 +4528,7 @@ domGles_pipeline_settings::domPolygon_offset_fill_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPolygon_offset_fill_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4579,7 +4579,7 @@ domGles_pipeline_settings::domRescale_normal_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domRescale_normal_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4630,7 +4630,7 @@ domGles_pipeline_settings::domSample_alpha_to_coverage_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domSample_alpha_to_coverage_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4681,7 +4681,7 @@ domGles_pipeline_settings::domSample_alpha_to_one_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domSample_alpha_to_one_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4732,7 +4732,7 @@ domGles_pipeline_settings::domSample_coverage_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domSample_coverage_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4783,7 +4783,7 @@ domGles_pipeline_settings::domScissor_test_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domScissor_test_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
@@ -4834,7 +4834,7 @@ domGles_pipeline_settings::domStencil_test_enable::registerElement()
 		ma->setType( daeAtomicType::get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_test_enable , attrValue ));
 		ma->setContainer( _Meta );
-		ma->setDefault( "false");
+		ma->setDefaultString( "false");
 		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
