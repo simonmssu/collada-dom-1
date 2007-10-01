@@ -89,7 +89,7 @@ daeBool domAny::setAttribute(daeString attrName, daeString attrValue) {
 	daeMetaAttribute *ma = new domAnyAttribute;
 	ma->setName( attrName );
 	ma->setType( daeAtomicType::get("xsString"));
-	ma->setOffset(attrs.getCount()-1);
+	ma->setOffset((daeInt)attrs.getCount()-1);
 	ma->setContainer( _meta );
 	if (ma->getType()) {
 		_meta->appendAttribute(ma);

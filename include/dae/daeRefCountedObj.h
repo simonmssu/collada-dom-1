@@ -17,27 +17,27 @@
 #include <dae/daeTypes.h>
 #include <dae/daePlatform.h>
 
-class daeRefCountedObj {
+class DLLSPEC daeRefCountedObj {
 protected:
 	mutable daeInt _refCount;
 
 public:
-	DLLSPEC daeRefCountedObj();
-	virtual DLLSPEC ~daeRefCountedObj();
+	daeRefCountedObj();
+	virtual ~daeRefCountedObj();
 
 	/**
 	 * Decrements the reference count and deletes the object if reference count is zero.
 	 * @note Should not be used externally if daeSmartRefs are being used, they call it
 	 * automatically.
 	 */
-	DLLSPEC void release() const;
+	void release() const;
 
 	/**
 	 * Increments the reference count of this element.
 	 * @note Should not be used externally if daeSmartRefs are being used, they call it
 	 * automatically.
 	 */
-	DLLSPEC void ref() const;
+	void ref() const;
 };
 
 #endif

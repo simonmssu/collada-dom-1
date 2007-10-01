@@ -526,7 +526,7 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 	if (any) {
 		domAny* thisAny = (domAny*)this;
 		domAny* retAny = (domAny*)ret.cast();
-		for (size_t i = 0; i < thisAny->getAttributeCount(); i++)
+		for (daeUInt i = 0; i < (daeUInt)thisAny->getAttributeCount(); i++)
 			retAny->setAttribute(thisAny->getAttributeName(i), thisAny->getAttributeValue(i));
 		retAny->setValue(thisAny->getValue());
 	} else {

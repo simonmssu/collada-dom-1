@@ -43,7 +43,7 @@ class daeMetaElementAttribute;
  * of the atomic types into the C++ dom classes such as offset, and
  * array information.
  */
-class DLLSPEC daeMetaAttribute : public daeElement
+class DLLSPEC daeMetaAttribute : public daeRefCountedObj
 {
 protected:
 	daeStringRef    _name;
