@@ -341,10 +341,12 @@ void daeElement::getCharData(std::string& data) {
 	}
 }
 
-void daeElement::setCharData(const std::string& data) {
+daeBool daeElement::setCharData(const std::string& data) {
 	if (daeMetaAttribute* charDataAttr = getCharDataObject()) {
 		charDataAttr->stringToMemory(this, data.c_str());
+		return true;
 	}
+	return false;
 }
 
 daeBool daeElement::hasValue() {

@@ -34,7 +34,6 @@
 //to worry about it.
 #ifdef DEFAULT_BXCEPLUGIN
 #include <modules/daebXCePlugin.h>
-#include <modules/daebXCeResolver.h>
 #endif
 
 #endif // NO_DEFAULT_PLUGIN
@@ -158,7 +157,7 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 #ifdef DEFAULT_BXCEPLUGIN
 		plugin = new daebXCePlugin();
 		defaultPlugin = true;
-		resolver = new daebXCeResolver(database, plugin);
+		resolver = new daeStandardURIResolver(database, plugin);
 #else
 #ifdef DOM_INCLUDE_LIBXML
 		plugin = new daeLIBXMLPlugin;

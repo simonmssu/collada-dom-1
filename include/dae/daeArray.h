@@ -114,7 +114,7 @@ public:
 	/**
 	 * Copy Constructor
 	 */
-	daeTArray( const daeTArray<T> &cpy ) {
+	daeTArray( const daeTArray<T> &cpy ) : daeArray() {
 		*this = cpy;
 	}
 	/**

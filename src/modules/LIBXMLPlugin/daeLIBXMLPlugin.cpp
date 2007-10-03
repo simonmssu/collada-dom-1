@@ -70,6 +70,13 @@ daeLIBXMLPlugin::~daeLIBXMLPlugin()
 	 xmlCleanupParser();
 }
 
+daeTArray<std::string> daeLIBXMLPlugin::getSupportedProtocols() {
+	daeTArray<std::string> protocols;
+	protocols.append("file");
+	protocols.append("http");
+	return protocols;
+}
+
 daeInt daeLIBXMLPlugin::setOption( daeString option, daeString value )
 {
 	if ( strcmp( option, "saveRawBinary" ) == 0 )
@@ -395,24 +402,18 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element)
 {
 	//don't write if !required and is set && is default
-	if ( !attr->getIsRequired() )
-	{
+	if ( !attr->getIsRequired() ) {
 		//not required
-		if ( !element->isAttributeSet( attr->getName() ) )
-		{
+		if ( !element->isAttributeSet( attr->getName() ) ) {
 			//early out if !value && !required && !set
 			return;
 		}
 			
 		//is set
 		//check for default suppression
-		if ( attr->getDefaultValue() != NULL )
-		{
-			//has a default value
-			if (attr->compareToDefault(element) == 0) {
-				// We match the default value, so exit early
-				return;
-			}
+		if (attr->compareToDefault(element) == 0) {
+			// We match the default value, so exit early
+			return;
 		}
 	}
 

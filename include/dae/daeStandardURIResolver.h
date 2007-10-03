@@ -14,6 +14,7 @@
 #ifndef __DAE_STANDARD_URI_RESOLVER__
 #define __DAE_STANDARD_URI_RESOVLER__
 
+#include <string>
 #include "dae/daeURI.h"
 class daeIOPlugin;
 class daeDatabase;
@@ -39,6 +40,7 @@ public:
 protected:
 	daeDatabase* _database;
 	daeIOPlugin* _plugin;
+	daeTArray<std::string> _protocols;
 
 public: // Abstract Interface
 	virtual DLLSPEC daeBool resolveElement(daeURI& uri, daeString typeNameHint = NULL);

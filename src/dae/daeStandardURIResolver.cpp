@@ -11,6 +11,7 @@
  * License. 
  */
 
+#include <sstream>
 #include <dae/daeStandardURIResolver.h>
 #include <dae/daeDatabase.h>
 #include <dae/daeURI.h>
@@ -21,6 +22,7 @@ daeStandardURIResolver::daeStandardURIResolver(daeDatabase* database,daeIOPlugin
 {
 	_database = database;
 	_plugin = plugin;
+	_protocols = _plugin->getSupportedProtocols();
 }
 
 daeStandardURIResolver::~daeStandardURIResolver()
@@ -53,15 +55,9 @@ daeStandardURIResolver::isExtensionSupported(daeString extension)
 	return false;
 }
 		
-daeBool
-daeStandardURIResolver::isProtocolSupported(daeString protocol)
-{
-	if ((protocol!=NULL) &&
-		(strlen(protocol) > 0) &&
-		((strncmp(protocol,"file",4) == 0) ||
-		(strncmp(protocol,"http",4) == 0)))
-		return true;
-	return false;
+daeBool daeStandardURIResolver::isProtocolSupported(daeString protocol) {
+	size_t index;
+	return (protocol  &&  _protocols.find(protocol, index) == DAE_OK);
 }
 
 daeBool
@@ -101,11 +97,9 @@ daeStandardURIResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 		daeDocument *tempDocument;
 		if ( tempElement == NULL || (tempDocument = tempElement->getDocument()) == NULL ) {
 			uri.setState(daeURI::uri_failed_missing_container);
-			char msg[256];
-			sprintf(msg,
-					"daeStandardURIResolver::resolveElement() - failed to resolve %s\n",
-					uri.getURI());
-			daeErrorHandler::get()->handleError( msg );
+			std::ostringstream msg;
+			msg << "daeStandardURIResolver::resolveElement() - failed to resolve " << uri.getURI() << "\n";
+			daeErrorHandler::get()->handleError(msg.str().c_str());
 			return false;
 		}
 		//assert(tempDocument);
@@ -121,11 +115,9 @@ daeStandardURIResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 	if (status ||(resolved==NULL)) 
 	{
 		uri.setState(daeURI::uri_failed_id_not_found);
-		char msg[256];
-		sprintf(msg,
-				"daeStandardURIResolver::resolveElement() - failed to resolve %s\n",
-				uri.getURI());
-		daeErrorHandler::get()->handleError( msg );
+		std::ostringstream msg;
+		msg << "daeStandardURIResolver::resolveElement() - failed to resolve " << uri.getURI() << "\n";
+		daeErrorHandler::get()->handleError(msg.str().c_str());
 		return false;
 	}
 

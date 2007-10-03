@@ -22,8 +22,8 @@
 using namespace std;
 
 daeIOPluginCommon::daeIOPluginCommon()
- : topMeta(NULL),
-	 database(NULL)
+	: database(NULL),
+		topMeta(NULL)
 {
 }
 
@@ -128,9 +128,7 @@ daeElementRef daeIOPluginCommon::beginReadElement(daeElement* parentElement,
 	for (size_t i = 0; i < attributes.size(); i++) {
 		daeString name  = attributes[i].first,
 			        value = attributes[i].second;
-		daeMetaAttribute *ma = element->getMeta()->getMetaAttribute(name);
-		if( ( ( ma == NULL || ma->getType() == NULL ) && strcmp(element->getMeta()->getName(), "any") ) ||
-				!element->setAttribute( name, value) ) {
+		if (!element->setAttribute(name, value)) {
 			ostringstream msg;
 			msg << "The DOM was unable to create an attribute " << name << " = " << value
 				  << " at line " << lineNumber << ".\nProbably a schema violation.\n";
@@ -152,18 +150,14 @@ daeElementRef daeIOPluginCommon::beginReadElement(daeElement* parentElement,
 }
 
 bool daeIOPluginCommon::readElementText(daeElement* element, daeString text, daeInt elementLineNumber) {
-	if ( element->getMeta()->getValueAttribute() == NULL ) {
-		ostringstream msg;
-		msg << "The DOM was unable to set a value for element of type " << element->getTypeName()
-			  << " at line " << elementLineNumber << ".\nProbably a schema violation.\n";
-		daeErrorHandler::get()->handleWarning(msg.str().c_str());
-		return false;
-	}
-	else
-	{
-		element->getMeta()->getValueAttribute()->stringToMemory(element, text);
+	if (element->setCharData(text))
 		return true;
-	}
+	
+	ostringstream msg;
+	msg << "The DOM was unable to set a value for element of type " << element->getTypeName()
+			<< " at line " << elementLineNumber << ".\nProbably a schema violation.\n";
+	daeErrorHandler::get()->handleWarning(msg.str().c_str());
+	return false;
 }
 
 // postProcessDom traverses all elements below the passed in one and creates a list of all the integration objects.

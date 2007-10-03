@@ -15,7 +15,7 @@
 // require linking against it. By default TinyXML support isn't included.
 #if defined(DOM_INCLUDE_TINYXML)
 
-#if defined(DOM_DYNAMIC)
+#if defined(DOM_DYNAMIC) && defined(WIN32)
 #pragma comment(lib, "tinyxml.lib")
 #endif
 
@@ -43,6 +43,12 @@ daeTinyXMLPlugin::daeTinyXMLPlugin()
 
 daeTinyXMLPlugin::~daeTinyXMLPlugin()
 {
+}
+
+daeTArray<std::string> daeTinyXMLPlugin::getSupportedProtocols() {
+	daeTArray<std::string> protocols;
+	protocols.append("file");
+	return protocols;
 }
 
 daeInt daeTinyXMLPlugin::setOption( daeString option, daeString value )
@@ -256,24 +262,18 @@ void daeTinyXMLPlugin::writeValue( daeElement* element )
 void daeTinyXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element )
 {
 	//don't write if !required and is set && is default
-	if ( !attr->getIsRequired() )
-	{
+	if ( !attr->getIsRequired() ) {
 		//not required
-		if ( !element->isAttributeSet( attr->getName() ) )
-		{
+		if ( !element->isAttributeSet( attr->getName() ) ) {
 			//early out if !value && !required && !set
 			return;
 		}
-		
+			
 		//is set
 		//check for default suppression
-		if ( attr->getDefaultValue() != NULL )
-		{
-			//has a default value
-			if (attr->compareToDefault(element) == 0) {
-				// We match the default value, so exit early
-				return;
-			}
+		if (attr->compareToDefault(element) == 0) {
+			// We match the default value, so exit early
+			return;
 		}
 	}
 

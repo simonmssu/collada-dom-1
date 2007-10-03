@@ -90,7 +90,7 @@ public:
 		int_finished
 	};
 protected:
-	daeElement( const daeElement &cpy ) { (void)cpy; };
+	daeElement( const daeElement &cpy ) : daeRefCountedObj() { (void)cpy; };
 	virtual daeElement &operator=( const daeElement &cpy ) { (void)cpy; return *this; }
 
 	// This function is called internally.
@@ -295,8 +295,10 @@ public:
 	/**
 	 * Sets this element's character data.
 	 * @param data The new character data of this element.
+	 * @return Returns true if this element can have character data and the character data
+	 * was successfully changed, false otherwise.
 	 */
-	DLLSPEC void setCharData(const std::string& data);
+	DLLSPEC daeBool setCharData(const std::string& data);
 
 	// These functions are deprecated.
 	DLLSPEC daeMemoryRef getAttributeValue(daeString name); // Use getAttribute or getAttributeObject instead.

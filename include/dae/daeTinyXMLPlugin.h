@@ -45,6 +45,8 @@ public:
 		daeInt* totalBytes,
 		daeBool reset = false );
 
+	virtual DLLSPEC daeTArray<std::string> getSupportedProtocols();
+
 	/**
 	 * setOption allows you to set options for this IOPlugin. Which options a plugin supports is
 	 * dependent on the plugin itself. There is currently no list of options that plugins are

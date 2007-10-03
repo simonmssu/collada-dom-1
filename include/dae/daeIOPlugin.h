@@ -14,6 +14,7 @@
 #ifndef __DAE_IOPLUGIN__
 #define __DAE_IOPLUGIN__
 
+#include <string>
 #include <dae/daeTypes.h>
 class daeDatabase;
 class daeMetaElement;
@@ -107,6 +108,12 @@ public:
 							 daeInt* totalBytes,
 							 daeBool reset = false ) = 0;
 	//@}
+
+	/**
+	 * Returns a list of the URI protocols that this plugin supports.
+	 * @return Returns a daeArray containing the supported protocols.
+	 */
+	virtual DLLSPEC daeTArray<std::string> getSupportedProtocols() = 0;
 
 	/**
 	 * setOption allows you to set options for this IOPlugin. Which options a plugin supports is

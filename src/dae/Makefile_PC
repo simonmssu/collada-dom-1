@@ -45,11 +45,11 @@ SRC				 := dae.cpp \
 					domAny.cpp \
 					daeStandardURIResolver.cpp \
 					daeIOPluginCommon.cpp \
+					daeRefCountedObj.cpp \
 					../modules/stdErrPlugin/stdErrPlugin.cpp \
 					../modules/STLDatabase/daeSTLDatabase.cpp \
 					../modules/LIBXMLPlugin/daeLIBXMLPlugin.cpp \
-					daeTinyXMLPlugin.cpp \
-					daeRefCountedObj.cpp
+					daeTinyXMLPlugin.cpp
 
 INCLUDE_DIR		 += $(ROOT_DIR)/include
 

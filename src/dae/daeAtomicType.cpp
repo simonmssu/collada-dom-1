@@ -499,9 +499,9 @@ daeBool daeULongType::memoryToString(daeChar* src, std::ostringstream& dst) {
 daeBool daeFloatType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	if ( *(daeFloat*)src != *(daeFloat*)src ) // NAN
 		dst << "NaN";
-	else if ( *(daeInt*)src == 0x7f800000 ) // +INF
+	else if ( *(daeUInt*)src == 0x7f800000 ) // +INF
 		dst << "INF";
-	else if ( *(daeInt*)src == 0xff800000 ) // -INF
+	else if ( *(daeUInt*)src == 0xff800000 ) // -INF
 		dst << "-INF";
 	else
 		dst << *(daeFloat*)src;
@@ -535,9 +535,9 @@ daeFloatType::stringToMemory(daeChar *src, daeChar* dstMemory)
 daeBool daeDoubleType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	if ( *(daeDouble*)src != *(daeDouble*)src ) // NAN
 		dst << "NaN";
-	else if ( *(daeLong*)src == 0x7ff0000000000000LL ) // +INF
+	else if ( *(daeULong*)src == 0x7ff0000000000000LL ) // +INF
 		dst << "INF";
-	else if ( *(daeLong*)src == 0xfff0000000000000LL ) // -INF
+	else if ( *(daeULong*)src == 0xfff0000000000000LL ) // -INF
 		dst << "-INF";
 	else {
 #ifdef WIN32
