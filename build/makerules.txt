@@ -92,9 +92,9 @@ $(OUTDIR)%$(LIB_DYN_SUFFIX_VERSION):
 				$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $^ $(LIBRARIES)
 				$(ROOT_DIR)/build/create_so_links $@
 
-$(OUTDIR)%$(EXE_SUFFIX):
+$(OUTDIR)%$(EXE_SUFFIX): $(DEP_LIBS)
 				@echo $@
-				$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $^ $(LIBRARIES)
+				$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $^ $(LIBRARIES) $(SHARED_LIB_COMMAND)
 
 
 #########################################################
