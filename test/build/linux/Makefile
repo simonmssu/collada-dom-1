@@ -28,8 +28,6 @@ SHARED_LIB_COMMAND := $(addprefix -Wl$(COMMA)-rpath$(COMMA), $(SHARED_LIB_PATH))
 DEP_LIBS += $(LIB_PATH)/$(LIB_PREFIX)dae_shared$(LIB_DYN_SUFFIX)
 DEP_LIBS += $(LIB_PATH)/$(LIB_PREFIX)dom_shared$(LIB_DYN_SUFFIX)
 
-$(warning DEP_LIBS is $(DEP_LIBS))
-
 # files
 SRC	:= ../../domTest.cpp
 
