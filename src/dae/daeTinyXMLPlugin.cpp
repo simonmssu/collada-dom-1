@@ -19,7 +19,9 @@
 #pragma comment(lib, "tinyxml.lib")
 #endif
 
+#if defined(WIN32)
 #pragma warning(disable: 4100) // warning C4100: 'element' : unreferenced formal parameter
+#endif
 
 #include <string>
 #include <tinyxml.h>

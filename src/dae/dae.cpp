@@ -63,7 +63,7 @@ DAE::cleanup()
 	}
 }
 
-void DAE::init() {
+void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 	database = NULL;
 	plugin = NULL;
 	resolver = NULL;
@@ -83,6 +83,9 @@ void DAE::init() {
 	DAEInstanceCount++;
 	rawResolver = new daeRawResolver();
 	idResolver = new daeDefaultIDRefResolver();
+
+	setDatabase(database_);
+	setIOPlugin(ioPlugin);
 }
 
 DAE::~DAE()

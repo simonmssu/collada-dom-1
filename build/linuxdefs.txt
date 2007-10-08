@@ -31,7 +31,7 @@ LDOUT = -o
 LDOPT = -shared
 
 RELEASE_CCOPT = -O2 -D"NDEBUG" 
-DEBUG_CCOPT = -g -D"_DEBUG"
+DEBUG_CCOPT = -g -D"_DEBUG" -Wall
 LIB_CCOPT =
 
 EXE_DBG_LCOPT = -g

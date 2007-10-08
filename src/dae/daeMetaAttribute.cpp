@@ -22,12 +22,12 @@ void daeMetaAttribute::set(daeElement* e, daeString s) {
 }
 
 void daeMetaAttribute::copy(daeElement* to, daeElement *from) {
-	_type->copy(getWritableMemory(from), getWritableMemory(to));
+	_type->copy(get(from), get(to));
 }
 
 void daeMetaArrayAttribute::copy(daeElement* to, daeElement *from) {
-	daeArray& fromArray = (daeArray&)*getWritableMemory(from);
-	daeArray& toArray = (daeArray&)*getWritableMemory(to);
+	daeArray& fromArray = (daeArray&)*get(from);
+	daeArray& toArray = (daeArray&)*get(to);
 	_type->copyArray(fromArray, toArray);
 }
 
@@ -38,7 +38,7 @@ void daeMetaAttribute::copyDefault(daeElement* element) {
 
 void daeMetaArrayAttribute::copyDefault(daeElement* element) {
 	if (_defaultValue)
-		_type->copyArray((daeArray&)*_defaultValue, (daeArray&)*getWritableMemory(element));
+		_type->copyArray((daeArray&)*_defaultValue, (daeArray&)*get(element));
 }
 	
 daeInt daeMetaAttribute::compare(daeElement* elt1, daeElement* elt2) {
@@ -46,8 +46,8 @@ daeInt daeMetaAttribute::compare(daeElement* elt1, daeElement* elt2) {
 }
 
 daeInt daeMetaArrayAttribute::compare(daeElement* elt1, daeElement* elt2) {
-	daeArray& value1 = (daeArray&)*getWritableMemory(elt1);
-	daeArray& value2 = (daeArray&)*getWritableMemory(elt2);
+	daeArray& value1 = (daeArray&)*get(elt1);
+	daeArray& value2 = (daeArray&)*get(elt2);
 	return _type->compareArray(value1, value2);
 }
 
@@ -60,7 +60,7 @@ daeInt daeMetaAttribute::compareToDefault(daeElement* e) {
 daeInt daeMetaArrayAttribute::compareToDefault(daeElement* e) {
 	if (!_defaultValue)
 		return 1;
-	daeArray& value1 = (daeArray&)*getWritableMemory(e);
+	daeArray& value1 = (daeArray&)*get(e);
 	daeArray& value2 = (daeArray&)*_defaultValue;
 	return _type->compareArray(value1, value2);
 }
@@ -91,13 +91,13 @@ void
 daeMetaAttribute::resolve(daeElementRef element)
 {
 	if (_type != NULL)
-		_type->resolve(element, getWritableMemory(element) );
+		_type->resolve(element, get(element) );
 }
 
 void
 daeMetaArrayAttribute::resolve(daeElementRef element)
 {
-	daeArray* era = (daeArray*)getWritableMemory(element);
+	daeArray* era = (daeArray*)get(element);
 	size_t cnt = era->getCount();
 	for ( size_t i = 0; i < cnt; i++ )
 	{
@@ -116,14 +116,6 @@ daeMetaAttribute::getAlignment()
 	return _type->getAlignment();
 }
 
-daeInt
-daeMetaAttribute::getCount(daeElement* e)
-{
-	if (e == NULL)
-		return 0;
-	return (getWritableMemory(e) != NULL);
-}
-
 void daeMetaAttribute::memoryToString(daeElement* e, std::ostringstream& buffer) {
 	_type->memoryToString(get(e), buffer);
 }
@@ -140,10 +132,7 @@ daeChar* daeMetaAttribute::getWritableMemory(daeElement* e) {
 	return (daeChar*)e + _offset;
 }
 
-daeMemoryRef
-daeMetaAttribute::get(daeElement *e, daeInt index)
-{
-	(void)index; 
+daeMemoryRef daeMetaAttribute::get(daeElement* e) {
 	return getWritableMemory(e);
 }
 
@@ -163,32 +152,14 @@ void daeMetaAttribute::setDefaultValue(daeMemoryRef defaultVal) {
 	_defaultString = buffer.str();
 }
 
-daeInt
-daeMetaArrayAttribute::getCount(daeElement *e)
-{
-	if (e == NULL)
-		return 0;
-	return (daeInt)((daeArray*)getWritableMemory(e))->getCount();
-}
-
 void daeMetaArrayAttribute::memoryToString(daeElement* e, std::ostringstream& buffer) {
 	if (e)
-		_type->arrayToString(*(daeArray*)getWritableMemory(e), buffer);
+		_type->arrayToString(*(daeArray*)get(e), buffer);
 }
 
 void daeMetaArrayAttribute::stringToMemory(daeElement* e, daeString s) {
 	if (e)
-		_type->stringToArray((daeChar*)s, *(daeArray*)getWritableMemory(e));
-}
-
-daeMemoryRef daeMetaArrayAttribute::get(daeElement* e, daeInt index) {
-	if (e) {
-		daeArray* array = (daeArray*)getWritableMemory(e);
-		if (index < (daeInt)array->getCount())
-			return array->getRaw(index);
-	}
-
-	return NULL;
+		_type->stringToArray((daeChar*)s, *(daeArray*)get(e));
 }
 
 void daeMetaArrayAttribute::setDefaultString(daeString defaultVal) {

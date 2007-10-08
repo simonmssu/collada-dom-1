@@ -13,35 +13,43 @@
 #include <dae/domAny.h>
 #include <dae/daeErrorHandler.h>
 #include <dom/domFx_surface_init_from_common.h>
+#include <../include/modules/stdErrPlugin.h>
 
 using namespace std;
 
-struct domTest;
-map<string, domTest*> tests;
-
-struct domTest {
-	string name;
-	domTest(const string& name) : name(name) {
-		tests[name] = this;
-	}
-	virtual ~domTest() { };
-	virtual bool run() = 0;
-};
-
-#define DefineTest(testName)						 \
-	struct testName : public domTest {		 \
-		testName() : domTest(#testName) { }	 \
-		bool run();													 \
-	};																		 \
-	testName testName##Obj;								 \
-	bool testName::run()
-	
-		
 #define CheckResult(val)									\
 	if (!(val)) {														\
 		cout << "line: " << __LINE__ << endl; \
 		return false;													\
 	}
+
+struct domTest;
+map<string, domTest*> g_tests;
+
+struct domTest {
+	string name;
+	domTest(const string& name) : name(name) {
+		g_tests[name] = this;
+	}
+	virtual ~domTest() { };
+	virtual bool run() = 0;
+};
+
+#define DefineTest(testName)											\
+	struct domTest_##testName : public domTest {		\
+		domTest_##testName() : domTest(#testName) { }	\
+		bool run();																		\
+	};																							\
+	domTest_##testName domTest_##testName##Obj;			\
+	bool domTest_##testName::run()
+
+#define RunTest(testName)																						\
+	{																																	\
+		map<string, domTest*>::iterator iter = g_tests.find(#testName);	\
+		CheckResult(iter != g_tests.end());															\
+		CheckResult(iter->second->run());																\
+	}
+
 
 string chopWS(const string& s) {
 	string ws = " \t\n\r";
@@ -52,7 +60,7 @@ string chopWS(const string& s) {
 	return s.substr(beginPos, endPos-beginPos+1);
 }
 
-DefineTest(chopWSTest) {
+DefineTest(chopWS) {
 	CheckResult(chopWS("") == "");
 	CheckResult(chopWS("") == "");
 	CheckResult(chopWS(" ") == "");
@@ -63,17 +71,42 @@ DefineTest(chopWSTest) {
 	return true;
 }
 
+string replace(const string& s, const string& replace, const string& replaceWith) {
+	if (replace.empty())
+		return s;
+	
+	string result;
+	size_t pos1 = 0, pos2 = s.find(replace);
+	while (pos2 != string::npos) {
+		result += s.substr(pos1, pos2-pos1);
+		result += replaceWith;
+		pos1 = pos2 + replace.length();
+		pos2 = s.find(replace, pos1);
+	}
 
-DefineTest(testLoadClipPlane) {
-	DAE dae;
-	CheckResult(dae.load("/home/sthomas/models/clipPlane.dae") == DAE_OK);
+	result += s.substr(pos1, s.length()-pos1);
+	return result;
+}
+
+DefineTest(stringReplace) {
+	CheckResult(replace("abc", "abc", "def") == "def");
+	CheckResult(replace("abc", "a", "1") == "1bc");
+	CheckResult(replace("abc", "c", "1") == "ab1");
+	CheckResult(replace("abc123", "bc12", "b") == "ab3");
+	CheckResult(replace("abracadabra", "a", "") == "brcdbr");
+	return true;
 }
 
 
-DefineTest(saveRenderStates) {
+DefineTest(loadClipPlane) {
 	DAE dae;
-	dae.setDatabase(0);
-	dae.setIOPlugin(0);
+	CheckResult(dae.load("/home/sthomas/models/clipPlane.dae") == DAE_OK);
+	return true;
+}
+
+
+DefineTest(renderStates) {
+	DAE dae;
 
 	char* docUri = "/home/sthomas/models/renderStates.dae";
 	dae.getDatabase()->insertDocument(docUri);
@@ -95,31 +128,13 @@ DefineTest(saveRenderStates) {
 	daeElement* colorClear = element->createAndPlace("color_clear");
 	colorClear->getMeta()->getValueAttribute()->set(colorClear, "0 0 0 0");
 
-	dae.save(docUri);
-	return true;
-}
-
-
-DefineTest(roundTripRenderStates) {
-	DAE dae;
-	CheckResult(dae.load("/home/sthomas/models/renderStates.dae") == DAE_OK);
-	CheckResult(dae.saveAs("/home/sthomas/models/renderStates_roundTrip.dae",
-												 "/home/sthomas/models/renderStates.dae") == DAE_OK);
-	return true;
-}
-
-
-bool testLoadBigModel(const char* uri) {
-	DAE dae;
-	CheckResult(dae.load(uri) == DAE_OK);
+	CheckResult(dae.save(docUri) == DAE_OK);
 	return true;
 }
 
 
 DefineTest(saveEffect) {
 	DAE dae;
-	dae.setDatabase(0);
-	dae.setIOPlugin(0);
 
 	char* docUri = "/home/sthomas/models/standardEffect.dae";
 	dae.getDatabase()->insertDocument(docUri);
@@ -151,32 +166,7 @@ DefineTest(saveEffect) {
 }
 
 
-DefineTest(sidResolve) {
-	DAE dae;
-	char* docUri = "/home/sthomas/models/Seymour.dae";
-	CheckResult(dae.load(docUri) == DAE_OK);
-
-	// Get the first <skeleton> in the model
-	daeElement* element = 0;
-	dae.getDatabase()->getElement(&element, 0, 0, "skeleton");
-	domInstance_controller::domSkeleton* skeleton =
-		daeSafeCast<domInstance_controller::domSkeleton>(element);
-	CheckResult(skeleton != NULL);
-
-	// Get the root node of the <skeleton>
-	daeElement* skeletonRootNode = skeleton->getValue().getElement();
-
-	// Find the joint named "pelvis"
-	daeSIDResolver resolver(skeletonRootNode, "pelvis");
-	domNode* pelvis = daeSafeCast<domNode>(resolver.getElement());
-	CheckResult(pelvis != NULL);
-
-	cout << pelvis->getId() << endl;
-	return true;
-}
-
-
-DefineTest(testTranslate) {
+DefineTest(loadTranslate) {
 	DAE dae;
 	char* docUri = "file:///home/sthomas/models/Seymour.dae";
 	CheckResult(dae.load(docUri) == DAE_OK);
@@ -193,8 +183,6 @@ DefineTest(testTranslate) {
 
 DefineTest(writeCamera) {
 	DAE dae;
-	dae.setDatabase(0);
-	dae.setIOPlugin(0);
 
 	char* docUri = "/home/sthomas/models/camera.dae";
 	dae.getDatabase()->insertDocument(docUri);
@@ -224,30 +212,13 @@ DefineTest(roundTripSeymour) {
 }
 
 
-string replace(const string& s, const string& replace, const string& replaceWith) {
-	if (replace.empty())
-		return s;
-	
-	string result;
-	size_t pos1 = 0, pos2 = s.find(replace);
-	while (pos2 != string::npos) {
-		result += s.substr(pos1, pos2-pos1);
-		result += replaceWith;
-		pos1 = pos2 + replace.length();
-		pos2 = s.find(replace, pos1);
-	}
-
-	result += s.substr(pos1, s.length()-pos1);
-	return result;
-}
-
 bool roundTrip(const string& uri) {
 	DAE dae;
 	CheckResult(dae.load(uri.c_str()) == DAE_OK);
 	return dae.saveAs(replace(uri, ".", "_roundTrip.").c_str(), uri.c_str()) == DAE_OK;
 }
 
-DefineTest(testSaveSeymourRaw) {
+DefineTest(saveSeymourRaw) {
 	DAE dae;
 	char* docUri = "/home/sthomas/sony/collada_samples/Seymour.dae";
 	CheckResult(dae.load(docUri) == DAE_OK);
@@ -255,14 +226,14 @@ DefineTest(testSaveSeymourRaw) {
 	return dae.saveAs("/home/sthomas/sony/collada_samples/Seymour_raw.dae", docUri) == DAE_OK;
 }
 
-DefineTest(testLoadSeymourRaw) {
+DefineTest(loadSeymourRaw) {
 	DAE dae;
 	char* docUri = "/home/sthomas/sony/collada_samples/Seymour_raw.dae";
 	CheckResult(dae.load(docUri) == DAE_OK);
 
 	daeElement* el = 0;
 	dae.getDatabase()->getElement(&el, 0, "l_hip_rotateY_l_hip_rotateY_ANGLE-input");
-	CheckResult(el != NULL);
+	CheckResult(el);
 	return true;
 }
 
@@ -274,7 +245,7 @@ DefineTest(extraTypeTest) {
 
 	daeElement* element = 0;
 	dae.getDatabase()->getElement(&element, 0, 0, "technique");
-	CheckResult(element != NULL);
+	CheckResult(element);
 
 	daeElementRefArray elements;
 	element->getChildren(elements);
@@ -290,10 +261,9 @@ DefineTest(extraTypeTest) {
 
 #if defined(TINYXML)
 #include <dae/daeTinyXMLPlugin.h>
-DefineTest(testTinyXml) {
-	DAE dae;
+DefineTest(tinyXmlLoad) {
 	auto_ptr<daeTinyXMLPlugin> tinyXmlPlugin(new daeTinyXMLPlugin);
-	dae.setIOPlugin(tinyXmlPlugin.get());
+	DAE dae(NULL, tinyXmlPlugin.get());
 	char* docUri = "/home/sthomas/sony/collada_samples/Seymour.dae";
 	CheckResult(dae.load(docUri) == DAE_OK);
 	CheckResult(dae.saveAs("/home/sthomas/sony/collada_samples/Seymour_tinyXml.dae", docUri) == DAE_OK);
@@ -301,9 +271,8 @@ DefineTest(testTinyXml) {
 }
 #endif
 
-DefineTest(testDefaultXmlPlugin) {
+DefineTest(defaultXmlPlugin) {
 	DAE dae;
-	dae.setIOPlugin(0);
 	if (dae.getIOPlugin()->setOption("saveRawBinary", "true") == DAE_OK)
 		cout << "Using libxml\n";
 	else
@@ -311,14 +280,6 @@ DefineTest(testDefaultXmlPlugin) {
 	return true;
 }
 
-
-class errorHandler : public daeErrorHandler {
-public:
-	errorHandler() { }
-
-	virtual void handleError(daeString error) { };
-	virtual void handleWarning(daeString error) { };
-};
 
 string resolveResultToString(daeSIDResolver::ResolveState state) {
 	switch(state) {
@@ -340,9 +301,6 @@ void resolveSid(const string& sid, daeElement* container) {
 }
 
 DefineTest(sidResolveTest) {
-	errorHandler eh;
-	daeErrorHandler::setErrorHandler(&eh);
-	
 	DAE dae;
 	CheckResult(dae.load("/home/sthomas/models/sidResolveTest.dae") == DAE_OK);
 
@@ -350,7 +308,7 @@ DefineTest(sidResolveTest) {
 	domAny* effectExtra = 0;
 	dae.getDatabase()->getElement(&effect, 0, "myEffect");
 	dae.getDatabase()->getElement((daeElement**)&effectExtra, 0, "effectExtra");
-	CheckResult(effect != NULL  &&  effectExtra != NULL);
+	CheckResult(effect && effectExtra);
 
 	istringstream stream(effectExtra->getValue());
 	string sid;
@@ -361,7 +319,7 @@ DefineTest(sidResolveTest) {
 	domAny* nodeSidRefExtra = 0;
 	dae.getDatabase()->getElement(&root, 0, 0, COLLADA_TYPE_COLLADA);
 	dae.getDatabase()->getElement((daeElement**)&nodeSidRefExtra, 0, "nodeSidRefExtra");
-	CheckResult(root != NULL  &&  nodeSidRefExtra != NULL);
+	CheckResult(root && nodeSidRefExtra);
 
 	cout << endl;
 	stream.clear();
@@ -372,12 +330,6 @@ DefineTest(sidResolveTest) {
 	return true;
 }
 
-bool testLoadTime(const char* uri) {
-	DAE dae;
-	CheckResult(dae.load(uri) == DAE_OK);
-}
-
-
 daeElement* findChildByName(daeElement* el, daeString name) {
 	if (!el)
 		return 0;
@@ -386,7 +338,7 @@ daeElement* findChildByName(daeElement* el, daeString name) {
 	el->getChildren(children);
 
 	for (size_t i = 0; i < children.getCount(); i++)
-		if (children[i]->getElementName() == name)
+		if (strcmp(children[i]->getElementName(), name) == 0)
 			return children[i];
 
 	return 0;
@@ -409,18 +361,23 @@ daeElement* resolveSid(daeString sid, daeElement& container) {
 	return sidResolver.getElement();
 }
 
+string getCharData(daeElement* el) {
+	return el ? el->getCharData() : "";
+}
+
 daeURI* getTextureUri(daeString samplerSid, domEffect& effect) {
 	daeElement* sampler = findChildByName(resolveSid(samplerSid, effect), "sampler2D");
-	string surfaceSid = findChildByName(sampler, "source")->getCharData();
+	string surfaceSid = getCharData(findChildByName(sampler, "source"));
 	daeElement* surface = findChildByName(resolveSid(surfaceSid.c_str(), effect), "surface");
-	domImage* image = daeSafeCast<domImage>(resolveID(
-		findChildByName(surface, "init_from")->getCharData().c_str(), *effect.getDocument()));
+	domImage* image =
+		daeSafeCast<domImage>(resolveID(getCharData(findChildByName(surface, "init_from")).c_str(),
+																		*effect.getDocument()));
 	if (image && image->getInit_from())
 		return &image->getInit_from()->getValue();
 	return 0;
 }
 
-DefineTest(getTextureTest) {
+DefineTest(getTexture) {
 	DAE dae;
 	CheckResult(dae.load("/home/sthomas/models/Seymour.dae") == DAE_OK);
 
@@ -428,19 +385,19 @@ DefineTest(getTextureTest) {
  	dae.getDatabase()->getElement(&el, 0, 0, COLLADA_TYPE_TEXTURE);
 	domCommon_color_or_texture_type_complexType::domTexture* texture =
 		daeSafeCast<domCommon_color_or_texture_type_complexType::domTexture>(el);
-	CheckResult(texture != NULL);
+	CheckResult(texture);
 
 	domEffect* effect = daeSafeCast<domEffect>(findAncestorByType(texture, COLLADA_TYPE_EFFECT));
-	CheckResult(effect != NULL);
+	CheckResult(effect);
 
 	daeURI* uri = getTextureUri(texture->getTexture(), *effect);
-	if (uri)
-		cout << uri->getURI() << endl;
-	return uri != 0;
+	CheckResult(uri);
+	cout << uri->getURI() << endl;
+	return true;
 }
 	
 
-DefineTest(testRemoveElement) {
+DefineTest(removeElement) {
 	DAE dae;
 	CheckResult(dae.load("/home/sthomas/models/Seymour.dae") == DAE_OK);
 
@@ -493,7 +450,7 @@ void nameArrayAppend(domListOfNames& names, const char* name) {
 	nameArraySet(names, names.getCount()-1, name);
 }
 
-DefineTest(testNameArray) {
+DefineTest(nameArray) {
 	DAE dae;
 	CheckResult(dae.load("/home/sthomas/models/Seymour.dae") == DAE_OK);
 
@@ -521,12 +478,12 @@ void printArray(const daeTArray<T>& array) {
 	cout << endl;
 }
 
-DefineTest(testNewArrayCode) {
+DefineTest(arrayOps) {
 	// Test default array value suppression
-	saveRenderStates();
+	RunTest(renderStates);
 
 	// Test Heinrich's original code that crashed
-	cloneCrash();
+	RunTest(cloneCrash);
 
 	// Test removeIndex
 	daeTArray<int> array;
@@ -549,7 +506,7 @@ void printMemoryToStringResult(daeAtomicType& type, daeMemoryRef value) {
 	cout << buffer.str() << endl;
 }
 
-DefineTest(testNewMemoryToStringCode) {
+DefineTest(atomicTypeOps) {
 	daeUIntType UIntType;
 	daeIntType IntType;
 	daeLongType LongType;
@@ -607,7 +564,7 @@ DefineTest(testNewMemoryToStringCode) {
 }
 
 
-DefineTest(testClone) {
+DefineTest(clone) {
 	DAE dae;
 	CheckResult(dae.load("/home/sthomas/models/Seymour.dae") == DAE_OK);
 
@@ -624,7 +581,7 @@ DefineTest(testClone) {
 }
 
 
-DefineTest(testGenericOps) {
+DefineTest(genericOps) {
 	string uri = "/home/sthomas/models/cube.dae";
 	DAE dae;
 	CheckResult(dae.load(uri.c_str()) == DAE_OK)
@@ -697,7 +654,7 @@ bool checkArguments(int argc, char* argv[]) {
 	set<string> validArgs;
 	validArgs.insert("-printTests");
 	validArgs.insert("-all");
-	for (map<string, domTest*>::iterator iter = tests.begin(); iter != tests.end(); iter++)
+	for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
 		validArgs.insert(iter->second->name);
 
 	bool invalidArgFound = false;
@@ -714,13 +671,37 @@ bool checkArguments(int argc, char* argv[]) {
 }
 
 
+// Returns the set of tests that failed
+set<string> runTests(const set<string>& tests) {
+	set<string> failedTests;
+	for (set<string>::const_iterator iter = tests.begin(); iter != tests.end(); iter++) {
+		cout << "Running " << *iter << endl;
+		if (!g_tests[*iter]->run())
+			failedTests.insert(*iter);
+	}
+	return failedTests;
+}
+
+void printTestResults(const set<string>& failedTests) {
+	if (!failedTests.empty()) {
+		cout << "Failed tests:\n";
+		for (set<string>::const_iterator iter = failedTests.begin(); iter != failedTests.end(); iter++)
+			cout << "  " << *iter << endl;
+	} else {
+		cout << "All tests passed.\n";
+	}
+}
+
+
 int main(int argc, char* argv[]) {
+	// Shut the DOM up
+	daeErrorHandler::setErrorHandler(&quietErrorHandler::getInstance());
+
 	if (argc == 1) {
 		cout << "Usage:\n"
 			"  -printTests - Print the names of all available tests\n"
 			"  -all - Run all tests\n"
-			"  test1 test2 ... - Run the named tests\n"
-			"  -file fileName - Run the tests specified in the file\n";
+			"  test1 test2 ... - Run the named tests\n";
 		return 0;
 	}
 
@@ -730,7 +711,7 @@ int main(int argc, char* argv[]) {
 	// -printTest
 	for (int i = 1; i < argc; i++) {
 		if (string(argv[i]) == "-printTests") {
-			for (map<string, domTest*>::iterator iter = tests.begin(); iter != tests.end(); iter++)
+			for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
 				cout << iter->second->name << endl;
 			return 0;
 		}
@@ -739,24 +720,19 @@ int main(int argc, char* argv[]) {
 	// -all
 	for (int i = 1; i < argc; i++) {
 		if (string(argv[i]) == "-all") {
-			bool result = true;
-			for (map<string, domTest*>::iterator iter = tests.begin(); iter != tests.end(); iter++) {
-				cout << "Running " + iter->second->name << endl;
-				result &= iter->second->run();
-			}
-			cout << (result ? "succeeded\n" : "failed\n");
+			set<string> tests;
+			for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
+				tests.insert(iter->first);
+			printTestResults(runTests(tests));
 			return 0;
 		}
 	}
 
 	// test1 test2 ...
-	bool result = true;
-	for (int i = 1; i < argc; i++) {
-		map<string, domTest*>::iterator iter = tests.find(argv[i]);
-		if (iter != tests.end())
-			result &= iter->second->run();
-	}
-	cout << (result ? "succeeded\n" : "failed\n");
+	set<string> tests;
+	for (int i = 1; i < argc; i++)
+		tests.insert(argv[i]);
+	printTestResults(runTests(tests));
 
 	return 0;
 }

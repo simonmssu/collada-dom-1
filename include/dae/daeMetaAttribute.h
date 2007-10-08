@@ -164,13 +164,11 @@ public:
 	virtual void stringToMemory(daeElement* e, daeString s);
 
 	/**
-	 * Gets a particle from containing element <tt><i>e</i></tt> based on <tt><i>index.</i></tt> 
-	 * @param e Containing element from which to get the element.
-	 * @param index Index of the particle to retrieve if indeed
-	 * there is an array of elements rather than a singleton.
-	 * @return Returns the associated particle out of parent element e, based on index, if necessary.
+	 * Gets the attribute's memory pointer from containing element <tt><i>e</i></tt>.
+	 * @param e Containing element from which to get the value.
+	 * @return Returns the memory pointer corresponding to this attribute  out of parent element e.
 	 */
-	virtual daeMemoryRef get(daeElement* e, daeInt index = 0);
+	virtual daeMemoryRef get(daeElement* e);
 
 	/**
 	 * Gets if this attribute is an array attribute.
@@ -178,14 +176,6 @@ public:
 	 */
 	virtual daeBool isArrayAttribute()		{ return false; }
 	  
-	/**
-	 * Gets the number of particles associated with this attribute in instance <tt><i>e.</i></tt> 
-	 * @param e Containing element to run the operation on.
-	 * @return Returns the number of particles associated with this attribute
-	 * in instance <tt><i>e.</i></tt> 
-	 */
-	virtual daeInt getCount(daeElement* e);
-
 public:
 	/**
 	 * Resolves a reference (if there is one) in the attribute type;
@@ -207,9 +197,6 @@ public:
 	 * @return Returns the alignment in bytes.
 	 */
 	virtual daeInt getAlignment();
-
-	// This is deprecated. Use stringToMemory instead.
-	virtual void set(daeElement* element, daeString s);
 
 	/**
 	 * Copies the value of this attribute from fromElement into toElement.
@@ -243,15 +230,9 @@ public:
 	virtual daeInt compareToDefault(daeElement* e);
 	
 public:
-	/**
-	 * Gets the storage inside of <tt><i>e</i></tt> associated with
-	 * this attribute.  It is very useful for performing generic processing
-	 * on elements and attributes from external tools regardless of element
-	 * and attribute type.
-	 * @param e Element from which to apply this attributes offset.
-	 * @return Returns the storage associate with this attribute in <tt><i>e.</i></tt> 
-	 */
-	virtual daeChar* getWritableMemory(daeElement* e);
+	// These methods are deprecated.
+	virtual daeChar* getWritableMemory(daeElement* e);  // Use get instead.
+	virtual void set(daeElement* element, daeString s); // Use stringToMemory instead.
 };
 
 
@@ -299,14 +280,6 @@ public:
 	virtual daeInt compareToDefault(daeElement* e);
 
 	/**
-	 * Defines the override version of this method from @c daeMetaElement.
-	 * @param e Containing element to run the operation on.
-	 * @return Returns the number of particles associated with this attribute
-	 * in instance <tt><i>e.</i></tt> 
-	 */
-	virtual daeInt getCount(daeElement* e);
-
-	/**
 	 * Converts an element's attribute value to a string.
 	 */
 	virtual void memoryToString(daeElement* e, std::ostringstream& buffer);
@@ -315,15 +288,6 @@ public:
 	 * Converts a string to a memory value in the specified element.
 	 */
 	virtual void stringToMemory(daeElement* e, daeString s);
-
-	/**
-	 * Defines the override version of this method from @c daeMetaElement.
-	 * @param e Containing element from which to get the element.
-	 * @param index Index of the particle to retrieve if indeed
-	 * there is an array of elements rather than a singleton.
-	 * @return Returns the associated particle out of parent element e, based on index, if necessary.
-	 */
-	virtual daeMemoryRef get(daeElement* e, daeInt index = 0);
 
 	/**
 	 * Sets the default for this attribute via a string.
@@ -341,7 +305,7 @@ public:
 	 * Gets if this attribute is an array attribute.
 	 * @return Returns true if this attribute is an array type.
 	 */
-	virtual daeBool isArrayAttribute()		{ return true; }
+	virtual daeBool isArrayAttribute() { return true; }
 
 	/**
 	 * Resolves a reference (if there is one) in the attribute type;

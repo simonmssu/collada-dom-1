@@ -479,7 +479,7 @@ void daeLIBXMLPlugin::writeRawSource( daeElement *src )
 	}
 
 	daeFixedName newURI;
-	sprintf( newURI, "%s#%d", rawRelPath.getOriginalURI(), rawByteCount );
+	sprintf( newURI, "%s#%ld", rawRelPath.getOriginalURI(), rawByteCount );
 	accessor->setAttribute( "source", newURI );
 
 	daeArray *valArray = (daeArray*)array->getValuePointer();

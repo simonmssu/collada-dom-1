@@ -23,6 +23,7 @@
 using namespace std;
 
 daeSIDResolver::daeSIDResolver( daeElement *container, daeString target, daeString profile )
+	: container(NULL)
 {
 	setContainer(container);
 	setTarget(target);

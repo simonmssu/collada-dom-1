@@ -41,7 +41,7 @@ public:
 	/** 
 	*  Constructor.
 	*/
-	DLLSPEC DAE() {
+	DLLSPEC DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL) {
 		// See the end of the thread linked below for an explanation of why we have the DAE
 		// constructor set up this way. Basically, I'm going to be changing the build output 
 		// location, and when this happens people sometimes continue to link against the old
@@ -50,7 +50,7 @@ public:
 		// who tries linking against old libraries will get a link error. This may not sound
 		// very nice, but it's certainly better than getting bizarre runtime crashes.
 		// https://collada.org/public_forum/viewtopic.php?t=771&sid=f13c34f2d17ca720c5021bccbe5128b7
-		init();
+		init(database, ioPlugin);
 	}
 
 	/** 
@@ -102,7 +102,7 @@ public:
 	virtual DLLSPEC daeInt setDom(daeString name, domCOLLADA* dom);
 
 private:
-	void DLLSPEC init();
+	void DLLSPEC init(daeDatabase* database, daeIOPlugin* ioPlugin);
 
 	daeDatabase *database;
 	daeIOPlugin *plugin;
