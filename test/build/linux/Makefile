@@ -36,4 +36,9 @@ INCLUDE_DIR	+= $(ROOT_DIR)/include \
                $(ROOT_DIR)/include/dae \
                $(ROOT_DIR)/include/$(COLLADA_VERSION)
 
+# Are we doing TinyXML tests?
+ifeq ($(TINYXML), 1)
+CCOPT += -D"TINYXML"
+endif
+
 include $(ROOT_DIR)/build/makerules.txt
