@@ -94,7 +94,7 @@ $(OUTDIR)%$(LIB_DYN_SUFFIX_VERSION):
 
 $(OUTDIR)%$(EXE_SUFFIX): $(DEP_LIBS)
 				@echo $@
-				$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $^ $(LIBRARIES) $(SHARED_LIB_COMMAND)
+				$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $(OBJS) $(LIBRARIES) $(SHARED_LIB_COMMAND)
 
 
 #########################################################

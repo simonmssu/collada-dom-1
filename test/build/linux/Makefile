@@ -22,7 +22,8 @@ EXE_LCOPT	+= -L$(LIB_PATH)
 LIBRARIES += -lcollada_dae_shared -lcollada_dom_shared
 
 COMMA := ,
-SHARED_LIB_PATH += $(LIB_PATH)
+# For some reason the -rpath linker option needs to be given an absolute path
+SHARED_LIB_PATH += $(abspath $(LIB_PATH))
 SHARED_LIB_COMMAND := $(addprefix -Wl$(COMMA)-rpath$(COMMA), $(SHARED_LIB_PATH))
 
 DEP_LIBS += $(LIB_PATH)/$(LIB_PREFIX)dae_shared$(LIB_DYN_SUFFIX)
