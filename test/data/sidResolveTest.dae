@@ -29,7 +29,11 @@
 				<extra>
 					<technique profile="">
 						<effectExtra id="effectExtra">
-							myFloat1 myFloat.2 .myFloat.
+							<!-- Each line has the sid to resolve, and the expected string result (see the
+									 resolveResultToString function for the meaning of the result string) -->
+							myFloat1   element
+							myFloat.2  element
+							.myFloat.  element
 						</effectExtra>
 					</technique>
 				</extra>
@@ -60,30 +64,30 @@
 	<extra>
 		<technique profile="">
 			<nodeSidRefExtra id="nodeSidRefExtra">
-				<!-- These should succeed, and the ones after the blank line should fail -->
-				myNode
-				myNode/subNode1
-				myNode/subNode1/subNode2
-				myNode/subNode1/subNode2/trans
-				myNode/trans.X
-				myNode/trans.Y
-				myNode/trans(2)
-				myNode/subNode1/rot(1)
-				myNode/rot.ANGLE
-				myNode/mtx(1)(2)
-				./rot
-				myNode/.trans.late..X
-
-				myNode/trans(-1)
-				myNode/trans.F
-				myNode/trans(20)
-				myNode/mtx(1)(2)(3)
-				test/trans
-				myNode/trans.X.Y
-				myNode/trans.X(1)
-				myNode/mtx(1)
-				myNode/mtx(1).X
-				myNode/mtx(1)(5)
+				<!-- Each line has the sid to resolve, and the expected string result (see the
+						 resolveResultToString function for the meaning of the result string) -->
+				myNode                          element
+				myNode/subNode1                 element
+				myNode/subNode1/subNode2        element
+				myNode/subNode1/subNode2/trans  array
+				myNode/trans.X                  double
+				myNode/trans.Y                  double
+				myNode/trans(2)                 double
+				myNode/subNode1/rot(1)          double
+				myNode/rot.ANGLE                double
+				myNode/mtx(1)(2)                double
+				./rot                           array
+				myNode/.trans.late..X           double
+				myNode/trans(-1)                failed
+				myNode/trans.F                  failed
+				myNode/trans(20)                failed
+				myNode/mtx(1)(2)(3)             failed
+				test/trans                      failed
+				myNode/trans.X.Y                failed
+				myNode/trans.X(1)               failed
+				myNode/mtx(1)                   double
+				myNode/mtx(1).X                 failed
+				myNode/mtx(1)(5)                double
 			</nodeSidRefExtra>
 		</technique>
 	</extra>

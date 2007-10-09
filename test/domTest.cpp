@@ -30,8 +30,14 @@ using namespace std;
 
 #define CheckResult(val)									\
 	if (!(val)) {														\
-		cout << "line: " << __LINE__ << endl; \
+		cout << "Line " << __LINE__ << endl;	\
 		return false;													\
+	}
+
+#define CheckResultWithMsg(val, msg)											\
+	if (!(val)) {																						\
+		cout << "Line " << __LINE__ << ". " << (msg) << endl;	\
+		return false;																					\
 	}
 
 struct domTest;
@@ -228,7 +234,7 @@ bool roundTrip(const string& uri) {
 	DAE dae;
 	CheckResult(dae.load(uri.c_str()) == DAE_OK);
 	return dae.saveAs(getTmpFile(fs::basename(fs::path(uri)) + "_roundTrip.dae").c_str(),
-										uri.c_str()) == DAE_OK;
+	                  uri.c_str()) == DAE_OK;
 }
 
 DefineTest(roundTripSeymour) {
@@ -286,9 +292,9 @@ DefineTest(extraTypeTest) {
 DefineTest(tinyXmlLoad) {
 	auto_ptr<daeTinyXMLPlugin> tinyXmlPlugin(new daeTinyXMLPlugin);
 	DAE dae(NULL, tinyXmlPlugin.get());
-	char* docUri = lookupTestFile("Seymour.dae").c_str();
-	CheckResult(dae.load(docUri) == DAE_OK);
-	CheckResult(dae.saveAs(getTmpFile("Seymour_tinyXml.dae").c_str(), docUri) == DAE_OK);
+	string docUri = lookupTestFile("Seymour.dae");
+	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
+	CheckResult(dae.saveAs(getTmpFile("Seymour_tinyXml.dae").c_str(), docUri.c_str()) == DAE_OK);
 	return true;
 }
 #endif
@@ -307,38 +313,43 @@ string resolveResultToString(daeSIDResolver::ResolveState state) {
 	return "unknown error";
 }
 
-void resolveSid(const string& sid, daeElement* container) {
+daeSIDResolver::ResolveState resolveSidToState(const string& sid, daeElement* container) {
 	daeSIDResolver sidResolver(container, sid.c_str());
 	sidResolver.getElement();
-	cout << "Attempting to resolve \"" << sid << "\": " << resolveResultToString(sidResolver.getState()) << endl;
+	return sidResolver.getState();
 }
 
 DefineTest(sidResolveTest) {
 	DAE dae;
 	CheckResult(dae.load(lookupTestFile("sidResolveTest.dae").c_str()) == DAE_OK);
 
-	daeElement* effect = 0;
-	domAny* effectExtra = 0;
+	daeElement *effect = 0,
+	           *effectExtra = 0;
 	dae.getDatabase()->getElement(&effect, 0, "myEffect");
-	dae.getDatabase()->getElement((daeElement**)&effectExtra, 0, "effectExtra");
+	dae.getDatabase()->getElement(&effectExtra, 0, "effectExtra");
 	CheckResult(effect && effectExtra);
 
-	istringstream stream(effectExtra->getValue());
-	string sid;
-	while (stream >> sid)
-		resolveSid(string("./") + sid, effect);
+	istringstream stream(effectExtra->getCharData());
+	string sid, expectedResult;
+	while (stream >> sid >> expectedResult) {
+		string result = resolveResultToString(resolveSidToState(sid, effect));
+		CheckResultWithMsg(result == expectedResult,
+		                   string("sid=") + sid + ", expectedResult=" + expectedResult + ", actualResult=" + result);
+	}
 
-	daeElement* root = 0;
-	domAny* nodeSidRefExtra = 0;
+	daeElement *root = 0,
+	           *nodeSidRefExtra = 0;
 	dae.getDatabase()->getElement(&root, 0, 0, COLLADA_TYPE_COLLADA);
-	dae.getDatabase()->getElement((daeElement**)&nodeSidRefExtra, 0, "nodeSidRefExtra");
+	dae.getDatabase()->getElement(&nodeSidRefExtra, 0, "nodeSidRefExtra");
 	CheckResult(root && nodeSidRefExtra);
 
-	cout << endl;
 	stream.clear();
-	stream.str(nodeSidRefExtra->getValue());
-	while (stream >> sid)
-		resolveSid(sid, root);
+	stream.str(nodeSidRefExtra->getCharData());
+	while (stream >> sid >> expectedResult) {
+		string result = resolveResultToString(resolveSidToState(sid, root));
+		CheckResultWithMsg(result == expectedResult,
+		                   string("sid=") + sid + ", expectedResult=" + expectedResult + ", actualResult=" + result);
+	}
 
 	return true;
 }
@@ -369,8 +380,8 @@ daeElement* resolveID(daeString id, daeDocument& document) {
 	return el;
 }
 
-daeElement* resolveSid(daeString sid, daeElement& container) {
-	daeSIDResolver sidResolver(&container, (string("./") + sid).c_str());
+daeElement* resolveSid(const string& sid, daeElement& container) {
+	daeSIDResolver sidResolver(&container, sid.c_str());
 	return sidResolver.getElement();
 }
 
@@ -381,7 +392,7 @@ string getCharData(daeElement* el) {
 daeURI* getTextureUri(daeString samplerSid, domEffect& effect) {
 	daeElement* sampler = findChildByName(resolveSid(samplerSid, effect), "sampler2D");
 	string surfaceSid = getCharData(findChildByName(sampler, "source"));
-	daeElement* surface = findChildByName(resolveSid(surfaceSid.c_str(), effect), "surface");
+	daeElement* surface = findChildByName(resolveSid(surfaceSid, effect), "surface");
 	domImage* image =
 		daeSafeCast<domImage>(resolveID(getCharData(findChildByName(surface, "init_from")).c_str(),
 																		*effect.getDocument()));
@@ -425,7 +436,7 @@ DefineTest(removeElement) {
 	daeElement::removeFromParent(animLib);
 
 	CheckResult(dae.saveAs(getTmpFile("Seymour_removeElements.dae").c_str(),
-												 lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	                       lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 	return true;
 }
 
@@ -660,6 +671,38 @@ DefineTest(genericOps) {
 	CheckResult(dae.saveAs(getTmpFile(fs::basename(fs::path(uri)) + "_genericOps.dae").c_str(),
 												 uri.c_str()) == DAE_OK);
 
+	return true;
+}
+
+
+daeArray* getSkewArray(daeElement* node, const string& sid) {
+	if (!node)
+		return NULL;
+	
+	daeElement* skew = resolveSid(sid, *node);
+	if (!skew || skew->getElementType() != COLLADA_TYPE::SKEW)
+		return NULL;
+
+	return (daeArray*)skew->getCharDataObject()->get(skew);
+}
+
+DefineTest(badSkew) {
+	DAE dae;
+	CheckResult(dae.load(lookupTestFile("badSkew.dae").c_str()) == DAE_OK);
+
+	daeElement* node = 0;
+	dae.getDatabase()->getElement(&node, 0, "my-node");
+	CheckResult(node);
+
+	daeArray* array1 = getSkewArray(node, "tooFew");
+	daeArray* array2 = getSkewArray(node, "justRight");
+	daeArray* array3 = getSkewArray(node, "tooMany");
+	CheckResult(array1 && array2 && array3);
+
+	CheckResult(array1->getCount() == 4);
+	CheckResult(array2->getCount() == 7);
+	CheckResult(array3->getCount() == 11);
+	
 	return true;
 }
 
