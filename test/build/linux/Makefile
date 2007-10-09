@@ -19,7 +19,7 @@ include $(ROOT_DIR)/build/makedefs.txt
 
 LIB_PATH := $(ROOT_DIR)/lib/$(CONF_NAME)
 EXE_LCOPT	+= -L$(LIB_PATH)
-LIBRARIES += -lcollada_dae_shared -lcollada_dom_shared
+LIBRARIES += -lcollada_dae_shared -lcollada_dom_shared -lboost_filesystem
 
 COMMA := ,
 # For some reason the -rpath linker option needs to be given an absolute path

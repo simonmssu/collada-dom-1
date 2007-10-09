@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>stthomas</author>
+      <authoring_tool>Feeling ColladaMax v3.02 with FCollada v3.02.</authoring_tool>
+      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=1;ExportSelected=0;ExportTangents=0;ExportAnimations=1;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=1;AnimStart=0;AnimEnd=100;</comments>
+    </contributor>
+    <created>2007-05-24T01:33:59Z</created>
+    <modified>2007-05-24T01:34:01Z</modified>
+    <unit meter="0.0254" name="inch"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="myEffect">
+      <profile_COMMON>
+				<newparam sid="myFloat1">
+					<float>0</float>
+				</newparam>
+				<newparam sid="myFloat.2">
+					<float>0</float>
+				</newparam>
+				<newparam sid=".myFloat.">
+					<float>0</float>
+				</newparam>
+        <technique sid="common">
+          <phong/>
+        </technique>
+				<extra>
+					<technique profile="">
+						<effectExtra id="effectExtra">
+							myFloat1 myFloat.2 .myFloat.
+						</effectExtra>
+					</technique>
+				</extra>
+      </profile_COMMON>
+    </effect>
+	</library_effects>
+	<library_nodes>
+		<node id="myNode">
+			<node sid="subNode1">
+				<node>
+					<node sid="subNode2">
+						<node>
+							<translate sid="trans">10 20 30</translate>
+							<rotate sid="rot">0 1 0 90</rotate>
+							<translate sid=".trans.late.">40 50 60</translate>
+							<matrix sid="mtx">
+								1 0 0 0
+								0 1 0 0
+								0 0 1 0
+								0 0 0 1
+							</matrix>
+						</node>
+					</node>
+				</node>
+			</node>
+		</node>
+	</library_nodes>
+	<extra>
+		<technique profile="">
+			<nodeSidRefExtra id="nodeSidRefExtra">
+				<!-- These should succeed, and the ones after the blank line should fail -->
+				myNode
+				myNode/subNode1
+				myNode/subNode1/subNode2
+				myNode/subNode1/subNode2/trans
+				myNode/trans.X
+				myNode/trans.Y
+				myNode/trans(2)
+				myNode/subNode1/rot(1)
+				myNode/rot.ANGLE
+				myNode/mtx(1)(2)
+				./rot
+				myNode/.trans.late..X
+
+				myNode/trans(-1)
+				myNode/trans.F
+				myNode/trans(20)
+				myNode/mtx(1)(2)(3)
+				test/trans
+				myNode/trans.X.Y
+				myNode/trans.X(1)
+				myNode/mtx(1)
+				myNode/mtx(1).X
+				myNode/mtx(1)(5)
+			</nodeSidRefExtra>
+		</technique>
+	</extra>
+</COLLADA>

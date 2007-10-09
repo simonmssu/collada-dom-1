@@ -1,8 +1,10 @@
+#include <cstdarg>
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <memory>
 #include <map>
+#include <vector>
 #include <set>
 #include <dae.h>
 #include <dom/domConstants.h>
@@ -14,6 +16,15 @@
 #include <dae/daeErrorHandler.h>
 #include <dom/domFx_surface_init_from_common.h>
 #include <../include/modules/stdErrPlugin.h>
+
+// We use the boost filesystem library for cross-platform file system support. You'll need
+// to have boost on your machine for this to work. For the Windows build boost is provided
+// in the external-libs folder, but for Linux/Mac it's expected that you'll install a boost
+// obtained via your distro's package manager. For example on Debian/Ubuntu, you can run
+//   apt-get install libboost-filesystem-dev
+// to install the boost filesystem library on your machine.
+#include <boost/filesystem/operations.hpp>
+namespace fs = boost::filesystem;
 
 using namespace std;
 
@@ -51,6 +62,12 @@ struct domTest {
 	}
 
 
+fs::path g_dataPath;
+
+string lookupTestFile(const string& fileName) {
+	return (g_dataPath / fileName).string();
+}
+
 string chopWS(const string& s) {
 	string ws = " \t\n\r";
 	size_t beginPos = s.find_first_not_of(ws);
@@ -70,6 +87,7 @@ DefineTest(chopWS) {
 	CheckResult(chopWS(" a ") == "a");
 	return true;
 }
+
 
 string replace(const string& s, const string& replace, const string& replaceWith) {
 	if (replace.empty())
@@ -94,6 +112,48 @@ DefineTest(stringReplace) {
 	CheckResult(replace("abc", "c", "1") == "ab1");
 	CheckResult(replace("abc123", "bc12", "b") == "ab3");
 	CheckResult(replace("abracadabra", "a", "") == "brcdbr");
+	return true;
+}
+
+
+// Split the string into substrings according to the specified character
+vector<string> split(const string& s, const char c) {
+	vector<string> result;
+	size_t currentIndex = 0, nextTokenIndex = 0;
+	while (currentIndex < s.length() &&
+				 (nextTokenIndex = s.find_first_of(c, currentIndex)) != string::npos) {
+		if ((nextTokenIndex - currentIndex) > 0)
+			result.push_back(s.substr(currentIndex, nextTokenIndex-currentIndex));
+		currentIndex = nextTokenIndex+1;
+	}
+
+	if (currentIndex < s.length())
+		result.push_back(s.substr(currentIndex, s.length()-currentIndex));
+
+	return result;
+}
+
+vector<string> makeStringArray(const char* s, ...) {
+	va_list args;
+	va_start(args, s);
+	vector<string> result;
+	while (s) {
+		result.push_back(s);
+		s = va_arg(args, const char*);
+	}
+	va_end(args);
+	return result;
+}
+
+void printStringArray(const vector<string>& array) {
+	for (size_t i = 0; i < array.size(); i++)
+		cout << array[i] << endl;
+}
+
+DefineTest(stringSplit) {
+	CheckResult(split("1|2|3|4", '|')   == makeStringArray("1", "2", "3", "4", 0));
+	CheckResult(split("|1|", '|')       == makeStringArray("1", 0));
+	CheckResult(split("1|||2||3|", '|') == makeStringArray("1", "2", "3", 0));
 	return true;
 }
 
@@ -129,57 +189,10 @@ DefineTest(renderStates) {
 	colorClear->getMeta()->getValueAttribute()->set(colorClear, "0 0 0 0");
 
 	CheckResult(dae.save(docUri) == DAE_OK);
+	/// !!!steveT Now load the file we just saved and examine its contents.
 	return true;
 }
 
-
-DefineTest(saveEffect) {
-	DAE dae;
-
-	char* docUri = "/home/sthomas/models/standardEffect.dae";
-	dae.getDatabase()->insertDocument(docUri);
-	daeElement* element;
-	dae.getDatabase()->getElement(&element, 0, 0, "COLLADA");
-
-	element = element->createAndPlace("library_effects");
-	element = element->createAndPlace("effect");
-	element = element->createAndPlace("profile_COMMON");
-	element = element->createAndPlace("technique");
-	element = element->createAndPlace("phong");
-
-	// Add a <diffuse> element
-	domCommon_color_or_texture_type* diffuse =
-		daeSafeCast<domCommon_color_or_texture_type>(element->createAndPlace("diffuse"));
-	domCommon_color_or_texture_type::domColor* diffuseColor =
-		daeSafeCast<domCommon_color_or_texture_type::domColor>(diffuse->createAndPlace("color"));
-	diffuseColor->getValue().set4(0.3, 0.2, 0.1, 1.0);
-
-	// Add a <shininess> element
-	domCommon_float_or_param_type* shininess =
-		daeSafeCast<domCommon_float_or_param_type>(element->createAndPlace("shininess"));
-	domCommon_float_or_param_type::domFloat* shininessFloat =
-		daeSafeCast<domCommon_float_or_param_type::domFloat>(shininess->createAndPlace("float"));
-	shininessFloat->setValue(32.0);
-
-	dae.save(docUri);
-	return true;
-}
-
-
-DefineTest(loadTranslate) {
-	DAE dae;
-	char* docUri = "file:///home/sthomas/models/Seymour.dae";
-	CheckResult(dae.load(docUri) == DAE_OK);
-
-	// Get a random <translate> from the model
-	daeElement* element = 0;
-	dae.getDatabase()->getElement(&element, 0, 0, "translate");
-	domTranslate* translate = daeSafeCast<domTranslate>(element);
-	domFloat3& v = translate->getValue();
-	cout << v[0] << ' ' << v[1] << ' ' << v[2] << endl;
-
-	return true;
-}
 
 DefineTest(writeCamera) {
 	DAE dae;
@@ -201,14 +214,8 @@ DefineTest(writeCamera) {
 	xfov->setValue(1.0);
 
 	dae.save(docUri);
+	// !!!steveT Now load the file we just saved and examine its contents.
 	return true;
-}
-
-DefineTest(roundTripSeymour) {
-	DAE dae;
-	char* docUri = "/home/sthomas/sony/collada_samples/Seymour.dae";
-	CheckResult(dae.load(docUri) == DAE_OK);
-	return dae.saveAs("/home/sthomas/sony/collada_samples/Seymour_roundTrip.dae", docUri) == DAE_OK;
 }
 
 
@@ -218,6 +225,13 @@ bool roundTrip(const string& uri) {
 	return dae.saveAs(replace(uri, ".", "_roundTrip.").c_str(), uri.c_str()) == DAE_OK;
 }
 
+DefineTest(roundTripSeymour) {
+	DAE dae;
+	return roundTrip("/home/sthomas/models/Seymour.dae");
+}
+
+
+// !!!steveT Merge saveSeymourRaw and loadSeymourRaw into a single test
 DefineTest(saveSeymourRaw) {
 	DAE dae;
 	char* docUri = "/home/sthomas/sony/collada_samples/Seymour.dae";
@@ -227,6 +241,8 @@ DefineTest(saveSeymourRaw) {
 }
 
 DefineTest(loadSeymourRaw) {
+	RunTest(saveSeymourRaw);
+	
 	DAE dae;
 	char* docUri = "/home/sthomas/sony/collada_samples/Seymour_raw.dae";
 	CheckResult(dae.load(docUri) == DAE_OK);
@@ -250,6 +266,7 @@ DefineTest(extraTypeTest) {
 	daeElementRefArray elements;
 	element->getChildren(elements);
 
+	// !!!steveT What exactly am I trying to test here?
 	for (size_t i = 0; i < elements.getCount(); i++) {
 		daeElement* e = elements[i];
 		daeString name = e->getElementName() ? e->getElementName() : (daeString)e->getMeta()->getName();
@@ -270,15 +287,6 @@ DefineTest(tinyXmlLoad) {
 	return true;
 }
 #endif
-
-DefineTest(defaultXmlPlugin) {
-	DAE dae;
-	if (dae.getIOPlugin()->setOption("saveRawBinary", "true") == DAE_OK)
-		cout << "Using libxml\n";
-	else
-		cout << "Using TinyXML\n";
-	return true;
-}
 
 
 string resolveResultToString(daeSIDResolver::ResolveState state) {
@@ -302,7 +310,7 @@ void resolveSid(const string& sid, daeElement* container) {
 
 DefineTest(sidResolveTest) {
 	DAE dae;
-	CheckResult(dae.load("/home/sthomas/models/sidResolveTest.dae") == DAE_OK);
+	CheckResult(dae.load(lookupTestFile("sidResolveTest.dae").c_str()) == DAE_OK);
 
 	daeElement* effect = 0;
 	domAny* effectExtra = 0;
@@ -649,27 +657,20 @@ DefineTest(genericOps) {
 }
 
 
-// Returns true if all arguments are valid
-bool checkArguments(int argc, char* argv[]) {
-	set<string> validArgs;
-	validArgs.insert("-printTests");
-	validArgs.insert("-all");
-	for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
-		validArgs.insert(iter->second->name);
-
-	bool invalidArgFound = false;
-	for (int i = 1; i < argc; i++) {
-		if (validArgs.find(argv[i]) == validArgs.end()) {
-			if (!invalidArgFound)
+// Returns true if all tests names are valid
+bool checkTests(const set<string>& tests) {
+	bool invalidTestFound = false;
+	for (set<string>::const_iterator iter = tests.begin(); iter != tests.end(); iter++) {
+		if (g_tests.find(*iter) == g_tests.end()) {
+			if (!invalidTestFound)
 				cout << "Invalid arguments:\n";
-			cout << "  " << argv[i] << endl;
-			invalidArgFound = true;
+			cout << "  " << *iter << endl;
+			invalidTestFound = true;
 		}
 	}
 
-	return !invalidArgFound;
+	return !invalidTestFound;
 }
-
 
 // Returns the set of tests that failed
 set<string> runTests(const set<string>& tests) {
@@ -696,6 +697,7 @@ void printTestResults(const set<string>& failedTests) {
 int main(int argc, char* argv[]) {
 	// Shut the DOM up
 	daeErrorHandler::setErrorHandler(&quietErrorHandler::getInstance());
+	g_dataPath = (fs::path(argv[0]).branch_path()/"../../test/data/").normalize();
 
 	if (argc == 1) {
 		cout << "Usage:\n"
@@ -705,34 +707,35 @@ int main(int argc, char* argv[]) {
 		return 0;
 	}
 
-	if (checkArguments(argc, argv) == false)
+	bool printTests = false;
+	bool allTests = false;
+	set<string> tests;
+	for (int i = 1; i < argc; i++) {
+		if (string(argv[i]) == "-printTests")
+			printTests = true;
+		else if (string(argv[i]) == "-all")
+			allTests = true;
+		else
+			tests.insert(argv[i]);
+	}
+
+	if (checkTests(tests) == false)
 		return 0;
 
 	// -printTest
-	for (int i = 1; i < argc; i++) {
-		if (string(argv[i]) == "-printTests") {
-			for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
-				cout << iter->second->name << endl;
-			return 0;
-		}
+	if (printTests) {
+		for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
+			cout << iter->second->name << endl;
+		return 0;
 	}
 
 	// -all
-	for (int i = 1; i < argc; i++) {
-		if (string(argv[i]) == "-all") {
-			set<string> tests;
-			for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
-				tests.insert(iter->first);
-			printTestResults(runTests(tests));
-			return 0;
-		}
-	}
+	if (allTests)
+		for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
+			tests.insert(iter->first);
 
 	// test1 test2 ...
-	set<string> tests;
-	for (int i = 1; i < argc; i++)
-		tests.insert(argv[i]);
-	printTestResults(runTests(tests));
+ 	printTestResults(runTests(tests));
 
 	return 0;
 }
