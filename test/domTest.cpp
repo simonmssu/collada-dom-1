@@ -23,7 +23,7 @@
 // obtained via your distro's package manager. For example on Debian/Ubuntu, you can run
 //   apt-get install libboost-filesystem-dev
 // to install the boost filesystem library on your machine.
-#include <boost/filesystem/operations.hpp>
+#include <boost/filesystem/convenience.hpp>
 namespace fs = boost::filesystem;
 
 using namespace std;
@@ -63,10 +63,15 @@ struct domTest {
 
 
 fs::path g_dataPath;
-
 string lookupTestFile(const string& fileName) {
 	return (g_dataPath / fileName).string();
 }
+
+fs::path g_tmpPath;
+string getTmpFile(const string& fileName) {
+	return (g_tmpPath / fileName).string();
+}
+
 
 string chopWS(const string& s) {
 	string ws = " \t\n\r";
@@ -160,7 +165,7 @@ DefineTest(stringSplit) {
 
 DefineTest(loadClipPlane) {
 	DAE dae;
-	CheckResult(dae.load("/home/sthomas/models/clipPlane.dae") == DAE_OK);
+	CheckResult(dae.load(lookupTestFile("clipPlane.dae").c_str()) == DAE_OK);
 	return true;
 }
 
@@ -168,8 +173,8 @@ DefineTest(loadClipPlane) {
 DefineTest(renderStates) {
 	DAE dae;
 
-	char* docUri = "/home/sthomas/models/renderStates.dae";
-	dae.getDatabase()->insertDocument(docUri);
+	string docUri = getTmpFile("renderStates.dae");
+	dae.getDatabase()->insertDocument(docUri.c_str());
 	daeElement* element;
 	dae.getDatabase()->getElement(&element, 0, 0, "COLLADA");
 
@@ -188,7 +193,7 @@ DefineTest(renderStates) {
 	daeElement* colorClear = element->createAndPlace("color_clear");
 	colorClear->getMeta()->getValueAttribute()->set(colorClear, "0 0 0 0");
 
-	CheckResult(dae.save(docUri) == DAE_OK);
+	CheckResult(dae.save(docUri.c_str()) == DAE_OK);
 	/// !!!steveT Now load the file we just saved and examine its contents.
 	return true;
 }
@@ -197,8 +202,8 @@ DefineTest(renderStates) {
 DefineTest(writeCamera) {
 	DAE dae;
 
-	char* docUri = "/home/sthomas/models/camera.dae";
-	dae.getDatabase()->insertDocument(docUri);
+	string docUri = getTmpFile("camera.dae");
+	dae.getDatabase()->insertDocument(docUri.c_str());
 	daeElement* element;
 	dae.getDatabase()->getElement(&element, 0, 0, "COLLADA");
 
@@ -213,7 +218,7 @@ DefineTest(writeCamera) {
 	domTargetableFloat* xfov = daeSafeCast<domTargetableFloat>(perspective->createAndPlace("xfov"));
 	xfov->setValue(1.0);
 
-	dae.save(docUri);
+	dae.save(docUri.c_str());
 	// !!!steveT Now load the file we just saved and examine its contents.
 	return true;
 }
@@ -222,30 +227,30 @@ DefineTest(writeCamera) {
 bool roundTrip(const string& uri) {
 	DAE dae;
 	CheckResult(dae.load(uri.c_str()) == DAE_OK);
-	return dae.saveAs(replace(uri, ".", "_roundTrip.").c_str(), uri.c_str()) == DAE_OK;
+	return dae.saveAs(getTmpFile(fs::basename(fs::path(uri)) + "_roundTrip.dae").c_str(),
+										uri.c_str()) == DAE_OK;
 }
 
 DefineTest(roundTripSeymour) {
-	DAE dae;
-	return roundTrip("/home/sthomas/models/Seymour.dae");
+	return roundTrip(lookupTestFile("Seymour.dae"));
 }
 
 
 // !!!steveT Merge saveSeymourRaw and loadSeymourRaw into a single test
 DefineTest(saveSeymourRaw) {
 	DAE dae;
-	char* docUri = "/home/sthomas/sony/collada_samples/Seymour.dae";
-	CheckResult(dae.load(docUri) == DAE_OK);
+	string docUri = lookupTestFile("Seymour.dae");
+	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
 	dae.getIOPlugin()->setOption("saveRawBinary", "true");
-	return dae.saveAs("/home/sthomas/sony/collada_samples/Seymour_raw.dae", docUri) == DAE_OK;
+	return dae.saveAs(getTmpFile("Seymour_raw.dae").c_str(), docUri.c_str()) == DAE_OK;
 }
 
 DefineTest(loadSeymourRaw) {
 	RunTest(saveSeymourRaw);
 	
 	DAE dae;
-	char* docUri = "/home/sthomas/sony/collada_samples/Seymour_raw.dae";
-	CheckResult(dae.load(docUri) == DAE_OK);
+	string docUri = getTmpFile("Seymour_raw.dae");
+	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
 
 	daeElement* el = 0;
 	dae.getDatabase()->getElement(&el, 0, "l_hip_rotateY_l_hip_rotateY_ANGLE-input");
@@ -256,8 +261,8 @@ DefineTest(loadSeymourRaw) {
 
 DefineTest(extraTypeTest) {
 	DAE dae;
-	char* docUri = "/home/sthomas/models/extraTest.dae";
-	CheckResult(dae.load(docUri) == DAE_OK);
+	string docUri = lookupTestFile("extraTest.dae");
+	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
 
 	daeElement* element = 0;
 	dae.getDatabase()->getElement(&element, 0, 0, "technique");
@@ -281,9 +286,9 @@ DefineTest(extraTypeTest) {
 DefineTest(tinyXmlLoad) {
 	auto_ptr<daeTinyXMLPlugin> tinyXmlPlugin(new daeTinyXMLPlugin);
 	DAE dae(NULL, tinyXmlPlugin.get());
-	char* docUri = "/home/sthomas/sony/collada_samples/Seymour.dae";
+	char* docUri = lookupTestFile("Seymour.dae").c_str();
 	CheckResult(dae.load(docUri) == DAE_OK);
-	CheckResult(dae.saveAs("/home/sthomas/sony/collada_samples/Seymour_tinyXml.dae", docUri) == DAE_OK);
+	CheckResult(dae.saveAs(getTmpFile("Seymour_tinyXml.dae").c_str(), docUri) == DAE_OK);
 	return true;
 }
 #endif
@@ -387,7 +392,7 @@ daeURI* getTextureUri(daeString samplerSid, domEffect& effect) {
 
 DefineTest(getTexture) {
 	DAE dae;
-	CheckResult(dae.load("/home/sthomas/models/Seymour.dae") == DAE_OK);
+	CheckResult(dae.load(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
 	daeElement* el = 0;
  	dae.getDatabase()->getElement(&el, 0, 0, COLLADA_TYPE_TEXTURE);
@@ -407,7 +412,7 @@ DefineTest(getTexture) {
 
 DefineTest(removeElement) {
 	DAE dae;
-	CheckResult(dae.load("/home/sthomas/models/Seymour.dae") == DAE_OK);
+	CheckResult(dae.load(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
 	daeElement *asset = 0, *animLib = 0, *collada = 0;
 	dae.getDatabase()->getElement(&collada, 0, 0, COLLADA_TYPE_COLLADA);
@@ -419,15 +424,15 @@ DefineTest(removeElement) {
 	collada->removeChildElement(asset);
 	daeElement::removeFromParent(animLib);
 
-	CheckResult(dae.saveAs("/home/sthomas/models/Seymour_removeElements.dae",
-												 "/home/sthomas/models/Seymour.dae") == DAE_OK);
+	CheckResult(dae.saveAs(getTmpFile("Seymour_removeElements.dae").c_str(),
+												 lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 	return true;
 }
 
 
 DefineTest(cloneCrash) {
 	DAE dae;
-	CheckResult(dae.load("/home/sthomas/sony/collada_samples/duck.dae") == DAE_OK);
+	CheckResult(dae.load(lookupTestFile("duck.dae").c_str()) == DAE_OK);
 
 	daeElement* effect;
 	dae.getDatabase()->getElement(&effect, 0, NULL, COLLADA_TYPE_EFFECT);
@@ -460,7 +465,7 @@ void nameArrayAppend(domListOfNames& names, const char* name) {
 
 DefineTest(nameArray) {
 	DAE dae;
-	CheckResult(dae.load("/home/sthomas/models/Seymour.dae") == DAE_OK);
+	CheckResult(dae.load(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
 	daeElement* el = 0;
 	dae.getDatabase()->getElement(&el, 0, 0, COLLADA_TYPE_NAME_ARRAY);
@@ -574,7 +579,7 @@ DefineTest(atomicTypeOps) {
 
 DefineTest(clone) {
 	DAE dae;
-	CheckResult(dae.load("/home/sthomas/models/Seymour.dae") == DAE_OK);
+	CheckResult(dae.load(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
 	daeElement* el = 0;
 	dae.getDatabase()->getElement(&el, 0, "l_ulna");
@@ -583,14 +588,15 @@ DefineTest(clone) {
 	daeElementRef clone = el->clone("-foo", "-bar");
 	el->getParentElement()->placeElement(clone);
 
-	CheckResult(dae.saveAs("/home/sthomas/models/cloneTest.dae", "/home/sthomas/models/Seymour.dae") == DAE_OK);
+	CheckResult(dae.saveAs(getTmpFile("cloneTest.dae").c_str(),
+												 lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
 	return true;
 }
 
 
 DefineTest(genericOps) {
-	string uri = "/home/sthomas/models/cube.dae";
+	string uri = lookupTestFile("cube.dae");
 	DAE dae;
 	CheckResult(dae.load(uri.c_str()) == DAE_OK)
 
@@ -651,7 +657,8 @@ DefineTest(genericOps) {
 		any->setAttribute(name.str().c_str(), value.str().c_str());
 	}
 
-	CheckResult(dae.saveAs(replace(uri, ".", "_genericOps.").c_str(), uri.c_str()) == DAE_OK);
+	CheckResult(dae.saveAs(getTmpFile(fs::basename(fs::path(uri)) + "_genericOps.dae").c_str(),
+												 uri.c_str()) == DAE_OK);
 
 	return true;
 }
@@ -693,12 +700,20 @@ void printTestResults(const set<string>& failedTests) {
 	}
 }
 
+struct tmpDir {
+	fs::path path;
+	
+	tmpDir(fs::path& path) : path(path) {
+		fs::create_directories(path);
+	}
+
+	~tmpDir() {
+		fs::remove_all(path);
+	}
+};
+
 
 int main(int argc, char* argv[]) {
-	// Shut the DOM up
-	daeErrorHandler::setErrorHandler(&quietErrorHandler::getInstance());
-	g_dataPath = (fs::path(argv[0]).branch_path()/"../../test/data/").normalize();
-
 	if (argc == 1) {
 		cout << "Usage:\n"
 			"  -printTests - Print the names of all available tests\n"
@@ -706,6 +721,13 @@ int main(int argc, char* argv[]) {
 			"  test1 test2 ... - Run the named tests\n";
 		return 0;
 	}
+
+	// Shut the DOM up
+	daeErrorHandler::setErrorHandler(&quietErrorHandler::getInstance());
+
+	g_dataPath = (fs::path(argv[0]).branch_path()/"../../test/data/").normalize();
+	g_tmpPath = g_dataPath / "tmp";
+	tmpDir tmp(g_tmpPath);
 
 	bool printTests = false;
 	bool allTests = false;
