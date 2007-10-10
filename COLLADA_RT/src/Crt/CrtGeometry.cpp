@@ -195,8 +195,46 @@ CrtGeometry::~CrtGeometry()
 		CrtDeleteData(SkinIndex);
 		SkinIndex = NULL;
 	}
-
 }
+
+#ifdef DEBUG_NORMAL_
+void CrtGeometry::DrawNormals()
+{
+	// Draw normals
+	if (_CrtRender.UsingVBOs())
+	{
+		glEnableClientState(GL_VERTEX_ARRAY); 
+		_CrtRender.BindVBO(GL_ARRAY_BUFFER, VBOIDs[eGeoTestNormal]);
+		glVertexPointer ( 3, GL_FLOAT, 0, NULL);				
+
+		_CrtRender.BindVBO(GL_ELEMENT_ARRAY_BUFFER, VBOIDs[eGeoTestNormalIndex]);
+		glDrawElements( GL_LINES, vertexcount * 2, GL_UNSIGNED_INT, 0);
+	}
+}
+
+bool	CrtGeometry::SetVBONTest()
+{
+	// allocate memory for the Normal Target
+	if (Points != NULL && Normals != NULL)
+	{
+		sumPN = CrtNewData(CrtVec3f, vertexcount * 2);
+		CrtAssert("can not allocated memory for Normal debug", sumPN != NULL);
+		sumPNIndex = CrtNewData(CrtUInt, vertexcount * 2);
+		CrtAssert("can not allocated memory (index) for Normal debug", sumPNIndex != NULL);
+		// add two set together
+		for (CrtUInt i = 0;i < vertexcount;i++)
+		{
+			sumPN[i*2] = Points[i];
+			sumPN[i*2 + 1] = Points[i] + Normals[i];
+		}
+		for (CrtUInt i = 0;i < vertexcount * 2;i++)
+			sumPNIndex[i] = i;
+
+		return true;
+	}
+	return false;
+}
+#endif
 
 void 	CrtGeometry::SetRender()
 {

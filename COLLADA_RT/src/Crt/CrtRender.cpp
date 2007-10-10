@@ -49,18 +49,17 @@ CrtBool  CrtRender::InitRenderSettings()
 
 	return CrtTrue; 
 }
-
 // PRE: It will set after the camera
 // This function will draw the grid for reference
-/*CrtBool CrtRender::InitBackground()
+CrtBool CrtRender::InitBackground()
 {
 	// Todo: judge the up axis and use the other 2 since it may not be y and decided by collada files
 	// draw grid geometry. Lines: along x and along z:
-	DrawFloorGrid(20, 20, 20);
+	//DrawFloorGrid(20, 20, 20);
 	DrawCoordinates();
 	return CrtTrue;
 }
-*/
+
 CrtVoid	CrtRender::SetInitialPath( const CrtChar * path )
 {
 
@@ -287,30 +286,63 @@ CrtBool CrtRender::Render()
 		instanceLight++;
 	}
 
-	// Are we using shadow maps?
-	// !!!GAC Shadow map code may not be functional right now
-	if ( UsingShadowMaps() )
+	
+	// If hidden line removal is used
+	if (_CrtRender.GetHiddenLineRemoval())
 	{
-		// Render the shadow pass
-		SetupRenderingToShadowMap(); 
-		Scene->Render(); 	
+		// backup the status:
+		glPushAttrib(GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT | GL_LIGHTING_BIT );
+
+		// disable lighting
+		glDisable(GL_LIGHTING);
+
+		glEnable(GL_DEPTH_TEST);
+
+		// Set color to be yellow
+		glColor3f(0.9f, 0.9f, 0.0f);
 		
-		// Now render the scene 
-		SetupRenderingWithShadowMap(); 
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		// first pass under the Line mode
 		Scene->Render();
+
+		// second pass under the full polygon mode:
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		glEnable(GL_POLYGON_OFFSET_FILL);
+		glPolygonOffset(1.0, 1.0);
+		glColor3f(0.0f, 0.0f, 0.9f);
+		Scene->Render();
+		glDisable(GL_POLYGON_OFFSET_FILL);
+
+		// backup the attribute
+		glPopAttrib();
 	}
 	else
-	{	
-		// Do a normal rendering without shadow maps
-		Scene->Render();
+	{
+		// Are we using shadow maps?
+		// !!!GAC Shadow map code may not be functional right now
+		if ( UsingShadowMaps() )
+		{
+			// Render the shadow pass
+			SetupRenderingToShadowMap(); 
+			Scene->Render(); 	
+			
+			// Now render the scene 
+			SetupRenderingWithShadowMap(); 
+			Scene->Render();
+		}
+		else
+		{	
+			// Do a normal rendering without shadow maps
+			Scene->Render();
+		}
 	}
 #ifdef _WIN32  // !!!GAC temporary windows only performance timing code
 	QueryPerformanceCounter(&render_time);
 	render_time.QuadPart = render_time.QuadPart - temp_time.QuadPart;
 #endif
 
-	// put the background here:
-//	_CrtRender.InitBackground();
+	_CrtRender.InitBackground();
 
 	return CrtTrue; 
 } 

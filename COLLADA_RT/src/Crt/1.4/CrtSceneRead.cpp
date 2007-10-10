@@ -41,6 +41,13 @@
 #include <stdio.h>
 #include <map>
 #include <string>
+
+#define LOAD_BREP 1 // switch that we want to load brep
+
+#if LOAD_BREP
+#include "Crt/CrtBrepBuilder.h"
+#endif
+
 using namespace std;
 
 // !!!GAC should not be a global, temporarily made it one during refactoring
@@ -984,7 +991,40 @@ CrtTriangles * CrtScene::BuildTriangles(domTriangles * dom_triangles, CrtGeometr
 }
 
 CrtVoid CrtScene::ParseGeometry(CrtGeometry * newGeo, domGeometry * dom_geometry)
-{
+{	
+#if LOAD_BREP
+	domBrep	*brepElement = NULL;
+	brepElement = dom_geometry->getBrep();
+	if (brepElement != NULL)
+	{
+		CrtBrep crtBrepElement(brepElement);	
+		crtBrepElement.LoadBrep();
+		MeshMerger mmerger(&crtBrepElement.getBrep());
+		
+		// only when we successfully scan and merge all faces, 
+		// we retrive information from it
+		if (mmerger.scanFaces())
+		{
+			// init memory of CrtGeometry based on information in mmerger
+			mmerger.InitCrtGeometry(newGeo);
+
+			// scan each face
+			CrtUInt numFaceGroups = mmerger.getNumFaces();
+			
+			// for each face, put triangles to newGeo
+			for (CrtUInt i=0; i < numFaceGroups ; i++)
+			{
+				CrtPolyGroup *newprimitives = mmerger.TriangleFace(newGeo, i);
+				newGeo->Groups.push_back(newprimitives);
+			}
+
+			// clean information in mmerger structure.
+			mmerger.clear();
+		}
+	}
+	else
+#endif
+	{
 	domMesh			*meshElement		= dom_geometry->getMesh();
 	newGeo->SetName( dom_geometry->getId() );
 	newGeo->SetDocURI( dom_geometry->getDocumentURI()->getURI() ); 
@@ -1038,7 +1078,7 @@ CrtVoid CrtScene::ParseGeometry(CrtGeometry * newGeo, domGeometry * dom_geometry
 		CrtPolyGroup *newprimitives = BuildLineStrips(meshElement->getLinestrips_array()[i], newGeo);
 		newGeo->Groups.push_back(newprimitives);
 	}
-
+	}
 	// set controller, we shouldn't need to set controller from geometry, only geometry to controller
 	// it is setting it two ways now, we will fix this later.
 /*	if (skin) {
@@ -1049,6 +1089,19 @@ CrtVoid CrtScene::ParseGeometry(CrtGeometry * newGeo, domGeometry * dom_geometry
 //			newGeo->Weights[p].Copy( &skin->Weights[newGeo->SkinIndex[p]] );
 	}
 */
+#ifdef DEBUG_NORMAL_
+	newGeo->SetVBONTest();
+	if ( _CrtRender.UsingVBOs())
+	{
+		newGeo->VBOIDs[eGeoTestNormal] = _CrtRender.GenerateVBO();
+		// line segment, so double vertices	
+		_CrtRender.CopyVBOData(GL_ARRAY_BUFFER, newGeo->VBOIDs[eGeoTestNormal],
+			newGeo->sumPN, 2*newGeo->vertexcount*3*sizeof(CrtFloat));
+		newGeo->VBOIDs[eGeoTestNormalIndex] = _CrtRender.GenerateVBO();
+		_CrtRender.CopyVBOData(GL_ELEMENT_ARRAY_BUFFER, newGeo->VBOIDs[eGeoTestNormalIndex], newGeo->sumPNIndex, 2*newGeo->vertexcount*sizeof(CrtUInt));
+	}
+#endif
+
 	if (_CrtRender.UsingVBOs())
 	{
 		for (CrtUInt i=0; i<newGeo->Groups.size() ; i++)
@@ -1062,9 +1115,9 @@ CrtVoid CrtScene::ParseGeometry(CrtGeometry * newGeo, domGeometry * dom_geometry
 
 		newGeo->VBOIDs[eGeoTexCoord0] = _CrtRender.GenerateVBO();
 		_CrtRender.CopyVBOData(GL_ARRAY_BUFFER, newGeo->VBOIDs[eGeoTexCoord0],newGeo->TexCoords[0], newGeo->vertexcount*2*sizeof(CrtFloat));
-	}
-
+	}	
 }
+
 CrtGeometry *CrtScene::ReadGeometry( domGeometryRef lib)
 {
 	if (lib->getId()==NULL) return NULL;
@@ -1101,8 +1154,14 @@ CrtGeometry *CrtScene::ReadGeometry( domGeometryRef lib)
 		CrtPrint( "	CrtScene::Item %s has an <spline> which RT doesn't support reading, skipped it.\n", lib->getId() );
 	}
 
+#if LOAD_BREP
+	domBrep			*brepElement		= lib->getBrep();
+	if (brepElement == NULL && meshElement == NULL)
+		return NULL;
+#else
 	if (meshElement == NULL)
 		return NULL;
+#endif
 
 	// Allocate space for the new geometry object 
 	CrtGeometry * newGeo     = CrtNew(CrtGeometry);
