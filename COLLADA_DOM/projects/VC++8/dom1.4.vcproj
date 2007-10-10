@@ -319,6 +319,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domBrep.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domCamera.cpp"
 				>
 			</File>
@@ -391,6 +395,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domCircle.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domCOLLADA.cpp"
 				>
 			</File>
@@ -411,6 +419,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domCone.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domConstants.cpp"
 				>
 			</File>
@@ -423,11 +435,31 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domCurves.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domCurveType.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domCylinder.cpp"
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domCylindrical.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domEdges.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domEffect.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domEllipse.cpp"
 				>
 			</File>
 			<File
@@ -436,6 +468,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domExtra.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domFaces.cpp"
 				>
 			</File>
 			<File
@@ -667,6 +703,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domHyperbola.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domIDREF_array.cpp"
 				>
 			</File>
@@ -807,6 +847,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domLine.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domLinear_extrusion_surface.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domLines.cpp"
 				>
 			</File>
@@ -844,6 +892,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domP.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domParabola.cpp"
 				>
 			</File>
 			<File
@@ -891,6 +943,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domRevolution_surface.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domRigid_body.cpp"
 				>
 			</File>
@@ -911,11 +967,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domShells.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domSIDREF_array.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domSkew.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domSkin.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domSolids.cpp"
 				>
 			</File>
 			<File
@@ -928,6 +996,14 @@
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domSpline.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domSurfaces.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domSurfaceType.cpp"
 				>
 			</File>
 			<File
@@ -948,6 +1024,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domTechnique.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domTorus.cpp"
 				>
 			</File>
 			<File
@@ -976,6 +1056,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domVisual_scene.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domWires.cpp"
 				>
 			</File>
 		</Filter>
@@ -1010,6 +1094,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domBox.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domBrep.h"
 				>
 			</File>
 			<File
@@ -1085,6 +1173,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domCircle.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domCOLLADA.h"
 				>
 			</File>
@@ -1105,6 +1197,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domCone.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domConstants.h"
 				>
 			</File>
@@ -1117,7 +1213,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domCurves.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domCurveType.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domCylinder.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domCylindrical.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domEdges.h"
 				>
 			</File>
 			<File
@@ -1129,11 +1241,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domEllipse.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domEllipsoid.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domExtra.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domFaces.h"
 				>
 			</File>
 			<File
@@ -1365,6 +1485,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domHyperbola.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domIDREF_array.h"
 				>
 			</File>
@@ -1505,6 +1629,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domLine.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domLinear_extrusion_surface.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domLines.h"
 				>
 			</File>
@@ -1542,6 +1674,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domP.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domParabola.h"
 				>
 			</File>
 			<File
@@ -1589,6 +1725,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domRevolution_surface.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domRigid_body.h"
 				>
 			</File>
@@ -1609,11 +1749,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domShells.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domSIDREF_array.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domSkew.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domSkin.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domSolids.h"
 				>
 			</File>
 			<File
@@ -1626,6 +1778,14 @@
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domSpline.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domSurfaces.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domSurfaceType.h"
 				>
 			</File>
 			<File
@@ -1646,6 +1806,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domTechnique.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domTorus.h"
 				>
 			</File>
 			<File
@@ -1674,6 +1838,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domVisual_scene.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domWires.h"
 				>
 			</File>
 		</Filter>
