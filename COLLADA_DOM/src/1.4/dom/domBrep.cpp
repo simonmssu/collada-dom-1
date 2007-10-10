@@ -1,0 +1,140 @@
+/*
+ * Copyright 2006 Sony Computer Entertainment Inc.
+ *
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * file except in compliance with the License. You may obtain a copy of the License at:
+ * http://research.scea.com/scea_shared_source_license.html
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License 
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+ * implied. See the License for the specific language governing permissions and limitations under the 
+ * License. 
+ */
+
+#include <dae/daeDom.h>
+#include <dom/domBrep.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
+
+daeElementRef
+domBrep::create(daeInt)
+{
+	domBrepRef ref = new domBrep;
+	return ref;
+}
+
+
+daeMetaElement *
+domBrep::registerElement()
+{
+    if ( _Meta != NULL ) return _Meta;
+    
+    _Meta = new daeMetaElement;
+    _Meta->setName( "brep" );
+	_Meta->registerClass(domBrep::create, &_Meta);
+
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "curves" );
+	mea->setOffset( daeOffsetOf(domBrep,elemCurves) );
+	mea->setElementType( domCurves::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
+	mea->setName( "surfaces" );
+	mea->setOffset( daeOffsetOf(domBrep,elemSurfaces) );
+	mea->setElementType( domSurfaces::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 4, -1 );
+	mea->setName( "source" );
+	mea->setOffset( daeOffsetOf(domBrep,elemSource_array) );
+	mea->setElementType( domSource::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 3, 1, 1 );
+	mea->setName( "vertices" );
+	mea->setOffset( daeOffsetOf(domBrep,elemVertices) );
+	mea->setElementType( domVertices::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
+	mea->setName( "edges" );
+	mea->setOffset( daeOffsetOf(domBrep,elemEdges) );
+	mea->setElementType( domEdges::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 5, 0, 1 );
+	mea->setName( "wires" );
+	mea->setOffset( daeOffsetOf(domBrep,elemWires) );
+	mea->setElementType( domWires::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 6, 0, 1 );
+	mea->setName( "faces" );
+	mea->setOffset( daeOffsetOf(domBrep,elemFaces) );
+	mea->setElementType( domFaces::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 7, 0, 1 );
+	mea->setName( "shells" );
+	mea->setOffset( daeOffsetOf(domBrep,elemShells) );
+	mea->setElementType( domShells::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 8, 0, 1 );
+	mea->setName( "solids" );
+	mea->setOffset( daeOffsetOf(domBrep,elemSolids) );
+	mea->setElementType( domSolids::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 9, 0, 1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domBrep,elemExtra) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 9 );
+	_Meta->setCMRoot( cm );	
+
+	//	Add attribute: id
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "id" );
+		ma->setType( daeAtomicType::get("xsID"));
+		ma->setOffset( daeOffsetOf( domBrep , attrId ));
+		ma->setContainer( _Meta );
+		ma->setIsRequired( true );
+	
+		_Meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: name
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "name" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domBrep , attrName ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
+	
+	
+	_Meta->setElementSize(sizeof(domBrep));
+	_Meta->validate();
+
+	return _Meta;
+}
+
+
+daeMetaElement * domBrep::_Meta = NULL;
+
+

@@ -50,6 +50,12 @@ domSource::registerElement()
 	cm = new daeMetaChoice( _Meta, cm, 0, 1, 0, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "SIDREF_array" );
+	mea->setOffset( daeOffsetOf(domSource,elemSIDREF_array) );
+	mea->setElementType( domSIDREF_array::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "IDREF_array" );
 	mea->setOffset( daeOffsetOf(domSource,elemIDREF_array) );
 	mea->setElementType( domIDREF_array::registerElement() );

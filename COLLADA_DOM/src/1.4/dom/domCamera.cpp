@@ -351,7 +351,7 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( _Meta, cm, 2, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "yfov" );

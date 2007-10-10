@@ -67,6 +67,12 @@ domGeometry::registerElement()
 	mea->setElementType( domSpline::registerElement() );
 	cm->appendChild( mea );
 	
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "brep" );
+	mea->setOffset( daeOffsetOf(domGeometry,elemBrep) );
+	mea->setElementType( domBrep::registerElement() );
+	cm->appendChild( mea );
+	
 	cm->setMaxOrdinal( 0 );
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
