@@ -46,6 +46,16 @@ class domTargetableFloat3;
 typedef daeSmartRef<domTargetableFloat3> domTargetableFloat3Ref;
 typedef daeTArray<domTargetableFloat3Ref> domTargetableFloat3_Array;
 
+class domSurfaceType;
+
+typedef daeSmartRef<domSurfaceType> domSurfaceTypeRef;
+typedef daeTArray<domSurfaceTypeRef> domSurfaceType_Array;
+
+class domCurveType;
+
+typedef daeSmartRef<domCurveType> domCurveTypeRef;
+typedef daeTArray<domCurveTypeRef> domCurveType_Array;
+
 class domFx_surface_format_hint_common;
 
 typedef daeSmartRef<domFx_surface_format_hint_common> domFx_surface_format_hint_commonRef;
@@ -460,6 +470,101 @@ class domSpline;
 
 typedef daeSmartRef<domSpline> domSplineRef;
 typedef daeTArray<domSplineRef> domSpline_Array;
+
+class domBrep;
+
+typedef daeSmartRef<domBrep> domBrepRef;
+typedef daeTArray<domBrepRef> domBrep_Array;
+
+class domCurves;
+
+typedef daeSmartRef<domCurves> domCurvesRef;
+typedef daeTArray<domCurvesRef> domCurves_Array;
+
+class domEdges;
+
+typedef daeSmartRef<domEdges> domEdgesRef;
+typedef daeTArray<domEdgesRef> domEdges_Array;
+
+class domWires;
+
+typedef daeSmartRef<domWires> domWiresRef;
+typedef daeTArray<domWiresRef> domWires_Array;
+
+class domFaces;
+
+typedef daeSmartRef<domFaces> domFacesRef;
+typedef daeTArray<domFacesRef> domFaces_Array;
+
+class domShells;
+
+typedef daeSmartRef<domShells> domShellsRef;
+typedef daeTArray<domShellsRef> domShells_Array;
+
+class domSolids;
+
+typedef daeSmartRef<domSolids> domSolidsRef;
+typedef daeTArray<domSolidsRef> domSolids_Array;
+
+class domLine;
+
+typedef daeSmartRef<domLine> domLineRef;
+typedef daeTArray<domLineRef> domLine_Array;
+
+class domCircle;
+
+typedef daeSmartRef<domCircle> domCircleRef;
+typedef daeTArray<domCircleRef> domCircle_Array;
+
+class domEllipse;
+
+typedef daeSmartRef<domEllipse> domEllipseRef;
+typedef daeTArray<domEllipseRef> domEllipse_Array;
+
+class domParabola;
+
+typedef daeSmartRef<domParabola> domParabolaRef;
+typedef daeTArray<domParabolaRef> domParabola_Array;
+
+class domLinear_extrusion_surface;
+
+typedef daeSmartRef<domLinear_extrusion_surface> domLinear_extrusion_surfaceRef;
+typedef daeTArray<domLinear_extrusion_surfaceRef> domLinear_extrusion_surface_Array;
+
+class domRevolution_surface;
+
+typedef daeSmartRef<domRevolution_surface> domRevolution_surfaceRef;
+typedef daeTArray<domRevolution_surfaceRef> domRevolution_surface_Array;
+
+class domHyperbola;
+
+typedef daeSmartRef<domHyperbola> domHyperbolaRef;
+typedef daeTArray<domHyperbolaRef> domHyperbola_Array;
+
+class domSurfaces;
+
+typedef daeSmartRef<domSurfaces> domSurfacesRef;
+typedef daeTArray<domSurfacesRef> domSurfaces_Array;
+
+class domCylindrical;
+
+typedef daeSmartRef<domCylindrical> domCylindricalRef;
+typedef daeTArray<domCylindricalRef> domCylindrical_Array;
+
+class domCone;
+
+typedef daeSmartRef<domCone> domConeRef;
+typedef daeTArray<domConeRef> domCone_Array;
+
+class domTorus;
+
+typedef daeSmartRef<domTorus> domTorusRef;
+typedef daeTArray<domTorusRef> domTorus_Array;
+
+class domSIDREF_array;
+
+typedef daeSmartRef<domSIDREF_array> domSIDREF_arrayRef;
+typedef daeTArray<domSIDREF_arrayRef> domSIDREF_array_Array;
 
 class domP;
 

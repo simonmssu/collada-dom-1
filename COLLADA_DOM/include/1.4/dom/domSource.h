@@ -18,6 +18,7 @@
 #include <dom/domElements.h>
 
 #include <dom/domAsset.h>
+#include <dom/domSIDREF_array.h>
 #include <dom/domIDREF_array.h>
 #include <dom/domName_array.h>
 #include <dom/domBool_array.h>
@@ -120,6 +121,11 @@ protected:  // Elements
  */
 	domAssetRef elemAsset;
 /**
+ *                  The source element may contain an SIDREF_array.      
+ * @see domSIDREF_array
+ */
+	domSIDREF_arrayRef elemSIDREF_array;
+/**
  *  The source element may contain an IDREF_array.  @see domIDREF_array
  */
 	domIDREF_arrayRef elemIDREF_array;
@@ -195,6 +201,11 @@ public:	//Accessors and Mutators
 	 */
 	const domAssetRef getAsset() const { return elemAsset; }
 	/**
+	 * Gets the SIDREF_array element.
+	 * @return a daeSmartRef to the SIDREF_array element.
+	 */
+	const domSIDREF_arrayRef getSIDREF_array() const { return elemSIDREF_array; }
+	/**
 	 * Gets the IDREF_array element.
 	 * @return a daeSmartRef to the IDREF_array element.
 	 */
@@ -249,7 +260,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domSource() : attrId(), attrName(), elemAsset(), elemIDREF_array(), elemName_array(), elemBool_array(), elemFloat_array(), elemInt_array(), elemTechnique_common(), elemTechnique_array() {}
+	domSource() : attrId(), attrName(), elemAsset(), elemSIDREF_array(), elemIDREF_array(), elemName_array(), elemBool_array(), elemFloat_array(), elemInt_array(), elemTechnique_common(), elemTechnique_array() {}
 	/**
 	 * Destructor
 	 */

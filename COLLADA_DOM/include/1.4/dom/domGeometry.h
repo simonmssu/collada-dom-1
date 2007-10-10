@@ -21,6 +21,7 @@
 #include <dom/domConvex_mesh.h>
 #include <dom/domMesh.h>
 #include <dom/domSpline.h>
+#include <dom/domBrep.h>
 #include <dom/domExtra.h>
 
 /**
@@ -59,6 +60,10 @@ protected:  // Elements
  */
 	domMeshRef elemMesh;
 	domSplineRef elemSpline;
+/**
+ *  The Brep position is based on version 0.93.  @see domBrep
+ */
+	domBrepRef elemBrep;
 /**
  *  The extra element may appear any number of times.  @see domExtra
  */
@@ -124,6 +129,11 @@ public:	//Accessors and Mutators
 	 */
 	const domSplineRef getSpline() const { return elemSpline; }
 	/**
+	 * Gets the brep element.
+	 * @return a daeSmartRef to the brep element.
+	 */
+	const domBrepRef getBrep() const { return elemBrep; }
+	/**
 	 * Gets the extra element array.
 	 * @return Returns a reference to the array of extra elements.
 	 */
@@ -148,7 +158,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGeometry() : attrId(), attrName(), elemAsset(), elemConvex_mesh(), elemMesh(), elemSpline(), elemExtra_array() {}
+	domGeometry() : attrId(), attrName(), elemAsset(), elemConvex_mesh(), elemMesh(), elemSpline(), elemBrep(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
