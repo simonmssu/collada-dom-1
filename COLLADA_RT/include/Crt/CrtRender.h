@@ -129,6 +129,9 @@ class CrtRender
 
 	CrtMatrix   CurrentLocalToWorldMatrix; 
 
+	// Wei Added for hidden line removal
+	CrtBool IsHiddenLineRemoval;
+
 public:
 	CrtInstanceCamera	*ActiveInstanceCamera;  /**<< Pointer to the active camera instance in the scene */
 	CrtInstanceCamera	*DefaultInstanceCamera;  /**<< Pointer to the default camera instance in the scene */
@@ -147,6 +150,15 @@ public:
 	CrtBool	InitWindow();
 	CrtBool	InitRenderSettings();
 	
+	// new code by Wei draw the ground grid and axis.
+	CrtBool InitBackground();
+	CrtBool DrawFloorGrid(int num_x, int num_z, int interval);
+	CrtBool DrawCoordinates();
+
+	// new code by Wei
+	inline void SetHiddenLineRemoval(CrtBool HiddenLineRemovalFlag) {IsHiddenLineRemoval = HiddenLineRemovalFlag;}
+	inline CrtBool GetHiddenLineRemoval() {return IsHiddenLineRemoval;}
+
 	CrtScene * Load( const CrtChar * fileName, const CrtChar * pathName = NULL );
 	CrtVoid UnLoad();
 

@@ -23,7 +23,8 @@
 #include <vector>
 #include <stdio.h>
 #include <map>
-#include <vector>
+#include <float.h>
+
 using namespace std;
 
 #define MAX_STRING_SIZE 512
@@ -123,6 +124,27 @@ struct CrtVec3f
 	inline CrtVec3f& Normalize(void) 
 		{ 	return (*this /= sqrtf(x * x + y * y + z * z)); 	}
 
+	// modified by wei: for <map> use
+	inline bool operator < (const CrtVec3f &v) const
+	{
+		bool res = false;
+
+		if (v.x - x > FLT_MIN)
+			res = true;
+		else if (fabs(x - v.x) < FLT_MIN) // x and v.x are almost equat
+		{
+			if (v.y - y > FLT_MIN)
+				res = true;
+			else if (fabs(v.y - y) < FLT_MIN)
+			{
+				if (v.z - z > FLT_MIN)
+					res = true;
+			}
+		}
+
+		return res;
+	}
+
 	inline CrtBool operator ==( CrtVec3f v)
 	{
 		if ( x != v.x )
@@ -219,7 +241,21 @@ struct CrtVec4i
 
 };
 
+// Wei Guo Use: for indices of vertex / normal of triangles: 
+struct CrtVec3i
+{
+	CrtInt32 x,y,z; 
 
+	CrtVec3i()
+	{
+		x = y = z = 0; 
+	}
+
+	CrtVec3i( CrtInt32 xx, CrtInt32 yy, CrtInt32 zz )
+	{
+		x = xx; y = yy; z = zz;
+	}
+};
 
 
 struct CrtColor3f

@@ -19,6 +19,10 @@
 #include <string>
 #include <vector>
 
+#define DEBUG_NORMAL_ 1 // modified by wei: 
+// for vis normal of each triangle to make sure computation result is correct
+// The data is applied is CrtGeometry.
+
 class CrtMaterial;
 #include "cfxLoader.h"
 #include "cfxEffect.h"
@@ -200,6 +204,10 @@ enum CrtGeoDataType
 	eGeoTexCoord5,
 	eGeoTexCoord6,
 	eGeoTexCoord7,
+#ifdef DEBUG_NORMAL_
+	eGeoTestNormal, // for visualization of normals
+	eGeoTestNormalIndex, 
+#endif
 	eGeoDataTypeMax
 };
 
@@ -429,6 +437,13 @@ public:
 
 	std::vector<CrtPolyGroup *> Groups;
 
+#ifdef DEBUG_NORMAL_
+	CrtUInt			* sumPNIndex;
+	CrtVec3f		* sumPN; // Points + Normals, target for normal visulization.
+	bool SetVBONTest(); // set VBO data for normal test.
+	void DrawNormals();
+#endif
+	
 	CrtGeometry()
 	{
 		VerticesSet			= CrtFalse; 
@@ -463,6 +478,11 @@ protected:
 	 */
 	CrtVoid	Draw(CrtNode *parentNode, CrtInstance * instance)
 	{
+#ifdef DEBUG_NORMAL_
+		DrawNormals();
+#endif
+
+		// Active new vertex buffer
 		SetRender();
 		for (CrtUInt i = 0; i < Groups.size(); i++ )
 		{
