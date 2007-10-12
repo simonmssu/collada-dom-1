@@ -28,16 +28,16 @@ namespace fs = boost::filesystem;
 
 using namespace std;
 
-#define CheckResult(val)									\
-	if (!(val)) {														\
-		cout << "Line " << __LINE__ << endl;	\
-		return false;													\
+#define CheckResult(val) \
+	if (!(val)) { \
+		cout << "Line " << __LINE__ << endl; \
+		return false; \
 	}
 
-#define CheckResultWithMsg(val, msg)											\
-	if (!(val)) {																						\
-		cout << "Line " << __LINE__ << ". " << (msg) << endl;	\
-		return false;																					\
+#define CheckResultWithMsg(val, msg) \
+	if (!(val)) { \
+		cout << "Line " << __LINE__ << ". " << (msg) << endl; \
+		return false; \
 	}
 
 struct domTest;
@@ -52,19 +52,19 @@ struct domTest {
 	virtual bool run() = 0;
 };
 
-#define DefineTest(testName)											\
-	struct domTest_##testName : public domTest {		\
-		domTest_##testName() : domTest(#testName) { }	\
-		bool run();																		\
-	};																							\
-	domTest_##testName domTest_##testName##Obj;			\
+#define DefineTest(testName) \
+	struct domTest_##testName : public domTest { \
+		domTest_##testName() : domTest(#testName) { } \
+		bool run();	\
+	}; \
+	domTest_##testName domTest_##testName##Obj; \
 	bool domTest_##testName::run()
 
-#define RunTest(testName)																						\
-	{																																	\
-		map<string, domTest*>::iterator iter = g_tests.find(#testName);	\
-		CheckResult(iter != g_tests.end());															\
-		CheckResult(iter->second->run());																\
+#define RunTest(testName) \
+	{ \
+		map<string, domTest*>::iterator iter = g_tests.find(#testName); \
+		CheckResult(iter != g_tests.end()); \
+		CheckResult(iter->second->run()); \
 	}
 
 
@@ -132,7 +132,7 @@ vector<string> split(const string& s, const char c) {
 	vector<string> result;
 	size_t currentIndex = 0, nextTokenIndex = 0;
 	while (currentIndex < s.length() &&
-				 (nextTokenIndex = s.find_first_of(c, currentIndex)) != string::npos) {
+	       (nextTokenIndex = s.find_first_of(c, currentIndex)) != string::npos) {
 		if ((nextTokenIndex - currentIndex) > 0)
 			result.push_back(s.substr(currentIndex, nextTokenIndex-currentIndex));
 		currentIndex = nextTokenIndex+1;
@@ -169,6 +169,107 @@ DefineTest(stringSplit) {
 }
 
 
+daeElement* findDescendant(daeElement* root, const string& name) {
+	if (!root)
+		return NULL;
+	if (root->getElementName() == name)
+		return root;
+
+	daeElementRefArray children;
+	root->getChildren(children);
+	for (size_t i = 0; i < children.getCount(); i++) {
+		if (daeElement* matchingEl = findDescendant(children[i], name))
+			return matchingEl;
+	}
+
+	return NULL;
+}
+
+// Return the name of the first descendant we couldn't find
+string checkAllDescendants(daeElement* root, const vector<string>& names) {
+	for (size_t i = 0; i < names.size(); i++)
+		if (!findDescendant(root, names[i]))
+			return names[i];
+	return "";
+}
+
+
+int compareElements(daeElement& elt1, daeElement& elt2);
+	
+int compareElementsSameType(daeElement& elt1, daeElement& elt2) {
+	// Compare attributes
+ 	for (size_t i = 0; i < elt1.getAttributeCount(); i++)
+ 		if (int result = elt1.getAttributeObject(i)->compare(&elt1, &elt2))
+ 			return result;
+
+	// Compare character data
+	if (elt1.getCharDataObject())
+		if (int result = elt1.getCharDataObject()->compare(&elt1, &elt2))
+			return result;
+
+	// Compare children
+	daeElementRefArray children1, children2;
+	elt1.getChildren(children1);
+	elt2.getChildren(children2);
+	if (children1.getCount() != children2.getCount())
+		return children1.getCount() < children2.getCount() ? -1 : 1;
+	for (size_t i = 0; i < children1.getCount(); i++)
+		if (int result = compareElements(*children1[i], *children2[i]))
+			return result;
+	
+	return 0;
+}
+
+// There's a bug in this function. It takes attribute order into account, but attribute
+// order doesn't matter in XML. This is unlikely to be a problem though.
+int compareElementsDifferentTypes(daeElement& elt1, daeElement& elt2) {
+	string value1, value2;
+
+	// Compare attributes
+	size_t attrCount1 = elt1.getAttributeCount(),
+	       attrCount2 = elt2.getAttributeCount();
+	if (attrCount1 != attrCount2)
+		return attrCount1 < attrCount2 ? -1 : 1;
+	for (size_t i = 0; i < attrCount1; i++) {
+		elt1.getAttribute(i, value1);
+		elt2.getAttribute(i, value2);
+		if (value1 != value2)
+			return value1 < value2 ? -1 : 1;
+	}
+
+	// Compare character data
+	elt1.getCharData(value1);
+	elt2.getCharData(value2);
+	if (value1 != value2)
+		return value1 < value2 ? -1 : 1;
+
+	// Compare children
+	daeElementRefArray children1, children2;
+	elt1.getChildren(children1);
+	elt2.getChildren(children2);
+	if (children1.getCount() != children2.getCount())
+		return children1.getCount() < children2.getCount() ? -1 : 1;
+	for (size_t i = 0; i < children1.getCount(); i++)
+		if (int result = compareElements(*children1[i], *children2[i]))
+			return result;
+	
+	return 0;
+}
+
+// Recursive comparison. Return -1 if elt1 < elt2, 0 if elt1 == elt2, and 1 if elt1 > elt2.
+int compareElements(daeElement& elt1, daeElement& elt2) {
+	// Check the element name
+	if (int result = strcmp(elt1.getElementName(), elt2.getElementName()))
+		return result < 0 ? -1 : 1;
+
+	// Dispatch to a specific function based on whether or not the types are the same
+	if (strcmp(elt1.getTypeName(), elt2.getTypeName())  ||  strcmp(elt1.getTypeName(), "any") == 0)
+		return compareElementsDifferentTypes(elt1, elt2);
+	else
+		return compareElementsSameType(elt1, elt2);
+}
+
+
 DefineTest(loadClipPlane) {
 	DAE dae;
 	CheckResult(dae.load(lookupTestFile("clipPlane.dae").c_str()) == DAE_OK);
@@ -179,8 +280,8 @@ DefineTest(loadClipPlane) {
 DefineTest(renderStates) {
 	DAE dae;
 
-	string docUri = getTmpFile("renderStates.dae");
-	dae.getDatabase()->insertDocument(docUri.c_str());
+	string docUri1 = getTmpFile("renderStates_create.dae");
+	dae.getDatabase()->insertDocument(docUri1.c_str());
 	daeElement* element;
 	dae.getDatabase()->getElement(&element, 0, 0, "COLLADA");
 
@@ -189,6 +290,7 @@ DefineTest(renderStates) {
 	element = element->createAndPlace("profile_CG");
 	element = element->createAndPlace("technique");
 	element = element->createAndPlace("pass");
+	element->createAndPlace("color_clear")->setCharData("0 0 0 0");
 	element->createAndPlace("depth_mask")->setAttribute("value", "true");
 	element->createAndPlace("cull_face_enable")->setAttribute("value", "true");
 	element->createAndPlace("blend_enable")->setAttribute("value", "true");
@@ -196,11 +298,24 @@ DefineTest(renderStates) {
 	element->createAndPlace("cull_face")->setAttribute("value", "FRONT");
 	element->createAndPlace("polygon_offset_fill_enable")->setAttribute("value", "true");
 	element->createAndPlace("clear_color")->setAttribute("value", "0 0 0 0");
-	daeElement* colorClear = element->createAndPlace("color_clear");
-	colorClear->getMeta()->getValueAttribute()->set(colorClear, "0 0 0 0");
+	
+	// Write the document to disk
+	string docUri2 = getTmpFile("renderStates.dae");
+	CheckResult(dae.saveAs(docUri2.c_str(),	docUri1.c_str()) == DAE_OK);
 
-	CheckResult(dae.save(docUri.c_str()) == DAE_OK);
-	/// !!!steveT Now load the file we just saved and examine its contents.
+	// Load up the saved document and see if it's the same as our in-memory document
+	CheckResult(dae.load(docUri2.c_str()) == DAE_OK);
+	domCOLLADA *root1 = dae.getDom(docUri1.c_str()),
+	           *root2 = dae.getDom(docUri2.c_str());
+	CheckResult(root1 && root2);
+	CheckResult(compareElements(*root1, *root2) == 0);
+
+	// Check default attribute value suppression
+	CheckResult(findDescendant(root2, "depth_mask")->isAttributeSet("value") == false);
+	CheckResult(findDescendant(root2, "clear_color")->isAttributeSet("value") == false);
+	CheckResult(findDescendant(root2, "color_clear")->getCharData() != "");
+	CheckResult(findDescendant(root2, "polygon_offset_fill_enable")->isAttributeSet("value"));
+		
 	return true;
 }
 
@@ -280,8 +395,7 @@ DefineTest(extraTypeTest) {
 	// !!!steveT What exactly am I trying to test here?
 	for (size_t i = 0; i < elements.getCount(); i++) {
 		daeElement* e = elements[i];
-		daeString name = e->getElementName() ? e->getElementName() : (daeString)e->getMeta()->getName();
-		cout << "name: " << name << ", type: " << e->getTypeName() << "\n";
+		cout << "name: " << e->getElementName() << ", type: " << e->getTypeName() << "\n";
 	}
 
 	return true;
@@ -302,12 +416,12 @@ DefineTest(tinyXmlLoad) {
 
 string resolveResultToString(daeSIDResolver::ResolveState state) {
 	switch(state) {
-	case daeSIDResolver::target_empty: return "target empty"; break;
-	case daeSIDResolver::target_loaded: return "target loaded"; break;
-	case daeSIDResolver::sid_failed_not_found: return "failed"; break;
-	case daeSIDResolver::sid_success_element: return "element"; break;
-	case daeSIDResolver::sid_success_array: return "array"; break;
-	case daeSIDResolver::sid_success_double: return "double"; break;
+		case daeSIDResolver::target_empty: return "target empty"; break;
+		case daeSIDResolver::target_loaded: return "target loaded"; break;
+		case daeSIDResolver::sid_failed_not_found: return "failed"; break;
+		case daeSIDResolver::sid_success_element: return "element"; break;
+		case daeSIDResolver::sid_success_array: return "array"; break;
+		case daeSIDResolver::sid_success_double: return "double"; break;
 	}
 
 	return "unknown error";
@@ -395,7 +509,7 @@ daeURI* getTextureUri(daeString samplerSid, domEffect& effect) {
 	daeElement* surface = findChildByName(resolveSid(surfaceSid, effect), "surface");
 	domImage* image =
 		daeSafeCast<domImage>(resolveID(getCharData(findChildByName(surface, "init_from")).c_str(),
-																		*effect.getDocument()));
+		                      *effect.getDocument()));
 	if (image && image->getInit_from())
 		return &image->getInit_from()->getValue();
 	return 0;
@@ -600,7 +714,7 @@ DefineTest(clone) {
 	el->getParentElement()->placeElement(clone);
 
 	CheckResult(dae.saveAs(getTmpFile("cloneTest.dae").c_str(),
-												 lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	            lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
 	return true;
 }
@@ -643,7 +757,7 @@ DefineTest(genericOps) {
  	daeElementRef clone = el->clone("-clone", "-clone");
 
 	CheckResult(el->getAttribute("attr1") == "value1" &&
-							el->getAttribute("attr2") == "value2");
+	            el->getAttribute("attr2") == "value2");
 	CheckResult(el->setAttribute("attr1", "value_1"));
 	CheckResult(el->setAttribute("attr3", "value3"));
 	
@@ -669,7 +783,7 @@ DefineTest(genericOps) {
 	}
 
 	CheckResult(dae.saveAs(getTmpFile(fs::basename(fs::path(uri)) + "_genericOps.dae").c_str(),
-												 uri.c_str()) == DAE_OK);
+	                       uri.c_str()) == DAE_OK);
 
 	return true;
 }
@@ -745,13 +859,17 @@ void printTestResults(const set<string>& failedTests) {
 
 struct tmpDir {
 	fs::path path;
+	bool deleteWhenDone;
 	
-	tmpDir(fs::path& path) : path(path) {
+	tmpDir(fs::path& path, bool deleteWhenDone)
+		: path(path),
+			deleteWhenDone(deleteWhenDone) {
 		fs::create_directories(path);
 	}
 
 	~tmpDir() {
-		fs::remove_all(path);
+		if (deleteWhenDone)
+			fs::remove_all(path);
 	}
 };
 
@@ -759,10 +877,26 @@ struct tmpDir {
 int main(int argc, char* argv[]) {
 	if (argc == 1) {
 		cout << "Usage:\n"
-			"  -printTests - Print the names of all available tests\n"
-			"  -all - Run all tests\n"
-			"  test1 test2 ... - Run the named tests\n";
+		        "  -printTests - Print the names of all available tests\n"
+		        "  -all - Run all tests\n"
+		        "  -leaveTmpFiles - Don't delete the tmp folder containing the generated test files\n"
+		        "  test1 test2 ... - Run the named tests\n";
 		return 0;
+	}
+
+	bool printTests = false;
+	bool allTests = false;
+	bool leaveTmpFiles = false;
+	set<string> tests;
+	for (int i = 1; i < argc; i++) {
+		if (string(argv[i]) == "-printTests")
+			printTests = true;
+		else if (string(argv[i]) == "-all")
+			allTests = true;
+		else if (string(argv[i]) == "-leaveTmpFiles")
+			leaveTmpFiles = true;
+		else
+			tests.insert(argv[i]);
 	}
 
 	// Shut the DOM up
@@ -770,19 +904,7 @@ int main(int argc, char* argv[]) {
 
 	g_dataPath = (fs::path(argv[0]).branch_path()/"../../test/data/").normalize();
 	g_tmpPath = g_dataPath / "tmp";
-	tmpDir tmp(g_tmpPath);
-
-	bool printTests = false;
-	bool allTests = false;
-	set<string> tests;
-	for (int i = 1; i < argc; i++) {
-		if (string(argv[i]) == "-printTests")
-			printTests = true;
-		else if (string(argv[i]) == "-all")
-			allTests = true;
-		else
-			tests.insert(argv[i]);
-	}
+	tmpDir tmp(g_tmpPath, !leaveTmpFiles);
 
 	if (checkTests(tests) == false)
 		return 0;

@@ -247,29 +247,38 @@ void daeElement::deleteCMDataArray(daeTArray<daeCharArray*>& cmData) {
 	cmData.clear();
 }
 
+size_t daeElement::getAttributeCount() {
+	return getMeta()->getMetaAttributes().getCount();
+}
+
 namespace {
-	// A helper function that implements daeElement::getAttributeObject's interface but also
-	// optionally returns the index of the attribute.
-	daeMetaAttribute* getAttributeObjectWithIndex(daeElement& el,
-																								daeString name,
-																								/* out */ size_t* index = 0) {
+	// A helper function to get the index of an attribute given the attribute name.
+	size_t getAttributeIndex(daeElement& el, daeString name) {
 		if (el.getMeta()) {
 			daeMetaAttributeRefArray& metaAttrs = el.getMeta()->getMetaAttributes();
 			for (size_t i = 0; i < metaAttrs.getCount(); i++)
-				if (metaAttrs[i]->getName()  &&  strcmp(metaAttrs[i]->getName(), name) == 0) {
-					if (index)
-						*index = i;
-					return metaAttrs[i];
-				}
+				if (metaAttrs[i]->getName()  &&  strcmp(metaAttrs[i]->getName(), name) == 0)
+					return i;
 		}
-		if (index)
-			*index = (size_t)-1;
-		return NULL;
+		return (size_t)-1;
 	}
 }
 
+daeMetaAttribute* daeElement::getAttributeObject(size_t i) {
+	daeMetaAttributeRefArray& attrs = getMeta()->getMetaAttributes();
+	if (i >= attrs.getCount())
+		return NULL;
+	return attrs[i];
+}	
+
 daeMetaAttribute* daeElement::getAttributeObject(daeString name) {
-	return getAttributeObjectWithIndex(*this, name);
+	return getAttributeObject(getAttributeIndex(*this, name));
+}
+
+daeString daeElement::getAttributeName(size_t i) {
+	if (daeMetaAttribute* attr = getAttributeObject(i))
+		return attr->getName();
+	return NULL;
 }
 
 daeBool daeElement::hasAttribute(daeString name) {
@@ -277,10 +286,25 @@ daeBool daeElement::hasAttribute(daeString name) {
 }
 
 daeBool daeElement::isAttributeSet(daeString name) {
-	size_t i;
-	if (getAttributeObjectWithIndex(*this, name, &i))
+	size_t i = getAttributeIndex(*this, name);
+	if (i != (size_t)-1)
 		return _validAttributeArray[i];
 	return false;
+}
+
+std::string daeElement::getAttribute(size_t i) {
+	std::string value;
+	getAttribute(i, value);
+	return value;
+}
+
+void daeElement::getAttribute(size_t i, std::string& value) {
+	value = "";
+	if (daeMetaAttribute* attr = getAttributeObject(i)) {
+		std::ostringstream buffer;
+		attr->memoryToString(this, buffer);
+		value = buffer.str();
+	}
 }
 
 std::string daeElement::getAttribute(daeString name) {
@@ -290,30 +314,48 @@ std::string daeElement::getAttribute(daeString name) {
 }
 
 void daeElement::getAttribute(daeString name, std::string& value) {
-	value = "";
-	if (daeMetaAttribute* attr = getAttributeObject(name)) {
-		std::ostringstream buffer;
-		attr->memoryToString(this, buffer);
-		value = buffer.str();
+	getAttribute(getAttributeIndex(*this, name), value);
+}
+
+daeElement::attr::attr() { }
+daeElement::attr::attr(const std::string& name, const std::string& value)
+	: name(name), value(value) { }
+
+daeTArray<daeElement::attr> daeElement::getAttributes() {
+	daeTArray<daeElement::attr> attrs;
+	getAttributes(attrs);
+	return attrs;
+}
+
+void daeElement::getAttributes(daeTArray<attr>& attrs) {
+	attrs.clear();
+	for (size_t i = 0; i < getAttributeCount(); i++) {
+		std::string value;
+		getAttribute(i, value);
+		attrs.append(attr(getAttributeName(i), value));
 	}
 }
 
-daeMemoryRef daeElement::getAttributeValue(daeString name) {
-	if (daeMetaAttribute* attr = getAttributeObject(name))
-		return attr->get(this);
-	return NULL;
-}
-
-daeBool daeElement::setAttribute(daeString name, daeString value) {
-	size_t index;
-	if (daeMetaAttribute* attr = getAttributeObjectWithIndex(*this, name, &index)) {
+daeBool daeElement::setAttribute(size_t i, daeString value) {
+	if (daeMetaAttribute* attr = getAttributeObject(i)) {
 		if (attr->getType()) {
 			attr->stringToMemory(this, value);
-			_validAttributeArray.set(index, true);
+			_validAttributeArray.set(i, true);
 			return true;
 		}
 	}
 	return false;
+}
+
+daeBool daeElement::setAttribute(daeString name, daeString value) {
+	return setAttribute(getAttributeIndex(*this, name), value);
+}
+
+// Deprecated
+daeMemoryRef daeElement::getAttributeValue(daeString name) {
+	if (daeMetaAttribute* attr = getAttributeObject(name))
+		return attr->get(this);
+	return NULL;
 }
 
 daeMetaAttribute* daeElement::getCharDataObject() {
@@ -430,17 +472,11 @@ daeElement::setup(daeMetaElement* meta)
 	daeMetaAttributeRefArray& attrs = meta->getMetaAttributes();
 	int macnt = (int)attrs.getCount();
 
-	_validAttributeArray.setCount( macnt );
+	_validAttributeArray.setCount(macnt, false);
 
-	int i;
-	for(i=0;i<macnt;i++) {
-		if (attrs[i]->getDefaultValue() != NULL) {
+	for (int i = 0; i < macnt; i++) {
+		if (attrs[i]->getDefaultValue() != NULL)
 			attrs[i]->copyDefault(this);
-			_validAttributeArray[i] = true;
-		}
-//		else {
-//			_validAttributeArray[i] = false;
-//		}
 	}
 
 	//set up the _CMData array if there is one
@@ -502,12 +538,12 @@ void daeElement::setElementName( daeString nm ) {
 	strcpy( (char*)_elementName, nm );
 }
 
-daeString daeElement::getID() const
-{
-	if ((_meta == NULL) || (!_meta->getIDAttribute()))
-		return NULL;
-	else
-		return *(daeStringRef*)_meta->getIDAttribute()->getWritableMemory(const_cast<daeElement*>(this));
+daeString daeElement::getID() const {
+	daeElement* this_ = const_cast<daeElement*>(this);
+	if (_meta)
+		if (daeMetaAttribute* idAttr = this_->getAttributeObject("id"))
+			return *(daeStringRef*)idAttr->get(this_);
+	return NULL;
 }
 
 void daeElement::getChildren( daeElementRefArray &array ) {

@@ -249,17 +249,17 @@ void daeSIDResolver::resolve()
 
 		for ( size_t x = 0; x < cnt; x++ ) {
 			if ( strcmp( children[x]->getTypeName(), "float_array" ) == 0 ) {
-				doubleArray = (daeDoubleArray*)children[x]->getMeta()->getValueAttribute()->getWritableMemory( children[x] );
+				doubleArray = (daeDoubleArray*)children[x]->getCharDataObject()->get(children[x]);
 				break;
 			}
 		}
 	}
 	else 
 	{
-		daeMetaAttribute *ma = element->getMeta()->getValueAttribute();
+		daeMetaAttribute *ma = element->getCharDataObject();
 		if ( ma != NULL ) {
 			if ( ma->isArrayAttribute() && ma->getType()->getTypeEnum() == daeAtomicType::DoubleType ) {
-				doubleArray = (daeDoubleArray*)ma->getWritableMemory( element );
+				doubleArray = (daeDoubleArray*)ma->get( element );
 			}
 		}
 	}

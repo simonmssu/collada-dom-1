@@ -682,6 +682,8 @@ public:
 	
 	virtual void resolve(daeElementRef element, daeChar* src);
 
+	virtual daeInt compare(daeChar* value1, daeChar* value2);
+
 	virtual daeMemoryRef create();
 
 	virtual void destroy(daeMemoryRef obj);
