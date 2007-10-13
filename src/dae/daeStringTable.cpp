@@ -76,5 +76,5 @@ void daeStringTable::clear()
 #endif
 
 	_stringBuffersList.clear();
-	_stringBufferIndex = 0;
+	_stringBufferIndex = _stringBufferSize;
 }

@@ -821,6 +821,16 @@ DefineTest(badSkew) {
 }
 
 
+DefineTest(stringTable) {
+	daeStringTable stringTable;
+	stringTable.allocString("hello");
+	// These next two lines used to cause an abort
+	stringTable.clear(); 
+	stringTable.allocString("goodbye");
+	return true;
+}
+
+
 // Returns true if all tests names are valid
 bool checkTests(const set<string>& tests) {
 	bool invalidTestFound = false;
