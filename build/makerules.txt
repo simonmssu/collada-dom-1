@@ -21,7 +21,8 @@
 
 OBJS  = $(addprefix $(INTERMEDIATE_DIR), $(notdir $(addsuffix $(OBJ_SUFFIX), $(basename $(SRC)))))
 OBJS += $(addprefix $(INTERMEDIATE_DIR), $(notdir $(addsuffix .res, $(basename $(RES)))))
-CLEAN_LIST  = $(OBJS) $(TARGET) $(TARGET_DYN)
+DEPENDENCY_FILES := $(addsuffix .d, $(basename $(OBJS)))
+CLEAN_LIST  = $(OBJS) $(DEPENDENCY_FILES) $(TARGET) $(TARGET_DYN)
 
 # Tell make where to find our source files
 SRC_DIRS = $(sort $(dir $(SRC))) # Generate a unique list of the paths containing our source files
@@ -44,6 +45,11 @@ uninstall: check_uninstall uninstall_headers uninstall_libraries done
 
 $(TARGET): $(OBJS)
 $(TARGET_DYN): $(OBJS)
+
+# Pull in dependency info for *existing* .o files
+ifneq ($(PRINT_DEPENDENCIES_OPTION), )
+-include $(OBJS:.o=.d)
+endif
 
 #########################################################
 # build install
@@ -76,9 +82,23 @@ uninstall_libraries:
 
 #########################################################
 # build rules
+INCLUDES_WITH_PREFIX := $(addprefix $(CCINC) ,$(INCLUDE_DIR))
 
+ifneq ($(PRINT_DEPENDENCIES_OPTION), )
+# Sweet, our compiler can automatically generate make rules for our dependencies.
+# See this for more info: http://www.cs.berkeley.edu/~smcpeak/autodepend/autodepend.html
 $(INTERMEDIATE_DIR)%$(OBJ_SUFFIX) : %.cpp
-				$(QUIET)$(CXX) -c $< $(CCQUIET) $(CCOPT) $(CCOUT)$@ $(addprefix $(CCINC) ,$(INCLUDE_DIR))
+	$(QUIET)$(CXX) -c $< $(CCQUIET) $(CCOPT) $(CCOUT)$@ $(INCLUDES_WITH_PREFIX)
+	@$(CXX) $(PRINT_DEPENDENCIES_OPTION) $< $(CCQUIET) $(CCOPT) $(INCLUDES_WITH_PREFIX) > $(basename $@).d
+	@mv -f $(basename $@).d $(basename $@).d.tmp
+	@sed -e 's|.*:|$@:|' < $(basename $@).d.tmp > $(basename $@).d
+	@sed -e 's/.*://' -e 's/\\$$//' < $(basename $@).d.tmp | fmt -1 | \
+		sed -e 's/^ *//' -e 's/$$/:/' >> $(basename $@).d
+	@rm -f $(basename $@).d.tmp
+else
+$(INTERMEDIATE_DIR)%$(OBJ_SUFFIX) : %.cpp
+	$(QUIET)$(CXX) -c $< $(CCQUIET) $(CCOPT) $(CCOUT)$@ $(INCLUDES_WITH_PREFIX)
+endif
 
 $(INTERMEDIATE_DIR)%.res : %.rc
 				$(QUIET)rc /fo$@ $<

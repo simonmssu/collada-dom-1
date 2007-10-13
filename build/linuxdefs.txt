@@ -30,6 +30,10 @@ CCINC = -I
 LDOUT = -o
 LDOPT = -shared
 
+# If you're trying to figure out what this -MM thing is for, see this: 
+#   http://www.cs.berkeley.edu/~smcpeak/autodepend/autodepend.html
+PRINT_DEPENDENCIES_OPTION := -MM
+
 RELEASE_CCOPT = -O2 -D"NDEBUG" 
 DEBUG_CCOPT = -g -D"_DEBUG" -Wall
 LIB_CCOPT =
