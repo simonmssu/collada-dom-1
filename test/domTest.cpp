@@ -1,5 +1,6 @@
 #include <cstdarg>
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <sstream>
 #include <memory>
@@ -28,6 +29,21 @@ namespace fs = boost::filesystem;
 
 using namespace std;
 
+float toFloat(const string& s) {
+	istringstream stream(s);
+	float f;
+	stream >> f;
+	return f;
+}
+
+template<typename T>
+string toString(const T& val) {
+	ostringstream stream;
+	stream << val;
+	return stream.str();
+}
+
+
 #define CheckResult(val) \
 	if (!(val)) { \
 		cout << "Line " << __LINE__ << endl; \
@@ -38,6 +54,16 @@ using namespace std;
 	if (!(val)) { \
 		cout << "Line " << __LINE__ << ". " << (msg) << endl; \
 		return false; \
+	}
+
+#define CompareDocs(dae, uri1, uri2) \
+	{ \
+		domCOLLADA *root1 = (dae).getDom((uri1).c_str()), \
+		           *root2 = (dae).getDom((uri2).c_str()); \
+		elementCompareResult result = compareElements(*root1, *root2); \
+		if (result.compareValue != 0) { \
+			cout << "Line " << __LINE__ << endl << result.format() << endl; \
+		} \
 	}
 
 struct domTest;
@@ -175,8 +201,7 @@ daeElement* findDescendant(daeElement* root, const string& name) {
 	if (root->getElementName() == name)
 		return root;
 
-	daeElementRefArray children;
-	root->getChildren(children);
+	daeElementRefArray children = root->getChildren();
 	for (size_t i = 0; i < children.getCount(); i++) {
 		if (daeElement* matchingEl = findDescendant(children[i], name))
 			return matchingEl;
@@ -194,79 +219,233 @@ string checkAllDescendants(daeElement* root, const vector<string>& names) {
 }
 
 
-int compareElements(daeElement& elt1, daeElement& elt2);
+struct elementCompareResult {
+	int compareValue; // > 0 if elt1 > elt2,
+	                  // < 0 if elt1 < elt2,
+	                  // = 0 if elt1 = elt2
+	daeElement* elt1;
+	daeElement* elt2;
+	bool nameMismatch; // true if the names didn't match
+	bool attrCountMismatch; // true if the number of attributes didn't match
+	int attrIndex; // The index of the mismatched attribute, or -1 if there is no attr mismatch
+	bool charDataMismatch; // true if the char data didn't match
+	bool childCountMismatch; // true if the number of children didn't match
+
+	elementCompareResult()
+		: compareValue(0),
+			elt1(NULL),
+			elt2(NULL),
+			nameMismatch(false),
+			attrCountMismatch(false),
+			attrIndex(-1),
+			charDataMismatch(false),
+			childCountMismatch(false) {
+	}
+
+	size_t getNecessaryColumnWidth(const vector<string>& tokens) {
+		size_t result = 0;
+		for (size_t i = 0; i < tokens.size(); i++) {
+			size_t tokenLength = tokens[i].length() > 0 ? tokens[i].length()+2 : 0;
+			result = max(tokenLength, result);
+		}
+		return result;
+	}
+
+	string formatToken(const string& token) {
+		if (token.length() <= 50)
+			return token;
+		return token.substr(0, 47) + "...";
+	}
 	
-int compareElementsSameType(daeElement& elt1, daeElement& elt2) {
+	string format() {
+		if (!elt1 || !elt2)
+			return "";
+
+		// Gather the data we'll be printing
+		string name1 = formatToken(elt1->getElementName()),
+		       name2 = formatToken(elt2->getElementName()),
+		       type1 = formatToken(elt1->getTypeName()),
+		       type2 = formatToken(elt2->getTypeName()),
+		       id1 = formatToken(elt1->getAttribute("id")),
+		       id2 = formatToken(elt2->getAttribute("id")),
+		       attrCount1 = formatToken(toString(elt1->getAttributeCount())),
+		       attrCount2 = formatToken(toString(elt2->getAttributeCount())),
+		       attrName1 = formatToken(elt1->getAttributeName(attrIndex)),
+		       attrName2 = formatToken(elt2->getAttributeName(attrIndex)),
+		       attrValue1 = formatToken(elt1->getAttribute(attrIndex)),
+		       attrValue2 = formatToken(elt2->getAttribute(attrIndex)),
+		       charData1 = formatToken(elt1->getCharData()),
+		       charData2 = formatToken(elt2->getCharData()),
+		       childCount1 = formatToken(toString(elt1->getChildren().getCount())),
+		       childCount2 = formatToken(toString(elt2->getChildren().getCount()));
+		
+		// Compute formatting information
+		vector<string> col1Tokens = makeStringArray("Name", "Type", "ID", "Attr count",
+			"Attr name", "Attr value", "Char data", "Child count", 0);
+		vector<string> col2Tokens = makeStringArray("Element 1", name1.c_str(),
+			type1.c_str(), id1.c_str(), attrCount1.c_str(), attrName1.c_str(), attrValue1.c_str(),
+			charData1.c_str(), childCount1.c_str(), 0);
+		
+		size_t c1w = getNecessaryColumnWidth(col1Tokens),
+		       c2w = getNecessaryColumnWidth(col2Tokens);
+		ostringstream msg;
+		msg << setw(c1w) << left << ""            << setw(c2w) << left << "Element 1" << "Element 2\n"
+		    << setw(c1w) << left << ""            << setw(c2w) << left << "---------" << "---------\n"
+		    << setw(c1w) << left << "Name"        << setw(c2w) << left << name1 << name2 << endl
+		    << setw(c1w) << left << "Type"        << setw(c2w) << left << type1 << type2 << endl
+		    << setw(c1w) << left << "ID"          << setw(c2w) << left << id1 << id2 << endl
+		    << setw(c1w) << left << "Attr count"  << setw(c2w) << left << attrCount1 << attrCount2 << endl
+		    << setw(c1w) << left << "Attr name"   << setw(c2w) << left << attrName1 << attrName2 << endl
+		    << setw(c1w) << left << "Attr value"  << setw(c2w) << left << attrValue1 << attrValue2 << endl
+		    << setw(c1w) << left << "Char data"   << setw(c2w) << left << charData1 << charData2 << endl
+		    << setw(c1w) << left << "Child count" << setw(c2w) << left << childCount1 << childCount2 << endl;
+
+		return msg.str();
+	}
+};
+
+elementCompareResult compareMatch() {
+	elementCompareResult result;
+	result.compareValue = 0;
+	return result;
+}
+
+elementCompareResult nameMismatch(daeElement& elt1, daeElement& elt2) {
+	elementCompareResult result;
+	result.elt1 = &elt1;
+	result.elt2 = &elt2;
+	result.compareValue = strcmp(elt1.getElementName(), elt2.getElementName());
+	result.nameMismatch = true;
+	return result;
+}
+
+elementCompareResult attrCountMismatch(daeElement& elt1, daeElement& elt2) {
+	elementCompareResult result;
+	result.elt1 = &elt1;
+	result.elt2 = &elt2;
+	result.compareValue = elt1.getAttributeCount() - elt2.getAttributeCount();
+	result.attrCountMismatch = true;
+	return result;
+}
+
+elementCompareResult attrMismatch(daeElement& elt1, daeElement& elt2, int attr) {
+	elementCompareResult result;
+	result.elt1 = &elt1;
+	result.elt2 = &elt2;
+	result.compareValue = strcmp(elt1.getAttribute(attr).c_str(),
+	                             elt2.getAttribute(attr).c_str());
+	result.attrIndex = attr;
+	return result;
+}
+
+elementCompareResult charDataMismatch(daeElement& elt1, daeElement& elt2) {
+	elementCompareResult result;
+	result.elt1 = &elt1;
+	result.elt2 = &elt2;
+	result.compareValue = strcmp(elt1.getCharData().c_str(),
+	                             elt2.getCharData().c_str());
+	result.charDataMismatch = true;
+	return result;
+}
+
+elementCompareResult childCountMismatch(daeElement& elt1, daeElement& elt2) {
+	elementCompareResult result;
+	result.elt1 = &elt1;
+	result.elt2 = &elt2;
+	daeElementRefArray children1 = elt1.getChildren(),
+	                   children2 = elt2.getChildren();
+	result.compareValue = children1.getCount() - children2.getCount();
+	result.childCountMismatch = true;
+	return result;
+}
+
+
+elementCompareResult compareElements(daeElement& elt1, daeElement& elt2);
+	
+elementCompareResult compareElementsSameType(daeElement& elt1, daeElement& elt2) {
 	// Compare attributes
  	for (size_t i = 0; i < elt1.getAttributeCount(); i++)
- 		if (int result = elt1.getAttributeObject(i)->compare(&elt1, &elt2))
- 			return result;
+ 		if (elt1.getAttributeObject(i)->compare(&elt1, &elt2) != 0)
+ 			return attrMismatch(elt1, elt2, i);
 
 	// Compare character data
 	if (elt1.getCharDataObject())
-		if (int result = elt1.getCharDataObject()->compare(&elt1, &elt2))
-			return result;
+		if (elt1.getCharDataObject()->compare(&elt1, &elt2) != 0)
+			return charDataMismatch(elt1, elt2);
 
 	// Compare children
-	daeElementRefArray children1, children2;
-	elt1.getChildren(children1);
-	elt2.getChildren(children2);
+	daeElementRefArray children1 = elt1.getChildren(),
+	                   children2 = elt2.getChildren();
 	if (children1.getCount() != children2.getCount())
-		return children1.getCount() < children2.getCount() ? -1 : 1;
-	for (size_t i = 0; i < children1.getCount(); i++)
-		if (int result = compareElements(*children1[i], *children2[i]))
+		return childCountMismatch(elt1, elt2);
+	for (size_t i = 0; i < children1.getCount(); i++) {
+		elementCompareResult result = compareElements(*children1[i], *children2[i]);
+		if (result.compareValue != 0)
 			return result;
+	}
 	
-	return 0;
+	return compareMatch();
 }
 
 // There's a bug in this function. It takes attribute order into account, but attribute
 // order doesn't matter in XML. This is unlikely to be a problem though.
-int compareElementsDifferentTypes(daeElement& elt1, daeElement& elt2) {
+elementCompareResult compareElementsDifferentTypes(daeElement& elt1, daeElement& elt2) {
 	string value1, value2;
 
 	// Compare attributes
 	size_t attrCount1 = elt1.getAttributeCount(),
 	       attrCount2 = elt2.getAttributeCount();
 	if (attrCount1 != attrCount2)
-		return attrCount1 < attrCount2 ? -1 : 1;
+		return attrCountMismatch(elt1, elt2);
 	for (size_t i = 0; i < attrCount1; i++) {
 		elt1.getAttribute(i, value1);
 		elt2.getAttribute(i, value2);
 		if (value1 != value2)
-			return value1 < value2 ? -1 : 1;
+			return attrMismatch(elt1, elt2, i);
 	}
 
 	// Compare character data
 	elt1.getCharData(value1);
 	elt2.getCharData(value2);
 	if (value1 != value2)
-		return value1 < value2 ? -1 : 1;
+		return charDataMismatch(elt1, elt2);
 
 	// Compare children
-	daeElementRefArray children1, children2;
-	elt1.getChildren(children1);
-	elt2.getChildren(children2);
+	daeElementRefArray children1 = elt1.getChildren(),
+	                   children2 = elt2.getChildren();
 	if (children1.getCount() != children2.getCount())
-		return children1.getCount() < children2.getCount() ? -1 : 1;
-	for (size_t i = 0; i < children1.getCount(); i++)
-		if (int result = compareElements(*children1[i], *children2[i]))
+		return childCountMismatch(elt1, elt2);
+	for (size_t i = 0; i < children1.getCount(); i++) {
+		elementCompareResult result = compareElements(*children1[i], *children2[i]);
+		if (result.compareValue != 0)
 			return result;
+	}
 	
-	return 0;
+	return compareMatch();
 }
 
 // Recursive comparison. Return -1 if elt1 < elt2, 0 if elt1 == elt2, and 1 if elt1 > elt2.
-int compareElements(daeElement& elt1, daeElement& elt2) {
+elementCompareResult compareElements(daeElement& elt1, daeElement& elt2) {
 	// Check the element name
-	if (int result = strcmp(elt1.getElementName(), elt2.getElementName()))
-		return result < 0 ? -1 : 1;
+	if (strcmp(elt1.getElementName(), elt2.getElementName()) != 0)
+		return nameMismatch(elt1, elt2);
 
 	// Dispatch to a specific function based on whether or not the types are the same
 	if (strcmp(elt1.getTypeName(), elt2.getTypeName())  ||  strcmp(elt1.getTypeName(), "any") == 0)
 		return compareElementsDifferentTypes(elt1, elt2);
 	else
 		return compareElementsSameType(elt1, elt2);
+}
+
+DefineTest(elementCompareResultTest) {
+	DAE dae;
+	string seymourOrig     = lookupTestFile("Seymour.dae"),
+	       seymourModified = lookupTestFile("Seymour_roundTrip.dae");
+	CheckResult(dae.load(seymourOrig.c_str()) == DAE_OK);
+	CheckResult(dae.load(seymourModified.c_str()) == DAE_OK);
+	CompareDocs(dae, seymourOrig, seymourModified);
+
+	return true;
 }
 
 
@@ -278,13 +457,13 @@ DefineTest(loadClipPlane) {
 
 
 DefineTest(renderStates) {
+	string memoryUri = "renderStates_create.dae";
+	string fileUri = getTmpFile("renderStates.dae");
+	
 	DAE dae;
+	CheckResult(dae.getDatabase()->insertDocument(memoryUri.c_str()) == DAE_OK);
 
-	string docUri1 = getTmpFile("renderStates_create.dae");
-	dae.getDatabase()->insertDocument(docUri1.c_str());
-	daeElement* element;
-	dae.getDatabase()->getElement(&element, 0, 0, "COLLADA");
-
+	daeElement* element = dae.getDom(memoryUri.c_str());
 	element = element->createAndPlace("library_effects");
 	element = element->createAndPlace("effect");
 	element = element->createAndPlace("profile_CG");
@@ -300,60 +479,71 @@ DefineTest(renderStates) {
 	element->createAndPlace("clear_color")->setAttribute("value", "0 0 0 0");
 	
 	// Write the document to disk
-	string docUri2 = getTmpFile("renderStates.dae");
-	CheckResult(dae.saveAs(docUri2.c_str(),	docUri1.c_str()) == DAE_OK);
+	CheckResult(dae.saveAs(fileUri.c_str(),	memoryUri.c_str()) == DAE_OK);
 
 	// Load up the saved document and see if it's the same as our in-memory document
-	CheckResult(dae.load(docUri2.c_str()) == DAE_OK);
-	domCOLLADA *root1 = dae.getDom(docUri1.c_str()),
-	           *root2 = dae.getDom(docUri2.c_str());
-	CheckResult(root1 && root2);
-	CheckResult(compareElements(*root1, *root2) == 0);
+	CheckResult(dae.load(fileUri.c_str()) == DAE_OK);
+	CompareDocs(dae, memoryUri, fileUri);
+	domCOLLADA* root = dae.getDom(fileUri.c_str());
+	CheckResult(root);
 
 	// Check default attribute value suppression
-	CheckResult(findDescendant(root2, "depth_mask")->isAttributeSet("value") == false);
-	CheckResult(findDescendant(root2, "clear_color")->isAttributeSet("value") == false);
-	CheckResult(findDescendant(root2, "color_clear")->getCharData() != "");
-	CheckResult(findDescendant(root2, "polygon_offset_fill_enable")->isAttributeSet("value"));
+	CheckResult(findDescendant(root, "depth_mask")->isAttributeSet("value") == false);
+	CheckResult(findDescendant(root, "clear_color")->isAttributeSet("value") == false);
+	CheckResult(findDescendant(root, "color_clear")->getCharData() != "");
+	CheckResult(findDescendant(root, "polygon_offset_fill_enable")->isAttributeSet("value"));
 		
 	return true;
 }
 
 
 DefineTest(writeCamera) {
+	string memoryUri = "camera_create.dae";
+	string fileUri = getTmpFile("camera.dae");
+
 	DAE dae;
+	CheckResult(dae.getDatabase()->insertDocument(memoryUri.c_str()) == DAE_OK);
 
-	string docUri = getTmpFile("camera.dae");
-	dae.getDatabase()->insertDocument(docUri.c_str());
-	daeElement* element;
-	dae.getDatabase()->getElement(&element, 0, 0, "COLLADA");
-
+	daeElement* element = dae.getDom(memoryUri.c_str());
 	element = element->createAndPlace("library_cameras");
 	element = element->createAndPlace("camera");
 	element = element->createAndPlace("optics");
 	element = element->createAndPlace("technique_common");
 	element = element->createAndPlace("perspective");
+	element = element->createAndPlace("xfov");
+	element->setCharData("1.0");
 
-	domCamera::domOptics::domTechnique_common::domPerspective* perspective =
-		daeSafeCast<domCamera::domOptics::domTechnique_common::domPerspective>(element);
-	domTargetableFloat* xfov = daeSafeCast<domTargetableFloat>(perspective->createAndPlace("xfov"));
-	xfov->setValue(1.0);
-
-	dae.save(docUri.c_str());
-	// !!!steveT Now load the file we just saved and examine its contents.
+	CheckResult(dae.saveAs(fileUri.c_str(), memoryUri.c_str()) == DAE_OK);
+	CheckResult(dae.load(fileUri.c_str()) == DAE_OK);
+	CompareDocs(dae, memoryUri, fileUri);
+	domCOLLADA* root = dae.getDom(fileUri.c_str());
+	CheckResult(root);
+	CheckResult(toFloat(findDescendant(root, "xfov")->getCharData()) == 1.0f);
+	
 	return true;
 }
 
 
-bool roundTrip(const string& uri) {
+string getRoundTripFile(const string& name) {
+	return getTmpFile(fs::basename(fs::path(name)) + "_roundTrip.dae");
+}
+
+bool roundTrip(const string& file) {
 	DAE dae;
-	CheckResult(dae.load(uri.c_str()) == DAE_OK);
-	return dae.saveAs(getTmpFile(fs::basename(fs::path(uri)) + "_roundTrip.dae").c_str(),
-	                  uri.c_str()) == DAE_OK;
+	if (dae.load(file.c_str()) != DAE_OK)
+		return false;
+	return dae.saveAs(getRoundTripFile(file).c_str(), file.c_str()) == DAE_OK;
 }
 
 DefineTest(roundTripSeymour) {
-	return roundTrip(lookupTestFile("Seymour.dae"));
+	string uri1 = lookupTestFile("Seymour.dae"),
+	       uri2 = getRoundTripFile(uri1);
+	DAE dae;
+	CheckResult(dae.load(uri1.c_str()) == DAE_OK);
+	CheckResult(dae.saveAs(uri2.c_str(), uri1.c_str()) == DAE_OK);
+	CheckResult(dae.load(uri2.c_str()) == DAE_OK);
+	CompareDocs(dae, uri1, uri2);
+	return true;
 }
 
 
@@ -389,8 +579,7 @@ DefineTest(extraTypeTest) {
 	dae.getDatabase()->getElement(&element, 0, 0, "technique");
 	CheckResult(element);
 
-	daeElementRefArray elements;
-	element->getChildren(elements);
+	daeElementRefArray elements = element->getChildren();
 
 	// !!!steveT What exactly am I trying to test here?
 	for (size_t i = 0; i < elements.getCount(); i++) {
@@ -472,9 +661,7 @@ daeElement* findChildByName(daeElement* el, daeString name) {
 	if (!el)
 		return 0;
 
-	daeElementRefArray children;
-	el->getChildren(children);
-
+	daeElementRefArray children = el->getChildren();
 	for (size_t i = 0; i < children.getCount(); i++)
 		if (strcmp(children[i]->getElementName(), name) == 0)
 			return children[i];

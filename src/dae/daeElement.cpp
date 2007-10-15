@@ -275,10 +275,10 @@ daeMetaAttribute* daeElement::getAttributeObject(daeString name) {
 	return getAttributeObject(getAttributeIndex(*this, name));
 }
 
-daeString daeElement::getAttributeName(size_t i) {
+std::string daeElement::getAttributeName(size_t i) {
 	if (daeMetaAttribute* attr = getAttributeObject(i))
-		return attr->getName();
-	return NULL;
+		return (daeString)attr->getName();
+	return "";
 }
 
 daeBool daeElement::hasAttribute(daeString name) {
@@ -544,6 +544,12 @@ daeString daeElement::getID() const {
 		if (daeMetaAttribute* idAttr = this_->getAttributeObject("id"))
 			return *(daeStringRef*)idAttr->get(this_);
 	return NULL;
+}
+
+daeElementRefArray daeElement::getChildren() {
+	daeElementRefArray array;
+	getChildren(array);
+	return array;
 }
 
 void daeElement::getChildren( daeElementRefArray &array ) {

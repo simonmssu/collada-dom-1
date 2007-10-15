@@ -239,9 +239,9 @@ public:
 	/**
 	 * Returns the name of the attribute at the specified index.
 	 * @param i The index of the attribute whose name should be retrieved.
-	 * @return Returns the name of the attribute.
+	 * @return Returns the name of the attribute, or "" if the index is out of range.
 	 */
-	DLLSPEC daeString getAttributeName(size_t i);
+	DLLSPEC std::string getAttributeName(size_t i);
 
 	/**
 	 * Checks if this element can have the attribute specified.
@@ -500,6 +500,13 @@ public:
 	 * This is a helper function used to easily access an element's children without the use of the
 	 * _meta objects.  This function adds the convenience of the _contents array to elements that do
 	 * not contain a _contents array.
+	 * @return The return value.  An elementref array to append this element's children to.
+	 */
+	DLLSPEC daeTArray< daeSmartRef<daeElement> > getChildren();
+
+	/**
+	 * Same as the previous function, but returns the result via a parameter instead
+	 * of a return value, for extra efficiency.
 	 * @param array The return value.  An elementref array to append this element's children to.
 	 */
 	//void getChildren( daeElementRefArray &array );
