@@ -1,8 +1,6 @@
 #include "Crt/CrtBrepBuilder.h"
 #include "Crt/CrtUtils.h"
-#include <shapefix_shape.hxx>
-#include <brepgprop_face.hxx>
-#include <TColgp_Array1OfPnt2d.hxx>
+
 
 CrtBrep::~CrtBrep()
 {

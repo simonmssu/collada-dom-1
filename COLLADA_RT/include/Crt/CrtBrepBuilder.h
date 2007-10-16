@@ -6,7 +6,6 @@
 #include <crt/CrtUtils.h>
 #include <crt/CrtGeometry.h>
 
-#include <TopTools_IndexedMapOfShape.hxx>
 #include <stdio.h>
 #include <string>
 #include <vector>

@@ -59,10 +59,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada_dae.lib libcollada_dom.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib BinLPlugin.lib FWOSPlugin.lib PTKernel.lib StdLPlugin.lib TKAdvTools.lib TKBinL.lib TKBO.lib TKBool.lib TKBRep.lib TKCAF.lib TKCDF.lib TKCDLFront.lib TKCPPClient.lib TKCPPExt.lib TKCPPIntExt.lib TKCPPJini.lib TKCSFDBSchema.lib TKDraw.lib TKernel.lib TKFeat.lib TKFillet.lib TKG2d.lib TKG3d.lib TKGeomAlgo.lib TKGeomBase.lib TKHLR.lib TKIDLFront.lib TKIGES.lib TKLCAF.lib TKMath.lib TKMesh.lib TKMeshVS.lib TKOffset.lib TKOpenGl.lib TKPCAF.lib TKPLCAF.lib TKPrim.lib TKPShape.lib TKService.lib TKShapeSchema.lib TKShHealing.lib TKSTL.lib TKTopAlgo.lib TKV2d.lib TKV3d.lib"
+				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada_dae.lib libcollada_dom.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib TKBO.lib TKBool.lib TKBRep.lib TKernel.lib TKG2d.lib TKG3d.lib TKGeomAlgo.lib TKGeomBase.lib TKMath.lib TKMesh.lib TKPrim.lib TKService.lib TKShHealing.lib TKTopAlgo.lib TKV2d.lib TKV3d.lib"
 				OutputFile="../../bin/vc8_1.4_debug/$(ProjectName).exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="../../lib/vc8_1.4_debug;&quot;$(COLLADA_DOM_LOCATION)/lib/vc8_1.4_debug&quot;;&quot;$(COLLADA_FX_LOCATION)/lib/vc8_1.4_debug&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/lib/vc8_1.4_debug&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/lib&quot;;&quot;$(CASROOT)\win32\libd&quot;;&quot;$(CG_LIB_PATH)&quot;"
+				AdditionalLibraryDirectories="../../lib/vc8_1.4_debug;&quot;$(COLLADA_DOM_LOCATION)/lib/vc8_1.4_debug&quot;;&quot;$(COLLADA_FX_LOCATION)/lib/vc8_1.4_debug&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/lib/vc8_1.4_debug&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/opencascade/win32&quot;;&quot;$(CG_LIB_PATH)&quot;"
 				GenerateManifest="true"
 				ManifestFile="$(IntDir)\$(TargetFileName).intermediate.manifest"
 				IgnoreDefaultLibraryNames="msvcrt"
@@ -93,7 +93,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="xcopy /Y $(COLLADA_EXTERNAL_LIBS_LOCATION)\devil\win32\lib\DevIL.dll $(TargetDir)"
+				CommandLine="xcopy /Y $(COLLADA_EXTERNAL_LIBS_LOCATION)\devil\win32\lib\DevIL.dll $(TargetDir)&#x0D;&#x0A;xcopy /Y $(COLLADA_EXTERNAL_LIBS_LOCATION)\opencascade\win32\*.dll $(TargetDir)"
 			/>
 		</Configuration>
 		<Configuration
@@ -137,9 +137,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada_dae.lib libcollada_dom.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib"
+				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada_dae.lib libcollada_dom.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib TKBO.lib TKBool.lib TKBRep.lib TKernel.lib TKG2d.lib TKG3d.lib TKGeomAlgo.lib TKGeomBase.lib TKMath.lib TKMesh.lib TKPrim.lib TKService.lib TKShHealing.lib TKTopAlgo.lib TKV2d.lib TKV3d.lib"
 				OutputFile="../../bin/vc8_1.4/$(ProjectName).exe"
-				AdditionalLibraryDirectories="../../lib/vc8_1.4;&quot;$(COLLADA_DOM_LOCATION)/lib/vc8_1.4&quot;;&quot;$(COLLADA_FX_LOCATION)/lib/vc8_1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/lib/vc8_1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/lib&quot;;&quot;$(CG_LIB_PATH)&quot;"
+				AdditionalLibraryDirectories="../../lib/vc8_1.4;&quot;$(COLLADA_DOM_LOCATION)/lib/vc8_1.4&quot;;&quot;$(COLLADA_FX_LOCATION)/lib/vc8_1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/lib/vc8_1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/opencascade/win32&quot;;&quot;$(CG_LIB_PATH)&quot;"
 				GenerateDebugInformation="false"
 			/>
 			<Tool
@@ -165,7 +165,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="xcopy /Y $(COLLADA_EXTERNAL_LIBS_LOCATION)\devil\win32\lib\DevIL.dll $(TargetDir)"
+				CommandLine="xcopy /Y $(COLLADA_EXTERNAL_LIBS_LOCATION)\devil\win32\lib\DevIL.dll $(TargetDir)&#x0D;&#x0A;xcopy /Y $(COLLADA_EXTERNAL_LIBS_LOCATION)\opencascade\win32\*.dll $(TargetDir)"
 			/>
 		</Configuration>
 	</Configurations>

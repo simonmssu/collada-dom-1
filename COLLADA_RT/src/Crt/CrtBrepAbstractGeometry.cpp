@@ -1,9 +1,5 @@
 #include "Crt/CrtBrepBuilder.h"
 #include "Crt/CrtUtils.h"
-#include <tcolstd_array1ofinteger.hxx>
-#include <tcolStd_array1Ofreal.hxx>
-#include <tcolgp_array2ofpnt.hxx>
-#include <tcolStd_array2Ofreal.hxx>
 
 gp_Pnt AbsCurve_OCC_Parser::o(0.0, 0.0, 0.0 );
 gp_Dir AbsCurve_OCC_Parser::x(1.0, 0.0, 0.0 );
