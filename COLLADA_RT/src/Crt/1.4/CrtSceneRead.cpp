@@ -997,29 +997,34 @@ CrtVoid CrtScene::ParseGeometry(CrtGeometry * newGeo, domGeometry * dom_geometry
 	brepElement = dom_geometry->getBrep();
 	if (brepElement != NULL)
 	{
-		CrtBrep crtBrepElement(brepElement);	
-		crtBrepElement.LoadBrep();
-		MeshMerger mmerger(&crtBrepElement.getBrep());
-		
-		// only when we successfully scan and merge all faces, 
-		// we retrive information from it
-		if (mmerger.scanFaces())
+		CrtBrep crtBrepElement(brepElement);
+		bool IsValid;
+		IsValid = crtBrepElement.LoadBrep();
+
+		if (IsValid)
 		{
-			// init memory of CrtGeometry based on information in mmerger
-			mmerger.InitCrtGeometry(newGeo);
-
-			// scan each face
-			CrtUInt numFaceGroups = mmerger.getNumFaces();
+			MeshMerger mmerger(&crtBrepElement.getBrep());
 			
-			// for each face, put triangles to newGeo
-			for (CrtUInt i=0; i < numFaceGroups ; i++)
+			// only when we successfully scan and merge all faces, 
+			// we retrive information from it
+			if (mmerger.scanFaces())
 			{
-				CrtPolyGroup *newprimitives = mmerger.TriangleFace(newGeo, i);
-				newGeo->Groups.push_back(newprimitives);
-			}
+				// init memory of CrtGeometry based on information in mmerger
+				mmerger.InitCrtGeometry(newGeo);
 
-			// clean information in mmerger structure.
-			mmerger.clear();
+				// scan each face
+				CrtUInt numFaceGroups = mmerger.getNumFaces();
+				
+				// for each face, put triangles to newGeo
+				for (CrtUInt i=0; i < numFaceGroups ; i++)
+				{
+					CrtPolyGroup *newprimitives = mmerger.TriangleFace(newGeo, i);
+					newGeo->Groups.push_back(newprimitives);
+				}
+
+				// clean information in mmerger structure.
+				mmerger.clear();
+			}
 		}
 	}
 	else

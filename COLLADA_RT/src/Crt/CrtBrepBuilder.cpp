@@ -9,6 +9,27 @@ CrtBrep::~CrtBrep()
 	// will only clear the pointer of toposh_shape
 	data = NULL;
 	mShape.Nullify();
+
+	if ( !mVertexMap.IsEmpty() )
+		mVertexMap.Clear();
+
+	if ( !mEdgeMap.IsEmpty() )
+		mEdgeMap.Clear();
+
+	if ( !mWireMap.IsEmpty() )
+		mWireMap.Clear();
+	
+	if ( !mFaceMap.IsEmpty() )
+		mFaceMap.Clear();
+
+	if ( !mShellMap.IsEmpty() )
+		mShellMap.Clear();
+
+	if ( !mShellMap.IsEmpty() )
+		mShellMap.Clear();
+
+	if ( !mSolidMap.IsEmpty() )
+		mSolidMap.Clear();
 }
 
 // This functions will load vertices of every BREP and 
@@ -50,6 +71,8 @@ bool CrtBrep::initVertices(domVertices *brepVertices)
 // PRE: vertices have been built.
 bool CrtBrep::initEdges(domEdges *brepEdges) // Edge element
 {
+	bool IsValid = false;
+
 	enum edge_offset_index{
 		CURVE_OFFSET_INDEX,
 		PARAM_OFFSET_INDEX,
@@ -121,7 +144,12 @@ bool CrtBrep::initEdges(domEdges *brepEdges) // Edge element
 		}
 
 		// load curve:
-		cur_occ_parser->ReadCurve(brepCurves, curve_occ);
+		IsValid = cur_occ_parser->ReadCurve(brepCurves, curve_occ);
+		if (!IsValid) // can not load curve
+		{
+			// TODO: prepare to release memory before?
+			return false;
+		}
 
 		// find the indices of two vertices of curve: OFFSET as 1 and 2 
 		// this do not need inputs because of mVertexMap
@@ -256,6 +284,8 @@ bool CrtBrep::initWires(domWires *wires)
 
 bool CrtBrep::initFaces(domFaces *faces)
 {
+	bool IsValid = false;
+
 	enum face_offset_index
 	{
 		SURFACE_OFFSET_INDEX,
@@ -348,7 +378,9 @@ bool CrtBrep::initFaces(domFaces *faces)
 		}
 
 		// load surface:
-		sur_occ_parser->ReadSurface(brepSurfaces, surface_occ);
+		IsValid = sur_occ_parser->ReadSurface(brepSurfaces, surface_occ);
+		if (!IsValid)
+			return false;
 
 		// Make face by surface first:
 		if (!surface_occ.IsNull())
@@ -674,6 +706,8 @@ bool CrtBrep::LoadBrep()
 		else if (CrtCmp(name, "edges")) // load edge information
 		{
 			is_topology_loaded[EDGE] = initEdges((domEdges *) e);
+			if (!is_topology_loaded[EDGE])
+				return false;
 		}
 		else if (CrtCmp(name, "wires")) 
 		{
@@ -682,6 +716,8 @@ bool CrtBrep::LoadBrep()
 		else if (CrtCmp(name, "faces")) // load face information
 		{
 			is_topology_loaded[FACE] = initFaces((domFaces *) e);
+			if (!is_topology_loaded[FACE])
+				return false;
 		}
 		else if (CrtCmp(name, "shells")) // load shell information
 		{
@@ -852,8 +888,9 @@ bool MeshMerger::scanFaces()
 		// get num of triangles of each face and store it in the vector
 		int num_tris = facing->NbTriangles();
 		fs_vec.push_back(fs_index);
-		fs_index+=num_tris;
-
+		// init number of valid triangles.
+		size_t num_valid_tri = 0;
+		
 		// valid face triangulation
 		if ( !facing.IsNull() && num_tris > 0)
 		{
@@ -899,12 +936,13 @@ bool MeshMerger::scanFaces()
 
 				// update the global indices based on current triangle
 				// only continue when there is valid triangulation of each face
-				if ( !UpdateGlobalTriangles(fn, L, 
+				if ( UpdateGlobalTriangles(fn, L, 
 					index_array[ index_tri[0] ], 
 					index_array[ index_tri[1] ], 
-					index_array[ index_tri[2] ]) )
-					return false;
+					index_array[ index_tri[2] ]) )				
+					num_valid_tri++;
 			}
+			fs_index += num_valid_tri;
 		}
 		else
 			return false;
@@ -1038,6 +1076,8 @@ bool MeshMerger::UpdateGlobalTriangles(const gp_Vec &fn, const TopLoc_Location &
 			{
 				// TODO: we can consider to discard this triangle from current mesh
 				CrtPrint("Error: degerated triangle.\n");
+				//global_tris.push_back(tri(index0, index1, index2, 
+				//		0, 0, 0));
 				return false;
 			}
 		}
@@ -1045,6 +1085,8 @@ bool MeshMerger::UpdateGlobalTriangles(const gp_Vec &fn, const TopLoc_Location &
 		{
 			// TODO: we can consider to discard this triangle from current mesh
 			CrtPrint("Error: degerated triangle.\n");
+			//global_tris.push_back(tri(index0, index1, index2, 
+			//			0, 0, 0));
 			return false;
 		}
 	}
