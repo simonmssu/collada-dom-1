@@ -39,35 +39,17 @@ protected:
 
 };
 
-// for bspline usage: knot vector and mulitplicity
-struct knotOCC
-{
-	knotOCC();
-	static void GetValueAt(domFloat f, size_t i);
-	static void PreProcess(size_t, size_t);
-	static void PostProcess();
-
-	// member
-	static TColStd_Array1OfReal* knots;
-    static TColStd_Array1OfInteger* mults;
-	static vector <int> m;
-	static vector <double> kv;
-	static size_t size;
-	static size_t lastMult;
-
-	// value from previous elements
-	static bool IsPeriodic;
-	static size_t size_cv;
-};
-
 // This will be called for SURFACE elements
 struct AbsSurface_OCC_Parser
 {
 	// This will be for surface class:
 	bool ReadSurface(daeElement *, Handle( Geom_Surface ) &surface);
 
-	bool ReadCylinder(daeElement *, Handle( Geom_Surface ) &surface);
-	bool ReadPlane(daeElement *, Handle( Geom_Surface ) &surface);
+	bool ReadCylinder(const daeElement *, Handle( Geom_Surface ) &surface);
+	bool ReadPlane(const daeElement *, Handle( Geom_Surface ) &surface);
+	bool ReadBSpline(const daeElement *, Handle( Geom_Surface ) &surface); 
+	bool ReadTaperedCylinder(const daeElement *, Handle( Geom_Surface ) &surface); 
+	bool ReadCylindrical(const daeElement *, Handle( Geom_Surface ) &surface); 
 };
 
 
