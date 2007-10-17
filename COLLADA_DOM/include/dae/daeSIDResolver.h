@@ -131,15 +131,15 @@ private:
 	daeElement *findSID( daeElement *el, daeString sid );
 
 	// This data is provided by the user
-	std::string	 target;
-	std::string	 profile;	
-	daeElement  *container;
+	std::string	target;
+	std::string	profile;	
+	daeElement* container;
 
 	// This is the output for the user. It gets set after calling the resolve function.
-	ResolveState	  state;
-	daeElement		 *resolvedElement;
-	daeDoubleArray *resolvedDoubleArray;
-	daeDouble		   *resolvedDoublePtr;
+	ResolveState    state;
+	daeElementRef   resolvedElement;
+	daeDoubleArray* resolvedDoubleArray;
+	daeDouble*      resolvedDoublePtr;
 
 };
 

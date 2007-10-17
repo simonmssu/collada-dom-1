@@ -13,6 +13,7 @@
 
 #include <vector>
 #include <sstream>
+#include <algorithm>
 #include <dae/daeSIDResolver.h>
 #include <dae/daeIDRef.h>
 #include <dae/daeAtomicType.h>
@@ -23,6 +24,7 @@
 using namespace std;
 
 daeSIDResolver::daeSIDResolver( daeElement *container, daeString target, daeString profile )
+	: container(NULL)
 {
 	setContainer(container);
 	setTarget(target);
@@ -134,23 +136,34 @@ void daeSIDResolver::resolve()
 	if (tok == tokens.end())
 		return;
 
-	if (*tok == ".") {
+	if (*tok == "."  &&  (tok+1) != tokens.end()  &&  *(tok+1) == "/") {
 		element = container;
 	}	else {
 		daeIDRef idref( (*tok).c_str() );
 		idref.setContainer( container );
-		idref.resolveElement();
-		if ( idref.getState() != daeIDRef::id_success )
-			return;
 		element = idref.getElement();
+		if (!element) {
+			// If there is no pathing part (/) see if the first token resolves as a SID instead of an ID,
+			// and if so prepend a "./" to the SID ref and proceed. This is actually only valid for
+			// effect-style SIDs where the SID reference doesn't have an ID part. Unfortunately we don't
+			// know what type of SID reference this is, so we'll just do it for all SID refs. This is
+			// basically meant as a workaround so that clients don't have to prepend their effect-style
+			// SIDs with "./".
+			if (find(tokens.begin(), tokens.end(), "/") == tokens.end()) {
+				// Pretend that we had a ./ at the front
+				element = container;
+				tokens.insert(tokens.begin(), 2, ".");
+				tokens[1] = "/";
+				tok = tokens.begin(); // We invalidated the iterator by inserting into the array, so fix it
+			}
+		}
+		if (!element)
+			return;
 	}
 
-	// Next we have a list of SIDs, each one separated by "/". Once we hit one of ".()", we know we're
-	// done with the SID section.
+	// Next we have an optional list of SIDs, each one separated by "/". Once we hit one of ".()",
+	// we know we're done with the SID section.
 	tok++;
-	if (tok != tokens.end()  &&  *tok != "/")
-		return;
-	
 	for (; tok != tokens.end() && *tok == "/"; tok++) {
 		tok++; // Read the '/'
 		if (tok == tokens.end())
@@ -236,17 +249,17 @@ void daeSIDResolver::resolve()
 
 		for ( size_t x = 0; x < cnt; x++ ) {
 			if ( strcmp( children[x]->getTypeName(), "float_array" ) == 0 ) {
-				doubleArray = (daeDoubleArray*)children[x]->getMeta()->getValueAttribute()->getWritableMemory( children[x] );
+				doubleArray = (daeDoubleArray*)children[x]->getCharDataObject()->get(children[x]);
 				break;
 			}
 		}
 	}
 	else 
 	{
-		daeMetaAttribute *ma = element->getMeta()->getValueAttribute();
+		daeMetaAttribute *ma = element->getCharDataObject();
 		if ( ma != NULL ) {
 			if ( ma->isArrayAttribute() && ma->getType()->getTypeEnum() == daeAtomicType::DoubleType ) {
-				doubleArray = (daeDoubleArray*)ma->getWritableMemory( element );
+				doubleArray = (daeDoubleArray*)ma->get( element );
 			}
 		}
 	}

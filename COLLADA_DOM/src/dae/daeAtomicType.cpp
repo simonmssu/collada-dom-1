@@ -906,11 +906,26 @@ void daeIDResolverType::destroy(daeMemoryRef obj) {
 }
 
 
-daeInt
-daeStringRefType::compare(daeChar* value1, daeChar* value2) {
+daeInt daeStringRefType::compare(daeChar* value1, daeChar* value2) {
 	daeString s1 = *((daeStringRef *)value1);
 	daeString s2 = *((daeStringRef *)value2);
+	// For string types, the empty string and null are considered equivalent
+	if (!s1)
+		s1 = "";
+	if (!s2)
+		s2 = "";
 	return strcmp(s1, s2);
+}
+
+daeInt daeResolverType::compare(daeChar* value1, daeChar* value2) {
+	const char *uri1 = ((daeURI*)value1)->getURI(),
+	           *uri2 = ((daeURI*)value2)->getURI();
+	// Consider null and an empty string to be equivalent
+	if (!uri1)
+		uri1 = "";
+	if (!uri2)
+		uri2 = "";
+	return strcmp(uri1, uri2);
 }
 
 daeInt daeIDResolverType::compare(daeChar* value1, daeChar* value2) {

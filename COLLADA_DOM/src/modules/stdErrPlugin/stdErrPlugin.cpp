@@ -14,6 +14,8 @@
 #include <modules/stdErrPlugin.h>
 #include <stdio.h>
 
+quietErrorHandler quietErrorHandler::theInstance;
+
 stdErrPlugin::stdErrPlugin() {
 }
 

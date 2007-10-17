@@ -216,12 +216,32 @@ public:
 	};
 
 	/**
+	 * Returns the number of attributes in this element.
+	 * @return The number of attributes this element has.
+	 */
+	DLLSPEC size_t getAttributeCount();
+	
+	/**
 	 * Returns the daeMetaAttribute object corresponding to the attribute specified.
 	 * @param name The name of the attribute to find.
 	 * @return Returns the corresponding daeMetaAttribute object or NULL if this element
 	 * doesn't have the specified attribute.
 	 */
 	DLLSPEC daeMetaAttribute* getAttributeObject(daeString name);
+
+	/**
+	 * Returns the daeMetaAttribute object corresponding to attribute i.
+	 * @param i The index of the attribute to find.
+	 * @return Returns the corresponding daeMetaAttribute object
+	 */
+	DLLSPEC daeMetaAttribute* getAttributeObject(size_t i);
+
+	/**
+	 * Returns the name of the attribute at the specified index.
+	 * @param i The index of the attribute whose name should be retrieved.
+	 * @return Returns the name of the attribute, or "" if the index is out of range.
+	 */
+	DLLSPEC std::string getAttributeName(size_t i);
 
 	/**
 	 * Checks if this element can have the attribute specified.
@@ -257,13 +277,56 @@ public:
 	DLLSPEC void getAttribute(daeString name, std::string& value);
 
 	/**
-	 * Looks up an attribute field via its meta name and assign its value
-	 * as the <tt><i> attrValue </i></tt> String.
+	 * Gets an attribute's value as a string.
+	 * @param i The index of the attribute to retrieve.
+	 * @return The value of the attribute.
+	 */
+	DLLSPEC std::string getAttribute(size_t i);
+
+	/**
+	 * Just like the previous method, this method gets an attribute's value as a string. It
+	 * takes the string as a reference parameter instead of returning it, for extra efficiency.
+	 * @param i The index of the attribute to retrieve.
+	 * @param A string in which to store the value of the attribute.
+	 */
+	DLLSPEC void getAttribute(size_t i, std::string& value);
+
+	struct DLLSPEC attr {
+		attr();
+		attr(const std::string& name, const std::string& value);
+
+		std::string name;
+		std::string value;
+	};
+	
+	/**
+	 * Returns an array containing all the attributes of this element.
+	 * @return A daeArray of attr objects.
+	 */
+	DLLSPEC daeTArray<attr> getAttributes();
+
+	/**
+	 * Just like the previous method, this method returns an array containing all the attributes
+	 * of this element. It returns the result via a reference parameter for extra efficiency.
+	 * @param attrs The array of attr objects to return.
+	 */
+	DLLSPEC void getAttributes(daeTArray<attr>& attrs);
+
+	/**
+	 * Sets the attribute to the specified value.
 	 * @param name Attribute to set.
-	 * @param value String-based value to apply to the attribute.
+	 * @param value Value to apply to the attribute.
 	 * @return Returns true if the attribute was found and the value was set, false otherwise.
 	 */
 	virtual DLLSPEC daeBool setAttribute(daeString name, daeString value);
+
+	/**
+	 * Sets the attribute at the specified index to the given value.
+	 * @param i Index of the attribute to set.
+	 * @param value Value to apply to the attribute.
+	 * @return Returns true if the attribute was found and the value was set, false otherwise.
+	 */
+	virtual DLLSPEC daeBool setAttribute(size_t i, daeString value);
 
 	/**
 	 * Returns the daeMetaAttribute object corresponding to the character data for this element.
@@ -430,13 +493,20 @@ public:
 	 * an attribute on this element type.
 	 * @return the string for the element ID if it exists.
 	 */
-    DLLSPEC daeString getID() const;
+	DLLSPEC daeString getID() const;
 
 	/**
 	 * Gets the children/sub-elements of this element.
 	 * This is a helper function used to easily access an element's children without the use of the
 	 * _meta objects.  This function adds the convenience of the _contents array to elements that do
 	 * not contain a _contents array.
+	 * @return The return value.  An elementref array to append this element's children to.
+	 */
+	DLLSPEC daeTArray< daeSmartRef<daeElement> > getChildren();
+
+	/**
+	 * Same as the previous function, but returns the result via a parameter instead
+	 * of a return value, for extra efficiency.
 	 * @param array The return value.  An elementref array to append this element's children to.
 	 */
 	//void getChildren( daeElementRefArray &array );
