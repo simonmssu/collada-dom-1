@@ -22,7 +22,7 @@
 #include <TopTools_IndexedMapOfShape.hxx>
 
 // Shape fix
-#include <shapefix_shape.hxx>
+#include <Shapefix_Shape.hxx>
 #include <brepgprop_face.hxx>
 
 // Geom part
@@ -33,9 +33,6 @@
 #include <Geom_Parabola.hxx>
 #include <Geom_Hyperbola.hxx>
 #include <Geom_BSplineCurve.hxx>
-#include <Geom_OffsetCurve.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_TrimmedCurve.hxx>
 
 #include <Geom_Plane.hxx>
 #include <Geom_CylindricalSurface.hxx>
@@ -43,11 +40,9 @@
 #include <Geom_SphericalSurface.hxx>
 #include <Geom_ToroidalSurface.hxx>
 #include <Geom_BSplineSurface.hxx>
-#include <Geom_BezierSurface.hxx>
 #include <Geom_SurfaceOfRevolution.hxx>
 #include <Geom_SurfaceOfLinearExtrusion.hxx>
-#include <Geom_OffsetSurface.hxx>
-#include <Geom_RectangularTrimmedSurface.hxx>
+
 
 #include <Geom2d_Curve.hxx>
 #include <Geom2d_Line.hxx>
