@@ -2,9 +2,9 @@
 #define CRT_BREP_BUILDER
 
 
-#include <crt/CrtBrepHeaderFiles.h>
-#include <crt/CrtUtils.h>
-#include <crt/CrtGeometry.h>
+#include <Crt/CrtBrepHeaderFiles.h>
+#include <Crt/CrtUtils.h>
+#include <Crt/CrtGeometry.h>
 
 #include <stdio.h>
 #include <string>
