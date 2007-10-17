@@ -1,0 +1,24 @@
+// File:	TopoDS_TShape.lxx
+// Created:	Wed Mar 27 14:37:33 1991
+// Author:	Remi LEQUETTE
+//		<rle@phobox>
+
+//=======================================================================
+//function : Shapes
+//purpose  : 
+//=======================================================================
+
+inline const TopoDS_ListOfShape& TopoDS_TShape::Shapes() const
+{
+  return myShapes;
+}
+
+//=======================================================================
+//function : ChangeShapes
+//purpose  : 
+//=======================================================================
+
+inline TopoDS_ListOfShape& TopoDS_TShape::ChangeShapes()
+{
+  return myShapes;
+}
