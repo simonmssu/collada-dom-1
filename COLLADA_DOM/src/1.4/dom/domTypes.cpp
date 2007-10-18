@@ -2925,6 +2925,17 @@ void registerDomTypes()
 	((daeEnumType*)type)->_values->append(SPRINGTYPE_ANGULAR);    
 	daeAtomicType::append( type );
 
+	// TYPEDEF: DynamicLimitType	//check if this type has an existing base
+	type = daeAtomicType::get("Float2");
+	if ( type == NULL ) { //register as a raw type
+		type = new daeRawRefType;
+		type->_nameBindings.append("DynamicLimitType");
+		daeAtomicType::append( type );
+	}
+	else { //add binding to existing type
+		type->_nameBindings.append("DynamicLimitType");
+	}
+	
 }
 
 daeMetaElement* registerDomElements()

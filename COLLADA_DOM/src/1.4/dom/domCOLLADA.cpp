@@ -148,6 +148,30 @@ domCOLLADA::registerElement()
 	mea->setElementType( domLibrary_visual_scenes::registerElement() );
 	cm->appendChild( mea );
 	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "library_joints" );
+	mea->setOffset( daeOffsetOf(domCOLLADA,elemLibrary_joints_array) );
+	mea->setElementType( domLibrary_joints::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "library_kinematics_models" );
+	mea->setOffset( daeOffsetOf(domCOLLADA,elemLibrary_kinematics_models_array) );
+	mea->setElementType( domLibrary_kinematics_models::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "library_articulated_systems" );
+	mea->setOffset( daeOffsetOf(domCOLLADA,elemLibrary_articulated_systems_array) );
+	mea->setElementType( domLibrary_articulated_systems::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "library_kinematics_scenes" );
+	mea->setOffset( daeOffsetOf(domCOLLADA,elemLibrary_kinematics_scenes_array) );
+	mea->setElementType( domLibrary_kinematics_scenes::registerElement() );
+	cm->appendChild( mea );
+	
 	cm->setMaxOrdinal( 0 );
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
@@ -245,13 +269,19 @@ domCOLLADA::domScene::registerElement()
 	mea->setElementType( domInstanceWithExtra::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 2, 1, 1 );
+	mea->setName( "instance_kinematics_scene" );
+	mea->setOffset( daeOffsetOf(domCOLLADA::domScene,elemInstance_kinematics_scene) );
+	mea->setElementType( domInstance_kinematics_scene::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domCOLLADA::domScene,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 2 );
+	cm->setMaxOrdinal( 3 );
 	_Meta->setCMRoot( cm );	
 	
 	
