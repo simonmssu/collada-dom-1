@@ -303,7 +303,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domArticulated_system.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domAsset.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domAttach_point.cpp"
 				>
 			</File>
 			<File
@@ -444,6 +452,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domForce_field.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domFormula.cpp"
 				>
 			</File>
 			<File
@@ -687,6 +699,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domInstance_articulated_system.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domInstance_camera.cpp"
 				>
 			</File>
@@ -704,6 +720,18 @@
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domInstance_geometry.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domInstance_joint.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domInstance_kinematics_model.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domInstance_kinematics_scene.cpp"
 				>
 			</File>
 			<File
@@ -743,11 +771,35 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domJoint.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domJointType.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domKinematics.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domKinematics_model.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domKinematics_scene.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domLibrary_animation_clips.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domLibrary_animations.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domLibrary_articulated_systems.cpp"
 				>
 			</File>
 			<File
@@ -772,6 +824,18 @@
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domLibrary_images.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domLibrary_joints.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domLibrary_kinematics_models.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domLibrary_kinematics_scenes.cpp"
 				>
 			</File>
 			<File
@@ -807,11 +871,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\1.4\dom\domLimitsSubType.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domLimitsType.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\1.4\dom\domLines.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domLinestrips.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domLink.cpp"
 				>
 			</File>
 			<File
@@ -832,6 +908,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\1.4\dom\domMorph.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\1.4\dom\domMotion.cpp"
 				>
 			</File>
 			<File
@@ -997,7 +1077,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domArticulated_system.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domAsset.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domAttach_point.h"
 				>
 			</File>
 			<File
@@ -1142,6 +1230,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domForce_field.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domFormula.h"
 				>
 			</File>
 			<File
@@ -1385,6 +1477,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domInstance_articulated_system.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domInstance_camera.h"
 				>
 			</File>
@@ -1402,6 +1498,18 @@
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domInstance_geometry.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domInstance_joint.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domInstance_kinematics_model.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domInstance_kinematics_scene.h"
 				>
 			</File>
 			<File
@@ -1441,11 +1549,35 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domJoint.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domJointType.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domKinematics.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domKinematics_model.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domKinematics_scene.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domLibrary_animation_clips.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domLibrary_animations.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domLibrary_articulated_systems.h"
 				>
 			</File>
 			<File
@@ -1470,6 +1602,18 @@
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domLibrary_images.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domLibrary_joints.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domLibrary_kinematics_models.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domLibrary_kinematics_scenes.h"
 				>
 			</File>
 			<File
@@ -1505,11 +1649,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\1.4\dom\domLimitsSubType.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domLimitsType.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\1.4\dom\domLines.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domLinestrips.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domLink.h"
 				>
 			</File>
 			<File
@@ -1530,6 +1686,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\1.4\dom\domMorph.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\1.4\dom\domMotion.h"
 				>
 			</File>
 			<File
