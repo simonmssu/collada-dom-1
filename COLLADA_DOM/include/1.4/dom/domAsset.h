@@ -939,12 +939,12 @@ public:
 	protected:  // Attributes
 /**
  *  The meter attribute specifies the measurement with respect to the meter.
- * The default  value for the meter attribute is “1.0”. 
+ * The default  value for the meter attribute is â€œ1.0â€. 
  */
 		domFloat attrMeter;
 /**
  *  The name attribute specifies the name of the unit. The default value for
- * the name  attribute is “meter”. 
+ * the name  attribute is â€œmeterâ€. 
  */
 		xsNMTOKEN attrName;
 

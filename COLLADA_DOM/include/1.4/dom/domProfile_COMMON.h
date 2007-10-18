@@ -469,7 +469,7 @@ public:
  */
 		xsID attrId;
 /**
- *  The sid attribute is a text string value containing the sub-identifier
+ *   The sid attribute is a text string value containing the sub-identifier
  * of this element.  This value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
@@ -654,7 +654,7 @@ protected:  // Elements
  */
 	domTechniqueRef elemTechnique;
 /**
- *  The extra element may appear any number of times.  @see domExtra
+ *   The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 	/**

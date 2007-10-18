@@ -38,7 +38,7 @@ protected:  // Attributes
  */
 	xsNCName attrName;
 /**
- *  The count attribute indicates the number of values in the array. Required
+ *   The count attribute indicates the number of values in the array. Required
  * attribute. 
  */
 	domUint attrCount;

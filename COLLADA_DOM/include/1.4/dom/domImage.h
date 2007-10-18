@@ -187,7 +187,7 @@ public:
 
 protected:  // Attributes
 /**
- *  The id attribute is a text string containing the unique identifier of
+ *   The id attribute is a text string containing the unique identifier of
  * this element. This value  must be unique within the instance document.
  * Optional attribute. 
  */
@@ -207,7 +207,7 @@ protected:  // Attributes
  */
 	domUint attrHeight;
 /**
- *  The width attribute is an integer value that indicates the width of the
+ *   The width attribute is an integer value that indicates the width of the
  * image in pixel units.  Optional attribute. 
  */
 	domUint attrWidth;

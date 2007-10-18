@@ -784,7 +784,7 @@ public:
 	protected:  // Attributes
 		xsID attrId;
 /**
- *  The sid attribute is a text string value containing the sub-identifier
+ *   The sid attribute is a text string value containing the sub-identifier
  * of this element.  This value must be unique within the scope of the parent
  * element. 
  */
@@ -966,8 +966,8 @@ protected:  // Attributes
  */
 	xsID attrId;
 /**
- *  The type of platform. This is a vendor-defined character string that indicates
- * the platform or capability target for the technique. Optional 
+ *   The type of platform. This is a vendor-defined character string that
+ * indicates the platform or capability target for the technique. Optional
  */
 	xsNCName attrPlatform;
 

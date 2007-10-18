@@ -122,7 +122,7 @@ public:
 /**
  * The directional element declares the parameters required to describe a
  * directional light source.   A directional light is one that lights everything
- * from the same direction, regardless of location.   The light’s default
+ * from the same direction, regardless of location.   The lightâ€™s default
  * direction vector in local coordinates is [0,0,-1], pointing down the -Z
  * axis.  The actual direction of the light is defined by the transform of
  * the node where the light is  instantiated.
@@ -299,7 +299,7 @@ public:
  * angle increases away from the direction of the light source. The intensity
  * of a spot light source  is also attenuated as the distance to the light
  * source increases. The position of the light is  defined by the transform
- * of the node in which it is instantiated. The light’s default direction
+ * of the node in which it is instantiated. The lightâ€™s default direction
  * vector in local coordinates is [0,0,-1], pointing down the -Z axis. The
  * actual direction of the  light is defined by the transform of the node
  * where the light is instantiated.
@@ -426,7 +426,7 @@ public:
 /**
  * The directional element declares the parameters required to describe a
  * directional light source.   A directional light is one that lights everything
- * from the same direction, regardless of location.   The light’s default
+ * from the same direction, regardless of location.   The lightâ€™s default
  * direction vector in local coordinates is [0,0,-1], pointing down the -Z
  * axis.  The actual direction of the light is defined by the transform of
  * the node where the light is  instantiated. @see domDirectional
@@ -449,7 +449,7 @@ public:
  * angle increases away from the direction of the light source. The intensity
  * of a spot light source  is also attenuated as the distance to the light
  * source increases. The position of the light is  defined by the transform
- * of the node in which it is instantiated. The light’s default direction
+ * of the node in which it is instantiated. The lightâ€™s default direction
  * vector in local coordinates is [0,0,-1], pointing down the -Z axis. The
  * actual direction of the  light is defined by the transform of the node
  * where the light is instantiated. @see domSpot
@@ -550,7 +550,8 @@ protected:  // Attributes
  */
 	xsID attrId;
 /**
- *  The name attribute is the text string name of this element. Optional attribute.
+ *   The name attribute is the text string name of this element. Optional
+ * attribute. 
  */
 	xsNCName attrName;
 

@@ -54,7 +54,7 @@ protected:  // Elements
  */
 	domRigid_body_Array elemRigid_body_array;
 /**
- *  The physics_model may define any number of rigid_constraint elements.
+ *   The physics_model may define any number of rigid_constraint elements.
  * @see domRigid_constraint
  */
 	domRigid_constraint_Array elemRigid_constraint_array;

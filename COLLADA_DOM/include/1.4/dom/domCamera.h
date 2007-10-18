@@ -24,7 +24,8 @@
 
 /**
  * The camera element declares a view into the scene hierarchy or scene graph.
- * The camera contains  elements that describe the camera’s optics and imager.
+ * The camera contains  elements that describe the cameraâ€™s optics
+ * and imager.
  */
 class domCamera : public daeElement
 {
@@ -599,7 +600,7 @@ protected:  // Attributes
 
 protected:  // Elements
 /**
- *  The camera element may contain an asset element.  @see domAsset
+ *   The camera element may contain an asset element.  @see domAsset
  */
 	domAssetRef elemAsset;
 /**

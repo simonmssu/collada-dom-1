@@ -33,7 +33,12 @@
 #include <dom/domLibrary_physics_models.h>
 #include <dom/domLibrary_physics_scenes.h>
 #include <dom/domLibrary_visual_scenes.h>
+#include <dom/domLibrary_joints.h>
+#include <dom/domLibrary_kinematics_models.h>
+#include <dom/domLibrary_articulated_systems.h>
+#include <dom/domLibrary_kinematics_scenes.h>
 #include <dom/domExtra.h>
+#include <dom/domInstance_kinematics_scene.h>
 #include <dom/domInstanceWithExtra.h>
 
 /**
@@ -75,6 +80,7 @@ public:
  * once. @see domInstance_visual_scene
  */
 		domInstanceWithExtraRef elemInstance_visual_scene;
+		domInstance_kinematics_sceneRef elemInstance_kinematics_scene;
 /**
  *  The extra element may appear any number of times.  @see domExtra
  */
@@ -97,6 +103,11 @@ public:
 		 */
 		const domInstanceWithExtraRef getInstance_visual_scene() const { return elemInstance_visual_scene; }
 		/**
+		 * Gets the instance_kinematics_scene element.
+		 * @return a daeSmartRef to the instance_kinematics_scene element.
+		 */
+		const domInstance_kinematics_sceneRef getInstance_kinematics_scene() const { return elemInstance_kinematics_scene; }
+		/**
 		 * Gets the extra element array.
 		 * @return Returns a reference to the array of extra elements.
 		 */
@@ -110,7 +121,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domScene() : elemInstance_physics_scene_array(), elemInstance_visual_scene(), elemExtra_array() {}
+		domScene() : elemInstance_physics_scene_array(), elemInstance_visual_scene(), elemInstance_kinematics_scene(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -242,6 +253,10 @@ protected:  // Elements
  * @see domLibrary_visual_scenes
  */
 	domLibrary_visual_scenes_Array elemLibrary_visual_scenes_array;
+	domLibrary_joints_Array elemLibrary_joints_array;
+	domLibrary_kinematics_models_Array elemLibrary_kinematics_models_array;
+	domLibrary_articulated_systems_Array elemLibrary_articulated_systems_array;
+	domLibrary_kinematics_scenes_Array elemLibrary_kinematics_scenes_array;
 /**
  * The scene embodies the entire set of information that can be visualized
  * from the  contents of a COLLADA resource. The scene element declares the
@@ -470,6 +485,46 @@ public:	//Accessors and Mutators
 	 */
 	const domLibrary_visual_scenes_Array &getLibrary_visual_scenes_array() const { return elemLibrary_visual_scenes_array; }
 	/**
+	 * Gets the library_joints element array.
+	 * @return Returns a reference to the array of library_joints elements.
+	 */
+	domLibrary_joints_Array &getLibrary_joints_array() { return elemLibrary_joints_array; }
+	/**
+	 * Gets the library_joints element array.
+	 * @return Returns a constant reference to the array of library_joints elements.
+	 */
+	const domLibrary_joints_Array &getLibrary_joints_array() const { return elemLibrary_joints_array; }
+	/**
+	 * Gets the library_kinematics_models element array.
+	 * @return Returns a reference to the array of library_kinematics_models elements.
+	 */
+	domLibrary_kinematics_models_Array &getLibrary_kinematics_models_array() { return elemLibrary_kinematics_models_array; }
+	/**
+	 * Gets the library_kinematics_models element array.
+	 * @return Returns a constant reference to the array of library_kinematics_models elements.
+	 */
+	const domLibrary_kinematics_models_Array &getLibrary_kinematics_models_array() const { return elemLibrary_kinematics_models_array; }
+	/**
+	 * Gets the library_articulated_systems element array.
+	 * @return Returns a reference to the array of library_articulated_systems elements.
+	 */
+	domLibrary_articulated_systems_Array &getLibrary_articulated_systems_array() { return elemLibrary_articulated_systems_array; }
+	/**
+	 * Gets the library_articulated_systems element array.
+	 * @return Returns a constant reference to the array of library_articulated_systems elements.
+	 */
+	const domLibrary_articulated_systems_Array &getLibrary_articulated_systems_array() const { return elemLibrary_articulated_systems_array; }
+	/**
+	 * Gets the library_kinematics_scenes element array.
+	 * @return Returns a reference to the array of library_kinematics_scenes elements.
+	 */
+	domLibrary_kinematics_scenes_Array &getLibrary_kinematics_scenes_array() { return elemLibrary_kinematics_scenes_array; }
+	/**
+	 * Gets the library_kinematics_scenes element array.
+	 * @return Returns a constant reference to the array of library_kinematics_scenes elements.
+	 */
+	const domLibrary_kinematics_scenes_Array &getLibrary_kinematics_scenes_array() const { return elemLibrary_kinematics_scenes_array; }
+	/**
 	 * Gets the scene element.
 	 * @return a daeSmartRef to the scene element.
 	 */
@@ -499,7 +554,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCOLLADA() : attrVersion(), attrXml_base(), elemAsset(), elemLibrary_animations_array(), elemLibrary_animation_clips_array(), elemLibrary_cameras_array(), elemLibrary_controllers_array(), elemLibrary_geometries_array(), elemLibrary_effects_array(), elemLibrary_force_fields_array(), elemLibrary_images_array(), elemLibrary_lights_array(), elemLibrary_materials_array(), elemLibrary_nodes_array(), elemLibrary_physics_materials_array(), elemLibrary_physics_models_array(), elemLibrary_physics_scenes_array(), elemLibrary_visual_scenes_array(), elemScene(), elemExtra_array() {}
+	domCOLLADA() : attrVersion(), attrXml_base(), elemAsset(), elemLibrary_animations_array(), elemLibrary_animation_clips_array(), elemLibrary_cameras_array(), elemLibrary_controllers_array(), elemLibrary_geometries_array(), elemLibrary_effects_array(), elemLibrary_force_fields_array(), elemLibrary_images_array(), elemLibrary_lights_array(), elemLibrary_materials_array(), elemLibrary_nodes_array(), elemLibrary_physics_materials_array(), elemLibrary_physics_models_array(), elemLibrary_physics_scenes_array(), elemLibrary_visual_scenes_array(), elemLibrary_joints_array(), elemLibrary_kinematics_models_array(), elemLibrary_articulated_systems_array(), elemLibrary_kinematics_scenes_array(), elemScene(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

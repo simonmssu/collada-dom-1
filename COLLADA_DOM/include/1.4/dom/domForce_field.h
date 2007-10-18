@@ -31,7 +31,7 @@ public:
 	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FORCE_FIELD; }
 protected:  // Attributes
 /**
- *  The id attribute is a text string containing the unique identifier of
+ *   The id attribute is a text string containing the unique identifier of
  * this element. This value  must be unique within the instance document.
  * Optional attribute. 
  */

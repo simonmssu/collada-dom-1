@@ -44,7 +44,7 @@ protected:  // Attributes
 	domUint attrCount;
 /**
  *  The minInclusive attribute indicates the smallest integer value that can
- * be contained in  the array. The default value is –2147483648. Optional
+ * be contained in  the array. The default value is â€“2147483648. Optional
  * attribute. 
  */
 	xsInteger attrMinInclusive;

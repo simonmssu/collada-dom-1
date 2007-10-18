@@ -47,7 +47,7 @@ protected:  // Elements
  */
 	domGles_texenv_command_type_Array elemTexenv_array;
 /**
- *  The extra element may appear any number of times. OpenGL ES extensions
+ *   The extra element may appear any number of times. OpenGL ES extensions
  * may be used here.  @see domExtra
  */
 	domExtra_Array elemExtra_array;

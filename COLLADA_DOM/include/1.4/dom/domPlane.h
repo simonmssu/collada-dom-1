@@ -33,7 +33,7 @@ public:
 	typedef daeTArray<domEquationRef> domEquation_Array;
 
 /**
- * 4 float values that represent the coefficients for the plane’s equation:
+ * 4 float values that represent the coefficients for the planeâ€™s equation:
  * Ax + By + Cz + D = 0
  */
 	class domEquation : public daeElement
@@ -107,7 +107,7 @@ public:
 
 protected:  // Elements
 /**
- * 4 float values that represent the coefficients for the plane’s equation:
+ * 4 float values that represent the coefficients for the planeâ€™s equation:
  * Ax + By + Cz + D = 0 @see domEquation
  */
 	domEquationRef elemEquation;

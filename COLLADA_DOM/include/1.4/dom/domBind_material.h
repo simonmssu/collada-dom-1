@@ -107,8 +107,8 @@ public:
 
 protected:  // Elements
 /**
- *  The bind_material element may contain any number of param elements.  @see
- * domParam
+ *   The bind_material element may contain any number of param elements. 
+ * @see domParam
  */
 	domParam_Array elemParam_array;
 /**

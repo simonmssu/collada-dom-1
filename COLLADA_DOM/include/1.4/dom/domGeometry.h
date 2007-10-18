@@ -41,7 +41,8 @@ protected:  // Attributes
  */
 	xsID attrId;
 /**
- *  The name attribute is the text string name of this element. Optional attribute.
+ *   The name attribute is the text string name of this element. Optional
+ * attribute. 
  */
 	xsNCName attrName;
 

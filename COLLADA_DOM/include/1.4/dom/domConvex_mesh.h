@@ -33,7 +33,8 @@
  * with the exception that  instead of a complete description (source, vertices,
  * polygons etc.), it may simply point to another  geometry to derive its
  * shape. The latter case means that the convex hull of that geometry should
- * be computed and is indicated by the optional “convex_hull_of” attribute.
+ * be computed and is indicated by the optional â€œconvex_hull_ofâ€
+ * attribute.
  */
 class domConvex_mesh : public daeElement
 {

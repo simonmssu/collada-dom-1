@@ -28,10 +28,10 @@ class domInstanceWithExtra_complexType
 {
 protected:  // Attributes
 /**
- *  The url attribute refers to resource to instantiate. This may refer to
+ *   The url attribute refers to resource to instantiate. This may refer to
  * a local resource using a  relative URL fragment identifier that begins
- * with the “#” character. The url attribute may refer  to an external
- * resource using an absolute or relative URL. 
+ * with the â€œ#â€ character. The url attribute may refer  to an
+ * external resource using an absolute or relative URL. 
  */
 	xsAnyURI attrUrl;
 /**

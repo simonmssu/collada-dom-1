@@ -56,7 +56,7 @@ protected:  // Elements
  */
 	domLinestrips_Array elemLinestrips_array;
 /**
- *  The mesh element may contain any number of polygons elements.  @see domPolygons
+ *   The mesh element may contain any number of polygons elements.  @see domPolygons
  */
 	domPolygons_Array elemPolygons_array;
 /**
@@ -72,7 +72,8 @@ protected:  // Elements
  */
 	domTrifans_Array elemTrifans_array;
 /**
- *  The mesh element may contain any number of tristrips elements.  @see domTristrips
+ *   The mesh element may contain any number of tristrips elements.  @see
+ * domTristrips
  */
 	domTristrips_Array elemTristrips_array;
 /**

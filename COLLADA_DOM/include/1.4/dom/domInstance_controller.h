@@ -110,7 +110,7 @@ public:
 protected:  // Attributes
 /**
  *  The url attribute refers to resource. This may refer to a local resource
- * using a relative  URL fragment identifier that begins with the “#”
+ * using a relative  URL fragment identifier that begins with the â€œ#â€
  * character. The url attribute may refer to an  external resource using an
  * absolute or relative URL. 
  */
@@ -134,8 +134,8 @@ protected:  // Elements
  */
 	domSkeleton_Array elemSkeleton_array;
 /**
- *  Bind a specific material to a piece of geometry, binding varying and uniform
- * parameters at the  same time.  @see domBind_material
+ *   Bind a specific material to a piece of geometry, binding varying and
+ * uniform parameters at the  same time.  @see domBind_material
  */
 	domBind_materialRef elemBind_material;
 /**

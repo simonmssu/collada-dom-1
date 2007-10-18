@@ -54,7 +54,7 @@ protected:  // Elements
  */
 	domFx_annotate_common_Array elemAnnotate_array;
 /**
- *  The image element allows you to create image resources which can be shared
+ *   The image element allows you to create image resources which can be shared
  * by multipe profiles.  @see domImage
  */
 	domImage_Array elemImage_array;

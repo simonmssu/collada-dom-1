@@ -361,6 +361,21 @@ class domGles_newparam;
 typedef daeSmartRef<domGles_newparam> domGles_newparamRef;
 typedef daeTArray<domGles_newparamRef> domGles_newparam_Array;
 
+class domJointType;
+
+typedef daeSmartRef<domJointType> domJointTypeRef;
+typedef daeTArray<domJointTypeRef> domJointType_Array;
+
+class domLimitsType;
+
+typedef daeSmartRef<domLimitsType> domLimitsTypeRef;
+typedef daeTArray<domLimitsTypeRef> domLimitsType_Array;
+
+class domLimitsSubType;
+
+typedef daeSmartRef<domLimitsSubType> domLimitsSubTypeRef;
+typedef daeTArray<domLimitsSubTypeRef> domLimitsSubType_Array;
+
 class domFx_surface_init_common;
 
 typedef daeSmartRef<domFx_surface_init_common> domFx_surface_init_commonRef;
@@ -865,6 +880,91 @@ class domPhysics_model;
 
 typedef daeSmartRef<domPhysics_model> domPhysics_modelRef;
 typedef daeTArray<domPhysics_modelRef> domPhysics_model_Array;
+
+class domLibrary_joints;
+
+typedef daeSmartRef<domLibrary_joints> domLibrary_jointsRef;
+typedef daeTArray<domLibrary_jointsRef> domLibrary_joints_Array;
+
+class domJoint;
+
+typedef daeSmartRef<domJoint> domJointRef;
+typedef daeTArray<domJointRef> domJoint_Array;
+
+class domLibrary_kinematics_models;
+
+typedef daeSmartRef<domLibrary_kinematics_models> domLibrary_kinematics_modelsRef;
+typedef daeTArray<domLibrary_kinematics_modelsRef> domLibrary_kinematics_models_Array;
+
+class domKinematics_model;
+
+typedef daeSmartRef<domKinematics_model> domKinematics_modelRef;
+typedef daeTArray<domKinematics_modelRef> domKinematics_model_Array;
+
+class domInstance_joint;
+
+typedef daeSmartRef<domInstance_joint> domInstance_jointRef;
+typedef daeTArray<domInstance_jointRef> domInstance_joint_Array;
+
+class domLink;
+
+typedef daeSmartRef<domLink> domLinkRef;
+typedef daeTArray<domLinkRef> domLink_Array;
+
+class domAttach_point;
+
+typedef daeSmartRef<domAttach_point> domAttach_pointRef;
+typedef daeTArray<domAttach_pointRef> domAttach_point_Array;
+
+class domInstance_kinematics_model;
+
+typedef daeSmartRef<domInstance_kinematics_model> domInstance_kinematics_modelRef;
+typedef daeTArray<domInstance_kinematics_modelRef> domInstance_kinematics_model_Array;
+
+class domLibrary_articulated_systems;
+
+typedef daeSmartRef<domLibrary_articulated_systems> domLibrary_articulated_systemsRef;
+typedef daeTArray<domLibrary_articulated_systemsRef> domLibrary_articulated_systems_Array;
+
+class domArticulated_system;
+
+typedef daeSmartRef<domArticulated_system> domArticulated_systemRef;
+typedef daeTArray<domArticulated_systemRef> domArticulated_system_Array;
+
+class domKinematics;
+
+typedef daeSmartRef<domKinematics> domKinematicsRef;
+typedef daeTArray<domKinematicsRef> domKinematics_Array;
+
+class domMotion;
+
+typedef daeSmartRef<domMotion> domMotionRef;
+typedef daeTArray<domMotionRef> domMotion_Array;
+
+class domFormula;
+
+typedef daeSmartRef<domFormula> domFormulaRef;
+typedef daeTArray<domFormulaRef> domFormula_Array;
+
+class domInstance_articulated_system;
+
+typedef daeSmartRef<domInstance_articulated_system> domInstance_articulated_systemRef;
+typedef daeTArray<domInstance_articulated_systemRef> domInstance_articulated_system_Array;
+
+class domInstance_kinematics_scene;
+
+typedef daeSmartRef<domInstance_kinematics_scene> domInstance_kinematics_sceneRef;
+typedef daeTArray<domInstance_kinematics_sceneRef> domInstance_kinematics_scene_Array;
+
+class domLibrary_kinematics_scenes;
+
+typedef daeSmartRef<domLibrary_kinematics_scenes> domLibrary_kinematics_scenesRef;
+typedef daeTArray<domLibrary_kinematics_scenesRef> domLibrary_kinematics_scenes_Array;
+
+class domKinematics_scene;
+
+typedef daeSmartRef<domKinematics_scene> domKinematics_sceneRef;
+typedef daeTArray<domKinematics_sceneRef> domKinematics_scene_Array;
 
 
 #endif //__DOM_ELEMENTS_H__

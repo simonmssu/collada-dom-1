@@ -49,7 +49,7 @@ protected:  // Elements
  */
 	domAssetRef elemAsset;
 /**
- *  The controller element may contain either a skin element or a morph element.
+ *   The controller element may contain either a skin element or a morph element.
  * @see domSkin
  */
 	domSkinRef elemSkin;

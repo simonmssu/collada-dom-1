@@ -38,7 +38,7 @@ protected:  // Attributes
  */
 	xsNCName attrName;
 /**
- *  The count attribute indicates the number of linestrip primitives. Required
+ *   The count attribute indicates the number of linestrip primitives. Required
  * attribute. 
  */
 	domUint attrCount;

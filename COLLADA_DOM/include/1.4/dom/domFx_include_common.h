@@ -33,7 +33,7 @@ protected:  // Attributes
 	xsNCName attrSid;
 /**
  *  The url attribute refers to resource.  This may refer to a local resource
- * using a relative URL  fragment identifier that begins with the “#”
+ * using a relative URL  fragment identifier that begins with the â€œ#â€
  * character. The url attribute may refer to an external  resource using an
  * absolute or relative URL. 
  */

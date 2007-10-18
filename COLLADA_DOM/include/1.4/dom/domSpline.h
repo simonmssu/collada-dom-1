@@ -51,7 +51,7 @@ public:
  */
 		domInputLocal_Array elemInput_array;
 /**
- *  The extra element may appear any number of times.  @see domExtra
+ *   The extra element may appear any number of times.  @see domExtra
  */
 		domExtra_Array elemExtra_array;
 

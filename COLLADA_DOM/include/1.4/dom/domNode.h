@@ -51,22 +51,22 @@ protected:  // Attributes
  */
 	xsNCName attrName;
 /**
- *  The sid attribute is a text string value containing the sub-identifier
+ *   The sid attribute is a text string value containing the sub-identifier
  * of this element.  This value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
 	xsNCName attrSid;
 /**
  *  The type attribute indicates the type of the node element. The default
- * value is “NODE”.  Optional attribute. 
+ * value is â€œNODEâ€.  Optional attribute. 
  */
 	domNodeType attrType;
 /**
  *  The layer attribute indicates the names of the layers to which this node
- * belongs.  For example,  a value of “foreground glowing” indicates that
- * this node belongs to both the ‘foreground’ layer  and the ‘glowing’
- * layer.  The default value is empty, indicating that the node doesn’t
- * belong to  any layer.  Optional attribute. 
+ * belongs.  For example,  a value of â€œforeground glowingâ€ indicates
+ * that this node belongs to both the â€˜foregroundâ€™ layer  and
+ * the â€˜glowingâ€™ layer.  The default value is empty, indicating
+ * that the node doesnâ€™t belong to  any layer.  Optional attribute.
  */
 	domListOfNames attrLayer;
 
@@ -84,7 +84,7 @@ protected:  // Elements
  */
 	domMatrix_Array elemMatrix_array;
 /**
- *  The node element may contain any number of rotate elements.  @see domRotate
+ *   The node element may contain any number of rotate elements.  @see domRotate
  */
 	domRotate_Array elemRotate_array;
 /**

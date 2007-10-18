@@ -47,7 +47,7 @@ public:
 		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF_ATTACHMENT; }
 	protected:  // Attribute
 /**
- *  The “rigid_body” attribute is a relative reference to a rigid-body
+ *  The â€œrigid_bodyâ€ attribute is a relative reference to a rigid-body
  * within the same  physics_model. 
  */
 		xsAnyURI attrRigid_body;
@@ -58,7 +58,7 @@ public:
  */
 		domTranslate_Array elemTranslate_array;
 /**
- *  Allows you to "position" the attachment point.  @see domRotate
+ *   Allows you to "position" the attachment point.  @see domRotate
  */
 		domRotate_Array elemRotate_array;
 /**
@@ -191,7 +191,7 @@ public:
 		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ATTACHMENT; }
 	protected:  // Attribute
 /**
- *  The “rigid_body” attribute is a relative reference to a rigid-body
+ *  The â€œrigid_bodyâ€ attribute is a relative reference to a rigid-body
  * within the same physics_model. 
  */
 		xsAnyURI attrRigid_body;
@@ -206,7 +206,7 @@ public:
  */
 		domRotate_Array elemRotate_array;
 /**
- *  The extra element may appear any number of times.  @see domExtra
+ *   The extra element may appear any number of times.  @see domExtra
  */
 		domExtra_Array elemExtra_array;
 		/**
@@ -341,8 +341,8 @@ public:
 		typedef daeTArray<domEnabledRef> domEnabled_Array;
 
 /**
- * If false, the constraint doesn’t exert any force or influence on the
- * rigid bodies.
+ * If false, the constraint doesnâ€™t exert any force or influence on
+ * the rigid bodies.
  */
 		class domEnabled : public daeElement
 		{
@@ -533,8 +533,8 @@ public:
 
 /**
  * The swing_cone_and_twist element describes the angular limits along each
- * rotation axis in degrees. The the X and Y limits describe a “swing cone”
- * and the Z limits describe the “twist angle” range
+ * rotation axis in degrees. The the X and Y limits describe a â€œswing
+ * coneâ€ and the Z limits describe the â€œtwist angleâ€ range
  */
 			class domSwing_cone_and_twist : public daeElement
 			{
@@ -679,8 +679,9 @@ public:
 		protected:  // Elements
 /**
  * The swing_cone_and_twist element describes the angular limits along each
- * rotation axis in degrees. The the X and Y limits describe a “swing cone”
- * and the Z limits describe the “twist angle” range @see domSwing_cone_and_twist
+ * rotation axis in degrees. The the X and Y limits describe a â€œswing
+ * coneâ€ and the Z limits describe the â€œtwist angleâ€ range
+ * @see domSwing_cone_and_twist
  */
 			domSwing_cone_and_twistRef elemSwing_cone_and_twist;
 /**
@@ -745,7 +746,7 @@ public:
 		typedef daeTArray<domSpringRef> domSpring_Array;
 
 /**
- * Spring, based on distance (“LINEAR”) or angle (“ANGULAR”).
+ * Spring, based on distance (â€œLINEARâ€) or angle (â€œANGULARâ€).
  */
 		class domSpring : public daeElement
 		{
@@ -984,8 +985,8 @@ public:
 
 	protected:  // Elements
 /**
- * If false, the constraint doesn’t exert any force or influence on the
- * rigid bodies. @see domEnabled
+ * If false, the constraint doesnâ€™t exert any force or influence on
+ * the rigid bodies. @see domEnabled
  */
 		domEnabledRef elemEnabled;
 /**
@@ -998,8 +999,8 @@ public:
  */
 		domLimitsRef elemLimits;
 /**
- * Spring, based on distance (“LINEAR”) or angle (“ANGULAR”). @see
- * domSpring
+ * Spring, based on distance (â€œLINEARâ€) or angle (â€œANGULARâ€).
+ * @see domSpring
  */
 		domSpringRef elemSpring;
 
@@ -1098,7 +1099,7 @@ protected:  // Elements
  */
 	domTechnique_Array elemTechnique_array;
 /**
- *  The extra element may appear any number of times.  @see domExtra
+ *   The extra element may appear any number of times.  @see domExtra
  */
 	domExtra_Array elemExtra_array;
 

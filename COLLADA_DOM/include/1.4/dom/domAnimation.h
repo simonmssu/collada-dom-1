@@ -26,7 +26,7 @@
 
 /**
  * The animation element categorizes the declaration of animation information.
- * The animation  hierarchy contains elements that describe the animation’s
+ * The animation  hierarchy contains elements that describe the animationâ€™s
  * key-frame data and sampler functions,  ordered in such a way to group together
  * animations that should be executed together.
  */
@@ -62,7 +62,7 @@ protected:  // Elements
  */
 	domSampler_Array elemSampler_array;
 /**
- *  The animation element may contain any number of channel elements.  @see
+ *   The animation element may contain any number of channel elements.  @see
  * domChannel
  */
 	domChannel_Array elemChannel_array;

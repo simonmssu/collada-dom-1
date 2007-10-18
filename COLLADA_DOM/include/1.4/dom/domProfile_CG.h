@@ -875,7 +875,7 @@ public:
 
 	protected:  // Attributes
 /**
- *  The id attribute is a text string containing the unique identifier of
+ *   The id attribute is a text string containing the unique identifier of
  * this element.  This value must be unique within the instance document.
  * Optional attribute. 
  */
@@ -889,7 +889,7 @@ public:
 
 	protected:  // Elements
 /**
- *  The technique element may contain an asset element.  @see domAsset
+ *   The technique element may contain an asset element.  @see domAsset
  */
 		domAssetRef elemAsset;
 		domFx_annotate_common_Array elemAnnotate_array;

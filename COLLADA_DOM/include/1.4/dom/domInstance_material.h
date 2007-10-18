@@ -46,9 +46,9 @@ public:
  */
 		xsNCName attrSemantic;
 /**
- *  The target attribute specifies the location of the value to bind to the
+ *   The target attribute specifies the location of the value to bind to the
  * specified semantic.  This text string is a path-name following a simple
- * syntax described in the “Addressing Syntax”  section. 
+ * syntax described in the â€œAddressing Syntaxâ€  section. 
  */
 		xsToken attrTarget;
 

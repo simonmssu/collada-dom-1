@@ -43,8 +43,8 @@ protected:  // Attributes
  */
 	domUint attrCount;
 /**
- *  The material attribute declares a symbol for a material. This symbol is
- * bound to a material at  the time of instantiation. If the material attribute
+ *   The material attribute declares a symbol for a material. This symbol
+ * is bound to a material at  the time of instantiation. If the material attribute
  * is not specified then the lighting and  shading results are application
  * defined. Optional attribute. 
  */

@@ -54,7 +54,7 @@ protected:  // Attributes
 
 protected:  // Element
 /**
- *  The accessor element may have any number of param elements.  @see domParam
+ *   The accessor element may have any number of param elements.  @see domParam
  */
 	domParam_Array elemParam_array;
 

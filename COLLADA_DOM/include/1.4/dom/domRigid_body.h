@@ -154,9 +154,9 @@ public:
 
 /**
  * Defines the center and orientation of mass of the rigid-body relative to
- * the local origin of the  “root” shape.This makes the off-diagonal elements
- * of the inertia tensor (products of inertia) all  0 and allows us to just
- * store the diagonal elements (moments of inertia).
+ * the local origin of the  â€œrootâ€ shape.This makes the off-diagonal
+ * elements of the inertia tensor (products of inertia) all  0 and allows
+ * us to just store the diagonal elements (moments of inertia).
  */
 		class domMass_frame : public daeElement
 		{
@@ -594,15 +594,15 @@ public:
 		domTargetableFloatRef elemMass;
 /**
  * Defines the center and orientation of mass of the rigid-body relative to
- * the local origin of the  “root” shape.This makes the off-diagonal elements
- * of the inertia tensor (products of inertia) all  0 and allows us to just
- * store the diagonal elements (moments of inertia). @see domMass_frame
+ * the local origin of the  â€œrootâ€ shape.This makes the off-diagonal
+ * elements of the inertia tensor (products of inertia) all  0 and allows
+ * us to just store the diagonal elements (moments of inertia). @see domMass_frame
  */
 		domMass_frameRef elemMass_frame;
 /**
- * float3 – The diagonal elements of the inertia tensor (moments of inertia),
- * which is represented  in the local frame of the center of mass. See above.
- * @see domInertia
+ * float3 â€“ The diagonal elements of the inertia tensor (moments of
+ * inertia), which is represented  in the local frame of the center of mass.
+ * See above. @see domInertia
  */
 		domTargetableFloat3Ref elemInertia;
 /**

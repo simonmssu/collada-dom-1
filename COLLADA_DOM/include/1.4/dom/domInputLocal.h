@@ -26,7 +26,7 @@ class domInputLocal_complexType
 {
 protected:  // Attributes
 /**
- *  The semantic attribute is the user-defined meaning of the input connection.
+ *   The semantic attribute is the user-defined meaning of the input connection.
  * Required attribute. 
  */
 	xsNMTOKEN attrSemantic;

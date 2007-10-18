@@ -21,11 +21,11 @@
 /**
  * The technique element declares the information used to process some portion
  * of the content. Each  technique conforms to an associated profile. Techniques
- * generally act as a “switch”. If more than  one is present for a particular
- * portion of content, on import, one or the other is picked, but  usually
- * not both. Selection should be based on which profile the importing application
- * can support. Techniques contain application data and programs, making them
- * assets that can be managed as a unit.
+ * generally act as a â€œswitchâ€. If more than  one is present for
+ * a particular portion of content, on import, one or the other is picked,
+ * but  usually not both. Selection should be based on which profile the importing
+ * application can support. Techniques contain application data and programs,
+ * making them assets that can be managed as a unit.
  */
 class domTechnique : public daeElement
 {

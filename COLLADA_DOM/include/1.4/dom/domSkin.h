@@ -292,9 +292,9 @@ public:
 
 /**
  * The v element describes which bones and attributes are associated with
- * each vertex.  An index  of –1 into the array of joints refers to the
- * bind shape.  Weights should be normalized before use. The v element must
- * occur zero or one times.
+ * each vertex.  An index  of â€“1 into the array of joints refers to
+ * the bind shape.  Weights should be normalized before use. The v element
+ * must occur zero or one times.
  */
 		class domV : public daeElement
 		{
@@ -383,9 +383,9 @@ public:
 		domVcountRef elemVcount;
 /**
  * The v element describes which bones and attributes are associated with
- * each vertex.  An index  of –1 into the array of joints refers to the
- * bind shape.  Weights should be normalized before use. The v element must
- * occur zero or one times. @see domV
+ * each vertex.  An index  of â€“1 into the array of joints refers to
+ * the bind shape.  Weights should be normalized before use. The v element
+ * must occur zero or one times. @see domV
  */
 		domVRef elemV;
 /**

@@ -51,7 +51,7 @@ protected:  // Elements
  */
 	domAssetRef elemAsset;
 /**
- *  This element must contain at least one non-common profile technique. 
+ *   This element must contain at least one non-common profile technique.
  * @see domTechnique
  */
 	domTechnique_Array elemTechnique_array;

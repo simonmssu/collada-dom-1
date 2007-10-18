@@ -57,7 +57,7 @@ protected:  // Elements
  */
 	domInputLocalOffset_Array elemInput_array;
 /**
- *  The tristrips element may have any number of p elements.  @see domP
+ *   The tristrips element may have any number of p elements.  @see domP
  */
 	domP_Array elemP_array;
 /**
