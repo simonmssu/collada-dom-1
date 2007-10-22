@@ -547,44 +547,51 @@ DefineTest(roundTripSeymour) {
 }
 
 
-// !!!steveT Merge saveSeymourRaw and loadSeymourRaw into a single test
-DefineTest(saveSeymourRaw) {
+DefineTest(rawSupport) {
+	string seymourOrig = lookupTestFile("Seymour.dae"),
+	       seymourRaw  = getTmpFile("Seymour_raw.dae");
 	DAE dae;
-	string docUri = lookupTestFile("Seymour.dae");
-	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
+
+	CheckResult(dae.load(seymourOrig.c_str()) == DAE_OK);
 	dae.getIOPlugin()->setOption("saveRawBinary", "true");
-	return dae.saveAs(getTmpFile("Seymour_raw.dae").c_str(), docUri.c_str()) == DAE_OK;
-}
+	CheckResult(dae.saveAs(seymourRaw.c_str(), seymourOrig.c_str()) == DAE_OK);
 
-DefineTest(loadSeymourRaw) {
-	RunTest(saveSeymourRaw);
-	
-	DAE dae;
-	string docUri = getTmpFile("Seymour_raw.dae");
-	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
+	// Make sure the .raw file is there
+	CheckResult(fs::exists(fs::path(seymourRaw + ".raw")));
 
+	CheckResult(dae.load(seymourRaw.c_str()) == DAE_OK);
 	daeElement* el = 0;
-	dae.getDatabase()->getElement(&el, 0, "l_hip_rotateY_l_hip_rotateY_ANGLE-input");
+	dae.getDatabase()->getElement(&el, 0,
+		"l_hip_rotateY_l_hip_rotateY_ANGLE-input", seymourRaw.c_str());
 	CheckResult(el);
+
 	return true;
 }
-
 
 DefineTest(extraTypeTest) {
 	DAE dae;
 	string docUri = lookupTestFile("extraTest.dae");
 	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
+	daeElement* root = dae.getDom(docUri.c_str());
+	CheckResult(root);
 
-	daeElement* element = 0;
-	dae.getDatabase()->getElement(&element, 0, 0, "technique");
-	CheckResult(element);
+	daeElement *technique = findDescendant(root, "technique"),
+	           *expectedTypesElt = findDescendant(root, "expected_types");
+	CheckResult(technique && expectedTypesElt);
 
-	daeElementRefArray elements = element->getChildren();
+	istringstream expectedTypesStream(expectedTypesElt->getCharData());
+	vector<string> expectedTypes;
+	string tmp;
+	while (expectedTypesStream >> tmp)
+		expectedTypes.push_back(tmp);
 
-	// !!!steveT What exactly am I trying to test here?
-	for (size_t i = 0; i < elements.getCount(); i++) {
-		daeElement* e = elements[i];
-		cout << "name: " << e->getElementName() << ", type: " << e->getTypeName() << "\n";
+	daeElementRefArray elements = technique->getChildren();
+
+	CheckResult(expectedTypes.size() == elements.getCount()-1);
+	for (size_t i = 0; i < elements.getCount()-1; i++) {
+		ostringstream msg;
+		msg << "Actual type - " << elements[i]->getTypeName() << ", Expected type - " << expectedTypes[i];
+		CheckResultWithMsg(expectedTypes[i] == elements[i]->getTypeName(), msg.str());
 	}
 
 	return true;
@@ -593,11 +600,19 @@ DefineTest(extraTypeTest) {
 #if defined(TINYXML)
 #include <dae/daeTinyXMLPlugin.h>
 DefineTest(tinyXmlLoad) {
+	string seymourOrig = lookupTestFile("Seymour.dae"),
+	       seymourTinyXml = getTmpFile("Seymour_tinyXml.dae");
+
+	// Plan: Load Seymour with libxml, then save with TinyXml and immediately reload the
+	// saved document, and make sure the results are the same.
+	DAE dae;
+	CheckResult(dae.load(seymourOrig.c_str()) == DAE_OK);
 	auto_ptr<daeTinyXMLPlugin> tinyXmlPlugin(new daeTinyXMLPlugin);
-	DAE dae(NULL, tinyXmlPlugin.get());
-	string docUri = lookupTestFile("Seymour.dae");
-	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
-	CheckResult(dae.saveAs(getTmpFile("Seymour_tinyXml.dae").c_str(), docUri.c_str()) == DAE_OK);
+	dae.setIOPlugin(tinyXmlPlugin.get());
+	CheckResult(dae.saveAs(seymourTinyXml.c_str(), seymourOrig.c_str()) == DAE_OK);
+	CheckResult(dae.load(seymourTinyXml.c_str()) == DAE_OK);
+	CompareDocs(dae, seymourOrig, seymourTinyXml);
+
 	return true;
 }
 #endif
@@ -690,13 +705,12 @@ string getCharData(daeElement* el) {
 	return el ? el->getCharData() : "";
 }
 
-daeURI* getTextureUri(daeString samplerSid, domEffect& effect) {
+daeURI* getTextureUri(const string& samplerSid, daeElement& effect) {
 	daeElement* sampler = findChildByName(resolveSid(samplerSid, effect), "sampler2D");
 	string surfaceSid = getCharData(findChildByName(sampler, "source"));
 	daeElement* surface = findChildByName(resolveSid(surfaceSid, effect), "surface");
-	domImage* image =
-		daeSafeCast<domImage>(resolveID(getCharData(findChildByName(surface, "init_from")).c_str(),
-		                      *effect.getDocument()));
+	domImage* image = daeSafeCast<domImage>(
+		resolveID(getCharData(findChildByName(surface, "init_from")).c_str(), *effect.getDocument()));
 	if (image && image->getInit_from())
 		return &image->getInit_from()->getValue();
 	return 0;
@@ -706,18 +720,16 @@ DefineTest(getTexture) {
 	DAE dae;
 	CheckResult(dae.load(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
-	daeElement* el = 0;
- 	dae.getDatabase()->getElement(&el, 0, 0, COLLADA_TYPE_TEXTURE);
-	domCommon_color_or_texture_type_complexType::domTexture* texture =
-		daeSafeCast<domCommon_color_or_texture_type_complexType::domTexture>(el);
+	daeElement* effect = 0;
+ 	dae.getDatabase()->getElement(&effect, 0, "face-fx");
+	CheckResult(effect);
+	daeElement* texture = findDescendant(effect, "texture");
 	CheckResult(texture);
 
-	domEffect* effect = daeSafeCast<domEffect>(findAncestorByType(texture, COLLADA_TYPE_EFFECT));
-	CheckResult(effect);
-
-	daeURI* uri = getTextureUri(texture->getTexture(), *effect);
+	daeURI* uri = getTextureUri(texture->getAttribute("texture"), *effect);
 	CheckResult(uri);
-	cout << uri->getURI() << endl;
+	CheckResult(string(uri->getFile()) == "boy_10.tga");
+
 	return true;
 }
 	
@@ -730,11 +742,13 @@ DefineTest(removeElement) {
 	dae.getDatabase()->getElement(&collada, 0, 0, COLLADA_TYPE_COLLADA);
 	dae.getDatabase()->getElement(&asset, 0, 0, COLLADA_TYPE_ASSET);
 	dae.getDatabase()->getElement(&animLib, 0, 0, COLLADA_TYPE_LIBRARY_ANIMATIONS);
-
 	CheckResult(asset && animLib && collada);
 
 	collada->removeChildElement(asset);
 	daeElement::removeFromParent(animLib);
+
+	CheckResult(findDescendant(collada, "asset") == NULL);
+	CheckResult(findDescendant(collada, "library_animations") == NULL);
 
 	CheckResult(dae.saveAs(getTmpFile("Seymour_removeElements.dae").c_str(),
 	                       lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
@@ -759,7 +773,7 @@ DefineTest(cloneCrash) {
 	domFx_surface_init_from_common* initFrom = daeSafeCast<domFx_surface_init_from_common>(el);
 	CheckResult(initFrom && initFrom->getValue().getElement());
 
-	// Now the DOM will crash
+	// The DOM used to crash here
 	daeElement::resolveAll();
 
 	return true;
@@ -776,22 +790,12 @@ void nameArrayAppend(domListOfNames& names, const char* name) {
 }
 
 DefineTest(nameArray) {
-	DAE dae;
-	CheckResult(dae.load(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
-
-	daeElement* el = 0;
-	dae.getDatabase()->getElement(&el, 0, 0, COLLADA_TYPE_NAME_ARRAY);
-	domName_array* nameArray = daeSafeCast<domName_array>(el);
-	CheckResult(nameArray);
-
-	domListOfNames& names = nameArray->getValue();
-	names.clear();
-	nameArrayAppend(names, "name1");
-	nameArrayAppend(names, "name2");
-	nameArrayAppend(names, "name3");
-	nameArray->setCount(names.getCount());
-	for (size_t i = 0; i < names.getCount(); i++)
-		cout << names[i] << "\n";
+	domListOfNames names;
+	for (int i = 0; i < 10; i++)
+		nameArrayAppend(names, (string("name") + toString(i)).c_str());
+	for (int i = 0; i < 10; i++) {
+		CheckResult(string("name") + toString(i) == names[i]);
+	}
 	
 	return true;
 }
@@ -804,12 +808,6 @@ void printArray(const daeTArray<T>& array) {
 }
 
 DefineTest(arrayOps) {
-	// Test default array value suppression
-	RunTest(renderStates);
-
-	// Test Heinrich's original code that crashed
-	RunTest(cloneCrash);
-
 	// Test removeIndex
 	daeTArray<int> array;
 	for (size_t i = 0; i < 10; i++)
