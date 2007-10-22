@@ -60,12 +60,33 @@
 				</node>
 			</node>
 		</node>
+		<node id="my.Node">
+			<node sid="subNode1">
+				<translate sid="trans">10 20 30</translate>
+			</node>
+		</node>
+		<node id="myNode2">
+			<node id="myNode3" sid="subNode1">
+				<node id="myNode4" sid="subNode2"/>
+			</node>
+			<node id="myNode5" sid="subNode2"/>
+		</node>
+		<node id="myNode6">
+			<extra>
+				<technique profile="profile1">
+					<customElem id="customElem1" sid="customElem"/>
+				</technique>
+				<technique profile="profile2">
+					<customElem id="customElem2" sid="customElem"/>
+				</technique>
+			</extra>
+		</node>
 	</library_nodes>
 	<extra>
 		<technique profile="">
 			<nodeSidRefExtra id="nodeSidRefExtra">
 				<!-- Each line has the sid to resolve, and the expected string result (see the
-						 resolveResultToString function for the meaning of the result string) -->
+				     resolveResultToString function for the meaning of the result string) -->
 				myNode                          element
 				myNode/subNode1                 element
 				myNode/subNode1/subNode2        element
@@ -88,7 +109,23 @@
 				myNode/mtx(1)                   double
 				myNode/mtx(1).X                 failed
 				myNode/mtx(1)(5)                double
+				my.Node/trans.X                 double
 			</nodeSidRefExtra>
+			<nodeSidRefExtra2 id="nodeSidRefExtra2">
+				<!-- Each line has the sid to resolve and the ID of the element it's expected
+				     to resolve to -->
+				<!-- This first test is for breadth-first vs depth-first search -->
+				myNode2/subNode2 myNode5 
+				myNode2/subNode1/subNode2 myNode4
+				myNode2/blah failed
+			</nodeSidRefExtra2>
+			<nodeSidRefExtra3 id="nodeSidRefExtra3">
+				<!-- Each line has the sid to resolve, the profile to search in, and the
+				     ID of the element it's expected to resolve to -->
+				myNode6/customElem profile1 customElem1
+				myNode6/customElem profile2 customElem2
+				myNode6/customElem profile3 failed
+			</nodeSidRefExtra3>
 		</technique>
 	</extra>
 </COLLADA>

@@ -22,6 +22,7 @@ include          $(ROOT_DIR)/build/makedefs.txt
 SRC				 := dae.cpp \
 					daeArray.cpp \
 					daeAtomicType.cpp \
+					daeDatabase.cpp \
 					daeDocument.cpp \
 					daeDom.cpp \
 					daeElement.cpp \
@@ -51,7 +52,8 @@ SRC				 := dae.cpp \
 					../modules/LIBXMLPlugin/daeLIBXMLPlugin.cpp \
 					daeTinyXMLPlugin.cpp
 
-INCLUDE_DIR		 += $(ROOT_DIR)/include
+INCLUDE_DIR += $(ROOT_DIR)/include
+INCLUDE_DIR += $(ROOT_DIR)/include/$(COLLADA_VERSION)/
 
 # Do we want libxml, TinyXML, or both?
 # Enable libxml by default

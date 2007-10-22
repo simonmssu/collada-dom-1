@@ -105,7 +105,7 @@ $(INTERMEDIATE_DIR)%.res : %.rc
 
 $(OUTDIR)%$(LIB_SUFFIX):
 				@echo $@
-				$(QUIET)$(AR)          $(LCOUT) $@ $^
+				$(QUIET)$(AR) $(LCOUT) $@ $^
 
 $(OUTDIR)%$(LIB_DYN_SUFFIX_VERSION):
 				echo $@

@@ -14,6 +14,7 @@
 #ifndef __DAE_DATABASE__
 #define __DAE_DATABASE__
 
+#include <list>
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
 #include <dae/daeURI.h>
@@ -134,7 +135,7 @@ public:
 	* @return Returns @c DAE_OK if element successfully inserted, otherwise returns a negative value as defined in daeError.h.
 	*/
 	virtual DLLSPEC daeInt insertElement(daeDocument* document,
-	                             daeElement* element) = 0;
+	                                     daeElement* element) = 0;
 	/**
 	* Removes a @c daeElement from the runtime database; not implemented in the reference STL implementation.
 	* @param document Document in which the @c daeElement lives.
@@ -142,7 +143,7 @@ public:
 	* @return Returns @c DAE_OK if element successfully removed, otherwise returns a negative value as defined in daeError.h.
 	*/
 	virtual DLLSPEC daeInt removeElement(daeDocument* document,
-	                           daeElement* element) = 0;
+	                                     daeElement* element) = 0;
 	/**
 	 * Updates the database to reflect a change to the ID of a @c daeElement.
 	 * @param element @c daeElement whose ID is going to change.
@@ -153,7 +154,21 @@ public:
 	 * expected that the ID will be assigned to the element by someone else.
 	 */
 	virtual DLLSPEC daeInt changeElementID(daeElement* element,
-                                               daeString newID) = 0;
+	                                       daeString newID) = 0;
+
+	/**
+	 * Updates the database to reflect a change to the sid of a @c daeElement.
+	 * @param element @c daeElement whose sid is going to change.
+	 * @param newSID The sid that will be assigned to the element.
+	 * @return Returns @c DAE_OK if the database was successfully updated, otherwise returns a negative value as defined in daeError.h.
+	 * @note The database doesn't actually change the sid of the element, it
+	 * merely updates its internal structures to reflect the change. It's
+	 * expected that the sid will be assigned to the element by someone else.
+ 	 * Note - This function currently isn't implemented in the default database.
+	 */
+	virtual DLLSPEC daeInt changeElementSID(daeElement* element,
+	                                        daeString newSID) = 0;
+
 	/**
 	* Unloads all of the documents of the runtime database.
 	* This function frees all the @c dom* objects and integration objects created so far,
@@ -178,8 +193,8 @@ public:
 	* @return Returns the number of elements matching this query.
 	*/
 	virtual DLLSPEC daeUInt getElementCount(daeString name = NULL,
-								  daeString type = NULL,
-								  daeString file = NULL) = 0;
+	                                        daeString type = NULL,
+	                                        daeString file = NULL) = 0;
 	/**
 	* Returns the @c daeElement which matches the search criteria.
 	* Any combination of search criteria can be NULL, if a criterion is NULL all 
@@ -201,10 +216,30 @@ public:
 	* @return Returns DAE_OK upon success, returns DAE_ERR_QUERY_NO_MATCH if there is no match, otherwise, returns a negative value as defined in daeError.h.
 	*/
 	virtual DLLSPEC daeInt getElement(daeElement** pElement,
-							daeInt index,
-							daeString name = NULL,
-							daeString type = NULL,
-							daeString file = NULL ) = 0;
+	                                  daeInt index,
+	                                  daeString name = NULL,
+	                                  daeString type = NULL,
+	                                  daeString file = NULL ) = 0;
+
+	/**
+	 * Returns a list of all the elements with a particular sid. This list will contain all the
+	 * matching elements for all documents in the database.
+	 * @param sid The sid to match on.
+	 * @return The list of matching elements.
+	 * Note - This function currently isn't implemented in the default database.
+	 */
+	DLLSPEC std::list<daeElement*> sidLookup(const std::string& sid);
+
+	/**
+	 * Same as the previous method, but the results are returned via a parameter instead
+	 * of a return value, for extra efficiency.
+	 * @param sid The sid to match on.
+	 * @param result The list of matching elements.
+	 * Note - This function currently isn't implemented in the default database.
+	 */
+	virtual DLLSPEC void sidLookup(const std::string& sid, std::list<daeElement*>& result) = 0;
+
+	
 	/**
 	* Returns the @c daeElement which matches the <tt><i>genericQuery</i></tt> parameter; not implemented.
 	* @param pElement Element to return.

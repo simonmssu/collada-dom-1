@@ -96,12 +96,21 @@ public:
 	DLLSPEC void removeElement( daeElementRef element );
 	/**
 	 * This function is used to track how a document gets modified. It gets called internally.
-	 * @param element The element that was removed from this document.
+	 * @param element The element whose ID is about to be changed.
 	 * @param newID The ID that is going to be assigned to the element.
 	 * @note This function is called internally and not meant to be called by the client application.
 	 * Calling this function from the client application may result in unexpected behavior.
 	 */
 	DLLSPEC void changeElementID( daeElementRef element, daeString newID );
+	/**
+	 * This function is just like changeElementID, except it keeps track of sids instead of IDs.
+	 * @param element The element whose sid is about to be changed.
+	 * @param newSID The sid that is going to be assigned to the element.
+	 * @note This function is called internally and not meant to be called by the client application.
+	 * Calling this function from the client application may result in unexpected behavior.
+	 */
+	DLLSPEC void changeElementSID( daeElementRef element, daeString newSID );
+
 
 	/**
 	 * Adds a URI to the list of external references in this document.

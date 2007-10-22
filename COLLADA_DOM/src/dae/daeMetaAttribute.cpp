@@ -121,9 +121,10 @@ void daeMetaAttribute::memoryToString(daeElement* e, std::ostringstream& buffer)
 }
 
 void daeMetaAttribute::stringToMemory(daeElement* e, daeString s) {
-	if (!strcmp(_name, "id") && e->getDocument()) {
+	if (!strcmp(_name, "id") && e->getDocument())
 		e->getDocument()->changeElementID(e, s);
-	}
+	else if (!strcmp(_name, "sid") && e->getDocument())
+		e->getDocument()->changeElementSID(e, s);
 
 	_type->stringToMemory((daeChar*)s, get(e));
 }

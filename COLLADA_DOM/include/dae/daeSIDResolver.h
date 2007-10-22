@@ -124,11 +124,7 @@ private:
 
 	void resetResolveState();
 	void resolve();
-
-	/**
-	 * Recursive function which will find an element with specified sid in the subtree of el.
-	 */
-	daeElement *findSID( daeElement *el, daeString sid );
+	void resolveImpl(const std::string& sidRef);
 
 	// This data is provided by the user
 	std::string	target;
@@ -142,6 +138,19 @@ private:
 	daeDouble*      resolvedDoublePtr;
 
 };
+
+namespace cdom {
+	// Provides a more functional interface to the sid resolver code.
+	// sidRef can be an effect-style sid reference, like "mySampler", or an animation-style
+	// sid reference with pathing and member selection, like "myElement/subElem.X".
+	// Returns null if a matching element isn't found.
+	daeElement* resolveSid(daeElement* container,
+	                       daeString sidRef,
+	                       daeString platform = NULL);
+	daeElement* resolveSid(daeElement* container,
+	                       const std::string& sidRef,
+	                       const std::string& platform = "");
+}
 
 #endif
 
