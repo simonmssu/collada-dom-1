@@ -7,6 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F04B2610CCD96AC00769B99 /* daeDocument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C150BCFEE5100BBFE92 /* daeDocument.cpp */; };
+		2F04B2660CCD9AE900769B99 /* daeDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2650CCD9AE900769B99 /* daeDatabase.cpp */; };
+		2F04B27E0CCD9B3100769B99 /* domBrep.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B2690CCD9B3100769B99 /* domBrep.h */; };
+		2F04B27F0CCD9B3100769B99 /* domCircle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B26A0CCD9B3100769B99 /* domCircle.h */; };
+		2F04B2800CCD9B3100769B99 /* domCone.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B26B0CCD9B3100769B99 /* domCone.h */; };
+		2F04B2810CCD9B3100769B99 /* domCurves.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B26C0CCD9B3100769B99 /* domCurves.h */; };
+		2F04B2820CCD9B3100769B99 /* domCurveType.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B26D0CCD9B3100769B99 /* domCurveType.h */; };
+		2F04B2830CCD9B3100769B99 /* domCylindrical.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B26E0CCD9B3100769B99 /* domCylindrical.h */; };
+		2F04B2840CCD9B3100769B99 /* domEdges.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B26F0CCD9B3100769B99 /* domEdges.h */; };
+		2F04B2850CCD9B3100769B99 /* domEllipse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B2700CCD9B3100769B99 /* domEllipse.h */; };
+		2F04B2860CCD9B3100769B99 /* domFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B2710CCD9B3100769B99 /* domFaces.h */; };
+		2F04B2870CCD9B3100769B99 /* domHyperbola.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B2720CCD9B3100769B99 /* domHyperbola.h */; };
+		2F04B2880CCD9B3100769B99 /* domLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B2730CCD9B3100769B99 /* domLine.h */; };
+		2F04B2890CCD9B3100769B99 /* domLinear_extrusion_surface.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B2740CCD9B3100769B99 /* domLinear_extrusion_surface.h */; };
+		2F04B28A0CCD9B3100769B99 /* domParabola.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B2750CCD9B3100769B99 /* domParabola.h */; };
+		2F04B28B0CCD9B3100769B99 /* domRevolution_surface.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B2760CCD9B3100769B99 /* domRevolution_surface.h */; };
+		2F04B28C0CCD9B3100769B99 /* domShells.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B2770CCD9B3100769B99 /* domShells.h */; };
+		2F04B28D0CCD9B3100769B99 /* domSIDREF_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B2780CCD9B3100769B99 /* domSIDREF_array.h */; };
+		2F04B28E0CCD9B3100769B99 /* domSolids.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B2790CCD9B3100769B99 /* domSolids.h */; };
+		2F04B28F0CCD9B3100769B99 /* domSurfaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B27A0CCD9B3100769B99 /* domSurfaces.h */; };
+		2F04B2900CCD9B3100769B99 /* domSurfaceType.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B27B0CCD9B3100769B99 /* domSurfaceType.h */; };
+		2F04B2910CCD9B3100769B99 /* domTorus.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B27C0CCD9B3100769B99 /* domTorus.h */; };
+		2F04B2920CCD9B3100769B99 /* domWires.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F04B27D0CCD9B3100769B99 /* domWires.h */; };
+		2F04B2A80CCD9B9700769B99 /* domBrep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2930CCD9B9700769B99 /* domBrep.cpp */; };
+		2F04B2A90CCD9B9700769B99 /* domCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2940CCD9B9700769B99 /* domCircle.cpp */; };
+		2F04B2AA0CCD9B9700769B99 /* domCone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2950CCD9B9700769B99 /* domCone.cpp */; };
+		2F04B2AB0CCD9B9700769B99 /* domCurves.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2960CCD9B9700769B99 /* domCurves.cpp */; };
+		2F04B2AC0CCD9B9700769B99 /* domCurveType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2970CCD9B9700769B99 /* domCurveType.cpp */; };
+		2F04B2AD0CCD9B9700769B99 /* domCylindrical.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2980CCD9B9700769B99 /* domCylindrical.cpp */; };
+		2F04B2AE0CCD9B9700769B99 /* domEdges.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2990CCD9B9700769B99 /* domEdges.cpp */; };
+		2F04B2AF0CCD9B9700769B99 /* domEllipse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B29A0CCD9B9700769B99 /* domEllipse.cpp */; };
+		2F04B2B00CCD9B9700769B99 /* domFaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B29B0CCD9B9700769B99 /* domFaces.cpp */; };
+		2F04B2B10CCD9B9700769B99 /* domHyperbola.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B29C0CCD9B9700769B99 /* domHyperbola.cpp */; };
+		2F04B2B20CCD9B9700769B99 /* domLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B29D0CCD9B9700769B99 /* domLine.cpp */; };
+		2F04B2B30CCD9B9700769B99 /* domLinear_extrusion_surface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B29E0CCD9B9700769B99 /* domLinear_extrusion_surface.cpp */; };
+		2F04B2B40CCD9B9700769B99 /* domParabola.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B29F0CCD9B9700769B99 /* domParabola.cpp */; };
+		2F04B2B50CCD9B9700769B99 /* domRevolution_surface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2A00CCD9B9700769B99 /* domRevolution_surface.cpp */; };
+		2F04B2B60CCD9B9700769B99 /* domShells.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2A10CCD9B9700769B99 /* domShells.cpp */; };
+		2F04B2B70CCD9B9700769B99 /* domSIDREF_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2A20CCD9B9700769B99 /* domSIDREF_array.cpp */; };
+		2F04B2B80CCD9B9700769B99 /* domSolids.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2A30CCD9B9700769B99 /* domSolids.cpp */; };
+		2F04B2B90CCD9B9700769B99 /* domSurfaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2A40CCD9B9700769B99 /* domSurfaces.cpp */; };
+		2F04B2BA0CCD9B9700769B99 /* domSurfaceType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2A50CCD9B9700769B99 /* domSurfaceType.cpp */; };
+		2F04B2BB0CCD9B9700769B99 /* domTorus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2A60CCD9B9700769B99 /* domTorus.cpp */; };
+		2F04B2BC0CCD9B9700769B99 /* domWires.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2A70CCD9B9700769B99 /* domWires.cpp */; };
 		8D07F2C00486CC7A007CD1D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		AD012C700BCFEE5100BBFE92 /* domAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */; };
 		AD012C710BCFEE5100BBFE92 /* domAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */; };
@@ -183,7 +227,6 @@
 		AD012D1E0BCFEE5100BBFE92 /* dae.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C120BCFEE5100BBFE92 /* dae.cpp */; };
 		AD012D1F0BCFEE5100BBFE92 /* daeArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C130BCFEE5100BBFE92 /* daeArray.cpp */; };
 		AD012D200BCFEE5100BBFE92 /* daeAtomicType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C140BCFEE5100BBFE92 /* daeAtomicType.cpp */; };
-		AD012D210BCFEE5100BBFE92 /* daeDocument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C150BCFEE5100BBFE92 /* daeDocument.cpp */; };
 		AD012D220BCFEE5100BBFE92 /* daeDom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C160BCFEE5100BBFE92 /* daeDom.cpp */; };
 		AD012D230BCFEE5100BBFE92 /* daeElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C170BCFEE5100BBFE92 /* daeElement.cpp */; };
 		AD012D240BCFEE5100BBFE92 /* daeError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012C180BCFEE5100BBFE92 /* daeError.cpp */; };
@@ -225,6 +268,49 @@
 
 /* Begin PBXFileReference section */
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2F04B2650CCD9AE900769B99 /* daeDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = daeDatabase.cpp; path = ../../src/dae/daeDatabase.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2690CCD9B3100769B99 /* domBrep.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domBrep.h; path = ../../include/1.4/dom/domBrep.h; sourceTree = SOURCE_ROOT; };
+		2F04B26A0CCD9B3100769B99 /* domCircle.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domCircle.h; path = ../../include/1.4/dom/domCircle.h; sourceTree = SOURCE_ROOT; };
+		2F04B26B0CCD9B3100769B99 /* domCone.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domCone.h; path = ../../include/1.4/dom/domCone.h; sourceTree = SOURCE_ROOT; };
+		2F04B26C0CCD9B3100769B99 /* domCurves.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domCurves.h; path = ../../include/1.4/dom/domCurves.h; sourceTree = SOURCE_ROOT; };
+		2F04B26D0CCD9B3100769B99 /* domCurveType.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domCurveType.h; path = ../../include/1.4/dom/domCurveType.h; sourceTree = SOURCE_ROOT; };
+		2F04B26E0CCD9B3100769B99 /* domCylindrical.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domCylindrical.h; path = ../../include/1.4/dom/domCylindrical.h; sourceTree = SOURCE_ROOT; };
+		2F04B26F0CCD9B3100769B99 /* domEdges.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domEdges.h; path = ../../include/1.4/dom/domEdges.h; sourceTree = SOURCE_ROOT; };
+		2F04B2700CCD9B3100769B99 /* domEllipse.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domEllipse.h; path = ../../include/1.4/dom/domEllipse.h; sourceTree = SOURCE_ROOT; };
+		2F04B2710CCD9B3100769B99 /* domFaces.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domFaces.h; path = ../../include/1.4/dom/domFaces.h; sourceTree = SOURCE_ROOT; };
+		2F04B2720CCD9B3100769B99 /* domHyperbola.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domHyperbola.h; path = ../../include/1.4/dom/domHyperbola.h; sourceTree = SOURCE_ROOT; };
+		2F04B2730CCD9B3100769B99 /* domLine.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domLine.h; path = ../../include/1.4/dom/domLine.h; sourceTree = SOURCE_ROOT; };
+		2F04B2740CCD9B3100769B99 /* domLinear_extrusion_surface.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domLinear_extrusion_surface.h; path = ../../include/1.4/dom/domLinear_extrusion_surface.h; sourceTree = SOURCE_ROOT; };
+		2F04B2750CCD9B3100769B99 /* domParabola.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domParabola.h; path = ../../include/1.4/dom/domParabola.h; sourceTree = SOURCE_ROOT; };
+		2F04B2760CCD9B3100769B99 /* domRevolution_surface.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domRevolution_surface.h; path = ../../include/1.4/dom/domRevolution_surface.h; sourceTree = SOURCE_ROOT; };
+		2F04B2770CCD9B3100769B99 /* domShells.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domShells.h; path = ../../include/1.4/dom/domShells.h; sourceTree = SOURCE_ROOT; };
+		2F04B2780CCD9B3100769B99 /* domSIDREF_array.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domSIDREF_array.h; path = ../../include/1.4/dom/domSIDREF_array.h; sourceTree = SOURCE_ROOT; };
+		2F04B2790CCD9B3100769B99 /* domSolids.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domSolids.h; path = ../../include/1.4/dom/domSolids.h; sourceTree = SOURCE_ROOT; };
+		2F04B27A0CCD9B3100769B99 /* domSurfaces.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domSurfaces.h; path = ../../include/1.4/dom/domSurfaces.h; sourceTree = SOURCE_ROOT; };
+		2F04B27B0CCD9B3100769B99 /* domSurfaceType.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domSurfaceType.h; path = ../../include/1.4/dom/domSurfaceType.h; sourceTree = SOURCE_ROOT; };
+		2F04B27C0CCD9B3100769B99 /* domTorus.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domTorus.h; path = ../../include/1.4/dom/domTorus.h; sourceTree = SOURCE_ROOT; };
+		2F04B27D0CCD9B3100769B99 /* domWires.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = domWires.h; path = ../../include/1.4/dom/domWires.h; sourceTree = SOURCE_ROOT; };
+		2F04B2930CCD9B9700769B99 /* domBrep.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domBrep.cpp; path = ../../src/1.4/dom/domBrep.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2940CCD9B9700769B99 /* domCircle.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domCircle.cpp; path = ../../src/1.4/dom/domCircle.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2950CCD9B9700769B99 /* domCone.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domCone.cpp; path = ../../src/1.4/dom/domCone.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2960CCD9B9700769B99 /* domCurves.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domCurves.cpp; path = ../../src/1.4/dom/domCurves.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2970CCD9B9700769B99 /* domCurveType.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domCurveType.cpp; path = ../../src/1.4/dom/domCurveType.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2980CCD9B9700769B99 /* domCylindrical.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domCylindrical.cpp; path = ../../src/1.4/dom/domCylindrical.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2990CCD9B9700769B99 /* domEdges.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domEdges.cpp; path = ../../src/1.4/dom/domEdges.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B29A0CCD9B9700769B99 /* domEllipse.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domEllipse.cpp; path = ../../src/1.4/dom/domEllipse.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B29B0CCD9B9700769B99 /* domFaces.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domFaces.cpp; path = ../../src/1.4/dom/domFaces.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B29C0CCD9B9700769B99 /* domHyperbola.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domHyperbola.cpp; path = ../../src/1.4/dom/domHyperbola.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B29D0CCD9B9700769B99 /* domLine.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domLine.cpp; path = ../../src/1.4/dom/domLine.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B29E0CCD9B9700769B99 /* domLinear_extrusion_surface.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domLinear_extrusion_surface.cpp; path = ../../src/1.4/dom/domLinear_extrusion_surface.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B29F0CCD9B9700769B99 /* domParabola.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domParabola.cpp; path = ../../src/1.4/dom/domParabola.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2A00CCD9B9700769B99 /* domRevolution_surface.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domRevolution_surface.cpp; path = ../../src/1.4/dom/domRevolution_surface.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2A10CCD9B9700769B99 /* domShells.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domShells.cpp; path = ../../src/1.4/dom/domShells.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2A20CCD9B9700769B99 /* domSIDREF_array.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domSIDREF_array.cpp; path = ../../src/1.4/dom/domSIDREF_array.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2A30CCD9B9700769B99 /* domSolids.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domSolids.cpp; path = ../../src/1.4/dom/domSolids.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2A40CCD9B9700769B99 /* domSurfaces.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domSurfaces.cpp; path = ../../src/1.4/dom/domSurfaces.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2A50CCD9B9700769B99 /* domSurfaceType.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domSurfaceType.cpp; path = ../../src/1.4/dom/domSurfaceType.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2A60CCD9B9700769B99 /* domTorus.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domTorus.cpp; path = ../../src/1.4/dom/domTorus.cpp; sourceTree = SOURCE_ROOT; };
+		2F04B2A70CCD9B9700769B99 /* domWires.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = domWires.cpp; path = ../../src/1.4/dom/domWires.cpp; sourceTree = SOURCE_ROOT; };
 		8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Collada141Dom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAccessor.cpp; sourceTree = "<group>"; };
 		AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAnimation.cpp; sourceTree = "<group>"; };
@@ -1177,6 +1263,49 @@
 				AD76C6600BD7FE7C00486DB0 /* daeArrayTypes.h */,
 				AD76C6610BD7FE7C00486DB0 /* daeAtomicType.h */,
 				AD76C6620BD7FE7C00486DB0 /* daeDatabase.h */,
+				2F04B2690CCD9B3100769B99 /* domBrep.h */,
+				2F04B26A0CCD9B3100769B99 /* domCircle.h */,
+				2F04B26B0CCD9B3100769B99 /* domCone.h */,
+				2F04B26C0CCD9B3100769B99 /* domCurves.h */,
+				2F04B26D0CCD9B3100769B99 /* domCurveType.h */,
+				2F04B26E0CCD9B3100769B99 /* domCylindrical.h */,
+				2F04B26F0CCD9B3100769B99 /* domEdges.h */,
+				2F04B2700CCD9B3100769B99 /* domEllipse.h */,
+				2F04B2710CCD9B3100769B99 /* domFaces.h */,
+				2F04B2720CCD9B3100769B99 /* domHyperbola.h */,
+				2F04B2730CCD9B3100769B99 /* domLine.h */,
+				2F04B2740CCD9B3100769B99 /* domLinear_extrusion_surface.h */,
+				2F04B2750CCD9B3100769B99 /* domParabola.h */,
+				2F04B2760CCD9B3100769B99 /* domRevolution_surface.h */,
+				2F04B2770CCD9B3100769B99 /* domShells.h */,
+				2F04B2780CCD9B3100769B99 /* domSIDREF_array.h */,
+				2F04B2790CCD9B3100769B99 /* domSolids.h */,
+				2F04B27A0CCD9B3100769B99 /* domSurfaces.h */,
+				2F04B27B0CCD9B3100769B99 /* domSurfaceType.h */,
+				2F04B27C0CCD9B3100769B99 /* domTorus.h */,
+				2F04B27D0CCD9B3100769B99 /* domWires.h */,
+				2F04B2650CCD9AE900769B99 /* daeDatabase.cpp */,
+				2F04B2930CCD9B9700769B99 /* domBrep.cpp */,
+				2F04B2940CCD9B9700769B99 /* domCircle.cpp */,
+				2F04B2950CCD9B9700769B99 /* domCone.cpp */,
+				2F04B2960CCD9B9700769B99 /* domCurves.cpp */,
+				2F04B2970CCD9B9700769B99 /* domCurveType.cpp */,
+				2F04B2980CCD9B9700769B99 /* domCylindrical.cpp */,
+				2F04B2990CCD9B9700769B99 /* domEdges.cpp */,
+				2F04B29A0CCD9B9700769B99 /* domEllipse.cpp */,
+				2F04B29B0CCD9B9700769B99 /* domFaces.cpp */,
+				2F04B29C0CCD9B9700769B99 /* domHyperbola.cpp */,
+				2F04B29D0CCD9B9700769B99 /* domLine.cpp */,
+				2F04B29E0CCD9B9700769B99 /* domLinear_extrusion_surface.cpp */,
+				2F04B29F0CCD9B9700769B99 /* domParabola.cpp */,
+				2F04B2A00CCD9B9700769B99 /* domRevolution_surface.cpp */,
+				2F04B2A10CCD9B9700769B99 /* domShells.cpp */,
+				2F04B2A20CCD9B9700769B99 /* domSIDREF_array.cpp */,
+				2F04B2A30CCD9B9700769B99 /* domSolids.cpp */,
+				2F04B2A40CCD9B9700769B99 /* domSurfaces.cpp */,
+				2F04B2A50CCD9B9700769B99 /* domSurfaceType.cpp */,
+				2F04B2A60CCD9B9700769B99 /* domTorus.cpp */,
+				2F04B2A70CCD9B9700769B99 /* domWires.cpp */,
 				AD76C6630BD7FE7C00486DB0 /* daeDocument.h */,
 				AD76C6640BD7FE7C00486DB0 /* daeDom.h */,
 				ADEAEDEA0C53CFED00C55F75 /* daePlatform.h */,
@@ -1236,6 +1365,27 @@
 				AD9A7D810C38EA9F00C43196 /* daeTinyXMLPlugin.h in Headers */,
 				ADEAEDEB0C53CFED00C55F75 /* daePlatform.h in Headers */,
 				AD2C1E530C9940A90040481B /* daeRefCountedObj.h in Headers */,
+				2F04B27E0CCD9B3100769B99 /* domBrep.h in Headers */,
+				2F04B27F0CCD9B3100769B99 /* domCircle.h in Headers */,
+				2F04B2800CCD9B3100769B99 /* domCone.h in Headers */,
+				2F04B2810CCD9B3100769B99 /* domCurves.h in Headers */,
+				2F04B2820CCD9B3100769B99 /* domCurveType.h in Headers */,
+				2F04B2830CCD9B3100769B99 /* domCylindrical.h in Headers */,
+				2F04B2840CCD9B3100769B99 /* domEdges.h in Headers */,
+				2F04B2850CCD9B3100769B99 /* domEllipse.h in Headers */,
+				2F04B2860CCD9B3100769B99 /* domFaces.h in Headers */,
+				2F04B2870CCD9B3100769B99 /* domHyperbola.h in Headers */,
+				2F04B2880CCD9B3100769B99 /* domLine.h in Headers */,
+				2F04B2890CCD9B3100769B99 /* domLinear_extrusion_surface.h in Headers */,
+				2F04B28A0CCD9B3100769B99 /* domParabola.h in Headers */,
+				2F04B28B0CCD9B3100769B99 /* domRevolution_surface.h in Headers */,
+				2F04B28C0CCD9B3100769B99 /* domShells.h in Headers */,
+				2F04B28D0CCD9B3100769B99 /* domSIDREF_array.h in Headers */,
+				2F04B28E0CCD9B3100769B99 /* domSolids.h in Headers */,
+				2F04B28F0CCD9B3100769B99 /* domSurfaces.h in Headers */,
+				2F04B2900CCD9B3100769B99 /* domSurfaceType.h in Headers */,
+				2F04B2910CCD9B3100769B99 /* domTorus.h in Headers */,
+				2F04B2920CCD9B3100769B99 /* domWires.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1500,7 +1650,6 @@
 				AD012D1E0BCFEE5100BBFE92 /* dae.cpp in Sources */,
 				AD012D1F0BCFEE5100BBFE92 /* daeArray.cpp in Sources */,
 				AD012D200BCFEE5100BBFE92 /* daeAtomicType.cpp in Sources */,
-				AD012D210BCFEE5100BBFE92 /* daeDocument.cpp in Sources */,
 				AD012D220BCFEE5100BBFE92 /* daeDom.cpp in Sources */,
 				AD012D230BCFEE5100BBFE92 /* daeElement.cpp in Sources */,
 				AD012D240BCFEE5100BBFE92 /* daeError.cpp in Sources */,
@@ -1528,6 +1677,29 @@
 				AD9A7DFD0C38EB0700C43196 /* daeIOPluginCommon.cpp in Sources */,
 				AD9A7DFE0C38EB0700C43196 /* daeStandardURIResolver.cpp in Sources */,
 				AD2C1E550C9941210040481B /* daeRefCountedObj.cpp in Sources */,
+				2F04B2610CCD96AC00769B99 /* daeDocument.cpp in Sources */,
+				2F04B2660CCD9AE900769B99 /* daeDatabase.cpp in Sources */,
+				2F04B2A80CCD9B9700769B99 /* domBrep.cpp in Sources */,
+				2F04B2A90CCD9B9700769B99 /* domCircle.cpp in Sources */,
+				2F04B2AA0CCD9B9700769B99 /* domCone.cpp in Sources */,
+				2F04B2AB0CCD9B9700769B99 /* domCurves.cpp in Sources */,
+				2F04B2AC0CCD9B9700769B99 /* domCurveType.cpp in Sources */,
+				2F04B2AD0CCD9B9700769B99 /* domCylindrical.cpp in Sources */,
+				2F04B2AE0CCD9B9700769B99 /* domEdges.cpp in Sources */,
+				2F04B2AF0CCD9B9700769B99 /* domEllipse.cpp in Sources */,
+				2F04B2B00CCD9B9700769B99 /* domFaces.cpp in Sources */,
+				2F04B2B10CCD9B9700769B99 /* domHyperbola.cpp in Sources */,
+				2F04B2B20CCD9B9700769B99 /* domLine.cpp in Sources */,
+				2F04B2B30CCD9B9700769B99 /* domLinear_extrusion_surface.cpp in Sources */,
+				2F04B2B40CCD9B9700769B99 /* domParabola.cpp in Sources */,
+				2F04B2B50CCD9B9700769B99 /* domRevolution_surface.cpp in Sources */,
+				2F04B2B60CCD9B9700769B99 /* domShells.cpp in Sources */,
+				2F04B2B70CCD9B9700769B99 /* domSIDREF_array.cpp in Sources */,
+				2F04B2B80CCD9B9700769B99 /* domSolids.cpp in Sources */,
+				2F04B2B90CCD9B9700769B99 /* domSurfaces.cpp in Sources */,
+				2F04B2BA0CCD9B9700769B99 /* domSurfaceType.cpp in Sources */,
+				2F04B2BB0CCD9B9700769B99 /* domTorus.cpp in Sources */,
+				2F04B2BC0CCD9B9700769B99 /* domWires.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
