@@ -11,6 +11,7 @@
  * License. 
  */
 
+#include <list>
 #include <vector>
 #include <sstream>
 #include <algorithm>
@@ -20,6 +21,9 @@
 #include <dae/daeMetaAttribute.h>
 #include <dae/daeMetaElement.h>
 #include <dae/daeURI.h>
+#include <dom/domTypes.h>
+#include <dae/daeDocument.h>
+#include <dae/daeDatabase.h>
 
 using namespace std;
 
@@ -99,26 +103,185 @@ void daeSIDResolver::resetResolveState() {
 }
 
 namespace {
-	void tokenizeSIDRef(const string& sidRef, /* out */ vector<string>& tokens) {
-		string separators = "/.()";
+	template<typename T>
+	T nextIter(const T& iter) {
+		T next = iter;
+		return ++next;
+	}
+
+	template<typename T>
+	T moveIter(const T& iter, int n) {
+		T result = iter;
+		advance(result, n);
+		return result;
+	}
+	
+	void tokenize(const string& s, const string& separators, /* out */ list<string>& tokens) {
 		size_t currentIndex = 0, nextTokenIndex = 0;
-		while (currentIndex < sidRef.length() &&
-					 (nextTokenIndex = sidRef.find_first_of(separators, currentIndex)) != string::npos) {
+		while (currentIndex < s.length() &&
+					 (nextTokenIndex = s.find_first_of(separators, currentIndex)) != string::npos) {
 			if ((nextTokenIndex - currentIndex) > 0)
-				tokens.push_back(sidRef.substr(currentIndex, nextTokenIndex-currentIndex));
-			tokens.push_back(string(1, sidRef[nextTokenIndex]));
+				tokens.push_back(s.substr(currentIndex, nextTokenIndex-currentIndex));
+			tokens.push_back(string(1, s[nextTokenIndex]));
 			currentIndex = nextTokenIndex+1;
 		}
 
-		if (currentIndex < sidRef.length())
-			tokens.push_back(sidRef.substr(currentIndex, sidRef.length()-currentIndex));
+		if (currentIndex < s.length())
+			tokens.push_back(s.substr(currentIndex, s.length()-currentIndex));
+	}
+
+	// Implements a breadth-first sid search by starting at the container element and
+	// traversing downward through the element tree.
+	daeElement* findSidTopDown(daeElement* container, const string& sid, const string& profile) {
+		if (!container)
+			return NULL;
+
+		vector<daeElement*> elts, matchingElts;
+		elts.push_back(container);
+
+		for (size_t i = 0; i < elts.size(); i++) {
+			daeElement* elt = elts[i];
+			
+			// Bail if we're looking for an element in a different profile
+			if (!profile.empty()) {
+				if (elt->getElementType() == COLLADA_TYPE::TECHNIQUE_COMMON)
+					continue;
+				if (elt->getElementType() == COLLADA_TYPE::TECHNIQUE  &&  profile != elt->getAttribute("profile"))
+					continue;
+			}
+		
+			// See if this is a matching element
+			if (elt->getAttribute("sid") == sid)
+				return elt;
+			else {
+				// Add the children to the list of elements to check
+				daeElementRefArray children;
+				elt->getChildren(children);
+				for (size_t j = 0; j < children.getCount(); j++)
+					elts.push_back(children[j]);
+			}
+		}
+
+		return NULL;
+	}
+
+	// Returns the distance between an element and an ancestor of the element. If 'container
+	// isn't an ancestor of 'elt', or if 'elt' is in a profile that doesn't match 'profile'
+	// UINT_MAX is returned.
+	unsigned int computeDistance(daeElement* container, daeElement* elt, const string& profile) {
+		if (!container || !elt)
+			return UINT_MAX;
+
+		unsigned int distance = 0;
+		do {
+			// Bail if we're looking for an element in a different profile
+			if (!profile.empty()) {
+				if (elt->getElementType() == COLLADA_TYPE::TECHNIQUE_COMMON)
+					return UINT_MAX;
+				if (elt->getElementType() == COLLADA_TYPE::TECHNIQUE  &&  profile != elt->getAttribute("profile"))
+					return UINT_MAX;
+			}
+
+			if (elt == container)
+				return distance;
+			distance++;
+		} while ((elt = elt->getParentElement()) != NULL);
+
+		return UINT_MAX;
+	}
+
+	// Implements a breadth-first sid search by using the database to find all elements
+	// matching 'sid', then finding the element closest to 'container'.
+	daeElement* findSidBottomUp(daeElement* container, const string& sid, const string& profile) {
+		if (!container || !container->getDocument())
+			return NULL;
+
+		// Get the elements with a matching sid
+		list<daeElement*> elts;
+		container->getDocument()->getDatabase()->sidLookup(sid, elts);
+
+		// Compute the distance from each matching element to the container element
+		unsigned int minDistance = UINT_MAX;
+		daeElement* closestElt = NULL;
+		for (list<daeElement*>::iterator iter = elts.begin(); iter != elts.end(); iter++) {
+			unsigned int distance = computeDistance(container, *iter, profile);
+			if (distance < minDistance) {
+				minDistance = distance;
+				closestElt = *iter;
+			}
+		}
+
+		return closestElt;
+	}
+
+	daeElement* findID(daeElement* elt, const string& id, const string& profile) {
+		daeIDRef idRef(id.c_str());
+		idRef.setContainer(elt);
+		return idRef.getElement();
+	}
+	
+	void buildString(const list<string>::iterator& begin,
+	                 const list<string>::iterator& end,
+	                 string& result) {
+		ostringstream stream;
+		for (list<string>::iterator iter = begin; iter != end; iter++)
+			stream << *iter;
+		result = stream.str();
+	}
+
+	// Finds an element with a matching ID or sid (depending on the 'finder' function)
+	// passed in. First it tries to resolve the whole ID/sid, then it tries to resolve
+	// successively smaller parts. For example, consider this sid ref: "my.sid.ref".
+	// First this function will try to resolve "my.sid.ref" entirely, then if that
+	// fails it'll try to resolve "my.sid.", "my.sid", "my.", and "my", in that order.
+	// The part that wasn't matched is returned in the 'remainingPart' parameter.
+	daeElement* findWithDots(daeElement* container,
+	                         const string& s,
+	                         const string& profile,
+	                         daeElement* (*finder)(daeElement*, const string&, const string&),
+	                         list<string>& remainingPart) {
+		remainingPart.clear();
+
+		// First see if the whole thing resolves correctly
+		if (daeElement* result = finder(container, s, profile))
+			return result;
+
+		// It didn't resolve. Let's tokenize it by '.'s and see if we can resolve a
+		// portion of it.
+		tokenize(s, ".", remainingPart);
+		if (remainingPart.size() == 1)
+			return NULL; // There were no '.'s, so the result won't be any different
+
+		list<string>::iterator iter = moveIter(remainingPart.end(), -1);
+		for (int i = int(remainingPart.size())-1; i >= 1; i--, iter--) {
+			string substr;
+			buildString(remainingPart.begin(), iter, substr);
+			if (daeElement* result = finder(container, substr, profile)) {
+				// Remove the part we matched against from the list
+				remainingPart.erase(remainingPart.begin(), iter);
+				return result;
+			}
+		}
+
+		remainingPart.clear();
+		return NULL;
 	}
 }
 
-void daeSIDResolver::resolve()
+
+void daeSIDResolver::resolve() {
+	// First try to resolve as an animation-style sid ref, where the first part is an ID.
+	// If that fails, try to resolve as an effect-style sid ref by prepending "./" to
+	// the sid ref.
+	resolveImpl(target);
+	if (!resolvedElement)
+		resolveImpl(string("./") + target);
+}
+
+void daeSIDResolver::resolveImpl(const string& sidRef)
 {
 	resetResolveState();
-	if (target.empty())
+	if (sidRef.empty())
 		return;
 
 	daeElement*     element = 0;
@@ -126,67 +289,56 @@ void daeSIDResolver::resolve()
 	daeDouble*      doublePtr = 0;
 	state = sid_failed_not_found; // Assume that we're going to fail
 
-	vector<string> tokens;
-	tokenizeSIDRef(target, /* out */ tokens);
+	string separators = "/()";
+	list<string> tokens;
+	tokenize(sidRef, separators, /* out */ tokens);
 
-	vector<string>::iterator tok = tokens.begin();
+	list<string>::iterator tok = tokens.begin();
 
-	// The first token should be the ID of the element we want to start our search from, or a '.' to indicate
+	// The first token should be either an ID or a '.' to indicate
 	// that we should start the search from the container element.
 	if (tok == tokens.end())
 		return;
 
-	if (*tok == "."  &&  (tok+1) != tokens.end()  &&  *(tok+1) == "/") {
+	list<string> remainingPart;
+	if (*tok == ".") {
 		element = container;
+		tok++;
 	}	else {
-		daeIDRef idref( (*tok).c_str() );
-		idref.setContainer( container );
-		element = idref.getElement();
-		if (!element) {
-			// If there is no pathing part (/) see if the first token resolves as a SID instead of an ID,
-			// and if so prepend a "./" to the SID ref and proceed. This is actually only valid for
-			// effect-style SIDs where the SID reference doesn't have an ID part. Unfortunately we don't
-			// know what type of SID reference this is, so we'll just do it for all SID refs. This is
-			// basically meant as a workaround so that clients don't have to prepend their effect-style
-			// SIDs with "./".
-			if (find(tokens.begin(), tokens.end(), "/") == tokens.end()) {
-				// Pretend that we had a ./ at the front
-				element = container;
-				tokens.insert(tokens.begin(), 2, ".");
-				tokens[1] = "/";
-				tok = tokens.begin(); // We invalidated the iterator by inserting into the array, so fix it
-			}
+		// Try to resolve it as an ID
+		element = findWithDots(container, *tok, profile, findID, remainingPart);
+		if (element) {
+			if (!remainingPart.empty()) {
+				// Insert the "remaining part" from the ID resolve into our list of tokens
+				tokens.erase(tokens.begin());
+				tokens.splice(tokens.begin(), remainingPart);
+				tok = tokens.begin();
+			} else
+				tok++;
 		}
-		if (!element)
-			return;
 	}
 
-	// Next we have an optional list of SIDs, each one separated by "/". Once we hit one of ".()",
+	if (!element)
+		return;
+
+	// Next we have an optional list of SIDs, each one separated by "/". Once we hit one of "()",
 	// we know we're done with the SID section.
-	tok++;
 	for (; tok != tokens.end() && *tok == "/"; tok++) {
 		tok++; // Read the '/'
 		if (tok == tokens.end())
 			return;
 
 		// Find the element matching the SID
-		string sid = *tok;
-		daeElement* lastElementFound = element;
-		element = findSID(element, sid.c_str());
-		if (element == NULL) {
-			// !!!steveT: This behavior will probably need to change once bug 1293 in Khronos gets resolved.
-			// We weren't able to find an element with a matching SID. Before we bail, try consuming some more
-			// of the target to use as additional SID.
-			tok++;
-			for (; tok != tokens.end()  &&  element == NULL; tok++) {
-				sid += *tok;
-				element = findSID(lastElementFound, sid.c_str());
-			}
-			tok--; // Step back. tok is about to be incremented by the outer for loop.
-		}
-		
-		if (element == NULL)
+		element = findWithDots(element, *tok, profile, findSidTopDown, remainingPart);
+		if (!element)
 			return;
+
+		if (!remainingPart.empty()) {
+			list<string>::iterator tmp = tok;
+			tok--;
+			tokens.splice(tmp, remainingPart);
+			tokens.erase(tmp);
+		}
 	}
 
 	// Now we want to parse the member selection tokens. It can either be
@@ -327,55 +479,17 @@ void daeSIDResolver::resolve()
 		state = sid_success_element;
 }
 
-daeElement *daeSIDResolver::findSID( daeElement *el, daeString sid ) {
-	//first check yourself
-	daeString *s = (daeString*)el->getAttributeValue( "sid" );
-	if ( s != NULL && *s != NULL && strcmp( *s, sid ) == 0 ) {
-		//found it
-		return el;
-	}
-	//and if you are a instance_* then check what you point to
-	if ( strncmp( el->getElementName(), "instance_", 9 ) == 0 ) {
-		daeURI *uri = (daeURI*)el->getAttributeValue("url");
-		if ( uri != NULL && uri->getElement() != NULL ) {
-			daeElement *e = findSID( uri->getElement(), sid );
-			if ( e != NULL ) {
-				//found it
-				return e;
-			}
-		}
-	}
-	
-	daeElementRefArray children;
-	el->getChildren( children );
-	size_t cnt = children.getCount();
-	for ( size_t x = 0; x < cnt; x++ ) {
-		//examine the children
-		//char s[56]; 
-		//daeAtomicType::get( "token" )->memoryToString( children[x]->getAttributeValue( "sid" ), s, 56 );
-		daeString *s = (daeString*)children[x]->getAttributeValue( "sid" );
-		if ( s != NULL && *s != NULL && strcmp( *s, sid ) == 0 ) {
-			//found it
-			return children[x];
-		}
-	}
-	for ( size_t x = 0; x < cnt; x++ ) {
-		//if not found look for it in each child
-		if ( !profile.empty() && strcmp( children[x]->getTypeName(), "technique_COMMON" ) == 0 ) {
-			//not looking for common profile
-			continue;
-		}
-		else if ( strcmp( children[x]->getTypeName(), "technique" ) == 0 && children[x]->hasAttribute( "profile" ) ) {
-			if ( profile.empty() || profile != children[x]->getAttributeValue( "profile" ) ) {
-				//not looking for this technique profile
-				continue;
-			}		
-		}
-		daeElement *e = findSID( children[x], sid );
-		if ( e != NULL ) {
-			//found it
-			return e;
-		}
-	}
-	return NULL;
+
+daeElement* cdom::resolveSid(daeElement* container,
+                             daeString sidRef,
+                             daeString platform) {
+	daeSIDResolver resolver(container, sidRef, platform);
+	return resolver.getElement();
+}
+
+daeElement* cdom::resolveSid(daeElement* container,
+                             const string& sidRef,
+                             const string& platform_) {
+	daeString platform = platform_.empty() ? NULL : platform_.c_str();
+	return resolveSid(container, sidRef.c_str(), platform);
 }

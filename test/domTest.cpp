@@ -648,11 +648,11 @@ DefineTest(sidResolveTest) {
 	CheckResult(effect && effectExtra);
 
 	istringstream stream(effectExtra->getCharData());
-	string sid, expectedResult;
-	while (stream >> sid >> expectedResult) {
-		string result = resolveResultToString(resolveSidToState(sid, effect));
+	string sidRef, expectedResult;
+	while (stream >> sidRef >> expectedResult) {
+		string result = resolveResultToString(resolveSidToState(sidRef, effect));
 		CheckResultWithMsg(result == expectedResult,
-		                   string("sid=") + sid + ", expectedResult=" + expectedResult + ", actualResult=" + result);
+		                   string("sid ref=") + sidRef + ", expectedResult=" + expectedResult + ", actualResult=" + result);
 	}
 
 	daeElement *root = 0,
@@ -663,11 +663,38 @@ DefineTest(sidResolveTest) {
 
 	stream.clear();
 	stream.str(nodeSidRefExtra->getCharData());
-	while (stream >> sid >> expectedResult) {
-		string result = resolveResultToString(resolveSidToState(sid, root));
+	while (stream >> sidRef >> expectedResult) {
+		string result = resolveResultToString(resolveSidToState(sidRef, root));
 		CheckResultWithMsg(result == expectedResult,
-		                   string("sid=") + sid + ", expectedResult=" + expectedResult + ", actualResult=" + result);
+		                   string("sid ref=") + sidRef + ", expectedResult=" + expectedResult + ", actualResult=" + result);
 	}
+
+	dae.getDatabase()->getElement(&nodeSidRefExtra, 0, "nodeSidRefExtra2");
+	CheckResult(nodeSidRefExtra);
+
+	stream.clear();
+	stream.str(nodeSidRefExtra->getCharData());
+	while (stream >> sidRef >> expectedResult) {
+		daeElement* elt = cdom::resolveSid(root, sidRef);
+		string result = elt ? elt->getAttribute("id") : "failed";
+		CheckResultWithMsg(result == expectedResult,
+		                   string("sid ref=") + sidRef + ", expectedResult=" + expectedResult + ", actualResult=" + result);
+	}
+
+	dae.getDatabase()->getElement(&nodeSidRefExtra, 0, "nodeSidRefExtra3");
+	CheckResult(nodeSidRefExtra);
+
+	stream.clear();
+	stream.str(nodeSidRefExtra->getCharData());
+	string profile;
+	while (stream >> sidRef >> profile >> expectedResult) {
+		daeElement* elt = cdom::resolveSid(root, sidRef, profile);
+		string result = elt ? elt->getAttribute("id") : "failed";
+		CheckResultWithMsg(result == expectedResult,
+		                   string("sid ref=") + sidRef + ", profile=" + profile +
+		                   ", expectedResult=" + expectedResult + ", actualResult=" + result);
+	}
+
 
 	return true;
 }
@@ -1012,6 +1039,58 @@ DefineTest(stringTable) {
 	// These next two lines used to cause an abort
 	stringTable.clear(); 
 	stringTable.allocString("goodbye");
+	return true;
+}
+
+
+// We can only do this test if we have breps
+#if 0
+DefineTest(sidResolveSpeed) {
+	DAE dae;
+	string file = lookupTestFile("crankarm.dae");
+	CheckResult(dae.load(file.c_str()) == DAE_OK);
+	domCOLLADA* root = dae.getDom(file.c_str());
+	CheckResult(root);
+		
+	size_t count = dae.getDatabase()->getElementCount(NULL, COLLADA_TYPE_SIDREF_ARRAY);
+	for (size_t i = 0; i < count; i++) {
+		daeElement* elt = 0;
+		dae.getDatabase()->getElement(&elt, 0, NULL, COLLADA_TYPE_SIDREF_ARRAY);
+		CheckResult(elt);
+		domSIDREF_array* sidRefsElt = daeSafeCast<domSIDREF_array>(elt);
+		CheckResult(sidRefsElt);
+		
+		domListOfNames& sidRefs = sidRefsElt->getValue();
+		for (size_t j = 0; j < sidRefs.getCount(); j++) {
+			CheckResult(cdom::resolveSid(root, sidRefs[i]));
+		}
+	}
+
+	return true;
+}
+#endif
+
+
+DefineTest(seymourSidResolve) {
+	DAE dae;
+	string file = lookupTestFile("Seymour.dae");
+	CheckResult(dae.load(file.c_str()) == DAE_OK);
+
+	size_t count = dae.getDatabase()->getElementCount(NULL, COLLADA_TYPE_NODE);
+	for (size_t i = 0; i < count; i++) {
+		daeElement* elt = NULL;
+		dae.getDatabase()->getElement(&elt, 0, NULL, COLLADA_TYPE_NODE);
+		CheckResult(elt);
+		daeElementRefArray children;
+		elt->getChildren(children);
+		for (size_t j = 0; j < children.getCount(); j++) {
+			string sid = children[j]->getAttribute("sid");
+			if (!sid.empty()) {
+				CheckResult(cdom::resolveSid(elt, sid));
+			}
+		}
+	}
+
 	return true;
 }
 

@@ -43,6 +43,12 @@ void daeDocument::changeElementID( daeElementRef element, daeString newID ) {
 	}
 }
 
+void daeDocument::changeElementSID( daeElementRef element, daeString newSID ) {
+	if (database) {
+		database->changeElementSID( element.cast(), newSID );
+	}
+}
+
 void daeDocument::addExternalReference( daeURI &uri ) {
 	if ( uri.getContainer() == NULL || uri.getContainer()->getDocument() != this ) {
 		return;	

@@ -14,6 +14,8 @@
 #include <modules/daeSTLDatabase.h>
 #include <dae/daeMetaElement.h>
 
+using namespace std;
+
 daeSTLDatabase::daeSTLDatabase()
 {}
 
@@ -226,6 +228,11 @@ daeInt daeSTLDatabase::insertElement(daeDocument* document,daeElement* element)
 		elementsIDMap.insert( std::make_pair( std::string( element->getID() ), element ) );
 	}
 
+	// Insert into sid map if the element has a sid
+// 	string sid = element->getAttribute("sid");
+// 	if (!sid.empty())
+// 		sidMap.insert(sidMapPair(sid, element));
+
 	return DAE_OK;
 }
 
@@ -275,6 +282,18 @@ daeInt daeSTLDatabase::removeElement(daeDocument* document,daeElement* element)
 			++iter;
 		}
 	}
+
+// 	string sid = element->getAttribute("sid");
+// 	if (!sid.empty()) {
+// 		pair<sidMapIter, sidMapIter> range = sidMap.equal_range(sid);
+// 		for (sidMapIter iter = range.first; iter != range.second; iter++) {
+// 			if (iter->second == element) {
+// 				sidMap.erase(iter);
+// 				break;
+// 			}
+// 		}
+// 	}
+	
 	return DAE_OK;
 }
 
@@ -316,10 +335,34 @@ daeInt daeSTLDatabase::changeElementID( daeElement* element, daeString newID )
 	return DAE_OK;
 }
 
+daeInt daeSTLDatabase::changeElementSID(daeElement* element, daeString newSID) {
+	if (!element)
+		return DAE_ERR_INVALID_CALL;
+
+// 	// Remove the current entry in the sid map if the element has a sid
+// 	string sid = element->getAttribute("sid");
+// 	if (!sid.empty()) {
+// 		pair<sidMapIter, sidMapIter> range = sidMap.equal_range(sid);
+// 		for (sidMapIter iter = range.first; iter != range.second; iter++) {
+// 			if (iter->second == element) {
+// 				sidMap.erase(iter);
+// 				break;
+// 			}
+// 		}
+// 	}
+
+// 	// Add an entry to the sid map if the element will have a sid
+// 	if ( newSID != NULL )
+// 		sidMap.insert(sidMapPair(newSID, element));
+
+	return DAE_OK;
+}
+
 daeInt daeSTLDatabase::clear()
 {
 	elements.clear();
 	elementsIDMap.clear();
+	sidMap.clear();
 	int i;
 	for (i=0;i<(int)documents.size();i++)
 		delete documents[i];
@@ -605,6 +648,15 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 	}
 	return DAE_ERR_QUERY_NO_MATCH;
 
+}
+
+void daeSTLDatabase::sidLookup(const string& sid, list<daeElement*>& result) {
+	result.clear();
+	if (!sid.empty()) {
+		pair<sidMapIter, sidMapIter> range = sidMap.equal_range(sid);
+		for (sidMapIter iter = range.first; iter != range.second; iter++)
+			result.push_back(iter->second);
+	}
 }
 
 // Generic Query
