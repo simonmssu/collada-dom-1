@@ -364,7 +364,7 @@ void DAE::getProgress(daeInt* bytesParsed,daeInt* lineNumber,daeInt* totalBytes,
 	{
 		if (bytesParsed)
 			*bytesParsed=0;
-		if (bytesParsed)
+		if (lineNumber)
 			*lineNumber=0;
 		if (totalBytes)
 			*totalBytes=0;
