@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F04B2C90CCEA4B200769B99 /* daeDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2C80CCEA4B200769B99 /* daeDatabase.cpp */; };
 		8D07F2C00486CC7A007CD1D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		AD012C700BCFEE5100BBFE92 /* domAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */; };
 		AD012C710BCFEE5100BBFE92 /* domAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */; };
@@ -225,6 +226,7 @@
 
 /* Begin PBXFileReference section */
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2F04B2C80CCEA4B200769B99 /* daeDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeDatabase.cpp; sourceTree = "<group>"; };
 		8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Collada141Dom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAccessor.cpp; sourceTree = "<group>"; };
 		AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAnimation.cpp; sourceTree = "<group>"; };
@@ -902,6 +904,7 @@
 			children = (
 				AD012C120BCFEE5100BBFE92 /* dae.cpp */,
 				AD012C130BCFEE5100BBFE92 /* daeArray.cpp */,
+				2F04B2C80CCEA4B200769B99 /* daeDatabase.cpp */,
 				AD012C140BCFEE5100BBFE92 /* daeAtomicType.cpp */,
 				AD012C150BCFEE5100BBFE92 /* daeDocument.cpp */,
 				AD012C160BCFEE5100BBFE92 /* daeDom.cpp */,
@@ -1528,6 +1531,7 @@
 				AD9A7DFD0C38EB0700C43196 /* daeIOPluginCommon.cpp in Sources */,
 				AD9A7DFE0C38EB0700C43196 /* daeStandardURIResolver.cpp in Sources */,
 				AD2C1E550C9941210040481B /* daeRefCountedObj.cpp in Sources */,
+				2F04B2C90CCEA4B200769B99 /* daeDatabase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
