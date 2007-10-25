@@ -128,7 +128,9 @@ bool CrtBrep::initEdges(domEdges *brepEdges) // Edge element
 	for (size_t i = 0; i < (size_t)edge_coms.num;i++)
 	{
 		// find index of curve: curve[3 * i] OFFSET as 0
-		resolver.setTarget( (string("./") + (edge_coms.sid_vector.at(0)->getValue()).get( (size_t)edge_coms.p_list[edge_coms.num_inputs * i + (size_t)edge_coms.offset[CURVE_OFFSET_INDEX]] )).c_str() );
+		size_t cur_index = (size_t)edge_coms.p_list[edge_coms.num_inputs * i + (size_t)edge_coms.offset[CURVE_OFFSET_INDEX]];
+		daeString cur_sid = (edge_coms.sid_vector.at(0)->getValue()).get( cur_index );
+		resolver.setTarget( cur_sid );
 		
 		// resolve it by sid
 		domCurveType * brepCurves = NULL;
@@ -362,7 +364,7 @@ bool CrtBrep::initFaces(domFaces *faces)
 		// find index of surface: surface[4 * index] OFFSET as 0
 		size_t sur_index = (size_t)face_coms.p_list[face_coms.num_inputs * index + (size_t)face_coms.offset[SURFACE_OFFSET_INDEX]];
 		daeString sur_sid = face_coms.sid_vector.at(0)->getValue().get( sur_index );
-		resolver.setTarget( (string("./") + sur_sid).c_str() );
+		resolver.setTarget( sur_sid );
 		
 		// resolve it by sid
 		domSurfaceType * brepSurfaces = NULL;
