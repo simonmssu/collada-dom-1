@@ -820,10 +820,12 @@ void MeshMerger::InitCrtGeometry(CrtGeometry *geo)
 	// release old memory space
 	delete [] geo->Points;
 	delete [] geo->Normals;
+	delete [] geo->TexCoords[0];
 
 	// assign new memeory space
 	geo->Points = new CrtVec3f [num_tris * 3];
 	geo->Normals = new CrtVec3f [num_tris * 3];
+	geo->TexCoords[0] = new CrtVec2f [num_tris * 3]; 
 }
 
 // allocate the triangles of face i to CrtGeometry
@@ -1072,19 +1074,15 @@ bool MeshMerger::UpdateGlobalTriangles(const gp_Vec &fn, const TopLoc_Location &
 			}
 			else
 			{
-				// TODO: we can consider to discard this triangle from current mesh
+				// Discard this triangle from current mesh
 				CrtPrint("Error: degerated triangle.\n");
-				//global_tris.push_back(tri(index0, index1, index2, 
-				//		0, 0, 0));
 				return false;
 			}
 		}
 		else
 		{
-			// TODO: we can consider to discard this triangle from current mesh
-			CrtPrint("Error: degerated triangle.\n");
-			//global_tris.push_back(tri(index0, index1, index2, 
-			//			0, 0, 0));
+			// Discard this triangle from current mesh
+			CrtPrint("Error: degerated triangle.\n");			
 			return false;
 		}
 	}
