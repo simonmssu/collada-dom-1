@@ -427,7 +427,7 @@ daeBool daeMetaElement::placeAfter( daeElement *marker, daeElement *parent, daeE
 		return false;
 	}
 	daeUInt ord;
-	daeElement *retVal = _contentModel->placeElement( parent, child, ord, 0, marker, NULL );
+	daeElement *retVal = _contentModel->placeElement( parent, child, ord, 0, NULL, marker );
 	if ( retVal != NULL ) {
 		//add to _contents array
 		if (_metaContents != NULL) {

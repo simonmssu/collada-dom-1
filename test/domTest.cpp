@@ -1095,6 +1095,43 @@ DefineTest(seymourSidResolve) {
 }
 
 
+vector<string> getChildNames(daeElement* elt) {
+	vector<string> result;
+	if (!elt)
+		return result;
+
+	daeElementRefArray children = elt->getChildren();
+	for (size_t i = 0; i < children.getCount(); i++)
+		result.push_back(children[i]->getElementName());
+
+	return result;
+}
+
+DefineTest(placeElement) {
+	DAE dae;
+	CheckResult(dae.load(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+
+	daeElement* node = 0;
+	dae.getDatabase()->getElement(&node, 0, "Box");
+	CheckResult(node);
+
+	CheckResult(getChildNames(node) == makeStringArray(
+		"rotate", "rotate", "rotate", "instance_geometry", 0));
+
+	// Place a new <translate> after the first <rotate> using placeElementAfter, and
+	// make sure the <translate> shows up in the right spot.
+	node->placeElementAfter(node->getChildren()[0], node->createElement("translate"));
+	CheckResult(getChildNames(node) == makeStringArray(
+		"rotate", "translate", "rotate", "rotate", "instance_geometry", 0));
+
+	node->placeElementBefore(node->getChildren()[0], node->createElement("scale"));
+	CheckResult(getChildNames(node) == makeStringArray(
+		"scale", "rotate", "translate", "rotate", "rotate", "instance_geometry", 0));
+
+	return true;
+};
+
+
 // Returns true if all tests names are valid
 bool checkTests(const set<string>& tests) {
 	bool invalidTestFound = false;
