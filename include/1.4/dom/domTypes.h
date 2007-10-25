@@ -1250,6 +1250,6 @@ namespace COLLADA_TYPE
 #else
 	;
 #endif
-};
+}
 
 #endif
