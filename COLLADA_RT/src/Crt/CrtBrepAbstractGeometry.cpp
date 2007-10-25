@@ -422,28 +422,19 @@ bool AbsCurve_OCC_Parser::ReadBSplineCurve(const daeElement *ele, Handle( Geom_C
 			{
 				if (!ParseOCCKnots(periodicOCC, &knotsOCC , &multsOCC, (size_t)polesOCC->Length(), (size_t)degreeOCC, knots))
 				{
-					if (polesOCC != NULL)
-						delete polesOCC;
-					if (weightsOCC != NULL)
-						delete weightsOCC;
-					if (knotsOCC != NULL)
-						delete knotsOCC;
-					if (multsOCC != NULL)
-						delete multsOCC;
+					CrtDelete( polesOCC );
+					CrtDelete( weightsOCC );						
+					CrtDelete( knotsOCC );						
+					CrtDelete( multsOCC );						
 					return false;
 				}
 			}
 			else
 			{
-				if (polesOCC != NULL)
-					delete polesOCC;
-				if (weightsOCC != NULL)
-					delete weightsOCC;
-				if (knotsOCC != NULL)
-					delete knotsOCC;
-				if (multsOCC != NULL)
-					delete multsOCC;
-	
+				CrtDelete(polesOCC );					
+				CrtDelete(weightsOCC );
+				CrtDelete(knotsOCC );
+				CrtDelete(multsOCC );	
 				return false;
 			}
 		}
@@ -452,21 +443,17 @@ bool AbsCurve_OCC_Parser::ReadBSplineCurve(const daeElement *ele, Handle( Geom_C
 	if ( polesOCC && knotsOCC && multsOCC && weightsOCC && degreeOCC > 0)
     {
         curve = new Geom_BSplineCurve( *polesOCC, *weightsOCC, *knotsOCC, *multsOCC, degreeOCC, periodicOCC );
-        delete polesOCC;
-        delete weightsOCC;
-        delete knotsOCC;
-        delete multsOCC;
+        CrtDelete( polesOCC );
+        CrtDelete( weightsOCC );
+        CrtDelete( knotsOCC );
+        CrtDelete( multsOCC );
 		return true;
     }
 
-	if (polesOCC != NULL)
-		delete polesOCC;
-	if (weightsOCC != NULL)
-		delete weightsOCC;
-	if (knotsOCC != NULL)
-		delete knotsOCC;
-	if (multsOCC != NULL)
-		delete multsOCC;
+	CrtDelete( polesOCC );
+	CrtDelete( weightsOCC );
+	CrtDelete( knotsOCC );
+	CrtDelete( multsOCC );
 	return false;
 }
 
@@ -683,18 +670,12 @@ bool AbsSurface_OCC_Parser::ReadBSpline(const daeElement *ele, Handle_Geom_Surfa
 			if (u_num_cv == 0 || v_num_cv == 0)
 			{
 				CrtPrint("One dim of control vertices is zero.\n");
-				if (polesOCC != NULL)
-					delete polesOCC;
-				if (u_knotsOCC != NULL)
-					delete u_knotsOCC;
-				if (v_knotsOCC != NULL)
-					delete v_knotsOCC;
-				if (u_multsOCC != NULL)
-					delete u_multsOCC;
-				if (v_multsOCC != NULL)
-					delete v_multsOCC;
-				if (weightsOCC != NULL)
-					delete weightsOCC;
+				CrtDelete( polesOCC );
+				CrtDelete( u_knotsOCC );
+				CrtDelete( v_knotsOCC );
+				CrtDelete( u_multsOCC );
+				CrtDelete( v_multsOCC );
+				CrtDelete( weightsOCC );
 				return false;
 			}
 			polesOCC = new TColgp_Array2OfPnt(1, (Standard_Integer)u_num_cv, 1, (Standard_Integer)v_num_cv);
@@ -744,35 +725,23 @@ bool AbsSurface_OCC_Parser::ReadBSpline(const daeElement *ele, Handle_Geom_Surfa
 			{
 				if (!ParseOCCKnots(u_periodicOCC, &u_knotsOCC , &u_multsOCC, u_num_cv, (size_t)u_degreeOCC, u_knots))
 				{
-					if (polesOCC != NULL)
-						delete polesOCC;
-					if (u_knotsOCC != NULL)
-						delete u_knotsOCC;
-					if (v_knotsOCC != NULL)
-						delete v_knotsOCC;
-					if (u_multsOCC != NULL)
-						delete u_multsOCC;
-					if (v_multsOCC != NULL)
-						delete v_multsOCC;
-					if (weightsOCC != NULL)
-						delete weightsOCC;
+					CrtDelete( polesOCC );
+					CrtDelete( u_knotsOCC );
+					CrtDelete( v_knotsOCC );
+					CrtDelete( u_multsOCC );
+					CrtDelete( v_multsOCC );
+					CrtDelete( weightsOCC );
 					return false;					
 				}
 			}
 			else
 			{
-				if (polesOCC != NULL)
-					delete polesOCC;
-				if (u_knotsOCC != NULL)
-					delete u_knotsOCC;
-				if (v_knotsOCC != NULL)
-					delete v_knotsOCC;
-				if (u_multsOCC != NULL)
-					delete u_multsOCC;
-				if (v_multsOCC != NULL)
-					delete v_multsOCC;
-				if (weightsOCC != NULL)
-					delete weightsOCC;
+				CrtDelete( polesOCC );
+				CrtDelete( u_knotsOCC );
+				CrtDelete( v_knotsOCC );
+				CrtDelete( u_multsOCC );
+				CrtDelete( v_multsOCC );
+				CrtDelete( weightsOCC );
 				return false;
 			}
 		}
@@ -783,35 +752,23 @@ bool AbsSurface_OCC_Parser::ReadBSpline(const daeElement *ele, Handle_Geom_Surfa
 			{
 				if (!ParseOCCKnots(v_periodicOCC, &v_knotsOCC , &v_multsOCC, v_num_cv, (size_t)v_degreeOCC, v_knots))
 				{
-					if (polesOCC != NULL)
-						delete polesOCC;
-					if (u_knotsOCC != NULL)
-						delete u_knotsOCC;
-					if (v_knotsOCC != NULL)
-						delete v_knotsOCC;
-					if (u_multsOCC != NULL)
-						delete u_multsOCC;
-					if (v_multsOCC != NULL)
-						delete v_multsOCC;
-					if (weightsOCC != NULL)
-						delete weightsOCC;
+					CrtDelete( polesOCC );
+					CrtDelete( u_knotsOCC );
+					CrtDelete( v_knotsOCC );
+					CrtDelete( u_multsOCC );
+					CrtDelete( v_multsOCC );
+					CrtDelete( weightsOCC );
 					return false;
 				}
 			}
 			else
 			{
-				if (polesOCC != NULL)
-						delete polesOCC;
-				if (u_knotsOCC != NULL)
-					delete u_knotsOCC;
-				if (v_knotsOCC != NULL)
-					delete v_knotsOCC;
-				if (u_multsOCC != NULL)
-					delete u_multsOCC;
-				if (v_multsOCC != NULL)
-					delete v_multsOCC;
-				if (weightsOCC != NULL)
-					delete weightsOCC;
+				CrtDelete( polesOCC );
+				CrtDelete( u_knotsOCC );
+				CrtDelete( v_knotsOCC );
+				CrtDelete( u_multsOCC );
+				CrtDelete( v_multsOCC );
+				CrtDelete( weightsOCC );
 				return false;
 			}
 		}
@@ -821,12 +778,12 @@ bool AbsSurface_OCC_Parser::ReadBSpline(const daeElement *ele, Handle_Geom_Surfa
 	{
 		surface = new Geom_BSplineSurface(*polesOCC, *u_knotsOCC, *v_knotsOCC, *u_multsOCC, *v_multsOCC, u_degreeOCC, v_degreeOCC);
 
-		delete polesOCC;
-		delete u_knotsOCC;
-		delete v_knotsOCC;
-		delete u_multsOCC;
-		delete v_multsOCC;
-		delete weightsOCC;
+		CrtDelete( polesOCC );
+		CrtDelete( u_knotsOCC );
+		CrtDelete( v_knotsOCC );
+		CrtDelete( u_multsOCC );
+		CrtDelete( v_multsOCC );
+		CrtDelete( weightsOCC );
 
 		if (surface == NULL)
 			return false;

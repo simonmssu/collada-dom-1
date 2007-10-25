@@ -819,14 +819,14 @@ void MeshMerger::InitCrtGeometry(CrtGeometry *geo)
 	CrtUInt num_tris = (fs_vec.at(fs_vec.size() - 1));
 
 	// release old memory space
-	delete [] geo->Points;
-	delete [] geo->Normals;
-	delete [] geo->TexCoords[0];
+	CrtDeleteData( geo->Points );
+	CrtDeleteData( geo->Normals );
+	CrtDeleteData( geo->TexCoords[0] );
 
 	// assign new memeory space
-	geo->Points = new CrtVec3f [num_tris * 3];
-	geo->Normals = new CrtVec3f [num_tris * 3];
-	geo->TexCoords[0] = new CrtVec2f [num_tris * 3]; 
+	geo->Points = CrtNewData( CrtVec3f, num_tris * 3 );
+	geo->Normals = CrtNewData( CrtVec3f, num_tris * 3 );
+	geo->TexCoords[0] = CrtNewData( CrtVec2f, num_tris * 3); 
 }
 
 // allocate the triangles of face i to CrtGeometry
