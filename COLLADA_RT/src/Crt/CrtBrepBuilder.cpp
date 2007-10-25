@@ -394,7 +394,7 @@ bool CrtBrep::initFaces(domFaces *faces)
 			for (size_t j = 0;j < face_coms.v_list[i];j++)
 			{			
 				size_t index_wire = index * face_coms.num_inputs + (size_t)face_coms.offset[WIRE_OFFSET_INDEX];
-				TopoDS_Wire w = TopoDS::Wire( mWireMap.FindKey( face_coms.p_list.get(index_wire) + 1) );
+				TopoDS_Wire w = TopoDS::Wire( mWireMap.FindKey( (Standard_Integer) face_coms.p_list.get(index_wire) + 1) );
 #if DEBUG_SHAPE_CHECKING
 				size_t wire_index_tmp = face_coms.p_list.get(index_wire);
 				// check whether current wire is valid or not
@@ -469,11 +469,12 @@ bool CrtBrep::initShells(domShells *shells)
 		for (size_t j = 0;j < shell_coms.v_list[i];j++)
 		{
 			size_t base_index = index * shell_coms.num_inputs;
-			
+			// TODO: need to check whether index of face can be bigger than max of size_t
 			index_face = (size_t)shell_coms.p_list[base_index + (size_t)shell_coms.offset[FACE_OFFSET_INDEX]];
-			index_orientation = shell_coms.p_list[base_index + (size_t)shell_coms.offset[ORIENTATION_OFFSET_INDEX]];
-
-			TopoDS_Face f = TopoDS::Face( mFaceMap.FindKey( index_face + 1) );
+			// index_orientation could only be 0 or 1.
+			index_orientation = (size_t)shell_coms.p_list[base_index + (size_t)shell_coms.offset[ORIENTATION_OFFSET_INDEX]];
+			// TODO: need to check whether index of face can be bigger than max of int
+			TopoDS_Face f = TopoDS::Face( mFaceMap.FindKey( (Standard_Integer) index_face + 1) );
 			f.Orientation( index_orientation == 1 ? TopAbs_FORWARD : TopAbs_REVERSED );
             mBuilder.Add( shell, f );
 			index++;
@@ -535,8 +536,8 @@ bool CrtBrep::initSolids(domSolids *solids)
 			
 			index_shell = base_index + (size_t)solid_coms.offset[SHELL_OFFSET_INDEX];
 			index_orientation = base_index + (size_t)solid_coms.offset[ORIENTATION_OFFSET_INDEX];
-
-			TopoDS_Shell s = TopoDS::Shell( mShellMap.FindKey( solid_coms.p_list[index_shell] + 1) );
+			// TODO: need to check whether index of face can be bigger than max of int
+			TopoDS_Shell s = TopoDS::Shell( mShellMap.FindKey( (Standard_Integer) solid_coms.p_list[index_shell] + 1) );
 			s.Orientation( solid_coms.p_list[index_orientation] == 1 ? TopAbs_FORWARD : TopAbs_REVERSED );
 			mBuilder.Add( solid, s );
 
@@ -744,7 +745,7 @@ bool CrtBrep::LoadBrep()
 	// build BREP data structure
 	initShapes();
 
-	bool bRet=false;
+	Standard_Boolean bRet = 0; // init as false
 
 	if ( !mShape.IsNull() )
     {
@@ -770,7 +771,7 @@ bool CrtBrep::LoadBrep()
 	mSolidMap.Clear();
 
 	if (!bRet)
-		return bRet;
+		return false;
 
 	return true;
 }
@@ -878,7 +879,7 @@ bool MeshMerger::scanFaces()
 
 	BRepMesh::Mesh( (*brep) ,1);
 
-	int fs_index = 0;
+	CrtUInt fs_index = 0;
 
 	for (TopExp_Explorer ex((*brep),TopAbs_FACE) ; ex.More(); ex.Next()) 
 	{	
@@ -889,7 +890,7 @@ bool MeshMerger::scanFaces()
 		int num_tris = facing->NbTriangles();
 		fs_vec.push_back(fs_index);
 		// init number of valid triangles.
-		size_t num_valid_tri = 0;
+		CrtUInt num_valid_tri = 0;
 		
 		// valid face triangulation
 		if ( !facing.IsNull() && num_tris > 0)
