@@ -200,6 +200,10 @@ CrtGeometry::~CrtGeometry()
 #ifdef DEBUG_NORMAL_
 void CrtGeometry::DrawNormals()
 {
+	// push lighting state and color state
+	glPushAttrib( GL_CURRENT_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT | GL_LIGHTING_BIT | GL_LINE_BIT );
+	glDisable(GL_LIGHTING);
+	glColor3f(0.9f, 0.9f, 0.0f); // yellow
 	// Draw normals
 	if (_CrtRender.UsingVBOs())
 	{
@@ -210,6 +214,9 @@ void CrtGeometry::DrawNormals()
 		_CrtRender.BindVBO(GL_ELEMENT_ARRAY_BUFFER, VBOIDs[eGeoTestNormalIndex]);
 		glDrawElements( GL_LINES, vertexcount * 2, GL_UNSIGNED_INT, 0);
 	}
+
+	// restore lighting attributes
+	glPopAttrib();
 }
 
 bool	CrtGeometry::SetVBONTest()

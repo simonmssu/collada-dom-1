@@ -20,7 +20,17 @@
 #include "Crt/CrtPlatform.h"
 #include "Crt/CrtRender.h"
 #include "Crt/CrtTexture.h"
+
+#ifndef CELL // very limited glu support from PSGL.
+
+// We can assume that Nvidia puts correct glut and handle it correctly.
+#if defined (_MSC_VER)
+#pragma warning ( disable : 4505 )
+#endif
+
 #include <GL/glut.h>
+
+#endif // CELL
 
 // VBO Extension Definitions, From glext.h
 #define GL_ARRAY_BUFFER                   0x8892
@@ -256,6 +266,7 @@ CrtBool CrtRender::DrawFloorGrid(int num_x, int num_z, int interval)
 // This will draw the coordinates at right-upper corner:
 CrtBool	CrtRender::DrawCoordinates()
 {
+#ifndef CELL // current PSGL doesn't support most glu functions
 	// material:
 	// reset the material: diffuse:
 	GLfloat cubeDiffuse[] = {1.0f, 1.0f, 1.0f };
@@ -303,8 +314,8 @@ CrtBool	CrtRender::DrawCoordinates()
 	glDisable(GL_LIGHT7);
 
 	GLfloat cube_center[3];
-	cube_center[0] = ScreenWidth - 50;
-	cube_center[1] = ScreenHeight - 50;
+	cube_center[0] = (GLfloat) (ScreenWidth - 50);
+	cube_center[1] = (GLfloat) (ScreenHeight - 50);
 	cube_center[2] = 0;
 	GLfloat cone_height = 20;
 	GLfloat cone_radius = 5;
@@ -371,7 +382,7 @@ CrtBool	CrtRender::DrawCoordinates()
 			char axis_letter[] = {'X', 'Y', 'Z'};
 			
 			glDisable(GL_COLOR_MATERIAL);
-			glColor3f(0.9, 0.9, 0.9);
+			glColor3f(0.9f, 0.9f, 0.9f);
 			glDisable(GL_LIGHTING);
 			// clear all matrix since we only need to draw letters on screen now.
 			for (int i = 0;i < 3;i++)
@@ -390,7 +401,7 @@ CrtBool	CrtRender::DrawCoordinates()
 		glPopMatrix();
 
 	glPopAttrib();
-	
+#endif
 	return CrtTrue;
 }
 

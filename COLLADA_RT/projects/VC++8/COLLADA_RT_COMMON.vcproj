@@ -105,8 +105,8 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/include&quot;;&quot;$(COLLADA_DOM_LOCATION)/include&quot;;&quot;$(COLLADA_DOM_LOCATION)/include/1.4&quot;;../../include;../../include/1.4;&quot;$(COLLADA_FX_LOCATION)/include&quot;;&quot;$(CG_INC_PATH)&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/src&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;CRT_PLATFORM_INCLUDE=\&quot;Crt/CrtWin.h\&quot;;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/include&quot;;&quot;$(COLLADA_DOM_LOCATION)/include&quot;;&quot;$(COLLADA_DOM_LOCATION)/include/1.4&quot;;../../include;../../include/1.4;&quot;$(COLLADA_FX_LOCATION)/include&quot;;&quot;$(CG_INC_PATH)&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/src&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/opencascade/include&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;CRT_PLATFORM_INCLUDE=\&quot;Crt/CrtWin.h\&quot;;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;WNT"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="4"

@@ -1,6 +1,12 @@
 #ifndef CRT_BREP_HEADER_FILES_H_
 #define CRT_BREP_HEADER_FILES_H_
 
+// Attentation: we assume that open cascade knows the type conversion and handle them correctly.
+#if defined (_MSC_VER) // for visual studio system
+#pragma warning ( push )
+#pragma warning ( disable : 4244 )
+#pragma warning ( disable : 4310 )
+#endif
 
 // Topology part:
 #include <TopoDS.hxx>
@@ -63,6 +69,10 @@
 #include <Poly_Triangle.hxx>
 #include <BRep_Tool.hxx>
 #include <Poly_Triangulation.hxx>
+
+#if defined (_MSC_VER) // for visual studio system
+#pragma warning ( pop )
+#endif
 
 // include dom header files
 #include "dae.h"
