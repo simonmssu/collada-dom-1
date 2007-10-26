@@ -26,11 +26,7 @@
 
 namespace COLLADA_TYPE
 {
-#ifdef _MSC_VER
-	enum TypeEnum;
-#else
 	typedef const int TypeEnum;
-#endif
 }
 
 class daeMetaElement;
