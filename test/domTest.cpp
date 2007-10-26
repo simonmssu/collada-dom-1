@@ -182,6 +182,18 @@ vector<string> makeStringArray(const char* s, ...) {
 	return result;
 }
 
+daeTArray<int> makeIntArray(int i, ...) {
+	va_list args;
+	va_start(args, i);
+	daeTArray<int> result;
+	while (i != INT_MAX) {
+		result.append(i);
+		i = va_arg(args, int);
+	}
+	va_end(args);
+	return result;
+}
+
 void printStringArray(const vector<string>& array) {
 	for (size_t i = 0; i < array.size(); i++)
 		cout << array[i] << endl;
@@ -835,17 +847,23 @@ void printArray(const daeTArray<T>& array) {
 }
 
 DefineTest(arrayOps) {
-	// Test removeIndex
-	daeTArray<int> array;
-	for (size_t i = 0; i < 10; i++)
-		array.append(i);
-	printArray(array);
-	array.removeIndex(4);
-	printArray(array);
+	daeTArray<int> zeroToFour = makeIntArray(0, 1, 2, 3, 4, INT_MAX);
 
-	// Test insert
-	array.insertAt(4, 4);
-	printArray(array);
+	// Test removeIndex
+	daeTArray<int> array = zeroToFour;
+	array.removeIndex(2);
+	CheckResult(array == makeIntArray(0, 1, 3, 4, INT_MAX));
+
+	// Insert several values into the middle of an array
+	array = zeroToFour;
+	array.insert(3, 5, 9); // Insert five copies of '9' at the third element of the array
+	CheckResult(array == makeIntArray(0, 1, 2, 9, 9, 9, 9, 9, 3, 4, INT_MAX));
+
+	// Insert several values beyond the end of an array
+	array = zeroToFour;
+	array.insert(7, 2, 5);
+	CheckResult(array == makeIntArray(0, 1, 2, 3, 4, 5, 5, 5, 5, INT_MAX));
+
 	return true;
 }
 

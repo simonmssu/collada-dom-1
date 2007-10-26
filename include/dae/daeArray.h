@@ -334,14 +334,20 @@ public:
 	 * Inserts the specified number of elements at a specific location in the array.
 	 * @param index Index into the array where the elements will be inserted
 	 * @param n The number of elements to insert
+	 * @param val The value to insert
 	 */
 	void insert(size_t index, size_t n, const T& val = T()) {
-		if (index >= _count)
-			setCount(index + n); // Just append to the end of the array
+		if (index >= _count) {
+			// Append to the end of the array
+			size_t oldCount = _count;
+			setCount(index + n); 
+			for (size_t i = oldCount; i < _count; i++)
+				get(i) = val;
+		}
 		else {
 			setCount(_count + n);
 			for (size_t i = _count-1; i >= index+n; i--)
-				get(i) = get(i-1);
+				get(i) = get(i-n);
 			for (size_t i = index; i < index+n; i++)
 				get(i) = val;
 		}
@@ -373,6 +379,20 @@ public:
 		}
 
 		return *this;
+	}
+
+	/**
+	 * Overloaded equality operator
+	 * @param other A reference to the other array.
+	 * @return true if the arrays are equal, false otherwise.
+	 */
+	bool operator==(const daeTArray<T>& other) {
+		if (getCount() != other.getCount())
+			return false;
+		for (size_t i = 0; i < getCount(); i++)
+			if (get(i) != other.get(i))
+				return false;
+		return true;
 	}
 
 	//some helpers
