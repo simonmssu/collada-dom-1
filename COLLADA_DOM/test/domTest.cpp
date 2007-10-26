@@ -1132,7 +1132,31 @@ DefineTest(placeElement) {
 };
 
 
-// Returns true if all tests names are valid
+DefineTest(charEncoding) {
+	CheckResult(roundTrip(lookupTestFile("charEncoding.dae")));
+	return true;
+}
+
+DefineTest(charEncoding2) {
+	DAE dae;
+	string file = getTmpFile("charEncoding2.dae");
+	CheckResult(dae.getDatabase()->insertDocument(file.c_str()) == DAE_OK);
+
+	daeElement* root = dae.getDom(file.c_str());
+	CheckResult(root);
+
+	daeElement* keywords = root->createAndPlace("asset")->createAndPlace("keywords");;
+	CheckResult(keywords);
+
+	keywords->setCharData("ü ä ö");
+
+	CheckResult(dae.save(file.c_str()) == DAE_OK);
+
+	return true;
+}
+
+
+// Returns true if all test names are valid
 bool checkTests(const set<string>& tests) {
 	bool invalidTestFound = false;
 	for (set<string>::const_iterator iter = tests.begin(); iter != tests.end(); iter++) {
