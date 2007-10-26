@@ -19,50 +19,16 @@
 
 #include <dom/domCommon_color_or_texture_type.h>
 
-class domCommon_transparent_type_complexType : public domCommon_color_or_texture_type_complexType
-{
-protected:  // Attribute
-	domFx_opaque_enum attrOpaque;
-
-
-public:	//Accessors and Mutators
-	/**
-	 * Gets the opaque attribute.
-	 * @return Returns a domFx_opaque_enum of the opaque attribute.
-	 */
-	domFx_opaque_enum getOpaque() const { return attrOpaque; }
-	/**
-	 * Sets the opaque attribute.
-	 * @param atOpaque The new value for the opaque attribute.
-	 */
-	void setOpaque( domFx_opaque_enum atOpaque ) { attrOpaque = atOpaque; }
-
-protected:
-	/**
-	 * Constructor
-	 */
-	domCommon_transparent_type_complexType() : attrOpaque() {}
-	/**
-	 * Destructor
-	 */
-	virtual ~domCommon_transparent_type_complexType() {}
-	/**
-	 * Copy Constructor
-	 */
-	domCommon_transparent_type_complexType( const domCommon_transparent_type_complexType &cpy ) : domCommon_color_or_texture_type_complexType() { (void)cpy; }
-	/**
-	 * Overloaded assignment operator
-	 */
-	virtual domCommon_transparent_type_complexType &operator=( const domCommon_transparent_type_complexType &cpy ) { (void)cpy; return *this; }
-};
-
 /**
  * An element of type domCommon_transparent_type_complexType.
  */
-class domCommon_transparent_type : public daeElement, public domCommon_transparent_type_complexType
+class domCommon_transparent_type : public domCommon_color_or_texture_type
 {
 public:
 	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMON_TRANSPARENT_TYPE; }
+
+protected:  // Attribute
+	domFx_opaque_enum attrOpaque;
 
 public:	//Accessors and Mutators
 	/**
@@ -88,7 +54,7 @@ protected:
 	/**
 	 * Copy Constructor
 	 */
-	domCommon_transparent_type( const domCommon_transparent_type &cpy ) : daeElement(), domCommon_transparent_type_complexType() { (void)cpy; }
+	domCommon_transparent_type( const domCommon_transparent_type &cpy ) : domCommon_color_or_texture_type() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */

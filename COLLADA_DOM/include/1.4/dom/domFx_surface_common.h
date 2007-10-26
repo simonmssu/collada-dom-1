@@ -559,6 +559,25 @@ protected:
 	 * Overloaded assignment operator
 	 */
 	virtual domFx_surface_common_complexType &operator=( const domFx_surface_common_complexType &cpy ) { (void)cpy; return *this; }
+
+public: //Backwards Compatibility
+	typedef domFx_surface_init_from_common       domInit_from;
+	typedef domFx_surface_init_from_commonRef    domInit_fromRef;
+	typedef domFx_surface_init_from_common_Array domInit_from_Array;
+	
+	/**
+	 * Gets the init_from element array.
+	 * @return Returns a reference to the array of init_from elements.
+	 */
+	DLLSPEC domInit_from_Array &getInit_from_array();
+	/**
+	 * Gets the init_from element array.
+	 * @return Returns a constant reference to the array of init_from elements.
+	 */
+	DLLSPEC const domInit_from_Array &getInit_from_array() const;
+
+private:
+	domInit_from_Array emptyArray;
 };
 
 /**

@@ -305,3 +305,18 @@ daeMetaElement * domFx_surface_common::domMip_levels::_Meta = NULL;
 daeMetaElement * domFx_surface_common::domMipmap_generate::_Meta = NULL;
 
 
+//Backwards Compatibility functions
+domFx_surface_common_complexType::domInit_from_Array &domFx_surface_common_complexType::getInit_from_array() { 
+	if (elemFx_surface_init_common != NULL ) {
+		return elemFx_surface_init_common->getInit_from_array(); 
+	}
+	return emptyArray;
+}
+
+const domFx_surface_common_complexType::domInit_from_Array &domFx_surface_common_complexType::getInit_from_array() const { 
+	if (elemFx_surface_init_common != NULL ) {
+		return elemFx_surface_init_common->getInit_from_array(); 
+	}
+	return emptyArray;
+}
+
