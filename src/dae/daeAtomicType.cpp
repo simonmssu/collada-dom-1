@@ -736,15 +736,17 @@ daeEnumType::stringToMemory(daeChar* src, daeChar* dst )
 	src = skipWhitespace(src);
 	daeChar* srcTmp = extractToken(src);
 
-	size_t index(0); 
-	if ( _strings->find(srcTmp,index) == DAE_ERR_QUERY_NO_MATCH ) return false;
-	daeEnum val = _values->get( index );
-	*((daeEnum*)dst) = val;
+	size_t index(0);
+	bool result = _strings->find(srcTmp, index) != DAE_ERR_QUERY_NO_MATCH;
+	if (result) {
+		daeEnum val = _values->get( index );
+		*((daeEnum*)dst) = val;
+	}
 
 	if (srcTmp != src)
 		delete[] srcTmp;
 
-	return true;
+	return result;
 }
 
 daeBool daeEnumType::memoryToString(daeChar* src, std::ostringstream& dst) {
