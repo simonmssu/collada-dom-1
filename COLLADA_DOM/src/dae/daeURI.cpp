@@ -22,6 +22,8 @@
 #include <unistd.h>  // for getcwd (linux)
 #endif
 
+using namespace std;
+
 daeString safeCreate(daeString src);
 void safeDelete(daeString src);
 daeString findCharacterReverse(daeString string, daeChar stopChar);
@@ -1280,3 +1282,77 @@ daeBool daeURIResolver::getAutoLoadExternalDocuments()
 	return _loadExternalDocuments; 
 }
 
+
+// String replace function. Usage: replace("abcdef", "cd", "12") --> "ab12ef"
+string cdom::replace(const string& s, const string& replace, const string& replaceWith) {
+	if (replace.empty())
+		return s;
+
+	string result;
+	size_t pos1 = 0, pos2 = s.find(replace);
+	while (pos2 != string::npos) {
+		result += s.substr(pos1, pos2-pos1);
+		result += replaceWith;
+		pos1 = pos2 + replace.length();
+		pos2 = s.find(replace, pos1);
+	}
+
+	result += s.substr(pos1, s.length()-pos1);
+	return result;
+}
+
+
+string cdom::filePathToUri(const string& filePath) {
+	string uri = filePath;
+
+	// Windows - convert c:\ to /c:\ 
+	if (uri.length() >= 2  &&  isalpha(uri[0])  &&  uri[1] == ':')
+		uri.insert(0, "/");
+	else if (!uri.empty()  &&  uri[0] == '\\') {
+		// Windows - If it's an absolute path with no drive letter, or a UNC path,
+		// prepend "file:///"
+		//
+		// Note: RFC 3986 (the URI spec) explicitly states that "if a URI does not contain
+		// an authority component, then the path cannot begin with two slash characters ("//")."
+		// We're clearly violating that here, since we're going to generate a URI of the form
+		// "file:////myFolder/file.dae", or "file://///otherMachine/file.dae" for a UNC path.
+		// It sucks that we're violating the spec here, but libxml accepts this "extension"
+		// and I think it's useful.
+		uri.insert(0, "file:///");
+	}
+	
+	// Windows - convert backslashes to forward slashes
+	uri = replace(uri, "\\", "/");
+
+	// Convert spaces to %20
+	uri = replace(uri, " ", "%20");
+
+	return uri;
+}
+
+
+namespace {
+	// Returns true if parsing succeeded, false otherwise. Parsing can fail if the uri
+	// reference isn't properly formed.
+	bool parseUriRef(const string& uriRef,
+	                 string& scheme,
+	                 string& authority,
+	                 string& path,
+	                 string& query,
+	                 string& fragment) {
+		// Parse the scheme
+		size_t pos = uriRef.find(':');
+		if (pos != string::npos)
+			scheme = uriRef.substr(0, pos);
+
+		// Parse the authority
+		return true;
+	}
+}
+
+
+string cdom::uriToFilePath(const string& uri) {
+	string filePath = replace(uri, "%20", " ");
+
+	return filePath;
+}

@@ -14,6 +14,7 @@
 #ifndef __DAE_URI_H__
 #define __DAE_URI_H__
 
+#include <string>
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
 
@@ -499,6 +500,40 @@ public: // Abstract Interface
 	
 };
 
+
+// Helper functions for file path <--> URI conversion
+namespace cdom {
+	// String replace function. Usage: replace("abcdef", "cd", "12") --> "ab12ef".
+	// !!!steveT This should really be in a daeUtils.h file or something like that.
+	DLLSPEC std::string replace(const std::string& s, 
+	                            const std::string& replace, 
+	                            const std::string& replaceWith);
+
+	// This function takes a file path in the OS's native format and converts it to
+	// a URI reference. If a relative path is given, a relative URI reference is
+	// returned. If an absolute path is given, a relative URI reference containing 
+	// a fully specified path is returned. Spaces are encoded as %20.
+	//
+	// Windows-specific note: Special care must be taken to handle paths of the form 
+	// "\myFolder\myFile.dae". This specifies an absolute path on the current drive.
+	// In order for the DOM's URI resolver to resolve this type of URI correctly,
+	// the filePathToUri function returns a full URI of the form "file:////myFolder/myFile.dae"
+	// instead of "/myFolder/myFile.dae". UNC paths are handled similarly.
+	//
+	// Examples - Windows
+	//   filePathToUri("C:\myFolder\myFile.dae") --> "/C:/myFolder/myFile.dae"
+	//   filePathToUri("\myFolder\myFile.dae") --> "file:////myFolder/myFile.dae"
+	//   filePathToUri("..\myFolder\myFile.dae") --> "../myFolder/myFile.dae"
+	//   filePathToUri("\\otherComputer\myFile.dae") --> "file://///otherComputer/myFile.dae"
+	//
+	// Examples - Linux/Mac
+	//   filePathToUri("/myFolder/myFile.dae") --> "/myFolder/myFile.dae"
+	//   filePathToUri("../myFolder/myFile.dae") --> "../myFolder/myFile.dae"
+	//   filePathToUri("/my folder/my file.dae") --> "/my%20folder/my%20folder.dae"
+	DLLSPEC std::string filePathToUri(const std::string& filePath);
+
+	DLLSPEC std::string uriToFilePath(const std::string& uri);
+}
 
 #endif //__DAE_URI_H__
 

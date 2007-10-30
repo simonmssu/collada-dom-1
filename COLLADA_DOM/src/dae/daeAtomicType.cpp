@@ -588,26 +588,6 @@ daeBool daeStringRefType::memoryToString(daeChar* src, std::ostringstream& dst) 
 	return true;
 }
 
-namespace {
-	// String replace function. Usage: replace("abcdef", "cd", "12") --> "ab12ef"
-	std::string replace(const std::string& s, const std::string& replace, const std::string& replaceWith) {
-		if (replace.empty())
-			return s;
-	
-		std::string result;
-		size_t pos1 = 0, pos2 = s.find(replace);
-		while (pos2 != std::string::npos) {
-			result += s.substr(pos1, pos2-pos1);
-			result += replaceWith;
-			pos1 = pos2 + replace.length();
-			pos2 = s.find(replace, pos1);
-		}
-
-		result += s.substr(pos1, s.length()-pos1);
-		return result;
-	}
-}
-
 daeBool daeResolverType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	// Get the URI we are trying to write
 	daeURI *thisURI = ((daeURI *)src);
@@ -641,7 +621,7 @@ daeBool daeResolverType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	}
 
 	// Encode spaces with %20
-	dst << replace(s, " ", "%20");
+	dst << cdom::replace(s, " ", "%20");
 	return true;
 }
 
