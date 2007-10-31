@@ -1,14 +1,14 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
 #ifndef __DOM_TYPES_H__
@@ -1256,30 +1256,31 @@ namespace COLLADA_TYPE
 		KINEMATICS_MODEL = 527,
 		INSTANCE_JOINT = 528,
 		LINK = 529,
-		ATTACH_POINT = 530,
-		INSTANCE_KINEMATICS_MODEL = 531,
-		ATTACH = 532,
-		BIND_JOINT = 533,
-		BIND_LINK = 534,
-		LIBRARY_ARTICULATED_SYSTEMS = 535,
-		ARTICULATED_SYSTEM = 536,
-		KINEMATICS = 537,
-		AXIS_INFO = 538,
-		KINEMATICS_FRAME = 539,
-		ORIGIN = 540,
-		TIP = 541,
-		MOTION = 542,
-		AXIS_INFOS = 543,
-		EFFECTOR_INFO = 544,
-		SPEED = 545,
-		ACCELERATION = 546,
-		DECELERATION = 547,
-		JERK = 548,
-		FORMULA = 549,
-		INSTANCE_ARTICULATED_SYSTEM = 550,
-		INSTANCE_KINEMATICS_SCENE = 551,
-		LIBRARY_KINEMATICS_SCENES = 552,
-		KINEMATICS_SCENE = 553
+		ATTACHMENT_FULL = 530,
+		ATTACH_POINT = 531,
+		INSTANCE_KINEMATICS_MODEL = 532,
+		ATTACH = 533,
+		BIND_JOINT = 534,
+		BIND_LINK = 535,
+		LIBRARY_ARTICULATED_SYSTEMS = 536,
+		ARTICULATED_SYSTEM = 537,
+		KINEMATICS = 538,
+		AXIS_INFO = 539,
+		KINEMATICS_FRAME = 540,
+		ORIGIN = 541,
+		TIP = 542,
+		MOTION = 543,
+		AXIS_INFOS = 544,
+		EFFECTOR_INFO = 545,
+		SPEED = 546,
+		ACCELERATION = 547,
+		DECELERATION = 548,
+		JERK = 549,
+		FORMULA = 550,
+		INSTANCE_ARTICULATED_SYSTEM = 551,
+		INSTANCE_KINEMATICS_SCENE = 552,
+		LIBRARY_KINEMATICS_SCENES = 553,
+		KINEMATICS_SCENE = 554
 #ifdef _MSC_VER
 	};
 #else
