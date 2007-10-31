@@ -1,14 +1,14 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 #ifndef __domCOLLADA_h__
 #define __domCOLLADA_h__
@@ -80,7 +80,7 @@ public:
  * once. @see domInstance_visual_scene
  */
 		domInstanceWithExtraRef elemInstance_visual_scene;
-		domInstance_kinematics_sceneRef elemInstance_kinematics_scene;
+		domInstance_kinematics_scene_Array elemInstance_kinematics_scene_array;
 /**
  *  The extra element may appear any number of times.  @see domExtra
  */
@@ -103,10 +103,15 @@ public:
 		 */
 		const domInstanceWithExtraRef getInstance_visual_scene() const { return elemInstance_visual_scene; }
 		/**
-		 * Gets the instance_kinematics_scene element.
-		 * @return a daeSmartRef to the instance_kinematics_scene element.
+		 * Gets the instance_kinematics_scene element array.
+		 * @return Returns a reference to the array of instance_kinematics_scene elements.
 		 */
-		const domInstance_kinematics_sceneRef getInstance_kinematics_scene() const { return elemInstance_kinematics_scene; }
+		domInstance_kinematics_scene_Array &getInstance_kinematics_scene_array() { return elemInstance_kinematics_scene_array; }
+		/**
+		 * Gets the instance_kinematics_scene element array.
+		 * @return Returns a constant reference to the array of instance_kinematics_scene elements.
+		 */
+		const domInstance_kinematics_scene_Array &getInstance_kinematics_scene_array() const { return elemInstance_kinematics_scene_array; }
 		/**
 		 * Gets the extra element array.
 		 * @return Returns a reference to the array of extra elements.
@@ -121,7 +126,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domScene() : elemInstance_physics_scene_array(), elemInstance_visual_scene(), elemInstance_kinematics_scene(), elemExtra_array() {}
+		domScene() : elemInstance_physics_scene_array(), elemInstance_visual_scene(), elemInstance_kinematics_scene_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */

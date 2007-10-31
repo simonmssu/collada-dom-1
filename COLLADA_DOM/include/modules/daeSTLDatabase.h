@@ -43,45 +43,53 @@ public:
 
 public:
 	// Element Types of all Elements
-	virtual DLLSPEC daeUInt			getTypeCount();
-	virtual DLLSPEC daeString		getTypeName(daeUInt index);
-	virtual DLLSPEC daeInt			setMeta(daeMetaElement *_topMeta);
+	virtual DLLSPEC daeUInt getTypeCount();
+	virtual DLLSPEC daeString getTypeName(daeUInt index);
+	virtual DLLSPEC daeInt setMeta(daeMetaElement *_topMeta);
 
 	// Documents
-	virtual DLLSPEC daeInt			insertDocument(const char *name, daeElement* dom, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt			insertDocument(daeString name, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt			createDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt			createDocument(daeString name, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt			insertDocument( daeDocument *c );
+	virtual DLLSPEC daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
+	virtual DLLSPEC daeInt insertDocument(daeString name, daeDocument** document = NULL);
+	virtual DLLSPEC daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
+	virtual DLLSPEC daeInt createDocument(daeString name, daeDocument** document = NULL);
+	virtual DLLSPEC daeInt insertDocument( daeDocument *c );
 
-	virtual DLLSPEC daeInt			removeDocument(daeDocument* document);
-	virtual DLLSPEC daeUInt			getDocumentCount();
-	virtual DLLSPEC daeDocument*		getDocument(daeUInt index);
-	virtual DLLSPEC daeDocument*		getDocument(daeString name);
-	virtual DLLSPEC daeString		getDocumentName(daeUInt index);
-	virtual DLLSPEC daeBool			isDocumentLoaded(daeString name);
+	virtual DLLSPEC daeInt removeDocument(daeDocument* document);
+	virtual DLLSPEC daeUInt getDocumentCount();
+	virtual DLLSPEC daeDocument* getDocument(daeUInt index);
+	virtual DLLSPEC daeDocument* getDocument(daeString name);
+	virtual DLLSPEC daeString getDocumentName(daeUInt index);
+	virtual DLLSPEC daeBool isDocumentLoaded(daeString name);
 
 	// Elements 
-	virtual DLLSPEC daeInt			insertElement(daeDocument* document, daeElement* element);
-	virtual DLLSPEC daeInt			removeElement(daeDocument* document, daeElement* element); 
-	virtual DLLSPEC daeInt			changeElementID(daeElement* element, daeString newID);
-	virtual DLLSPEC daeInt			clear();
-	virtual DLLSPEC daeUInt			getElementCount(daeString name = NULL,
-														  daeString type = NULL,
-														  daeString file = NULL);
-	virtual DLLSPEC daeInt			getElement(daeElement** pElement, 
-														daeInt index,
-														daeString name = NULL,
-														daeString type = NULL,
-														daeString file = NULL); 
+	virtual DLLSPEC daeInt insertElement(daeDocument* document, daeElement* element);
+	virtual DLLSPEC daeInt removeElement(daeDocument* document, daeElement* element); 
+	virtual DLLSPEC daeInt changeElementID(daeElement* element, daeString newID);
+	virtual DLLSPEC daeInt changeElementSID(daeElement* element, daeString newSID); // Not implemented
+	virtual DLLSPEC daeInt clear();
+	virtual DLLSPEC daeUInt getElementCount(daeString name = NULL,
+	                                        daeString type = NULL,
+	                                        daeString file = NULL);
+	virtual DLLSPEC daeInt getElement(daeElement** pElement, 
+	                                  daeInt index,
+	                                  daeString name = NULL,
+	                                  daeString type = NULL,
+	                                  daeString file = NULL); 
+
+	// Not implemented
+	virtual DLLSPEC void sidLookup(const std::string& sid, std::list<daeElement*>& result);
 
 	// Generic Query
-	virtual DLLSPEC daeInt			queryElement(daeElement** pElement, daeString genericQuery);
+	virtual DLLSPEC daeInt queryElement(daeElement** pElement, daeString genericQuery);
 
 private:
 
 	std::map< std::string, std::vector< daeElement* > > elements; //map for all elements keyed on Type
 	std::multimap< std::string, daeElement* > elementsIDMap; //map for elements keyed on ID
+
+	std::multimap< std::string, daeElement* > sidMap; // sid --> element lookup table
+	typedef std::pair<std::string, daeElement*> sidMapPair;
+	typedef std::multimap<std::string, daeElement*>::iterator sidMapIter;
 
 	std::vector<daeDocument*> documents;
 	daeMetaElement* topMeta;

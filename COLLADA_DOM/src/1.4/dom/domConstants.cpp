@@ -1,14 +1,14 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
 #include <dom/domConstants.h>
@@ -587,6 +587,7 @@ DLLSPEC daeString COLLADA_TYPE_LIBRARY_KINEMATICS_MODELS = "library_kinematics_m
 DLLSPEC daeString COLLADA_TYPE_KINEMATICS_MODEL = "kinematics_model";
 DLLSPEC daeString COLLADA_TYPE_INSTANCE_JOINT = "instance_joint";
 DLLSPEC daeString COLLADA_TYPE_LINK = "link";
+DLLSPEC daeString COLLADA_TYPE_ATTACHMENT_FULL = "attachment_full";
 DLLSPEC daeString COLLADA_TYPE_ATTACH_POINT = "attach_point";
 DLLSPEC daeString COLLADA_TYPE_INSTANCE_KINEMATICS_MODEL = "instance_kinematics_model";
 DLLSPEC daeString COLLADA_TYPE_ATTACH = "attach";
@@ -1135,6 +1136,7 @@ DLLSPEC daeString COLLADA_ELEMENT_INSTANCE_JOINT = "instance_joint";
 DLLSPEC daeString COLLADA_ELEMENT_LINK = "link";
 DLLSPEC daeString COLLADA_ELEMENT_ATTACH_POINT = "attach_point";
 DLLSPEC daeString COLLADA_ELEMENT_INSTANCE_KINEMATICS_MODEL = "instance_kinematics_model";
+DLLSPEC daeString COLLADA_ELEMENT_ATTACHMENT_FULL = "attachment_full";
 DLLSPEC daeString COLLADA_ELEMENT_ATTACH = "attach";
 DLLSPEC daeString COLLADA_ELEMENT_BIND_JOINT = "bind_joint";
 DLLSPEC daeString COLLADA_ELEMENT_BIND_LINK = "bind_link";

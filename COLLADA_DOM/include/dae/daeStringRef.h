@@ -26,7 +26,7 @@ public:
 	/**
 	 * Macro that defines new and delete overrides for this class
 	 */
-	DAE_ALLOC;
+	DAE_ALLOC
 private:
 	daeString _string;
 	static daeStringTable &_stringTable();

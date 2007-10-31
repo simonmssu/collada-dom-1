@@ -46,14 +46,12 @@ string toString(const T& val) {
 
 #define CheckResult(val) \
 	if (!(val)) { \
-		cout << "Line " << __LINE__ << endl; \
-		return false; \
+		return testResult(false, __LINE__); \
 	}
 
 #define CheckResultWithMsg(val, msg) \
 	if (!(val)) { \
-		cout << "Line " << __LINE__ << ". " << (msg) << endl; \
-		return false; \
+		return testResult(false, __LINE__, msg); \
 	}
 
 #define CompareDocs(dae, uri1, uri2) \
@@ -62,12 +60,26 @@ string toString(const T& val) {
 		           *root2 = (dae).getDom((uri2).c_str()); \
 		elementCompareResult result = compareElements(*root1, *root2); \
 		if (result.compareValue != 0) { \
-			cout << "Line " << __LINE__ << endl << result.format() << endl; \
+			return testResult(false, __LINE__, result.format()); \
 		} \
 	}
 
 struct domTest;
 map<string, domTest*> g_tests;
+
+struct testResult {
+	bool passed;
+	int line; // If the test failed, the line number it failed on, or -1 if the line
+	          // number isn't available.
+	string msg; // An error message for the user. Usually empty.
+
+	testResult() : passed(true), line(-1) { }
+	testResult(bool passed, int line = -1, const string& msg = "")
+	  : passed(passed),
+	    line(line),
+	    msg(msg) {
+	}
+};
 
 struct domTest {
 	string name;
@@ -75,16 +87,16 @@ struct domTest {
 		g_tests[name] = this;
 	}
 	virtual ~domTest() { };
-	virtual bool run() = 0;
+	virtual testResult run() = 0;
 };
 
 #define DefineTest(testName) \
 	struct domTest_##testName : public domTest { \
 		domTest_##testName() : domTest(#testName) { } \
-		bool run();	\
+		testResult run();	\
 	}; \
 	domTest_##testName domTest_##testName##Obj; \
-	bool domTest_##testName::run()
+	testResult domTest_##testName::run()
 
 #define RunTest(testName) \
 	{ \
@@ -122,7 +134,7 @@ DefineTest(chopWS) {
 	CheckResult(chopWS("test ") == "test");
 	CheckResult(chopWS(" test ") == "test");
 	CheckResult(chopWS(" a ") == "a");
-	return true;
+	return testResult(true);
 }
 
 
@@ -149,7 +161,7 @@ DefineTest(stringReplace) {
 	CheckResult(replace("abc", "c", "1") == "ab1");
 	CheckResult(replace("abc123", "bc12", "b") == "ab3");
 	CheckResult(replace("abracadabra", "a", "") == "brcdbr");
-	return true;
+	return testResult(true);
 }
 
 
@@ -182,6 +194,18 @@ vector<string> makeStringArray(const char* s, ...) {
 	return result;
 }
 
+daeTArray<int> makeIntArray(int i, ...) {
+	va_list args;
+	va_start(args, i);
+	daeTArray<int> result;
+	while (i != INT_MAX) {
+		result.append(i);
+		i = va_arg(args, int);
+	}
+	va_end(args);
+	return result;
+}
+
 void printStringArray(const vector<string>& array) {
 	for (size_t i = 0; i < array.size(); i++)
 		cout << array[i] << endl;
@@ -191,7 +215,7 @@ DefineTest(stringSplit) {
 	CheckResult(split("1|2|3|4", '|')   == makeStringArray("1", "2", "3", "4", 0));
 	CheckResult(split("|1|", '|')       == makeStringArray("1", 0));
 	CheckResult(split("1|||2||3|", '|') == makeStringArray("1", "2", "3", 0));
-	return true;
+	return testResult(true);
 }
 
 
@@ -298,7 +322,7 @@ struct elementCompareResult {
 		    << setw(c1w) << left << "Attr name"   << setw(c2w) << left << attrName1 << attrName2 << endl
 		    << setw(c1w) << left << "Attr value"  << setw(c2w) << left << attrValue1 << attrValue2 << endl
 		    << setw(c1w) << left << "Char data"   << setw(c2w) << left << charData1 << charData2 << endl
-		    << setw(c1w) << left << "Child count" << setw(c2w) << left << childCount1 << childCount2 << endl;
+		    << setw(c1w) << left << "Child count" << setw(c2w) << left << childCount1 << childCount2;
 
 		return msg.str();
 	}
@@ -445,14 +469,14 @@ DefineTest(elementCompareResultTest) {
 	CheckResult(dae.load(seymourModified.c_str()) == DAE_OK);
 	CompareDocs(dae, seymourOrig, seymourModified);
 
-	return true;
+	return testResult(true);
 }
 
 
 DefineTest(loadClipPlane) {
 	DAE dae;
 	CheckResult(dae.load(lookupTestFile("clipPlane.dae").c_str()) == DAE_OK);
-	return true;
+	return testResult(true);
 }
 
 
@@ -493,7 +517,7 @@ DefineTest(renderStates) {
 	CheckResult(findDescendant(root, "color_clear")->getCharData() != "");
 	CheckResult(findDescendant(root, "polygon_offset_fill_enable")->isAttributeSet("value"));
 		
-	return true;
+	return testResult(true);
 }
 
 
@@ -520,7 +544,7 @@ DefineTest(writeCamera) {
 	CheckResult(root);
 	CheckResult(toFloat(findDescendant(root, "xfov")->getCharData()) == 1.0f);
 	
-	return true;
+	return testResult(true);
 }
 
 
@@ -543,62 +567,77 @@ DefineTest(roundTripSeymour) {
 	CheckResult(dae.saveAs(uri2.c_str(), uri1.c_str()) == DAE_OK);
 	CheckResult(dae.load(uri2.c_str()) == DAE_OK);
 	CompareDocs(dae, uri1, uri2);
-	return true;
+	return testResult(true);
 }
 
 
-// !!!steveT Merge saveSeymourRaw and loadSeymourRaw into a single test
-DefineTest(saveSeymourRaw) {
+DefineTest(rawSupport) {
+	string seymourOrig = lookupTestFile("Seymour.dae"),
+	       seymourRaw  = getTmpFile("Seymour_raw.dae");
 	DAE dae;
-	string docUri = lookupTestFile("Seymour.dae");
-	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
+
+	CheckResult(dae.load(seymourOrig.c_str()) == DAE_OK);
 	dae.getIOPlugin()->setOption("saveRawBinary", "true");
-	return dae.saveAs(getTmpFile("Seymour_raw.dae").c_str(), docUri.c_str()) == DAE_OK;
-}
+	CheckResult(dae.saveAs(seymourRaw.c_str(), seymourOrig.c_str()) == DAE_OK);
 
-DefineTest(loadSeymourRaw) {
-	RunTest(saveSeymourRaw);
-	
-	DAE dae;
-	string docUri = getTmpFile("Seymour_raw.dae");
-	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
+	// Make sure the .raw file is there
+	CheckResult(fs::exists(fs::path(seymourRaw + ".raw")));
 
+	CheckResult(dae.load(seymourRaw.c_str()) == DAE_OK);
 	daeElement* el = 0;
-	dae.getDatabase()->getElement(&el, 0, "l_hip_rotateY_l_hip_rotateY_ANGLE-input");
+	dae.getDatabase()->getElement(&el, 0,
+		"l_hip_rotateY_l_hip_rotateY_ANGLE-input", seymourRaw.c_str());
 	CheckResult(el);
-	return true;
-}
 
+	return testResult(true);
+}
 
 DefineTest(extraTypeTest) {
 	DAE dae;
 	string docUri = lookupTestFile("extraTest.dae");
 	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
+	daeElement* root = dae.getDom(docUri.c_str());
+	CheckResult(root);
 
-	daeElement* element = 0;
-	dae.getDatabase()->getElement(&element, 0, 0, "technique");
-	CheckResult(element);
+	daeElement *technique = findDescendant(root, "technique"),
+	           *expectedTypesElt = findDescendant(root, "expected_types");
+	CheckResult(technique && expectedTypesElt);
 
-	daeElementRefArray elements = element->getChildren();
+	istringstream expectedTypesStream(expectedTypesElt->getCharData());
+	vector<string> expectedTypes;
+	string tmp;
+	while (expectedTypesStream >> tmp)
+		expectedTypes.push_back(tmp);
 
-	// !!!steveT What exactly am I trying to test here?
-	for (size_t i = 0; i < elements.getCount(); i++) {
-		daeElement* e = elements[i];
-		cout << "name: " << e->getElementName() << ", type: " << e->getTypeName() << "\n";
+	daeElementRefArray elements = technique->getChildren();
+
+	CheckResult(expectedTypes.size() == elements.getCount()-1);
+	for (size_t i = 0; i < elements.getCount()-1; i++) {
+		ostringstream msg;
+		msg << "Actual type - " << elements[i]->getTypeName() << ", Expected type - " << expectedTypes[i];
+		CheckResultWithMsg(expectedTypes[i] == elements[i]->getTypeName(), msg.str());
 	}
 
-	return true;
+	return testResult(true);
 }
 
 #if defined(TINYXML)
 #include <dae/daeTinyXMLPlugin.h>
 DefineTest(tinyXmlLoad) {
+	string seymourOrig = lookupTestFile("Seymour.dae"),
+	       seymourTinyXml = getTmpFile("Seymour_tinyXml.dae");
+
+	// Plan: Load Seymour with libxml, then save with TinyXml and immediately reload the
+	// saved document, and make sure the results are the same.
+	DAE dae;
+	CheckResult(dae.load(seymourOrig.c_str()) == DAE_OK);
 	auto_ptr<daeTinyXMLPlugin> tinyXmlPlugin(new daeTinyXMLPlugin);
-	DAE dae(NULL, tinyXmlPlugin.get());
-	string docUri = lookupTestFile("Seymour.dae");
-	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
-	CheckResult(dae.saveAs(getTmpFile("Seymour_tinyXml.dae").c_str(), docUri.c_str()) == DAE_OK);
-	return true;
+	dae.setIOPlugin(tinyXmlPlugin.get());
+	CheckResult(dae.saveAs(seymourTinyXml.c_str(), seymourOrig.c_str()) == DAE_OK);
+	CheckResult(dae.load(seymourTinyXml.c_str()) == DAE_OK);
+	CompareDocs(dae, seymourOrig, seymourTinyXml);
+
+	return testResult(true);
 }
 #endif
 
@@ -633,11 +672,11 @@ DefineTest(sidResolveTest) {
 	CheckResult(effect && effectExtra);
 
 	istringstream stream(effectExtra->getCharData());
-	string sid, expectedResult;
-	while (stream >> sid >> expectedResult) {
-		string result = resolveResultToString(resolveSidToState(sid, effect));
+	string sidRef, expectedResult;
+	while (stream >> sidRef >> expectedResult) {
+		string result = resolveResultToString(resolveSidToState(sidRef, effect));
 		CheckResultWithMsg(result == expectedResult,
-		                   string("sid=") + sid + ", expectedResult=" + expectedResult + ", actualResult=" + result);
+		                   string("sid ref=") + sidRef + ", expectedResult=" + expectedResult + ", actualResult=" + result);
 	}
 
 	daeElement *root = 0,
@@ -648,13 +687,40 @@ DefineTest(sidResolveTest) {
 
 	stream.clear();
 	stream.str(nodeSidRefExtra->getCharData());
-	while (stream >> sid >> expectedResult) {
-		string result = resolveResultToString(resolveSidToState(sid, root));
+	while (stream >> sidRef >> expectedResult) {
+		string result = resolveResultToString(resolveSidToState(sidRef, root));
 		CheckResultWithMsg(result == expectedResult,
-		                   string("sid=") + sid + ", expectedResult=" + expectedResult + ", actualResult=" + result);
+		                   string("sid ref=") + sidRef + ", expectedResult=" + expectedResult + ", actualResult=" + result);
 	}
 
-	return true;
+	dae.getDatabase()->getElement(&nodeSidRefExtra, 0, "nodeSidRefExtra2");
+	CheckResult(nodeSidRefExtra);
+
+	stream.clear();
+	stream.str(nodeSidRefExtra->getCharData());
+	while (stream >> sidRef >> expectedResult) {
+		daeElement* elt = cdom::resolveSid(root, sidRef);
+		string result = elt ? elt->getAttribute("id") : "failed";
+		CheckResultWithMsg(result == expectedResult,
+		                   string("sid ref=") + sidRef + ", expectedResult=" + expectedResult + ", actualResult=" + result);
+	}
+
+	dae.getDatabase()->getElement(&nodeSidRefExtra, 0, "nodeSidRefExtra3");
+	CheckResult(nodeSidRefExtra);
+
+	stream.clear();
+	stream.str(nodeSidRefExtra->getCharData());
+	string profile;
+	while (stream >> sidRef >> profile >> expectedResult) {
+		daeElement* elt = cdom::resolveSid(root, sidRef, profile);
+		string result = elt ? elt->getAttribute("id") : "failed";
+		CheckResultWithMsg(result == expectedResult,
+		                   string("sid ref=") + sidRef + ", profile=" + profile +
+		                   ", expectedResult=" + expectedResult + ", actualResult=" + result);
+	}
+
+
+	return testResult(true);
 }
 
 daeElement* findChildByName(daeElement* el, daeString name) {
@@ -690,13 +756,12 @@ string getCharData(daeElement* el) {
 	return el ? el->getCharData() : "";
 }
 
-daeURI* getTextureUri(daeString samplerSid, domEffect& effect) {
+daeURI* getTextureUri(const string& samplerSid, daeElement& effect) {
 	daeElement* sampler = findChildByName(resolveSid(samplerSid, effect), "sampler2D");
 	string surfaceSid = getCharData(findChildByName(sampler, "source"));
 	daeElement* surface = findChildByName(resolveSid(surfaceSid, effect), "surface");
-	domImage* image =
-		daeSafeCast<domImage>(resolveID(getCharData(findChildByName(surface, "init_from")).c_str(),
-		                      *effect.getDocument()));
+	domImage* image = daeSafeCast<domImage>(
+		resolveID(getCharData(findChildByName(surface, "init_from")).c_str(), *effect.getDocument()));
 	if (image && image->getInit_from())
 		return &image->getInit_from()->getValue();
 	return 0;
@@ -706,19 +771,17 @@ DefineTest(getTexture) {
 	DAE dae;
 	CheckResult(dae.load(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
-	daeElement* el = 0;
- 	dae.getDatabase()->getElement(&el, 0, 0, COLLADA_TYPE_TEXTURE);
-	domCommon_color_or_texture_type_complexType::domTexture* texture =
-		daeSafeCast<domCommon_color_or_texture_type_complexType::domTexture>(el);
+	daeElement* effect = 0;
+ 	dae.getDatabase()->getElement(&effect, 0, "face-fx");
+	CheckResult(effect);
+	daeElement* texture = findDescendant(effect, "texture");
 	CheckResult(texture);
 
-	domEffect* effect = daeSafeCast<domEffect>(findAncestorByType(texture, COLLADA_TYPE_EFFECT));
-	CheckResult(effect);
-
-	daeURI* uri = getTextureUri(texture->getTexture(), *effect);
+	daeURI* uri = getTextureUri(texture->getAttribute("texture"), *effect);
 	CheckResult(uri);
-	cout << uri->getURI() << endl;
-	return true;
+	CheckResult(string(uri->getFile()) == "boy_10.tga");
+
+	return testResult(true);
 }
 	
 
@@ -730,15 +793,17 @@ DefineTest(removeElement) {
 	dae.getDatabase()->getElement(&collada, 0, 0, COLLADA_TYPE_COLLADA);
 	dae.getDatabase()->getElement(&asset, 0, 0, COLLADA_TYPE_ASSET);
 	dae.getDatabase()->getElement(&animLib, 0, 0, COLLADA_TYPE_LIBRARY_ANIMATIONS);
-
 	CheckResult(asset && animLib && collada);
 
 	collada->removeChildElement(asset);
 	daeElement::removeFromParent(animLib);
 
+	CheckResult(findDescendant(collada, "asset") == NULL);
+	CheckResult(findDescendant(collada, "library_animations") == NULL);
+
 	CheckResult(dae.saveAs(getTmpFile("Seymour_removeElements.dae").c_str(),
 	                       lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
-	return true;
+	return testResult(true);
 }
 
 
@@ -759,10 +824,10 @@ DefineTest(cloneCrash) {
 	domFx_surface_init_from_common* initFrom = daeSafeCast<domFx_surface_init_from_common>(el);
 	CheckResult(initFrom && initFrom->getValue().getElement());
 
-	// Now the DOM will crash
+	// The DOM used to crash here
 	daeElement::resolveAll();
 
-	return true;
+	return testResult(true);
 }
 
 
@@ -776,24 +841,14 @@ void nameArrayAppend(domListOfNames& names, const char* name) {
 }
 
 DefineTest(nameArray) {
-	DAE dae;
-	CheckResult(dae.load(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
-
-	daeElement* el = 0;
-	dae.getDatabase()->getElement(&el, 0, 0, COLLADA_TYPE_NAME_ARRAY);
-	domName_array* nameArray = daeSafeCast<domName_array>(el);
-	CheckResult(nameArray);
-
-	domListOfNames& names = nameArray->getValue();
-	names.clear();
-	nameArrayAppend(names, "name1");
-	nameArrayAppend(names, "name2");
-	nameArrayAppend(names, "name3");
-	nameArray->setCount(names.getCount());
-	for (size_t i = 0; i < names.getCount(); i++)
-		cout << names[i] << "\n";
+	domListOfNames names;
+	for (int i = 0; i < 10; i++)
+		nameArrayAppend(names, (string("name") + toString(i)).c_str());
+	for (int i = 0; i < 10; i++) {
+		CheckResult(string("name") + toString(i) == names[i]);
+	}
 	
-	return true;
+	return testResult(true);
 }
 
 template<typename T>
@@ -804,24 +859,24 @@ void printArray(const daeTArray<T>& array) {
 }
 
 DefineTest(arrayOps) {
-	// Test default array value suppression
-	RunTest(renderStates);
-
-	// Test Heinrich's original code that crashed
-	RunTest(cloneCrash);
+	daeTArray<int> zeroToFour = makeIntArray(0, 1, 2, 3, 4, INT_MAX);
 
 	// Test removeIndex
-	daeTArray<int> array;
-	for (size_t i = 0; i < 10; i++)
-		array.append(i);
-	printArray(array);
-	array.removeIndex(4);
-	printArray(array);
+	daeTArray<int> array = zeroToFour;
+	array.removeIndex(2);
+	CheckResult(array == makeIntArray(0, 1, 3, 4, INT_MAX));
 
-	// Test insert
-	array.insertAt(4, 4);
-	printArray(array);
-	return true;
+	// Insert several values into the middle of an array
+	array = zeroToFour;
+	array.insert(3, 5, 9); // Insert five copies of '9' at the third element of the array
+	CheckResult(array == makeIntArray(0, 1, 2, 9, 9, 9, 9, 9, 3, 4, INT_MAX));
+
+	// Insert several values beyond the end of an array
+	array = zeroToFour;
+	array.insert(7, 2, 5);
+	CheckResult(array == makeIntArray(0, 1, 2, 3, 4, 5, 5, 5, 5, INT_MAX));
+
+	return testResult(true);
 }
 
 
@@ -829,6 +884,12 @@ void printMemoryToStringResult(daeAtomicType& type, daeMemoryRef value) {
 	ostringstream buffer;
 	type.memoryToString(value, buffer);
 	cout << buffer.str() << endl;
+}
+
+string toString(daeAtomicType& type, daeMemoryRef value) {
+	ostringstream buffer;
+	type.memoryToString(value, buffer);
+	return buffer.str();
 }
 
 DefineTest(atomicTypeOps) {
@@ -869,23 +930,24 @@ DefineTest(atomicTypeOps) {
 	daeBool Bool(false);
 	daeStringRef Token("token");
 
-	printMemoryToStringResult(UIntType, (daeMemoryRef)&UInt);
-	printMemoryToStringResult(IntType, (daeMemoryRef)&Int);
-	printMemoryToStringResult(LongType, (daeMemoryRef)&Long);
-	printMemoryToStringResult(ShortType, (daeMemoryRef)&Short);
-	printMemoryToStringResult(ULongType, (daeMemoryRef)&ULong);
-	printMemoryToStringResult(FloatType, (daeMemoryRef)&Float);
-	printMemoryToStringResult(DoubleType, (daeMemoryRef)&Double);
-	printMemoryToStringResult(StringRefType, (daeMemoryRef)&StringRef);
-	//	printMemoryToStringResult(ElementRefType, (daeMemoryRef)&ElementRef);
-	printMemoryToStringResult(EnumType, (daeMemoryRef)&Enum);
-	printMemoryToStringResult(RawRefType, (daeMemoryRef)&RawRef);
-	printMemoryToStringResult(ResolverType, (daeMemoryRef)&uri);
-	printMemoryToStringResult(IDResolverType, (daeMemoryRef)&IDRef);
-	printMemoryToStringResult(BoolType, (daeMemoryRef)&Bool);
-	printMemoryToStringResult(TokenType, (daeMemoryRef)&Token);
+	
+	CheckResult(toString(UIntType, (daeMemoryRef)&UInt) == "1");
+	CheckResult(toString(IntType, (daeMemoryRef)&Int) == "2");
+	CheckResult(toString(LongType, (daeMemoryRef)&Long) == "3");
+	CheckResult(toString(ShortType, (daeMemoryRef)&Short) == "4");
+	CheckResult(toString(ULongType, (daeMemoryRef)&ULong) == "5");
+	CheckResult(toString(FloatType, (daeMemoryRef)&Float) == "6.123");
+	CheckResult(toString(DoubleType, (daeMemoryRef)&Double) == "7.456");
+	CheckResult(toString(StringRefType, (daeMemoryRef)&StringRef) == "StringRef");
+	//	CheckResult(toString(ElementRefType, (daeMemoryRef)&ElementRef) == "");
+	CheckResult(toString(EnumType, (daeMemoryRef)&Enum) == "myEnumValue");
+	CheckResult(toString(RawRefType, (daeMemoryRef)&RawRef) == "0x12345678");
+	CheckResult(toString(ResolverType, (daeMemoryRef)&uri) == "http://www.example.com/#fragment");
+	CheckResult(toString(IDResolverType, (daeMemoryRef)&IDRef) == "sampleID");
+	CheckResult(toString(BoolType, (daeMemoryRef)&Bool) == "false");
+	CheckResult(toString(TokenType, (daeMemoryRef)&Token) == "token");
 
-	return true;
+	return testResult(true);
 }
 
 
@@ -903,7 +965,7 @@ DefineTest(clone) {
 	CheckResult(dae.saveAs(getTmpFile("cloneTest.dae").c_str(),
 	            lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
-	return true;
+	return testResult(true);
 }
 
 
@@ -972,7 +1034,7 @@ DefineTest(genericOps) {
 	CheckResult(dae.saveAs(getTmpFile(fs::basename(fs::path(uri)) + "_genericOps.dae").c_str(),
 	                       uri.c_str()) == DAE_OK);
 
-	return true;
+	return testResult(true);
 }
 
 
@@ -1004,7 +1066,7 @@ DefineTest(badSkew) {
 	CheckResult(array2->getCount() == 7);
 	CheckResult(array3->getCount() == 11);
 	
-	return true;
+	return testResult(true);
 }
 
 
@@ -1014,8 +1076,97 @@ DefineTest(stringTable) {
 	// These next two lines used to cause an abort
 	stringTable.clear(); 
 	stringTable.allocString("goodbye");
-	return true;
+	return testResult(true);
 }
+
+
+// We can only do this test if we have breps
+#if 0
+DefineTest(sidResolveSpeed) {
+	DAE dae;
+	string file = lookupTestFile("crankarm.dae");
+	CheckResult(dae.load(file.c_str()) == DAE_OK);
+	domCOLLADA* root = dae.getDom(file.c_str());
+	CheckResult(root);
+		
+	size_t count = dae.getDatabase()->getElementCount(NULL, COLLADA_TYPE_SIDREF_ARRAY);
+	for (size_t i = 0; i < count; i++) {
+		daeElement* elt = 0;
+		dae.getDatabase()->getElement(&elt, 0, NULL, COLLADA_TYPE_SIDREF_ARRAY);
+		CheckResult(elt);
+		domSIDREF_array* sidRefsElt = daeSafeCast<domSIDREF_array>(elt);
+		CheckResult(sidRefsElt);
+		
+		domListOfNames& sidRefs = sidRefsElt->getValue();
+		for (size_t j = 0; j < sidRefs.getCount(); j++) {
+			CheckResult(cdom::resolveSid(root, sidRefs[i]));
+		}
+	}
+
+	return testResult(true);
+}
+#endif
+
+
+DefineTest(seymourSidResolve) {
+	DAE dae;
+	string file = lookupTestFile("Seymour.dae");
+	CheckResult(dae.load(file.c_str()) == DAE_OK);
+
+	size_t count = dae.getDatabase()->getElementCount(NULL, COLLADA_TYPE_NODE);
+	for (size_t i = 0; i < count; i++) {
+		daeElement* elt = NULL;
+		dae.getDatabase()->getElement(&elt, 0, NULL, COLLADA_TYPE_NODE);
+		CheckResult(elt);
+		daeElementRefArray children;
+		elt->getChildren(children);
+		for (size_t j = 0; j < children.getCount(); j++) {
+			string sid = children[j]->getAttribute("sid");
+			if (!sid.empty()) {
+				CheckResult(cdom::resolveSid(elt, sid));
+			}
+		}
+	}
+
+	return testResult(true);
+}
+
+
+vector<string> getChildNames(daeElement* elt) {
+	vector<string> result;
+	if (!elt)
+		return result;
+
+	daeElementRefArray children = elt->getChildren();
+	for (size_t i = 0; i < children.getCount(); i++)
+		result.push_back(children[i]->getElementName());
+
+	return result;
+}
+
+DefineTest(placeElement) {
+	DAE dae;
+	CheckResult(dae.load(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+
+	daeElement* node = 0;
+	dae.getDatabase()->getElement(&node, 0, "Box");
+	CheckResult(node);
+
+	CheckResult(getChildNames(node) == makeStringArray(
+		"rotate", "rotate", "rotate", "instance_geometry", 0));
+
+	// Place a new <translate> after the first <rotate> using placeElementAfter, and
+	// make sure the <translate> shows up in the right spot.
+	node->placeElementAfter(node->getChildren()[0], node->createElement("translate"));
+	CheckResult(getChildNames(node) == makeStringArray(
+		"rotate", "translate", "rotate", "rotate", "instance_geometry", 0));
+
+	node->placeElementBefore(node->getChildren()[0], node->createElement("scale"));
+	CheckResult(getChildNames(node) == makeStringArray(
+		"scale", "rotate", "translate", "rotate", "rotate", "instance_geometry", 0));
+
+	return testResult(true);
+};
 
 
 // Returns true if all tests names are valid
@@ -1034,22 +1185,31 @@ bool checkTests(const set<string>& tests) {
 }
 
 // Returns the set of tests that failed
-set<string> runTests(const set<string>& tests) {
-	set<string> failedTests;
+map<string, testResult> runTests(const set<string>& tests) {
+	map<string, testResult> failedTests;
 	for (set<string>::const_iterator iter = tests.begin(); iter != tests.end(); iter++) {
-		cout << "Running " << *iter << endl;
-		if (!g_tests[*iter]->run())
-			failedTests.insert(*iter);
+		testResult result = g_tests[*iter]->run();
+		if (!result.passed)
+			failedTests[*iter] = result;
 	}
 	return failedTests;
 }
 
-void printTestResults(const set<string>& failedTests) {
+void printTestResults(const map<string, testResult>& failedTests) {
 	if (!failedTests.empty()) {
 		cout << "Failed tests:\n";
-		for (set<string>::const_iterator iter = failedTests.begin(); iter != failedTests.end(); iter++)
-			cout << "  " << *iter << endl;
-	} else {
+		for (map<string, testResult>::const_iterator iter = failedTests.begin();
+		     iter != failedTests.end();
+		     iter++) {
+			cout << "    " << iter->first;
+			if (iter->second.line != -1)
+				cout << " (line " << iter->second.line << ")";
+			cout << endl;
+			if (!iter->second.msg.empty()) // Make sure to indent the message
+				cout << "        " << replace(iter->second.msg, "\n", "\n        ") << "\n";
+		}
+	}
+	else {
 		cout << "All tests passed.\n";
 	}
 }

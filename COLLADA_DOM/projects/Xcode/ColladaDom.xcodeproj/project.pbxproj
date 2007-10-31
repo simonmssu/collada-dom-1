@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F04B2C90CCEA4B200769B99 /* daeDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2C80CCEA4B200769B99 /* daeDatabase.cpp */; };
 		8D07F2C00486CC7A007CD1D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		AD012C700BCFEE5100BBFE92 /* domAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */; };
 		AD012C710BCFEE5100BBFE92 /* domAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */; };
@@ -221,10 +222,53 @@
 		AD9A7DFE0C38EB0700C43196 /* daeStandardURIResolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD9A7DFC0C38EB0700C43196 /* daeStandardURIResolver.cpp */; };
 		ADA8388C0BDBDD0A00CA0FB3 /* COLLADA_DOM.chm in Resources */ = {isa = PBXBuildFile; fileRef = AD012F610BCFEEA200BBFE92 /* COLLADA_DOM.chm */; };
 		ADEAEDEB0C53CFED00C55F75 /* daePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = ADEAEDEA0C53CFED00C55F75 /* daePlatform.h */; };
+		ADFAE46E0CCFFF590097ABB3 /* domTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ADFAE43E0CCFF9E50097ABB3 /* domTest.cpp */; };
+		ADFAE5710CD002A30097ABB3 /* Collada141Dom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */; };
+		ADFAE5B40CD00A4B0097ABB3 /* badSkew.dae in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADFAE4350CCFF9E40097ABB3 /* badSkew.dae */; };
+		ADFAE5B50CD00A4B0097ABB3 /* clipPlane.dae in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADFAE4360CCFF9E40097ABB3 /* clipPlane.dae */; };
+		ADFAE5B60CD00A4B0097ABB3 /* crankarm.dae in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADFAE4370CCFF9E40097ABB3 /* crankarm.dae */; };
+		ADFAE5B70CD00A4B0097ABB3 /* cube.dae in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADFAE4380CCFF9E40097ABB3 /* cube.dae */; };
+		ADFAE5B80CD00A4B0097ABB3 /* duck.dae in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADFAE4390CCFF9E40097ABB3 /* duck.dae */; };
+		ADFAE5B90CD00A4B0097ABB3 /* extraTest.dae in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADFAE43A0CCFF9E50097ABB3 /* extraTest.dae */; };
+		ADFAE5BA0CD00A4B0097ABB3 /* Seymour.dae in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADFAE43B0CCFF9E50097ABB3 /* Seymour.dae */; };
+		ADFAE5BB0CD00A4B0097ABB3 /* Seymour_roundTrip.dae in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADFAE43C0CCFF9E50097ABB3 /* Seymour_roundTrip.dae */; };
+		ADFAE5BC0CD00A4B0097ABB3 /* sidResolveTest.dae in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADFAE43D0CCFF9E50097ABB3 /* sidResolveTest.dae */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ADFAE4630CCFFEDB0097ABB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D07F2BC0486CC7A007CD1D0 /* Collada141Dom */;
+			remoteInfo = Collada141Dom;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ADFAE5B00CD00A210097ABB3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../../test/data;
+			dstSubfolderSpec = 16;
+			files = (
+				ADFAE5B40CD00A4B0097ABB3 /* badSkew.dae in CopyFiles */,
+				ADFAE5B50CD00A4B0097ABB3 /* clipPlane.dae in CopyFiles */,
+				ADFAE5B60CD00A4B0097ABB3 /* crankarm.dae in CopyFiles */,
+				ADFAE5B70CD00A4B0097ABB3 /* cube.dae in CopyFiles */,
+				ADFAE5B80CD00A4B0097ABB3 /* duck.dae in CopyFiles */,
+				ADFAE5B90CD00A4B0097ABB3 /* extraTest.dae in CopyFiles */,
+				ADFAE5BA0CD00A4B0097ABB3 /* Seymour.dae in CopyFiles */,
+				ADFAE5BB0CD00A4B0097ABB3 /* Seymour_roundTrip.dae in CopyFiles */,
+				ADFAE5BC0CD00A4B0097ABB3 /* sidResolveTest.dae in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2F04B2C80CCEA4B200769B99 /* daeDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeDatabase.cpp; sourceTree = "<group>"; };
 		8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Collada141Dom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAccessor.cpp; sourceTree = "<group>"; };
 		AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAnimation.cpp; sourceTree = "<group>"; };
@@ -648,6 +692,17 @@
 		AD9A7DFB0C38EB0700C43196 /* daeIOPluginCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeIOPluginCommon.cpp; sourceTree = "<group>"; };
 		AD9A7DFC0C38EB0700C43196 /* daeStandardURIResolver.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeStandardURIResolver.cpp; sourceTree = "<group>"; };
 		ADEAEDEA0C53CFED00C55F75 /* daePlatform.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daePlatform.h; sourceTree = "<group>"; };
+		ADFAE4350CCFF9E40097ABB3 /* badSkew.dae */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = badSkew.dae; path = ../../test/data/badSkew.dae; sourceTree = "<group>"; };
+		ADFAE4360CCFF9E40097ABB3 /* clipPlane.dae */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = clipPlane.dae; path = ../../test/data/clipPlane.dae; sourceTree = "<group>"; };
+		ADFAE4370CCFF9E40097ABB3 /* crankarm.dae */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = crankarm.dae; path = ../../test/data/crankarm.dae; sourceTree = "<group>"; };
+		ADFAE4380CCFF9E40097ABB3 /* cube.dae */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = cube.dae; path = ../../test/data/cube.dae; sourceTree = "<group>"; };
+		ADFAE4390CCFF9E40097ABB3 /* duck.dae */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = duck.dae; path = ../../test/data/duck.dae; sourceTree = "<group>"; };
+		ADFAE43A0CCFF9E50097ABB3 /* extraTest.dae */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = extraTest.dae; path = ../../test/data/extraTest.dae; sourceTree = "<group>"; };
+		ADFAE43B0CCFF9E50097ABB3 /* Seymour.dae */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Seymour.dae; path = ../../test/data/Seymour.dae; sourceTree = "<group>"; };
+		ADFAE43C0CCFF9E50097ABB3 /* Seymour_roundTrip.dae */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Seymour_roundTrip.dae; path = ../../test/data/Seymour_roundTrip.dae; sourceTree = "<group>"; };
+		ADFAE43D0CCFF9E50097ABB3 /* sidResolveTest.dae */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = sidResolveTest.dae; path = ../../test/data/sidResolveTest.dae; sourceTree = "<group>"; };
+		ADFAE43E0CCFF9E50097ABB3 /* domTest.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domTest.cpp; sourceTree = "<group>"; };
+		ADFAE4610CCFFED10097ABB3 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -658,6 +713,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ADFAE45F0CCFFED10097ABB3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADFAE5710CD002A30097ABB3 /* Collada141Dom.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -665,6 +728,7 @@
 			isa = PBXGroup;
 			children = (
 				8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */,
+				ADFAE4610CCFFED10097ABB3 /* UnitTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -691,6 +755,7 @@
 		089C1665FE841158C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ADFAE4410CCFFA1C0097ABB3 /* UnitTestData */,
 				AD08E1500C565D580090980D /* Collada141Dom.plist */,
 				AD08E13F0C565B5A0090980D /* ColladaDomWiki.url */,
 				AD012F610BCFEEA200BBFE92 /* COLLADA_DOM.chm */,
@@ -702,6 +767,7 @@
 		AD012B280BCFEE5100BBFE92 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				ADFAE4300CCFF9E40097ABB3 /* test */,
 				AD012B610BCFEE5100BBFE92 /* 1.4 */,
 				AD012C110BCFEE5100BBFE92 /* dae */,
 				AD012C2C0BCFEE5100BBFE92 /* modules */,
@@ -902,6 +968,7 @@
 			children = (
 				AD012C120BCFEE5100BBFE92 /* dae.cpp */,
 				AD012C130BCFEE5100BBFE92 /* daeArray.cpp */,
+				2F04B2C80CCEA4B200769B99 /* daeDatabase.cpp */,
 				AD012C140BCFEE5100BBFE92 /* daeAtomicType.cpp */,
 				AD012C150BCFEE5100BBFE92 /* daeDocument.cpp */,
 				AD012C160BCFEE5100BBFE92 /* daeDom.cpp */,
@@ -1222,6 +1289,31 @@
 			path = modules;
 			sourceTree = "<group>";
 		};
+		ADFAE4300CCFF9E40097ABB3 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				ADFAE43E0CCFF9E50097ABB3 /* domTest.cpp */,
+			);
+			name = test;
+			path = ../../test;
+			sourceTree = SOURCE_ROOT;
+		};
+		ADFAE4410CCFFA1C0097ABB3 /* UnitTestData */ = {
+			isa = PBXGroup;
+			children = (
+				ADFAE4350CCFF9E40097ABB3 /* badSkew.dae */,
+				ADFAE4360CCFF9E40097ABB3 /* clipPlane.dae */,
+				ADFAE4370CCFF9E40097ABB3 /* crankarm.dae */,
+				ADFAE4380CCFF9E40097ABB3 /* cube.dae */,
+				ADFAE4390CCFF9E40097ABB3 /* duck.dae */,
+				ADFAE43A0CCFF9E50097ABB3 /* extraTest.dae */,
+				ADFAE43B0CCFF9E50097ABB3 /* Seymour.dae */,
+				ADFAE43C0CCFF9E50097ABB3 /* Seymour_roundTrip.dae */,
+				ADFAE43D0CCFF9E50097ABB3 /* sidResolveTest.dae */,
+			);
+			name = UnitTestData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1263,6 +1355,24 @@
 			productReference = 8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		ADFAE4600CCFFED10097ABB3 /* UnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADFAE4650CCFFEF90097ABB3 /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildPhases = (
+				ADFAE45E0CCFFED10097ABB3 /* Sources */,
+				ADFAE45F0CCFFED10097ABB3 /* Frameworks */,
+				ADFAE5B00CD00A210097ABB3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ADFAE4640CCFFEDB0097ABB3 /* PBXTargetDependency */,
+			);
+			name = UnitTest;
+			productName = UnitTest;
+			productReference = ADFAE4610CCFFED10097ABB3 /* UnitTest */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1275,6 +1385,7 @@
 			projectDirPath = "";
 			targets = (
 				8D07F2BC0486CC7A007CD1D0 /* Collada141Dom */,
+				ADFAE4600CCFFED10097ABB3 /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -1528,10 +1639,27 @@
 				AD9A7DFD0C38EB0700C43196 /* daeIOPluginCommon.cpp in Sources */,
 				AD9A7DFE0C38EB0700C43196 /* daeStandardURIResolver.cpp in Sources */,
 				AD2C1E550C9941210040481B /* daeRefCountedObj.cpp in Sources */,
+				2F04B2C90CCEA4B200769B99 /* daeDatabase.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADFAE45E0CCFFED10097ABB3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADFAE46E0CCFFF590097ABB3 /* domTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ADFAE4640CCFFEDB0097ABB3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D07F2BC0486CC7A007CD1D0 /* Collada141Dom */;
+			targetProxy = ADFAE4630CCFFEDB0097ABB3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
@@ -1649,6 +1777,60 @@
 			};
 			name = Release;
 		};
+		ADFAE4660CCFFEF90097ABB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${BUILT_PRODUCTS_DIR}/Collada141Dom.framework/Headers",
+					"${SRCROOT}/../../include",
+					/usr/local/include,
+					"/usr/local/include/boost-1_34_1",
+				);
+				INSTALL_PATH = "$(HOME)/bin";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib,
+				);
+				OTHER_LDFLAGS = "-lboost_filesystem";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		ADFAE4670CCFFEF90097ABB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${BUILT_PRODUCTS_DIR}/Collada141Dom.framework/Headers",
+					"${SRCROOT}/../../include",
+					/usr/local/include,
+					"/usr/local/include/boost-1_34_1",
+				);
+				INSTALL_PATH = "$(HOME)/bin";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib,
+				);
+				OTHER_LDFLAGS = "-lboost_filesystem";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1666,6 +1848,15 @@
 			buildConfigurations = (
 				4FADC24708B4156D00ABE55E /* Debug */,
 				ADA8371C0BDBAA6100CA0FB3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADFAE4650CCFFEF90097ABB3 /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADFAE4660CCFFEF90097ABB3 /* Debug */,
+				ADFAE4670CCFFEF90097ABB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

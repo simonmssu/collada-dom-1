@@ -1,14 +1,14 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
 #include <dae/daeDom.h>
@@ -42,18 +42,24 @@ domLink::registerElement()
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea->setName( "attachment_full" );
+	mea->setOffset( daeOffsetOf(domLink,elemAttachment_full_array) );
+	mea->setElementType( domLink::domAttachment_full::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
 	mea->setName( "ref_attachment" );
 	mea->setOffset( daeOffsetOf(domLink,elemRef_attachment_array) );
 	mea->setElementType( domLink::domRef_attachment::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
 	mea->setName( "attachment" );
 	mea->setOffset( daeOffsetOf(domLink,elemAttachment_array) );
 	mea->setElementType( domLink::domAttachment::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 1 );
+	cm->setMaxOrdinal( 2 );
 	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: sid
@@ -80,6 +86,67 @@ domLink::registerElement()
 	
 	
 	_Meta->setElementSize(sizeof(domLink));
+	_Meta->validate();
+
+	return _Meta;
+}
+
+daeElementRef
+domLink::domAttachment_full::create(daeInt)
+{
+	domLink::domAttachment_fullRef ref = new domLink::domAttachment_full;
+	return ref;
+}
+
+
+daeMetaElement *
+domLink::domAttachment_full::registerElement()
+{
+    if ( _Meta != NULL ) return _Meta;
+    
+    _Meta = new daeMetaElement;
+    _Meta->setName( "attachment_full" );
+	_Meta->registerClass(domLink::domAttachment_full::create, &_Meta);
+
+	_Meta->setIsInnerClass( true );
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea->setName( "rotate" );
+	mea->setOffset( daeOffsetOf(domLink::domAttachment_full,elemRotate_array) );
+	mea->setElementType( domRotate::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
+	mea->setName( "translate" );
+	mea->setOffset( daeOffsetOf(domLink::domAttachment_full,elemTranslate) );
+	mea->setElementType( domTranslate::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 2, 1, 1 );
+	mea->setName( "link" );
+	mea->setOffset( daeOffsetOf(domLink::domAttachment_full,elemLink) );
+	mea->setElementType( domLink::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 2 );
+	_Meta->setCMRoot( cm );	
+
+	//	Add attribute: joint
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "joint" );
+		ma->setType( daeAtomicType::get("Token"));
+		ma->setOffset( daeOffsetOf( domLink::domAttachment_full , attrJoint ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
+	
+	
+	_Meta->setElementSize(sizeof(domLink::domAttachment_full));
 	_Meta->validate();
 
 	return _Meta;
@@ -122,12 +189,12 @@ domLink::domRef_attachment::registerElement()
 	cm->setMaxOrdinal( 1 );
 	_Meta->setCMRoot( cm );	
 
-	//	Add attribute: target
+	//	Add attribute: joint
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
-		ma->setName( "target" );
+		ma->setName( "joint" );
 		ma->setType( daeAtomicType::get("Token"));
-		ma->setOffset( daeOffsetOf( domLink::domRef_attachment , attrTarget ));
+		ma->setOffset( daeOffsetOf( domLink::domRef_attachment , attrJoint ));
 		ma->setContainer( _Meta );
 	
 		_Meta->appendAttribute(ma);
@@ -177,12 +244,12 @@ domLink::domAttachment::registerElement()
 	cm->setMaxOrdinal( 1 );
 	_Meta->setCMRoot( cm );	
 
-	//	Add attribute: target
+	//	Add attribute: joint
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
-		ma->setName( "target" );
+		ma->setName( "joint" );
 		ma->setType( daeAtomicType::get("Token"));
-		ma->setOffset( daeOffsetOf( domLink::domAttachment , attrTarget ));
+		ma->setOffset( daeOffsetOf( domLink::domAttachment , attrJoint ));
 		ma->setContainer( _Meta );
 	
 		_Meta->appendAttribute(ma);
@@ -197,6 +264,7 @@ domLink::domAttachment::registerElement()
 
 
 daeMetaElement * domLink::_Meta = NULL;
+daeMetaElement * domLink::domAttachment_full::_Meta = NULL;
 daeMetaElement * domLink::domRef_attachment::_Meta = NULL;
 daeMetaElement * domLink::domAttachment::_Meta = NULL;
 

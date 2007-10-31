@@ -26,7 +26,7 @@ public: // allocate/construct/destruct/deallocate
 	/**
 	 * Macro that defines new and delete overrides for this class
 	 */
-	DAE_ALLOC;
+	DAE_ALLOC
 	/**
 	 * Constructor which specifies fixed buffer size.
 	 * @param stringBufferSize The size of the buffer to create for string allocation.

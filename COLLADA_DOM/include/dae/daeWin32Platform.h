@@ -43,5 +43,7 @@ typedef int intptr_t;
 
 // class 'std::auto_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'daeErrorHandler'
 #pragma warning(disable: 4251)
+// warning C4100: 'profile' : unreferenced formal parameter
+#pragma warning(disable: 4100)
 
 #endif

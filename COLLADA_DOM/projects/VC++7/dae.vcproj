@@ -20,7 +20,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
+				AdditionalIncludeDirectories="../../include;../../include/1.4;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -62,7 +62,7 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
+				AdditionalIncludeDirectories="../../include;../../include/1.4;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -103,7 +103,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
+				AdditionalIncludeDirectories="../../include;../../include/1.4;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT;DOM_INCLUDE_LIBXML"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -155,7 +155,7 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../include;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
+				AdditionalIncludeDirectories="../../include;../../include/1.4;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/include;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/tinyxml/include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT;DOM_INCLUDE_LIBXML"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -209,6 +209,9 @@
 			</File>
 			<File
 				RelativePath="..\..\src\dae\daeAtomicType.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\dae\daeDatabase.cpp">
 			</File>
 			<File
 				RelativePath="..\..\src\dae\daeDocument.cpp">

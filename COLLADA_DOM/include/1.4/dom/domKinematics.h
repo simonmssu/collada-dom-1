@@ -1,14 +1,14 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 #ifndef __domKinematics_h__
 #define __domKinematics_h__
@@ -400,7 +400,7 @@ protected:  // Attribute
 	xsAnyURI attrSource;
 
 protected:  // Elements
-	domAxis_infoRef elemAxis_info;
+	domAxis_info_Array elemAxis_info_array;
 	domKinematics_frameRef elemKinematics_frame;
 	domExtra_Array elemExtra_array;
 
@@ -422,10 +422,15 @@ public:	//Accessors and Mutators
 	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; _validAttributeArray[0] = true; }
 
 	/**
-	 * Gets the axis_info element.
-	 * @return a daeSmartRef to the axis_info element.
+	 * Gets the axis_info element array.
+	 * @return Returns a reference to the array of axis_info elements.
 	 */
-	const domAxis_infoRef getAxis_info() const { return elemAxis_info; }
+	domAxis_info_Array &getAxis_info_array() { return elemAxis_info_array; }
+	/**
+	 * Gets the axis_info element array.
+	 * @return Returns a constant reference to the array of axis_info elements.
+	 */
+	const domAxis_info_Array &getAxis_info_array() const { return elemAxis_info_array; }
 	/**
 	 * Gets the kinematics_frame element.
 	 * @return a daeSmartRef to the kinematics_frame element.
@@ -445,7 +450,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domKinematics() : attrSource(), elemAxis_info(), elemKinematics_frame(), elemExtra_array() {}
+	domKinematics() : attrSource(), elemAxis_info_array(), elemKinematics_frame(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

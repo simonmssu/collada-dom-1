@@ -1,14 +1,14 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 #ifndef __domLink_h__
 #define __domLink_h__
@@ -19,12 +19,101 @@
 
 #include <dom/domRotate.h>
 #include <dom/domTranslate.h>
+#include <dom/domLink.h>
 
 class domLink : public daeElement
 {
 public:
 	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINK; }
 public:
+	class domAttachment_full;
+
+	typedef daeSmartRef<domAttachment_full> domAttachment_fullRef;
+	typedef daeTArray<domAttachment_fullRef> domAttachment_full_Array;
+
+	class domAttachment_full : public daeElement
+	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ATTACHMENT_FULL; }
+	protected:  // Attribute
+		domToken attrJoint;
+
+	protected:  // Elements
+		domRotate_Array elemRotate_array;
+		domTranslateRef elemTranslate;
+		domLinkRef elemLink;
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the joint attribute.
+		 * @return Returns a domToken of the joint attribute.
+		 */
+		domToken getJoint() const { return attrJoint; }
+		/**
+		 * Sets the joint attribute.
+		 * @param atJoint The new value for the joint attribute.
+		 */
+		void setJoint( domToken atJoint ) { attrJoint = atJoint; _validAttributeArray[0] = true; }
+
+		/**
+		 * Gets the rotate element array.
+		 * @return Returns a reference to the array of rotate elements.
+		 */
+		domRotate_Array &getRotate_array() { return elemRotate_array; }
+		/**
+		 * Gets the rotate element array.
+		 * @return Returns a constant reference to the array of rotate elements.
+		 */
+		const domRotate_Array &getRotate_array() const { return elemRotate_array; }
+		/**
+		 * Gets the translate element.
+		 * @return a daeSmartRef to the translate element.
+		 */
+		const domTranslateRef getTranslate() const { return elemTranslate; }
+		/**
+		 * Gets the link element.
+		 * @return a daeSmartRef to the link element.
+		 */
+		const domLinkRef getLink() const { return elemLink; }
+	protected:
+		/**
+		 * Constructor
+		 */
+		domAttachment_full() : attrJoint(), elemRotate_array(), elemTranslate(), elemLink() {}
+		/**
+		 * Destructor
+		 */
+		virtual ~domAttachment_full() {}
+		/**
+		 * Copy Constructor
+		 */
+		domAttachment_full( const domAttachment_full &cpy ) : daeElement() { (void)cpy; }
+		/**
+		 * Overloaded assignment operator
+		 */
+		virtual domAttachment_full &operator=( const domAttachment_full &cpy ) { (void)cpy; return *this; }
+
+	public: // STATIC METHODS
+		/**
+		 * Creates an instance of this class and returns a daeElementRef referencing it.
+		 * @param bytes The size allocated for this instance.
+		 * @return a daeElementRef referencing an instance of this object.
+		 */
+		static DLLSPEC daeElementRef create(daeInt bytes);
+		/**
+		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+		 * @return A daeMetaElement describing this COLLADA element.
+		 */
+		static DLLSPEC daeMetaElement* registerElement();
+
+	public: // STATIC MEMBERS
+		/**
+		 * The daeMetaElement that describes this element in the meta object reflection framework.
+		 */
+		static DLLSPEC daeMetaElement* _Meta;
+	};
+
 	class domRef_attachment;
 
 	typedef daeSmartRef<domRef_attachment> domRef_attachmentRef;
@@ -35,7 +124,7 @@ public:
 	public:
 		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF_ATTACHMENT; }
 	protected:  // Attribute
-		domToken attrTarget;
+		domToken attrJoint;
 
 	protected:  // Elements
 		domRotate_Array elemRotate_array;
@@ -43,15 +132,15 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the target attribute.
-		 * @return Returns a domToken of the target attribute.
+		 * Gets the joint attribute.
+		 * @return Returns a domToken of the joint attribute.
 		 */
-		domToken getTarget() const { return attrTarget; }
+		domToken getJoint() const { return attrJoint; }
 		/**
-		 * Sets the target attribute.
-		 * @param atTarget The new value for the target attribute.
+		 * Sets the joint attribute.
+		 * @param atJoint The new value for the joint attribute.
 		 */
-		void setTarget( domToken atTarget ) { attrTarget = atTarget; _validAttributeArray[0] = true; }
+		void setJoint( domToken atJoint ) { attrJoint = atJoint; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the rotate element array.
@@ -72,7 +161,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domRef_attachment() : attrTarget(), elemRotate_array(), elemTranslate() {}
+		domRef_attachment() : attrJoint(), elemRotate_array(), elemTranslate() {}
 		/**
 		 * Destructor
 		 */
@@ -117,7 +206,7 @@ public:
 	public:
 		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ATTACHMENT; }
 	protected:  // Attribute
-		domToken attrTarget;
+		domToken attrJoint;
 
 	protected:  // Elements
 		domRotate_Array elemRotate_array;
@@ -125,15 +214,15 @@ public:
 
 	public:	//Accessors and Mutators
 		/**
-		 * Gets the target attribute.
-		 * @return Returns a domToken of the target attribute.
+		 * Gets the joint attribute.
+		 * @return Returns a domToken of the joint attribute.
 		 */
-		domToken getTarget() const { return attrTarget; }
+		domToken getJoint() const { return attrJoint; }
 		/**
-		 * Sets the target attribute.
-		 * @param atTarget The new value for the target attribute.
+		 * Sets the joint attribute.
+		 * @param atJoint The new value for the joint attribute.
 		 */
-		void setTarget( domToken atTarget ) { attrTarget = atTarget; _validAttributeArray[0] = true; }
+		void setJoint( domToken atJoint ) { attrJoint = atJoint; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the rotate element array.
@@ -154,7 +243,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAttachment() : attrTarget(), elemRotate_array(), elemTranslate() {}
+		domAttachment() : attrJoint(), elemRotate_array(), elemTranslate() {}
 		/**
 		 * Destructor
 		 */
@@ -195,6 +284,7 @@ protected:  // Attributes
 	xsNCName attrName;
 
 protected:  // Elements
+	domAttachment_full_Array elemAttachment_full_array;
 	domRef_attachment_Array elemRef_attachment_array;
 	domAttachment_Array elemAttachment_array;
 
@@ -222,6 +312,16 @@ public:	//Accessors and Mutators
 	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
+	 * Gets the attachment_full element array.
+	 * @return Returns a reference to the array of attachment_full elements.
+	 */
+	domAttachment_full_Array &getAttachment_full_array() { return elemAttachment_full_array; }
+	/**
+	 * Gets the attachment_full element array.
+	 * @return Returns a constant reference to the array of attachment_full elements.
+	 */
+	const domAttachment_full_Array &getAttachment_full_array() const { return elemAttachment_full_array; }
+	/**
 	 * Gets the ref_attachment element array.
 	 * @return Returns a reference to the array of ref_attachment elements.
 	 */
@@ -245,7 +345,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLink() : attrSid(), attrName(), elemRef_attachment_array(), elemAttachment_array() {}
+	domLink() : attrSid(), attrName(), elemAttachment_full_array(), elemRef_attachment_array(), elemAttachment_array() {}
 	/**
 	 * Destructor
 	 */
