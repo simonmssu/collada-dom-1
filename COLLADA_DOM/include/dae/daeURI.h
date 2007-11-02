@@ -529,13 +529,24 @@ namespace cdom {
 	// Examples - Linux/Mac
 	//   filePathToUri("/myFolder/myFile.dae") --> "/myFolder/myFile.dae"
 	//   filePathToUri("../myFolder/myFile.dae") --> "../myFolder/myFile.dae"
-	//   filePathToUri("/my folder/my file.dae") --> "/my%20folder/my%20folder.dae"
+	//   filePathToUri("/my folder/my file.dae") --> "/my%20folder/my%20file.dae"
 	DLLSPEC std::string filePathToUri(const std::string& filePath);
 
-	DLLSPEC std::string uriToFilePath(const std::string& uri);
+	// This function takes a URI reference and converts it to an OS file path. Conversion
+	// can fail if the URI reference is ill-formed, or if the URI contains a scheme other
+	// than "file", in which case an empty string is returned.
+	//
+	// Examples - Windows
+	//   uriToFilePath("../folder/file.dae") --> "..\folder\file.dae"
+	//   uriToFilePath("file:///C:/folder/file.dae") --> "C:\folder\file.dae"
+	//   uriToFilePath("file://///otherComputer/file.dae") --> "\\otherComputer\file.dae"
+	//   uriToFilePath("http://www.slashdot.org") --> "" (it's not a file scheme URI!)
+	//
+	// Examples - Linux/Mac
+	//   uriToFilePath("../folder/file.dae") --> "../folder/file.dae"
+	//   uriToFilePath("file:///folder/file.dae") --> "/folder/file.dae"
+	//   uriToFilePath("http://www.slashdot.org") --> "" (it's not a file scheme URI!)
+	DLLSPEC std::string uriToFilePath(const std::string& uriRef);
 }
 
 #endif //__DAE_URI_H__
-
-
-

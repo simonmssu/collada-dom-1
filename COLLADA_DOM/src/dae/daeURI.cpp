@@ -15,6 +15,7 @@
 #include <ctype.h>
 #include <dae/daeDocument.h>
 #include <dae/daeErrorHandler.h>
+#include <boost/regex.hpp>
 
 #ifdef _WIN32
 #include <direct.h>  // for getcwd (windows)
@@ -1305,19 +1306,12 @@ string cdom::replace(const string& s, const string& replace, const string& repla
 string cdom::filePathToUri(const string& filePath) {
 	string uri = filePath;
 
-	// Windows - convert c:\ to /c:\ 
+	// Windows - convert "c:\" to "/c:\"
 	if (uri.length() >= 2  &&  isalpha(uri[0])  &&  uri[1] == ':')
 		uri.insert(0, "/");
 	else if (!uri.empty()  &&  uri[0] == '\\') {
 		// Windows - If it's an absolute path with no drive letter, or a UNC path,
 		// prepend "file:///"
-		//
-		// Note: RFC 3986 (the URI spec) explicitly states that "if a URI does not contain
-		// an authority component, then the path cannot begin with two slash characters ("//")."
-		// We're clearly violating that here, since we're going to generate a URI of the form
-		// "file:////myFolder/file.dae", or "file://///otherMachine/file.dae" for a UNC path.
-		// It sucks that we're violating the spec here, but libxml accepts this "extension"
-		// and I think it's useful.
 		uri.insert(0, "file:///");
 	}
 	
@@ -1340,19 +1334,54 @@ namespace {
 	                 string& path,
 	                 string& query,
 	                 string& fragment) {
-		// Parse the scheme
-		size_t pos = uriRef.find(':');
-		if (pos != string::npos)
-			scheme = uriRef.substr(0, pos);
+		try {
+			// This regular expression for parsing URI references comes from the URI spec:
+			//   http://tools.ietf.org/html/rfc3986#appendix-B
+			static boost::regex expression("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?",
+			                               boost::regex::extended);
+			boost::cmatch matchResult;
+			if (boost::regex_match(uriRef.c_str(), matchResult, expression)) {
+				scheme = matchResult[2];
+				authority = matchResult[4];
+				path = matchResult[5];
+				query = matchResult[7];
+				fragment = matchResult[9];
+				return true;
+			}
+		}
+		catch (const runtime_error& e) { }
 
-		// Parse the authority
-		return true;
+		return false;
 	}
 }
 
 
-string cdom::uriToFilePath(const string& uri) {
-	string filePath = replace(uri, "%20", " ");
+string cdom::uriToFilePath(const string& uriRef) {
+	string scheme, authority, path, query, fragment;
+	parseUriRef(uriRef, scheme, authority, path, query, fragment);
 
+	// Make sure we have a file scheme URI, or that it doesn't have a scheme
+	if (!scheme.empty()  &&  scheme != "file")
+		return "";
+
+	string filePath = path;
+
+#ifdef WIN32
+	// Windows - replace two leading slashes with one leading slash, so that
+	// ///otherComputer/file.dae becomes //otherComputer/file.dae
+	if (filePath.length() >= 2  &&  filePath[0] == '/'  &&  filePath[1] == '/')
+		filePath.erase(0);
+
+	// Windows - convert "/C:/" to "C:/"
+	if (filePath.length() >= 3  &&  filePath[0] == '/'  &&  filePath[2] == ':')
+		filePath.erase(0);
+
+	// Windows - convert forward slashes to back slashes
+	filePath = replace(filePath, "/", "\\");
+#endif
+
+	// Replace %20 with space
+	filePath = replace(filePath, "%20", " ");
+	
 	return filePath;
 }

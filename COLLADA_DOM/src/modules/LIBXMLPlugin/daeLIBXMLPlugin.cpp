@@ -32,6 +32,8 @@
 #include <dae/daeErrorHandler.h>
 #include <dae/daeMetaElementAttribute.h>
 
+using namespace std;
+
 // Some helper functions for working with libxml
 namespace {
 	daeInt getCurrentLineNumber(xmlTextReaderPtr reader) {
@@ -230,23 +232,19 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 	if(!document)
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
-	// Extract just the file path from the URI
-	daeFixedName finalname;
-	if (!name->getPath(finalname,sizeof(finalname)))
+	// Convert the URI to a file path, to see if we're about to overwrite a file
+	string file = cdom::uriToFilePath(name->getURI());
+	if (file.empty()  &&  saveRawFile)
 	{
 		daeErrorHandler::get()->handleError( "can't get path in write\n" );
 		return DAE_ERR_BACKEND_IO;
 	}
-	// !!!steveT: Replace this with real URI to file path conversion code
+	
 	// If replace=false, don't replace existing files
 	if(!replace)
 	{
 		// Using "stat" would be better, but it's not available on all platforms
-#if defined(WIN32)
-		FILE *tempfd = fopen(finalname+1,"r");
-#else
-		FILE *tempfd = fopen(finalname, "r");
-#endif		
+		FILE *tempfd = fopen(file.c_str(), "r");
 		if(tempfd != NULL)
 		{
 			// File exists, return error
@@ -257,16 +255,10 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 	}
 	if ( saveRawFile )
 	{
-		daeFixedName rawFilename;
-#if defined(WIN32)
-		strcpy( rawFilename, finalname+1);
-#else
-		strcpy( rawFilename, finalname);
-#endif
-		strcat( rawFilename, ".raw" );
+		string rawFilePath = file + ".raw";
 		if ( !replace )
 		{
-			rawFile = fopen(rawFilename, "rb" );
+			rawFile = fopen(rawFilePath.c_str(), "rb" );
 			if ( rawFile != NULL )
 			{
 				fclose(rawFile);
@@ -274,14 +266,14 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 			}
 			fclose(rawFile);
 		}
-		rawFile = fopen(rawFilename, "wb");
+		rawFile = fopen(rawFilePath.c_str(), "wb");
 		if ( rawFile == NULL )
 		{
 			return DAE_ERR_BACKEND_IO;
 		}
 		daeFixedName rawURIStr;
 		strcpy( rawURIStr, "/" );
-		strcat( rawURIStr, rawFilename );
+		strcat( rawURIStr, rawFilePath.c_str() );
 		rawRelPath.setURI( rawURIStr );
 		//rawRelPath.setURI( rawFilename );
 		rawRelPath.validate();

@@ -69,5 +69,7 @@ INCLUDE_DIR += $(ROOT_DIR)/../external-libs/tinyxml/include
 LIBRARIES += $(ROOT_DIR)/../external-libs/tinyxml/lib/linux/libtinyxml.a
 endif
 
+LIBRARIES += -lboost_regex
+
 # rules
 include          $(ROOT_DIR)/build/makerules.txt

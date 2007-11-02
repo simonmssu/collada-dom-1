@@ -1169,6 +1169,35 @@ DefineTest(placeElement) {
 };
 
 
+DefineTest(uriConversion) {
+	// Windows file path to URI
+	CheckResult(cdom::filePathToUri("C:\\myFolder\\myFile.dae") == "/C:/myFolder/myFile.dae");
+	CheckResult(cdom::filePathToUri("\\myFolder\\myFile.dae") == "file:////myFolder/myFile.dae");
+	CheckResult(cdom::filePathToUri("..\\myFolder\\myFile.dae") == "../myFolder/myFile.dae");
+	CheckResult(cdom::filePathToUri("\\\\otherComputer\\myFile.dae") == "file://///otherComputer/myFile.dae");
+
+	// Linux/Mac file path to URI
+	CheckResult(cdom::filePathToUri("/myFolder/myFile.dae") == "/myFolder/myFile.dae");
+	CheckResult(cdom::filePathToUri("../myFolder/myFile.dae") == "../myFolder/myFile.dae");
+	CheckResult(cdom::filePathToUri("/my folder/my file.dae") == "/my%20folder/my%20file.dae");
+
+#ifdef WIN32
+	// URI to Windows file path
+	CheckResult(cdom::uriToFilePath("../folder/file.dae") == "..\\folder\\file.dae");
+	CheckResult(cdom::uriToFilePath("file:///C:/folder/file.dae") == "C:\\folder\\file.dae");
+	CheckResult(cdom::uriToFilePath("file://///otherComputer/file.dae") == "\\\\otherComputer\\file.dae");
+	CheckResult(cdom::uriToFilePath("http://www.slashdot.org") == "");
+#else
+	// URI to Linux/Mac file path
+	CheckResult(cdom::uriToFilePath("../folder/file.dae") == "../folder/file.dae");
+	CheckResult(cdom::uriToFilePath("file:///folder/file.dae") == "/folder/file.dae");
+	CheckResult(cdom::uriToFilePath("http://www.slashdot.org") == "");
+#endif
+
+	return testResult(true);
+}
+
+
 // Returns true if all tests names are valid
 bool checkTests(const set<string>& tests) {
 	bool invalidTestFound = false;
