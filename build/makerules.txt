@@ -70,6 +70,7 @@ uninstall_headers:
 
 install_libraries:
 	cp lib/$(CONF_NAME)/*.a /usr/lib
+	cp lib/$(CONF_NAME)/*.so* /usr/lib
 
 uninstall_libraries:
 # We don't want to just remove all /usr/lib/libcollada*.a files. Other libraries
@@ -78,6 +79,8 @@ uninstall_libraries:
 #	rm -f /usr/lib/libcollada*.a
 	rm -f /usr/lib/libcollada_dae.a
 	rm -f /usr/lib/libcollada_dom.a
+	rm -f /usr/lib/libcollada_dae_shared.so*
+	rm -f /usr/lib/libcollada_dom_shared.so*
 
 
 #########################################################
