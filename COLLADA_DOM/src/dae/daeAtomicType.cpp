@@ -314,8 +314,13 @@ daeLongType::daeLongType()
 	_maxStringLength = 32;
 	_nameBindings.append("xsLong");
 	_nameBindings.append("xsLongArray");
+#ifdef _MSC_VER
+	_printFormat = "%I64d";
+	_scanFormat = "%I64d";
+#else
 	_printFormat = "%lld";
 	_scanFormat = "%lld";
+#endif
 	_typeString = "long";
 }
 daeShortType::daeShortType()
@@ -353,8 +358,13 @@ daeULongType::daeULongType()
 	_maxStringLength = 32;
 	_nameBindings.append("ulong");
 	_nameBindings.append("xsUnsignedLong");
+#ifdef _MSC_VER
+	_printFormat = "%I64u";
+	_scanFormat = "%I64u";
+#else
 	_printFormat = "%llu";
 	_scanFormat = "%llu";
+#endif
 	_typeString = "ulong";
 }
 daeFloatType::daeFloatType()

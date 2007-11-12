@@ -36,12 +36,19 @@ float toFloat(const string& s) {
 	return f;
 }
 
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable : 4267)
+#endif
 template<typename T>
 string toString(const T& val) {
 	ostringstream stream;
 	stream << val;
 	return stream.str();
 }
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 
 #define CheckResult(val) \
@@ -108,12 +115,12 @@ struct domTest {
 
 fs::path g_dataPath;
 string lookupTestFile(const string& fileName) {
-	return (g_dataPath / fileName).string();
+	return (g_dataPath / fileName).file_string();
 }
 
 fs::path g_tmpPath;
 string getTmpFile(const string& fileName) {
-	return (g_tmpPath / fileName).string();
+	return (g_tmpPath / fileName).file_string();
 }
 
 
@@ -266,10 +273,10 @@ struct elementCompareResult {
 			childCountMismatch(false) {
 	}
 
-	size_t getNecessaryColumnWidth(const vector<string>& tokens) {
-		size_t result = 0;
+	int getNecessaryColumnWidth(const vector<string>& tokens) {
+		int result = 0;
 		for (size_t i = 0; i < tokens.size(); i++) {
-			size_t tokenLength = tokens[i].length() > 0 ? tokens[i].length()+2 : 0;
+			int tokenLength = int(tokens[i].length() > 0 ? tokens[i].length()+2 : 0);
 			result = max(tokenLength, result);
 		}
 		return result;
@@ -310,8 +317,8 @@ struct elementCompareResult {
 			type1.c_str(), id1.c_str(), attrCount1.c_str(), attrName1.c_str(), attrValue1.c_str(),
 			charData1.c_str(), childCount1.c_str(), 0);
 		
-		size_t c1w = getNecessaryColumnWidth(col1Tokens),
-		       c2w = getNecessaryColumnWidth(col2Tokens);
+		int c1w = getNecessaryColumnWidth(col1Tokens),
+		    c2w = getNecessaryColumnWidth(col2Tokens);
 		ostringstream msg;
 		msg << setw(c1w) << left << ""            << setw(c2w) << left << "Element 1" << "Element 2\n"
 		    << setw(c1w) << left << ""            << setw(c2w) << left << "---------" << "---------\n"
@@ -347,7 +354,7 @@ elementCompareResult attrCountMismatch(daeElement& elt1, daeElement& elt2) {
 	elementCompareResult result;
 	result.elt1 = &elt1;
 	result.elt2 = &elt2;
-	result.compareValue = elt1.getAttributeCount() - elt2.getAttributeCount();
+	result.compareValue = int(elt1.getAttributeCount()) - int(elt2.getAttributeCount());
 	result.attrCountMismatch = true;
 	return result;
 }
@@ -378,7 +385,7 @@ elementCompareResult childCountMismatch(daeElement& elt1, daeElement& elt2) {
 	result.elt2 = &elt2;
 	daeElementRefArray children1 = elt1.getChildren(),
 	                   children2 = elt2.getChildren();
-	result.compareValue = children1.getCount() - children2.getCount();
+	result.compareValue = int(children1.getCount()) - int(children2.getCount());
 	result.childCountMismatch = true;
 	return result;
 }
@@ -390,7 +397,7 @@ elementCompareResult compareElementsSameType(daeElement& elt1, daeElement& elt2)
 	// Compare attributes
  	for (size_t i = 0; i < elt1.getAttributeCount(); i++)
  		if (elt1.getAttributeObject(i)->compare(&elt1, &elt2) != 0)
- 			return attrMismatch(elt1, elt2, i);
+ 			return attrMismatch(elt1, elt2, int(i));
 
 	// Compare character data
 	if (elt1.getCharDataObject())
@@ -425,7 +432,7 @@ elementCompareResult compareElementsDifferentTypes(daeElement& elt1, daeElement&
 		elt1.getAttribute(i, value1);
 		elt2.getAttribute(i, value2);
 		if (value1 != value2)
-			return attrMismatch(elt1, elt2, i);
+			return attrMismatch(elt1, elt2, int(i));
 	}
 
 	// Compare character data
@@ -919,7 +926,7 @@ DefineTest(atomicTypeOps) {
 	daeLong Long(3);
 	daeShort Short(4);
 	daeULong ULong(5);
-	daeFloat Float(6.123);
+	daeFloat Float(6.123f);
 	daeDouble Double(7.456);
 	daeStringRef StringRef("StringRef");
 	//	daeElementRef ElementRef(0x12345678);
@@ -941,7 +948,7 @@ DefineTest(atomicTypeOps) {
 	CheckResult(toString(StringRefType, (daeMemoryRef)&StringRef) == "StringRef");
 	//	CheckResult(toString(ElementRefType, (daeMemoryRef)&ElementRef) == "");
 	CheckResult(toString(EnumType, (daeMemoryRef)&Enum) == "myEnumValue");
-	CheckResult(toString(RawRefType, (daeMemoryRef)&RawRef) == "0x12345678");
+	CheckResult(toString(RawRefType, (daeMemoryRef)&RawRef).find("12345678") != string::npos);
 	CheckResult(toString(ResolverType, (daeMemoryRef)&uri) == "http://www.example.com/#fragment");
 	CheckResult(toString(IDResolverType, (daeMemoryRef)&IDRef) == "sampleID");
 	CheckResult(toString(BoolType, (daeMemoryRef)&Bool) == "false");
@@ -1026,8 +1033,8 @@ DefineTest(genericOps) {
 	// Test for lots of attributes
  	for (size_t i = 0; i < 50; i++) {
 		ostringstream name, value;
-		name << "attr" << i;
-		value << "value" << i;
+		name << "attr" << unsigned int(i);
+		value << "value" << unsigned int(i);
 		any->setAttribute(name.str().c_str(), value.str().c_str());
 	}
 

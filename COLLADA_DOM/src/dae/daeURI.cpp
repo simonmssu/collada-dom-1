@@ -15,7 +15,7 @@
 #include <ctype.h>
 #include <dae/daeDocument.h>
 #include <dae/daeErrorHandler.h>
-#include <boost/regex.hpp>
+#include <pcrecpp.h>
 
 #ifdef _WIN32
 #include <direct.h>  // for getcwd (windows)
@@ -1334,22 +1334,12 @@ namespace {
 	                 string& path,
 	                 string& query,
 	                 string& fragment) {
-		try {
-			// This regular expression for parsing URI references comes from the URI spec:
-			//   http://tools.ietf.org/html/rfc3986#appendix-B
-			static boost::regex expression("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?",
-			                               boost::regex::extended);
-			boost::cmatch matchResult;
-			if (boost::regex_match(uriRef.c_str(), matchResult, expression)) {
-				scheme = matchResult[2];
-				authority = matchResult[4];
-				path = matchResult[5];
-				query = matchResult[7];
-				fragment = matchResult[9];
-				return true;
-			}
-		}
-		catch (const runtime_error& e) { }
+		// This regular expression for parsing URI references comes from the URI spec:
+		//   http://tools.ietf.org/html/rfc3986#appendix-B
+		static pcrecpp::RE re("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
+		string s1, s3, s6, s8;
+		if (re.FullMatch(uriRef, &s1, &scheme, &s3, &authority, &path, &s6, &query, &s8, &fragment))
+			return true;
 
 		return false;
 	}
@@ -1370,11 +1360,11 @@ string cdom::uriToFilePath(const string& uriRef) {
 	// Windows - replace two leading slashes with one leading slash, so that
 	// ///otherComputer/file.dae becomes //otherComputer/file.dae
 	if (filePath.length() >= 2  &&  filePath[0] == '/'  &&  filePath[1] == '/')
-		filePath.erase(0);
+		filePath.erase(0, 1);
 
 	// Windows - convert "/C:/" to "C:/"
 	if (filePath.length() >= 3  &&  filePath[0] == '/'  &&  filePath[2] == ':')
-		filePath.erase(0);
+		filePath.erase(0, 1);
 
 	// Windows - convert forward slashes to back slashes
 	filePath = replace(filePath, "/", "\\");

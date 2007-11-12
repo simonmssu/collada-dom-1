@@ -271,11 +271,7 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 		{
 			return DAE_ERR_BACKEND_IO;
 		}
-		daeFixedName rawURIStr;
-		strcpy( rawURIStr, "/" );
-		strcat( rawURIStr, rawFilePath.c_str() );
-		rawRelPath.setURI( rawURIStr );
-		//rawRelPath.setURI( rawFilename );
+		rawRelPath.setURI(cdom::filePathToUri(rawFilePath).c_str());
 		rawRelPath.validate();
 		rawRelPath.makeRelativeTo( name );
 	}
@@ -450,7 +446,7 @@ void daeLIBXMLPlugin::writeRawSource( daeElement *src )
 		}
 		else if ( strcmp( children[i]->getTypeName(), "technique_common" ) == 0 )
 		{
-			children[i]->getChildren( children );			
+			children[i]->getChildren( children );
 		}
 		else if ( strcmp( children[i]->getTypeName(), "accessor" ) == 0 )
 		{

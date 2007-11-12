@@ -119,10 +119,7 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 	daeULong stride = stridePtr != NULL ? *stridePtr : 1;
 
 	*(daeULong*)(array->getAttributeValue("count")) = count*stride;
-	daeFixedName arrayName;
-	strcpy( arrayName, src->getID() );
-	strcat( arrayName, "-array" );
-	array->setAttribute( "id", arrayName );
+	array->setAttribute( "id", (src->getAttribute("id") + "-array").c_str() );
 
 	daeArray *valArray = (daeArray*)array->getValuePointer();
 	valArray->setCount( (size_t)(count*stride) );

@@ -50,7 +50,7 @@ typedef daeSmartRef<daeMetaAttribute> daeMetaAttributeRef;
  *
  * Types are also able to align data pointers appropriately.
  */
-class daeAtomicType
+class DLLSPEC daeAtomicType
 {
 public:
 	/**
@@ -332,7 +332,7 @@ public: // STATIC INTERFACE
  * The @c daeBoolType class is derived from @c daeAtomicType, and implements
  * the reflective system for objects of type @c daeBool.
  */
-class daeBoolType : public daeAtomicType
+class DLLSPEC daeBoolType : public daeAtomicType
 {
 public:
 	/**
@@ -357,7 +357,7 @@ public:
  * The @c daeIntType class is derived from @c daeAtomicType, and implements
  * the reflective system for objects of type @c daeInt.
  */
-class daeIntType : public daeAtomicType
+class DLLSPEC daeIntType : public daeAtomicType
 {
 public:
 	/**
@@ -380,7 +380,7 @@ public:
  * The @c daeLongType class is derived from @c daeAtomicType, and implements
  * the reflective system for objects of type @c daeLong.
  */
-class daeLongType : public daeAtomicType
+class DLLSPEC daeLongType : public daeAtomicType
 {
 public:
 	/**
@@ -403,7 +403,7 @@ public:
  * The @c daeUIntType class is derived from @c daeAtomicType, and implements
  * the reflective system for objects of type @c daeUInt.
  */
-class daeUIntType : public daeAtomicType
+class DLLSPEC daeUIntType : public daeAtomicType
 {
 public:
 	/**
@@ -426,7 +426,7 @@ public:
  * The @c daeUIntType class is derived from @c daeAtomicType, and implements
  * the reflective system for objects of type @c daeUInt.
  */
-class daeULongType : public daeAtomicType
+class DLLSPEC daeULongType : public daeAtomicType
 {
 public:
 	/**
@@ -449,7 +449,7 @@ public:
  * The @c daeShortType is  derived from @c daeAtomicType, and implements
  * the reflective system for objects of type @c daeShort.
  */
-class daeShortType : public daeAtomicType
+class DLLSPEC daeShortType : public daeAtomicType
 {
 public:
 	/**
@@ -472,7 +472,7 @@ public:
  * The @c daeFloatType is derived from @c daeAtomicType, and implements
  * the reflective system for objects of type @c daeFloat.
  */
-class daeFloatType : public daeAtomicType
+class DLLSPEC daeFloatType : public daeAtomicType
 {
 public:
 	/**
@@ -497,7 +497,7 @@ public:
  * The @c daeDoubleType is derived from @c daeAtomicType, and implements
  * the reflective system for objects of type @c daeDouble.
  */
-class daeDoubleType : public daeAtomicType
+class DLLSPEC daeDoubleType : public daeAtomicType
 {
 public:
 	/**
@@ -522,7 +522,7 @@ public:
  * The @c daeStringRefType class is derived from @c daeAtomicType, and implements
  * the reflective system for objects of type @c daeStringRef.
  */
-class daeStringRefType : public daeAtomicType
+class DLLSPEC daeStringRefType : public daeAtomicType
 {
 public:
 	/**
@@ -550,7 +550,7 @@ public:
  * the reflective system for objects of type daeStringRef, with specialized
  * treatment from the parser.
  */
-class daeTokenType : public daeStringRefType
+class DLLSPEC daeTokenType : public daeStringRefType
 {
 public:
 	/**
@@ -574,7 +574,7 @@ public:
  * The @c daeElementRefType class is derived from @c  daeAtomicType, and implements
  * the reflective system for objects of type @c daeElementRef.
  */
-class daeElementRefType : public daeAtomicType
+class DLLSPEC daeElementRefType : public daeAtomicType
 {
 public:
 	/**
@@ -603,7 +603,7 @@ public:
  * The @c daeEnumType class is  derived from @c  daeAtomicType, and implements
  * the reflective system for objects of type daeEnum.
  */
-class daeEnumType: public daeAtomicType
+class DLLSPEC daeEnumType: public daeAtomicType
 {
 public:
 	/**
@@ -644,7 +644,7 @@ public:
  * The @c daeRawRefType class is  derived from @c daeAtomicType, and implements
  * the reflective system for objects of type @c daeRawRef.
  */
-class daeRawRefType: public daeAtomicType
+class DLLSPEC daeRawRefType: public daeAtomicType
 {
 public:
 	/** 
@@ -668,7 +668,7 @@ public:
  * The @c daeResolverType class is derived from @c daeAtomicType, and  implements
  * the reflective system for objects of type @c daeResolver.
  */
-class daeResolverType : public daeAtomicType
+class DLLSPEC daeResolverType : public daeAtomicType
 {
 public:
 	/** 
@@ -697,7 +697,7 @@ public:
  * The @c daeIDResolverType class is  derived from @c daeAtomicType, and implements
  * the reflective system for objects of type @c daeIDResolver.
  */
-class daeIDResolverType : public daeAtomicType
+class DLLSPEC daeIDResolverType : public daeAtomicType
 {
 public:
 	/** 
