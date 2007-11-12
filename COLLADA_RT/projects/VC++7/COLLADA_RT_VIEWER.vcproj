@@ -22,16 +22,16 @@
 				AdditionalIncludeDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/include&quot;;&quot;$(COLLADA_FX_LOCATION)/include&quot;;&quot;C:/Program Files/Nvidia Corporation/Cg/include&quot;;../../include/1.4;../../include;&quot;$(COLLADA_DOM_LOCATION)/include&quot;;&quot;$(COLLADA_DOM_LOCATION)/include/1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/src&quot;"
 				PreprocessorDefinitions="CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;"
 				RuntimeLibrary="3"
-				WarningLevel="4"
+				WarningLevel="3"
 				DebugInformationFormat="4"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada_dae.lib libcollada_dom.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib"
+				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada_dae.lib libcollada_dom.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib pcre.lib pcrecpp.lib"
 				OutputFile="../../bin/vc7_1.4_debug/$(ProjectName).exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="../../lib/vc7_1.4_debug;&quot;$(COLLADA_DOM_LOCATION)/lib/vc7_1.4_debug&quot;;&quot;$(COLLADA_FX_LOCATION)/lib/vc7_1.4_debug&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/lib/vc7_1.4_debug&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/lib&quot;;&quot;$(CG_LIB_PATH)&quot;"
+				AdditionalLibraryDirectories="../../lib/vc7_1.4_debug;&quot;$(COLLADA_DOM_LOCATION)/lib/vc7_1.4_debug&quot;;&quot;$(COLLADA_FX_LOCATION)/lib/vc7_1.4_debug&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/lib/vc7_1.4_debug&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/lib&quot;;&quot;$(CG_LIB_PATH)&quot;;$(COLLADA_EXTERNAL_LIBS_LOCATION)\pcre\lib\vc7.1\"
 				IgnoreDefaultLibraryNames="msvcrt"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
@@ -69,14 +69,14 @@
 				AdditionalIncludeDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/include&quot;;&quot;$(COLLADA_FX_LOCATION)/include&quot;;&quot;C:/Program Files/Nvidia Corporation/Cg/include&quot;;../../include/1.4;../../include;&quot;$(COLLADA_DOM_LOCATION)/include&quot;;&quot;$(COLLADA_DOM_LOCATION)/include/1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/src&quot;"
 				PreprocessorDefinitions="CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;"
 				RuntimeLibrary="2"
-				WarningLevel="4"/>
+				WarningLevel="3"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada_dae.lib libcollada_dom.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib"
+				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada_dae.lib libcollada_dom.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib pcre.lib pcrecpp.lib"
 				OutputFile="../../bin/vc7_1.4/$(ProjectName).exe"
-				AdditionalLibraryDirectories="../../lib/vc7_1.4;&quot;$(COLLADA_DOM_LOCATION)/lib/vc7_1.4&quot;;&quot;$(COLLADA_FX_LOCATION)/lib/vc7_1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/lib/vc7_1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/lib&quot;;&quot;$(CG_LIB_PATH)&quot;"/>
+				AdditionalLibraryDirectories="../../lib/vc7_1.4;&quot;$(COLLADA_DOM_LOCATION)/lib/vc7_1.4&quot;;&quot;$(COLLADA_FX_LOCATION)/lib/vc7_1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/lib/vc7_1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/lib&quot;;&quot;$(CG_LIB_PATH)&quot;;$(COLLADA_EXTERNAL_LIBS_LOCATION)\pcre\lib\vc7.1\"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
