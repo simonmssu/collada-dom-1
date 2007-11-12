@@ -51,7 +51,8 @@ LCOPT	+=   -lcollada_Cfx -lcollada_Crt -lcollada_Cfx
 LCOPT	+=   -lcollada_dae -lcollada_dom -lcollada_dae
 LCOPT	+=   -lglut -lCg -lCgGL -lGL -lGLU -lm -lpthread
 LCOPT	+=   -lcollada_bullet
-LCOPT	+=   -lxml2 -lz
+LCOPT	+=   -lxml2
+LCOPT +=   -lpcre -lpcrecpp
 
 
 #rules
