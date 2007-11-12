@@ -115,12 +115,12 @@ struct domTest {
 
 fs::path g_dataPath;
 string lookupTestFile(const string& fileName) {
-	return (g_dataPath / fileName).file_string();
+	return (g_dataPath / fileName).native_file_string();
 }
 
 fs::path g_tmpPath;
 string getTmpFile(const string& fileName) {
-	return (g_tmpPath / fileName).file_string();
+	return (g_tmpPath / fileName).native_file_string();
 }
 
 
@@ -1033,8 +1033,8 @@ DefineTest(genericOps) {
 	// Test for lots of attributes
  	for (size_t i = 0; i < 50; i++) {
 		ostringstream name, value;
-		name << "attr" << unsigned int(i);
-		value << "value" << unsigned int(i);
+		name << "attr" << static_cast<unsigned int>(i);
+		value << "value" << static_cast<unsigned int>(i);
 		any->setAttribute(name.str().c_str(), value.str().c_str());
 	}
 
