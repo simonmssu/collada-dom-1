@@ -180,6 +180,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\Crt\CrtIKModel.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Crt\CrtImageloader.cpp"
 				>
 			</File>
@@ -240,6 +244,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\Crt\CrtTestInstancing.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Crt\CrtTexture.cpp"
 				>
 			</File>
@@ -279,6 +287,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\Crt\CrtGeometry.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\Crt\CrtIKModel.h"
 				>
 			</File>
 			<File
@@ -327,6 +339,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\Crt\CrtTargaLoader.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\Crt\CrtTestInstancing.h"
 				>
 			</File>
 			<File
