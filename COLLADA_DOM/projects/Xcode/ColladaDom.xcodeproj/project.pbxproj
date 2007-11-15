@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2F04B2C90CCEA4B200769B99 /* daeDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2C80CCEA4B200769B99 /* daeDatabase.cpp */; };
-		2F3300C20CEBD091004C7F2D /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3300C10CEBD091004C7F2D /* libpcre.a */; };
-		2F3300C40CEBD0BD004C7F2D /* libpcrecpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3300C30CEBD0BD004C7F2D /* libpcrecpp.a */; };
-		2F3300EC0CEBF247004C7F2D /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3300EB0CEBF247004C7F2D /* libboost_filesystem.a */; };
 		8D07F2C00486CC7A007CD1D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		AD012C700BCFEE5100BBFE92 /* domAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */; };
 		AD012C710BCFEE5100BBFE92 /* domAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */; };
@@ -272,9 +269,6 @@
 /* Begin PBXFileReference section */
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2F04B2C80CCEA4B200769B99 /* daeDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeDatabase.cpp; sourceTree = "<group>"; };
-		2F3300C10CEBD091004C7F2D /* libpcre.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpcre.a; path = "../../../external-libs/pcre/lib/mac/libpcre.a"; sourceTree = SOURCE_ROOT; };
-		2F3300C30CEBD0BD004C7F2D /* libpcrecpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpcrecpp.a; path = "../../../external-libs/pcre/lib/mac/libpcrecpp.a"; sourceTree = SOURCE_ROOT; };
-		2F3300EB0CEBF247004C7F2D /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = "../../../external-libs/boost/lib/mac/libboost_filesystem.a"; sourceTree = SOURCE_ROOT; };
 		8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Collada141Dom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAccessor.cpp; sourceTree = "<group>"; };
 		AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAnimation.cpp; sourceTree = "<group>"; };
@@ -716,8 +710,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F3300C20CEBD091004C7F2D /* libpcre.a in Frameworks */,
-				2F3300C40CEBD0BD004C7F2D /* libpcrecpp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,7 +718,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADFAE5710CD002A30097ABB3 /* Collada141Dom.framework in Frameworks */,
-				2F3300EC0CEBF247004C7F2D /* libboost_filesystem.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,9 +736,6 @@
 		0867D691FE84028FC02AAC07 /* COLLADA_DOM */ = {
 			isa = PBXGroup;
 			children = (
-				2F3300EB0CEBF247004C7F2D /* libboost_filesystem.a */,
-				2F3300C30CEBD0BD004C7F2D /* libpcrecpp.a */,
-				2F3300C10CEBD091004C7F2D /* libpcre.a */,
 				AD012B280BCFEE5100BBFE92 /* src */,
 				AD76C5770BD7FE7C00486DB0 /* include */,
 				089C1665FE841158C02AAC07 /* Resources */,
@@ -1715,9 +1703,17 @@
 				);
 				INFOPLIST_FILE = Collada141Dom.plist;
 				INSTALL_PATH = /Library/Frameworks;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../external-libs/pcre/lib/mac",
+				);
 				LIBRARY_STYLE = DYNAMIC;
 				MACH_O_TYPE = mh_dylib;
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-lpcre",
+					"-lpcrecpp",
+				);
 				PRODUCT_NAME = Collada141Dom;
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = debugging;
@@ -1768,9 +1764,17 @@
 				);
 				INFOPLIST_FILE = Collada141Dom.plist;
 				INSTALL_PATH = /Library/Frameworks;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../external-libs/pcre/lib/mac",
+				);
 				LIBRARY_STYLE = DYNAMIC;
 				MACH_O_TYPE = mh_dylib;
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-lpcre",
+					"-lpcrecpp",
+				);
 				PRODUCT_NAME = Collada141Dom;
 				SEPARATE_STRIP = YES;
 				STRIPFLAGS = "-Xx";
@@ -1809,10 +1813,10 @@
 				INSTALL_PATH = "$(HOME)/bin";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(SRCROOT)/../../../external-libs/boost/lib/mac",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../external-libs/boost/lib/mac\"";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lboost_filesystem";
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTest;
 				ZERO_LINK = NO;
@@ -1839,10 +1843,10 @@
 				INSTALL_PATH = "$(HOME)/bin";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(SRCROOT)/../../../external-libs/boost/lib/mac",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../external-libs/boost/lib/mac\"";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-lboost_filesystem";
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTest;
 				ZERO_LINK = NO;
