@@ -85,10 +85,10 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libxml2_a.lib zlib.lib wsock32.lib"
+				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libxml2_a.lib zlib.lib wsock32.lib pcre.lib pcrecpp.lib"
 				OutputFile="../../bin/vc7_1.4_debug/$(ProjectName)_staticLink.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;../../lib/vc7_1.4_debug"
+				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\pcre\lib\vc7.1&quot;;../../lib/vc7_1.4_debug"
 				IgnoreAllDefaultLibraries="FALSE"
 				IgnoreDefaultLibraryNames="msvcrt.lib"
 				GenerateDebugInformation="TRUE"
@@ -185,10 +185,10 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libxml2_a.lib zlib.lib wsock32.lib"
+				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libxml2_a.lib zlib.lib wsock32.lib pcre.lib pcrecpp.lib"
 				OutputFile="../../bin/vc7_1.4/$(ProjectName)_staticLink.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;../../lib/vc7_1.4"
+				AdditionalLibraryDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)\pcre\lib\vc7.1&quot;;../../lib/vc7_1.4"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(TargetDir)/$(TargetName).pdb"
 				SubSystem="1"

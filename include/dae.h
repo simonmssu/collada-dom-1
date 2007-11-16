@@ -81,13 +81,21 @@ public:
 	virtual DLLSPEC daeInt setIntegrationLibrary(daeIntegrationLibraryFunc regFunc);
 
 	// batch file operations
-	virtual DLLSPEC daeInt load(daeString name, daeString docBuffer = NULL);
-	virtual DLLSPEC daeInt save(daeString documentName, daeBool replace=true);
+	virtual DLLSPEC daeInt load(daeString uri, daeString docBuffer = NULL);
+	virtual DLLSPEC daeInt save(daeString uri, daeBool replace=true);
 	virtual DLLSPEC daeInt save(daeUInt documentIndex, daeBool replace=true);
-	virtual DLLSPEC daeInt saveAs(daeString name, daeString documentName, daeBool replace=true);
-	virtual DLLSPEC daeInt saveAs(daeString name, daeUInt documentIndex=0, daeBool replace=true);
+	virtual DLLSPEC daeInt saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace=true);
+	virtual DLLSPEC daeInt saveAs(daeString uriToSaveTo, daeUInt documentIndex=0, daeBool replace=true);
+	virtual DLLSPEC daeInt unload(daeString uri);
 
-	virtual DLLSPEC daeInt unload(daeString name);
+	// These are exactly the same as the other load/save/unload functions, except that they
+	// work with file paths instead of URIs.
+	DLLSPEC virtual daeInt loadFile(daeString file, daeString memBuffer = NULL);
+	DLLSPEC virtual daeInt saveFile(daeString file, daeBool replace = true);
+	DLLSPEC virtual daeInt saveFileAs(daeString fileToSaveTo, daeString file, daeBool replace = true);
+	DLLSPEC virtual daeInt saveFileAs(daeString fileToSaveTo, daeUInt documentIndex = 0, daeBool replace = true);
+	DLLSPEC virtual daeInt unloadFile(daeString file);
+
 	virtual DLLSPEC daeInt clear();
 
 	// Load/Save Progress	
@@ -97,9 +105,13 @@ public:
 		daeBool reset = false );
 
 	// Simple Query
-	virtual DLLSPEC domCOLLADA* getDom(daeString name);
+	virtual DLLSPEC domCOLLADA* getDom(daeString uri);
 	virtual DLLSPEC daeString getDomVersion();
-	virtual DLLSPEC daeInt setDom(daeString name, domCOLLADA* dom);
+	virtual DLLSPEC daeInt setDom(daeString uri, domCOLLADA* dom);
+
+	// Same as getDom/setDom, except works with file paths instead of URIs
+	DLLSPEC virtual domCOLLADA* getDomFile(daeString file);
+	DLLSPEC virtual daeInt      setDomFile(daeString file, domCOLLADA* dom);
 
 private:
 	void DLLSPEC init(daeDatabase* database, daeIOPlugin* ioPlugin);

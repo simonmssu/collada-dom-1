@@ -16,6 +16,8 @@
 #include <dae/daeURI.h>
 #include <dae/daeErrorHandler.h>
 
+using namespace std;
+
 daeRawResolver::daeRawResolver()
 {
 }
@@ -72,18 +74,13 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 		return false;
 	}
 
-	daeFixedName finalname;
-	if (!uri.getPath(finalname,sizeof(finalname)))
+	string fileName = cdom::uriToFilePath(uri.getURI());
+	if (fileName.empty())
 	{
 		daeErrorHandler::get()->handleError( "can't get path from URI\n" );
 		return false;
 	}
-	// !!!steveT: Replace this with a real URI to file path function
-#if defined(WIN32)
-	FILE *rawFile = fopen(finalname+1, "rb");
-#else
-	FILE *rawFile = fopen(finalname, "rb");
-#endif
+	FILE *rawFile = fopen(fileName.c_str(), "rb");
 	if (rawFile == NULL )
 	{
 		uri.setState(daeURI::uri_failed_file_not_found);
@@ -122,10 +119,7 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 	daeULong stride = stridePtr != NULL ? *stridePtr : 1;
 
 	*(daeULong*)(array->getAttributeValue("count")) = count*stride;
-	daeFixedName arrayName;
-	strcpy( arrayName, src->getID() );
-	strcat( arrayName, "-array" );
-	array->setAttribute( "id", arrayName );
+	array->setAttribute( "id", (src->getAttribute("id") + "-array").c_str() );
 
 	daeArray *valArray = (daeArray*)array->getValuePointer();
 	valArray->setCount( (size_t)(count*stride) );

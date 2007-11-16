@@ -346,7 +346,8 @@ void daeSIDResolver::resolveImpl(const string& sidRef)
 	//   (b) '(x)' where x is a number, optionally followed by another '(x)'
 	// Anything else is an error.
 	string member;
-	size_t arrayIndex1 = UINT_MAX, arrayIndex2 = UINT_MAX;
+	bool haveArrayIndex1 = false, haveArrayIndex2 = false;
+	int arrayIndex1 = -1, arrayIndex2 = -1;
 	if (tok != tokens.end()) {
 		if (*tok == ".") {
 			tok++;
@@ -362,6 +363,7 @@ void daeSIDResolver::resolveImpl(const string& sidRef)
 
 			istringstream stream(*tok);
 			stream >> arrayIndex1;
+			haveArrayIndex1 = true;
 			if (!stream.good() && !stream.eof())
 				return;
 			tok++;
@@ -377,6 +379,7 @@ void daeSIDResolver::resolveImpl(const string& sidRef)
 				stream.clear();
 				stream.str(*tok);
 				stream >> arrayIndex2;
+				haveArrayIndex2 = true;
 				if (!stream.good() && !stream.eof())
 					return;
 				tok++;
@@ -448,23 +451,23 @@ void daeSIDResolver::resolveImpl(const string& sidRef)
 						break;
 				};
 			}
-		} else if (arrayIndex1 != UINT_MAX) {
+		} else if (haveArrayIndex1) {
 			// Use the indices to lookup a value in the array
-			if (arrayIndex2 != UINT_MAX  &&  doubleArray->getCount() == 16) {
+			if (haveArrayIndex2  &&  doubleArray->getCount() == 16) {
 				// We're doing a matrix lookup. Make sure the index is valid.
-				size_t i = arrayIndex1*4 + arrayIndex2;
-				if (i < doubleArray->getCount())
+				int i = arrayIndex1*4 + arrayIndex2;
+				if (i >= 0  &&  i < int(doubleArray->getCount()))
 					doublePtr = &(doubleArray->get(i));
 			} else {
 				// Vector lookup. Make sure the index is valid.
-				if (arrayIndex1 < doubleArray->getCount())
+				if (arrayIndex1 >= 0  &&  arrayIndex1 < int(doubleArray->getCount()))
 					doublePtr = &(doubleArray->get(arrayIndex1));
 			}
 		}
 	}
 
 	// If we tried to do member selection but we couldn't resolve it to a doublePtr, fail.
-	if ((!member.empty() || arrayIndex1 != UINT_MAX)  &&  doublePtr == NULL)
+	if ((!member.empty() || haveArrayIndex1)  &&  doublePtr == NULL)
 		return;
 
 	// SID resolution was successful. Apply the results.

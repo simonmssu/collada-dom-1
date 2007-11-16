@@ -36,12 +36,19 @@ float toFloat(const string& s) {
 	return f;
 }
 
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable : 4267)
+#endif
 template<typename T>
 string toString(const T& val) {
 	ostringstream stream;
 	stream << val;
 	return stream.str();
 }
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 
 #define CheckResult(val) \
@@ -54,10 +61,10 @@ string toString(const T& val) {
 		return testResult(false, __LINE__, msg); \
 	}
 
-#define CompareDocs(dae, uri1, uri2) \
+#define CompareDocs(dae, file1, file2) \
 	{ \
-		domCOLLADA *root1 = (dae).getDom((uri1).c_str()), \
-		           *root2 = (dae).getDom((uri2).c_str()); \
+		domCOLLADA *root1 = (dae).getDomFile((file1).c_str()), \
+		           *root2 = (dae).getDomFile((file2).c_str()); \
 		elementCompareResult result = compareElements(*root1, *root2); \
 		if (result.compareValue != 0) { \
 			return testResult(false, __LINE__, result.format()); \
@@ -108,12 +115,12 @@ struct domTest {
 
 fs::path g_dataPath;
 string lookupTestFile(const string& fileName) {
-	return (g_dataPath / fileName).string();
+	return (g_dataPath / fileName).native_file_string();
 }
 
 fs::path g_tmpPath;
 string getTmpFile(const string& fileName) {
-	return (g_tmpPath / fileName).string();
+	return (g_tmpPath / fileName).native_file_string();
 }
 
 
@@ -266,10 +273,10 @@ struct elementCompareResult {
 			childCountMismatch(false) {
 	}
 
-	size_t getNecessaryColumnWidth(const vector<string>& tokens) {
-		size_t result = 0;
+	int getNecessaryColumnWidth(const vector<string>& tokens) {
+		int result = 0;
 		for (size_t i = 0; i < tokens.size(); i++) {
-			size_t tokenLength = tokens[i].length() > 0 ? tokens[i].length()+2 : 0;
+			int tokenLength = int(tokens[i].length() > 0 ? tokens[i].length()+2 : 0);
 			result = max(tokenLength, result);
 		}
 		return result;
@@ -310,8 +317,8 @@ struct elementCompareResult {
 			type1.c_str(), id1.c_str(), attrCount1.c_str(), attrName1.c_str(), attrValue1.c_str(),
 			charData1.c_str(), childCount1.c_str(), 0);
 		
-		size_t c1w = getNecessaryColumnWidth(col1Tokens),
-		       c2w = getNecessaryColumnWidth(col2Tokens);
+		int c1w = getNecessaryColumnWidth(col1Tokens),
+		    c2w = getNecessaryColumnWidth(col2Tokens);
 		ostringstream msg;
 		msg << setw(c1w) << left << ""            << setw(c2w) << left << "Element 1" << "Element 2\n"
 		    << setw(c1w) << left << ""            << setw(c2w) << left << "---------" << "---------\n"
@@ -347,7 +354,7 @@ elementCompareResult attrCountMismatch(daeElement& elt1, daeElement& elt2) {
 	elementCompareResult result;
 	result.elt1 = &elt1;
 	result.elt2 = &elt2;
-	result.compareValue = elt1.getAttributeCount() - elt2.getAttributeCount();
+	result.compareValue = int(elt1.getAttributeCount()) - int(elt2.getAttributeCount());
 	result.attrCountMismatch = true;
 	return result;
 }
@@ -378,7 +385,7 @@ elementCompareResult childCountMismatch(daeElement& elt1, daeElement& elt2) {
 	result.elt2 = &elt2;
 	daeElementRefArray children1 = elt1.getChildren(),
 	                   children2 = elt2.getChildren();
-	result.compareValue = children1.getCount() - children2.getCount();
+	result.compareValue = int(children1.getCount()) - int(children2.getCount());
 	result.childCountMismatch = true;
 	return result;
 }
@@ -390,7 +397,7 @@ elementCompareResult compareElementsSameType(daeElement& elt1, daeElement& elt2)
 	// Compare attributes
  	for (size_t i = 0; i < elt1.getAttributeCount(); i++)
  		if (elt1.getAttributeObject(i)->compare(&elt1, &elt2) != 0)
- 			return attrMismatch(elt1, elt2, i);
+ 			return attrMismatch(elt1, elt2, int(i));
 
 	// Compare character data
 	if (elt1.getCharDataObject())
@@ -425,7 +432,7 @@ elementCompareResult compareElementsDifferentTypes(daeElement& elt1, daeElement&
 		elt1.getAttribute(i, value1);
 		elt2.getAttribute(i, value2);
 		if (value1 != value2)
-			return attrMismatch(elt1, elt2, i);
+			return attrMismatch(elt1, elt2, int(i));
 	}
 
 	// Compare character data
@@ -465,8 +472,8 @@ DefineTest(elementCompareResultTest) {
 	DAE dae;
 	string seymourOrig     = lookupTestFile("Seymour.dae"),
 	       seymourModified = lookupTestFile("Seymour_roundTrip.dae");
-	CheckResult(dae.load(seymourOrig.c_str()) == DAE_OK);
-	CheckResult(dae.load(seymourModified.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(seymourOrig.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(seymourModified.c_str()) == DAE_OK);
 	CompareDocs(dae, seymourOrig, seymourModified);
 
 	return testResult(true);
@@ -475,19 +482,19 @@ DefineTest(elementCompareResultTest) {
 
 DefineTest(loadClipPlane) {
 	DAE dae;
-	CheckResult(dae.load(lookupTestFile("clipPlane.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("clipPlane.dae").c_str()) == DAE_OK);
 	return testResult(true);
 }
 
 
 DefineTest(renderStates) {
 	string memoryUri = "renderStates_create.dae";
-	string fileUri = getTmpFile("renderStates.dae");
+	string file = getTmpFile("renderStates.dae");
 	
 	DAE dae;
 	CheckResult(dae.getDatabase()->insertDocument(memoryUri.c_str()) == DAE_OK);
 
-	daeElement* element = dae.getDom(memoryUri.c_str());
+	daeElement* element = dae.getDomFile(memoryUri.c_str());
 	element = element->createAndPlace("library_effects");
 	element = element->createAndPlace("effect");
 	element = element->createAndPlace("profile_CG");
@@ -503,12 +510,12 @@ DefineTest(renderStates) {
 	element->createAndPlace("clear_color")->setAttribute("value", "0 0 0 0");
 	
 	// Write the document to disk
-	CheckResult(dae.saveAs(fileUri.c_str(),	memoryUri.c_str()) == DAE_OK);
+	CheckResult(dae.saveFileAs(file.c_str(),	memoryUri.c_str()) == DAE_OK);
 
 	// Load up the saved document and see if it's the same as our in-memory document
-	CheckResult(dae.load(fileUri.c_str()) == DAE_OK);
-	CompareDocs(dae, memoryUri, fileUri);
-	domCOLLADA* root = dae.getDom(fileUri.c_str());
+	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+	CompareDocs(dae, memoryUri, file);
+	domCOLLADA* root = dae.getDomFile(file.c_str());
 	CheckResult(root);
 
 	// Check default attribute value suppression
@@ -523,12 +530,12 @@ DefineTest(renderStates) {
 
 DefineTest(writeCamera) {
 	string memoryUri = "camera_create.dae";
-	string fileUri = getTmpFile("camera.dae");
+	string file = getTmpFile("camera.dae");
 
 	DAE dae;
 	CheckResult(dae.getDatabase()->insertDocument(memoryUri.c_str()) == DAE_OK);
 
-	daeElement* element = dae.getDom(memoryUri.c_str());
+	daeElement* element = dae.getDomFile(memoryUri.c_str());
 	element = element->createAndPlace("library_cameras");
 	element = element->createAndPlace("camera");
 	element = element->createAndPlace("optics");
@@ -537,10 +544,10 @@ DefineTest(writeCamera) {
 	element = element->createAndPlace("xfov");
 	element->setCharData("1.0");
 
-	CheckResult(dae.saveAs(fileUri.c_str(), memoryUri.c_str()) == DAE_OK);
-	CheckResult(dae.load(fileUri.c_str()) == DAE_OK);
-	CompareDocs(dae, memoryUri, fileUri);
-	domCOLLADA* root = dae.getDom(fileUri.c_str());
+	CheckResult(dae.saveFileAs(file.c_str(), memoryUri.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+	CompareDocs(dae, memoryUri, file);
+	domCOLLADA* root = dae.getDomFile(file.c_str());
 	CheckResult(root);
 	CheckResult(toFloat(findDescendant(root, "xfov")->getCharData()) == 1.0f);
 	
@@ -554,19 +561,19 @@ string getRoundTripFile(const string& name) {
 
 bool roundTrip(const string& file) {
 	DAE dae;
-	if (dae.load(file.c_str()) != DAE_OK)
+	if (dae.loadFile(file.c_str()) != DAE_OK)
 		return false;
-	return dae.saveAs(getRoundTripFile(file).c_str(), file.c_str()) == DAE_OK;
+	return dae.saveFileAs(getRoundTripFile(file).c_str(), file.c_str()) == DAE_OK;
 }
 
 DefineTest(roundTripSeymour) {
-	string uri1 = lookupTestFile("Seymour.dae"),
-	       uri2 = getRoundTripFile(uri1);
+	string file1 = lookupTestFile("Seymour.dae"),
+	       file2 = getRoundTripFile(file1);
 	DAE dae;
-	CheckResult(dae.load(uri1.c_str()) == DAE_OK);
-	CheckResult(dae.saveAs(uri2.c_str(), uri1.c_str()) == DAE_OK);
-	CheckResult(dae.load(uri2.c_str()) == DAE_OK);
-	CompareDocs(dae, uri1, uri2);
+	CheckResult(dae.loadFile(file1.c_str()) == DAE_OK);
+	CheckResult(dae.saveFileAs(file2.c_str(), file1.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(file2.c_str()) == DAE_OK);
+	CompareDocs(dae, file1, file2);
 	return testResult(true);
 }
 
@@ -576,14 +583,14 @@ DefineTest(rawSupport) {
 	       seymourRaw  = getTmpFile("Seymour_raw.dae");
 	DAE dae;
 
-	CheckResult(dae.load(seymourOrig.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(seymourOrig.c_str()) == DAE_OK);
 	dae.getIOPlugin()->setOption("saveRawBinary", "true");
-	CheckResult(dae.saveAs(seymourRaw.c_str(), seymourOrig.c_str()) == DAE_OK);
+	CheckResult(dae.saveFileAs(seymourRaw.c_str(), seymourOrig.c_str()) == DAE_OK);
 
 	// Make sure the .raw file is there
 	CheckResult(fs::exists(fs::path(seymourRaw + ".raw")));
 
-	CheckResult(dae.load(seymourRaw.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(seymourRaw.c_str()) == DAE_OK);
 	daeElement* el = 0;
 	dae.getDatabase()->getElement(&el, 0,
 		"l_hip_rotateY_l_hip_rotateY_ANGLE-input", seymourRaw.c_str());
@@ -594,9 +601,9 @@ DefineTest(rawSupport) {
 
 DefineTest(extraTypeTest) {
 	DAE dae;
-	string docUri = lookupTestFile("extraTest.dae");
-	CheckResult(dae.load(docUri.c_str()) == DAE_OK);
-	daeElement* root = dae.getDom(docUri.c_str());
+	string file = lookupTestFile("extraTest.dae");
+	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+	daeElement* root = dae.getDomFile(file.c_str());
 	CheckResult(root);
 
 	daeElement *technique = findDescendant(root, "technique"),
@@ -630,11 +637,11 @@ DefineTest(tinyXmlLoad) {
 	// Plan: Load Seymour with libxml, then save with TinyXml and immediately reload the
 	// saved document, and make sure the results are the same.
 	DAE dae;
-	CheckResult(dae.load(seymourOrig.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(seymourOrig.c_str()) == DAE_OK);
 	auto_ptr<daeTinyXMLPlugin> tinyXmlPlugin(new daeTinyXMLPlugin);
 	dae.setIOPlugin(tinyXmlPlugin.get());
-	CheckResult(dae.saveAs(seymourTinyXml.c_str(), seymourOrig.c_str()) == DAE_OK);
-	CheckResult(dae.load(seymourTinyXml.c_str()) == DAE_OK);
+	CheckResult(dae.saveFileAs(seymourTinyXml.c_str(), seymourOrig.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(seymourTinyXml.c_str()) == DAE_OK);
 	CompareDocs(dae, seymourOrig, seymourTinyXml);
 
 	return testResult(true);
@@ -663,7 +670,7 @@ daeSIDResolver::ResolveState resolveSidToState(const string& sid, daeElement* co
 
 DefineTest(sidResolveTest) {
 	DAE dae;
-	CheckResult(dae.load(lookupTestFile("sidResolveTest.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("sidResolveTest.dae").c_str()) == DAE_OK);
 
 	daeElement *effect = 0,
 	           *effectExtra = 0;
@@ -769,7 +776,7 @@ daeURI* getTextureUri(const string& samplerSid, daeElement& effect) {
 
 DefineTest(getTexture) {
 	DAE dae;
-	CheckResult(dae.load(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
 	daeElement* effect = 0;
  	dae.getDatabase()->getElement(&effect, 0, "face-fx");
@@ -787,7 +794,7 @@ DefineTest(getTexture) {
 
 DefineTest(removeElement) {
 	DAE dae;
-	CheckResult(dae.load(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
 	daeElement *asset = 0, *animLib = 0, *collada = 0;
 	dae.getDatabase()->getElement(&collada, 0, 0, COLLADA_TYPE_COLLADA);
@@ -801,15 +808,15 @@ DefineTest(removeElement) {
 	CheckResult(findDescendant(collada, "asset") == NULL);
 	CheckResult(findDescendant(collada, "library_animations") == NULL);
 
-	CheckResult(dae.saveAs(getTmpFile("Seymour_removeElements.dae").c_str(),
-	                       lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	CheckResult(dae.saveFileAs(getTmpFile("Seymour_removeElements.dae").c_str(),
+	                           lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 	return testResult(true);
 }
 
 
 DefineTest(cloneCrash) {
 	DAE dae;
-	CheckResult(dae.load(lookupTestFile("duck.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("duck.dae").c_str()) == DAE_OK);
 
 	daeElement* effect;
 	dae.getDatabase()->getElement(&effect, 0, NULL, COLLADA_TYPE_EFFECT);
@@ -919,7 +926,7 @@ DefineTest(atomicTypeOps) {
 	daeLong Long(3);
 	daeShort Short(4);
 	daeULong ULong(5);
-	daeFloat Float(6.123);
+	daeFloat Float(6.123f);
 	daeDouble Double(7.456);
 	daeStringRef StringRef("StringRef");
 	//	daeElementRef ElementRef(0x12345678);
@@ -941,7 +948,7 @@ DefineTest(atomicTypeOps) {
 	CheckResult(toString(StringRefType, (daeMemoryRef)&StringRef) == "StringRef");
 	//	CheckResult(toString(ElementRefType, (daeMemoryRef)&ElementRef) == "");
 	CheckResult(toString(EnumType, (daeMemoryRef)&Enum) == "myEnumValue");
-	CheckResult(toString(RawRefType, (daeMemoryRef)&RawRef) == "0x12345678");
+	CheckResult(toString(RawRefType, (daeMemoryRef)&RawRef).find("12345678") != string::npos);
 	CheckResult(toString(ResolverType, (daeMemoryRef)&uri) == "http://www.example.com/#fragment");
 	CheckResult(toString(IDResolverType, (daeMemoryRef)&IDRef) == "sampleID");
 	CheckResult(toString(BoolType, (daeMemoryRef)&Bool) == "false");
@@ -953,7 +960,7 @@ DefineTest(atomicTypeOps) {
 
 DefineTest(clone) {
 	DAE dae;
-	CheckResult(dae.load(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
 	daeElement* el = 0;
 	dae.getDatabase()->getElement(&el, 0, "l_ulna");
@@ -962,17 +969,17 @@ DefineTest(clone) {
 	daeElementRef clone = el->clone("-foo", "-bar");
 	el->getParentElement()->placeElement(clone);
 
-	CheckResult(dae.saveAs(getTmpFile("cloneTest.dae").c_str(),
-	            lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	CheckResult(dae.saveFileAs(getTmpFile("cloneTest.dae").c_str(),
+	                           lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
 	return testResult(true);
 }
 
 
 DefineTest(genericOps) {
-	string uri = lookupTestFile("cube.dae");
+	string file = lookupTestFile("cube.dae");
 	DAE dae;
-	CheckResult(dae.load(uri.c_str()) == DAE_OK)
+	CheckResult(dae.loadFile(file.c_str()) == DAE_OK)
 
 	// Attribute getter/setter tests
 	daeElement* el = 0;
@@ -1026,13 +1033,13 @@ DefineTest(genericOps) {
 	// Test for lots of attributes
  	for (size_t i = 0; i < 50; i++) {
 		ostringstream name, value;
-		name << "attr" << i;
-		value << "value" << i;
+		name << "attr" << static_cast<unsigned int>(i);
+		value << "value" << static_cast<unsigned int>(i);
 		any->setAttribute(name.str().c_str(), value.str().c_str());
 	}
 
-	CheckResult(dae.saveAs(getTmpFile(fs::basename(fs::path(uri)) + "_genericOps.dae").c_str(),
-	                       uri.c_str()) == DAE_OK);
+	CheckResult(dae.saveFileAs(getTmpFile(fs::basename(fs::path(file)) + "_genericOps.dae").c_str(),
+	                           file.c_str()) == DAE_OK);
 
 	return testResult(true);
 }
@@ -1051,7 +1058,7 @@ daeArray* getSkewArray(daeElement* node, const string& sid) {
 
 DefineTest(badSkew) {
 	DAE dae;
-	CheckResult(dae.load(lookupTestFile("badSkew.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("badSkew.dae").c_str()) == DAE_OK);
 
 	daeElement* node = 0;
 	dae.getDatabase()->getElement(&node, 0, "my-node");
@@ -1085,8 +1092,8 @@ DefineTest(stringTable) {
 DefineTest(sidResolveSpeed) {
 	DAE dae;
 	string file = lookupTestFile("crankarm.dae");
-	CheckResult(dae.load(file.c_str()) == DAE_OK);
-	domCOLLADA* root = dae.getDom(file.c_str());
+	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+	domCOLLADA* root = dae.getDomFile(file.c_str());
 	CheckResult(root);
 		
 	size_t count = dae.getDatabase()->getElementCount(NULL, COLLADA_TYPE_SIDREF_ARRAY);
@@ -1111,7 +1118,7 @@ DefineTest(sidResolveSpeed) {
 DefineTest(seymourSidResolve) {
 	DAE dae;
 	string file = lookupTestFile("Seymour.dae");
-	CheckResult(dae.load(file.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
 
 	size_t count = dae.getDatabase()->getElementCount(NULL, COLLADA_TYPE_NODE);
 	for (size_t i = 0; i < count; i++) {
@@ -1146,7 +1153,7 @@ vector<string> getChildNames(daeElement* elt) {
 
 DefineTest(placeElement) {
 	DAE dae;
-	CheckResult(dae.load(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
 
 	daeElement* node = 0;
 	dae.getDatabase()->getElement(&node, 0, "Box");
@@ -1167,6 +1174,35 @@ DefineTest(placeElement) {
 
 	return testResult(true);
 };
+
+
+DefineTest(uriConversion) {
+	// Windows file path to URI
+	CheckResult(cdom::filePathToUri("C:\\myFolder\\myFile.dae") == "/C:/myFolder/myFile.dae");
+	CheckResult(cdom::filePathToUri("\\myFolder\\myFile.dae") == "file:////myFolder/myFile.dae");
+	CheckResult(cdom::filePathToUri("..\\myFolder\\myFile.dae") == "../myFolder/myFile.dae");
+	CheckResult(cdom::filePathToUri("\\\\otherComputer\\myFile.dae") == "file://///otherComputer/myFile.dae");
+
+	// Linux/Mac file path to URI
+	CheckResult(cdom::filePathToUri("/myFolder/myFile.dae") == "/myFolder/myFile.dae");
+	CheckResult(cdom::filePathToUri("../myFolder/myFile.dae") == "../myFolder/myFile.dae");
+	CheckResult(cdom::filePathToUri("/my folder/my file.dae") == "/my%20folder/my%20file.dae");
+
+#ifdef WIN32
+	// URI to Windows file path
+	CheckResult(cdom::uriToFilePath("../folder/file.dae") == "..\\folder\\file.dae");
+	CheckResult(cdom::uriToFilePath("file:///C:/folder/file.dae") == "C:\\folder\\file.dae");
+	CheckResult(cdom::uriToFilePath("file://///otherComputer/file.dae") == "\\\\otherComputer\\file.dae");
+	CheckResult(cdom::uriToFilePath("http://www.slashdot.org") == "");
+#else
+	// URI to Linux/Mac file path
+	CheckResult(cdom::uriToFilePath("../folder/file.dae") == "../folder/file.dae");
+	CheckResult(cdom::uriToFilePath("file:///folder/file.dae") == "/folder/file.dae");
+	CheckResult(cdom::uriToFilePath("http://www.slashdot.org") == "");
+#endif
+
+	return testResult(true);
+}
 
 
 // Returns true if all tests names are valid

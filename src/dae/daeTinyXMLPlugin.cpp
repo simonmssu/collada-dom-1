@@ -32,6 +32,8 @@
 #include <dae/daeMetaElementAttribute.h>
 #include <dae/daeTinyXMLPlugin.h>
 
+using namespace std;
+
 namespace {
 	daeInt getCurrentLineNumber(TiXmlElement* element) {
 		return -1;
@@ -75,17 +77,14 @@ void daeTinyXMLPlugin::getProgress(daeInt* bytesParsed,
 
 daeElementRef daeTinyXMLPlugin::readFromFile(const daeURI& uri) {
 	// !!!steveT: Replace this with real URI to file path code, and update the resolver to only handle the file scheme
+	string file = cdom::uriToFilePath(uri.getURI());
+	if (file.empty())
+		return NULL;
 	TiXmlDocument doc;
-	char file[512];
-	uri.getPath(file, 512);
-#if defined(WIN32)
-	doc.LoadFile(&file[1]);
-#else
-	doc.LoadFile(&file[0]);
-#endif
+	doc.LoadFile(file.c_str());
 	if (!doc.RootElement()) {
 		daeErrorHandler::get()->handleError((std::string("Failed to open ") + uri.getURI() +
-																				 " in daeTinyXMLPlugin::readFromFile\n").c_str());
+		                                     " in daeTinyXMLPlugin::readFromFile\n").c_str());
 		return NULL;
 	}
 	return readElement(doc.RootElement(), NULL);
@@ -96,7 +95,7 @@ daeElementRef daeTinyXMLPlugin::readFromMemory(daeString buffer, const daeURI& b
 	doc.Parse(buffer);
 	if (!doc.RootElement()) {
 		daeErrorHandler::get()->handleError("Failed to open XML document from memory buffer in "
-																				"daeTinyXMLPlugin::readFromMemory\n");
+		                                    "daeTinyXMLPlugin::readFromMemory\n");
 		return NULL;
 	}
 	return readElement(doc.RootElement(), NULL);
@@ -108,7 +107,7 @@ daeElementRef daeTinyXMLPlugin::readElement(TiXmlElement* tinyXmlElement, daeEle
 		attributes.push_back(attrPair(attrib->Name(), attrib->Value()));
 		
 	daeElementRef element = beginReadElement(parentElement, tinyXmlElement->Value(),
-																					 attributes, getCurrentLineNumber(tinyXmlElement));
+	                                         attributes, getCurrentLineNumber(tinyXmlElement));
 	if (!element) {
 		// We couldn't create the element. beginReadElement already printed an error message.
 		return NULL;
@@ -132,10 +131,8 @@ daeInt daeTinyXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repl
 	if(!document)
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
-	// !!!steveT: Do a decent URI to file path conversion
-	// Extract just the file path from the URI
-	daeFixedName finalname;
-	if (!name->getPath(finalname,sizeof(finalname)))
+	string fileName = cdom::uriToFilePath(name->getURI());
+	if (fileName.empty())
 	{
 		daeErrorHandler::get()->handleError( "can't get path in write\n" );
 		return DAE_ERR_BACKEND_IO;
@@ -144,11 +141,7 @@ daeInt daeTinyXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repl
 	if(!replace)
 	{
 		// Using "stat" would be better, but it's not available on all platforms
-#ifdef WIN32
-		FILE *tempfd = fopen(finalname+1,"r");
-#else
-		FILE *tempfd = fopen(finalname, "r");
-#endif
+		FILE *tempfd = fopen(fileName.c_str(), "r");
 		if(tempfd != NULL)
 		{
 			// File exists, return error
@@ -168,11 +161,7 @@ daeInt daeTinyXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repl
 
     writeElement(document->getDomRoot());
 
-#ifdef WIN32
-		m_doc->SaveFile(finalname+1);
-#else
-    m_doc->SaveFile(finalname);
-#endif
+    m_doc->SaveFile(fileName.c_str());
     delete m_doc;
     m_doc = NULL;
   }
