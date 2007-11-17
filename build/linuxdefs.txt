@@ -15,10 +15,18 @@ LIB_DYN_SUFFIX  = .so
 EXE_SUFFIX		:= 
 OBJ_SUFFIX      := .o
 
-CC	= "gcc"
-CXX	= "g++"
-LD	= "g++"
-AR	= ar rcs
+ifeq ($(PLATFORM_NAME), ps3)
+CC  = ppu-lv2-gcc
+CXX = ppu-lv2-g++
+LD  = ppu-lv2-g++
+AR  = ppu-lv2-ar rcs
+EXE_SUFFIX := .elf
+else
+CC  = gcc
+CXX = g++
+LD  = g++
+AR  = ar rcs
+endif
 
 LCOUT = 
 EXEOUT = -o 

@@ -910,7 +910,6 @@ DefineTest(atomicTypeOps) {
 	daeStringRefType StringRefType;
 	daeElementRefType ElementRefType;
 	daeEnumType EnumType;
-	daeRawRefType RawRefType;
 	daeResolverType ResolverType;
 	daeIDResolverType IDResolverType;
 	daeBoolType BoolType;
@@ -931,7 +930,6 @@ DefineTest(atomicTypeOps) {
 	daeStringRef StringRef("StringRef");
 	//	daeElementRef ElementRef(0x12345678);
 	daeEnum Enum(0);
-	daeRawRef RawRef((void*)0x12345678);
 	daeURI uri("http://www.example.com/#fragment");
 	daeIDRef IDRef("sampleID");
 	daeBool Bool(false);
@@ -948,7 +946,6 @@ DefineTest(atomicTypeOps) {
 	CheckResult(toString(StringRefType, (daeMemoryRef)&StringRef) == "StringRef");
 	//	CheckResult(toString(ElementRefType, (daeMemoryRef)&ElementRef) == "");
 	CheckResult(toString(EnumType, (daeMemoryRef)&Enum) == "myEnumValue");
-	CheckResult(toString(RawRefType, (daeMemoryRef)&RawRef).find("12345678") != string::npos);
 	CheckResult(toString(ResolverType, (daeMemoryRef)&uri) == "http://www.example.com/#fragment");
 	CheckResult(toString(IDResolverType, (daeMemoryRef)&IDRef) == "sampleID");
 	CheckResult(toString(BoolType, (daeMemoryRef)&Bool) == "false");
@@ -1291,6 +1288,13 @@ int main(int argc, char* argv[]) {
 		else
 			tests.insert(argv[i]);
 	}
+
+#ifdef __CELLOS_LV2__
+	// The program crashes on PS3 if we try to delete the tmp directory when we're done.
+	// That shouldn't be the case, but it's really not worth trying to fix it now.
+	// Just leave the tmp folder.
+	leaveTmpFiles = true;
+#endif
 
 	// Shut the DOM up
 	daeErrorHandler::setErrorHandler(&quietErrorHandler::getInstance());
