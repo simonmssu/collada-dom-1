@@ -19,10 +19,17 @@
 #########################################################
 # some more definitions
 
+# PS3 doesn't support shared libraries
+ifeq ($(PLATFORM_NAME), ps3)
+TARGETS := $(TARGET)
+else
+TARGETS := $(TARGET) $(TARGET_DYN)
+endif
+
 OBJS  = $(addprefix $(INTERMEDIATE_DIR), $(notdir $(addsuffix $(OBJ_SUFFIX), $(basename $(SRC)))))
 OBJS += $(addprefix $(INTERMEDIATE_DIR), $(notdir $(addsuffix .res, $(basename $(RES)))))
 DEPENDENCY_FILES := $(addsuffix .d, $(basename $(OBJS)))
-CLEAN_LIST  = $(OBJS) $(DEPENDENCY_FILES) $(TARGET) $(TARGET_DYN)
+CLEAN_LIST  = $(OBJS) $(DEPENDENCY_FILES) $(TARGETS)
 
 # Tell make where to find our source files
 SRC_DIRS = $(sort $(dir $(SRC))) # Generate a unique list of the paths containing our source files
@@ -38,13 +45,13 @@ vpath %.rc $(subst $(space),:,$(RES_DIRS))
 .PHONY:	all $(SUBDIRS)
 
 all: $(SUBDIRS) nosubs
-nosubs: check_build createdirs $(SUBDIR) $(TARGET) $(TARGET_DYN) done
+nosubs: check_build createdirs $(SUBDIR) $(TARGETS) done
 install: check_install uninstall_headers uninstall_libraries \
 				 install_headers install_libraries done
 uninstall: check_uninstall uninstall_headers uninstall_libraries done
 
-$(TARGET): $(OBJS)
-$(TARGET_DYN): $(OBJS)
+#$(TARGET): $(OBJS)
+#$(TARGET_DYN): $(OBJS)
 
 # Pull in dependency info for *existing* .o files
 ifneq ($(PRINT_DEPENDENCIES_OPTION), )
@@ -104,21 +111,30 @@ $(INTERMEDIATE_DIR)%$(OBJ_SUFFIX) : %.cpp
 endif
 
 $(INTERMEDIATE_DIR)%.res : %.rc
-				$(QUIET)rc /fo$@ $<
+	$(QUIET)rc /fo$@ $<
 
-$(OUTDIR)%$(LIB_SUFFIX):
-				@echo $@
-				$(QUIET)$(AR) $(LCOUT) $@ $^
+ifeq ($(suffix $(TARGET)), $(LIB_SUFFIX))
+# We're building a static lib
+$(TARGET): $(OBJS)
+	@echo $@
+	$(QUIET)$(AR) $(LCOUT) $@ $^
+endif
 
-$(OUTDIR)%$(LIB_DYN_SUFFIX_VERSION):
-				echo $@
-				$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $^ $(LIBRARIES)
-				$(ROOT_DIR)/build/create_so_links $@
+ifneq ($(findstring $(LIB_DYN_SUFFIX_VERSION), $(TARGET_DYN)),)
+# We're building a shared lib
+$(TARGET_DYN): $(OBJS) $(DEP_LIBS)
+	echo $@
+	$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $^ $(LIBRARIES)
+	$(ROOT_DIR)/build/create_so_links $@
+endif
 
-$(OUTDIR)%$(EXE_SUFFIX): $(DEP_LIBS)
-				@echo $@
-				$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $(OBJS) $(LIBRARIES) $(SHARED_LIB_COMMAND)
-
+ifeq ($(suffix $(TARGET)), $(EXE_SUFFIX))
+# We're building an executable
+$(TARGET): $(OBJS) $(DEP_LIBS)
+	@echo $@
+	$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $(OBJS) $(LIBRARIES) $(SHARED_LIB_COMMAND)
+	$(POST_CREATE_EXE_COMMAND)
+endif
 
 #########################################################
 # clean rules
@@ -164,7 +180,7 @@ endif
 # check_build rule: can be used to perform some basic checks and tests
 # when doing a build.
 check_build:
-	@echo building $(TARGET) $(TARGET_DYN) - $(CONF_NAME)
+	@echo building $(TARGETS) - $(CONF_NAME)
 #	@echo TARGET = $(TARGET)
 #	@echo EXECUTABLE = $(EXECUTABLE)
 #	@echo LIBRARY = $(LIBRARY)

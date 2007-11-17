@@ -56,17 +56,34 @@ INCLUDE_DIR += $(ROOT_DIR)/include
 INCLUDE_DIR += $(ROOT_DIR)/include/$(COLLADA_VERSION)/
 
 # Do we want libxml, TinyXML, or both?
-# Enable libxml by default
+ifneq ($(PLATFORM_NAME), ps3)
+# On Linux, enable libxml and disable TinyXml by default
+LIBXML := 1
+TINYXML := 0
+else
+# On PS3, disable libxml and enable TinyXml by default
+LIBXML := 0
+TINYXML := 1
+endif
+
 ifneq ($(LIBXML), 0)
 CCOPT += -D"DOM_INCLUDE_LIBXML"
-INCLUDE_DIR              += /usr/include/libxml2
+INCLUDE_DIR += /usr/include/libxml2
 LIBRARIES += -lxml2
 endif
-# Disable TinyXML by default
 ifeq ($(TINYXML), 1)
 CCOPT += -D"DOM_INCLUDE_TINYXML"
-INCLUDE_DIR += $(ROOT_DIR)/../external-libs/tinyxml/include
-LIBRARIES += $(ROOT_DIR)/../external-libs/tinyxml/lib/linux/libtinyxml.a
+INCLUDE_DIR += $(ROOT_DIR)/../external-libs/tinyxml/
+LIBRARIES += $(ROOT_DIR)/../external-libs/tinyxml/lib/$(PLATFORM_NAME)/libtinyxml.a
+endif
+
+ifeq ($(PLATFORM_NAME), ps3)
+# On PS3, we need to be told where to find pcre
+INCLUDE_DIR += $(ROOT_DIR)/../external-libs/pcre
+LCOPT += -L$(ROOT_DIR)/../external-libs/pcre/lib/$(PLATFORM_NAME)
+
+# We have no getcwd on PS3
+CCOPT += -DNO_GETCWD
 endif
 
 LIBRARIES += -lpcre -lpcrecpp

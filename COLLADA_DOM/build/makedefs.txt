@@ -20,9 +20,9 @@
 #########################################################
 # detect platform
 ifneq ($(WIN32),)
-PLATFORM_NAME       := win32
+PLATFORM_NAME := win32
 else
-PLATFORM_NAME       := linux
+PLATFORM_NAME := linux
 endif
 
 #########################################################
