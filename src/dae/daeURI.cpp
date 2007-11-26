@@ -1223,7 +1223,7 @@ int daeURI::makeRelativeTo(daeURI* relativeToURI)
 	const char *this_slash			= this_filepath;
 	const char *relativeTo_slash	= relativeTo_filepath;
 
-	while(*this_filepath == *relativeTo_filepath)
+	while((*this_filepath == *relativeTo_filepath) && *this_filepath)
 	{
 		if(*this_filepath == '/')
 		{

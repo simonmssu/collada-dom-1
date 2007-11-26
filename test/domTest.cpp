@@ -1202,6 +1202,15 @@ DefineTest(uriConversion) {
 }
 
 
+DefineTest(makeRelativeTo) {
+	DAE dae;
+	daeURI uri1("myFolder/myFile.dae");
+	daeURI uri2("myFolder/myFile.dae");
+	uri1.makeRelativeTo(&uri2);
+	return testResult(true);
+}
+
+
 // Returns true if all tests names are valid
 bool checkTests(const set<string>& tests) {
 	bool invalidTestFound = false;
