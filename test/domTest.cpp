@@ -1211,6 +1211,36 @@ DefineTest(makeRelativeTo) {
 }
 
 
+DefineTest(xmlNavigation) {
+	DAE dae;
+	string file = lookupTestFile("cube.dae");
+	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+
+	domCOLLADA* root = dae.getDom(file.c_str());
+	CheckResult(root);
+
+	CheckResult(root->getChild("library_cameras"));
+	CheckResult(root->getChild("contributor") == 0);
+	CheckResult(root->getDescendant("steveT") == 0);
+	daeElement* upAxis = root->getDescendant("up_axis");
+	CheckResult(upAxis);
+	CheckResult(upAxis->getParent());
+	CheckResult(upAxis->getAncestor("asset"));
+	CheckResult(upAxis->getAncestor("library_geometries") == 0);
+
+	CheckResult(root->getChild(daeElement::matchType("library_cameras")));
+	CheckResult(root->getChild(daeElement::matchType("contributor")) == 0);
+	CheckResult(root->getDescendant(daeElement::matchType("steveT")) == 0);
+	upAxis = root->getDescendant(daeElement::matchType("up_axis"));
+	CheckResult(upAxis);
+	CheckResult(upAxis->getParent());
+	CheckResult(upAxis->getAncestor(daeElement::matchType("asset")));
+	CheckResult(upAxis->getAncestor(daeElement::matchType("library_geometries")) == 0);
+
+	return testResult(true);
+}
+
+
 // Returns true if all tests names are valid
 bool checkTests(const set<string>& tests) {
 	bool invalidTestFound = false;

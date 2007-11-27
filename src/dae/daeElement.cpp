@@ -611,3 +611,81 @@ daeURI *daeElement::getDocumentURI() const {
 	}
 	return _document->getDocumentURI();
 }
+
+
+daeElement::matchName::matchName(daeString name) : name(name) { }
+	
+bool daeElement::matchName::operator()(daeElement* elt) const {
+	return strcmp(elt->getElementName(), name.c_str()) == 0;
+}
+
+daeElement::matchType::matchType(daeString type) : type(type) { }
+
+bool daeElement::matchType::operator()(daeElement* elt) const {
+	return strcmp(elt->getTypeName(), type.c_str()) == 0;
+}
+
+daeElement* daeElement::getChild(const matchElement& matcher) {
+	daeElementRefArray children;
+	getChildren(children);
+	for (size_t i = 0; i < children.getCount(); i++)
+		if (matcher(children[i]))
+			return children[i];
+
+	return NULL;
+}
+
+daeElement* daeElement::getDescendant(const matchElement& matcher) {
+	daeElementRefArray elts;
+	getChildren(elts);
+	
+	for (size_t i = 0; i < elts.getCount(); i++) {
+		// Check the current element for a match
+		if (matcher(elts[i]))
+			return elts[i];
+
+		// Append the element's children to the queue
+		daeElementRefArray children;
+		elts[i]->getChildren(children);
+		size_t oldCount = elts.getCount();
+		elts.setCount(elts.getCount() + children.getCount());
+		for (size_t j = 0; j < children.getCount(); j++)
+			elts[oldCount + j] = children[j];
+	}
+
+	return NULL;
+}
+
+daeElement* daeElement::getAncestor(const matchElement& matcher) {
+	daeElement* elt = getParent();
+	while (elt) {
+		if (matcher(elt))
+			return elt;
+		elt = elt->getParent();
+	}
+
+	return NULL;
+}
+
+daeElement* daeElement::getParent() {
+	return _parent;
+}
+
+daeElement* daeElement::getChild(daeString eltName) {
+	if (!eltName)
+		return NULL;
+	matchName test(eltName);
+	return getChild(matchName(eltName));
+}
+
+daeElement* daeElement::getDescendant(daeString eltName) {
+	if (!eltName)
+		return NULL;
+	return getDescendant(matchName(eltName));
+}
+
+daeElement* daeElement::getAncestor(daeString eltName) {
+	if (!eltName)
+		return NULL;
+	return getAncestor(matchName(eltName));
+}

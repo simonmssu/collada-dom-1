@@ -438,6 +438,51 @@ public:
 	 */
 	void setParentElement( daeElement *parent ) { _parent = parent; }
 
+	// These are helper structures to let the xml hierarchy search functions know when we've
+	// found a match. You can implement a custom matcher by inheriting from this structure,
+	// just like matchName and matchType.
+	struct matchElement {
+		virtual bool operator()(daeElement* elt) const = 0;
+		virtual ~matchElement() { };
+	};
+
+	// Matches an element by name
+	struct matchName : public matchElement {
+		matchName(daeString name);
+		virtual bool operator()(daeElement* elt) const;
+		std::string name;
+	};
+
+	// Matches an element by schema type
+	struct matchType : public matchElement {
+		matchType(daeString type);
+		virtual bool operator()(daeElement* elt) const;
+		std::string type;
+	};
+
+	// Returns a matching child element. By "child", I mean one hierarchy level beneath the
+	// current element. This function is basically the same as getDescendant, except that it
+	// only goes one level deep.
+	daeElement* getChild(const matchElement& matcher);
+
+	// Performs a breadth-first search and returns a matching descendant element. A "descendant
+	// element" is an element beneath the current element in the xml hierarchy.
+	daeElement* getDescendant(const matchElement& matcher);
+
+	// Returns the parent element.
+	daeElement* getParent();
+
+	// Searches up through the xml hiearchy and returns a matching element.
+	daeElement* getAncestor(const matchElement& matcher);
+
+	// These functions perform the same as the functions above, except that they take the element
+	// name to match as a string. This makes these functions a little simpler to use if you're
+	// matching based on element name, which is assumed to be the most common case. Instead of
+	// "getChild(matchName(eltName))", you can just write "getChild(eltName)".
+	daeElement* getChild(daeString eltName);
+	daeElement* getDescendant(daeString eltName);
+	daeElement* getAncestor(daeString eltName);
+
 	/**
 	 * Gets the associated Meta information for this element.  This
 	 * Meta also acts as a factory.  See @c daeMetaElement documentation for more
