@@ -14,6 +14,7 @@
 #ifndef __DAE_DOCUMENT__
 #define __DAE_DOCUMENT__
 
+#include <dae.h>
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
 #include <dae/daeURI.h>
@@ -33,10 +34,10 @@ public:
 	 */
 	DLLSPEC daeDocument(daeDatabase* database = NULL);
 
-    /**
-    * Destructor
-    */
-    DLLSPEC ~daeDocument();
+	/**
+	 * Destructor
+	 */
+	DLLSPEC ~daeDocument();
 
 	/**
 	* Accessor to get the @c domCollada associated with this document.
@@ -79,6 +80,8 @@ public:
 	 * @param database_ The database that is taking ownership of this document.
 	 */
 	void setDatabase(daeDatabase* database_) {database = database_;}
+
+	DAE* getDAE();
 
 	/**
 	 * This function is used to track how a document gets modified. It gets called internally.

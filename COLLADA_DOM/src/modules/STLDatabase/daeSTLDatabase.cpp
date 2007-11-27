@@ -16,8 +16,8 @@
 
 using namespace std;
 
-daeSTLDatabase::daeSTLDatabase()
-{}
+daeSTLDatabase::daeSTLDatabase(DAE& dae) : daeDatabase(dae)
+{ }
 
 daeSTLDatabase::~daeSTLDatabase()
 {

@@ -25,6 +25,7 @@
 #include <modules/daeLIBXMLPlugin.h>
 #include <dae.h>
 #include <dom.h>
+#include <dae/daeDatabase.h>
 #include <dae/daeMetaElement.h>
 #include <libxml/xmlreader.h>
 #include <libxml/xmlwriter.h>

@@ -1241,6 +1241,14 @@ DefineTest(xmlNavigation) {
 }
 
 
+DefineTest(multipleDae) {
+	DAE dae1;
+	DAE dae2;
+	CheckResult(dae2.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+	return testResult(true);
+}
+
+
 // Returns true if all tests names are valid
 bool checkTests(const set<string>& tests) {
 	bool invalidTestFound = false;

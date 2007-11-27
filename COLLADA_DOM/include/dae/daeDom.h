@@ -15,7 +15,8 @@
 #define __DAE_DOM__
 
 class daeMetaElement;
+class daeAtomicTypeList;
 
-daeMetaElement* initializeDomMeta();
+daeMetaElement* initializeDomMeta(daeAtomicTypeList& atomicTypes);
 
 #endif //__DAE_DOM__

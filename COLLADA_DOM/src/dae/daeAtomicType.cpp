@@ -20,9 +20,6 @@
 #include <dae/daeDatabase.h>
 #include <dae/daeErrorHandler.h>
 
-daeAtomicTypeArray* daeAtomicType::_Types = NULL;
-daeBool daeAtomicType::_TypesInitialized = false;
-
 namespace {
 	// Skip leading whitespace
 	daeChar* skipWhitespace(daeChar* s) {
@@ -61,72 +58,62 @@ namespace {
 	}
 }
 
-void
-daeAtomicType::initializeKnownTypes()
-{
-	_Types = new daeAtomicTypeArray;
-	initializeKnownBaseTypes();
-	//mandatory to set here, because the array types are querying the atomic types
-	_TypesInitialized = true;
+
+daeAtomicTypeList::daeAtomicTypeList() {
+	types.append(new daeUIntType);
+	types.append(new daeIntType);
+	types.append(new daeLongType);
+	types.append(new daeShortType);
+	types.append(new daeULongType);
+	types.append(new daeFloatType);
+	types.append(new daeDoubleType);
+	types.append(new daeStringRefType);
+	types.append(new daeElementRefType);
+	types.append(new daeEnumType);
+	types.append(new daeRawRefType);
+	types.append(new daeResolverType);
+	types.append(new daeIDResolverType);
+	types.append(new daeBoolType);
+	types.append(new daeTokenType);
 }
 
-void 
-daeAtomicType::uninitializeKnownTypes()
-{
-	if ( _TypesInitialized )
-		{
-		_TypesInitialized = false;
-		unsigned int i;
-		for (i=0;i<_Types->getCount();i++)
-		{
-			daeAtomicType* type = _Types->get(i);
-			delete type;
+daeAtomicTypeList::~daeAtomicTypeList() {
+	for (size_t i = 0; i < types.getCount(); i++)
+		delete types[i];
+}
+
+daeInt daeAtomicTypeList::append(daeAtomicType* t) {
+	return (daeInt)types.append(t);
+}
+	
+const daeAtomicType* daeAtomicTypeList::getByIndex(daeInt index) {
+	return types[index];
+}
+	
+daeInt daeAtomicTypeList::getCount() {
+	return (daeInt)types.getCount();
+}
+
+daeAtomicType* daeAtomicTypeList::get(daeStringRef typeString) {
+	for (size_t i = 0; i < types.getCount(); i++) {
+		daeStringRefArray& nameBindings = types[i]->getNameBindings();
+		for (size_t j = 0; j < nameBindings.getCount(); j++) {
+			if (strcmp(typeString, nameBindings[j]) == 0)
+				return types[i];
 		}
-		delete _Types;
 	}
-}
 
-void
-daeAtomicType::initializeKnownBaseTypes()
-{
-	_Types->append(new daeUIntType);
-	_Types->append(new daeIntType);
-	_Types->append(new daeLongType);
-	_Types->append(new daeShortType);
-	_Types->append(new daeULongType);
-	_Types->append(new daeFloatType);
-	_Types->append(new daeDoubleType);
-	_Types->append(new daeStringRefType);
-	_Types->append(new daeElementRefType);
-	_Types->append(new daeEnumType);
-	_Types->append(new daeRawRefType);
-	_Types->append(new daeResolverType);
-	_Types->append(new daeIDResolverType);
-	_Types->append(new daeBoolType);
-	_Types->append(new daeTokenType);
-}
-
-daeAtomicType*
-daeAtomicType::get(daeStringRef typeString)
-{
-	if (!_TypesInitialized)
-		daeAtomicType::initializeKnownTypes();
-
-	int tCount = (int)_Types->getCount();
-	int i;
-	for(i=0; i<tCount; i++) {
-		daeAtomicType* type = _Types->get(i);
-		daeStringRefArray& nameBindings = type->getNameBindings();
-		int count = (int)nameBindings.getCount();
-		int j;
-		for(j=0;j<count;j++)
-			if (!strcmp(nameBindings[j],typeString))
-				break;
-		if (j!=count)
-			return type;
-	}
 	return NULL;
 }
+
+daeAtomicType* daeAtomicTypeList::get(daeEnum typeEnum) {
+	for (size_t i = 0; i < types.getCount(); i++)
+		if (typeEnum == types[i]->getTypeEnum())
+			return types[i];
+	return NULL;
+}
+
+
 daeAtomicType::daeAtomicType()
 {
 	_size = -1;
@@ -136,22 +123,6 @@ daeAtomicType::daeAtomicType()
 	_printFormat = "badtype";
 	_scanFormat = "";
 	_maxStringLength = -1;
-}
-
-daeAtomicType*
-daeAtomicType::get(daeEnum typeEnum)
-{
-	if (!_TypesInitialized)
-		daeAtomicType::initializeKnownTypes();
-
-	int tCount = (int)_Types->getCount();
-	int i;
-	for(i=0; i<tCount; i++) {
-		daeAtomicType* type = _Types->get(i);
-		if (type->getTypeEnum() == typeEnum)
-			return type;
-	}
-	return NULL;
 }
 
 daeBool
@@ -232,23 +203,6 @@ void daeAtomicType::copyArray(daeArray& src, daeArray& dst) {
 daeInt
 daeAtomicType::compare(daeChar* value1, daeChar* value2) {
 	return memcmp(value1, value2, _size);
-}
-
-daeInt
-daeAtomicType::append(daeAtomicType* t) {
-	if (!_TypesInitialized)
-		daeAtomicType::initializeKnownTypes();
-	return (daeInt)_Types->append(t);
-}
-	
-const daeAtomicType*
-daeAtomicType::getByIndex(daeInt index) {
-	return _Types->get(index);
-}
-	
-daeInt
-daeAtomicType::getCount() {
-	return (daeInt)_Types->getCount();
 }
 
 daeEnumType::daeEnumType()

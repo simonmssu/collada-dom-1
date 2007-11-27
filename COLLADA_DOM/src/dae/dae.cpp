@@ -12,6 +12,7 @@
  */
 
 #include <dae.h>
+#include <dae/daeDatabase.h>
 #include <dae/daeDom.h>
 #include <dae/daeIDRef.h>
 #include <dae/daeMetaElement.h>
@@ -47,22 +48,18 @@ using namespace std;
 extern daeString COLLADA_VERSION;		 
 
 daeInt DAEInstanceCount = 0;
-daeMetaElement *DAE::topMeta = NULL;
 
 void
 DAE::cleanup()
 {
-	if (topMeta != NULL) {
-		daeMetaElement::releaseMetas();
-		daeAtomicType::uninitializeKnownTypes();
-		topMeta = NULL;
-//Contributed by Nus - Wed, 08 Nov 2006
-		terminateURI();
-		terminateResolveArray();
-		daeStringRef::releaseStringTable();
-		daeIDRefResolver::terminateIDRefSolver();
-//----------------------
-	}
+	// !!!steveT Some of this needs to be moved to the destructor
+	daeMetaElement::releaseMetas();
+	//Contributed by Nus - Wed, 08 Nov 2006
+	terminateURI();
+	terminateResolveArray();
+	daeStringRef::releaseStringTable();
+	daeIDRefResolver::terminateIDRefSolver();
+	//----------------------
 }
 
 void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
@@ -73,15 +70,14 @@ void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 	defaultDatabase = false;
 	defaultPlugin = false;
 	registerFunc = NULL;
+	topMeta = NULL;
 
 //Contributed by Nus - Wed, 08 Nov 2006
 	initializeURI();
 	initializeResolveArray();
 	daeIDRefResolver::initializeIDRefSolver();
 //------------------------
-	if ( DAEInstanceCount == 0 ) {
-		topMeta = initializeDomMeta();
-	}
+	topMeta = initializeDomMeta(atomicTypes);
 	DAEInstanceCount++;
 	rawResolver = new daeRawResolver();
 	idResolver = new daeDefaultIDRefResolver();
@@ -126,7 +122,7 @@ daeInt DAE::setDatabase(daeDatabase* _database)
 	else
 	{
 		//create default database
-		database = new daeSTLDatabase;
+		database = new daeSTLDatabase(*this);
 		defaultDatabase = true;
 	}
 	// !!!GAC Not sure what good the error return is, current implementations never fail, what would we do if they did?
@@ -465,4 +461,8 @@ daeInt DAE::setDomFile(daeString file, domCOLLADA* dom) {
 daeString DAE::getDomVersion()
 {
 	return(COLLADA_VERSION);
+}
+
+daeAtomicTypeList& DAE::getAtomicTypes() {
+	return atomicTypes;
 }

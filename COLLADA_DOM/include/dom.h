@@ -19,7 +19,7 @@ extern daeString COLLADA_VERSION;
 extern daeString COLLADA_NAMESPACE;
 
 // Register all types
-void registerDomTypes();
+void registerDomTypes(daeAtomicTypeList& atomicTypes);
 
 // Register all elements
 daeMetaElement* registerDomElements();

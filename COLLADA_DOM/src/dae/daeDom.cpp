@@ -16,9 +16,9 @@
 
 #include <dom.h>
 
-daeMetaElement* initializeDomMeta()
+daeMetaElement* initializeDomMeta(daeAtomicTypeList& atomicTypes)
 {
-	registerDomTypes();
+	registerDomTypes(atomicTypes);
 	
 	return registerDomElements();
 }

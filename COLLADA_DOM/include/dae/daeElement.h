@@ -29,6 +29,7 @@ namespace COLLADA_TYPE
 	typedef const int TypeEnum;
 }
 
+class DAE;
 class daeMetaElement;
 class daeMetaAttribute;
 class daeIntegrationObject;
@@ -369,12 +370,14 @@ public:
 	 * @return Returns the @c daeDocument representing the containing file or database
 	 * group.
 	 */
-	daeDocument*	getDocument() const { return _document; }
+	DLLSPEC daeDocument* getDocument() const { return _document; }
 
 	/**
 	 * Deprecated.
 	 */
-	daeDocument*	getCollection() const { return _document; }
+	DLLSPEC daeDocument* getCollection() const { return _document; }
+
+	DLLSPEC DAE* getDAE();
 	
 	/**
 	 * Sets the database document associated with this element.

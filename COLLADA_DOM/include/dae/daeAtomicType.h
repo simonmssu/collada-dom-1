@@ -234,9 +234,6 @@ public:
 	 */
 	daeStringRefArray		_nameBindings;
 
-private: // Static Members
-	static daeAtomicTypeArray*	_Types;
-	static daeBool				_TypesInitialized;
 public: // Static Interface
 	/** An enum for identifying the different atomic types */
 	enum daeAtomicTypes {
@@ -277,56 +274,52 @@ public: // Static Interface
 		/** extension atomic type */
 		ExtensionType
 	};
+};
 
-public: // STATIC INTERFACE
+
+class DLLSPEC daeAtomicTypeList {
+public:
+	daeAtomicTypeList();
+	~daeAtomicTypeList();
+	
 	/**
 	 * Appends a new type to the global list of types.
 	 * @param t Type to append.
 	 * @return Returns the index of the type in the list of types.
 	 */
-	static daeInt				append(daeAtomicType* t);
-
-	/**
-	 * Performs a static initialization of all known atomic types.
-	 */
-	static void					initializeKnownTypes();
-
-	/**
-	 * Performs an uninitialization for all known types, freeing associated memory.
-	 */
-	static void					uninitializeKnownTypes();
-	/**
-	 * Performs a static initialization of all known base atomic types.
-	 */
-	static void					initializeKnownBaseTypes();
+	daeInt append(daeAtomicType* t);
 
 	/**
 	 * Gets a type from the list of types, based on its index.
 	 * @param index Index of the type to retrieve.
 	 * @return Returns the @c daeAtomicType indicated by index.
 	 */
-	static const daeAtomicType*	getByIndex(daeInt index);
+	const daeAtomicType* getByIndex(daeInt index);
 
 	/**
 	 * Gets the number of known atomic types.
 	 * @return Returns the number of known atomic types.
 	 */
-	static daeInt				getCount();
+	daeInt getCount();
 
 	/**
 	 * Finds a type by its string name.
 	 * @param type String name of the type.
 	 * @return Returns the type with the corresponding name.
 	 */
-	static daeAtomicType*		get(daeStringRef type);
+	daeAtomicType* get(daeStringRef type);
 
 	/**
 	 * Finds a type by its enum.
 	 * @param type Enum representing the desired type.
 	 * @return Returns the type with the corresponding enum.
 	 */
-	static daeAtomicType*		get(daeEnum type);
+	daeAtomicType* get(daeEnum type);
+
+private:
+	daeAtomicTypeArray types;
 };
+
 
 /**
  * The @c daeBoolType class is derived from @c daeAtomicType, and implements

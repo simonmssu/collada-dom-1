@@ -14,6 +14,7 @@
 #include <sstream>
 #include <dae.h>
 #include <dom.h>
+#include <dae/daeDatabase.h>
 #include <dae/daeIOPluginCommon.h>
 #include <dae/daeMetaElement.h>
 #include <dae/daeErrorHandler.h>

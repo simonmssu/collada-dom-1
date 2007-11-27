@@ -11,6 +11,7 @@
  * License. 
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dae/domAny.h>
 #include <dae/daeMetaAttribute.h>
@@ -56,7 +57,7 @@ domAny::registerElement()
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( getDAE()->getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domAny , _value ));
 		ma->setContainer( _Meta );
 		_Meta->appendAttribute(ma);
@@ -88,7 +89,7 @@ daeBool domAny::setAttribute(daeString attrName, daeString attrValue) {
 	attrs.append("");
 	daeMetaAttribute *ma = new domAnyAttribute;
 	ma->setName( attrName );
-	ma->setType( daeAtomicType::get("xsString"));
+	ma->setType( getDAE()->getAtomicTypes().get("xsString"));
 	ma->setOffset((daeInt)attrs.getCount()-1);
 	ma->setContainer( _meta );
 	if (ma->getType()) {

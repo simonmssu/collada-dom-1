@@ -17,12 +17,14 @@
 #include <dae/daeTypes.h>
 #include <dae/daeError.h>
 #include <dae/daeInterface.h>
-#include <dae/daeDatabase.h>
 #include <dae/daeIOPlugin.h>
 #include <dae/daeIntegrationObject.h>
+#include <dae/daeAtomicType.h>
 
 class daeIDRefResolver;
 class domCOLLADA;
+class daeDatabase;
+class daeURIResolver;
 
 /**
  * The @c DAE class implements a standard interface to the
@@ -113,6 +115,8 @@ public:
 	DLLSPEC virtual domCOLLADA* getDomFile(daeString file);
 	DLLSPEC virtual daeInt      setDomFile(daeString file, domCOLLADA* dom);
 
+	daeAtomicTypeList& getAtomicTypes();
+
 private:
 	void DLLSPEC init(daeDatabase* database, daeIOPlugin* ioPlugin);
 
@@ -124,7 +128,8 @@ private:
 	bool defaultDatabase;
 	bool defaultPlugin;
 	daeIntegrationLibraryFunc registerFunc; 
-	static daeMetaElement *topMeta;
+	daeMetaElement *topMeta;
+	daeAtomicTypeList atomicTypes;
 };
 
 #endif // __DAE_INTERFACE__

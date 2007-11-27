@@ -13,6 +13,12 @@
 
 #include "dae/daeDatabase.h"
 
+daeDatabase::daeDatabase(DAE& dae) : dae(dae) { }
+
+DAE* daeDatabase::getDAE() {
+	return &dae;
+}
+
 std::list<daeElement*> daeDatabase::sidLookup(const std::string& sid) {
 	std::list<daeElement*> result;
 	sidLookup(sid, result);

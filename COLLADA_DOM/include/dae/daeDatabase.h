@@ -15,6 +15,7 @@
 #define __DAE_DATABASE__
 
 #include <list>
+#include <dae.h>
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
 #include <dae/daeURI.h>
@@ -28,9 +29,16 @@ class daeDatabase
 {
 public:
 	/**
-	*  Destructor.
+	 * Constructor
+	 */
+	daeDatabase(DAE& dae);
+	
+	/**
+	 * Destructor
 	 */
 	virtual DLLSPEC ~daeDatabase() {}
+
+	virtual DAE* getDAE();
 	
 	/** @name Documents */
 	//@{
@@ -296,6 +304,8 @@ public: //Depricated methods
 		return isDocumentLoaded( name );
 	}
 
+protected:
+	DAE& dae;
 };
 
 #endif //__DAE_DATABASE__
