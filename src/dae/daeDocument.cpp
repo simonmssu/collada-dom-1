@@ -74,6 +74,7 @@ void daeDocument::removeExternalReference( daeURI &uri ) {
 				//found the uri. now remove it
 				externalURIs[i]->removeIndex(j);
 				if ( externalURIs[i]->getCount() == 0 ) {
+					delete externalURIs[i];
 					externalURIs.removeIndex(i);
 					referencedDocuments.removeIndex(i);
 				}
