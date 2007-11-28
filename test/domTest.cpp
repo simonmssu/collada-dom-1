@@ -1216,7 +1216,7 @@ DefineTest(xmlNavigation) {
 	string file = lookupTestFile("cube.dae");
 	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
 
-	domCOLLADA* root = dae.getDom(file.c_str());
+	domCOLLADA* root = dae.getDomFile(file.c_str());
 	CheckResult(root);
 
 	CheckResult(root->getChild("library_cameras"));

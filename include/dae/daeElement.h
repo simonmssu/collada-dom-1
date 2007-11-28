@@ -58,7 +58,7 @@ extern "C" void terminateResolveArray(void);
  * - Reference counted via daeSmartRef
  * - Contains information for XML base URI, and XML containing element
  */
-class daeElement : public daeRefCountedObj
+class DLLSPEC daeElement : public daeRefCountedObj
 {
 public:
 	/**
@@ -75,7 +75,7 @@ protected:
 
 public:
 	/** An enum that describes the state of user integration with this object */
-	DLLSPEC enum IntegrationState {
+	enum IntegrationState {
 		/** The user integration is not initialized */
 		int_uninitialized,
 		/** The user integration object has been created */
@@ -90,7 +90,7 @@ protected:
 	virtual daeElement &operator=( const daeElement &cpy ) { (void)cpy; return *this; }
 
 	// This function is called internally.
-	DLLSPEC void setDocument( daeDocument* c, bool notifyDocument );
+	void setDocument( daeDocument* c, bool notifyDocument );
 
 public:
 	/**
@@ -98,13 +98,13 @@ public:
 	 * @note This should not be used externally.
 	 * Use factories to create elements
 	 */
-	DLLSPEC daeElement();
+	daeElement();
 	/**
 	 * Element Destructor.
 	 * @note This should not be used externally, 
 	 * if daeSmartRefs are being used.
 	 */
-	virtual DLLSPEC ~daeElement();
+	virtual ~daeElement();
 
 	// sthomas (see https://collada.org/public_forum/viewtopic.php?t=325&)
 	static void releaseElements();
@@ -113,14 +113,14 @@ public:
 	 * Resolves all fields of type daeURI and IDRef.
 	 * This is done via database query of the URI or IDRef.
 	 */
-	DLLSPEC void resolve();
+	void resolve();
 
 	/**
 	 * Sets up a @c daeElement. Called on all @c daeElements as part of their initialization.
 	 * @param meta Meta element to use to configure this element.
 	 * @note Should not be called externally.
 	 */
-	DLLSPEC void setup(daeMetaElement* meta);
+	void setup(daeMetaElement* meta);
 
 	/**
 	 * Places an element as a child of @c this element. 
@@ -133,7 +133,7 @@ public:
 	 * @param element Element to be placed in the @c this container.
 	 * @return Returns true if the element was successfully placed, false otherwise.
 	 */
-	DLLSPEC daeBool placeElement(daeElement* element);
+	daeBool placeElement(daeElement* element);
 	
 	/**
 	 * This function searches through the list of potential child elements
@@ -148,7 +148,7 @@ public:
 	 * @param element is the element to be placed in the 'this' container.
 	 * @return return whether or not the element was successfully placed.
 	 */
-	DLLSPEC daeBool placeElementAt(daeInt index, daeElement* element);
+	daeBool placeElementAt(daeInt index, daeElement* element);
 
 	/**
 	 * Places an element as a child of @c this element. 
@@ -158,7 +158,7 @@ public:
 	 * @param element Element to be placed in the @c this container.
 	 * @return Returns true if the element was successfully placed, false otherwise.
 	 */
-	DLLSPEC daeBool placeElementBefore( daeElement* marker, daeElement *element );
+	daeBool placeElementBefore( daeElement* marker, daeElement *element );
 
 	/**
 	 * Places an element as a child of @c this element. 
@@ -168,7 +168,7 @@ public:
 	 * @param element Element to be placed in the @c this container.
 	 * @return Returns true if the element was successfully placed, false otherwise.
 	 */
-	DLLSPEC daeBool placeElementAfter( daeElement* marker, daeElement *element );
+	daeBool placeElementAfter( daeElement* marker, daeElement *element );
 
 	/**
 	 * Finds the last index into the array of children of the name specified.
@@ -176,7 +176,7 @@ public:
 	 * @return Returns the index into the children array of the last element with name elementName. -1 if
 	 *         there are no children of name elementName.
 	 */
-	DLLSPEC daeInt findLastIndexOf( daeString elementName );
+	daeInt findLastIndexOf( daeString elementName );
 
 	/**
 	 * Removes the specified element from it parent, the @c this element.
@@ -188,7 +188,7 @@ public:
 	 * @param element Element to be removed in the @c this container.
 	 * @return Returns true if the element was successfully removed, false otherwise.
 	 */
-	DLLSPEC daeBool removeChildElement(daeElement* element);
+	daeBool removeChildElement(daeElement* element);
 	
 	/**
 	 * Removes the specified element from its parent element. 
@@ -215,7 +215,7 @@ public:
 	 * Returns the number of attributes in this element.
 	 * @return The number of attributes this element has.
 	 */
-	DLLSPEC size_t getAttributeCount();
+	size_t getAttributeCount();
 	
 	/**
 	 * Returns the daeMetaAttribute object corresponding to the attribute specified.
@@ -223,28 +223,28 @@ public:
 	 * @return Returns the corresponding daeMetaAttribute object or NULL if this element
 	 * doesn't have the specified attribute.
 	 */
-	DLLSPEC daeMetaAttribute* getAttributeObject(daeString name);
+	daeMetaAttribute* getAttributeObject(daeString name);
 
 	/**
 	 * Returns the daeMetaAttribute object corresponding to attribute i.
 	 * @param i The index of the attribute to find.
 	 * @return Returns the corresponding daeMetaAttribute object
 	 */
-	DLLSPEC daeMetaAttribute* getAttributeObject(size_t i);
+	daeMetaAttribute* getAttributeObject(size_t i);
 
 	/**
 	 * Returns the name of the attribute at the specified index.
 	 * @param i The index of the attribute whose name should be retrieved.
 	 * @return Returns the name of the attribute, or "" if the index is out of range.
 	 */
-	DLLSPEC std::string getAttributeName(size_t i);
+	std::string getAttributeName(size_t i);
 
 	/**
 	 * Checks if this element can have the attribute specified.
 	 * @param name The name of the attribute to look for.
 	 * @return Returns true is this element can have an attribute with the name specified. False otherwise.
 	 */
-	DLLSPEC daeBool hasAttribute(daeString name);
+	daeBool hasAttribute(daeString name);
 
 	/**
 	 * Checks if an attribute has been set either by being loaded from the COLLADA document or set
@@ -253,7 +253,7 @@ public:
 	 * @return Returns true if the attribute has been set. False if the attribute hasn't been set 
 	 * or doesn't exist for this element.
 	 */
-	DLLSPEC daeBool isAttributeSet(daeString name);
+	daeBool isAttributeSet(daeString name);
 
 	/**
 	 * Gets an attribute's value as a string.
@@ -261,7 +261,7 @@ public:
 	 * @return The value of the attribute. Returns an empty string if this element doesn't
 	 * have the specified attribute.
 	 */
-	DLLSPEC std::string getAttribute(daeString name);
+	std::string getAttribute(daeString name);
 
 	/**
 	 * Just like the previous method, this method gets an attribute's value as a string. It
@@ -270,14 +270,14 @@ public:
 	 * @param A string in which to store the value of the attribute. This will be set to an empty 
 	 * string if this element doesn't have the specified attribute.
 	 */
-	DLLSPEC void getAttribute(daeString name, std::string& value);
+	void getAttribute(daeString name, std::string& value);
 
 	/**
 	 * Gets an attribute's value as a string.
 	 * @param i The index of the attribute to retrieve.
 	 * @return The value of the attribute.
 	 */
-	DLLSPEC std::string getAttribute(size_t i);
+	std::string getAttribute(size_t i);
 
 	/**
 	 * Just like the previous method, this method gets an attribute's value as a string. It
@@ -285,7 +285,7 @@ public:
 	 * @param i The index of the attribute to retrieve.
 	 * @param A string in which to store the value of the attribute.
 	 */
-	DLLSPEC void getAttribute(size_t i, std::string& value);
+	void getAttribute(size_t i, std::string& value);
 
 	struct DLLSPEC attr {
 		attr();
@@ -299,14 +299,14 @@ public:
 	 * Returns an array containing all the attributes of this element.
 	 * @return A daeArray of attr objects.
 	 */
-	DLLSPEC daeTArray<attr> getAttributes();
+	daeTArray<attr> getAttributes();
 
 	/**
 	 * Just like the previous method, this method returns an array containing all the attributes
 	 * of this element. It returns the result via a reference parameter for extra efficiency.
 	 * @param attrs The array of attr objects to return.
 	 */
-	DLLSPEC void getAttributes(daeTArray<attr>& attrs);
+	void getAttributes(daeTArray<attr>& attrs);
 
 	/**
 	 * Sets the attribute to the specified value.
@@ -314,7 +314,7 @@ public:
 	 * @param value Value to apply to the attribute.
 	 * @return Returns true if the attribute was found and the value was set, false otherwise.
 	 */
-	virtual DLLSPEC daeBool setAttribute(daeString name, daeString value);
+	virtual daeBool setAttribute(daeString name, daeString value);
 
 	/**
 	 * Sets the attribute at the specified index to the given value.
@@ -322,34 +322,34 @@ public:
 	 * @param value Value to apply to the attribute.
 	 * @return Returns true if the attribute was found and the value was set, false otherwise.
 	 */
-	virtual DLLSPEC daeBool setAttribute(size_t i, daeString value);
+	virtual daeBool setAttribute(size_t i, daeString value);
 
 	/**
 	 * Returns the daeMetaAttribute object corresponding to the character data for this element.
 	 * @return Returns a daeMetaAttribute object or NULL if this element doesn't have
 	 * character data.
 	 */
-	DLLSPEC daeMetaAttribute* getCharDataObject();
+	daeMetaAttribute* getCharDataObject();
 
 	/**
 	 * Checks if this element can have character data.
 	 * @return Returns true if this element can have character data, false otherwise.
 	 */
-	DLLSPEC daeBool hasCharData();
+	daeBool hasCharData();
 
 	/**
 	 * Returns this element's character data as a string.
 	 * @return A string containing this element's character data, or an empty string
 	 * if this element can't have character data.
 	 */
-	DLLSPEC std::string getCharData();
+	std::string getCharData();
 
 	/**
 	 * Similar to the previous method, but fills a string passed in by the user for efficiency.
 	 * @param data The string to be filled with this element's character content. The
 	 * string is set to an empty string if this element can't have character data.
 	 */
-	DLLSPEC void getCharData(std::string& data);
+	void getCharData(std::string& data);
 
 	/**
 	 * Sets this element's character data.
@@ -357,12 +357,12 @@ public:
 	 * @return Returns true if this element can have character data and the character data
 	 * was successfully changed, false otherwise.
 	 */
-	DLLSPEC daeBool setCharData(const std::string& data);
+	daeBool setCharData(const std::string& data);
 
 	// These functions are deprecated.
-	DLLSPEC daeMemoryRef getAttributeValue(daeString name); // Use getAttribute or getAttributeObject instead.
-	DLLSPEC daeBool hasValue(); // Use hasCharData instead.
-	DLLSPEC daeMemoryRef getValuePointer(); // Use getCharData or getCharDataObject instead.
+	daeMemoryRef getAttributeValue(daeString name); // Use getAttribute or getAttributeObject instead.
+	daeBool hasValue(); // Use hasCharData instead.
+	daeMemoryRef getValuePointer(); // Use getCharData or getCharDataObject instead.
 
 	/**
 	 * Finds the database document associated with @c this element.
@@ -380,17 +380,17 @@ public:
 	 * Sets the database document associated with this element.
 	 * @param c The daeDocument to associate with this element.
 	 */
-	DLLSPEC void setDocument(daeDocument* c) { setDocument( c, true ); }
+	void setDocument(daeDocument* c) { setDocument( c, true ); }
 	/**
 	 * Deprecated.
 	 */
-	DLLSPEC void setCollection(daeDocument* c );
+	void setCollection(daeDocument* c );
 
 	/**
 	 * Gets the URI of the document containing this element, note that this is NOT the URI of the element.
 	 * @return Returns a pointer to the daeURI of the document containing this element.
 	 */
-	DLLSPEC daeURI*	getDocumentURI() const;
+	daeURI*	getDocumentURI() const;
 
 	/**
 	 * Creates an element via the element factory system.  This creation
@@ -398,7 +398,7 @@ public:
 	 * @param elementName Class name of the subelement to create.
 	 * @return Returns the created @c daeElement, if it was successfully created.
 	 */
-	DLLSPEC daeSmartRef<daeElement> createElement(daeString elementName);
+	daeSmartRef<daeElement> createElement(daeString elementName);
 
 	/**
 	 * Creates a subelement via @c createElement() and places it via @c placeElement().
@@ -407,7 +407,7 @@ public:
 	 * @param elementName - Class name of the subelement to create.
 	 * @return Returns the created @c daeElement, if it was successfully created.
 	 */
-	DLLSPEC daeElement* createAndPlace(daeString elementName);
+	daeElement* createAndPlace(daeString elementName);
 
 	/**
 	 * Create a sub-element via #createElement and place it via #placeElementAt
@@ -418,7 +418,7 @@ public:
 	 * @param elementName - the className of the sub-element to be created
 	 * @return the created element if it was in fact successfully created.
 	 */
-	DLLSPEC daeElement* createAndPlaceAt(daeInt index, daeString elementName);
+	daeElement* createAndPlaceAt(daeInt index, daeString elementName);
 
 	/**
 	 * Gets the container element for @c this element.
@@ -441,20 +441,20 @@ public:
 	// These are helper structures to let the xml hierarchy search functions know when we've
 	// found a match. You can implement a custom matcher by inheriting from this structure,
 	// just like matchName and matchType.
-	struct matchElement {
+	struct DLLSPEC matchElement {
 		virtual bool operator()(daeElement* elt) const = 0;
 		virtual ~matchElement() { };
 	};
 
 	// Matches an element by name
-	struct matchName : public matchElement {
+	struct DLLSPEC matchName : public matchElement {
 		matchName(daeString name);
 		virtual bool operator()(daeElement* elt) const;
 		std::string name;
 	};
 
 	// Matches an element by schema type
-	struct matchType : public matchElement {
+	struct DLLSPEC matchType : public matchElement {
 		matchType(daeString type);
 		virtual bool operator()(daeElement* elt) const;
 		std::string type;
@@ -502,7 +502,7 @@ public:
 	 * @return Returns the @c daeIntegrationObject associated with this COLLADA element
 	 * instance.
 	 */
-	DLLSPEC daeIntegrationObject* getIntObject( IntegrationState from_state = int_converted, IntegrationState to_state = int_uninitialized );
+	daeIntegrationObject* getIntObject( IntegrationState from_state = int_converted, IntegrationState to_state = int_uninitialized );
 
 	/**
 	 * Gets the element type.
@@ -513,20 +513,20 @@ public:
 	 * Gets the element type name for this element.
 	 * @return Returns the string for the type name.
 	 */
-	DLLSPEC daeString getTypeName() const;
+	daeString getTypeName() const;
 
 	/**
 	 * Gets this element's name.
 	 * @return Returns the string for the name.
 	 * @remarks This function returns NULL if the element's name is identical to it's type's name.
 	 */
-	DLLSPEC daeString getElementName() const;
+	daeString getElementName() const;
 	/**
 	 * Sets this element's name.
 	 * @param nm Specifies the string to use as the element's name.
 	 * @remarks Use caution when using this function since you can easily create invalid COLLADA documents.
 	 */
-	DLLSPEC void setElementName( daeString nm );
+	void setElementName( daeString nm );
 	
 	/**
 	 * Gets the element ID if it exists.
@@ -534,7 +534,7 @@ public:
 	 * an attribute on this element type.
 	 * @return the string for the element ID if it exists.
 	 */
-	DLLSPEC daeString getID() const;
+	daeString getID() const;
 
 	/**
 	 * Gets the children/sub-elements of this element.
@@ -543,7 +543,7 @@ public:
 	 * not contain a _contents array.
 	 * @return The return value.  An elementref array to append this element's children to.
 	 */
-	DLLSPEC daeTArray< daeSmartRef<daeElement> > getChildren();
+	daeTArray< daeSmartRef<daeElement> > getChildren();
 
 	/**
 	 * Same as the previous function, but returns the result via a parameter instead
@@ -551,7 +551,7 @@ public:
 	 * @param array The return value.  An elementref array to append this element's children to.
 	 */
 	//void getChildren( daeElementRefArray &array );
-	DLLSPEC void getChildren( daeTArray<daeSmartRef<daeElement> > &array );
+	void getChildren( daeTArray<daeSmartRef<daeElement> > &array );
 
 	/**
 	 * Clones/deep copies this @c daeElement and all of it's subtree.
@@ -561,7 +561,7 @@ public:
 	 *        Default is no name mangling.
 	 * @return Returns a @c daeElement smartref of the copy of this element.
 	 */
-	DLLSPEC daeSmartRef<daeElement> clone( daeString idSuffix = NULL, daeString nameSuffix = NULL );
+	daeSmartRef<daeElement> clone( daeString idSuffix = NULL, daeString nameSuffix = NULL );
 	
 public:
 	/**
@@ -570,12 +570,12 @@ public:
 	 * This is used as part of post-parsing process of a COLLADA instance document, 
 	 * which results in a new document in the database.
 	 */
-	static DLLSPEC void resolveAll();
+	static void resolveAll();
 
 	/**
 	 * Clears the resolveArray.
 	 */
-	static DLLSPEC void clearResolveArray();
+	static void clearResolveArray();
 public:
 	/**
 	 * Releases the element passed in. This function is a static wrapper that invokes 
@@ -583,7 +583,7 @@ public:
 	 * if it is not NULL.
 	 * @param elem Element to call @c release() for, if the element exists.
 	 */
-	static DLLSPEC void releaseElem(const daeElement* elem) {if (elem != NULL) elem->release();}
+	static void releaseElem(const daeElement* elem) {if (elem != NULL) elem->release();}
 	
 	/**
 	 * Increments the reference counter for the element passed in. This function is a static wrapper
@@ -591,7 +591,7 @@ public:
 	 * if it is not NULL.
 	 * @param elem Element to call @c ref() for, if the element exists.
 	 */
-	static DLLSPEC void refElem(const daeElement* elem) { if (elem != NULL) elem->ref(); }
+	static void refElem(const daeElement* elem) { if (elem != NULL) elem->ref(); }
 
 	/**
 	 * Appends the passed in element to the list of elements that need to be resolved.
@@ -599,10 +599,10 @@ public:
 	 * @param elem Element to add to the list of elements
 	 * waiting for their @c daeURIs to be resolved.
 	 */
-	static DLLSPEC void appendResolveElement(daeElement* elem);
+	static void appendResolveElement(daeElement* elem);
 
 	// This function is called internally
-	static DLLSPEC void deleteCMDataArray(daeTArray<daeCharArray*>& cmData);
+	static void deleteCMDataArray(daeTArray<daeCharArray*>& cmData);
 };
 #include <dae/daeSmartRef.h>
 typedef daeSmartRef<daeElement> daeElementRef;
