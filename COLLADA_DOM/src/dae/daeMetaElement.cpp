@@ -102,7 +102,7 @@ daeMetaElement::daeMetaElement()
 	_elementSize = sizeof(daeElement);
 	_metaValue = NULL;
 	_metaContents = NULL;
-    _metaContentsOrder = NULL; // sthomas
+	_metaContentsOrder = NULL; // sthomas
 	_metaIntegration = NULL;
 	_metaID = NULL;
 	_isTrackableForQueries = true;
@@ -111,8 +111,6 @@ daeMetaElement::daeMetaElement()
 	_isAbstract = false;
 	_allowsAny = false;
 	_innerClass = false;
-	_metas().append(this);
-
 	_contentModel = NULL;
 	_metaCMData = NULL;
 	_numMetaChoices = 0;
@@ -122,19 +120,19 @@ daeMetaElement::~daeMetaElement()
 {
 	if (_metaContents)
 		delete _metaContents;
-    if (_contentModel) // sthomas
-        delete _contentModel;
-    if (_metaContentsOrder) // sthomas
-        delete _metaContentsOrder;
+	if (_contentModel) // sthomas
+		delete _contentModel;
+	if (_metaContentsOrder) // sthomas
+		delete _metaContentsOrder;
 	if (_metaCMData)
 		delete _metaCMData;
 }
 
 void daeMetaElement::setCMRoot( daeMetaCMPolicy *cm )
 {
-    if (_contentModel) 
-        delete _contentModel;
-    _contentModel = cm;
+	if (_contentModel) 
+		delete _contentModel;
+	_contentModel = cm;
 }
 
 void

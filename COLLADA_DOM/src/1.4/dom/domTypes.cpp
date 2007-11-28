@@ -2925,9 +2925,9 @@ void registerDomTypes(daeAtomicTypeList& atomicTypes)
 
 }
 
-daeMetaElement* registerDomElements()
+daeMetaElement* registerDomElements(DAE& dae)
 {
-	daeMetaElement* meta = domCOLLADA::registerElement();
+	daeMetaElement* meta = domCOLLADA::registerElement(dae);
 	// Enable tracking of top level object by default
 	domCOLLADA::_Meta->setIsTrackableForQueries(true);
 	return meta;	

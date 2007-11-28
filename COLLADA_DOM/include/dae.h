@@ -20,6 +20,7 @@
 #include <dae/daeIOPlugin.h>
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeAtomicType.h>
+#include <dae/daeMetaElement.h>
 
 class daeIDRefResolver;
 class domCOLLADA;
@@ -115,7 +116,8 @@ public:
 	DLLSPEC virtual domCOLLADA* getDomFile(daeString file);
 	DLLSPEC virtual daeInt      setDomFile(daeString file, domCOLLADA* dom);
 
-	daeAtomicTypeList& getAtomicTypes();
+	DLLSPEC daeAtomicTypeList& getAtomicTypes();
+	DLLSPEC daeMetaElementRefArray& getMetas();
 
 private:
 	void DLLSPEC init(daeDatabase* database, daeIOPlugin* ioPlugin);
@@ -130,6 +132,7 @@ private:
 	daeIntegrationLibraryFunc registerFunc; 
 	daeMetaElement *topMeta;
 	daeAtomicTypeList atomicTypes;
+	daeMetaElementRefArray metas;
 };
 
 #endif // __DAE_INTERFACE__

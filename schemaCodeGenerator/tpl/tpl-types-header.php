@@ -167,8 +167,11 @@ namespace COLLADA_TYPE
 	foreach( $_globals['elementTypes'] as $num => $val )
 	{
 		print ",\n\t\t". strtoupper( $val ) ." = ". ($num+2);
-	}	
-?>;
-};
+	}
+	//print ",\n\t\tTYPE_COUNT = " . count($_globals['elementTypes'])+2 . ";";
+	print ",\n\t\tTYPE_COUNT = " . (count($_globals['elementTypes'])+2) . ";";
+?>
+
+}
 
 #endif

@@ -13,6 +13,7 @@
 #ifndef __DOM__
 #define __DOM__
 
+class DAE;
 class daeMetaElement;
 
 extern daeString COLLADA_VERSION;
@@ -22,7 +23,7 @@ extern daeString COLLADA_NAMESPACE;
 void registerDomTypes(daeAtomicTypeList& atomicTypes);
 
 // Register all elements
-daeMetaElement* registerDomElements();
+daeMetaElement* registerDomElements(DAE& dae);
 
 
 #endif // __DOM_INTERFACE__

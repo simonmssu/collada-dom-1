@@ -19,6 +19,7 @@
 #include <dae/daeElement.h>
 #include <dae/daeMetaAttribute.h>
 
+class DAE;
 class daeMetaCMPolicy;
 class daeMetaElementArrayAttribute;
 
@@ -45,36 +46,38 @@ typedef daeElementRef (*daeElementConstructFunctionPtr)(daeInt bytes);
 class daeMetaElement : public daeElement
 {
 protected:
-	daeStringRef						_name;
+	daeStringRef _name;
 
-	daeElementConstructFunctionPtr		_createFunc;
-	daeBool								_needsResolve;
-	daeInt								_elementSize;
+	daeElementConstructFunctionPtr _createFunc;
+	daeBool _needsResolve;
+	daeInt _elementSize;
 	
-	daeMetaAttributeRefArray			_metaAttributes;
-	daeMetaAttributeRef					_metaValue;
-	daeMetaElementArrayAttribute*		_metaContents;
-	daeMetaArrayAttribute*				_metaContentsOrder;
+	daeMetaAttributeRefArray _metaAttributes;
+	daeMetaAttributeRef _metaValue;
+	daeMetaElementArrayAttribute* _metaContents;
+	daeMetaArrayAttribute* _metaContentsOrder;
 
-	daeMetaElement *					_metaIntegration;
-	daeMetaAttributeRef					_metaID;
+	daeMetaElement* _metaIntegration;
+	daeMetaAttributeRef _metaID;
 
-	daeMetaAttributePtrArray			_resolvers;
+	daeMetaAttributePtrArray _resolvers;
 
-	daeBool								_isTrackableForQueries;
-	daeBool								_usesStringContents;
+	daeBool _isTrackableForQueries;
+	daeBool _usesStringContents;
 
-	daeBool								_isTransparent;
-	daeBool								_isAbstract;
-	daeBool								_allowsAny;
-	daeBool								_innerClass;
+	daeBool _isTransparent;
+	daeBool _isAbstract;
+	daeBool _allowsAny;
+	daeBool _innerClass;
 	
-	DLLSPEC static daeTArray<daeSmartRef<daeMetaElement> >		&_metas();
-	DLLSPEC static daeTArray< daeMetaElement** >				&_classMetaPointers();
+// 	DLLSPEC static daeTArray<daeSmartRef<daeMetaElement> >		&_metas();
+// 	DLLSPEC static daeTArray< daeMetaElement** >				&_classMetaPointers();
 
-    daeMetaCMPolicy *					_contentModel;	
-	daeMetaArrayAttribute*				_metaCMData;
-	daeUInt								_numMetaChoices;
+	daeMetaCMPolicy* _contentModel;	
+	daeMetaArrayAttribute* _metaCMData;
+	daeUInt _numMetaChoices;
+
+	DAE& dae;
 
 public:
 	/**
@@ -394,9 +397,9 @@ public:
 	/**
 	 * Releases all of the meta information contained in @c daeMetaElements.
 	 */
-	static DLLSPEC void releaseMetas();
+// 	static DLLSPEC void releaseMetas();
 
-	static const daeTArray<daeSmartRef<daeMetaElement> > &getAllMetas() { return _metas(); }
+// 	static const daeTArray<daeSmartRef<daeMetaElement> > &getAllMetas() { return _metas(); }
 };
 
 typedef daeSmartRef<daeMetaElement> daeMetaElementRef;

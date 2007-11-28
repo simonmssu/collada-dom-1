@@ -76,6 +76,7 @@
 		print $indent ."class ". $full_element_name ." : public ". $baseClass ."\n".$indent."{\n";
 		print $indent ."public:\n";
 		print $indent ."\tCOLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
+		print $indent ."\tstatic COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
 	}
 
   // INTERNAL CLASSES
@@ -453,6 +454,7 @@
 		print $indent ."{\n";
 		print $indent ."public:\n";
 		print $indent ."\tCOLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
+		print $indent ."\tstatic COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
 		
 		if ( $_globals['accessorsAndMutators'] && ( $bag['useXMLNS'] || count($bag['attributes'])>0 ) ) {
 			//generate accessors and mutators for everything

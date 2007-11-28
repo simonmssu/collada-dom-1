@@ -69,6 +69,11 @@ domAny::registerElement()
 	return _Meta;
 }
 
+domAny::~domAny() {
+	// domAny objects own their corresponding daeMetaElement
+	delete _meta;
+}
+
 // Implementation of daeMetaAttribute that understands how domAny works
 class domAnyAttribute : public daeMetaAttribute {
 public:

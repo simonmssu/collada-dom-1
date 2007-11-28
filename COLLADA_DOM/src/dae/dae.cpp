@@ -466,3 +466,21 @@ daeString DAE::getDomVersion()
 daeAtomicTypeList& DAE::getAtomicTypes() {
 	return atomicTypes;
 }
+
+daeMetaElement* DAE::getMeta(int typeID) {
+	int index = typeID - 2;
+	if (index < 0 || index >= metas.getCount())
+		return NULL;
+	return metas[index];
+}
+
+void DAE::setMeta(int typeID, daeMetaElement& meta) {
+	int index = typeID - 2;
+	if (index < 0 || index >= metas.getCount())
+		return;
+	metas[index] = &meta;
+}
+
+daeMetaElementRefArray& DAE::getAnyMetas() {
+	return anyMetas;
+}
