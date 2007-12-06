@@ -52,8 +52,8 @@ public:
 	 */
 	static void setErrorHandler( daeErrorHandler *eh );
 	/**
-	 * Returns the current daeErrorHandlerPlugin. DaeErrorHandler implements a singleton design pattern
-	 * so you can get the current daeErrorHandler statically.
+	 * Returns the current daeErrorHandlerPlugin. A program has one globally-accessible
+	 * daeErrorHandler active at a time.
 	 * @return The current daeErrorHandler.
 	 */
 	static daeErrorHandler *get();
