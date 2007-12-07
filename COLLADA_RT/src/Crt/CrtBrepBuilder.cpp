@@ -380,7 +380,10 @@ bool CrtBrep::initFaces(domFaces *faces)
 		// load surface:
 		IsValid = sur_occ_parser->ReadSurface(brepSurfaces, surface_occ);
 		if (!IsValid)
+		{
+			delete sur_occ_parser;
 			return false;
+		}
 
 		// Make face by surface first:
 		if (!surface_occ.IsNull())
@@ -421,9 +424,13 @@ bool CrtBrep::initFaces(domFaces *faces)
 			mFaceMap.Add(face);
 		}
 		else
+		{
+			delete sur_occ_parser;
 			return false;
+		}
 	}
 
+	delete sur_occ_parser;
 	return true;
 }
 
@@ -1000,6 +1007,7 @@ bool MeshMerger::generateVertexNormal()
 
 	return true;
 }
+//#define NON_REMOVE_DOUBLE_EDGE
 
 int MeshMerger::UpdateGlobalVertices(const gp_Pnt &pt, const TopLoc_Location &L)
 {
@@ -1009,6 +1017,7 @@ int MeshMerger::UpdateGlobalVertices(const gp_Pnt &pt, const TopLoc_Location &L)
 
 	CrtVec3f v((float)p_transformed.X(), (float)p_transformed.Y(), (float)p_transformed.Z());
 
+#ifndef NON_REMOVE_DOUBLE_EDGE
 	std::map<CrtVec3f, int>::iterator iter = vertexSearch.find(v);
 
 	// if this is not in the map
@@ -1023,6 +1032,11 @@ int MeshMerger::UpdateGlobalVertices(const gp_Pnt &pt, const TopLoc_Location &L)
 	{
 		return vertexSearch[v];
 	}
+#else
+	global_vertices.push_back(v);
+	global_index_vertex++;
+	return global_index_vertex-1;
+#endif
 }
 
 bool MeshMerger::UpdateGlobalTriangles(const gp_Vec &fn, const TopLoc_Location &L, 

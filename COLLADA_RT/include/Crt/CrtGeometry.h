@@ -246,6 +246,7 @@ public:
 
 	CrtUInt     *   indexes;
 
+	CrtInt		HiddenLineRemovalMode; // 0: not wire frame mode 1: polygon offset 2: stencil buffer.
 public:
 
 	CrtPolyGroup()
@@ -341,6 +342,12 @@ public:
 
 	//---------------------- End External Interfaces -----------------------------//
 
+	//---------------------- For hidden line removal with stencil buffer ---------//
+
+	// PRE: correct stencil buffer settings!
+	// first two parameters are color of line and color of background
+	// other parameters are for glDrawElements
+	CrtVoid HLRemovalEachPolygon(CrtVec3f background, CrtVec3f foreground, GLenum mode, GLsizei count, GLenum type, const GLvoid *indices);
 };
 
 class CrtPolygons : public CrtPolyGroup

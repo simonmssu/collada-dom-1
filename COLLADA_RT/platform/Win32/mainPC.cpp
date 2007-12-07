@@ -180,10 +180,12 @@ void ProcessInput( bool	keys[] )
 	if (keys['Q'])
 	{
 		if (togglewireframe) {
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+			//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+			_CrtRender.SetHiddenLineRemoval(CrtTrue);
 			togglewireframe = FALSE;
 		} else {
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			_CrtRender.SetHiddenLineRemoval(CrtFalse);
 			togglewireframe = TRUE;
 		}
 		keys['Q'] = false;
@@ -1046,8 +1048,8 @@ BOOL CreateGLWindow(CrtChar* title, CrtInt32 width, CrtInt32 height, CrtInt32 bi
 		0,											
 		0,											
 		0, 0, 0, 0,									
-		16,											
-		0,											
+		16,	// depth of depth (z) buffer								
+		16, // depth of stencil buffer										
 		0,											
 		PFD_MAIN_PLANE,								
 		0,											

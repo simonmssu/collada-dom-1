@@ -167,6 +167,15 @@ CrtVoid 	CrtPolyGroup::Draw(CrtNode *parentNode, CrtInstance * instance)
 	}
 }
 
+// this function will implement hidden line removal
+CrtVoid		CrtPolyGroup::HLRemovalEachPolygon(CrtVec3f background, CrtVec3f foreground, GLenum mode, GLsizei count, GLenum type, const GLvoid *indices)
+{
+	// draw out line in frame buffer
+
+	// draw out line in stencil buffer 
+	return;
+}
+
 CrtGeometry::~CrtGeometry()
 {
 	while(!Groups.empty())
@@ -195,6 +204,13 @@ CrtGeometry::~CrtGeometry()
 		CrtDeleteData(SkinIndex);
 		SkinIndex = NULL;
 	}
+
+#ifdef DEBUG_NORMAL_
+	delete [] sumPNIndex;
+	sumPNIndex = NULL;
+	delete [] sumPN;
+	sumPN = NULL;
+#endif
 }
 
 #ifdef DEBUG_NORMAL_
