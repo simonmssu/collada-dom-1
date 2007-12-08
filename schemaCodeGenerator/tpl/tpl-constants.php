@@ -33,13 +33,13 @@ print $_globals['copyright_text'];
 	
 	foreach ($_globals['elementTypes'] as $num => $val )
 	{
-		print "extern DLLSPEC daeString COLLADA_TYPE_". strtoupper( $val ) .";\n";
+		print "extern DLLSPEC daeString COLLADA_TYPE_". getUniqueName($val, $_globals['elementTypes']) .";\n";
 	}
 	print "\n";
 	
 	foreach ($_globals['elementNames'] as $num => $val )
 	{
-		print "extern DLLSPEC daeString COLLADA_ELEMENT_". strtoupper( $val ) .";\n";
+		print "extern DLLSPEC daeString COLLADA_ELEMENT_". getUniqueName($val, $_globals['elementNames']) .";\n";
 	}
 ?>
 

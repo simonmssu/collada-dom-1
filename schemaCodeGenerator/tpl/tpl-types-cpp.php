@@ -32,50 +32,50 @@ foreach( $bag as $type => $meta )
 
 ?>
 
-void registerDomTypes()
+void registerDomTypes(daeAtomicTypeList& atomicTypes)
 {
-
 	daeAtomicType* type = NULL;
+
 <?php
 
 foreach( $bag as $type => $meta )
 {
   if ( count( $meta['enum'] ) > 0 && !$meta['useConstStrings'] )
   {?>
-    // ENUM: <?= ucfirst( $type ) ?>
-    
-    type = new daeEnumType;
-    type->_nameBindings.append("<?= ucfirst( $type ) ?>");
-    ((daeEnumType*)type)->_strings = new daeStringRefArray;
-    ((daeEnumType*)type)->_values = new daeEnumArray;
+	// ENUM: <?= ucfirst( $type ) ?>
+
+	type = new daeEnumType;
+	type->_nameBindings.append("<?= ucfirst( $type ) ?>");
+	((daeEnumType*)type)->_strings = new daeStringRefArray;
+	((daeEnumType*)type)->_values = new daeEnumArray;
 <?php
     foreach( $meta['enum'] as $val )
     {?>
 	((daeEnumType*)type)->_strings->append("<?= $val ?>");
 <?php $val = str_replace( '.', '_', $val ); ?>
-	((daeEnumType*)type)->_values->append(<?= strtoupper($type) . "_" . $val ?>);    
+	((daeEnumType*)type)->_values->append(<?= strtoupper($type) . "_" . $val ?>);
 <?php
     }
-    print "\tdaeAtomicType::append( type );\n\n";
+    print "\tatomicTypes.append( type );\n\n";
   }
   elseif ( $meta['isComplex'] ) {
   ?>
-    // COMPLEX TYPE: <?= ucfirst( $type ) ?>
-    
-    type = new daeElementRefType;
-    type->_nameBindings.append("<?= ucfirst( $type ) ?>");
-    daeAtomicType::append( type );
-    
+	// COMPLEX TYPE: <?= ucfirst( $type ) ?>
+
+	type = new daeElementRefType;
+	type->_nameBindings.append("<?= ucfirst( $type ) ?>");
+	atomicTypes.append( type );
+
 <?php
   }
   /*else if ( $meta['union_type'] ) { //union type
 	?>
-    // ENUM: <?= ucfirst( $type ) ?>
-    
-    type = new daeEnumType;
-    type->_nameBindings.append("<?= ucfirst( $type ) ?>");
-    ((daeEnumType*)type)->_strings = new daeStringRefArray;
-    ((daeEnumType*)type)->_values = new daeEnumArray;
+	// ENUM: <?= ucfirst( $type ) ?>
+	
+	type = new daeEnumType;
+	type->_nameBindings.append("<?= ucfirst( $type ) ?>");
+	((daeEnumType*)type)->_strings = new daeStringRefArray;
+	((daeEnumType*)type)->_values = new daeEnumArray;
 <?php
 	$types = explode( ' ', $meta['union_members'] );
 	foreach ( $types as $typeName ) {
@@ -84,12 +84,12 @@ foreach( $bag as $type => $meta )
     {?>
 	((daeEnumType*)type)->_strings->append("<?= $val ?>");
 <?php $val = str_replace( '.', '_', $val ); ?>
-	((daeEnumType*)type)->_values->append(<?= strtoupper($type) . "_" . $val ?>);    
+	((daeEnumType*)type)->_values->append(<?= strtoupper($type) . "_" . $val ?>);
 <?php
 			}
 		}
     }
-    print "\tdaeAtomicType::append( type );\n\n";
+    print "\tatomicTypes.append( type );\n\n";
   }  */
   else if ( !$meta['useConstStrings'] ) { //standard typedef
 	$base = strlen( $meta['base'] ) > 0 ? $meta['base'] : $meta['listType'];
@@ -105,16 +105,16 @@ foreach( $bag as $type => $meta )
 <?php 
 	//special casing URIFragmentType to be a xsURI for automatic resolution
 	if ( $type == 'URIFragmentType' ) {
-		print "\ttype = daeAtomicType::get(\"xsAnyURI\");\n";
+		print "\ttype = atomicTypes.get(\"xsAnyURI\");\n";
 	}
 	else {
-		print "\ttype = daeAtomicType::get(\"". $base ."\");\n";
+		print "\ttype = atomicTypes.get(\"". $base ."\");\n";
 	}
 ?>
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("<?= ucfirst( $type ) ?>");
-		daeAtomicType::append( type );
+		atomicTypes.append( type );
 	}
 	else { //add binding to existing type
 		type->_nameBindings.append("<?= ucfirst( $type ) ?>");
@@ -126,9 +126,9 @@ foreach( $bag as $type => $meta )
 ?>
 }
 
-daeMetaElement* registerDomElements()
+daeMetaElement* registerDomElements(DAE& dae)
 {
-	daeMetaElement* meta = domCOLLADA::registerElement();
+	daeMetaElement* meta = domCOLLADA::registerElement(dae);
 	// Enable tracking of top level object by default
 	domCOLLADA::_Meta->setIsTrackableForQueries(true);
 	return meta;	

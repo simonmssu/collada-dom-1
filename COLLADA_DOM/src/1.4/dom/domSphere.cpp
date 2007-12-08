@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domSphere.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,7 +22,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSphere::create(daeInt)
+domSphere::create()
 {
 	domSphereRef ref = new domSphere;
 	return ref;
@@ -29,42 +30,43 @@ domSphere::create(daeInt)
 
 
 daeMetaElement *
-domSphere::registerElement()
+domSphere::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "sphere" );
-	_Meta->registerClass(domSphere::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "sphere" );
+	meta->registerClass(domSphere::create, &meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "radius" );
 	mea->setOffset( daeOffsetOf(domSphere,elemRadius) );
-	mea->setElementType( domSphere::domRadius::registerElement() );
+	mea->setElementType( domSphere::domRadius::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domSphere,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm->setMaxOrdinal( 1 );
-	_Meta->setCMRoot( cm );	
-	
-	
-	_Meta->setElementSize(sizeof(domSphere));
-	_Meta->validate();
 
-	return _Meta;
+	cm->setMaxOrdinal( 1 );
+	meta->setCMRoot( cm );	
+
+	meta->setElementSize(sizeof(domSphere));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domSphere::domRadius::create(daeInt)
+domSphere::domRadius::create()
 {
 	domSphere::domRadiusRef ref = new domSphere::domRadius;
 	return ref;
@@ -72,34 +74,30 @@ domSphere::domRadius::create(daeInt)
 
 
 daeMetaElement *
-domSphere::domRadius::registerElement()
+domSphere::domRadius::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "radius" );
-	_Meta->registerClass(domSphere::domRadius::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "radius" );
+	meta->registerClass(domSphere::domRadius::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domSphere::domRadius , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domSphere::domRadius));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domSphere::domRadius));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domSphere::_Meta = NULL;
-daeMetaElement * domSphere::domRadius::_Meta = NULL;
-
 

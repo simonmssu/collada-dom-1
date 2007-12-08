@@ -118,14 +118,11 @@ daeMetaElement::daeMetaElement()
 
 daeMetaElement::~daeMetaElement()
 {
-	if (_metaContents)
-		delete _metaContents;
-	if (_contentModel) // sthomas
-		delete _contentModel;
-	if (_metaContentsOrder) // sthomas
-		delete _metaContentsOrder;
-	if (_metaCMData)
-		delete _metaCMData;
+	delete _metaContents;
+	delete _contentModel;
+	delete _metaContentsOrder;
+	delete _metaCMData;
+	delete _metaIntegration;
 }
 
 void daeMetaElement::setCMRoot( daeMetaCMPolicy *cm )
@@ -268,26 +265,26 @@ daeMetaElement::getMetaAttribute(daeString s)
 }
 
 
-void daeMetaElement::releaseMetas()
-{
-	_metas().clear();
-	size_t count = _classMetaPointers().getCount();
-	for ( size_t i = 0; i < count; i++ )
-	{
-		*(_classMetaPointers()[i]) = NULL;
-	}
-	_classMetaPointers().clear();
-	if (mera)
-	{
-		delete mera;
-		mera = NULL;
-	}
-	if (mes)
-	{
-		delete mes;
-		mes = NULL;
-	}
-}
+// void daeMetaElement::releaseMetas()
+// {
+// 	_metas().clear();
+// 	size_t count = _classMetaPointers().getCount();
+// 	for ( size_t i = 0; i < count; i++ )
+// 	{
+// 		*(_classMetaPointers()[i]) = NULL;
+// 	}
+// 	_classMetaPointers().clear();
+// 	if (mera)
+// 	{
+// 		delete mera;
+// 		mera = NULL;
+// 	}
+// 	if (mes)
+// 	{
+// 		delete mes;
+// 		mes = NULL;
+// 	}
+// }
 
 daeBool daeMetaElement::place(daeElement *parent, daeElement *child, daeUInt *ordinal )
 {
@@ -509,21 +506,21 @@ void daeMetaElement::getChildren( daeElement* parent, daeElementRefArray &array 
 	}
 }
 
-daeMetaElementRefArray &daeMetaElement::_metas()
-{
-	if (!mera)
-	{
-		mera = new daeMetaElementRefArray();
-	}
-	return *mera;
-}
+// daeMetaElementRefArray &daeMetaElement::_metas()
+// {
+// 	if (!mera)
+// 	{
+// 		mera = new daeMetaElementRefArray();
+// 	}
+// 	return *mera;
+// }
 
-daeTArray< daeMetaElement** > &daeMetaElement::_classMetaPointers()
-{
-	if (!mes)
-	{
-		mes = new daeTArray< daeMetaElement** >();
-	}
-	return *mes;
-}
+// daeTArray< daeMetaElement** > &daeMetaElement::_classMetaPointers()
+// {
+// 	if (!mes)
+// 	{
+// 		mes = new daeTArray< daeMetaElement** >();
+// 	}
+// 	return *mes;
+// }
 

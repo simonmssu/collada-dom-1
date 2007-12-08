@@ -15,7 +15,7 @@
  * --- DO NOT REMOVE THIS LINE --- SNIP_SDK_COPYRIGHT_C_END */
 
 void
-registerElements()
+registerElements(DAE& dae)
 {
 <?= implode( '\n', $_globals['register_list'] ); ?>
 }

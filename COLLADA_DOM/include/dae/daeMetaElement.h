@@ -294,8 +294,9 @@ public:
 	 * @param func Pointer to a function that does object construction.
 	 * @param metaPtr Pointer to the class static meta pointer.
 	 */
+	// !!!steveT Remove the second parameter. It's useless now.
 	void registerClass(daeElementConstructFunctionPtr func, daeMetaElement** metaPtr = NULL ) {
-		_createFunc = func; if ( metaPtr != NULL ) _classMetaPointers().append( metaPtr );	}
+		_createFunc = func; }
 
 	/**
 	 * Determines if this element contains attributes

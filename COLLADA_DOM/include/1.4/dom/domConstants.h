@@ -1,14 +1,14 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
 #ifndef __DOM_CONSTANTS_H__
@@ -633,7 +633,7 @@ extern DLLSPEC daeString COLLADA_ELEMENT_USERTYPE;
 extern DLLSPEC daeString COLLADA_ELEMENT_CONNECT_PARAM;
 extern DLLSPEC daeString COLLADA_ELEMENT_CONSTANT;
 extern DLLSPEC daeString COLLADA_ELEMENT_ARGUMENT;
-extern DLLSPEC daeString COLLADA_ELEMENT_rgb;
+extern DLLSPEC daeString COLLADA_ELEMENT_RGB;
 extern DLLSPEC daeString COLLADA_ELEMENT_ALPHA;
 extern DLLSPEC daeString COLLADA_ELEMENT_TEXCOMBINER;
 extern DLLSPEC daeString COLLADA_ELEMENT_TEXENV;
@@ -794,7 +794,7 @@ extern DLLSPEC daeString COLLADA_ELEMENT_SRC_RGB;
 extern DLLSPEC daeString COLLADA_ELEMENT_DEST_RGB;
 extern DLLSPEC daeString COLLADA_ELEMENT_SRC_ALPHA;
 extern DLLSPEC daeString COLLADA_ELEMENT_DEST_ALPHA;
-extern DLLSPEC daeString COLLADA_ELEMENT_RGB;
+extern DLLSPEC daeString COLLADA_ELEMENT_rgb;
 extern DLLSPEC daeString COLLADA_ELEMENT_MODE;
 extern DLLSPEC daeString COLLADA_ELEMENT_REF;
 extern DLLSPEC daeString COLLADA_ELEMENT_MASK;

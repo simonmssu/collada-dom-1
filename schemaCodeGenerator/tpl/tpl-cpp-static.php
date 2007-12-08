@@ -17,7 +17,7 @@
   {
     $_context[$i] = $_globals['prefix'] . ucfirst( $_context[$i] );//. "_element";
   }
-?><?= $_globals['meta_prefix'] ?>MetaElement * <?= implode( '::', $_context ) ?>::_Meta = NULL;
+?>
 <?php
 //}
   $keys = array_keys( $bag['inline_elements'] );

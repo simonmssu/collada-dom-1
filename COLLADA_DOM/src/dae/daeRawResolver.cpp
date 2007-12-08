@@ -18,7 +18,7 @@
 
 using namespace std;
 
-daeRawResolver::daeRawResolver()
+daeRawResolver::daeRawResolver(DAE& dae) : daeURIResolver(dae)
 {
 }
 
@@ -61,9 +61,8 @@ daeRawResolver::isProtocolSupported(daeString protocol)
 }
 
 daeBool
-daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
+daeRawResolver::resolveElement(daeURI& uri)
 {
-	(void)typeNameHint;
 	// Make sure the URI is validated
 	if (uri.getState() == daeURI::uri_loaded)
 	{

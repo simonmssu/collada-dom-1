@@ -36,7 +36,7 @@
 	print "extern daeString COLLADA_NAMESPACE;\n\n";
   }
 ?><?= $_globals['meta_prefix'] ?>ElementRef
-<?= $scoped_element ?>::create(<?= $_globals['meta_prefix'] ?>Int)
+<?= $scoped_element ?>::create()
 {
 	<?= $scoped_element ?>Ref ref = new <?= $scoped_element ?>;
 <?php
@@ -96,23 +96,25 @@
 ?>
 
 <?= $_globals['meta_prefix'] ?>MetaElement *
-<?= $scoped_element ?>::registerElement()
+<?= $scoped_element ?>::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "<?= $bag['element_name'] ?>" );
-	_Meta->registerClass(<?= $scoped_element ?>::create, &_Meta);
+	<?= $_globals['meta_prefix'] ?>MetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "<?= $bag['element_name'] ?>" );
+	meta->registerClass(<?= $scoped_element ?>::create, &meta);
 
 <?php
 	if ( $bag['isAGroup'] ) {
-		print "\t_Meta->setIsTransparent( true );\n";
+		print "\tmeta->setIsTransparent( true );\n";
 	}
 	if ( $bag['abstract'] ) {
-		print "\t_Meta->setIsAbstract( true );\n";
+		print "\tmeta->setIsAbstract( true );\n";
 	}
 	if ( isset( $bag['parent_meta'] ) ) {
-		print "\t_Meta->setIsInnerClass( true );\n";
+		print "\tmeta->setIsInnerClass( true );\n";
 	}
 	  
 	if ( count( $bag['elements'] ) > 0 || $bag['has_any'] )
@@ -142,7 +144,14 @@
 				//if ( $level > 0 ) {
 				//	$needsContents = true;
 				//}
-				print "\tcm = new daeMetaSequence( _Meta, cm, ". $currentOrd .", ". $cm['minOccurs'] .", ". $cm['maxOccurs'] ." );\n\n";
+
+				// !!!steveT Horrible hack here. For some reason the wrong value gets generated for 
+				// the third parameter
+				if (strcmp($scoped_element, "domCamera::domOptics::domTechnique_common::domPerspective") == 0)
+					print "\tcm = new daeMetaSequence( meta, cm, 0, ". $cm['minOccurs'] .", ". $cm['maxOccurs'] ." );\n\n";
+				else 
+					print "\tcm = new daeMetaSequence( meta, cm, ". $currentOrd .", ". $cm['minOccurs'] .", ". $cm['maxOccurs'] ." );\n\n";
+
 				$level++;
 				$currentCM = array( 'cm' => $currentCM['cm'], 'ord' => $currentOrd );
 				array_push( $cmTree, $currentCM );
@@ -151,7 +160,7 @@
 			}
 			else if ( $cm['name'] == 1 ) //choice
 			{
-				print "\tcm = new daeMetaChoice( _Meta, cm, ". $choiceNum .", ". $currentOrd .", ". $cm['minOccurs'] .", ". $cm['maxOccurs'] ." );\n\n";
+				print "\tcm = new daeMetaChoice( meta, cm, ". $choiceNum .", ". $currentOrd .", ". $cm['minOccurs'] .", ". $cm['maxOccurs'] ." );\n\n";
 				$level++;
 				$needsContents = true;
 				$currentCM = array( 'cm' => $currentCM['cm'], 'ord' => $currentOrd );
@@ -172,12 +181,12 @@
 					$arrayOrNot = false;
 				}
 ?>
-	mea = new daeMetaElement<?= $arrayOrNot ? 'Array' : '' ?>Attribute( _Meta, cm, <?= $currentOrd ?>, <?= $cm['minOccurs'] ?>, <?= $cm['maxOccurs'] ?> );
+	mea = new daeMetaElement<?= $arrayOrNot ? 'Array' : '' ?>Attribute( meta, cm, <?= $currentOrd ?>, <?= $cm['minOccurs'] ?>, <?= $cm['maxOccurs'] ?> );
 	mea->setName( "<?= $groupName ?>" );
 	mea->setOffset( daeOffsetOf(<?= $scoped_element ?>,elem<?= ucfirst( $groupName ) ?><?= $arrayOrNot ? '_array' : '' ?>) );
-	mea->setElementType( <?= $_globals['prefix'] . ucfirst( $groupName ) ?>::registerElement() );
-	cm->appendChild( new daeMetaGroup( mea, _Meta, cm, <?= $currentOrd ?>, <?= $cm['minOccurs'] ?>, <?= $cm['maxOccurs'] ?> ) );
-	
+	mea->setElementType( <?= $_globals['prefix'] . ucfirst( $groupName ) ?>::registerElement(dae) );
+	cm->appendChild( new daeMetaGroup( mea, meta, cm, <?= $currentOrd ?>, <?= $cm['minOccurs'] ?>, <?= $cm['maxOccurs'] ?> ) );
+
 <?php		
 				if ( $currentCM['cm']['name'] == 0 ) {
 					$currentOrd++;
@@ -185,7 +194,7 @@
 			}
 			else if ( $cm['name'] == 3 ) //all
 			{
-				//print "\tcm = new daeMetaAll( _Meta, cm, ". $cm['minOccurs'] .", ". $cm['maxOccurs'] ." );\n";
+				//print "\tcm = new daeMetaAll( meta, cm, ". $cm['minOccurs'] .", ". $cm['maxOccurs'] ." );\n";
 				$level++;
 				$needsContents = true;
 				$currentCM = array( 'cm' => $currentCM['cm'], 'ord' => $currentOrd );
@@ -196,7 +205,7 @@
 			else if ( $cm['name'] == 4 ) //any
 			{
 				$level++;
-				print "\tcm = new daeMetaAny( _Meta, cm, ". $currentOrd .", ". $cm['minOccurs'] .", ". $cm['maxOccurs'] ." );\n\n";
+				print "\tcm = new daeMetaAny( meta, cm, ". $currentOrd .", ". $cm['minOccurs'] .", ". $cm['maxOccurs'] ." );\n\n";
 				if ( $currentCM['cm']['name'] == 0 ) {
 					$currentOrd++;
 				}
@@ -210,7 +219,7 @@
 	cm->setMaxOrdinal( <?= ($currentOrd-1 >= 0)? $currentOrd-1 : 0 ?> );
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
-	
+
 <?php
 				}
 				//----------------------
@@ -252,24 +261,24 @@
 				$typeClass = $_globals['prefix'] . ucfirst( $bag['element_attrs'][ $cm['name'] ]['type'] );
 			}
 ?>
-	mea = new daeMetaElement<?= $arrayOrNot ? 'Array' : '' ?>Attribute( _Meta, cm, <?= $currentOrd ?>, <?= $cm['minOccurs'] ?>, <?= $cm['maxOccurs'] ?> );
+	mea = new daeMetaElement<?= $arrayOrNot ? 'Array' : '' ?>Attribute( meta, cm, <?= $currentOrd ?>, <?= $cm['minOccurs'] ?>, <?= $cm['maxOccurs'] ?> );
 	mea->setName( "<?= $cm['name'] ?>" );
 	mea->setOffset( daeOffsetOf(<?= $scoped_element ?>,elem<?= ucfirst( $cm['name'] ) ?><?=  $arrayOrNot ? '_array' : '' ?>) );
-	mea->setElementType( <?= $typeClass ?>::registerElement() );
+	mea->setElementType( <?= $typeClass ?>::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 <?php
 			if ( isset( $meta[$cm['name']] ) ) {
 				$cnt = count( $meta[$cm['name']]['substitutableWith']);
 				for ( $c = 0; $c < $cnt; $c++ ) {
 					$subwith = $meta[$cm['name']]['substitutableWith'][$c];
 ?>    
-	mea = new daeMetaElement<?= $arrayOrNot ? 'Array' : '' ?>Attribute( _Meta, cm, <?= $currentOrd ?>, <?= $cm['minOccurs'] ?>, <?= $cm['maxOccurs'] ?> );
+	mea = new daeMetaElement<?= $arrayOrNot ? 'Array' : '' ?>Attribute( meta, cm, <?= $currentOrd ?>, <?= $cm['minOccurs'] ?>, <?= $cm['maxOccurs'] ?> );
 	mea->setName( "<?= $subwith ?>" );
 	mea->setOffset( daeOffsetOf(<?= $scoped_element ?>,elem<?= ucfirst( $cm['name'] ) ?><?= $arrayOrNot ? '_array' : '' ?>) );
-	mea->setElementType( <?= $_globals['prefix'] . ucfirst( $subwith ) ?>::registerElement() );
+	mea->setElementType( <?= $_globals['prefix'] . ucfirst( $subwith ) ?>::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 <?php
 					$needsContents = true;
 				}
@@ -281,26 +290,26 @@
 	  }
 ?>
 	cm->setMaxOrdinal( <?= ($currentOrd-1 >= 0)? $currentOrd-1 : 0 ?> );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 <?php
 	  
 	  if ( $bag['has_any'] ) {
 		$needsContents = true;
-		print "\t_Meta->setAllowsAny( true );\n";
+		print "\tmeta->setAllowsAny( true );\n";
 	  }
 	  
       // For elements that allow more than one type of sub-element, _contents keeps an order for those sub-elements
 	  if ( $bag['hasChoice'] || $needsContents ) {
 ?>
 	// Ordered list of sub-elements
-    _Meta->addContents(daeOffsetOf(<?= $scoped_element ?>,_contents));
-    _Meta->addContentsOrder(daeOffsetOf(<?= $scoped_element ?>,_contentsOrder));
-        
+	meta->addContents(daeOffsetOf(<?= $scoped_element ?>,_contents));
+	meta->addContentsOrder(daeOffsetOf(<?= $scoped_element ?>,_contentsOrder));
+
 <?php
 		if ( $choiceNum > 0 )
 		{
 ?>
-    _Meta->addCMDataArray(daeOffsetOf(<?= $scoped_element ?>,_CMData), <?= $choiceNum ?>);<?php
+	meta->addCMDataArray(daeOffsetOf(<?= $scoped_element ?>,_CMData), <?= $choiceNum ?>);<?php
 		}
       }
     }
@@ -335,7 +344,7 @@
 	if (($bag['content_type'] != '' || $bag['mixed']) && !$bag['abstract'] ) {
 ?>
 	//	Add attribute: _value
- 	{
+	{
 <?php
 	$content_type = ( $bag['mixed'] ? 'ListOfInts' : $bag['content_type'] );
 	if ( preg_match( "/xs\:/", $content_type ) ) {
@@ -361,23 +370,23 @@
 		//}
 ?>
 		ma->setOffset( daeOffsetOf( <?= $scoped_element ?> , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
 <?php
     }
     
     if ( $bag['useXMLNS'] ) {
     ?>
-    //	Add attribute: xmlns
-    {
+	//	Add attribute: xmlns
+	{
 		daeMetaAttribute* ma = new daeMetaAttribute;
 		ma->setName( "xmlns" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( <?= $scoped_element ?> , attrXmlns ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		//ma->setIsRequired( true );
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
     <?php
     }
@@ -396,7 +405,7 @@
 ?>
 
 	//	Add attribute: <?= $attr_name . "\n" ?>
- 	{
+	{
 <?php
 		/*print "\t//". $_type ." is set ";
 		if ( isset( $typemeta[$_type] ) ) print "true\n";
@@ -416,7 +425,7 @@
 		ma->setName( "<?= $attr_name ?>" );
 		ma->setType( daeAtomicType::get("<?= $printType ?>"));
 		ma->setOffset( daeOffsetOf( <?= $scoped_element ?> , attr<?= ucfirst($attr_name) ?> ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 <?php
 		if ( isset( $attr_attrs['default'] ) )
 		{
@@ -431,16 +440,16 @@
 <?php
 	    }
 ?>	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 <?php
     }
-?>	
-	
-	_Meta->setElementSize(sizeof(<?= $scoped_element ?>));
-	_Meta->validate();
+?>
 
-	return _Meta;
+	meta->setElementSize(sizeof(<?= $scoped_element ?>));
+	meta->validate();
+
+	return meta;
 }
 
 <?php

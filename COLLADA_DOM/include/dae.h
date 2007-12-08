@@ -38,13 +38,13 @@ class daeURIResolver;
  * and initializes default versions of the COLLADA backend, the COLLADA
  * runtime database, and registered integration libraries. 
  */
-class DAE : public daeInterface
+class DLLSPEC DAE : public daeInterface
 {
 public:	
 	/** 
 	*  Constructor.
 	*/
-	DLLSPEC DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL) {
+	DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL) {
 		// See the end of the thread linked below for an explanation of why we have the DAE
 		// constructor set up this way. Basically, I'm going to be changing the build output 
 		// location, and when this happens people sometimes continue to link against the old
@@ -59,7 +59,7 @@ public:
 	/** 
 	* Destructor.
 	*/	
-	virtual DLLSPEC ~DAE();
+	virtual ~DAE();
 
 	/**
 	 * Releases all static meta information associated with the COLLADA DOM.
@@ -67,65 +67,85 @@ public:
 	 * @note This function is useless if called by the application in a non-static
 	 * context.
 	 */
-	static DLLSPEC void cleanup();
+	static void cleanup();
 	
 	// Abstract Interface Class for the daeDatabase front end
 public:
 	// Database setup	
-	virtual DLLSPEC daeDatabase* getDatabase();
-	virtual DLLSPEC daeInt setDatabase(daeDatabase* database);
+	virtual daeDatabase* getDatabase();
+	virtual daeInt setDatabase(daeDatabase* database);
 
 	// IO Plugin setup
-	virtual DLLSPEC daeIOPlugin* getIOPlugin();
-	virtual DLLSPEC daeInt setIOPlugin(daeIOPlugin* plugin);
+	virtual daeIOPlugin* getIOPlugin();
+	virtual daeInt setIOPlugin(daeIOPlugin* plugin);
 
 	// Integration Library Setup
-	virtual DLLSPEC daeIntegrationLibraryFunc getIntegrationLibrary();
-	virtual DLLSPEC daeInt setIntegrationLibrary(daeIntegrationLibraryFunc regFunc);
+	virtual daeIntegrationLibraryFunc getIntegrationLibrary();
+	virtual daeInt setIntegrationLibrary(daeIntegrationLibraryFunc regFunc);
 
 	// batch file operations
-	virtual DLLSPEC daeInt load(daeString uri, daeString docBuffer = NULL);
-	virtual DLLSPEC daeInt save(daeString uri, daeBool replace=true);
-	virtual DLLSPEC daeInt save(daeUInt documentIndex, daeBool replace=true);
-	virtual DLLSPEC daeInt saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace=true);
-	virtual DLLSPEC daeInt saveAs(daeString uriToSaveTo, daeUInt documentIndex=0, daeBool replace=true);
-	virtual DLLSPEC daeInt unload(daeString uri);
+	virtual daeInt load(daeString uri, daeString docBuffer = NULL);
+	virtual daeInt save(daeString uri, daeBool replace=true);
+	virtual daeInt save(daeUInt documentIndex, daeBool replace=true);
+	virtual daeInt saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace=true);
+	virtual daeInt saveAs(daeString uriToSaveTo, daeUInt documentIndex=0, daeBool replace=true);
+	virtual daeInt unload(daeString uri);
 
 	// These are exactly the same as the other load/save/unload functions, except that they
 	// work with file paths instead of URIs.
-	DLLSPEC virtual daeInt loadFile(daeString file, daeString memBuffer = NULL);
-	DLLSPEC virtual daeInt saveFile(daeString file, daeBool replace = true);
-	DLLSPEC virtual daeInt saveFileAs(daeString fileToSaveTo, daeString file, daeBool replace = true);
-	DLLSPEC virtual daeInt saveFileAs(daeString fileToSaveTo, daeUInt documentIndex = 0, daeBool replace = true);
-	DLLSPEC virtual daeInt unloadFile(daeString file);
+	virtual daeInt loadFile(daeString file, daeString memBuffer = NULL);
+	virtual daeInt saveFile(daeString file, daeBool replace = true);
+	virtual daeInt saveFileAs(daeString fileToSaveTo, daeString file, daeBool replace = true);
+	virtual daeInt saveFileAs(daeString fileToSaveTo, daeUInt documentIndex = 0, daeBool replace = true);
+	virtual daeInt unloadFile(daeString file);
 
-	virtual DLLSPEC daeInt clear();
+	virtual daeInt clear();
 
 	// Load/Save Progress	
-	virtual DLLSPEC void getProgress(daeInt* bytesParsed,
+	virtual void getProgress(daeInt* bytesParsed,
 		daeInt* lineNumber,
 		daeInt* totalBytes,
 		daeBool reset = false );
 
 	// Simple Query
-	virtual DLLSPEC domCOLLADA* getDom(daeString uri);
-	virtual DLLSPEC daeString getDomVersion();
-	virtual DLLSPEC daeInt setDom(daeString uri, domCOLLADA* dom);
+	virtual domCOLLADA* getDom(daeString uri);
+	virtual daeString getDomVersion();
+	virtual daeInt setDom(daeString uri, domCOLLADA* dom);
 
 	// Same as getDom/setDom, except works with file paths instead of URIs
-	DLLSPEC virtual domCOLLADA* getDomFile(daeString file);
-	DLLSPEC virtual daeInt      setDomFile(daeString file, domCOLLADA* dom);
+	virtual domCOLLADA* getDomFile(daeString file);
+	virtual daeInt      setDomFile(daeString file, domCOLLADA* dom);
 
-	DLLSPEC daeAtomicTypeList& getAtomicTypes();
-	DLLSPEC daeMetaElementRefArray& getMetas();
+	daeAtomicTypeList& getAtomicTypes();
+
+	daeMetaElement* getMeta(int typeID);
+	void setMeta(int typeID, daeMetaElement& meta);
+
+	/**
+	 * Appends the passed in element to the list of elements that need to be resolved.
+	 * The elements in this list will be resolved during @c resolveAll().
+	 * @param elem Element to add to the list of elements
+	 * waiting for their @c daeURIs to be resolved.
+	 */
+	void appendResolveElement(daeElement* elem);
+
+	/**
+	 * Resolves all @c daeURIs yet to be resolved in all @c daeElements that have been
+	 * created.
+	 * This is used as part of post-parsing process of a COLLADA instance document, 
+	 * which results in a new document in the database.
+	 */
+	void resolveAll();
+
+	daeURIResolverList& getURIResolvers();
+	daeURI& getBaseURI();
+	daeURI& setBaseURI(daeURI& uri);
 
 private:
-	void DLLSPEC init(daeDatabase* database, daeIOPlugin* ioPlugin);
+	void init(daeDatabase* database, daeIOPlugin* ioPlugin);
 
 	daeDatabase *database;
 	daeIOPlugin *plugin;
-	daeURIResolver* resolver;
-	daeURIResolver* rawResolver;
 	daeIDRefResolver* idResolver;
 	bool defaultDatabase;
 	bool defaultPlugin;
@@ -133,6 +153,9 @@ private:
 	daeMetaElement *topMeta;
 	daeAtomicTypeList atomicTypes;
 	daeMetaElementRefArray metas;
+	daeElementRefArray resolveArray;
+	daeURI baseUri;
+	daeURIResolverList uriResolvers;
 };
 
 #endif // __DAE_INTERFACE__

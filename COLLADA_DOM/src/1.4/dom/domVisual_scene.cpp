@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domVisual_scene.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,7 +22,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domVisual_scene::create(daeInt)
+domVisual_scene::create()
 {
 	domVisual_sceneRef ref = new domVisual_scene;
 	return ref;
@@ -29,77 +30,78 @@ domVisual_scene::create(daeInt)
 
 
 daeMetaElement *
-domVisual_scene::registerElement()
+domVisual_scene::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "visual_scene" );
-	_Meta->registerClass(domVisual_scene::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "visual_scene" );
+	meta->registerClass(domVisual_scene::create, &meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "asset" );
 	mea->setOffset( daeOffsetOf(domVisual_scene,elemAsset) );
-	mea->setElementType( domAsset::registerElement() );
+	mea->setElementType( domAsset::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 1, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 1, -1 );
 	mea->setName( "node" );
 	mea->setOffset( daeOffsetOf(domVisual_scene,elemNode_array) );
-	mea->setElementType( domNode::registerElement() );
+	mea->setElementType( domNode::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 2, 0, -1 );
 	mea->setName( "evaluate_scene" );
 	mea->setOffset( daeOffsetOf(domVisual_scene,elemEvaluate_scene_array) );
-	mea->setElementType( domVisual_scene::domEvaluate_scene::registerElement() );
+	mea->setElementType( domVisual_scene::domEvaluate_scene::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 3, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domVisual_scene,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 3 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 
 	//	Add attribute: id
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domVisual_scene , attrId ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( false );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: name
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domVisual_scene , attrName ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domVisual_scene));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domVisual_scene));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domVisual_scene::domEvaluate_scene::create(daeInt)
+domVisual_scene::domEvaluate_scene::create()
 {
 	domVisual_scene::domEvaluate_sceneRef ref = new domVisual_scene::domEvaluate_scene;
 	return ref;
@@ -107,48 +109,49 @@ domVisual_scene::domEvaluate_scene::create(daeInt)
 
 
 daeMetaElement *
-domVisual_scene::domEvaluate_scene::registerElement()
+domVisual_scene::domEvaluate_scene::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "evaluate_scene" );
-	_Meta->registerClass(domVisual_scene::domEvaluate_scene::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "evaluate_scene" );
+	meta->registerClass(domVisual_scene::domEvaluate_scene::create, &meta);
+
+	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, -1 );
 	mea->setName( "render" );
 	mea->setOffset( daeOffsetOf(domVisual_scene::domEvaluate_scene,elemRender_array) );
-	mea->setElementType( domVisual_scene::domEvaluate_scene::domRender::registerElement() );
+	mea->setElementType( domVisual_scene::domEvaluate_scene::domRender::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 0 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 
 	//	Add attribute: name
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domVisual_scene::domEvaluate_scene , attrName ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domVisual_scene::domEvaluate_scene));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domVisual_scene::domEvaluate_scene));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domVisual_scene::domEvaluate_scene::domRender::create(daeInt)
+domVisual_scene::domEvaluate_scene::domRender::create()
 {
 	domVisual_scene::domEvaluate_scene::domRenderRef ref = new domVisual_scene::domEvaluate_scene::domRender;
 	ref->attrCamera_node.setContainer( (domVisual_scene::domEvaluate_scene::domRender*)ref );
@@ -157,55 +160,56 @@ domVisual_scene::domEvaluate_scene::domRender::create(daeInt)
 
 
 daeMetaElement *
-domVisual_scene::domEvaluate_scene::domRender::registerElement()
+domVisual_scene::domEvaluate_scene::domRender::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "render" );
-	_Meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "render" );
+	meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::create, &meta);
+
+	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
 	mea->setName( "layer" );
 	mea->setOffset( daeOffsetOf(domVisual_scene::domEvaluate_scene::domRender,elemLayer_array) );
-	mea->setElementType( domVisual_scene::domEvaluate_scene::domRender::domLayer::registerElement() );
+	mea->setElementType( domVisual_scene::domEvaluate_scene::domRender::domLayer::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "instance_effect" );
 	mea->setOffset( daeOffsetOf(domVisual_scene::domEvaluate_scene::domRender,elemInstance_effect) );
-	mea->setElementType( domInstance_effect::registerElement() );
+	mea->setElementType( domInstance_effect::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 1 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 
 	//	Add attribute: camera_node
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "camera_node" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domVisual_scene::domEvaluate_scene::domRender , attrCamera_node ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domVisual_scene::domEvaluate_scene::domRender));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domVisual_scene::domEvaluate_scene::domRender));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domVisual_scene::domEvaluate_scene::domRender::domLayer::create(daeInt)
+domVisual_scene::domEvaluate_scene::domRender::domLayer::create()
 {
 	domVisual_scene::domEvaluate_scene::domRender::domLayerRef ref = new domVisual_scene::domEvaluate_scene::domRender::domLayer;
 	return ref;
@@ -213,36 +217,30 @@ domVisual_scene::domEvaluate_scene::domRender::domLayer::create(daeInt)
 
 
 daeMetaElement *
-domVisual_scene::domEvaluate_scene::domRender::domLayer::registerElement()
+domVisual_scene::domEvaluate_scene::domRender::domLayer::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "layer" );
-	_Meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::domLayer::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "layer" );
+	meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::domLayer::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domVisual_scene::domEvaluate_scene::domRender::domLayer , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domVisual_scene::domEvaluate_scene::domRender::domLayer));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domVisual_scene::domEvaluate_scene::domRender::domLayer));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domVisual_scene::_Meta = NULL;
-daeMetaElement * domVisual_scene::domEvaluate_scene::_Meta = NULL;
-daeMetaElement * domVisual_scene::domEvaluate_scene::domRender::_Meta = NULL;
-daeMetaElement * domVisual_scene::domEvaluate_scene::domRender::domLayer::_Meta = NULL;
-
 

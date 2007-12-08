@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domCapsule.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,7 +22,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCapsule::create(daeInt)
+domCapsule::create()
 {
 	domCapsuleRef ref = new domCapsule;
 	return ref;
@@ -29,48 +30,49 @@ domCapsule::create(daeInt)
 
 
 daeMetaElement *
-domCapsule::registerElement()
+domCapsule::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "capsule" );
-	_Meta->registerClass(domCapsule::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "capsule" );
+	meta->registerClass(domCapsule::create, &meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "height" );
 	mea->setOffset( daeOffsetOf(domCapsule,elemHeight) );
-	mea->setElementType( domCapsule::domHeight::registerElement() );
+	mea->setElementType( domCapsule::domHeight::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 1, 1, 1 );
 	mea->setName( "radius" );
 	mea->setOffset( daeOffsetOf(domCapsule,elemRadius) );
-	mea->setElementType( domCapsule::domRadius::registerElement() );
+	mea->setElementType( domCapsule::domRadius::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 2, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domCapsule,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm->setMaxOrdinal( 2 );
-	_Meta->setCMRoot( cm );	
-	
-	
-	_Meta->setElementSize(sizeof(domCapsule));
-	_Meta->validate();
 
-	return _Meta;
+	cm->setMaxOrdinal( 2 );
+	meta->setCMRoot( cm );	
+
+	meta->setElementSize(sizeof(domCapsule));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domCapsule::domHeight::create(daeInt)
+domCapsule::domHeight::create()
 {
 	domCapsule::domHeightRef ref = new domCapsule::domHeight;
 	return ref;
@@ -78,34 +80,35 @@ domCapsule::domHeight::create(daeInt)
 
 
 daeMetaElement *
-domCapsule::domHeight::registerElement()
+domCapsule::domHeight::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "height" );
-	_Meta->registerClass(domCapsule::domHeight::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "height" );
+	meta->registerClass(domCapsule::domHeight::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domCapsule::domHeight , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domCapsule::domHeight));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domCapsule::domHeight));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domCapsule::domRadius::create(daeInt)
+domCapsule::domRadius::create()
 {
 	domCapsule::domRadiusRef ref = new domCapsule::domRadius;
 	return ref;
@@ -113,35 +116,30 @@ domCapsule::domRadius::create(daeInt)
 
 
 daeMetaElement *
-domCapsule::domRadius::registerElement()
+domCapsule::domRadius::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "radius" );
-	_Meta->registerClass(domCapsule::domRadius::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "radius" );
+	meta->registerClass(domCapsule::domRadius::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("Float2"));
 		ma->setOffset( daeOffsetOf( domCapsule::domRadius , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domCapsule::domRadius));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domCapsule::domRadius));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domCapsule::_Meta = NULL;
-daeMetaElement * domCapsule::domHeight::_Meta = NULL;
-daeMetaElement * domCapsule::domRadius::_Meta = NULL;
-
 

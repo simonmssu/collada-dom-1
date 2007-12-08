@@ -30,12 +30,12 @@ print $_globals['copyright_text'];
 	
 	foreach ($_globals['elementTypes'] as $num => $val )
 	{
-		print "DLLSPEC daeString COLLADA_TYPE_". strtoupper( $val ) ." = \"". $val ."\";\n";
+		print "DLLSPEC daeString COLLADA_TYPE_". getUniqueName($val, $_globals['elementTypes']) ." = \"". $val ."\";\n";
 	}
 	print "\n";
 	
 	foreach ($_globals['elementNames'] as $num => $val )
 	{
-		print "DLLSPEC daeString COLLADA_ELEMENT_". strtoupper( $val ) ." = \"". $val ."\";\n";
+		print "DLLSPEC daeString COLLADA_ELEMENT_". getUniqueName($val, $_globals['elementNames']) ." = \"". $val ."\";\n";
 	}
 ?>

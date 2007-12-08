@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domGlsl_newarray_type.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,7 +22,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_newarray_type::create(daeInt)
+domGlsl_newarray_type::create()
 {
 	domGlsl_newarray_typeRef ref = new domGlsl_newarray_type;
 	return ref;
@@ -29,57 +30,54 @@ domGlsl_newarray_type::create(daeInt)
 
 
 daeMetaElement *
-domGlsl_newarray_type::registerElement()
+domGlsl_newarray_type::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "glsl_newarray_type" );
-	_Meta->registerClass(domGlsl_newarray_type::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "glsl_newarray_type" );
+	meta->registerClass(domGlsl_newarray_type::create, &meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, 0, -1 );
+	cm = new daeMetaChoice( meta, cm, 0, 0, 0, -1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "glsl_param_type" );
 	mea->setOffset( daeOffsetOf(domGlsl_newarray_type,elemGlsl_param_type_array) );
-	mea->setElementType( domGlsl_param_type::registerElement() );
-	cm->appendChild( new daeMetaGroup( mea, _Meta, cm, 0, 1, 1 ) );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setElementType( domGlsl_param_type::registerElement(dae) );
+	cm->appendChild( new daeMetaGroup( mea, meta, cm, 0, 1, 1 ) );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "array" );
 	mea->setOffset( daeOffsetOf(domGlsl_newarray_type,elemArray_array) );
-	mea->setElementType( domGlsl_newarray_type::registerElement() );
+	mea->setElementType( domGlsl_newarray_type::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 3000 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
-    _Meta->addContents(daeOffsetOf(domGlsl_newarray_type,_contents));
-    _Meta->addContentsOrder(daeOffsetOf(domGlsl_newarray_type,_contentsOrder));
-        
-    _Meta->addCMDataArray(daeOffsetOf(domGlsl_newarray_type,_CMData), 1);
+	meta->addContents(daeOffsetOf(domGlsl_newarray_type,_contents));
+	meta->addContentsOrder(daeOffsetOf(domGlsl_newarray_type,_contentsOrder));
+
+	meta->addCMDataArray(daeOffsetOf(domGlsl_newarray_type,_CMData), 1);
 	//	Add attribute: length
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "length" );
 		ma->setType( daeAtomicType::get("xsPositiveInteger"));
 		ma->setOffset( daeOffsetOf( domGlsl_newarray_type , attrLength ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domGlsl_newarray_type));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domGlsl_newarray_type));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domGlsl_newarray_type::_Meta = NULL;
-
 

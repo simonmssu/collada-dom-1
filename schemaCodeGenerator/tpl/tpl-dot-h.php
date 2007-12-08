@@ -26,6 +26,7 @@ print $_globals['copyright_text'];
 global $includeList;
 $includeList = array();
 print applyTemplate( 'INCLUDES', $bag ) ?>
+class DAE;
 
 <?= applyTemplate( 'CLASS', $bag ) ?>
 

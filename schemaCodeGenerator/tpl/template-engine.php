@@ -27,7 +27,7 @@ $_globals['copyright_text'] = "/*\n" .
 " * is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n" .
 " * implied. See the License for the specific language governing permissions and limitations under the\n" .
 " * License.\n" .
-" */\n";
+" */\n\n";
 
 $_globals['depth'] = 0;
 $_globals['meta_prefix'] = 'dae';
@@ -198,7 +198,7 @@ function printConstructors( $elemName, & $bag, $base, $indent ) {
 	//print the protected ctor and copy stuff
 	print $indent ."protected:\n";
 	print $indent ."\t/**\n". $indent ."\t * Constructor\n". $indent ."\t */\n";
-	print $indent ."\t". $elemName ."()";
+	print $indent ."\t". $elemName ."(DAE& dae)";
 	//list preconstructor initialization of elements
 	if ( count($bag['elements']) > 0 || count($bag['attributes']) > 0 ) {
 		print " : ";

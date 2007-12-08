@@ -28,6 +28,18 @@ require_once( 'src/SchemaParser.php' );
 require_once( 'om/object-model.php' );
 require_once( 'tpl/template-engine.php' );
 
+// Returns either a capitalized or non-capitalized version of the name, thus helping us
+// avoid name clashes. For example, say we have an element called 'rgb' and an element 
+// called 'RGB'. They're both going to map to the name constant 'COLLADA_ELEMENT_RGB'. 
+// Instead, use COLLADA_ELEMENT_rgb for the 'rgb' element.
+function getUniqueName($name, $array) {
+	$uniqueName = strtoupper($name);
+	if (array_search($uniqueName, $array) !== FALSE) {
+		$uniqueName = $name;
+	}
+	return $uniqueName;
+}
+
 
 if ( preg_match( "/min/i", $argv[2] ) || preg_match( "/min/i", $argv[3] ) ) { 
 	$_globals['full_code'] = false; 

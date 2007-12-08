@@ -15,6 +15,7 @@
 #define __DAE_RAWRESOLVER_H__
 
 #include <dae/daeURI.h>
+class DAE;
 
 /**
  * The @c daeRawResolver class derives from @c daeURIResolver and implements
@@ -26,7 +27,7 @@ public:
 	/**
 	 * Constructor.
 	 */
-	DLLSPEC daeRawResolver();
+	DLLSPEC daeRawResolver(DAE& dae);
 	/**
 	 * Destructor.
 	 */

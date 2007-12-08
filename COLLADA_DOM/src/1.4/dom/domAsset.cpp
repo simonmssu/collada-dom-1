@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domAsset.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,7 +22,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domAsset::create(daeInt)
+domAsset::create()
 {
 	domAssetRef ref = new domAsset;
 	return ref;
@@ -29,84 +30,85 @@ domAsset::create(daeInt)
 
 
 daeMetaElement *
-domAsset::registerElement()
+domAsset::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "asset" );
-	_Meta->registerClass(domAsset::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "asset" );
+	meta->registerClass(domAsset::create, &meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
 	mea->setName( "contributor" );
 	mea->setOffset( daeOffsetOf(domAsset,elemContributor_array) );
-	mea->setElementType( domAsset::domContributor::registerElement() );
+	mea->setElementType( domAsset::domContributor::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 1, 1, 1 );
 	mea->setName( "created" );
 	mea->setOffset( daeOffsetOf(domAsset,elemCreated) );
-	mea->setElementType( domAsset::domCreated::registerElement() );
+	mea->setElementType( domAsset::domCreated::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
 	mea->setName( "keywords" );
 	mea->setOffset( daeOffsetOf(domAsset,elemKeywords) );
-	mea->setElementType( domAsset::domKeywords::registerElement() );
+	mea->setElementType( domAsset::domKeywords::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 3, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 3, 1, 1 );
 	mea->setName( "modified" );
 	mea->setOffset( daeOffsetOf(domAsset,elemModified) );
-	mea->setElementType( domAsset::domModified::registerElement() );
+	mea->setElementType( domAsset::domModified::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 4, 0, 1 );
 	mea->setName( "revision" );
 	mea->setOffset( daeOffsetOf(domAsset,elemRevision) );
-	mea->setElementType( domAsset::domRevision::registerElement() );
+	mea->setElementType( domAsset::domRevision::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 5, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 5, 0, 1 );
 	mea->setName( "subject" );
 	mea->setOffset( daeOffsetOf(domAsset,elemSubject) );
-	mea->setElementType( domAsset::domSubject::registerElement() );
+	mea->setElementType( domAsset::domSubject::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 6, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 6, 0, 1 );
 	mea->setName( "title" );
 	mea->setOffset( daeOffsetOf(domAsset,elemTitle) );
-	mea->setElementType( domAsset::domTitle::registerElement() );
+	mea->setElementType( domAsset::domTitle::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 7, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 7, 0, 1 );
 	mea->setName( "unit" );
 	mea->setOffset( daeOffsetOf(domAsset,elemUnit) );
-	mea->setElementType( domAsset::domUnit::registerElement() );
+	mea->setElementType( domAsset::domUnit::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 8, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 8, 0, 1 );
 	mea->setName( "up_axis" );
 	mea->setOffset( daeOffsetOf(domAsset,elemUp_axis) );
-	mea->setElementType( domAsset::domUp_axis::registerElement() );
+	mea->setElementType( domAsset::domUp_axis::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm->setMaxOrdinal( 8 );
-	_Meta->setCMRoot( cm );	
-	
-	
-	_Meta->setElementSize(sizeof(domAsset));
-	_Meta->validate();
 
-	return _Meta;
+	cm->setMaxOrdinal( 8 );
+	meta->setCMRoot( cm );	
+
+	meta->setElementSize(sizeof(domAsset));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domContributor::create(daeInt)
+domAsset::domContributor::create()
 {
 	domAsset::domContributorRef ref = new domAsset::domContributor;
 	return ref;
@@ -114,61 +116,62 @@ domAsset::domContributor::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domContributor::registerElement()
+domAsset::domContributor::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "contributor" );
-	_Meta->registerClass(domAsset::domContributor::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "contributor" );
+	meta->registerClass(domAsset::domContributor::create, &meta);
+
+	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "author" );
 	mea->setOffset( daeOffsetOf(domAsset::domContributor,elemAuthor) );
-	mea->setElementType( domAsset::domContributor::domAuthor::registerElement() );
+	mea->setElementType( domAsset::domContributor::domAuthor::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "authoring_tool" );
 	mea->setOffset( daeOffsetOf(domAsset::domContributor,elemAuthoring_tool) );
-	mea->setElementType( domAsset::domContributor::domAuthoring_tool::registerElement() );
+	mea->setElementType( domAsset::domContributor::domAuthoring_tool::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
 	mea->setName( "comments" );
 	mea->setOffset( daeOffsetOf(domAsset::domContributor,elemComments) );
-	mea->setElementType( domAsset::domContributor::domComments::registerElement() );
+	mea->setElementType( domAsset::domContributor::domComments::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 3, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 3, 0, 1 );
 	mea->setName( "copyright" );
 	mea->setOffset( daeOffsetOf(domAsset::domContributor,elemCopyright) );
-	mea->setElementType( domAsset::domContributor::domCopyright::registerElement() );
+	mea->setElementType( domAsset::domContributor::domCopyright::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 4, 0, 1 );
 	mea->setName( "source_data" );
 	mea->setOffset( daeOffsetOf(domAsset::domContributor,elemSource_data) );
-	mea->setElementType( domAsset::domContributor::domSource_data::registerElement() );
+	mea->setElementType( domAsset::domContributor::domSource_data::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm->setMaxOrdinal( 4 );
-	_Meta->setCMRoot( cm );	
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domContributor));
-	_Meta->validate();
 
-	return _Meta;
+	cm->setMaxOrdinal( 4 );
+	meta->setCMRoot( cm );	
+
+	meta->setElementSize(sizeof(domAsset::domContributor));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domContributor::domAuthor::create(daeInt)
+domAsset::domContributor::domAuthor::create()
 {
 	domAsset::domContributor::domAuthorRef ref = new domAsset::domContributor::domAuthor;
 	return ref;
@@ -176,34 +179,35 @@ domAsset::domContributor::domAuthor::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domContributor::domAuthor::registerElement()
+domAsset::domContributor::domAuthor::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "author" );
-	_Meta->registerClass(domAsset::domContributor::domAuthor::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "author" );
+	meta->registerClass(domAsset::domContributor::domAuthor::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domContributor::domAuthor , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domContributor::domAuthor));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domContributor::domAuthor));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domContributor::domAuthoring_tool::create(daeInt)
+domAsset::domContributor::domAuthoring_tool::create()
 {
 	domAsset::domContributor::domAuthoring_toolRef ref = new domAsset::domContributor::domAuthoring_tool;
 	return ref;
@@ -211,34 +215,35 @@ domAsset::domContributor::domAuthoring_tool::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domContributor::domAuthoring_tool::registerElement()
+domAsset::domContributor::domAuthoring_tool::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "authoring_tool" );
-	_Meta->registerClass(domAsset::domContributor::domAuthoring_tool::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "authoring_tool" );
+	meta->registerClass(domAsset::domContributor::domAuthoring_tool::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domContributor::domAuthoring_tool , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domContributor::domAuthoring_tool));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domContributor::domAuthoring_tool));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domContributor::domComments::create(daeInt)
+domAsset::domContributor::domComments::create()
 {
 	domAsset::domContributor::domCommentsRef ref = new domAsset::domContributor::domComments;
 	return ref;
@@ -246,34 +251,35 @@ domAsset::domContributor::domComments::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domContributor::domComments::registerElement()
+domAsset::domContributor::domComments::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "comments" );
-	_Meta->registerClass(domAsset::domContributor::domComments::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "comments" );
+	meta->registerClass(domAsset::domContributor::domComments::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domContributor::domComments , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domContributor::domComments));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domContributor::domComments));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domContributor::domCopyright::create(daeInt)
+domAsset::domContributor::domCopyright::create()
 {
 	domAsset::domContributor::domCopyrightRef ref = new domAsset::domContributor::domCopyright;
 	return ref;
@@ -281,34 +287,35 @@ domAsset::domContributor::domCopyright::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domContributor::domCopyright::registerElement()
+domAsset::domContributor::domCopyright::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "copyright" );
-	_Meta->registerClass(domAsset::domContributor::domCopyright::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "copyright" );
+	meta->registerClass(domAsset::domContributor::domCopyright::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domContributor::domCopyright , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domContributor::domCopyright));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domContributor::domCopyright));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domContributor::domSource_data::create(daeInt)
+domAsset::domContributor::domSource_data::create()
 {
 	domAsset::domContributor::domSource_dataRef ref = new domAsset::domContributor::domSource_data;
 	ref->_value.setContainer( (domAsset::domContributor::domSource_data*)ref );
@@ -317,34 +324,35 @@ domAsset::domContributor::domSource_data::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domContributor::domSource_data::registerElement()
+domAsset::domContributor::domSource_data::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "source_data" );
-	_Meta->registerClass(domAsset::domContributor::domSource_data::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "source_data" );
+	meta->registerClass(domAsset::domContributor::domSource_data::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domAsset::domContributor::domSource_data , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domContributor::domSource_data));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domContributor::domSource_data));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domCreated::create(daeInt)
+domAsset::domCreated::create()
 {
 	domAsset::domCreatedRef ref = new domAsset::domCreated;
 	return ref;
@@ -352,34 +360,35 @@ domAsset::domCreated::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domCreated::registerElement()
+domAsset::domCreated::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "created" );
-	_Meta->registerClass(domAsset::domCreated::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "created" );
+	meta->registerClass(domAsset::domCreated::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsDateTime"));
 		ma->setOffset( daeOffsetOf( domAsset::domCreated , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domCreated));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domCreated));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domKeywords::create(daeInt)
+domAsset::domKeywords::create()
 {
 	domAsset::domKeywordsRef ref = new domAsset::domKeywords;
 	return ref;
@@ -387,34 +396,35 @@ domAsset::domKeywords::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domKeywords::registerElement()
+domAsset::domKeywords::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "keywords" );
-	_Meta->registerClass(domAsset::domKeywords::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "keywords" );
+	meta->registerClass(domAsset::domKeywords::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domKeywords , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domKeywords));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domKeywords));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domModified::create(daeInt)
+domAsset::domModified::create()
 {
 	domAsset::domModifiedRef ref = new domAsset::domModified;
 	return ref;
@@ -422,34 +432,35 @@ domAsset::domModified::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domModified::registerElement()
+domAsset::domModified::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "modified" );
-	_Meta->registerClass(domAsset::domModified::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "modified" );
+	meta->registerClass(domAsset::domModified::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsDateTime"));
 		ma->setOffset( daeOffsetOf( domAsset::domModified , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domModified));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domModified));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domRevision::create(daeInt)
+domAsset::domRevision::create()
 {
 	domAsset::domRevisionRef ref = new domAsset::domRevision;
 	return ref;
@@ -457,34 +468,35 @@ domAsset::domRevision::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domRevision::registerElement()
+domAsset::domRevision::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "revision" );
-	_Meta->registerClass(domAsset::domRevision::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "revision" );
+	meta->registerClass(domAsset::domRevision::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domRevision , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domRevision));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domRevision));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domSubject::create(daeInt)
+domAsset::domSubject::create()
 {
 	domAsset::domSubjectRef ref = new domAsset::domSubject;
 	return ref;
@@ -492,34 +504,35 @@ domAsset::domSubject::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domSubject::registerElement()
+domAsset::domSubject::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "subject" );
-	_Meta->registerClass(domAsset::domSubject::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "subject" );
+	meta->registerClass(domAsset::domSubject::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domSubject , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domSubject));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domSubject));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domTitle::create(daeInt)
+domAsset::domTitle::create()
 {
 	domAsset::domTitleRef ref = new domAsset::domTitle;
 	return ref;
@@ -527,34 +540,35 @@ domAsset::domTitle::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domTitle::registerElement()
+domAsset::domTitle::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "title" );
-	_Meta->registerClass(domAsset::domTitle::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "title" );
+	meta->registerClass(domAsset::domTitle::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domTitle , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domTitle));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domTitle));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domUnit::create(daeInt)
+domAsset::domUnit::create()
 {
 	domAsset::domUnitRef ref = new domAsset::domUnit;
 	return ref;
@@ -562,49 +576,50 @@ domAsset::domUnit::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domUnit::registerElement()
+domAsset::domUnit::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "unit" );
-	_Meta->registerClass(domAsset::domUnit::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "unit" );
+	meta->registerClass(domAsset::domUnit::create, &meta);
+
+	meta->setIsInnerClass( true );
 
 	//	Add attribute: meter
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "meter" );
 		ma->setType( daeAtomicType::get("Float"));
 		ma->setOffset( daeOffsetOf( domAsset::domUnit , attrMeter ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setDefaultString( "1.0");
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: name
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domAsset::domUnit , attrName ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setDefaultString( "meter");
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domUnit));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domUnit));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domAsset::domUp_axis::create(daeInt)
+domAsset::domUp_axis::create()
 {
 	domAsset::domUp_axisRef ref = new domAsset::domUp_axis;
 	return ref;
@@ -612,47 +627,30 @@ domAsset::domUp_axis::create(daeInt)
 
 
 daeMetaElement *
-domAsset::domUp_axis::registerElement()
+domAsset::domUp_axis::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "up_axis" );
-	_Meta->registerClass(domAsset::domUp_axis::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "up_axis" );
+	meta->registerClass(domAsset::domUp_axis::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("UpAxisType"));
 		ma->setOffset( daeOffsetOf( domAsset::domUp_axis , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domAsset::domUp_axis));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domAsset::domUp_axis));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domAsset::_Meta = NULL;
-daeMetaElement * domAsset::domContributor::_Meta = NULL;
-daeMetaElement * domAsset::domContributor::domAuthor::_Meta = NULL;
-daeMetaElement * domAsset::domContributor::domAuthoring_tool::_Meta = NULL;
-daeMetaElement * domAsset::domContributor::domComments::_Meta = NULL;
-daeMetaElement * domAsset::domContributor::domCopyright::_Meta = NULL;
-daeMetaElement * domAsset::domContributor::domSource_data::_Meta = NULL;
-daeMetaElement * domAsset::domCreated::_Meta = NULL;
-daeMetaElement * domAsset::domKeywords::_Meta = NULL;
-daeMetaElement * domAsset::domModified::_Meta = NULL;
-daeMetaElement * domAsset::domRevision::_Meta = NULL;
-daeMetaElement * domAsset::domSubject::_Meta = NULL;
-daeMetaElement * domAsset::domTitle::_Meta = NULL;
-daeMetaElement * domAsset::domUnit::_Meta = NULL;
-daeMetaElement * domAsset::domUp_axis::_Meta = NULL;
-
 

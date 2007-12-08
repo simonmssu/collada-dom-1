@@ -52,11 +52,7 @@ daeInt DAEInstanceCount = 0;
 void
 DAE::cleanup()
 {
-	// !!!steveT Some of this needs to be moved to the destructor
-	daeMetaElement::releaseMetas();
 	//Contributed by Nus - Wed, 08 Nov 2006
-	terminateURI();
-	terminateResolveArray();
 	daeStringRef::releaseStringTable();
 	daeIDRefResolver::terminateIDRefSolver();
 	//----------------------
@@ -65,7 +61,6 @@ DAE::cleanup()
 void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 	database = NULL;
 	plugin = NULL;
-	resolver = NULL;
 	idResolver = NULL;
 	defaultDatabase = false;
 	defaultPlugin = false;
@@ -73,13 +68,12 @@ void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 	topMeta = NULL;
 
 //Contributed by Nus - Wed, 08 Nov 2006
-	initializeURI();
-	initializeResolveArray();
 	daeIDRefResolver::initializeIDRefSolver();
 //------------------------
 	topMeta = initializeDomMeta(atomicTypes);
 	DAEInstanceCount++;
-	rawResolver = new daeRawResolver();
+	uriResolvers.addResolver(new daeStandardURIResolver(*this));
+	uriResolvers.addResolver(new daeRawResolver(*this));
 	idResolver = new daeDefaultIDRefResolver();
 
 	setDatabase(database_);
@@ -90,13 +84,9 @@ DAE::~DAE()
 {
 	if (defaultDatabase)
 		delete database;
-	if (defaultPlugin) {
+	if (defaultPlugin)
 		delete plugin;
-		delete resolver;
-	}
-	delete rawResolver;
 	delete idResolver;
-	daeElement::clearResolveArray();
 	--DAEInstanceCount;
 	if ( DAEInstanceCount <= 0 )
 	{
@@ -141,10 +131,7 @@ daeIOPlugin* DAE::getIOPlugin()
 daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 {
 	if (defaultPlugin) 
-	{
 		delete plugin;
-		delete resolver;
-	}
 	if (_plugin)
 	{
 		defaultPlugin = false;
@@ -158,17 +145,14 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 #ifdef DEFAULT_BXCEPLUGIN
 		plugin = new daebXCePlugin();
 		defaultPlugin = true;
-		resolver = new daeStandardURIResolver(database, plugin);
 #else
 #ifdef DOM_INCLUDE_LIBXML
 		plugin = new daeLIBXMLPlugin;
 		defaultPlugin = true;
-		resolver = new daeStandardURIResolver(database, plugin);
 #else
 #ifdef DOM_INCLUDE_TINYXML
 		plugin = new daeTinyXMLPlugin;
 		defaultPlugin = true;
-		resolver = new daeStandardURIResolver(database, plugin);
 #else
 		daeErrorHandler::get()->handleWarning( "No IOPlugin Set! Neither DOM_INCLUDE_LIBXML or DOM_INCLUDE_TINYXML  is defined." );
 		plugin = NULL;
@@ -386,7 +370,7 @@ daeInt DAE::unloadFile(daeString file) {
 
 daeInt DAE::clear()
 {
-	daeElement::clearResolveArray();
+	resolveArray.clear();
 	if (database)
 		database->clear();
 	return DAE_OK;
@@ -481,6 +465,26 @@ void DAE::setMeta(int typeID, daeMetaElement& meta) {
 	metas[index] = &meta;
 }
 
-daeMetaElementRefArray& DAE::getAnyMetas() {
-	return anyMetas;
+void DAE::appendResolveElement(daeElement* elem) {
+	resolveArray.append(elem);
+}
+
+void DAE::resolveAll() {
+	// !!!steveT Make sure this works ok
+	for (size_t i = 0; i < resolveArray.getCount(); i++)
+		resolveArray[i]->resolve();
+	resolveArray.clear();
+}
+
+daeURIResolverPtrArray& DAE::getUriResolvers() {
+	return uriResolvers;
+}
+
+daeURI& DAE::getBaseURI() {
+	return baseUri;
+}
+
+daeURI& DAE::setBaseURI(daeURI& uri) {
+	baseUri.reset();
+	baseUri.setURI(uri.getURI());
 }

@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domImage.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,7 +22,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domImage::create(daeInt)
+domImage::create()
 {
 	domImageRef ref = new domImage;
 	return ref;
@@ -29,131 +30,132 @@ domImage::create(daeInt)
 
 
 daeMetaElement *
-domImage::registerElement()
+domImage::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "image" );
-	_Meta->registerClass(domImage::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "image" );
+	meta->registerClass(domImage::create, &meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "asset" );
 	mea->setOffset( daeOffsetOf(domImage,elemAsset) );
-	mea->setElementType( domAsset::registerElement() );
+	mea->setElementType( domAsset::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( meta, cm, 0, 1, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "data" );
 	mea->setOffset( daeOffsetOf(domImage,elemData) );
-	mea->setElementType( domImage::domData::registerElement() );
+	mea->setElementType( domImage::domData::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "init_from" );
 	mea->setOffset( daeOffsetOf(domImage,elemInit_from) );
-	mea->setElementType( domImage::domInit_from::registerElement() );
+	mea->setElementType( domImage::domInit_from::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 0 );
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 2, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domImage,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 2 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
-    _Meta->addContents(daeOffsetOf(domImage,_contents));
-    _Meta->addContentsOrder(daeOffsetOf(domImage,_contentsOrder));
-        
-    _Meta->addCMDataArray(daeOffsetOf(domImage,_CMData), 1);
+	meta->addContents(daeOffsetOf(domImage,_contents));
+	meta->addContentsOrder(daeOffsetOf(domImage,_contentsOrder));
+
+	meta->addCMDataArray(daeOffsetOf(domImage,_CMData), 1);
 	//	Add attribute: id
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domImage , attrId ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: name
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domImage , attrName ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: format
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "format" );
 		ma->setType( daeAtomicType::get("xsToken"));
 		ma->setOffset( daeOffsetOf( domImage , attrFormat ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: height
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "height" );
 		ma->setType( daeAtomicType::get("Uint"));
 		ma->setOffset( daeOffsetOf( domImage , attrHeight ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: width
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "width" );
 		ma->setType( daeAtomicType::get("Uint"));
 		ma->setOffset( daeOffsetOf( domImage , attrWidth ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: depth
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "depth" );
 		ma->setType( daeAtomicType::get("Uint"));
 		ma->setOffset( daeOffsetOf( domImage , attrDepth ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setDefaultString( "1");
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domImage));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domImage));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domImage::domData::create(daeInt)
+domImage::domData::create()
 {
 	domImage::domDataRef ref = new domImage::domData;
 	return ref;
@@ -161,34 +163,35 @@ domImage::domData::create(daeInt)
 
 
 daeMetaElement *
-domImage::domData::registerElement()
+domImage::domData::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "data" );
-	_Meta->registerClass(domImage::domData::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "data" );
+	meta->registerClass(domImage::domData::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("ListOfHexBinary"));
 		ma->setOffset( daeOffsetOf( domImage::domData , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domImage::domData));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domImage::domData));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domImage::domInit_from::create(daeInt)
+domImage::domInit_from::create()
 {
 	domImage::domInit_fromRef ref = new domImage::domInit_from;
 	ref->_value.setContainer( (domImage::domInit_from*)ref );
@@ -197,35 +200,30 @@ domImage::domInit_from::create(daeInt)
 
 
 daeMetaElement *
-domImage::domInit_from::registerElement()
+domImage::domInit_from::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "init_from" );
-	_Meta->registerClass(domImage::domInit_from::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "init_from" );
+	meta->registerClass(domImage::domInit_from::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domImage::domInit_from , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domImage::domInit_from));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domImage::domInit_from));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domImage::_Meta = NULL;
-daeMetaElement * domImage::domData::_Meta = NULL;
-daeMetaElement * domImage::domInit_from::_Meta = NULL;
-
 

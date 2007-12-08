@@ -29,61 +29,6 @@ daeString safeCreate(daeString src);
 void safeDelete(daeString src);
 daeString findCharacterReverse(daeString string, daeChar stopChar);
 
-//Contributed by Nus - Wed, 08 Nov 2006
-static daeURIResolverPtrArray *pKR = NULL;
-//---------------------------
-
-daeURIResolverPtrArray &daeURIResolver::_KnownResolvers()
-{
-//Contributed by Nus - Wed, 08 Nov 2006
-  // static daeURIResolverPtrArray *kr = new daeURIResolverPtrArray();
-  // return *kr;
-  return *pKR;
-//--------------------------------
-}
-
-//Contributed by Nus - Wed, 08 Nov 2006
-static daeURI* pAppURI = NULL;
-// static daeURI ApplicationURI(1);
-
-extern "C" void initializeURI(void)
-{
-  if(!pAppURI) {
-    pAppURI = new daeURI(1);
-  }
-  if(!pKR) {
-    pKR = new daeURIResolverPtrArray();
-  }
-}
-
-extern "C" void terminateURI(void)
-{
-  delete pAppURI;
-  pAppURI = NULL;
-  delete pKR;
-  pKR = NULL;
-}
-//--------------------------------------
-
-void
-daeURI::setBaseURI(daeURI& uri)
-{
-//Contributed by Nus - Wed, 08 Nov 2006
-	// ApplicationURI.reset();
-	// ApplicationURI.setURI(uri.getURI());
-	pAppURI->reset();
-	pAppURI->setURI(uri.getURI());
-//------------------------
-}
-
-daeURI*
-daeURI::getBaseURI()
-{
-//Contributed by Nus - Wed, 08 Nov 2006
-	return pAppURI;
-//--------------------------------------
-}
-
 void
 daeURI::initialize()
 {
@@ -108,49 +53,43 @@ daeURI::~daeURI()
 	reset();
 }
 
-daeURI::daeURI()
+daeURI::daeURI(DAE& dae, bool cwdUri) : dae(&dae)
 {
-	initialize();
-//	reset();  // No need to call reset in the constructor, initialize does the same thing.
-}
-daeURI::daeURI(int dummy)
-{
-	(void)dummy;
-	// This constructor builds a  base URI from the current working directory
-	// This should work for windows or linux
-	// !!!GAC the buffers should probably be bigger
-	char buffer[1024], *b1;
-	strcpy(buffer, "file:///");
+	if (!cwdUri) {
+		initialize();
+	}
+	else {
+		// Build a uri pointing to the current working directory. This works for Windows, Linux,
+		// and Mac, but not for PS3 since it doesn't have a getcwd call.
+		// !!!GAC the buffers should probably be bigger
+		char buffer[1024], *b1;
+		strcpy(buffer, "file:///");
 #ifdef NO_GETCWD
-	// The platform has no getcwd call, so leave the value as file:///
+		// The platform has no getcwd call, so leave the value as file:///
 #else
-	#ifdef _WIN32
+#ifdef _WIN32
 		// Windows getcwd always returns a path beginning with a drive letter, so we add file:/// to the beginning 
 		_getcwd(&buffer[8],1024-8);
-	#else
+#else
 		// Linux getcwd always returns a path beginning with a slash, so we add file:// to the beginning
 		getcwd(&buffer[7],1024-7);
-	#endif
 #endif
-	// If the path contains windows backslashes, flip them to forward slashes
-	for(b1 = buffer;*b1 != 0;b1++)
-	{
-		if(*b1 == '\\')
-		{
-			*b1 = '/';
-		}
-	}
-	// The path must end in a slash or the last part of it will be taken as a filename
-	if(*(b1-1) != '/')
-	{
-		*(b1++) = '/';
-	}
+#endif
+		// If the path contains windows backslashes, flip them to forward slashes
+		for(b1 = buffer;*b1 != 0;b1++)
+			if(*b1 == '\\')
+					*b1 = '/';
+		// The path must end in a slash or the last part of it will be taken as a filename
+		if(*(b1-1) != '/')
+			*(b1++) = '/';
 		*b1 = '\0';
-	initialize();
-	setURI(buffer);
-	validate();
+		initialize();
+		setURI(buffer);
+		validate();
+	}
 }
-daeURI::daeURI(daeString uriString, daeBool nofrag)
+
+daeURI::daeURI(DAE& dae, daeString uriString, daeBool nofrag) : dae(&dae)
 {
 	initialize();
 	// !!!GAC this is inefficient as hell, but was the best way to isolate this functionality till the
@@ -176,19 +115,22 @@ daeURI::daeURI(daeString uriString, daeBool nofrag)
 	if(nofrag)
 		validate();
 }
-daeURI::daeURI(daeURI& baseURI, daeString uriString)
+
+daeURI::daeURI(daeURI& baseURI, daeString uriString) : dae(baseURI.getDAE())
 {
 	initialize();
 	setURI(uriString);
 	validate(&baseURI);
 }
-daeURI::daeURI(const daeURI& copyFrom)
+
+daeURI::daeURI(const daeURI& copyFrom) : dae(copyFrom.getDAE())
 {
 	initialize();
 	setURI(copyFrom.getOriginalURI());
 	element = copyFrom.element;   // !!!GAC SetURI immediately clears element so we must do this after
 	state = copyFrom.state;
 }
+
 void
 daeURI::copyFrom(daeURI& copyFrom)
 {
@@ -197,6 +139,7 @@ daeURI::copyFrom(daeURI& copyFrom)
 	state = copyFrom.state;
 	// !!!GAC Should there be a call to validate in here?
 }
+
 void
 daeURI::reset()
 {
@@ -241,6 +184,7 @@ daeURI::reset()
 	element				= NULL;
 //	container = NULL;   // !!!GAC don't want to clear this, our container doesn't change once it's set
 }
+
 daeString
 findCharacterReverse(daeString string, daeChar stopChar)
 {
@@ -255,6 +199,7 @@ findCharacterReverse(daeString string, daeChar stopChar)
 	
 	return NULL;
 }
+
 daeString
 findCharacter(daeString string, daeChar stopChar)
 {
@@ -270,6 +215,7 @@ findCharacter(daeString string, daeChar stopChar)
 	
 	return NULL;
 }
+
 daeString safeCreate(daeString src)
 {
 	if (src == NULL)
@@ -281,6 +227,7 @@ daeString safeCreate(daeString src)
 	
 	return ret;
 }
+
 void safeDelete(daeString src)
 {
 	if(src != NULL)
@@ -290,6 +237,7 @@ void safeDelete(daeString src)
 	}
 	
 }
+
 void
 daeURI::setURI(daeString _URIString)
 {
@@ -308,6 +256,7 @@ daeURI::setURI(daeString _URIString)
 	originalURIString = safeCreate(_URIString);
 	internalSetURI(_URIString);
 }
+
 daeChar *validScheme(daeString uri_string)
 {
 	// attempt to find a valid scheme in a string
@@ -332,6 +281,7 @@ daeChar *validScheme(daeString uri_string)
 	
 	return((daeChar *)uri_string);
 }
+
 void
 daeURI::internalSetURI(daeString _URIString)
 {
@@ -874,7 +824,7 @@ daeURI::validate(daeURI* baseURI)
 }
 
 void
-daeURI::resolveElement(daeString typeNameHint)
+daeURI::resolveElement()
 {
 	if (state == uri_empty)
 		return;
@@ -885,7 +835,7 @@ daeURI::resolveElement(daeString typeNameHint)
 		else
 			validate();
 	}
-	daeURIResolver::attemptResolveElement(*((daeURI*)this), typeNameHint );
+	daeURIResolver::attemptResolveElement(*this);
 }
 
 void
@@ -946,69 +896,6 @@ daeBool daeURI::getPath(daeChar *dest, daeInt size) const
 		return false;
 }
 
-void
-daeURIResolver::attemptResolveElement(daeURI& uri, daeString typeNameHint)
-{
-	int i;
-	int cnt =(int) _KnownResolvers().getCount();
-
-	for(i=0;i<cnt;i++)
-		if ((_KnownResolvers()[i]->isProtocolSupported(uri.getProtocol()))&&
-			((uri.getFile() == NULL) || 
-			 (uri.getFile()[0] == '\0') || 
-			 (_KnownResolvers()[i]->isExtensionSupported(uri.getExtension()))) &&
-			(_KnownResolvers()[i]->resolveElement(uri, typeNameHint)))
-			return;
-}
-
-void
-daeURIResolver::attemptResolveURI(daeURI& uri)
-{
-	int i,cnt = (int)_KnownResolvers().getCount();
-
-	daeBool foundProtocol = false;
-	for(i=0;i<cnt;i++)
-		if (_KnownResolvers()[i]->isProtocolSupported(uri.getProtocol())) {
-			foundProtocol = true;
-			if (_KnownResolvers()[i]->resolveURI(uri))
-				return;
-		}
-#if defined(_DEBUG) && defined(WIN32)
-		char msg[256];
-		sprintf(msg,"daeURIResolver::attemptResolveURI(%s) - failed\n",	uri.getURI());
-		daeErrorHandler::get()->handleWarning( msg );
-#endif
-	
-	if (!foundProtocol) {
-		uri.setState(daeURI::uri_failed_unsupported_protocol);
-#if defined(_DEBUG) && defined(WIN32)
-		char msg[128];
-		sprintf(msg,"**protocol '%s' is not supported**\n",uri.getProtocol());
-		daeErrorHandler::get()->handleWarning( msg );
-#endif
-	}
-	else {
-#if defined(_DEBUG) && defined(WIN32)
-		char msg[256];
-		sprintf(msg,"**file(%s/%s) or id(%s) failed to resolve\n",
-				uri.getFilepath(),uri.getFile(),uri.getID());
-		daeErrorHandler::get()->handleWarning( msg );
-#endif		
-	}
-			
-}
-
-daeBool daeURIResolver::_loadExternalDocuments = true;
-
-daeURIResolver::daeURIResolver()
-{
-	_KnownResolvers().append((daeURIResolver*)this);
-}
-
-daeURIResolver::~daeURIResolver()
-{
-	_KnownResolvers().remove((daeURIResolver*)this);
-}
 // This code is loosely based on the RFC 2396 normalization code from
 // libXML. Specifically it does the RFC steps 6.c->6.g from section 5.2
 // The path is modified in place, there is no error return.
@@ -1273,6 +1160,13 @@ int daeURI::makeRelativeTo(daeURI* relativeToURI)
 	return(DAE_OK);
 }
 
+
+daeBool daeURIResolver::_loadExternalDocuments = true;
+
+daeURIResolver::daeURIResolver(DAE& dae) : dae(&dae) { }
+
+daeURIResolver::~daeURIResolver() { }
+
 void daeURIResolver::setAutoLoadExternalDocuments( daeBool load ) 
 { 
 	_loadExternalDocuments = load; 
@@ -1282,6 +1176,49 @@ daeBool daeURIResolver::getAutoLoadExternalDocuments()
 { 
 	return _loadExternalDocuments; 
 }
+
+
+daeURIResolverList::daeURIResolverList() { }
+
+daeURIResolverList::~daeURIResolverList() {
+	for (size_t i = 0; i < resolvers.getCount(); i++)
+		delete resolvers[i];
+}
+
+void daeURIResolverList::addResolver(daeURIResolver* resolver) {
+	resolvers.append(resolver);
+}
+
+void daeURIResolverList::removeResolver(daeURIResolver* resolver) {
+	resolvers.remove(resolver);
+}
+
+void daeURIResolverList::resolveElement(daeURI& uri) {
+	for (size_t i = 0; i < resolvers.getCount(); i++) {
+		if (resolvers[i]->isProtocolSupported(uri.getProtocol())) {
+			if (uri.getFile() == NULL ||
+			    uri.getFile()[0] == '\0' ||
+			    resolvers[i]->isExtensionSupported(uri.getExtension())) {
+				resolvers[i]->resolveElement(uri);
+			}
+		}
+	}
+}
+
+void daeURIResolverList::resolveURI(daeURI& uri) {
+	bool foundProtocol = false;
+	for (size_t i = 0; i < resolvers.getCount(); i++) {
+		if (resolvers[i]->isProtocolSupported(uri.getProtocol())) {
+			if (resolvers[i]->resolveURI(uri))
+				return;
+			foundProtocol = true;
+		}
+	}
+
+	if (!foundProtocol)
+		uri.setState(daeURI::uri_failed_unsupported_protocol);
+}
+
 
 
 // String replace function. Usage: replace("abcdef", "cd", "12") --> "ab12ef"
@@ -1354,7 +1291,7 @@ string cdom::uriToFilePath(const string& uriRef) {
 	if (!scheme.empty()  &&  scheme != "file")
 		return "";
 
-	string filePath = path;
+p	string filePath = path;
 
 #ifdef WIN32
 	// Windows - replace two leading slashes with one leading slash, so that

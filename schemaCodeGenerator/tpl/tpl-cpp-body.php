@@ -16,6 +16,7 @@ if ( $_globals['copyright'] ) {
 print $_globals['copyright_text'];
 }
 ?>
+#include <dae.h>
 #include <<?= $_globals['meta_prefix'] ?>/daeDom.h>
 #include <<?= $_globals['prefix'] ?>/<?= $_globals['prefix'] . ucfirst( $bag['element_name'] ) . ".h" ?>>
 #include <<?= $_globals['meta_prefix'] ?>/daeMetaCMPolicy.h>
@@ -26,7 +27,4 @@ print $_globals['copyright_text'];
 #include <<?= $_globals['meta_prefix'] ?>/daeMetaElementAttribute.h>
 
 <?= applyTemplate( 'CPP_METHODS', $bag ) ?>
-
 <?= applyTemplate( 'CPP_STATIC', $bag ) ?>
-
-

@@ -39,15 +39,15 @@ using namespace std;
 namespace {
 	daeInt getCurrentLineNumber(xmlTextReaderPtr reader) {
 #if LIBXML_VERSION >= 20620
-		return xmlTextReaderGetParserLineNumber(reader);
+	return xmlTextReaderGetParserLineNumber(reader);
 #else
-		return -1;
+	return -1;
 #endif
 	}
 
 	// The attributes vector passed in should be empty
 	void packageCurrentAttributes(xmlTextReaderPtr reader,
-																/* out */ std::vector<std::pair<daeString, daeString> >& attributes) {
+	                              /* out */ std::vector<std::pair<daeString, daeString> >& attributes) {
 		int numAttributes = xmlTextReaderAttributeCount(reader);
 		if (numAttributes == -1 || numAttributes == 0)
 			return;
@@ -55,7 +55,7 @@ namespace {
 		
 		while (xmlTextReaderMoveToNextAttribute(reader) == 1) {
 			attributes.push_back(std::pair<daeString, daeString>((daeString)xmlTextReaderConstName(reader),
-																													 (daeString)xmlTextReaderConstValue(reader)));
+			                    (daeString)xmlTextReaderConstValue(reader)));
 		}
 	}
 }
@@ -157,7 +157,7 @@ daeElementRef daeLIBXMLPlugin::readFromFile(const daeURI& uri) {
 	xmlTextReaderHelper readerHelper(uri);
 	if (!readerHelper.reader) {
 		daeErrorHandler::get()->handleError((std::string("Failed to open ") + uri.getURI() +
-																				 " in daeLIBXMLPlugin::readFromFile\n").c_str());
+		                                    " in daeLIBXMLPlugin::readFromFile\n").c_str());
 		return NULL;
 	}
 	return read(readerHelper.reader);
@@ -167,7 +167,7 @@ daeElementRef daeLIBXMLPlugin::readFromMemory(daeString buffer, const daeURI& ba
 	xmlTextReaderHelper readerHelper(buffer, baseUri);
 	if (!readerHelper.reader) {
 		daeErrorHandler::get()->handleError("Failed to open XML document from memory buffer in "
-																				"daeLIBXMLPlugin::readFromMemory\n");
+		                                    "daeLIBXMLPlugin::readFromMemory\n");
 		return NULL;
 	}
 	return read(readerHelper.reader);
@@ -415,12 +415,12 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 
 void daeLIBXMLPlugin::writeValue(daeElement* element) {
 	if (daeMetaAttribute* attr = element->getMeta()->getValueAttribute()) {
-			std::ostringstream buffer;
-			attr->memoryToString(element, buffer);
-			std::string s = buffer.str();
-			if (!s.empty()) {
-				xmlTextWriterWriteString(writer, (xmlChar*)buffer.str().c_str());
-			}
+		std::ostringstream buffer;
+		attr->memoryToString(element, buffer);
+		std::string s = buffer.str();
+		if (!s.empty()) {
+			xmlTextWriterWriteString(writer, (xmlChar*)buffer.str().c_str());
+		}
 	}
 }
 

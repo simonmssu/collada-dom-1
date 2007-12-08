@@ -12,28 +12,20 @@
  */
 
 #include <sstream>
+#include <dae.h>
 #include <dae/daeStandardURIResolver.h>
 #include <dae/daeDatabase.h>
 #include <dae/daeURI.h>
 #include <dae/daeIOPlugin.h>
 #include <dae/daeErrorHandler.h>
 
-daeStandardURIResolver::daeStandardURIResolver(daeDatabase* database,daeIOPlugin* plugin)
+daeStandardURIResolver::daeStandardURIResolver(DAE& dae) : daeURIResolver(dae)
 {
-	_database = database;
-	_plugin = plugin;
 	_protocols = _plugin->getSupportedProtocols();
 }
 
 daeStandardURIResolver::~daeStandardURIResolver()
 {
-}
-
-daeBool
-daeStandardURIResolver::resolveURI(daeURI& uri)
-{
-	(void)uri;
-	return false;
 }
 
 daeString
@@ -61,8 +53,17 @@ daeBool daeStandardURIResolver::isProtocolSupported(daeString protocol) {
 }
 
 daeBool
-daeStandardURIResolver::resolveElement(daeURI& uri, daeString typeNameHint)
+daeStandardURIResolver::resolveURI(daeURI& uri)
 {
+	(void)uri;
+	return false;
+}
+
+daeBool
+daeStandardURIResolver::resolveElement(daeURI& uri)
+{
+	daeDatabase* database = dae->getDatabase();
+	
 	// Make sure the URI is validated
 	if (uri.getState() == daeURI::uri_loaded)
 	{
@@ -76,9 +77,9 @@ daeStandardURIResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 	if ( (uri.getFile() != NULL) &&	(strlen(uri.getFile())>0)) 
 	{
 		// The URI contains a document reference, see if it is loaded and try to load it if it's not
-		if (!_database->isDocumentLoaded(uri.getURI())) {
+		if (!database->isDocumentLoaded(uri.getURI())) {
 			if ( _loadExternalDocuments ) {
-				_plugin->read(uri,NULL);
+				dae->getIOPlugin()->read(uri,NULL);
 			}
 			else {
 				uri.setState( daeURI::uri_failed_external_document );
@@ -86,7 +87,7 @@ daeStandardURIResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 			}
 		}
 		// Try to find the id by searching this document only
-		status = _database->getElement(&resolved,0,uri.getID(),typeNameHint,uri.getURI());
+		status = database->getElement(&resolved, 0, uri.getID(), NULL, uri.getURI());
 	}
 	else
 	{
@@ -105,7 +106,7 @@ daeStandardURIResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 		//assert(tempDocument);
 		daeURI *tempURI = tempDocument->getDocumentURI();
 		//assert(tempURI);
-		status = _database->getElement(&resolved,0,uri.getID(),typeNameHint,tempURI->getURI());
+		status = database->getElement(&resolved, 0, uri.getID(), NULL, tempURI->getURI());
 	}
 
 	uri.setElement(resolved);

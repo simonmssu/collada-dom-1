@@ -217,25 +217,16 @@ daeElement* daeDefaultIDRefResolver::resolveElement(daeString id,
 {
 	daeElement* el = NULL;
 	daeIDRef::ResolveState state = daeIDRef::id_success;
-
 	
 	if (!id || strcmp(id, "") == 0)
 		state = daeIDRef::id_failed_invalid_id;
 	else {
-		if (!docURI) {
+		if (!docURI)
 			state = daeIDRef::id_failed_no_document;
-			std::ostringstream msg;
-			msg << "daeDefaultIDRefResolver::resolveElement() - failed to resolve "
-					<< id << ". IDRef needs a container element!\n";
-			daeErrorHandler::get()->handleWarning(msg.str().c_str());
-		} else {
+		else {
 			_database->getElement(&el, 0, id, NULL, docURI);
-			if (!el) {
+			if (!el)
 				state = daeIDRef::id_failed_id_not_found;
-				std::ostringstream msg;
-				msg << "daeDefaultIDRefResolver::resolveElement() - failed to resolve " << id << "\n";
-				daeErrorHandler::get()->handleWarning(msg.str().c_str());
-			}
 		}
 	}
 

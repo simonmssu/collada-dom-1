@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domPlane.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,7 +22,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domPlane::create(daeInt)
+domPlane::create()
 {
 	domPlaneRef ref = new domPlane;
 	return ref;
@@ -29,42 +30,43 @@ domPlane::create(daeInt)
 
 
 daeMetaElement *
-domPlane::registerElement()
+domPlane::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "plane" );
-	_Meta->registerClass(domPlane::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "plane" );
+	meta->registerClass(domPlane::create, &meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "equation" );
 	mea->setOffset( daeOffsetOf(domPlane,elemEquation) );
-	mea->setElementType( domPlane::domEquation::registerElement() );
+	mea->setElementType( domPlane::domEquation::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domPlane,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm->setMaxOrdinal( 1 );
-	_Meta->setCMRoot( cm );	
-	
-	
-	_Meta->setElementSize(sizeof(domPlane));
-	_Meta->validate();
 
-	return _Meta;
+	cm->setMaxOrdinal( 1 );
+	meta->setCMRoot( cm );	
+
+	meta->setElementSize(sizeof(domPlane));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domPlane::domEquation::create(daeInt)
+domPlane::domEquation::create()
 {
 	domPlane::domEquationRef ref = new domPlane::domEquation;
 	return ref;
@@ -72,34 +74,30 @@ domPlane::domEquation::create(daeInt)
 
 
 daeMetaElement *
-domPlane::domEquation::registerElement()
+domPlane::domEquation::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "equation" );
-	_Meta->registerClass(domPlane::domEquation::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "equation" );
+	meta->registerClass(domPlane::domEquation::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domPlane::domEquation , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domPlane::domEquation));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domPlane::domEquation));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domPlane::_Meta = NULL;
-daeMetaElement * domPlane::domEquation::_Meta = NULL;
-
 

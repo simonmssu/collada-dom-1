@@ -166,9 +166,8 @@ namespace COLLADA_TYPE
 		ANY = 1<?php
 	foreach( $_globals['elementTypes'] as $num => $val )
 	{
-		print ",\n\t\t". strtoupper( $val ) ." = ". ($num+2);
+		print ",\n\t\t". getUniqueName($val, $_globals['elementTypes']) ." = ". ($num+2);
 	}
-	//print ",\n\t\tTYPE_COUNT = " . count($_globals['elementTypes'])+2 . ";";
 	print ",\n\t\tTYPE_COUNT = " . (count($_globals['elementTypes'])+2) . ";";
 ?>
 

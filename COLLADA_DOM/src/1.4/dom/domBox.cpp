@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domBox.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,7 +22,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domBox::create(daeInt)
+domBox::create()
 {
 	domBoxRef ref = new domBox;
 	return ref;
@@ -29,42 +30,43 @@ domBox::create(daeInt)
 
 
 daeMetaElement *
-domBox::registerElement()
+domBox::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "box" );
-	_Meta->registerClass(domBox::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "box" );
+	meta->registerClass(domBox::create, &meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "half_extents" );
 	mea->setOffset( daeOffsetOf(domBox,elemHalf_extents) );
-	mea->setElementType( domBox::domHalf_extents::registerElement() );
+	mea->setElementType( domBox::domHalf_extents::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domBox,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm->setMaxOrdinal( 1 );
-	_Meta->setCMRoot( cm );	
-	
-	
-	_Meta->setElementSize(sizeof(domBox));
-	_Meta->validate();
 
-	return _Meta;
+	cm->setMaxOrdinal( 1 );
+	meta->setCMRoot( cm );	
+
+	meta->setElementSize(sizeof(domBox));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domBox::domHalf_extents::create(daeInt)
+domBox::domHalf_extents::create()
 {
 	domBox::domHalf_extentsRef ref = new domBox::domHalf_extents;
 	return ref;
@@ -72,34 +74,30 @@ domBox::domHalf_extents::create(daeInt)
 
 
 daeMetaElement *
-domBox::domHalf_extents::registerElement()
+domBox::domHalf_extents::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "half_extents" );
-	_Meta->registerClass(domBox::domHalf_extents::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "half_extents" );
+	meta->registerClass(domBox::domHalf_extents::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("Float3"));
 		ma->setOffset( daeOffsetOf( domBox::domHalf_extents , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domBox::domHalf_extents));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domBox::domHalf_extents));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domBox::_Meta = NULL;
-daeMetaElement * domBox::domHalf_extents::_Meta = NULL;
-
 

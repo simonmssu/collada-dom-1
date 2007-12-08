@@ -1,15 +1,16 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
+
 #ifndef __domRigid_constraint_h__
 #define __domRigid_constraint_h__
 
@@ -23,6 +24,7 @@
 #include <dom/domRotate.h>
 #include <dom/domTargetableFloat3.h>
 #include <dom/domTargetableFloat.h>
+class DAE;
 
 /**
  * This element allows for connecting components, such as rigid_body into
@@ -31,7 +33,8 @@
 class domRigid_constraint : public daeElement
 {
 public:
-	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RIGID_CONSTRAINT; }
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RIGID_CONSTRAINT; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::RIGID_CONSTRAINT; }
 public:
 	class domRef_attachment;
 
@@ -44,7 +47,8 @@ public:
 	class domRef_attachment : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF_ATTACHMENT; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF_ATTACHMENT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::REF_ATTACHMENT; }
 	protected:  // Attribute
 /**
  *  The “rigid_body” attribute is a relative reference to a rigid-body
@@ -142,7 +146,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domRef_attachment() : attrRigid_body(), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
+		domRef_attachment(DAE& dae) : attrRigid_body(), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -159,22 +163,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create();
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domAttachment;
@@ -188,7 +185,8 @@ public:
 	class domAttachment : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ATTACHMENT; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ATTACHMENT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ATTACHMENT; }
 	protected:  // Attribute
 /**
  *  The “rigid_body” attribute is a relative reference to a rigid-body
@@ -286,7 +284,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAttachment() : attrRigid_body(), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
+		domAttachment(DAE& dae) : attrRigid_body(), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -303,22 +301,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create();
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domTechnique_common;
@@ -333,7 +324,8 @@ public:
 	class domTechnique_common : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
 	public:
 		class domEnabled;
 
@@ -347,7 +339,8 @@ public:
 		class domEnabled : public daeElement
 		{
 		public:
-			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ENABLED; }
+			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ENABLED; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ENABLED; }
 		protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier
@@ -389,7 +382,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domEnabled() : attrSid(), _value() {}
+			domEnabled(DAE& dae) : attrSid(), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -406,22 +399,15 @@ public:
 		public: // STATIC METHODS
 			/**
 			 * Creates an instance of this class and returns a daeElementRef referencing it.
-			 * @param bytes The size allocated for this instance.
 			 * @return a daeElementRef referencing an instance of this object.
 			 */
-			static DLLSPEC daeElementRef create(daeInt bytes);
+			static DLLSPEC daeElementRef create();
 			/**
 			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 			 * @return A daeMetaElement describing this COLLADA element.
 			 */
-			static DLLSPEC daeMetaElement* registerElement();
-
-		public: // STATIC MEMBERS
-			/**
-			 * The daeMetaElement that describes this element in the meta object reflection framework.
-			 */
-			static DLLSPEC daeMetaElement* _Meta;
+			static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 		};
 
 		class domInterpenetrate;
@@ -435,7 +421,8 @@ public:
 		class domInterpenetrate : public daeElement
 		{
 		public:
-			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INTERPENETRATE; }
+			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INTERPENETRATE; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INTERPENETRATE; }
 		protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier
@@ -477,7 +464,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domInterpenetrate() : attrSid(), _value() {}
+			domInterpenetrate(DAE& dae) : attrSid(), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -494,22 +481,15 @@ public:
 		public: // STATIC METHODS
 			/**
 			 * Creates an instance of this class and returns a daeElementRef referencing it.
-			 * @param bytes The size allocated for this instance.
 			 * @return a daeElementRef referencing an instance of this object.
 			 */
-			static DLLSPEC daeElementRef create(daeInt bytes);
+			static DLLSPEC daeElementRef create();
 			/**
 			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 			 * @return A daeMetaElement describing this COLLADA element.
 			 */
-			static DLLSPEC daeMetaElement* registerElement();
-
-		public: // STATIC MEMBERS
-			/**
-			 * The daeMetaElement that describes this element in the meta object reflection framework.
-			 */
-			static DLLSPEC daeMetaElement* _Meta;
+			static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 		};
 
 		class domLimits;
@@ -524,7 +504,8 @@ public:
 		class domLimits : public daeElement
 		{
 		public:
-			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIMITS; }
+			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIMITS; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIMITS; }
 		public:
 			class domSwing_cone_and_twist;
 
@@ -539,7 +520,8 @@ public:
 			class domSwing_cone_and_twist : public daeElement
 			{
 			public:
-				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SWING_CONE_AND_TWIST; }
+				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SWING_CONE_AND_TWIST; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SWING_CONE_AND_TWIST; }
 
 			protected:  // Elements
 /**
@@ -566,7 +548,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domSwing_cone_and_twist() : elemMin(), elemMax() {}
+				domSwing_cone_and_twist(DAE& dae) : elemMin(), elemMax() {}
 				/**
 				 * Destructor
 				 */
@@ -583,22 +565,15 @@ public:
 			public: // STATIC METHODS
 				/**
 				 * Creates an instance of this class and returns a daeElementRef referencing it.
-				 * @param bytes The size allocated for this instance.
 				 * @return a daeElementRef referencing an instance of this object.
 				 */
-				static DLLSPEC daeElementRef create(daeInt bytes);
+				static DLLSPEC daeElementRef create();
 				/**
 				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 				 * @return A daeMetaElement describing this COLLADA element.
 				 */
-				static DLLSPEC daeMetaElement* registerElement();
-
-			public: // STATIC MEMBERS
-				/**
-				 * The daeMetaElement that describes this element in the meta object reflection framework.
-				 */
-				static DLLSPEC daeMetaElement* _Meta;
+				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 			};
 
 			class domLinear;
@@ -612,7 +587,8 @@ public:
 			class domLinear : public daeElement
 			{
 			public:
-				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINEAR; }
+				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINEAR; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LINEAR; }
 
 			protected:  // Elements
 /**
@@ -639,7 +615,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domLinear() : elemMin(), elemMax() {}
+				domLinear(DAE& dae) : elemMin(), elemMax() {}
 				/**
 				 * Destructor
 				 */
@@ -656,22 +632,15 @@ public:
 			public: // STATIC METHODS
 				/**
 				 * Creates an instance of this class and returns a daeElementRef referencing it.
-				 * @param bytes The size allocated for this instance.
 				 * @return a daeElementRef referencing an instance of this object.
 				 */
-				static DLLSPEC daeElementRef create(daeInt bytes);
+				static DLLSPEC daeElementRef create();
 				/**
 				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 				 * @return A daeMetaElement describing this COLLADA element.
 				 */
-				static DLLSPEC daeMetaElement* registerElement();
-
-			public: // STATIC MEMBERS
-				/**
-				 * The daeMetaElement that describes this element in the meta object reflection framework.
-				 */
-				static DLLSPEC daeMetaElement* _Meta;
+				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 			};
 
 
@@ -704,7 +673,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domLimits() : elemSwing_cone_and_twist(), elemLinear() {}
+			domLimits(DAE& dae) : elemSwing_cone_and_twist(), elemLinear() {}
 			/**
 			 * Destructor
 			 */
@@ -721,22 +690,15 @@ public:
 		public: // STATIC METHODS
 			/**
 			 * Creates an instance of this class and returns a daeElementRef referencing it.
-			 * @param bytes The size allocated for this instance.
 			 * @return a daeElementRef referencing an instance of this object.
 			 */
-			static DLLSPEC daeElementRef create(daeInt bytes);
+			static DLLSPEC daeElementRef create();
 			/**
 			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 			 * @return A daeMetaElement describing this COLLADA element.
 			 */
-			static DLLSPEC daeMetaElement* registerElement();
-
-		public: // STATIC MEMBERS
-			/**
-			 * The daeMetaElement that describes this element in the meta object reflection framework.
-			 */
-			static DLLSPEC daeMetaElement* _Meta;
+			static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 		};
 
 		class domSpring;
@@ -750,7 +712,8 @@ public:
 		class domSpring : public daeElement
 		{
 		public:
-			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPRING; }
+			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPRING; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SPRING; }
 		public:
 			class domAngular;
 
@@ -763,7 +726,8 @@ public:
 			class domAngular : public daeElement
 			{
 			public:
-				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ANGULAR; }
+				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ANGULAR; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ANGULAR; }
 
 			protected:  // Elements
 /**
@@ -800,7 +764,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domAngular() : elemStiffness(), elemDamping(), elemTarget_value() {}
+				domAngular(DAE& dae) : elemStiffness(), elemDamping(), elemTarget_value() {}
 				/**
 				 * Destructor
 				 */
@@ -817,22 +781,15 @@ public:
 			public: // STATIC METHODS
 				/**
 				 * Creates an instance of this class and returns a daeElementRef referencing it.
-				 * @param bytes The size allocated for this instance.
 				 * @return a daeElementRef referencing an instance of this object.
 				 */
-				static DLLSPEC daeElementRef create(daeInt bytes);
+				static DLLSPEC daeElementRef create();
 				/**
 				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 				 * @return A daeMetaElement describing this COLLADA element.
 				 */
-				static DLLSPEC daeMetaElement* registerElement();
-
-			public: // STATIC MEMBERS
-				/**
-				 * The daeMetaElement that describes this element in the meta object reflection framework.
-				 */
-				static DLLSPEC daeMetaElement* _Meta;
+				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 			};
 
 			class domLinear;
@@ -846,7 +803,8 @@ public:
 			class domLinear : public daeElement
 			{
 			public:
-				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINEAR; }
+				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINEAR; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LINEAR; }
 
 			protected:  // Elements
 /**
@@ -883,7 +841,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domLinear() : elemStiffness(), elemDamping(), elemTarget_value() {}
+				domLinear(DAE& dae) : elemStiffness(), elemDamping(), elemTarget_value() {}
 				/**
 				 * Destructor
 				 */
@@ -900,22 +858,15 @@ public:
 			public: // STATIC METHODS
 				/**
 				 * Creates an instance of this class and returns a daeElementRef referencing it.
-				 * @param bytes The size allocated for this instance.
 				 * @return a daeElementRef referencing an instance of this object.
 				 */
-				static DLLSPEC daeElementRef create(daeInt bytes);
+				static DLLSPEC daeElementRef create();
 				/**
 				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 				 * @return A daeMetaElement describing this COLLADA element.
 				 */
-				static DLLSPEC daeMetaElement* registerElement();
-
-			public: // STATIC MEMBERS
-				/**
-				 * The daeMetaElement that describes this element in the meta object reflection framework.
-				 */
-				static DLLSPEC daeMetaElement* _Meta;
+				static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 			};
 
 
@@ -945,7 +896,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domSpring() : elemAngular(), elemLinear() {}
+			domSpring(DAE& dae) : elemAngular(), elemLinear() {}
 			/**
 			 * Destructor
 			 */
@@ -962,22 +913,15 @@ public:
 		public: // STATIC METHODS
 			/**
 			 * Creates an instance of this class and returns a daeElementRef referencing it.
-			 * @param bytes The size allocated for this instance.
 			 * @return a daeElementRef referencing an instance of this object.
 			 */
-			static DLLSPEC daeElementRef create(daeInt bytes);
+			static DLLSPEC daeElementRef create();
 			/**
 			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 			 * @return A daeMetaElement describing this COLLADA element.
 			 */
-			static DLLSPEC daeMetaElement* registerElement();
-
-		public: // STATIC MEMBERS
-			/**
-			 * The daeMetaElement that describes this element in the meta object reflection framework.
-			 */
-			static DLLSPEC daeMetaElement* _Meta;
+			static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 		};
 
 
@@ -1028,7 +972,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique_common() : elemEnabled(), elemInterpenetrate(), elemLimits(), elemSpring() {}
+		domTechnique_common(DAE& dae) : elemEnabled(), elemInterpenetrate(), elemLimits(), elemSpring() {}
 		/**
 		 * Destructor
 		 */
@@ -1045,22 +989,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create();
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 
@@ -1164,7 +1101,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domRigid_constraint() : attrSid(), attrName(), elemRef_attachment(), elemAttachment(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
+	domRigid_constraint(DAE& dae) : attrSid(), attrName(), elemRef_attachment(), elemAttachment(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -1181,22 +1118,15 @@ protected:
 public: // STATIC METHODS
 	/**
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
-	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create();
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static DLLSPEC daeMetaElement* registerElement();
-
-public: // STATIC MEMBERS
-	/**
-	 * The daeMetaElement that describes this element in the meta object reflection framework.
-	 */
-	static DLLSPEC daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 };
 
 

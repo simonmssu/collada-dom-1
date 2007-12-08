@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domSkin.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,7 +22,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSkin::create(daeInt)
+domSkin::create()
 {
 	domSkinRef ref = new domSkin;
 	ref->attrSource.setContainer( (domSkin*)ref );
@@ -30,72 +31,73 @@ domSkin::create(daeInt)
 
 
 daeMetaElement *
-domSkin::registerElement()
+domSkin::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "skin" );
-	_Meta->registerClass(domSkin::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "skin" );
+	meta->registerClass(domSkin::create, &meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "bind_shape_matrix" );
 	mea->setOffset( daeOffsetOf(domSkin,elemBind_shape_matrix) );
-	mea->setElementType( domSkin::domBind_shape_matrix::registerElement() );
+	mea->setElementType( domSkin::domBind_shape_matrix::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 3, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 3, -1 );
 	mea->setName( "source" );
 	mea->setOffset( daeOffsetOf(domSkin,elemSource_array) );
-	mea->setElementType( domSource::registerElement() );
+	mea->setElementType( domSource::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 2, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 2, 1, 1 );
 	mea->setName( "joints" );
 	mea->setOffset( daeOffsetOf(domSkin,elemJoints) );
-	mea->setElementType( domSkin::domJoints::registerElement() );
+	mea->setElementType( domSkin::domJoints::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 3, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 3, 1, 1 );
 	mea->setName( "vertex_weights" );
 	mea->setOffset( daeOffsetOf(domSkin,elemVertex_weights) );
-	mea->setElementType( domSkin::domVertex_weights::registerElement() );
+	mea->setElementType( domSkin::domVertex_weights::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 4, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 4, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domSkin,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 4 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 
 	//	Add attribute: source
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domSkin , attrSource ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domSkin));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domSkin));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domSkin::domBind_shape_matrix::create(daeInt)
+domSkin::domBind_shape_matrix::create()
 {
 	domSkin::domBind_shape_matrixRef ref = new domSkin::domBind_shape_matrix;
 	return ref;
@@ -103,34 +105,35 @@ domSkin::domBind_shape_matrix::create(daeInt)
 
 
 daeMetaElement *
-domSkin::domBind_shape_matrix::registerElement()
+domSkin::domBind_shape_matrix::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "bind_shape_matrix" );
-	_Meta->registerClass(domSkin::domBind_shape_matrix::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "bind_shape_matrix" );
+	meta->registerClass(domSkin::domBind_shape_matrix::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("Float4x4"));
 		ma->setOffset( daeOffsetOf( domSkin::domBind_shape_matrix , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domSkin::domBind_shape_matrix));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domSkin::domBind_shape_matrix));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domSkin::domJoints::create(daeInt)
+domSkin::domJoints::create()
 {
 	domSkin::domJointsRef ref = new domSkin::domJoints;
 	return ref;
@@ -138,43 +141,44 @@ domSkin::domJoints::create(daeInt)
 
 
 daeMetaElement *
-domSkin::domJoints::registerElement()
+domSkin::domJoints::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "joints" );
-	_Meta->registerClass(domSkin::domJoints::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "joints" );
+	meta->registerClass(domSkin::domJoints::create, &meta);
+
+	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 2, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 2, -1 );
 	mea->setName( "input" );
 	mea->setOffset( daeOffsetOf(domSkin::domJoints,elemInput_array) );
-	mea->setElementType( domInputLocal::registerElement() );
+	mea->setElementType( domInputLocal::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domSkin::domJoints,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm->setMaxOrdinal( 1 );
-	_Meta->setCMRoot( cm );	
-	
-	
-	_Meta->setElementSize(sizeof(domSkin::domJoints));
-	_Meta->validate();
 
-	return _Meta;
+	cm->setMaxOrdinal( 1 );
+	meta->setCMRoot( cm );	
+
+	meta->setElementSize(sizeof(domSkin::domJoints));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domSkin::domVertex_weights::create(daeInt)
+domSkin::domVertex_weights::create()
 {
 	domSkin::domVertex_weightsRef ref = new domSkin::domVertex_weights;
 	return ref;
@@ -182,67 +186,68 @@ domSkin::domVertex_weights::create(daeInt)
 
 
 daeMetaElement *
-domSkin::domVertex_weights::registerElement()
+domSkin::domVertex_weights::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "vertex_weights" );
-	_Meta->registerClass(domSkin::domVertex_weights::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "vertex_weights" );
+	meta->registerClass(domSkin::domVertex_weights::create, &meta);
+
+	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 2, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 2, -1 );
 	mea->setName( "input" );
 	mea->setOffset( daeOffsetOf(domSkin::domVertex_weights,elemInput_array) );
-	mea->setElementType( domInputLocalOffset::registerElement() );
+	mea->setElementType( domInputLocalOffset::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "vcount" );
 	mea->setOffset( daeOffsetOf(domSkin::domVertex_weights,elemVcount) );
-	mea->setElementType( domSkin::domVertex_weights::domVcount::registerElement() );
+	mea->setElementType( domSkin::domVertex_weights::domVcount::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
 	mea->setName( "v" );
 	mea->setOffset( daeOffsetOf(domSkin::domVertex_weights,elemV) );
-	mea->setElementType( domSkin::domVertex_weights::domV::registerElement() );
+	mea->setElementType( domSkin::domVertex_weights::domV::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 3, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domSkin::domVertex_weights,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 3 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 
 	//	Add attribute: count
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
 		ma->setType( daeAtomicType::get("Uint"));
 		ma->setOffset( daeOffsetOf( domSkin::domVertex_weights , attrCount ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domSkin::domVertex_weights));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domSkin::domVertex_weights));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domSkin::domVertex_weights::domVcount::create(daeInt)
+domSkin::domVertex_weights::domVcount::create()
 {
 	domSkin::domVertex_weights::domVcountRef ref = new domSkin::domVertex_weights::domVcount;
 	return ref;
@@ -250,34 +255,35 @@ domSkin::domVertex_weights::domVcount::create(daeInt)
 
 
 daeMetaElement *
-domSkin::domVertex_weights::domVcount::registerElement()
+domSkin::domVertex_weights::domVcount::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "vcount" );
-	_Meta->registerClass(domSkin::domVertex_weights::domVcount::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "vcount" );
+	meta->registerClass(domSkin::domVertex_weights::domVcount::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("ListOfUInts"));
 		ma->setOffset( daeOffsetOf( domSkin::domVertex_weights::domVcount , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domSkin::domVertex_weights::domVcount));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domSkin::domVertex_weights::domVcount));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domSkin::domVertex_weights::domV::create(daeInt)
+domSkin::domVertex_weights::domV::create()
 {
 	domSkin::domVertex_weights::domVRef ref = new domSkin::domVertex_weights::domV;
 	return ref;
@@ -285,38 +291,30 @@ domSkin::domVertex_weights::domV::create(daeInt)
 
 
 daeMetaElement *
-domSkin::domVertex_weights::domV::registerElement()
+domSkin::domVertex_weights::domV::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "v" );
-	_Meta->registerClass(domSkin::domVertex_weights::domV::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "v" );
+	meta->registerClass(domSkin::domVertex_weights::domV::create, &meta);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("ListOfInts"));
 		ma->setOffset( daeOffsetOf( domSkin::domVertex_weights::domV , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domSkin::domVertex_weights::domV));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domSkin::domVertex_weights::domV));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domSkin::_Meta = NULL;
-daeMetaElement * domSkin::domBind_shape_matrix::_Meta = NULL;
-daeMetaElement * domSkin::domJoints::_Meta = NULL;
-daeMetaElement * domSkin::domVertex_weights::_Meta = NULL;
-daeMetaElement * domSkin::domVertex_weights::domVcount::_Meta = NULL;
-daeMetaElement * domSkin::domVertex_weights::domV::_Meta = NULL;
-
 

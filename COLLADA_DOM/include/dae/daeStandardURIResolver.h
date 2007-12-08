@@ -16,8 +16,7 @@
 
 #include <string>
 #include "dae/daeURI.h"
-class daeIOPlugin;
-class daeDatabase;
+class DAE;
 
 /**
  * The @c daeStandardURIResolver class derives from @c daeURIResolver and implements
@@ -31,19 +30,17 @@ public:
 	 * @param database The @c daeDatabase used.
 	 * @param plugin The @c daeIOPlugin used.
 	 */
-	DLLSPEC daeStandardURIResolver(daeDatabase* database, daeIOPlugin* plugin);
+	DLLSPEC daeStandardURIResolver(DAE& dae);
 	/**
 	 * Destructor.
 	 */
 	DLLSPEC ~daeStandardURIResolver();
 
 protected:
-	daeDatabase* _database;
-	daeIOPlugin* _plugin;
 	daeTArray<std::string> _protocols;
 
 public: // Abstract Interface
-	virtual DLLSPEC daeBool resolveElement(daeURI& uri, daeString typeNameHint = NULL);
+	virtual DLLSPEC daeBool resolveElement(daeURI& uri);
 	virtual DLLSPEC daeBool resolveURI(daeURI& uri);
 	virtual DLLSPEC daeString getName();
 	virtual DLLSPEC daeBool isProtocolSupported(daeString protocol);

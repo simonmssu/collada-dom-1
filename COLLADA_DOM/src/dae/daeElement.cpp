@@ -23,37 +23,9 @@
 #include <dae/daeURI.h>
 #include <dae/domAny.h>
 
-daeElementRef DAECreateElement(int)
+daeElementRef DAECreateElement()
 {
 	return new daeElement;
-}
-
-//Contributed by Nus - Wed, 08 Nov 2006
-// static daeElementRefArray resolveArray;
-static daeElementRefArray* pResolveArray = NULL;
-//static char StaticIndentBuf[] = "";
-
-extern "C" void initializeResolveArray(void)
-{
-  if(!pResolveArray) {
-    pResolveArray = new daeElementRefArray;
-  }
-}
-
-extern "C" void terminateResolveArray(void)
-{
-  if(pResolveArray) {
-    delete pResolveArray;
-    pResolveArray = NULL;
-  }
-}
-//----------------------------------
-
-// sthomas (see https://collada.org/public_forum/viewtopic.php?t=325&)
-void daeElement::releaseElements()
-{
-    // resolveArray.clear();
-    pResolveArray->clear();
 }
 
 daeIntegrationObject*
@@ -399,46 +371,6 @@ daeMemoryRef daeElement::getValuePointer() {
 	if (daeMetaAttribute* charDataAttr = getCharDataObject())
 		return charDataAttr->get(this);
 	return NULL;
-}
-
-void
-daeElement::appendResolveElement(daeElement* elem)
-{
-//Contributed by Nus - Wed, 08 Nov 2006
-	// resolveArray.append(elem);
-	pResolveArray->append(elem);
-//----------------------
-}
-void
-daeElement::resolveAll()
-{
-	int cnt;
-//Contributed by Nus - Wed, 08 Nov 2006
-	// while(resolveArray.getCount()) {
-	while(pResolveArray->getCount()) {
-		// cnt = (int)resolveArray.getCount();
-		cnt = (int)pResolveArray->getCount();
-		// daeElementRef elem = resolveArray[cnt-1];
-		daeElementRef elem = (*pResolveArray)[cnt-1];
-		// resolveArray.removeIndex(cnt-1);
-		pResolveArray->removeIndex(cnt-1);
-//--------------------------
-		elem->resolve();
-	}
-	/*size_t cnt = resolveArray.getCount();
-	for ( size_t i =0; i < cnt; i++ ) {
-		resolveArray[i]->resolve();
-	}
-	resolveArray.clear();*/
-}
-
-void
-daeElement::clearResolveArray()
-{
-//Contributed by Nus - Wed, 08 Nov 2006
-	// resolveArray.clear();
-	pResolveArray->clear();
-//------------------------
 }
 
 void

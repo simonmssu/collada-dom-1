@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domFx_surface_init_from_common.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,7 +22,7 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_init_from_common::create(daeInt)
+domFx_surface_init_from_common::create()
 {
 	domFx_surface_init_from_commonRef ref = new domFx_surface_init_from_common;
 	return ref;
@@ -29,68 +30,65 @@ domFx_surface_init_from_common::create(daeInt)
 
 
 daeMetaElement *
-domFx_surface_init_from_common::registerElement()
+domFx_surface_init_from_common::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "fx_surface_init_from_common" );
-	_Meta->registerClass(domFx_surface_init_from_common::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement;
+	dae.setMeta(getTypeStatic(), *meta);
+	meta->setName( "fx_surface_init_from_common" );
+	meta->registerClass(domFx_surface_init_from_common::create, &meta);
 
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
 		ma->setType( daeAtomicType::get("xsIDREF"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_from_common , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: mip
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "mip" );
 		ma->setType( daeAtomicType::get("xsUnsignedInt"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_from_common , attrMip ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setDefaultString( "0");
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: slice
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "slice" );
 		ma->setType( daeAtomicType::get("xsUnsignedInt"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_from_common , attrSlice ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setDefaultString( "0");
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: face
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "face" );
 		ma->setType( daeAtomicType::get("Fx_surface_face_enum"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_from_common , attrFace ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setDefaultString( "POSITIVE_X");
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_init_from_common));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domFx_surface_init_from_common));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domFx_surface_init_from_common::_Meta = NULL;
-
 

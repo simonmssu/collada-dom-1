@@ -25,14 +25,14 @@
   $dom_scoped_element = implode( '::', $_domContext );
 
 ?><?= $_globals['meta_prefix'] ?>ElementRef
-<?= $scoped_element ?>::create(<?= $_globals['meta_prefix'] ?>Int)
+<?= $scoped_element ?>::create()
 {
 	<?= $scoped_element ?>Ref ref = new <?= $scoped_element ?>;
 	return ref;
 }
 
 <?= $_globals['meta_prefix'] ?>MetaElement *
-<?= $scoped_element ?>::registerElement()
+<?= $scoped_element ?>::registerElement(DAE& dae)
 {
     if ( _Meta != NULL ) return _Meta;
     
@@ -50,7 +50,7 @@
 
 <?php
   // Add registerElement() call to global list for later use:
-  $_globals['register_list'][] = '  ' . $scoped_element . '::registerElement();';
+  $_globals['register_list'][] = '  ' . $scoped_element . '::registerElement(dae);';
 
   // Recurse
   if ( $_globals['full_code'] )

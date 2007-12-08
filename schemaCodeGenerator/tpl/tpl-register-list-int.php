@@ -17,7 +17,7 @@
 #include "<?= $_globals['int_prefix'] ?>Includes.h"
 
 void
-registerElements()
+registerElements(DAE& dae)
 {
 <?= implode( "\n", $_globals['register_list'] ) ?>
 

@@ -55,7 +55,7 @@
 	{
 		print applyTemplate( 'DOXYGEN', $bag['documentation'][ $_globals['language'] ] );
 	}
-	
+
 	// SUBSTITION GROUP/INHERITANCE
 	$base = '';
 	if ( $bag['isAComplexType'] ) {
@@ -75,7 +75,7 @@
 		}
 		print $indent ."class ". $full_element_name ." : public ". $baseClass ."\n".$indent."{\n";
 		print $indent ."public:\n";
-		print $indent ."\tCOLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
+		print $indent ."\tvirtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
 		print $indent ."\tstatic COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
 	}
 
@@ -453,7 +453,7 @@
 		print $indent ."class ". $full_element_name ." : public daeElement, public ". $full_element_name ."_complexType\n";
 		print $indent ."{\n";
 		print $indent ."public:\n";
-		print $indent ."\tCOLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
+		print $indent ."\tvirtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
 		print $indent ."\tstatic COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
 		
 		if ( $_globals['accessorsAndMutators'] && ( $bag['useXMLNS'] || count($bag['attributes'])>0 ) ) {
@@ -468,15 +468,10 @@
 	
 	print "\n".$indent ."public: // STATIC METHODS\n";
 	print $indent ."\t/**\n". $indent ."\t * Creates an instance of this class and returns a daeElementRef referencing it.\n";
-	print $indent ."\t * @param bytes The size allocated for this instance.\n";
 	print $indent ."\t * @return a daeElementRef referencing an instance of this object.\n". $indent ."\t */\n";
-	print $indent ."\tstatic DLLSPEC ". $_globals['meta_prefix'] ."ElementRef create(". $_globals['meta_prefix'] ."Int bytes);\n";
+	print $indent ."\tstatic DLLSPEC ". $_globals['meta_prefix'] ."ElementRef create();\n";
 	print $indent ."\t/**\n". $indent ."\t * Creates a daeMetaElement object that describes this element in the meta object reflection framework.";
 	print "\n". $indent ."\t * If a daeMetaElement already exists it will return that instead of creating a new one. \n";
 	print $indent ."\t * @return A daeMetaElement describing this COLLADA element.\n". $indent ."\t */\n";
-	print $indent ."\tstatic DLLSPEC ". $_globals['meta_prefix'] ."MetaElement* registerElement();\n\n";
-	print $indent ."public: // STATIC MEMBERS\n";
-	print $indent ."\t/**\n". $indent ."\t * The daeMetaElement that describes this element in the meta object reflection framework.";
-	print "\n". $indent ."\t */\n";
-	print $indent ."\tstatic DLLSPEC ". $_globals['meta_prefix'] ."MetaElement* _Meta;\n";
+	print $indent ."\tstatic DLLSPEC ". $_globals['meta_prefix'] ."MetaElement* registerElement(DAE& dae);\n";
 	print $indent ."};\n\n";
