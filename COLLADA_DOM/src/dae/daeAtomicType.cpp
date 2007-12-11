@@ -936,7 +936,10 @@ daeArray* daeResolverType::createArray() {
 }
 
 daeArray* daeIDResolverType::createArray() {
-	return new daeTArray<daeIDRef>;
+	// !!!steveT What do we want to do here?
+	assert(false);
+	return NULL;
+	//return new daeTArray<daeIDRef>;
 }
 
 

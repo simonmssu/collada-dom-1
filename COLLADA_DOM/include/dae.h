@@ -139,7 +139,7 @@ public:
 
 	daeURIResolverList& getURIResolvers();
 	daeURI& getBaseURI();
-	daeURI& setBaseURI(daeURI& uri);
+	void setBaseURI(daeURI& uri);
 
 	daeIDRefResolverList& getIDRefResolvers();
 

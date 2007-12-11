@@ -336,23 +336,24 @@ namespace {
 }
 
 daeInt DAE::loadFile(daeString file, daeString memBuffer) {
-	return load(filePathToFullUri(dae, file).c_str(), memBuffer);
+	return load(filePathToFullUri(*this, file).c_str(), memBuffer);
 }
 
 daeInt DAE::saveFile(daeString file, daeBool replace) {
-	return save(filePathToFullUri(dae, file).c_str(), replace);
+	return save(filePathToFullUri(*this, file).c_str(), replace);
 }
 
 daeInt DAE::saveFileAs(daeString fileToSaveTo, daeString file, daeBool replace) {
-	return saveAs(filePathToFullUri(dae, fileToSaveTo).c_str(), filePathToFullUri(file).c_str(), replace);
+	return saveAs(filePathToFullUri(*this, fileToSaveTo).c_str(),
+	              filePathToFullUri(*this, file).c_str(), replace);
 }
 
 daeInt DAE::saveFileAs(daeString fileToSaveTo, daeUInt documentIndex, daeBool replace) {
-	return saveAs(filePathToFullUri(dae, fileToSaveTo).c_str(), documentIndex, replace);
+	return saveAs(filePathToFullUri(*this, fileToSaveTo).c_str(), documentIndex, replace);
 }
 
 daeInt DAE::unloadFile(daeString file) {
-	return unload(filePathToFullUri(dae, file).c_str());
+	return unload(filePathToFullUri(*this, file).c_str());
 }
 
 
@@ -423,11 +424,11 @@ daeInt DAE::setDom(daeString uri, domCOLLADA* dom)
 }
 
 domCOLLADA* DAE::getDomFile(daeString file) {
-	return getDom(filePathToFullUri(file).c_str());
+	return getDom(filePathToFullUri(*this, file).c_str());
 }
 
 daeInt DAE::setDomFile(daeString file, domCOLLADA* dom) {
-	return setDom(filePathToFullUri(file).c_str(), dom);
+	return setDom(filePathToFullUri(*this, file).c_str(), dom);
 }
 
 daeString DAE::getDomVersion()
@@ -464,7 +465,7 @@ void DAE::resolveAll() {
 	resolveArray.clear();
 }
 
-daeTArray<daeURIResolver*>& DAE::getUriResolvers() {
+daeURIResolverList& DAE::getURIResolvers() {
 	return uriResolvers;
 }
 
@@ -472,6 +473,6 @@ daeURI& DAE::getBaseURI() {
 	return baseUri;
 }
 
-daeURI& DAE::setBaseURI(daeURI& uri) {
+void DAE::setBaseURI(daeURI& uri) {
 	baseUri = uri;
 }
