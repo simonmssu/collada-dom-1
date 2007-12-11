@@ -54,27 +54,22 @@ DAE::cleanup()
 {
 	//Contributed by Nus - Wed, 08 Nov 2006
 	daeStringRef::releaseStringTable();
-	daeIDRefResolver::terminateIDRefSolver();
 	//----------------------
 }
 
 void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 	database = NULL;
 	plugin = NULL;
-	idResolver = NULL;
 	defaultDatabase = false;
 	defaultPlugin = false;
 	registerFunc = NULL;
 	topMeta = NULL;
 
-//Contributed by Nus - Wed, 08 Nov 2006
-	daeIDRefResolver::initializeIDRefSolver();
-//------------------------
-	topMeta = initializeDomMeta(atomicTypes);
+	topMeta = initializeDomMeta(*this);
 	DAEInstanceCount++;
 	uriResolvers.addResolver(new daeStandardURIResolver(*this));
 	uriResolvers.addResolver(new daeRawResolver(*this));
-	idResolver = new daeDefaultIDRefResolver();
+	idRefResolvers.addResolver(new daeDefaultIDRefResolver(*this));
 
 	setDatabase(database_);
 	setIOPlugin(ioPlugin);
@@ -86,12 +81,8 @@ DAE::~DAE()
 		delete database;
 	if (defaultPlugin)
 		delete plugin;
-	delete idResolver;
-	--DAEInstanceCount;
-	if ( DAEInstanceCount <= 0 )
-	{
+	if ( --DAEInstanceCount <= 0 )
 		cleanup();
-	}
 }
 
 // Database setup	
@@ -115,10 +106,7 @@ daeInt DAE::setDatabase(daeDatabase* _database)
 		database = new daeSTLDatabase(*this);
 		defaultDatabase = true;
 	}
-	// !!!GAC Not sure what good the error return is, current implementations never fail, what would we do if they did?
-	int res = database->setMeta(topMeta);
-	(void)res;
-	((daeDefaultIDRefResolver*)idResolver)->setDatabase( database );
+	database->setMeta(topMeta);
 	return DAE_OK;
 }
 
@@ -216,7 +204,7 @@ daeInt DAE::load(daeString uri, daeString docBuffer)
 	if (!uri || uri[0] == '\0')
 		return DAE_ERR_INVALID_CALL;
 
-	daeURI tempURI(uri);
+	daeURI tempURI(*this, uri);
 	
 	return plugin->read(tempURI, docBuffer);
 }
@@ -294,7 +282,7 @@ daeInt DAE::saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace)
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
 	// Make a URI from uriToSaveTo and save to that
-	daeURI tempURI(uriToSaveTo, true);
+	daeURI tempURI(*this, uriToSaveTo, true);
 	return plugin->write(&tempURI, document, replace);
 	
 }
@@ -320,7 +308,7 @@ daeInt DAE::saveAs(daeString uriToSaveTo, daeUInt documentIndex, daeBool replace
 
 	daeDocument *document = database->getDocument(documentIndex);
 	
-	daeURI tempURI(uriToSaveTo, true);
+	daeURI tempURI(*this, uriToSaveTo, true);
 	return plugin->write(&tempURI, document, replace);
 }
 daeInt DAE::unload(daeString uri)
@@ -334,37 +322,37 @@ daeInt DAE::unload(daeString uri)
 namespace {
 	// Take a URI ref and return a full URI. Uses the current working directory
 	// as the base URI if a relative URI reference is given.
-	string makeFullUri(const string& uriRef) {
-		daeURI uri(uriRef.c_str());
+	string makeFullUri(DAE& dae, const string& uriRef) {
+		daeURI uri(dae, uriRef.c_str());
 		return uri.getURI();
 	}
 
 	// Take a file path (either relative or absolute) and return a full URI
 	// representing the path. If a relative path is given, uses the current working
 	// directory as a base URI to construct the full URI.
-	string filePathToFullUri(const string& path) {
-		return makeFullUri(cdom::filePathToUri(path));
+	string filePathToFullUri(DAE& dae, const string& path) {
+		return makeFullUri(dae, cdom::filePathToUri(path));
 	}
 }
 
 daeInt DAE::loadFile(daeString file, daeString memBuffer) {
-	return load(filePathToFullUri(file).c_str(), memBuffer);
+	return load(filePathToFullUri(dae, file).c_str(), memBuffer);
 }
 
 daeInt DAE::saveFile(daeString file, daeBool replace) {
-	return save(filePathToFullUri(file).c_str(), replace);
+	return save(filePathToFullUri(dae, file).c_str(), replace);
 }
 
 daeInt DAE::saveFileAs(daeString fileToSaveTo, daeString file, daeBool replace) {
-	return saveAs(filePathToFullUri(fileToSaveTo).c_str(), filePathToFullUri(file).c_str(), replace);
+	return saveAs(filePathToFullUri(dae, fileToSaveTo).c_str(), filePathToFullUri(file).c_str(), replace);
 }
 
 daeInt DAE::saveFileAs(daeString fileToSaveTo, daeUInt documentIndex, daeBool replace) {
-	return saveAs(filePathToFullUri(fileToSaveTo).c_str(), documentIndex, replace);
+	return saveAs(filePathToFullUri(dae, fileToSaveTo).c_str(), documentIndex, replace);
 }
 
 daeInt DAE::unloadFile(daeString file) {
-	return unload(filePathToFullUri(file).c_str());
+	return unload(filePathToFullUri(dae, file).c_str());
 }
 
 
@@ -453,14 +441,14 @@ daeAtomicTypeList& DAE::getAtomicTypes() {
 
 daeMetaElement* DAE::getMeta(int typeID) {
 	int index = typeID - 2;
-	if (index < 0 || index >= metas.getCount())
+	if (index < 0 || index >= int(metas.getCount()))
 		return NULL;
 	return metas[index];
 }
 
 void DAE::setMeta(int typeID, daeMetaElement& meta) {
 	int index = typeID - 2;
-	if (index < 0 || index >= metas.getCount())
+	if (index < 0 || index >= int(metas.getCount()))
 		return;
 	metas[index] = &meta;
 }
@@ -476,7 +464,7 @@ void DAE::resolveAll() {
 	resolveArray.clear();
 }
 
-daeURIResolverPtrArray& DAE::getUriResolvers() {
+daeTArray<daeURIResolver*>& DAE::getUriResolvers() {
 	return uriResolvers;
 }
 
@@ -485,6 +473,5 @@ daeURI& DAE::getBaseURI() {
 }
 
 daeURI& DAE::setBaseURI(daeURI& uri) {
-	baseUri.reset();
-	baseUri.setURI(uri.getURI());
+	baseUri = uri;
 }

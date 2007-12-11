@@ -73,10 +73,6 @@ protected:
 	 */
 	virtual ~domFx_code_profile_complexType() {}
 	/**
-	 * Copy Constructor
-	 */
-	domFx_code_profile_complexType( const domFx_code_profile_complexType &cpy ) { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domFx_code_profile_complexType &operator=( const domFx_code_profile_complexType &cpy ) { (void)cpy; return *this; }
@@ -113,10 +109,6 @@ protected:
 	 */
 	virtual ~domFx_code_profile() {}
 	/**
-	 * Copy Constructor
-	 */
-	domFx_code_profile( const domFx_code_profile &cpy ) : daeElement(), domFx_code_profile_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domFx_code_profile &operator=( const domFx_code_profile &cpy ) { (void)cpy; return *this; }
@@ -126,7 +118,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

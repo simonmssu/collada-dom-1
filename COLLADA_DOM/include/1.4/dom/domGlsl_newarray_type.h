@@ -109,10 +109,6 @@ protected:
 	 */
 	virtual ~domGlsl_newarray_type_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
-	 * Copy Constructor
-	 */
-	domGlsl_newarray_type_complexType( const domGlsl_newarray_type_complexType &cpy ) { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domGlsl_newarray_type_complexType &operator=( const domGlsl_newarray_type_complexType &cpy ) { (void)cpy; return *this; }
@@ -149,10 +145,6 @@ protected:
 	 */
 	virtual ~domGlsl_newarray_type() {}
 	/**
-	 * Copy Constructor
-	 */
-	domGlsl_newarray_type( const domGlsl_newarray_type &cpy ) : daeElement(), domGlsl_newarray_type_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domGlsl_newarray_type &operator=( const domGlsl_newarray_type &cpy ) { (void)cpy; return *this; }
@@ -162,7 +154,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

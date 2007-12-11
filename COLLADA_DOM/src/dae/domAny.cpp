@@ -24,7 +24,7 @@
 #include <dae/daeErrorHandler.h>
 
 daeElementRef
-domAny::create(daeInt)
+domAny::create(DAE& dae)
 {
 	domAnyRef ref = new domAny;
 	return ref;

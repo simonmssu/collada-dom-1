@@ -68,10 +68,6 @@ protected:
 	 */
 	virtual ~domGles_texenv_command_type_complexType() {}
 	/**
-	 * Copy Constructor
-	 */
-	domGles_texenv_command_type_complexType( const domGles_texenv_command_type_complexType &cpy ) { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domGles_texenv_command_type_complexType &operator=( const domGles_texenv_command_type_complexType &cpy ) { (void)cpy; return *this; }
@@ -119,10 +115,6 @@ protected:
 	 */
 	virtual ~domGles_texenv_command_type() {}
 	/**
-	 * Copy Constructor
-	 */
-	domGles_texenv_command_type( const domGles_texenv_command_type &cpy ) : daeElement(), domGles_texenv_command_type_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domGles_texenv_command_type &operator=( const domGles_texenv_command_type &cpy ) { (void)cpy; return *this; }
@@ -132,7 +124,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

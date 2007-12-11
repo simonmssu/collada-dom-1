@@ -12,13 +12,9 @@
  */
 
 #include <sstream>
+#include <dae.h>
 #include <dae/daeIDRef.h>
-#include <dae/daeDatabase.h>
 #include <dae/daeErrorHandler.h>
-
-//Contributed by Nus - Wed, 08 Nov 2006
-daeIDRefResolverPtrArray* daeIDRefResolver::_KnownResolvers = NULL;
-//----------------------------------
 
 void
 daeIDRef::initialize()
@@ -148,62 +144,15 @@ daeIDRef::copyFrom(const daeIDRef& copyFrom) {
 	*this = copyFrom;
 }
 
-//Contributed by Nus - Wed, 08 Nov 2006
-void daeIDRefResolver::initializeIDRefSolver(void)
-{
-  if(!_KnownResolvers) {
-    _KnownResolvers = new daeIDRefResolverPtrArray();
-  }
-}
 
-void daeIDRefResolver::terminateIDRefSolver(void)
-{
-  if(_KnownResolvers) {
-    delete _KnownResolvers;
-    _KnownResolvers = NULL;
-  }
-}
+daeIDRefResolver::daeIDRefResolver(DAE& dae) : dae(&dae) { }
 
-//-------------------------------------
-
-daeElement* daeIDRefResolver::attemptResolveElement(daeString id, 
-                                                    daeString docURI, 
-                                                    daeIDRef::ResolveState* result /* = NULL */)
-{
-//Contributed by Nus - Wed, 08 Nov 2006
-	for(size_t i = 0; i < _KnownResolvers->getCount(); i++)
-		if (daeElement* el = (*_KnownResolvers)[i]->resolveElement(id, docURI, result))
-			return el;
-	return NULL;
-//-------------------------
-}
-
-daeIDRefResolver::daeIDRefResolver()
-{
-//Contributed by Nus - Wed, 08 Nov 2006
-	// _KnownResolvers.append((daeIDRefResolver*)this);
-	_KnownResolvers->append((daeIDRefResolver*)this);
-//------------------------------
-}
-
-daeIDRefResolver::~daeIDRefResolver()
-{
-//Contributed by Nus - Wed, 08 Nov 2006
-	// _KnownResolvers.remove((daeIDRefResolver*)this);
-	_KnownResolvers->remove((daeIDRefResolver*)this);
-//-----------------------------------------
-}
+daeIDRefResolver::~daeIDRefResolver() { }
 
 
+daeDefaultIDRefResolver::daeDefaultIDRefResolver(DAE& dae) : daeIDRefResolver(dae) { }
 
-daeDefaultIDRefResolver::daeDefaultIDRefResolver()
-{
-	_database = NULL;
-}
-
-daeDefaultIDRefResolver::~daeDefaultIDRefResolver()
-{
-}
+daeDefaultIDRefResolver::~daeDefaultIDRefResolver() { }
 
 daeString
 daeDefaultIDRefResolver::getName()
@@ -224,7 +173,7 @@ daeElement* daeDefaultIDRefResolver::resolveElement(daeString id,
 		if (!docURI)
 			state = daeIDRef::id_failed_no_document;
 		else {
-			_database->getElement(&el, 0, id, NULL, docURI);
+			dae->getDatabase()->getElement(&el, 0, id, NULL, docURI);
 			if (!el)
 				state = daeIDRef::id_failed_id_not_found;
 		}
@@ -236,5 +185,28 @@ daeElement* daeDefaultIDRefResolver::resolveElement(daeString id,
 }
 
 
+daeIDRefResolverList::daeIDRefResolverList() { }
 
+daeIDRefResolverList::~daeIDRefResolverList() {
+	for (size_t i = 0; i < resolvers.getCount(); i++)
+		delete resolvers[i];
+}
 
+void daeIDRefResolverList::addResolver(daeIDRefResolver* resolver) {
+	resolvers.append(resolver);
+}
+
+void daeIDRefResolverList::removeResolver(daeIDRefResolver* resolver) {
+	resolvers.remove(resolver);
+}
+
+daeElement* daeIDRefResolverList::resolveElement(
+	daeString id,
+	daeString docURI,
+	daeIDRef::ResolveState* result)
+{
+	for(size_t i = 0; i < resolvers.getCount(); i++)
+		if (daeElement* el = resolvers[i].->resolveElement(id, docURI, result))
+			return el;
+	return NULL;
+}

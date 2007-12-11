@@ -90,10 +90,6 @@ public:
 		 */
 		virtual ~domControl_vertices() {}
 		/**
-		 * Copy Constructor
-		 */
-		domControl_vertices( const domControl_vertices &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domControl_vertices &operator=( const domControl_vertices &cpy ) { (void)cpy; return *this; }
@@ -103,7 +99,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -178,10 +174,6 @@ protected:
 	 */
 	virtual ~domSpline() {}
 	/**
-	 * Copy Constructor
-	 */
-	domSpline( const domSpline &cpy ) : daeElement() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domSpline &operator=( const domSpline &cpy ) { (void)cpy; return *this; }
@@ -191,7 +183,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

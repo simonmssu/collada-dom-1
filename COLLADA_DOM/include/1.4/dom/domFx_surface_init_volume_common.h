@@ -67,10 +67,6 @@ public:
 		 */
 		virtual ~domAll() {}
 		/**
-		 * Copy Constructor
-		 */
-		domAll( const domAll &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domAll &operator=( const domAll &cpy ) { (void)cpy; return *this; }
@@ -80,7 +76,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -134,10 +130,6 @@ public:
 		 */
 		virtual ~domPrimary() {}
 		/**
-		 * Copy Constructor
-		 */
-		domPrimary( const domPrimary &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domPrimary &operator=( const domPrimary &cpy ) { (void)cpy; return *this; }
@@ -147,7 +139,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -216,10 +208,6 @@ protected:
 	 */
 	virtual ~domFx_surface_init_volume_common_complexType() { daeElement::deleteCMDataArray(_CMData); }
 	/**
-	 * Copy Constructor
-	 */
-	domFx_surface_init_volume_common_complexType( const domFx_surface_init_volume_common_complexType &cpy ) { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domFx_surface_init_volume_common_complexType &operator=( const domFx_surface_init_volume_common_complexType &cpy ) { (void)cpy; return *this; }
@@ -243,10 +231,6 @@ protected:
 	 */
 	virtual ~domFx_surface_init_volume_common() {}
 	/**
-	 * Copy Constructor
-	 */
-	domFx_surface_init_volume_common( const domFx_surface_init_volume_common &cpy ) : daeElement(), domFx_surface_init_volume_common_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domFx_surface_init_volume_common &operator=( const domFx_surface_init_volume_common &cpy ) { (void)cpy; return *this; }
@@ -256,7 +240,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

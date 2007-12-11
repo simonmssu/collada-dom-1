@@ -78,10 +78,6 @@ protected:
 	 */
 	virtual ~domTargetableFloat3_complexType() {}
 	/**
-	 * Copy Constructor
-	 */
-	domTargetableFloat3_complexType( const domTargetableFloat3_complexType &cpy ) { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domTargetableFloat3_complexType &operator=( const domTargetableFloat3_complexType &cpy ) { (void)cpy; return *this; }
@@ -118,10 +114,6 @@ protected:
 	 */
 	virtual ~domTargetableFloat3() {}
 	/**
-	 * Copy Constructor
-	 */
-	domTargetableFloat3( const domTargetableFloat3 &cpy ) : daeElement(), domTargetableFloat3_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domTargetableFloat3 &operator=( const domTargetableFloat3 &cpy ) { (void)cpy; return *this; }
@@ -131,7 +123,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

@@ -66,10 +66,6 @@ public:
 		 */
 		virtual ~domSource() {}
 		/**
-		 * Copy Constructor
-		 */
-		domSource( const domSource &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domSource &operator=( const domSource &cpy ) { (void)cpy; return *this; }
@@ -79,7 +75,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -127,10 +123,6 @@ public:
 		 */
 		virtual ~domWrap_s() {}
 		/**
-		 * Copy Constructor
-		 */
-		domWrap_s( const domWrap_s &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domWrap_s &operator=( const domWrap_s &cpy ) { (void)cpy; return *this; }
@@ -140,7 +132,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -188,10 +180,6 @@ public:
 		 */
 		virtual ~domWrap_t() {}
 		/**
-		 * Copy Constructor
-		 */
-		domWrap_t( const domWrap_t &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domWrap_t &operator=( const domWrap_t &cpy ) { (void)cpy; return *this; }
@@ -201,7 +189,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -249,10 +237,6 @@ public:
 		 */
 		virtual ~domMinfilter() {}
 		/**
-		 * Copy Constructor
-		 */
-		domMinfilter( const domMinfilter &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domMinfilter &operator=( const domMinfilter &cpy ) { (void)cpy; return *this; }
@@ -262,7 +246,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -310,10 +294,6 @@ public:
 		 */
 		virtual ~domMagfilter() {}
 		/**
-		 * Copy Constructor
-		 */
-		domMagfilter( const domMagfilter &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domMagfilter &operator=( const domMagfilter &cpy ) { (void)cpy; return *this; }
@@ -323,7 +303,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -371,10 +351,6 @@ public:
 		 */
 		virtual ~domMipfilter() {}
 		/**
-		 * Copy Constructor
-		 */
-		domMipfilter( const domMipfilter &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domMipfilter &operator=( const domMipfilter &cpy ) { (void)cpy; return *this; }
@@ -384,7 +360,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -437,10 +413,6 @@ public:
 		 */
 		virtual ~domBorder_color() {}
 		/**
-		 * Copy Constructor
-		 */
-		domBorder_color( const domBorder_color &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domBorder_color &operator=( const domBorder_color &cpy ) { (void)cpy; return *this; }
@@ -450,7 +422,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -498,10 +470,6 @@ public:
 		 */
 		virtual ~domMipmap_maxlevel() {}
 		/**
-		 * Copy Constructor
-		 */
-		domMipmap_maxlevel( const domMipmap_maxlevel &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domMipmap_maxlevel &operator=( const domMipmap_maxlevel &cpy ) { (void)cpy; return *this; }
@@ -511,7 +479,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -559,10 +527,6 @@ public:
 		 */
 		virtual ~domMipmap_bias() {}
 		/**
-		 * Copy Constructor
-		 */
-		domMipmap_bias( const domMipmap_bias &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domMipmap_bias &operator=( const domMipmap_bias &cpy ) { (void)cpy; return *this; }
@@ -572,7 +536,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -661,10 +625,6 @@ protected:
 	 */
 	virtual ~domFx_samplerRECT_common_complexType() {}
 	/**
-	 * Copy Constructor
-	 */
-	domFx_samplerRECT_common_complexType( const domFx_samplerRECT_common_complexType &cpy ) { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domFx_samplerRECT_common_complexType &operator=( const domFx_samplerRECT_common_complexType &cpy ) { (void)cpy; return *this; }
@@ -688,10 +648,6 @@ protected:
 	 */
 	virtual ~domFx_samplerRECT_common() {}
 	/**
-	 * Copy Constructor
-	 */
-	domFx_samplerRECT_common( const domFx_samplerRECT_common &cpy ) : daeElement(), domFx_samplerRECT_common_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domFx_samplerRECT_common &operator=( const domFx_samplerRECT_common &cpy ) { (void)cpy; return *this; }
@@ -701,7 +657,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

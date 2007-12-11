@@ -105,15 +105,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInputLocalOffset_complexType(DAE& dae) : attrOffset(), attrSemantic(), attrSource(), attrSet() {}
+	domInputLocalOffset_complexType(DAE& dae) : attrOffset(), attrSemantic(), attrSource(dae), attrSet() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domInputLocalOffset_complexType() {}
-	/**
-	 * Copy Constructor
-	 */
-	domInputLocalOffset_complexType( const domInputLocalOffset_complexType &cpy ) { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -189,10 +185,6 @@ protected:
 	 */
 	virtual ~domInputLocalOffset() {}
 	/**
-	 * Copy Constructor
-	 */
-	domInputLocalOffset( const domInputLocalOffset &cpy ) : daeElement(), domInputLocalOffset_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domInputLocalOffset &operator=( const domInputLocalOffset &cpy ) { (void)cpy; return *this; }
@@ -202,7 +194,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

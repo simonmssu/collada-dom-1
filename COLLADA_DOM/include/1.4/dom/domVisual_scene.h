@@ -110,10 +110,6 @@ public:
 				 */
 				virtual ~domLayer() {}
 				/**
-				 * Copy Constructor
-				 */
-				domLayer( const domLayer &cpy ) : daeElement() { (void)cpy; }
-				/**
 				 * Overloaded assignment operator
 				 */
 				virtual domLayer &operator=( const domLayer &cpy ) { (void)cpy; return *this; }
@@ -123,7 +119,7 @@ public:
 				 * Creates an instance of this class and returns a daeElementRef referencing it.
 				 * @return a daeElementRef referencing an instance of this object.
 				 */
-				static DLLSPEC daeElementRef create();
+				static DLLSPEC daeElementRef create(DAE& dae);
 				/**
 				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -189,15 +185,11 @@ public:
 			/**
 			 * Constructor
 			 */
-			domRender(DAE& dae) : attrCamera_node(), elemLayer_array(), elemInstance_effect() {}
+			domRender(DAE& dae) : attrCamera_node(dae), elemLayer_array(), elemInstance_effect() {}
 			/**
 			 * Destructor
 			 */
 			virtual ~domRender() {}
-			/**
-			 * Copy Constructor
-			 */
-			domRender( const domRender &cpy ) : daeElement() { (void)cpy; }
 			/**
 			 * Overloaded assignment operator
 			 */
@@ -208,7 +200,7 @@ public:
 			 * Creates an instance of this class and returns a daeElementRef referencing it.
 			 * @return a daeElementRef referencing an instance of this object.
 			 */
-			static DLLSPEC daeElementRef create();
+			static DLLSPEC daeElementRef create(DAE& dae);
 			/**
 			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -263,10 +255,6 @@ public:
 		 */
 		virtual ~domEvaluate_scene() {}
 		/**
-		 * Copy Constructor
-		 */
-		domEvaluate_scene( const domEvaluate_scene &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domEvaluate_scene &operator=( const domEvaluate_scene &cpy ) { (void)cpy; return *this; }
@@ -276,7 +264,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -388,10 +376,6 @@ protected:
 	 */
 	virtual ~domVisual_scene() {}
 	/**
-	 * Copy Constructor
-	 */
-	domVisual_scene( const domVisual_scene &cpy ) : daeElement() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domVisual_scene &operator=( const domVisual_scene &cpy ) { (void)cpy; return *this; }
@@ -401,7 +385,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

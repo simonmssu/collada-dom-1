@@ -23,7 +23,7 @@ class DAE;
 class daeMetaCMPolicy;
 class daeMetaElementArrayAttribute;
 
-typedef daeElementRef (*daeElementConstructFunctionPtr)(daeInt bytes);
+typedef daeElementRef (*daeElementConstructFunctionPtr)(DAE& dae);
 
 /**
  * Each instance of the @c daeMetaElement class describes a C++ COLLADA dom

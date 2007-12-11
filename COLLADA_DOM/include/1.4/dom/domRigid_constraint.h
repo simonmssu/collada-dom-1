@@ -146,15 +146,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domRef_attachment(DAE& dae) : attrRigid_body(), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
+		domRef_attachment(DAE& dae) : attrRigid_body(dae), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domRef_attachment() { daeElement::deleteCMDataArray(_CMData); }
-		/**
-		 * Copy Constructor
-		 */
-		domRef_attachment( const domRef_attachment &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -165,7 +161,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -284,15 +280,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAttachment(DAE& dae) : attrRigid_body(), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
+		domAttachment(DAE& dae) : attrRigid_body(dae), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domAttachment() { daeElement::deleteCMDataArray(_CMData); }
-		/**
-		 * Copy Constructor
-		 */
-		domAttachment( const domAttachment &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -303,7 +295,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -388,10 +380,6 @@ public:
 			 */
 			virtual ~domEnabled() {}
 			/**
-			 * Copy Constructor
-			 */
-			domEnabled( const domEnabled &cpy ) : daeElement() { (void)cpy; }
-			/**
 			 * Overloaded assignment operator
 			 */
 			virtual domEnabled &operator=( const domEnabled &cpy ) { (void)cpy; return *this; }
@@ -401,7 +389,7 @@ public:
 			 * Creates an instance of this class and returns a daeElementRef referencing it.
 			 * @return a daeElementRef referencing an instance of this object.
 			 */
-			static DLLSPEC daeElementRef create();
+			static DLLSPEC daeElementRef create(DAE& dae);
 			/**
 			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -470,10 +458,6 @@ public:
 			 */
 			virtual ~domInterpenetrate() {}
 			/**
-			 * Copy Constructor
-			 */
-			domInterpenetrate( const domInterpenetrate &cpy ) : daeElement() { (void)cpy; }
-			/**
 			 * Overloaded assignment operator
 			 */
 			virtual domInterpenetrate &operator=( const domInterpenetrate &cpy ) { (void)cpy; return *this; }
@@ -483,7 +467,7 @@ public:
 			 * Creates an instance of this class and returns a daeElementRef referencing it.
 			 * @return a daeElementRef referencing an instance of this object.
 			 */
-			static DLLSPEC daeElementRef create();
+			static DLLSPEC daeElementRef create(DAE& dae);
 			/**
 			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -554,10 +538,6 @@ public:
 				 */
 				virtual ~domSwing_cone_and_twist() {}
 				/**
-				 * Copy Constructor
-				 */
-				domSwing_cone_and_twist( const domSwing_cone_and_twist &cpy ) : daeElement() { (void)cpy; }
-				/**
 				 * Overloaded assignment operator
 				 */
 				virtual domSwing_cone_and_twist &operator=( const domSwing_cone_and_twist &cpy ) { (void)cpy; return *this; }
@@ -567,7 +547,7 @@ public:
 				 * Creates an instance of this class and returns a daeElementRef referencing it.
 				 * @return a daeElementRef referencing an instance of this object.
 				 */
-				static DLLSPEC daeElementRef create();
+				static DLLSPEC daeElementRef create(DAE& dae);
 				/**
 				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -621,10 +601,6 @@ public:
 				 */
 				virtual ~domLinear() {}
 				/**
-				 * Copy Constructor
-				 */
-				domLinear( const domLinear &cpy ) : daeElement() { (void)cpy; }
-				/**
 				 * Overloaded assignment operator
 				 */
 				virtual domLinear &operator=( const domLinear &cpy ) { (void)cpy; return *this; }
@@ -634,7 +610,7 @@ public:
 				 * Creates an instance of this class and returns a daeElementRef referencing it.
 				 * @return a daeElementRef referencing an instance of this object.
 				 */
-				static DLLSPEC daeElementRef create();
+				static DLLSPEC daeElementRef create(DAE& dae);
 				/**
 				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -679,10 +655,6 @@ public:
 			 */
 			virtual ~domLimits() {}
 			/**
-			 * Copy Constructor
-			 */
-			domLimits( const domLimits &cpy ) : daeElement() { (void)cpy; }
-			/**
 			 * Overloaded assignment operator
 			 */
 			virtual domLimits &operator=( const domLimits &cpy ) { (void)cpy; return *this; }
@@ -692,7 +664,7 @@ public:
 			 * Creates an instance of this class and returns a daeElementRef referencing it.
 			 * @return a daeElementRef referencing an instance of this object.
 			 */
-			static DLLSPEC daeElementRef create();
+			static DLLSPEC daeElementRef create(DAE& dae);
 			/**
 			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -770,10 +742,6 @@ public:
 				 */
 				virtual ~domAngular() {}
 				/**
-				 * Copy Constructor
-				 */
-				domAngular( const domAngular &cpy ) : daeElement() { (void)cpy; }
-				/**
 				 * Overloaded assignment operator
 				 */
 				virtual domAngular &operator=( const domAngular &cpy ) { (void)cpy; return *this; }
@@ -783,7 +751,7 @@ public:
 				 * Creates an instance of this class and returns a daeElementRef referencing it.
 				 * @return a daeElementRef referencing an instance of this object.
 				 */
-				static DLLSPEC daeElementRef create();
+				static DLLSPEC daeElementRef create(DAE& dae);
 				/**
 				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -847,10 +815,6 @@ public:
 				 */
 				virtual ~domLinear() {}
 				/**
-				 * Copy Constructor
-				 */
-				domLinear( const domLinear &cpy ) : daeElement() { (void)cpy; }
-				/**
 				 * Overloaded assignment operator
 				 */
 				virtual domLinear &operator=( const domLinear &cpy ) { (void)cpy; return *this; }
@@ -860,7 +824,7 @@ public:
 				 * Creates an instance of this class and returns a daeElementRef referencing it.
 				 * @return a daeElementRef referencing an instance of this object.
 				 */
-				static DLLSPEC daeElementRef create();
+				static DLLSPEC daeElementRef create(DAE& dae);
 				/**
 				 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 				 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -902,10 +866,6 @@ public:
 			 */
 			virtual ~domSpring() {}
 			/**
-			 * Copy Constructor
-			 */
-			domSpring( const domSpring &cpy ) : daeElement() { (void)cpy; }
-			/**
 			 * Overloaded assignment operator
 			 */
 			virtual domSpring &operator=( const domSpring &cpy ) { (void)cpy; return *this; }
@@ -915,7 +875,7 @@ public:
 			 * Creates an instance of this class and returns a daeElementRef referencing it.
 			 * @return a daeElementRef referencing an instance of this object.
 			 */
-			static DLLSPEC daeElementRef create();
+			static DLLSPEC daeElementRef create(DAE& dae);
 			/**
 			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -978,10 +938,6 @@ public:
 		 */
 		virtual ~domTechnique_common() {}
 		/**
-		 * Copy Constructor
-		 */
-		domTechnique_common( const domTechnique_common &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domTechnique_common &operator=( const domTechnique_common &cpy ) { (void)cpy; return *this; }
@@ -991,7 +947,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -1107,10 +1063,6 @@ protected:
 	 */
 	virtual ~domRigid_constraint() {}
 	/**
-	 * Copy Constructor
-	 */
-	domRigid_constraint( const domRigid_constraint &cpy ) : daeElement() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domRigid_constraint &operator=( const domRigid_constraint &cpy ) { (void)cpy; return *this; }
@@ -1120,7 +1072,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

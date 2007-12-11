@@ -63,7 +63,7 @@ protected: // VIRTUAL INTEGRATION INTERFACE
 	virtual void toCOLLADAPostProcess();
 
 public: // STATIC METHODS
-	static <?= $_globals['meta_prefix'] ?>ElementRef create();
+	static <?= $_globals['meta_prefix'] ?>ElementRef create(DAE& dae);
 	static <?= $_globals['meta_prefix'] ?>MetaElement* registerElement(DAE& dae);
 	
 public: // STATIC MEMBERS

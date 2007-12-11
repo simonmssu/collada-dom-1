@@ -400,11 +400,6 @@ public:
 	 */
 	virtual ~daeURIResolver();
 	
-protected:
-	static daeBool _loadExternalDocuments;
-	DAE* dae;
-	
-public:
 	/**
 	 * Sets a flag that tells the URI resolver whether or not to load a separate document if a URI
 	 * being resolved points to one.
@@ -421,7 +416,6 @@ public:
 	 */
 	static daeBool getAutoLoadExternalDocuments();
 
-public: // Abstract Interface
 	/**
 	 * Provides an abstract interface for converting a @c daeURI into a @c daeElement
 	 * @param uri @c daeURI to resolve.
@@ -460,7 +454,10 @@ public: // Abstract Interface
 	 * @return Returns true if the given extension is supported, returns false otherwise.
 	 */
 	virtual daeBool isExtensionSupported(daeString extension) = 0;
-	
+
+protected:
+	static daeBool _loadExternalDocuments;
+	DAE* dae;
 };
 
 
@@ -478,7 +475,7 @@ public:
 private:
 	// Disabled copy constructor/assignment operator
 	daeURIResolverList(const daeURIResolverList& resolverList) { };
-	daeURIResolverList& operator=(const daeURIResolverList& resolverList) { };
+	daeURIResolverList& operator=(const daeURIResolverList& resolverList) { return *this; };
 
 	daeTArray<daeURIResolver*> resolvers;
 };

@@ -74,15 +74,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_include_common_complexType(DAE& dae) : attrSid(), attrUrl() {}
+	domFx_include_common_complexType(DAE& dae) : attrSid(), attrUrl(dae) {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domFx_include_common_complexType() {}
-	/**
-	 * Copy Constructor
-	 */
-	domFx_include_common_complexType( const domFx_include_common_complexType &cpy ) { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -136,10 +132,6 @@ protected:
 	 */
 	virtual ~domFx_include_common() {}
 	/**
-	 * Copy Constructor
-	 */
-	domFx_include_common( const domFx_include_common &cpy ) : daeElement(), domFx_include_common_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domFx_include_common &operator=( const domFx_include_common &cpy ) { (void)cpy; return *this; }
@@ -149,7 +141,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

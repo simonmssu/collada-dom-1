@@ -69,10 +69,6 @@ protected:
 	 */
 	virtual ~domFx_clearcolor_common_complexType() {}
 	/**
-	 * Copy Constructor
-	 */
-	domFx_clearcolor_common_complexType( const domFx_clearcolor_common_complexType &cpy ) { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domFx_clearcolor_common_complexType &operator=( const domFx_clearcolor_common_complexType &cpy ) { (void)cpy; return *this; }
@@ -109,10 +105,6 @@ protected:
 	 */
 	virtual ~domFx_clearcolor_common() {}
 	/**
-	 * Copy Constructor
-	 */
-	domFx_clearcolor_common( const domFx_clearcolor_common &cpy ) : daeElement(), domFx_clearcolor_common_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domFx_clearcolor_common &operator=( const domFx_clearcolor_common &cpy ) { (void)cpy; return *this; }
@@ -122,7 +114,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

@@ -179,15 +179,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_physics_model(DAE& dae) : attrUrl(), attrSid(), attrName(), attrParent(), elemInstance_force_field_array(), elemInstance_rigid_body_array(), elemInstance_rigid_constraint_array(), elemExtra_array() {}
+	domInstance_physics_model(DAE& dae) : attrUrl(dae), attrSid(), attrName(), attrParent(dae), elemInstance_force_field_array(), elemInstance_rigid_body_array(), elemInstance_rigid_constraint_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domInstance_physics_model() {}
-	/**
-	 * Copy Constructor
-	 */
-	domInstance_physics_model( const domInstance_physics_model &cpy ) : daeElement() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -198,7 +194,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

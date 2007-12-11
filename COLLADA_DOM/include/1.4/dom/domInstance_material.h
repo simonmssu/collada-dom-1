@@ -90,10 +90,6 @@ public:
 		 */
 		virtual ~domBind() {}
 		/**
-		 * Copy Constructor
-		 */
-		domBind( const domBind &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domBind &operator=( const domBind &cpy ) { (void)cpy; return *this; }
@@ -103,7 +99,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -185,10 +181,6 @@ public:
 		 */
 		virtual ~domBind_vertex_input() {}
 		/**
-		 * Copy Constructor
-		 */
-		domBind_vertex_input( const domBind_vertex_input &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domBind_vertex_input &operator=( const domBind_vertex_input &cpy ) { (void)cpy; return *this; }
@@ -198,7 +190,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -330,15 +322,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_material(DAE& dae) : attrSymbol(), attrTarget(), attrSid(), attrName(), elemBind_array(), elemBind_vertex_input_array(), elemExtra_array() {}
+	domInstance_material(DAE& dae) : attrSymbol(), attrTarget(dae), attrSid(), attrName(), elemBind_array(), elemBind_vertex_input_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domInstance_material() {}
-	/**
-	 * Copy Constructor
-	 */
-	domInstance_material( const domInstance_material &cpy ) : daeElement() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -349,7 +337,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

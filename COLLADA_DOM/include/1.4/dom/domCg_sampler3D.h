@@ -34,10 +34,6 @@ protected:
 	 */
 	virtual ~domCg_sampler3D_complexType() {}
 	/**
-	 * Copy Constructor
-	 */
-	domCg_sampler3D_complexType( const domCg_sampler3D_complexType &cpy ) : domFx_sampler3D_common_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domCg_sampler3D_complexType &operator=( const domCg_sampler3D_complexType &cpy ) { (void)cpy; return *this; }
@@ -61,10 +57,6 @@ protected:
 	 */
 	virtual ~domCg_sampler3D() {}
 	/**
-	 * Copy Constructor
-	 */
-	domCg_sampler3D( const domCg_sampler3D &cpy ) : daeElement(), domCg_sampler3D_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domCg_sampler3D &operator=( const domCg_sampler3D &cpy ) { (void)cpy; return *this; }
@@ -74,7 +66,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

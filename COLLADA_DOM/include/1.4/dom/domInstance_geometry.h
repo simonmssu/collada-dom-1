@@ -119,15 +119,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_geometry(DAE& dae) : attrUrl(), attrSid(), attrName(), elemBind_material(), elemExtra_array() {}
+	domInstance_geometry(DAE& dae) : attrUrl(dae), attrSid(), attrName(), elemBind_material(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domInstance_geometry() {}
-	/**
-	 * Copy Constructor
-	 */
-	domInstance_geometry( const domInstance_geometry &cpy ) : daeElement() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -138,7 +134,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

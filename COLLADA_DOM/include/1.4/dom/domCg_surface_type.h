@@ -101,10 +101,6 @@ public:
 			 */
 			virtual ~domName() {}
 			/**
-			 * Copy Constructor
-			 */
-			domName( const domName &cpy ) : daeElement() { (void)cpy; }
-			/**
 			 * Overloaded assignment operator
 			 */
 			virtual domName &operator=( const domName &cpy ) { (void)cpy; return *this; }
@@ -114,7 +110,7 @@ public:
 			 * Creates an instance of this class and returns a daeElementRef referencing it.
 			 * @return a daeElementRef referencing an instance of this object.
 			 */
-			static DLLSPEC daeElementRef create();
+			static DLLSPEC daeElementRef create(DAE& dae);
 			/**
 			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -231,10 +227,6 @@ public:
 		 */
 		virtual ~domGenerator() { daeElement::deleteCMDataArray(_CMData); }
 		/**
-		 * Copy Constructor
-		 */
-		domGenerator( const domGenerator &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domGenerator &operator=( const domGenerator &cpy ) { (void)cpy; return *this; }
@@ -244,7 +236,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -277,10 +269,6 @@ protected:
 	 */
 	virtual ~domCg_surface_type_complexType() {}
 	/**
-	 * Copy Constructor
-	 */
-	domCg_surface_type_complexType( const domCg_surface_type_complexType &cpy ) : domFx_surface_common_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domCg_surface_type_complexType &operator=( const domCg_surface_type_complexType &cpy ) { (void)cpy; return *this; }
@@ -304,10 +292,6 @@ protected:
 	 */
 	virtual ~domCg_surface_type() {}
 	/**
-	 * Copy Constructor
-	 */
-	domCg_surface_type( const domCg_surface_type &cpy ) : daeElement(), domCg_surface_type_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domCg_surface_type &operator=( const domCg_surface_type &cpy ) { (void)cpy; return *this; }
@@ -317,7 +301,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

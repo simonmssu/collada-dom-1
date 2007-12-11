@@ -40,10 +40,6 @@ protected:
 	 */
 	virtual ~domFx_profile_abstract() {}
 	/**
-	 * Copy Constructor
-	 */
-	domFx_profile_abstract( const domFx_profile_abstract &cpy ) : daeElement() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domFx_profile_abstract &operator=( const domFx_profile_abstract &cpy ) { (void)cpy; return *this; }
@@ -53,7 +49,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

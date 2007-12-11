@@ -202,13 +202,19 @@ function printConstructors( $elemName, & $bag, $base, $indent ) {
 	//list preconstructor initialization of elements
 	if ( count($bag['elements']) > 0 || count($bag['attributes']) > 0 ) {
 		print " : ";
-		if ( count($bag['attributes'] ) > 0 ) {
-			$keys = array_keys($bag['attributes']);
-			foreach ( $keys as & $key ) { $key = ucfirst( $key ); }
-			print "attr";
-			print implode( "(), attr", $keys );
-			print "()"; 
-		}	
+		$index = 0;
+		foreach( $bag['attributes'] as $attr_name => & $a_list ) {
+			$attr_name = ucfirst($attr_name);
+			$type = $a_list['type'];
+			if ($index != 0)
+				print ", ";
+			print "attr" . $attr_name . "(";
+			if ($type == 'xs:anyURI' || $type == 'URIFragmentType' )
+				print "dae";
+			print ")";
+			$index++;
+		}
+
 		if ( count($bag['elements']) > 0 ) {
 			if ( count($bag['attributes'] ) > 0 ) {
 				print ', ';
@@ -230,7 +236,10 @@ function printConstructors( $elemName, & $bag, $base, $indent ) {
 		else {
 			print " : ";
 		}
-		print "_value()";
+		if ($bag['content_type'] == "xs:anyURI" || $bag['content_type'] == 'URIFragmentType')
+			print "_value(dae)";
+		else
+			print "_value()";
 	}	
 	print " {}\n";
 	
@@ -240,15 +249,16 @@ function printConstructors( $elemName, & $bag, $base, $indent ) {
 		print " daeElement::deleteCMDataArray(_CMData); ";
 	}
 	print "}\n";
-	
-	print $indent ."\t/**\n". $indent ."\t * Copy Constructor\n". $indent ."\t */\n";
-	if ( $base != '' ) {
-		print $indent ."\t".$elemName ."( const ".$elemName ." &cpy ) : ";
-		print $base ."() { (void)cpy; }\n";
-	}
-	else {
-		print $indent ."\t".$elemName ."( const ".$elemName ." &cpy ) { (void)cpy; }\n";
-	}
+
+	// !!!steveT Am I sure it's ok to comment out the copy constructor?
+	// print $indent ."\t/**\n". $indent ."\t * Copy Constructor\n". $indent ."\t */\n";
+	// if ( $base != '' ) {
+	// 	print $indent ."\t".$elemName ."( const ".$elemName ." &cpy ) : ";
+	// 	print $base ."() { (void)cpy; }\n";
+	// }
+	// else {
+	// 	print $indent ."\t".$elemName ."( const ".$elemName ." &cpy ) { (void)cpy; }\n";
+	// }
 	
 	print $indent ."\t/**\n". $indent ."\t * Overloaded assignment operator\n". $indent ."\t */\n";
 	print $indent ."\tvirtual ".$elemName ." &operator=( const ".$elemName ." &cpy ) { (void)cpy; return *this; }\n";

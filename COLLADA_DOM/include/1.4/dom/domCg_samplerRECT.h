@@ -34,10 +34,6 @@ protected:
 	 */
 	virtual ~domCg_samplerRECT_complexType() {}
 	/**
-	 * Copy Constructor
-	 */
-	domCg_samplerRECT_complexType( const domCg_samplerRECT_complexType &cpy ) : domFx_samplerRECT_common_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domCg_samplerRECT_complexType &operator=( const domCg_samplerRECT_complexType &cpy ) { (void)cpy; return *this; }
@@ -61,10 +57,6 @@ protected:
 	 */
 	virtual ~domCg_samplerRECT() {}
 	/**
-	 * Copy Constructor
-	 */
-	domCg_samplerRECT( const domCg_samplerRECT &cpy ) : daeElement(), domCg_samplerRECT_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domCg_samplerRECT &operator=( const domCg_samplerRECT &cpy ) { (void)cpy; return *this; }
@@ -74,7 +66,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

@@ -75,15 +75,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSkeleton(DAE& dae) : _value() {}
+		domSkeleton(DAE& dae) : _value(dae) {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domSkeleton() {}
-		/**
-		 * Copy Constructor
-		 */
-		domSkeleton( const domSkeleton &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -94,7 +90,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -208,15 +204,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_controller(DAE& dae) : attrUrl(), attrSid(), attrName(), elemSkeleton_array(), elemBind_material(), elemExtra_array() {}
+	domInstance_controller(DAE& dae) : attrUrl(dae), attrSid(), attrName(), elemSkeleton_array(), elemBind_material(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domInstance_controller() {}
-	/**
-	 * Copy Constructor
-	 */
-	domInstance_controller( const domInstance_controller &cpy ) : daeElement() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -227,7 +219,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

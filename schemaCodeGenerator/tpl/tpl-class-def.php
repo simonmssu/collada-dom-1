@@ -469,7 +469,7 @@
 	print "\n".$indent ."public: // STATIC METHODS\n";
 	print $indent ."\t/**\n". $indent ."\t * Creates an instance of this class and returns a daeElementRef referencing it.\n";
 	print $indent ."\t * @return a daeElementRef referencing an instance of this object.\n". $indent ."\t */\n";
-	print $indent ."\tstatic DLLSPEC ". $_globals['meta_prefix'] ."ElementRef create();\n";
+	print $indent ."\tstatic DLLSPEC ". $_globals['meta_prefix'] ."ElementRef create(DAE& dae);\n";
 	print $indent ."\t/**\n". $indent ."\t * Creates a daeMetaElement object that describes this element in the meta object reflection framework.";
 	print "\n". $indent ."\t * If a daeMetaElement already exists it will return that instead of creating a new one. \n";
 	print $indent ."\t * @return A daeMetaElement describing this COLLADA element.\n". $indent ."\t */\n";

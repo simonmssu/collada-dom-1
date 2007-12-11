@@ -71,15 +71,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInputGlobal_complexType(DAE& dae) : attrSemantic(), attrSource() {}
+	domInputGlobal_complexType(DAE& dae) : attrSemantic(), attrSource(dae) {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domInputGlobal_complexType() {}
-	/**
-	 * Copy Constructor
-	 */
-	domInputGlobal_complexType( const domInputGlobal_complexType &cpy ) { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -133,10 +129,6 @@ protected:
 	 */
 	virtual ~domInputGlobal() {}
 	/**
-	 * Copy Constructor
-	 */
-	domInputGlobal( const domInputGlobal &cpy ) : daeElement(), domInputGlobal_complexType() { (void)cpy; }
-	/**
 	 * Overloaded assignment operator
 	 */
 	virtual domInputGlobal &operator=( const domInputGlobal &cpy ) { (void)cpy; return *this; }
@@ -146,7 +138,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 

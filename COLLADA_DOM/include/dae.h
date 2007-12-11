@@ -21,11 +21,11 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeAtomicType.h>
 #include <dae/daeMetaElement.h>
+#include <dae/daeIDRef.h>
+#include <dae/daeURI.h>
 
-class daeIDRefResolver;
 class domCOLLADA;
 class daeDatabase;
-class daeURIResolver;
 
 /**
  * The @c DAE class implements a standard interface to the
@@ -42,9 +42,9 @@ class DLLSPEC DAE : public daeInterface
 {
 public:	
 	/** 
-	*  Constructor.
-	*/
-	DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL) {
+	 *  Constructor.
+	 */
+	DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL) : baseUri(*this) {
 		// See the end of the thread linked below for an explanation of why we have the DAE
 		// constructor set up this way. Basically, I'm going to be changing the build output 
 		// location, and when this happens people sometimes continue to link against the old
@@ -141,12 +141,13 @@ public:
 	daeURI& getBaseURI();
 	daeURI& setBaseURI(daeURI& uri);
 
+	daeIDRefResolverList& getIDRefResolvers();
+
 private:
 	void init(daeDatabase* database, daeIOPlugin* ioPlugin);
 
 	daeDatabase *database;
 	daeIOPlugin *plugin;
-	daeIDRefResolver* idResolver;
 	bool defaultDatabase;
 	bool defaultPlugin;
 	daeIntegrationLibraryFunc registerFunc; 
@@ -156,6 +157,17 @@ private:
 	daeElementRefArray resolveArray;
 	daeURI baseUri;
 	daeURIResolverList uriResolvers;
+	daeIDRefResolverList idRefResolvers;
 };
+
+
+template <typename T> 
+inline T *daeSafeCast( daeElement *element ) 
+{ 
+	if (element && element->getMeta() == element->getDAE()->getMeta(T::getTypeStatic()))
+		return (T *)element; 
+	return NULL; 
+}
+
 
 #endif // __DAE_INTERFACE__

@@ -28,7 +28,7 @@ daeMetaElement::create()
 	if (_createFunc == NULL)
 		return NULL;
 #endif
-	daeElementRef ret =  (*_createFunc)(_elementSize);
+	daeElementRef ret =  (*_createFunc)(dae);
 	ret->setup(this);
 		
 	return ret;

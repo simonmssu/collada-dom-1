@@ -580,12 +580,4 @@ typedef daeTArray<daeElementRef> daeElementRefArray;
 
 extern daeElementRef DAECreateElement();
 
-template <typename T> 
-inline T *daeSafeCast( daeElement *element ) 
-{ 
-	if (element && element->getMeta() == element->getDAE()->getMeta(T::getTypeStatic()))
-		return (T *)element; 
-	return NULL; 
-} 
-
 #endif //__DAE_ELEMENT_H__

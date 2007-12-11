@@ -106,10 +106,6 @@ public:
 		 */
 		virtual ~domTechnique_hint() {}
 		/**
-		 * Copy Constructor
-		 */
-		domTechnique_hint( const domTechnique_hint &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domTechnique_hint &operator=( const domTechnique_hint &cpy ) { (void)cpy; return *this; }
@@ -119,7 +115,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -174,10 +170,6 @@ public:
 		 */
 		virtual ~domSetparam() {}
 		/**
-		 * Copy Constructor
-		 */
-		domSetparam( const domSetparam &cpy ) : daeElement() { (void)cpy; }
-		/**
 		 * Overloaded assignment operator
 		 */
 		virtual domSetparam &operator=( const domSetparam &cpy ) { (void)cpy; return *this; }
@@ -187,7 +179,7 @@ public:
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create();
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
@@ -304,15 +296,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_effect(DAE& dae) : attrUrl(), attrSid(), attrName(), elemTechnique_hint_array(), elemSetparam_array(), elemExtra_array() {}
+	domInstance_effect(DAE& dae) : attrUrl(dae), attrSid(), attrName(), elemTechnique_hint_array(), elemSetparam_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domInstance_effect() {}
-	/**
-	 * Copy Constructor
-	 */
-	domInstance_effect( const domInstance_effect &cpy ) : daeElement() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -323,7 +311,7 @@ public: // STATIC METHODS
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create();
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
