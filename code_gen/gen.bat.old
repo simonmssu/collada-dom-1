@@ -1,0 +1,6 @@
+rem Copyright Sony Computer Ententainment Inc., 2007. 
+rem All Rights Reserved.
+rem CONFIDENTIAL INFORMATION
+
+bin\php gen.php "../COLLADA_DOM/doc/colladaschema.xsd" cprt
+rem bin\php gen.php "../COLLADA_DOM/doc/colladaschema.xsd" min cprt
