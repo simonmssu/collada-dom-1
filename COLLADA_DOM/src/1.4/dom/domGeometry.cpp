@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGeometry::create()
+domGeometry::create(DAE& dae)
 {
-	domGeometryRef ref = new domGeometry;
+	domGeometryRef ref = new domGeometry(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGeometry::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "geometry" );
 	meta->registerClass(domGeometry::create, &meta);
@@ -91,7 +91,7 @@ domGeometry::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domGeometry , attrId ));
 		ma->setContainer( meta );
 	
@@ -102,7 +102,7 @@ domGeometry::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGeometry , attrName ));
 		ma->setContainer( meta );
 	

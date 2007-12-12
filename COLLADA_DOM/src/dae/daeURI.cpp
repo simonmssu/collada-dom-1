@@ -491,7 +491,7 @@ daeURI::validate(daeURI* baseURI)
 	if (baseURI == NULL)
 	{
 		if ( container == NULL || (baseURI = container->getDocumentURI()) == NULL ) {
-			baseURI = getBaseURI();
+			baseURI = &dae->getBaseURI();
 		}
 		if (this == baseURI ) {
 			return;
@@ -835,7 +835,7 @@ daeURI::resolveElement()
 		else
 			validate();
 	}
-	daeURIResolver::attemptResolveElement(*this);
+	dae->getURIResolvers().resolveElement(*this);
 }
 
 void
@@ -1291,7 +1291,7 @@ string cdom::uriToFilePath(const string& uriRef) {
 	if (!scheme.empty()  &&  scheme != "file")
 		return "";
 
-p	string filePath = path;
+	string filePath = path;
 
 #ifdef WIN32
 	// Windows - replace two leading slashes with one leading slash, so that

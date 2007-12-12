@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_rigid_constraint::create()
+domInstance_rigid_constraint::create(DAE& dae)
 {
-	domInstance_rigid_constraintRef ref = new domInstance_rigid_constraint;
+	domInstance_rigid_constraintRef ref = new domInstance_rigid_constraint(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domInstance_rigid_constraint::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "instance_rigid_constraint" );
 	meta->registerClass(domInstance_rigid_constraint::create, &meta);
@@ -57,7 +57,7 @@ domInstance_rigid_constraint::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "constraint" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_rigid_constraint , attrConstraint ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -69,7 +69,7 @@ domInstance_rigid_constraint::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_rigid_constraint , attrSid ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domInstance_rigid_constraint::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_rigid_constraint , attrName ));
 		ma->setContainer( meta );
 	

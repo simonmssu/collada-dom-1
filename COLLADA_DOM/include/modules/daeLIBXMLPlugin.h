@@ -21,6 +21,7 @@
 
 struct _xmlTextReader;
 struct _xmlTextWriter;
+class DAE;
 
 /**
  * The @c daeLIBXMLPlugin class derives from @c daeIOPluginCommon and implements an XML
@@ -30,29 +31,29 @@ struct _xmlTextWriter;
  * and the entire referenced document will be loaded.  daeInterface::saveAs will only
  * handle a filename path at present (ie: no scheme or authority).
  */
-class daeLIBXMLPlugin : public daeIOPluginCommon
+class DLLSPEC daeLIBXMLPlugin : public daeIOPluginCommon
 {
 public:
 	// Constructor / destructor
 	/**
 	 * Constructor.
 	 */
-	DLLSPEC daeLIBXMLPlugin();
+	daeLIBXMLPlugin(DAE& dae);
 	/**
 	 * Destructor.
 	 */
-	virtual DLLSPEC ~daeLIBXMLPlugin();
+	virtual ~daeLIBXMLPlugin();
 
 	// Operations
-	virtual DLLSPEC daeInt write(daeURI *name, daeDocument *document, daeBool replace);
+	virtual daeInt write(daeURI *name, daeDocument *document, daeBool replace);
 
 	// Stats	
-	virtual DLLSPEC void getProgress(daeInt* bytesParsed,
+	virtual void getProgress(daeInt* bytesParsed,
 		daeInt* lineNumber,
 		daeInt* totalBytes,
 		daeBool reset = false );
 
-	virtual DLLSPEC daeTArray<std::string> getSupportedProtocols();
+	virtual daeTArray<std::string> getSupportedProtocols();
 
 	/**
 	 * setOption allows you to set options for this IOPlugin. Which options a plugin supports is
@@ -64,7 +65,7 @@ public:
 	 * @param value The value to set the option.
 	 * @return Returns DAE_OK upon success.
 	 */
-	virtual DLLSPEC daeInt setOption( daeString option, daeString value );
+	virtual daeInt setOption( daeString option, daeString value );
 
 	/**
 	 * getOption retrieves the value of an option from this IOPlugin. Which options a plugin supports is
@@ -72,9 +73,11 @@ public:
 	 * @param option The option to get.
 	 * @return Returns the string value of the option or NULL if option is not valid.
 	 */
-	virtual DLLSPEC daeString getOption( daeString option );
+	virtual daeString getOption( daeString option );
 
 private:
+	DAE& dae;
+	
 	_xmlTextWriter *writer;
 
 	FILE *rawFile;

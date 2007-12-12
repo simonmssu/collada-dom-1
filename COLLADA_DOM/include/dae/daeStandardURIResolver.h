@@ -36,9 +36,6 @@ public:
 	 */
 	DLLSPEC ~daeStandardURIResolver();
 
-protected:
-	daeTArray<std::string> _protocols;
-
 public: // Abstract Interface
 	virtual DLLSPEC daeBool resolveElement(daeURI& uri);
 	virtual DLLSPEC daeBool resolveURI(daeURI& uri);

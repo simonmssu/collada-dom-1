@@ -198,7 +198,7 @@ namespace {
 
 		// Get the elements with a matching sid
 		list<daeElement*> elts;
-		container->getDocument()->getDatabase()->sidLookup(sid, elts);
+		container->getDocument()->getDAE()->getDatabase()->sidLookup(sid, elts);
 
 		// Compute the distance from each matching element to the container element
 		unsigned int minDistance = UINT_MAX;

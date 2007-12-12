@@ -44,7 +44,10 @@ public:
 	/** 
 	 *  Constructor.
 	 */
-	DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL) : baseUri(*this) {
+	DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL)
+		: atomicTypes(*this),
+	    baseUri(*this)
+	{
 		// See the end of the thread linked below for an explanation of why we have the DAE
 		// constructor set up this way. Basically, I'm going to be changing the build output 
 		// location, and when this happens people sometimes continue to link against the old
@@ -119,6 +122,7 @@ public:
 	daeAtomicTypeList& getAtomicTypes();
 
 	daeMetaElement* getMeta(int typeID);
+	daeMetaElementRefArray& getAllMetas();
 	void setMeta(int typeID, daeMetaElement& meta);
 
 	/**

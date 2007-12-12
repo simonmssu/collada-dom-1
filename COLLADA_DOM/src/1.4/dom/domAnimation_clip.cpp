@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domAnimation_clip::create()
+domAnimation_clip::create(DAE& dae)
 {
-	domAnimation_clipRef ref = new domAnimation_clip;
+	domAnimation_clipRef ref = new domAnimation_clip(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domAnimation_clip::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "animation_clip" );
 	meta->registerClass(domAnimation_clip::create, &meta);
@@ -69,7 +69,7 @@ domAnimation_clip::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domAnimation_clip , attrId ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domAnimation_clip::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domAnimation_clip , attrName ));
 		ma->setContainer( meta );
 	
@@ -91,7 +91,7 @@ domAnimation_clip::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "start" );
-		ma->setType( daeAtomicType::get("xsDouble"));
+		ma->setType( dae.getAtomicTypes().get("xsDouble"));
 		ma->setOffset( daeOffsetOf( domAnimation_clip , attrStart ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0.0");
@@ -103,7 +103,7 @@ domAnimation_clip::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "end" );
-		ma->setType( daeAtomicType::get("xsDouble"));
+		ma->setType( dae.getAtomicTypes().get("xsDouble"));
 		ma->setOffset( daeOffsetOf( domAnimation_clip , attrEnd ));
 		ma->setContainer( meta );
 	

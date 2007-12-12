@@ -32,7 +32,7 @@ foreach( $bag as $type => $meta )
 
 ?>
 
-void registerDomTypes(daeAtomicTypeList& atomicTypes)
+void registerDomTypes(DAE& dae)
 {
 	daeAtomicType* type = NULL;
 
@@ -44,7 +44,7 @@ foreach( $bag as $type => $meta )
   {?>
 	// ENUM: <?= ucfirst( $type ) ?>
 
-	type = new daeEnumType;
+	type = new daeEnumType(dae);
 	type->_nameBindings.append("<?= ucfirst( $type ) ?>");
 	((daeEnumType*)type)->_strings = new daeStringRefArray;
 	((daeEnumType*)type)->_values = new daeEnumArray;
@@ -62,7 +62,7 @@ foreach( $bag as $type => $meta )
   ?>
 	// COMPLEX TYPE: <?= ucfirst( $type ) ?>
 
-	type = new daeElementRefType;
+	type = new daeElementRefType(dae);
 	type->_nameBindings.append("<?= ucfirst( $type ) ?>");
 	atomicTypes.append( type );
 
@@ -112,7 +112,7 @@ foreach( $bag as $type => $meta )
 	}
 ?>
 	if ( type == NULL ) { //register as a raw type
-		type = new daeRawRefType;
+		type = new daeRawRefType(dae);
 		type->_nameBindings.append("<?= ucfirst( $type ) ?>");
 		atomicTypes.append( type );
 	}
@@ -130,6 +130,6 @@ daeMetaElement* registerDomElements(DAE& dae)
 {
 	daeMetaElement* meta = domCOLLADA::registerElement(dae);
 	// Enable tracking of top level object by default
-	domCOLLADA::_Meta->setIsTrackableForQueries(true);
+	meta->setIsTrackableForQueries(true);
 	return meta;	
 }

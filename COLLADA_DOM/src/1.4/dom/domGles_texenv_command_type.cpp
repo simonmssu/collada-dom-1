@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texenv_command_type::create()
+domGles_texenv_command_type::create(DAE& dae)
 {
-	domGles_texenv_command_typeRef ref = new domGles_texenv_command_type;
+	domGles_texenv_command_typeRef ref = new domGles_texenv_command_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGles_texenv_command_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gles_texenv_command_type" );
 	meta->registerClass(domGles_texenv_command_type::create, &meta);
@@ -57,7 +57,7 @@ domGles_texenv_command_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "operator" );
-		ma->setType( daeAtomicType::get("Gles_texenv_mode_enums"));
+		ma->setType( dae.getAtomicTypes().get("Gles_texenv_mode_enums"));
 		ma->setOffset( daeOffsetOf( domGles_texenv_command_type , attrOperator ));
 		ma->setContainer( meta );
 	
@@ -68,7 +68,7 @@ domGles_texenv_command_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "unit" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_texenv_command_type , attrUnit ));
 		ma->setContainer( meta );
 	

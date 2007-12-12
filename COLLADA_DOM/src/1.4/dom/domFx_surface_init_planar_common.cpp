@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_init_planar_common::create()
+domFx_surface_init_planar_common::create(DAE& dae)
 {
-	domFx_surface_init_planar_commonRef ref = new domFx_surface_init_planar_common;
+	domFx_surface_init_planar_commonRef ref = new domFx_surface_init_planar_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_surface_init_planar_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_surface_init_planar_common" );
 	meta->registerClass(domFx_surface_init_planar_common::create, &meta);
@@ -64,9 +64,9 @@ domFx_surface_init_planar_common::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_surface_init_planar_common::domAll::create()
+domFx_surface_init_planar_common::domAll::create(DAE& dae)
 {
-	domFx_surface_init_planar_common::domAllRef ref = new domFx_surface_init_planar_common::domAll;
+	domFx_surface_init_planar_common::domAllRef ref = new domFx_surface_init_planar_common::domAll(dae);
 	return ref;
 }
 
@@ -77,7 +77,7 @@ domFx_surface_init_planar_common::domAll::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "all" );
 	meta->registerClass(domFx_surface_init_planar_common::domAll::create, &meta);
@@ -88,7 +88,7 @@ domFx_surface_init_planar_common::domAll::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("xsIDREF"));
+		ma->setType( dae.getAtomicTypes().get("xsIDREF"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_planar_common::domAll , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

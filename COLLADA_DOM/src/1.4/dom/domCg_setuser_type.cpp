@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_setuser_type::create()
+domCg_setuser_type::create(DAE& dae)
 {
-	domCg_setuser_typeRef ref = new domCg_setuser_type;
+	domCg_setuser_typeRef ref = new domCg_setuser_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCg_setuser_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "cg_setuser_type" );
 	meta->registerClass(domCg_setuser_type::create, &meta);
@@ -91,7 +91,7 @@ domCg_setuser_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("Cg_identifier"));
+		ma->setType( dae.getAtomicTypes().get("Cg_identifier"));
 		ma->setOffset( daeOffsetOf( domCg_setuser_type , attrName ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -103,7 +103,7 @@ domCg_setuser_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCg_setuser_type , attrSource ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

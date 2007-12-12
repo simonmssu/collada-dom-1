@@ -11,42 +11,32 @@
  * License. 
  */
 
+#include <dae.h>
 #include <dae/daeDocument.h>
 #include <dae/daeDatabase.h>
 
 
-daeDocument::daeDocument(daeDatabase* database)
-: database(database) {
-}
+daeDocument::daeDocument(DAE& dae) : dae(&dae), uri(dae) { }
 
 daeDocument::~daeDocument() {
-    for( unsigned int i = 0; i < externalURIs.getCount(); i++ ) {
-        delete externalURIs[i];
-    }
+	for( unsigned int i = 0; i < externalURIs.getCount(); i++ )
+		delete externalURIs[i];
 }
 
 void daeDocument::insertElement( daeElementRef element ) {
-	if (database) {
-		database->insertElement( this, element.cast() );
-		}
+	dae->getDatabase()->insertElement( this, element.cast() );
 }
 
 void daeDocument::removeElement( daeElementRef element ) {
-	if (database) {
-		database->removeElement( this, element.cast() );
-		}
+	dae->getDatabase()->removeElement( this, element.cast() );
 }
 
 void daeDocument::changeElementID( daeElementRef element, daeString newID ) {
-	if (database) {
-		database->changeElementID( element.cast(), newID );
-	}
+	dae->getDatabase()->changeElementID( element.cast(), newID );
 }
 
 void daeDocument::changeElementSID( daeElementRef element, daeString newSID ) {
-	if (database) {
-		database->changeElementSID( element.cast(), newSID );
-	}
+	dae->getDatabase()->changeElementSID( element.cast(), newSID );
 }
 
 void daeDocument::addExternalReference( daeURI &uri ) {
@@ -54,7 +44,7 @@ void daeDocument::addExternalReference( daeURI &uri ) {
 		return;	
 	}	
 	size_t idx;
-	daeURI tempURI( uri.getURI(), true );
+	daeURI tempURI( *dae, uri.getURI(), true );
 	daeStringRef docURI( tempURI.getURI() );
 	if ( referencedDocuments.find( docURI, idx ) == DAE_OK ) {
 		externalURIs[idx]->appendUnique( &uri );
@@ -106,5 +96,5 @@ const daeTArray<daeURI*> *daeDocument::getExternalURIs(daeStringRef docURI) cons
 }
 
 DAE* daeDocument::getDAE() {
-	return (database ? database->getDAE() : NULL);
+	return dae;
 }

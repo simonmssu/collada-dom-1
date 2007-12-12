@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texcombiner_argumentAlpha_type::create()
+domGles_texcombiner_argumentAlpha_type::create(DAE& dae)
 {
-	domGles_texcombiner_argumentAlpha_typeRef ref = new domGles_texcombiner_argumentAlpha_type;
+	domGles_texcombiner_argumentAlpha_typeRef ref = new domGles_texcombiner_argumentAlpha_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGles_texcombiner_argumentAlpha_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gles_texcombiner_argumentAlpha_type" );
 	meta->registerClass(domGles_texcombiner_argumentAlpha_type::create, &meta);
@@ -45,7 +45,7 @@ domGles_texcombiner_argumentAlpha_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("Gles_texcombiner_source_enums"));
+		ma->setType( dae.getAtomicTypes().get("Gles_texcombiner_source_enums"));
 		ma->setOffset( daeOffsetOf( domGles_texcombiner_argumentAlpha_type , attrSource ));
 		ma->setContainer( meta );
 	
@@ -56,7 +56,7 @@ domGles_texcombiner_argumentAlpha_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "operand" );
-		ma->setType( daeAtomicType::get("Gles_texcombiner_operandAlpha_enums"));
+		ma->setType( dae.getAtomicTypes().get("Gles_texcombiner_operandAlpha_enums"));
 		ma->setOffset( daeOffsetOf( domGles_texcombiner_argumentAlpha_type , attrOperand ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "SRC_ALPHA");
@@ -68,7 +68,7 @@ domGles_texcombiner_argumentAlpha_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "unit" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_texcombiner_argumentAlpha_type , attrUnit ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );

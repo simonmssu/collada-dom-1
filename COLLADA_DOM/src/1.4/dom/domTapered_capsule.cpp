@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTapered_capsule::create()
+domTapered_capsule::create(DAE& dae)
 {
-	domTapered_capsuleRef ref = new domTapered_capsule;
+	domTapered_capsuleRef ref = new domTapered_capsule(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domTapered_capsule::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "tapered_capsule" );
 	meta->registerClass(domTapered_capsule::create, &meta);
@@ -78,9 +78,9 @@ domTapered_capsule::registerElement(DAE& dae)
 }
 
 daeElementRef
-domTapered_capsule::domHeight::create()
+domTapered_capsule::domHeight::create(DAE& dae)
 {
-	domTapered_capsule::domHeightRef ref = new domTapered_capsule::domHeight;
+	domTapered_capsule::domHeightRef ref = new domTapered_capsule::domHeight(dae);
 	return ref;
 }
 
@@ -91,7 +91,7 @@ domTapered_capsule::domHeight::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "height" );
 	meta->registerClass(domTapered_capsule::domHeight::create, &meta);
@@ -101,7 +101,7 @@ domTapered_capsule::domHeight::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domTapered_capsule::domHeight , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -114,9 +114,9 @@ domTapered_capsule::domHeight::registerElement(DAE& dae)
 }
 
 daeElementRef
-domTapered_capsule::domRadius1::create()
+domTapered_capsule::domRadius1::create(DAE& dae)
 {
-	domTapered_capsule::domRadius1Ref ref = new domTapered_capsule::domRadius1;
+	domTapered_capsule::domRadius1Ref ref = new domTapered_capsule::domRadius1(dae);
 	return ref;
 }
 
@@ -127,7 +127,7 @@ domTapered_capsule::domRadius1::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "radius1" );
 	meta->registerClass(domTapered_capsule::domRadius1::create, &meta);
@@ -137,7 +137,7 @@ domTapered_capsule::domRadius1::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domTapered_capsule::domRadius1 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -150,9 +150,9 @@ domTapered_capsule::domRadius1::registerElement(DAE& dae)
 }
 
 daeElementRef
-domTapered_capsule::domRadius2::create()
+domTapered_capsule::domRadius2::create(DAE& dae)
 {
-	domTapered_capsule::domRadius2Ref ref = new domTapered_capsule::domRadius2;
+	domTapered_capsule::domRadius2Ref ref = new domTapered_capsule::domRadius2(dae);
 	return ref;
 }
 
@@ -163,7 +163,7 @@ domTapered_capsule::domRadius2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "radius2" );
 	meta->registerClass(domTapered_capsule::domRadius2::create, &meta);
@@ -173,7 +173,7 @@ domTapered_capsule::domRadius2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domTapered_capsule::domRadius2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

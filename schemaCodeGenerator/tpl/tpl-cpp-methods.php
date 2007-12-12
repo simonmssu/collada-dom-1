@@ -36,9 +36,9 @@
 	print "extern daeString COLLADA_NAMESPACE;\n\n";
   }
 ?><?= $_globals['meta_prefix'] ?>ElementRef
-<?= $scoped_element ?>::create()
+<?= $scoped_element ?>::create(DAE& dae)
 {
-	<?= $scoped_element ?>Ref ref = new <?= $scoped_element ?>;
+	<?= $scoped_element ?>Ref ref = new <?= $scoped_element ?>(dae);
 <?php
 	if ( $bag['useXMLNS'] ) {
 		print "\tref->attrXmlns.setContainer( (". $scoped_element ."*)ref );\n";
@@ -101,7 +101,7 @@
 	<?= $_globals['meta_prefix'] ?>MetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "<?= $bag['element_name'] ?>" );
 	meta->registerClass(<?= $scoped_element ?>::create, &meta);
@@ -366,7 +366,7 @@
 		//	print "#else\n\t\tma->setType( daeAtomicType::get(\"ListOfInts\"));\n#endif\n";
 		//}
 		//else {
-			print "\t\tma->setType( daeAtomicType::get(\"". $pre. ucfirst($content_type) ."\"));\n";
+			print "\t\tma->setType( dae.getAtomicTypes().get(\"". $pre. ucfirst($content_type) ."\"));\n";
 		//}
 ?>
 		ma->setOffset( daeOffsetOf( <?= $scoped_element ?> , _value ));
@@ -382,7 +382,7 @@
 	{
 		daeMetaAttribute* ma = new daeMetaAttribute;
 		ma->setName( "xmlns" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( <?= $scoped_element ?> , attrXmlns ));
 		ma->setContainer( meta );
 		//ma->setIsRequired( true );
@@ -423,7 +423,7 @@
 	}
 ?>
 		ma->setName( "<?= $attr_name ?>" );
-		ma->setType( daeAtomicType::get("<?= $printType ?>"));
+		ma->setType( dae.getAtomicTypes().get("<?= $printType ?>"));
 		ma->setOffset( daeOffsetOf( <?= $scoped_element ?> , attr<?= ucfirst($attr_name) ?> ));
 		ma->setContainer( meta );
 <?php

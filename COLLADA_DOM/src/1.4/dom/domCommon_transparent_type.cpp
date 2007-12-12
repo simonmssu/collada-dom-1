@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCommon_transparent_type::create()
+domCommon_transparent_type::create(DAE& dae)
 {
-	domCommon_transparent_typeRef ref = new domCommon_transparent_type;
+	domCommon_transparent_typeRef ref = new domCommon_transparent_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCommon_transparent_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "common_transparent_type" );
 	meta->registerClass(domCommon_transparent_type::create, &meta);
@@ -79,7 +79,7 @@ domCommon_transparent_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "opaque" );
-		ma->setType( daeAtomicType::get("Fx_opaque_enum"));
+		ma->setType( dae.getAtomicTypes().get("Fx_opaque_enum"));
 		ma->setOffset( daeOffsetOf( domCommon_transparent_type , attrOpaque ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "A_ONE");

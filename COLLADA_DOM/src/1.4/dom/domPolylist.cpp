@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domPolylist::create()
+domPolylist::create(DAE& dae)
 {
-	domPolylistRef ref = new domPolylist;
+	domPolylistRef ref = new domPolylist(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domPolylist::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "polylist" );
 	meta->registerClass(domPolylist::create, &meta);
@@ -75,7 +75,7 @@ domPolylist::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domPolylist , attrName ));
 		ma->setContainer( meta );
 	
@@ -86,7 +86,7 @@ domPolylist::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domPolylist , attrCount ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -98,7 +98,7 @@ domPolylist::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "material" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domPolylist , attrMaterial ));
 		ma->setContainer( meta );
 	
@@ -112,9 +112,9 @@ domPolylist::registerElement(DAE& dae)
 }
 
 daeElementRef
-domPolylist::domVcount::create()
+domPolylist::domVcount::create(DAE& dae)
 {
-	domPolylist::domVcountRef ref = new domPolylist::domVcount;
+	domPolylist::domVcountRef ref = new domPolylist::domVcount(dae);
 	return ref;
 }
 
@@ -125,7 +125,7 @@ domPolylist::domVcount::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "vcount" );
 	meta->registerClass(domPolylist::domVcount::create, &meta);
@@ -135,7 +135,7 @@ domPolylist::domVcount::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("ListOfUInts"));
+		ma->setType( dae.getAtomicTypes().get("ListOfUInts"));
 		ma->setOffset( daeOffsetOf( domPolylist::domVcount , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

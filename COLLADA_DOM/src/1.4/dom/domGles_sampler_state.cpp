@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_sampler_state::create()
+domGles_sampler_state::create(DAE& dae)
 {
-	domGles_sampler_stateRef ref = new domGles_sampler_state;
+	domGles_sampler_stateRef ref = new domGles_sampler_state(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGles_sampler_state::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gles_sampler_state" );
 	meta->registerClass(domGles_sampler_state::create, &meta);
@@ -99,7 +99,7 @@ domGles_sampler_state::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_sampler_state , attrSid ));
 		ma->setContainer( meta );
 	
@@ -113,9 +113,9 @@ domGles_sampler_state::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_sampler_state::domWrap_s::create()
+domGles_sampler_state::domWrap_s::create(DAE& dae)
 {
-	domGles_sampler_state::domWrap_sRef ref = new domGles_sampler_state::domWrap_s;
+	domGles_sampler_state::domWrap_sRef ref = new domGles_sampler_state::domWrap_s(dae);
 	return ref;
 }
 
@@ -126,7 +126,7 @@ domGles_sampler_state::domWrap_s::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "wrap_s" );
 	meta->registerClass(domGles_sampler_state::domWrap_s::create, &meta);
@@ -136,7 +136,7 @@ domGles_sampler_state::domWrap_s::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Gles_sampler_wrap"));
+		ma->setType( dae.getAtomicTypes().get("Gles_sampler_wrap"));
 		ma->setOffset( daeOffsetOf( domGles_sampler_state::domWrap_s , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -149,9 +149,9 @@ domGles_sampler_state::domWrap_s::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_sampler_state::domWrap_t::create()
+domGles_sampler_state::domWrap_t::create(DAE& dae)
 {
-	domGles_sampler_state::domWrap_tRef ref = new domGles_sampler_state::domWrap_t;
+	domGles_sampler_state::domWrap_tRef ref = new domGles_sampler_state::domWrap_t(dae);
 	return ref;
 }
 
@@ -162,7 +162,7 @@ domGles_sampler_state::domWrap_t::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "wrap_t" );
 	meta->registerClass(domGles_sampler_state::domWrap_t::create, &meta);
@@ -172,7 +172,7 @@ domGles_sampler_state::domWrap_t::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Gles_sampler_wrap"));
+		ma->setType( dae.getAtomicTypes().get("Gles_sampler_wrap"));
 		ma->setOffset( daeOffsetOf( domGles_sampler_state::domWrap_t , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -185,9 +185,9 @@ domGles_sampler_state::domWrap_t::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_sampler_state::domMinfilter::create()
+domGles_sampler_state::domMinfilter::create(DAE& dae)
 {
-	domGles_sampler_state::domMinfilterRef ref = new domGles_sampler_state::domMinfilter;
+	domGles_sampler_state::domMinfilterRef ref = new domGles_sampler_state::domMinfilter(dae);
 	return ref;
 }
 
@@ -198,7 +198,7 @@ domGles_sampler_state::domMinfilter::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "minfilter" );
 	meta->registerClass(domGles_sampler_state::domMinfilter::create, &meta);
@@ -208,7 +208,7 @@ domGles_sampler_state::domMinfilter::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_filter_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_filter_common"));
 		ma->setOffset( daeOffsetOf( domGles_sampler_state::domMinfilter , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -221,9 +221,9 @@ domGles_sampler_state::domMinfilter::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_sampler_state::domMagfilter::create()
+domGles_sampler_state::domMagfilter::create(DAE& dae)
 {
-	domGles_sampler_state::domMagfilterRef ref = new domGles_sampler_state::domMagfilter;
+	domGles_sampler_state::domMagfilterRef ref = new domGles_sampler_state::domMagfilter(dae);
 	return ref;
 }
 
@@ -234,7 +234,7 @@ domGles_sampler_state::domMagfilter::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "magfilter" );
 	meta->registerClass(domGles_sampler_state::domMagfilter::create, &meta);
@@ -244,7 +244,7 @@ domGles_sampler_state::domMagfilter::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_filter_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_filter_common"));
 		ma->setOffset( daeOffsetOf( domGles_sampler_state::domMagfilter , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -257,9 +257,9 @@ domGles_sampler_state::domMagfilter::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_sampler_state::domMipfilter::create()
+domGles_sampler_state::domMipfilter::create(DAE& dae)
 {
-	domGles_sampler_state::domMipfilterRef ref = new domGles_sampler_state::domMipfilter;
+	domGles_sampler_state::domMipfilterRef ref = new domGles_sampler_state::domMipfilter(dae);
 	return ref;
 }
 
@@ -270,7 +270,7 @@ domGles_sampler_state::domMipfilter::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "mipfilter" );
 	meta->registerClass(domGles_sampler_state::domMipfilter::create, &meta);
@@ -280,7 +280,7 @@ domGles_sampler_state::domMipfilter::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_filter_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_filter_common"));
 		ma->setOffset( daeOffsetOf( domGles_sampler_state::domMipfilter , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -293,9 +293,9 @@ domGles_sampler_state::domMipfilter::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_sampler_state::domMipmap_maxlevel::create()
+domGles_sampler_state::domMipmap_maxlevel::create(DAE& dae)
 {
-	domGles_sampler_state::domMipmap_maxlevelRef ref = new domGles_sampler_state::domMipmap_maxlevel;
+	domGles_sampler_state::domMipmap_maxlevelRef ref = new domGles_sampler_state::domMipmap_maxlevel(dae);
 	return ref;
 }
 
@@ -306,7 +306,7 @@ domGles_sampler_state::domMipmap_maxlevel::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "mipmap_maxlevel" );
 	meta->registerClass(domGles_sampler_state::domMipmap_maxlevel::create, &meta);
@@ -316,7 +316,7 @@ domGles_sampler_state::domMipmap_maxlevel::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsUnsignedByte"));
+		ma->setType( dae.getAtomicTypes().get("xsUnsignedByte"));
 		ma->setOffset( daeOffsetOf( domGles_sampler_state::domMipmap_maxlevel , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -329,9 +329,9 @@ domGles_sampler_state::domMipmap_maxlevel::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_sampler_state::domMipmap_bias::create()
+domGles_sampler_state::domMipmap_bias::create(DAE& dae)
 {
-	domGles_sampler_state::domMipmap_biasRef ref = new domGles_sampler_state::domMipmap_bias;
+	domGles_sampler_state::domMipmap_biasRef ref = new domGles_sampler_state::domMipmap_bias(dae);
 	return ref;
 }
 
@@ -342,7 +342,7 @@ domGles_sampler_state::domMipmap_bias::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "mipmap_bias" );
 	meta->registerClass(domGles_sampler_state::domMipmap_bias::create, &meta);
@@ -352,7 +352,7 @@ domGles_sampler_state::domMipmap_bias::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsFloat"));
+		ma->setType( dae.getAtomicTypes().get("xsFloat"));
 		ma->setOffset( daeOffsetOf( domGles_sampler_state::domMipmap_bias , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

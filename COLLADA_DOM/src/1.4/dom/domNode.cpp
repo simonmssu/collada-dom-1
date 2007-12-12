@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domNode::create()
+domNode::create(DAE& dae)
 {
-	domNodeRef ref = new domNode;
+	domNodeRef ref = new domNode(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domNode::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "node" );
 	meta->registerClass(domNode::create, &meta);
@@ -145,7 +145,7 @@ domNode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domNode , attrId ));
 		ma->setContainer( meta );
 	
@@ -156,7 +156,7 @@ domNode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domNode , attrName ));
 		ma->setContainer( meta );
 	
@@ -167,7 +167,7 @@ domNode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domNode , attrSid ));
 		ma->setContainer( meta );
 	
@@ -178,7 +178,7 @@ domNode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "type" );
-		ma->setType( daeAtomicType::get("NodeType"));
+		ma->setType( dae.getAtomicTypes().get("NodeType"));
 		ma->setOffset( daeOffsetOf( domNode , attrType ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "NODE");
@@ -190,7 +190,7 @@ domNode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "layer" );
-		ma->setType( daeAtomicType::get("ListOfNames"));
+		ma->setType( dae.getAtomicTypes().get("ListOfNames"));
 		ma->setOffset( daeOffsetOf( domNode , attrLayer ));
 		ma->setContainer( meta );
 	

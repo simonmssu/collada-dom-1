@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domAccessor::create()
+domAccessor::create(DAE& dae)
 {
-	domAccessorRef ref = new domAccessor;
+	domAccessorRef ref = new domAccessor(dae);
 	ref->attrSource.setContainer( (domAccessor*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domAccessor::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "accessor" );
 	meta->registerClass(domAccessor::create, &meta);
@@ -58,7 +58,7 @@ domAccessor::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domAccessor , attrCount ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -70,7 +70,7 @@ domAccessor::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "offset" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domAccessor , attrOffset ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -82,7 +82,7 @@ domAccessor::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domAccessor , attrSource ));
 		ma->setContainer( meta );
 	
@@ -93,7 +93,7 @@ domAccessor::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "stride" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domAccessor , attrStride ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1");

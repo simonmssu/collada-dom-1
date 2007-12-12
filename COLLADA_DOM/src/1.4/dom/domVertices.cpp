@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domVertices::create()
+domVertices::create(DAE& dae)
 {
-	domVerticesRef ref = new domVertices;
+	domVerticesRef ref = new domVertices(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domVertices::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "vertices" );
 	meta->registerClass(domVertices::create, &meta);
@@ -63,7 +63,7 @@ domVertices::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domVertices , attrId ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -75,7 +75,7 @@ domVertices::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domVertices , attrName ));
 		ma->setContainer( meta );
 	

@@ -18,9 +18,6 @@
 #include <dae/daeMetaCMPolicy.h>
 #include <dae/daeMetaElementAttribute.h>
 
-static daeMetaElementRefArray *mera = NULL;
-static daeTArray< daeMetaElement** > *mes = NULL;
-
 daeElementRef
 daeMetaElement::create() 
 {
@@ -53,7 +50,7 @@ daeMetaElement::create(daeString s)
 		return ret;
 	}
 	if ( getAllowsAny() ) {
-		daeElementRef ret = domAny::registerElement()->create();
+		daeElementRef ret = domAny::registerElement(dae)->create();
 		ret->setElementName(s);
 		return ret;
 	}
@@ -94,7 +91,7 @@ daeMetaElement::findChild(daeString s)
 	return NULL;
 }*/
 
-daeMetaElement::daeMetaElement()
+daeMetaElement::daeMetaElement(DAE& dae) : dae(dae)
 {
 	_name = "noname";
 	_createFunc = NULL;
@@ -125,6 +122,10 @@ daeMetaElement::~daeMetaElement()
 	delete _metaIntegration;
 }
 
+DAE* daeMetaElement::getDAE() {
+	return &dae;
+}
+
 void daeMetaElement::setCMRoot( daeMetaCMPolicy *cm )
 {
 	if (_contentModel) 
@@ -136,7 +137,7 @@ void
 daeMetaElement::addContents(daeInt offset)
 {
 	daeMetaElementArrayAttribute* meaa = new daeMetaElementArrayAttribute( this, NULL, 0, 1, -1 );
-	meaa->setType(daeAtomicType::get("element"));
+	meaa->setType(dae.getAtomicTypes().get("element"));
 	meaa->setName("contents");
 	meaa->setOffset(offset);
 	meaa->setContainer( this);
@@ -147,7 +148,7 @@ void
 daeMetaElement::addContentsOrder(daeInt offset)
 {
 	daeMetaArrayAttribute* meaa = new daeMetaArrayAttribute();
-	meaa->setType(daeAtomicType::get("uint"));
+	meaa->setType(dae.getAtomicTypes().get("uint"));
 	meaa->setName("contentsOrder");
 	meaa->setOffset(offset);
 	meaa->setContainer( this);
@@ -161,7 +162,7 @@ daeMetaElement::addContentsOrder(daeInt offset)
 void daeMetaElement::addCMDataArray(daeInt offset, daeUInt numChoices)
 {
 	daeMetaArrayAttribute* meaa = new daeMetaArrayAttribute();
-	meaa->setType(daeAtomicType::get("int"));
+	meaa->setType(dae.getAtomicTypes().get("int"));
 	meaa->setName("CMData");
 	meaa->setOffset(offset);
 	meaa->setContainer( this);

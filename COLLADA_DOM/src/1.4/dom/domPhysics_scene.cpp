@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domPhysics_scene::create()
+domPhysics_scene::create(DAE& dae)
 {
-	domPhysics_sceneRef ref = new domPhysics_scene;
+	domPhysics_sceneRef ref = new domPhysics_scene(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domPhysics_scene::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "physics_scene" );
 	meta->registerClass(domPhysics_scene::create, &meta);
@@ -87,7 +87,7 @@ domPhysics_scene::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domPhysics_scene , attrId ));
 		ma->setContainer( meta );
 	
@@ -98,7 +98,7 @@ domPhysics_scene::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domPhysics_scene , attrName ));
 		ma->setContainer( meta );
 	
@@ -112,9 +112,9 @@ domPhysics_scene::registerElement(DAE& dae)
 }
 
 daeElementRef
-domPhysics_scene::domTechnique_common::create()
+domPhysics_scene::domTechnique_common::create(DAE& dae)
 {
-	domPhysics_scene::domTechnique_commonRef ref = new domPhysics_scene::domTechnique_common;
+	domPhysics_scene::domTechnique_commonRef ref = new domPhysics_scene::domTechnique_common(dae);
 	return ref;
 }
 
@@ -125,7 +125,7 @@ domPhysics_scene::domTechnique_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domPhysics_scene::domTechnique_common::create, &meta);

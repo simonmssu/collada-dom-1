@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domRotate::create()
+domRotate::create(DAE& dae)
 {
-	domRotateRef ref = new domRotate;
+	domRotateRef ref = new domRotate(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domRotate::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "rotate" );
 	meta->registerClass(domRotate::create, &meta);
@@ -44,7 +44,7 @@ domRotate::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domRotate , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domRotate::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRotate , attrSid ));
 		ma->setContainer( meta );
 	

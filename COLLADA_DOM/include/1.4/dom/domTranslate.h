@@ -29,7 +29,7 @@ class domTranslate : public daeElement, public domTargetableFloat3_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TRANSLATE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TRANSLATE; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TRANSLATE; }
 
 	/**
 	 * Gets the sid attribute.

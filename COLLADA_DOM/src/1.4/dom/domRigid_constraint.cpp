@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domRigid_constraint::create()
+domRigid_constraint::create(DAE& dae)
 {
-	domRigid_constraintRef ref = new domRigid_constraint;
+	domRigid_constraintRef ref = new domRigid_constraint(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domRigid_constraint::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "rigid_constraint" );
 	meta->registerClass(domRigid_constraint::create, &meta);
@@ -81,7 +81,7 @@ domRigid_constraint::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -93,7 +93,7 @@ domRigid_constraint::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint , attrName ));
 		ma->setContainer( meta );
 	
@@ -107,9 +107,9 @@ domRigid_constraint::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_constraint::domRef_attachment::create()
+domRigid_constraint::domRef_attachment::create(DAE& dae)
 {
-	domRigid_constraint::domRef_attachmentRef ref = new domRigid_constraint::domRef_attachment;
+	domRigid_constraint::domRef_attachmentRef ref = new domRigid_constraint::domRef_attachment(dae);
 	ref->attrRigid_body.setContainer( (domRigid_constraint::domRef_attachment*)ref );
 	return ref;
 }
@@ -121,7 +121,7 @@ domRigid_constraint::domRef_attachment::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "ref_attachment" );
 	meta->registerClass(domRigid_constraint::domRef_attachment::create, &meta);
@@ -160,7 +160,7 @@ domRigid_constraint::domRef_attachment::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "rigid_body" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint::domRef_attachment , attrRigid_body ));
 		ma->setContainer( meta );
 	
@@ -174,9 +174,9 @@ domRigid_constraint::domRef_attachment::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_constraint::domAttachment::create()
+domRigid_constraint::domAttachment::create(DAE& dae)
 {
-	domRigid_constraint::domAttachmentRef ref = new domRigid_constraint::domAttachment;
+	domRigid_constraint::domAttachmentRef ref = new domRigid_constraint::domAttachment(dae);
 	ref->attrRigid_body.setContainer( (domRigid_constraint::domAttachment*)ref );
 	return ref;
 }
@@ -188,7 +188,7 @@ domRigid_constraint::domAttachment::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "attachment" );
 	meta->registerClass(domRigid_constraint::domAttachment::create, &meta);
@@ -227,7 +227,7 @@ domRigid_constraint::domAttachment::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "rigid_body" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint::domAttachment , attrRigid_body ));
 		ma->setContainer( meta );
 	
@@ -241,9 +241,9 @@ domRigid_constraint::domAttachment::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::create()
+domRigid_constraint::domTechnique_common::create(DAE& dae)
 {
-	domRigid_constraint::domTechnique_commonRef ref = new domRigid_constraint::domTechnique_common;
+	domRigid_constraint::domTechnique_commonRef ref = new domRigid_constraint::domTechnique_common(dae);
 	return ref;
 }
 
@@ -254,7 +254,7 @@ domRigid_constraint::domTechnique_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::create, &meta);
@@ -298,9 +298,9 @@ domRigid_constraint::domTechnique_common::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domEnabled::create()
+domRigid_constraint::domTechnique_common::domEnabled::create(DAE& dae)
 {
-	domRigid_constraint::domTechnique_common::domEnabledRef ref = new domRigid_constraint::domTechnique_common::domEnabled;
+	domRigid_constraint::domTechnique_common::domEnabledRef ref = new domRigid_constraint::domTechnique_common::domEnabled(dae);
 	return ref;
 }
 
@@ -311,7 +311,7 @@ domRigid_constraint::domTechnique_common::domEnabled::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "enabled" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domEnabled::create, &meta);
@@ -321,7 +321,7 @@ domRigid_constraint::domTechnique_common::domEnabled::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint::domTechnique_common::domEnabled , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -331,7 +331,7 @@ domRigid_constraint::domTechnique_common::domEnabled::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint::domTechnique_common::domEnabled , attrSid ));
 		ma->setContainer( meta );
 	
@@ -345,9 +345,9 @@ domRigid_constraint::domTechnique_common::domEnabled::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domInterpenetrate::create()
+domRigid_constraint::domTechnique_common::domInterpenetrate::create(DAE& dae)
 {
-	domRigid_constraint::domTechnique_common::domInterpenetrateRef ref = new domRigid_constraint::domTechnique_common::domInterpenetrate;
+	domRigid_constraint::domTechnique_common::domInterpenetrateRef ref = new domRigid_constraint::domTechnique_common::domInterpenetrate(dae);
 	return ref;
 }
 
@@ -358,7 +358,7 @@ domRigid_constraint::domTechnique_common::domInterpenetrate::registerElement(DAE
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "interpenetrate" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domInterpenetrate::create, &meta);
@@ -368,7 +368,7 @@ domRigid_constraint::domTechnique_common::domInterpenetrate::registerElement(DAE
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint::domTechnique_common::domInterpenetrate , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -378,7 +378,7 @@ domRigid_constraint::domTechnique_common::domInterpenetrate::registerElement(DAE
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_constraint::domTechnique_common::domInterpenetrate , attrSid ));
 		ma->setContainer( meta );
 	
@@ -392,9 +392,9 @@ domRigid_constraint::domTechnique_common::domInterpenetrate::registerElement(DAE
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domLimits::create()
+domRigid_constraint::domTechnique_common::domLimits::create(DAE& dae)
 {
-	domRigid_constraint::domTechnique_common::domLimitsRef ref = new domRigid_constraint::domTechnique_common::domLimits;
+	domRigid_constraint::domTechnique_common::domLimitsRef ref = new domRigid_constraint::domTechnique_common::domLimits(dae);
 	return ref;
 }
 
@@ -405,7 +405,7 @@ domRigid_constraint::domTechnique_common::domLimits::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "limits" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::create, &meta);
@@ -437,9 +437,9 @@ domRigid_constraint::domTechnique_common::domLimits::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::create()
+domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::create(DAE& dae)
 {
-	domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twistRef ref = new domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist;
+	domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twistRef ref = new domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist(dae);
 	return ref;
 }
 
@@ -450,7 +450,7 @@ domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::re
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "swing_cone_and_twist" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::create, &meta);
@@ -482,9 +482,9 @@ domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::re
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domLimits::domLinear::create()
+domRigid_constraint::domTechnique_common::domLimits::domLinear::create(DAE& dae)
 {
-	domRigid_constraint::domTechnique_common::domLimits::domLinearRef ref = new domRigid_constraint::domTechnique_common::domLimits::domLinear;
+	domRigid_constraint::domTechnique_common::domLimits::domLinearRef ref = new domRigid_constraint::domTechnique_common::domLimits::domLinear(dae);
 	return ref;
 }
 
@@ -495,7 +495,7 @@ domRigid_constraint::domTechnique_common::domLimits::domLinear::registerElement(
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "linear" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::domLinear::create, &meta);
@@ -527,9 +527,9 @@ domRigid_constraint::domTechnique_common::domLimits::domLinear::registerElement(
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domSpring::create()
+domRigid_constraint::domTechnique_common::domSpring::create(DAE& dae)
 {
-	domRigid_constraint::domTechnique_common::domSpringRef ref = new domRigid_constraint::domTechnique_common::domSpring;
+	domRigid_constraint::domTechnique_common::domSpringRef ref = new domRigid_constraint::domTechnique_common::domSpring(dae);
 	return ref;
 }
 
@@ -540,7 +540,7 @@ domRigid_constraint::domTechnique_common::domSpring::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "spring" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::create, &meta);
@@ -572,9 +572,9 @@ domRigid_constraint::domTechnique_common::domSpring::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domSpring::domAngular::create()
+domRigid_constraint::domTechnique_common::domSpring::domAngular::create(DAE& dae)
 {
-	domRigid_constraint::domTechnique_common::domSpring::domAngularRef ref = new domRigid_constraint::domTechnique_common::domSpring::domAngular;
+	domRigid_constraint::domTechnique_common::domSpring::domAngularRef ref = new domRigid_constraint::domTechnique_common::domSpring::domAngular(dae);
 	return ref;
 }
 
@@ -585,7 +585,7 @@ domRigid_constraint::domTechnique_common::domSpring::domAngular::registerElement
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "angular" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::domAngular::create, &meta);
@@ -623,9 +623,9 @@ domRigid_constraint::domTechnique_common::domSpring::domAngular::registerElement
 }
 
 daeElementRef
-domRigid_constraint::domTechnique_common::domSpring::domLinear::create()
+domRigid_constraint::domTechnique_common::domSpring::domLinear::create(DAE& dae)
 {
-	domRigid_constraint::domTechnique_common::domSpring::domLinearRef ref = new domRigid_constraint::domTechnique_common::domSpring::domLinear;
+	domRigid_constraint::domTechnique_common::domSpring::domLinearRef ref = new domRigid_constraint::domTechnique_common::domSpring::domLinear(dae);
 	return ref;
 }
 
@@ -636,7 +636,7 @@ domRigid_constraint::domTechnique_common::domSpring::domLinear::registerElement(
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "linear" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::domLinear::create, &meta);

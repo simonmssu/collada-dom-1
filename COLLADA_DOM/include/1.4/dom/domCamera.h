@@ -32,7 +32,7 @@ class domCamera : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CAMERA; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CAMERA; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CAMERA; }
 public:
 	class domOptics;
 
@@ -47,7 +47,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::OPTICS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::OPTICS; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::OPTICS; }
 	public:
 		class domTechnique_common;
 
@@ -62,7 +62,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE_COMMON; }
 		public:
 			class domOrthographic;
 
@@ -77,7 +77,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ORTHOGRAPHIC; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ORTHOGRAPHIC; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ORTHOGRAPHIC; }
 
 			protected:  // Elements
 /**
@@ -201,7 +201,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PERSPECTIVE; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PERSPECTIVE; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PERSPECTIVE; }
 
 			protected:  // Elements
 /**
@@ -475,7 +475,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::IMAGER; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::IMAGER; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::IMAGER; }
 
 	protected:  // Elements
 /**

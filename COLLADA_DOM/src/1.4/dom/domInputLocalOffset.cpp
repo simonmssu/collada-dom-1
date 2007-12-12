@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInputLocalOffset::create()
+domInputLocalOffset::create(DAE& dae)
 {
-	domInputLocalOffsetRef ref = new domInputLocalOffset;
+	domInputLocalOffsetRef ref = new domInputLocalOffset(dae);
 	ref->attrSource.setContainer( (domInputLocalOffset*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domInputLocalOffset::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "InputLocalOffset" );
 	meta->registerClass(domInputLocalOffset::create, &meta);
@@ -46,7 +46,7 @@ domInputLocalOffset::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "offset" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domInputLocalOffset , attrOffset ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -58,7 +58,7 @@ domInputLocalOffset::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
-		ma->setType( daeAtomicType::get("xsNMTOKEN"));
+		ma->setType( dae.getAtomicTypes().get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domInputLocalOffset , attrSemantic ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -70,7 +70,7 @@ domInputLocalOffset::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("URIFragmentType"));
+		ma->setType( dae.getAtomicTypes().get("URIFragmentType"));
 		ma->setOffset( daeOffsetOf( domInputLocalOffset , attrSource ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -82,7 +82,7 @@ domInputLocalOffset::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "set" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domInputLocalOffset , attrSet ));
 		ma->setContainer( meta );
 	

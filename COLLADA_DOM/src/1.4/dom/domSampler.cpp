@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSampler::create()
+domSampler::create(DAE& dae)
 {
-	domSamplerRef ref = new domSampler;
+	domSamplerRef ref = new domSampler(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domSampler::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "sampler" );
 	meta->registerClass(domSampler::create, &meta);
@@ -57,7 +57,7 @@ domSampler::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domSampler , attrId ));
 		ma->setContainer( meta );
 	

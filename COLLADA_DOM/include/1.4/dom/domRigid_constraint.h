@@ -34,7 +34,7 @@ class domRigid_constraint : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RIGID_CONSTRAINT; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::RIGID_CONSTRAINT; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::RIGID_CONSTRAINT; }
 public:
 	class domRef_attachment;
 
@@ -48,7 +48,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF_ATTACHMENT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::REF_ATTACHMENT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::REF_ATTACHMENT; }
 	protected:  // Attribute
 /**
  *  The “rigid_body” attribute is a relative reference to a rigid-body
@@ -182,7 +182,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ATTACHMENT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ATTACHMENT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ATTACHMENT; }
 	protected:  // Attribute
 /**
  *  The “rigid_body” attribute is a relative reference to a rigid-body
@@ -317,7 +317,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE_COMMON; }
 	public:
 		class domEnabled;
 
@@ -332,7 +332,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ENABLED; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ENABLED; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ENABLED; }
 		protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier
@@ -410,7 +410,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INTERPENETRATE; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INTERPENETRATE; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INTERPENETRATE; }
 		protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier
@@ -489,7 +489,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIMITS; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIMITS; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIMITS; }
 		public:
 			class domSwing_cone_and_twist;
 
@@ -505,7 +505,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SWING_CONE_AND_TWIST; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SWING_CONE_AND_TWIST; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SWING_CONE_AND_TWIST; }
 
 			protected:  // Elements
 /**
@@ -568,7 +568,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINEAR; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LINEAR; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LINEAR; }
 
 			protected:  // Elements
 /**
@@ -685,7 +685,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPRING; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SPRING; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SPRING; }
 		public:
 			class domAngular;
 
@@ -699,7 +699,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ANGULAR; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ANGULAR; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ANGULAR; }
 
 			protected:  // Elements
 /**
@@ -772,7 +772,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINEAR; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LINEAR; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LINEAR; }
 
 			protected:  // Elements
 /**

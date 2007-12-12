@@ -54,7 +54,7 @@ daeInt daeIOPluginCommon::read(daeURI& uri, daeString docBuffer)
 	}
 
 	// Generate a version of the URI with the fragment removed
-	daeURI fileURI(uri.getURI(),true);
+	daeURI fileURI(*uri.getDAE(), uri.getURI(), true);
 
 	//check if document already exists
 	if ( database->isDocumentLoaded( fileURI.getURI() ) )
@@ -92,7 +92,7 @@ daeInt daeIOPluginCommon::read(daeURI& uri, daeString docBuffer)
 	//an ID. 
 	//this function will fill the _integrationItems array as well
 	postProcessDom(document, domObject, intItems);
-	daeElement::resolveAll();
+	database->getDAE()->resolveAll();
 
 	//create the integration objects
 	int size = (int)intItems.size();

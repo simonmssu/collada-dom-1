@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_geometry::create()
+domInstance_geometry::create(DAE& dae)
 {
-	domInstance_geometryRef ref = new domInstance_geometry;
+	domInstance_geometryRef ref = new domInstance_geometry(dae);
 	ref->attrUrl.setContainer( (domInstance_geometry*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domInstance_geometry::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "instance_geometry" );
 	meta->registerClass(domInstance_geometry::create, &meta);
@@ -64,7 +64,7 @@ domInstance_geometry::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "url" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstance_geometry , attrUrl ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -76,7 +76,7 @@ domInstance_geometry::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_geometry , attrSid ));
 		ma->setContainer( meta );
 	
@@ -87,7 +87,7 @@ domInstance_geometry::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_geometry , attrName ));
 		ma->setContainer( meta );
 	

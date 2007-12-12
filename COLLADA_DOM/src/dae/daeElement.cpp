@@ -23,9 +23,9 @@
 #include <dae/daeURI.h>
 #include <dae/domAny.h>
 
-daeElementRef DAECreateElement()
+daeElementRef DAECreateElement(DAE& dae)
 {
-	return new daeElement;
+	return new daeElement(dae);
 }
 
 daeIntegrationObject*
@@ -393,7 +393,7 @@ daeElement::setup(daeMetaElement* meta)
 		return;
 	_meta = meta;
 	if (meta->needsResolve())
-		appendResolveElement((daeElement*)this);
+		getDAE()->appendResolveElement(this);
 	daeMetaElement* intlibMeta = meta->getMetaIntegration();
 	if (intlibMeta != NULL)
 	{
@@ -432,13 +432,21 @@ daeElement::setup(daeMetaElement* meta)
 #endif	
 }
 
-daeElement::daeElement():
-		_intObject(0),
-		_parent(NULL),
-		_document(NULL),
-		_meta(NULL),
-		_elementName(NULL)
-{}
+void daeElement::init() {
+	_intObject = NULL;
+	_parent = NULL;
+	_document = NULL;
+	_meta = NULL;
+	_elementName = NULL;
+}
+
+daeElement::daeElement() {
+	init();
+}
+
+daeElement::daeElement(DAE& dae) {
+	init();
+}
 
 daeElement::~daeElement()
 {
@@ -495,7 +503,7 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 	// any additional special case code for cloning domAny. Unfortunately, we don't have a
 	// daeMetaElement::clone method.
 	bool any = strcmp(getTypeName(), "any") == 0;
-	daeElementRef ret = any ? domAny::registerElement()->create() : _meta->create();
+	daeElementRef ret = any ? domAny::registerElement(*getDAE())->create() : _meta->create();
 	ret->setElementName( _elementName );
 
 	// Copy the attributes and character data. Requires special care for domAny.

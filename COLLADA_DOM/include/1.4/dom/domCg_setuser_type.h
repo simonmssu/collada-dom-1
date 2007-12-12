@@ -168,7 +168,7 @@ class domCg_setuser_type : public daeElement, public domCg_setuser_type_complexT
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SETUSER_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CG_SETUSER_TYPE; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CG_SETUSER_TYPE; }
 
 public:	//Accessors and Mutators
 	/**

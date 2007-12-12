@@ -34,7 +34,7 @@ class domLight : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT; }
 public:
 	class domTechnique_common;
 
@@ -49,7 +49,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE_COMMON; }
 	public:
 		class domAmbient;
 
@@ -65,7 +65,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AMBIENT; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::AMBIENT; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::AMBIENT; }
 
 		protected:  // Element
 /**
@@ -125,7 +125,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DIRECTIONAL; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::DIRECTIONAL; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DIRECTIONAL; }
 
 		protected:  // Element
 /**
@@ -184,7 +184,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::POINT; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::POINT; }
 
 		protected:  // Elements
 /**
@@ -282,7 +282,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPOT; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SPOT; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SPOT; }
 
 		protected:  // Elements
 /**

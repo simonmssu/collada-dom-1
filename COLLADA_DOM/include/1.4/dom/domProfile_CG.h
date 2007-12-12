@@ -44,7 +44,7 @@ class domProfile_CG : public domFx_profile_abstract
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROFILE_CG; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PROFILE_CG; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PROFILE_CG; }
 public:
 	class domTechnique;
 
@@ -59,7 +59,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TECHNIQUE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE; }
 	public:
 		class domPass;
 
@@ -74,7 +74,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PASS; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PASS; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PASS; }
 		public:
 			class domDraw;
 
@@ -85,7 +85,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DRAW; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::DRAW; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DRAW; }
 
 			protected:  // Value
 				/**
@@ -146,7 +146,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SHADER; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SHADER; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SHADER; }
 			public:
 				class domCompiler_target;
 
@@ -157,7 +157,7 @@ public:
 				{
 				public:
 					virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMPILER_TARGET; }
-					static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::COMPILER_TARGET; }
+					static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COMPILER_TARGET; }
 
 				protected:  // Value
 					/**
@@ -217,7 +217,7 @@ public:
 				{
 				public:
 					virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMPILER_OPTIONS; }
-					static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::COMPILER_OPTIONS; }
+					static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COMPILER_OPTIONS; }
 
 				protected:  // Value
 					/**
@@ -277,7 +277,7 @@ public:
 				{
 				public:
 					virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::NAME; }
-					static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::NAME; }
+					static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::NAME; }
 				protected:  // Attribute
 					xsNCName attrSource;
 
@@ -350,7 +350,7 @@ public:
 				{
 				public:
 					virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND; }
-					static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BIND; }
+					static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BIND; }
 				public:
 					class domParam;
 
@@ -364,7 +364,7 @@ public:
 					{
 					public:
 						virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
-						static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PARAM; }
+						static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PARAM; }
 					protected:  // Attribute
 						xsNCName attrRef;
 

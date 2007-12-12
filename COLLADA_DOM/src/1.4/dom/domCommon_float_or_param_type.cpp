@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCommon_float_or_param_type::create()
+domCommon_float_or_param_type::create(DAE& dae)
 {
-	domCommon_float_or_param_typeRef ref = new domCommon_float_or_param_type;
+	domCommon_float_or_param_typeRef ref = new domCommon_float_or_param_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCommon_float_or_param_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "common_float_or_param_type" );
 	meta->registerClass(domCommon_float_or_param_type::create, &meta);
@@ -70,9 +70,9 @@ domCommon_float_or_param_type::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCommon_float_or_param_type::domFloat::create()
+domCommon_float_or_param_type::domFloat::create(DAE& dae)
 {
-	domCommon_float_or_param_type::domFloatRef ref = new domCommon_float_or_param_type::domFloat;
+	domCommon_float_or_param_type::domFloatRef ref = new domCommon_float_or_param_type::domFloat(dae);
 	return ref;
 }
 
@@ -83,7 +83,7 @@ domCommon_float_or_param_type::domFloat::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float" );
 	meta->registerClass(domCommon_float_or_param_type::domFloat::create, &meta);
@@ -93,7 +93,7 @@ domCommon_float_or_param_type::domFloat::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domCommon_float_or_param_type::domFloat , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -103,7 +103,7 @@ domCommon_float_or_param_type::domFloat::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCommon_float_or_param_type::domFloat , attrSid ));
 		ma->setContainer( meta );
 	
@@ -117,9 +117,9 @@ domCommon_float_or_param_type::domFloat::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCommon_float_or_param_type::domParam::create()
+domCommon_float_or_param_type::domParam::create(DAE& dae)
 {
-	domCommon_float_or_param_type::domParamRef ref = new domCommon_float_or_param_type::domParam;
+	domCommon_float_or_param_type::domParamRef ref = new domCommon_float_or_param_type::domParam(dae);
 	return ref;
 }
 
@@ -130,7 +130,7 @@ domCommon_float_or_param_type::domParam::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "param" );
 	meta->registerClass(domCommon_float_or_param_type::domParam::create, &meta);
@@ -141,7 +141,7 @@ domCommon_float_or_param_type::domParam::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCommon_float_or_param_type::domParam , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

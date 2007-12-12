@@ -33,7 +33,7 @@ class domPolygons : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGONS; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::POLYGONS; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::POLYGONS; }
 public:
 	class domPh;
 
@@ -47,7 +47,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PH; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PH; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PH; }
 	public:
 		class domH;
 
@@ -62,7 +62,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::H; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::H; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::H; }
 
 		protected:  // Value
 			/**

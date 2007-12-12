@@ -28,7 +28,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_samplerRECT_complexType(DAE& dae) {}
+	domCg_samplerRECT_complexType(DAE& dae) :  {}
 	/**
 	 * Destructor
 	 */
@@ -46,7 +46,7 @@ class domCg_samplerRECT : public daeElement, public domCg_samplerRECT_complexTyp
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SAMPLERRECT; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CG_SAMPLERRECT; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CG_SAMPLERRECT; }
 protected:
 	/**
 	 * Constructor

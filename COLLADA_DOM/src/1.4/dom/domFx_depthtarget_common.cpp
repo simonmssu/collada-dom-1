@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_depthtarget_common::create()
+domFx_depthtarget_common::create(DAE& dae)
 {
-	domFx_depthtarget_commonRef ref = new domFx_depthtarget_common;
+	domFx_depthtarget_commonRef ref = new domFx_depthtarget_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_depthtarget_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_depthtarget_common" );
 	meta->registerClass(domFx_depthtarget_common::create, &meta);
@@ -44,7 +44,7 @@ domFx_depthtarget_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFx_depthtarget_common , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domFx_depthtarget_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_depthtarget_common , attrIndex ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -67,7 +67,7 @@ domFx_depthtarget_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "face" );
-		ma->setType( daeAtomicType::get("Fx_surface_face_enum"));
+		ma->setType( dae.getAtomicTypes().get("Fx_surface_face_enum"));
 		ma->setOffset( daeOffsetOf( domFx_depthtarget_common , attrFace ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "POSITIVE_X");
@@ -80,7 +80,7 @@ domFx_depthtarget_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "mip" );
-		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_depthtarget_common , attrMip ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -93,7 +93,7 @@ domFx_depthtarget_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "slice" );
-		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_depthtarget_common , attrSlice ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");

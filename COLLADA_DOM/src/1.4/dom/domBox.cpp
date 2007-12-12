@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domBox::create()
+domBox::create(DAE& dae)
 {
-	domBoxRef ref = new domBox;
+	domBoxRef ref = new domBox(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domBox::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "box" );
 	meta->registerClass(domBox::create, &meta);
@@ -66,9 +66,9 @@ domBox::registerElement(DAE& dae)
 }
 
 daeElementRef
-domBox::domHalf_extents::create()
+domBox::domHalf_extents::create(DAE& dae)
 {
-	domBox::domHalf_extentsRef ref = new domBox::domHalf_extents;
+	domBox::domHalf_extentsRef ref = new domBox::domHalf_extents(dae);
 	return ref;
 }
 
@@ -79,7 +79,7 @@ domBox::domHalf_extents::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "half_extents" );
 	meta->registerClass(domBox::domHalf_extents::create, &meta);
@@ -89,7 +89,7 @@ domBox::domHalf_extents::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float3"));
+		ma->setType( dae.getAtomicTypes().get("Float3"));
 		ma->setOffset( daeOffsetOf( domBox::domHalf_extents , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

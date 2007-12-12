@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domMesh::create()
+domMesh::create(DAE& dae)
 {
-	domMeshRef ref = new domMesh;
+	domMeshRef ref = new domMesh(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domMesh::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "mesh" );
 	meta->registerClass(domMesh::create, &meta);

@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_include_common::create()
+domFx_include_common::create(DAE& dae)
 {
-	domFx_include_commonRef ref = new domFx_include_common;
+	domFx_include_commonRef ref = new domFx_include_common(dae);
 	ref->attrUrl.setContainer( (domFx_include_common*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domFx_include_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_include_common" );
 	meta->registerClass(domFx_include_common::create, &meta);
@@ -46,7 +46,7 @@ domFx_include_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFx_include_common , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -58,7 +58,7 @@ domFx_include_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "url" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domFx_include_common , attrUrl ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

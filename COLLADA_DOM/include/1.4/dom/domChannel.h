@@ -27,7 +27,7 @@ class domChannel : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CHANNEL; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CHANNEL; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CHANNEL; }
 protected:  // Attributes
 /**
  *  The source attribute indicates the location of the sampler using a URL

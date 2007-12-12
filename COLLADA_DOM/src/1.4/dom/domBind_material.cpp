@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domBind_material::create()
+domBind_material::create(DAE& dae)
 {
-	domBind_materialRef ref = new domBind_material;
+	domBind_materialRef ref = new domBind_material(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domBind_material::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bind_material" );
 	meta->registerClass(domBind_material::create, &meta);
@@ -78,9 +78,9 @@ domBind_material::registerElement(DAE& dae)
 }
 
 daeElementRef
-domBind_material::domTechnique_common::create()
+domBind_material::domTechnique_common::create(DAE& dae)
 {
-	domBind_material::domTechnique_commonRef ref = new domBind_material::domTechnique_common;
+	domBind_material::domTechnique_commonRef ref = new domBind_material::domTechnique_common(dae);
 	return ref;
 }
 
@@ -91,7 +91,7 @@ domBind_material::domTechnique_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domBind_material::domTechnique_common::create, &meta);

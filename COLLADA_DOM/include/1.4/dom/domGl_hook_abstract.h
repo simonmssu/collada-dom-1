@@ -24,7 +24,7 @@ class domGl_hook_abstract : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GL_HOOK_ABSTRACT; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::GL_HOOK_ABSTRACT; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GL_HOOK_ABSTRACT; }
 
 protected:
 	/**

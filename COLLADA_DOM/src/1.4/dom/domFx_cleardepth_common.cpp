@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_cleardepth_common::create()
+domFx_cleardepth_common::create(DAE& dae)
 {
-	domFx_cleardepth_commonRef ref = new domFx_cleardepth_common;
+	domFx_cleardepth_commonRef ref = new domFx_cleardepth_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_cleardepth_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_cleardepth_common" );
 	meta->registerClass(domFx_cleardepth_common::create, &meta);
@@ -44,7 +44,7 @@ domFx_cleardepth_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domFx_cleardepth_common , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domFx_cleardepth_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_cleardepth_common , attrIndex ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");

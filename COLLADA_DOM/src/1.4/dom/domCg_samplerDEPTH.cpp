@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_samplerDEPTH::create()
+domCg_samplerDEPTH::create(DAE& dae)
 {
-	domCg_samplerDEPTHRef ref = new domCg_samplerDEPTH;
+	domCg_samplerDEPTHRef ref = new domCg_samplerDEPTH(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCg_samplerDEPTH::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "cg_samplerDEPTH" );
 	meta->registerClass(domCg_samplerDEPTH::create, &meta);

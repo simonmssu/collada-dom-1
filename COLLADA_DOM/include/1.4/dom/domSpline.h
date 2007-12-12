@@ -31,7 +31,7 @@ class domSpline : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPLINE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SPLINE; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SPLINE; }
 public:
 	class domControl_vertices;
 
@@ -46,7 +46,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONTROL_VERTICES; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CONTROL_VERTICES; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CONTROL_VERTICES; }
 
 	protected:  // Elements
 /**

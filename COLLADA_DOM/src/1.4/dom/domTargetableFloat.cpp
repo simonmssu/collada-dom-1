@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTargetableFloat::create()
+domTargetableFloat::create(DAE& dae)
 {
-	domTargetableFloatRef ref = new domTargetableFloat;
+	domTargetableFloatRef ref = new domTargetableFloat(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domTargetableFloat::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "TargetableFloat" );
 	meta->registerClass(domTargetableFloat::create, &meta);
@@ -44,7 +44,7 @@ domTargetableFloat::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domTargetableFloat , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domTargetableFloat::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domTargetableFloat , attrSid ));
 		ma->setContainer( meta );
 	

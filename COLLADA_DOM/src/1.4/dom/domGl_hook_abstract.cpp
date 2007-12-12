@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGl_hook_abstract::create()
+domGl_hook_abstract::create(DAE& dae)
 {
-	domGl_hook_abstractRef ref = new domGl_hook_abstract;
+	domGl_hook_abstractRef ref = new domGl_hook_abstract(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGl_hook_abstract::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gl_hook_abstract" );
 	meta->registerClass(domGl_hook_abstract::create, &meta);

@@ -41,7 +41,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SEMANTIC; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SEMANTIC; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SEMANTIC; }
 
 	protected:  // Value
 		/**
@@ -101,7 +101,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODIFIER; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MODIFIER; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MODIFIER; }
 
 	protected:  // Value
 		/**
@@ -235,7 +235,7 @@ class domFx_newparam_common : public daeElement, public domFx_newparam_common_co
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_NEWPARAM_COMMON; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FX_NEWPARAM_COMMON; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FX_NEWPARAM_COMMON; }
 
 public:	//Accessors and Mutators
 	/**

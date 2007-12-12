@@ -19,14 +19,9 @@
 #include <dae/daeIOPlugin.h>
 #include <dae/daeErrorHandler.h>
 
-daeStandardURIResolver::daeStandardURIResolver(DAE& dae) : daeURIResolver(dae)
-{
-	_protocols = _plugin->getSupportedProtocols();
-}
+daeStandardURIResolver::daeStandardURIResolver(DAE& dae) : daeURIResolver(dae) { }
 
-daeStandardURIResolver::~daeStandardURIResolver()
-{
-}
+daeStandardURIResolver::~daeStandardURIResolver() { }
 
 daeString
 daeStandardURIResolver::getName()
@@ -48,8 +43,9 @@ daeStandardURIResolver::isExtensionSupported(daeString extension)
 }
 		
 daeBool daeStandardURIResolver::isProtocolSupported(daeString protocol) {
+	// !!!steveT Need to test the performance of the getSupportedProtocols call
 	size_t index;
-	return (protocol  &&  _protocols.find(protocol, index) == DAE_OK);
+	return (protocol  &&  dae->getIOPlugin()->getSupportedProtocols().find(protocol, index) == DAE_OK);
 }
 
 daeBool

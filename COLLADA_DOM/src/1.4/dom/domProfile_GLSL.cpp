@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domProfile_GLSL::create()
+domProfile_GLSL::create(DAE& dae)
 {
-	domProfile_GLSLRef ref = new domProfile_GLSL;
+	domProfile_GLSLRef ref = new domProfile_GLSL(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domProfile_GLSL::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "profile_GLSL" );
 	meta->registerClass(domProfile_GLSL::create, &meta);
@@ -109,7 +109,7 @@ domProfile_GLSL::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL , attrId ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -124,9 +124,9 @@ domProfile_GLSL::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::create()
+domProfile_GLSL::domTechnique::create(DAE& dae)
 {
-	domProfile_GLSL::domTechniqueRef ref = new domProfile_GLSL::domTechnique;
+	domProfile_GLSL::domTechniqueRef ref = new domProfile_GLSL::domTechnique(dae);
 	return ref;
 }
 
@@ -137,7 +137,7 @@ domProfile_GLSL::domTechnique::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique" );
 	meta->registerClass(domProfile_GLSL::domTechnique::create, &meta);
@@ -218,7 +218,7 @@ domProfile_GLSL::domTechnique::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL::domTechnique , attrId ));
 		ma->setContainer( meta );
 	
@@ -229,7 +229,7 @@ domProfile_GLSL::domTechnique::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL::domTechnique , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -244,9 +244,9 @@ domProfile_GLSL::domTechnique::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::create()
+domProfile_GLSL::domTechnique::domPass::create(DAE& dae)
 {
-	domProfile_GLSL::domTechnique::domPassRef ref = new domProfile_GLSL::domTechnique::domPass;
+	domProfile_GLSL::domTechnique::domPassRef ref = new domProfile_GLSL::domTechnique::domPass(dae);
 	return ref;
 }
 
@@ -257,7 +257,7 @@ domProfile_GLSL::domTechnique::domPass::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "pass" );
 	meta->registerClass(domProfile_GLSL::domTechnique::domPass::create, &meta);
@@ -350,7 +350,7 @@ domProfile_GLSL::domTechnique::domPass::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL::domTechnique::domPass , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -365,9 +365,9 @@ domProfile_GLSL::domTechnique::domPass::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domDraw::create()
+domProfile_GLSL::domTechnique::domPass::domDraw::create(DAE& dae)
 {
-	domProfile_GLSL::domTechnique::domPass::domDrawRef ref = new domProfile_GLSL::domTechnique::domPass::domDraw;
+	domProfile_GLSL::domTechnique::domPass::domDrawRef ref = new domProfile_GLSL::domTechnique::domPass::domDraw(dae);
 	return ref;
 }
 
@@ -378,7 +378,7 @@ domProfile_GLSL::domTechnique::domPass::domDraw::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "draw" );
 	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domDraw::create, &meta);
@@ -388,7 +388,7 @@ domProfile_GLSL::domTechnique::domPass::domDraw::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_draw_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_draw_common"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL::domTechnique::domPass::domDraw , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -401,9 +401,9 @@ domProfile_GLSL::domTechnique::domPass::domDraw::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::create()
+domProfile_GLSL::domTechnique::domPass::domShader::create(DAE& dae)
 {
-	domProfile_GLSL::domTechnique::domPass::domShaderRef ref = new domProfile_GLSL::domTechnique::domPass::domShader;
+	domProfile_GLSL::domTechnique::domPass::domShaderRef ref = new domProfile_GLSL::domTechnique::domPass::domShader(dae);
 	return ref;
 }
 
@@ -414,7 +414,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "shader" );
 	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::create, &meta);
@@ -467,7 +467,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "stage" );
-		ma->setType( daeAtomicType::get("Glsl_pipeline_stage"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_pipeline_stage"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL::domTechnique::domPass::domShader , attrStage ));
 		ma->setContainer( meta );
 	
@@ -481,9 +481,9 @@ domProfile_GLSL::domTechnique::domPass::domShader::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::create()
+domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::create(DAE& dae)
 {
-	domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_targetRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target;
+	domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_targetRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target(dae);
 	return ref;
 }
 
@@ -494,7 +494,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::registerE
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "compiler_target" );
 	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::create, &meta);
@@ -504,7 +504,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::registerE
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNMTOKEN"));
+		ma->setType( dae.getAtomicTypes().get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -517,9 +517,9 @@ domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::registerE
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::create()
+domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::create(DAE& dae)
 {
-	domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_optionsRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options;
+	domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_optionsRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options(dae);
 	return ref;
 }
 
@@ -530,7 +530,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::register
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "compiler_options" );
 	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::create, &meta);
@@ -540,7 +540,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::register
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -553,9 +553,9 @@ domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::register
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::domName::create()
+domProfile_GLSL::domTechnique::domPass::domShader::domName::create(DAE& dae)
 {
-	domProfile_GLSL::domTechnique::domPass::domShader::domNameRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domName;
+	domProfile_GLSL::domTechnique::domPass::domShader::domNameRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domName(dae);
 	return ref;
 }
 
@@ -566,7 +566,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domName::registerElement(DAE&
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "name" );
 	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domName::create, &meta);
@@ -576,7 +576,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domName::registerElement(DAE&
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL::domTechnique::domPass::domShader::domName , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -586,7 +586,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domName::registerElement(DAE&
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL::domTechnique::domPass::domShader::domName , attrSource ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -601,9 +601,9 @@ domProfile_GLSL::domTechnique::domPass::domShader::domName::registerElement(DAE&
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::domBind::create()
+domProfile_GLSL::domTechnique::domPass::domShader::domBind::create(DAE& dae)
 {
-	domProfile_GLSL::domTechnique::domPass::domShader::domBindRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domBind;
+	domProfile_GLSL::domTechnique::domPass::domShader::domBindRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domBind(dae);
 	return ref;
 }
 
@@ -614,7 +614,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domBind::registerElement(DAE&
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bind" );
 	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domBind::create, &meta);
@@ -647,7 +647,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domBind::registerElement(DAE&
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "symbol" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL::domTechnique::domPass::domShader::domBind , attrSymbol ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -662,9 +662,9 @@ domProfile_GLSL::domTechnique::domPass::domShader::domBind::registerElement(DAE&
 }
 
 daeElementRef
-domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam::create()
+domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam::create(DAE& dae)
 {
-	domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParamRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam;
+	domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParamRef ref = new domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam(dae);
 	return ref;
 }
 
@@ -675,7 +675,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam::registerEl
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "param" );
 	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam::create, &meta);
@@ -686,7 +686,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam::registerEl
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

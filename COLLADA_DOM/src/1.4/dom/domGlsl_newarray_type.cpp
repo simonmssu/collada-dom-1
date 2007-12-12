@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_newarray_type::create()
+domGlsl_newarray_type::create(DAE& dae)
 {
-	domGlsl_newarray_typeRef ref = new domGlsl_newarray_type;
+	domGlsl_newarray_typeRef ref = new domGlsl_newarray_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGlsl_newarray_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "glsl_newarray_type" );
 	meta->registerClass(domGlsl_newarray_type::create, &meta);
@@ -67,7 +67,7 @@ domGlsl_newarray_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "length" );
-		ma->setType( daeAtomicType::get("xsPositiveInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsPositiveInteger"));
 		ma->setOffset( daeOffsetOf( domGlsl_newarray_type , attrLength ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

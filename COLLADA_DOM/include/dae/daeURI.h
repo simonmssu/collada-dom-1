@@ -106,7 +106,7 @@ public:
 	
 private:
 	// All daeURIs have a pointer to a master DAE that they use to access global information.
-	DAE* dae;
+	mutable DAE* dae;
 	
 	/** Resolved version of the URI */
 	daeString uriString;
@@ -175,7 +175,7 @@ public:
 	 * Gets the DAE objects associated with this daeURI.
 	 * @return Returns a pointer to the associated DAE. This will never return null.
 	 */
-	DAE* getDAE();
+	DAE* getDAE() const;
 	
 	/**
 	 * Gets the ID string parsed from the URI.

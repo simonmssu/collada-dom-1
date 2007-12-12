@@ -63,7 +63,7 @@ class domCg_connect_param : public daeElement, public domCg_connect_param_comple
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_CONNECT_PARAM; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CG_CONNECT_PARAM; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CG_CONNECT_PARAM; }
 
 public:	//Accessors and Mutators
 	/**

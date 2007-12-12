@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_force_field::create()
+domInstance_force_field::create(DAE& dae)
 {
-	domInstance_force_fieldRef ref = new domInstance_force_field;
+	domInstance_force_fieldRef ref = new domInstance_force_field(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domInstance_force_field::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "instance_force_field" );
 	meta->registerClass(domInstance_force_field::create, &meta);
@@ -57,7 +57,7 @@ domInstance_force_field::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "url" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstance_force_field , attrUrl ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -69,7 +69,7 @@ domInstance_force_field::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_force_field , attrSid ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domInstance_force_field::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_force_field , attrName ));
 		ma->setContainer( meta );
 	

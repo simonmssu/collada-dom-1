@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_setparam_simple::create()
+domGlsl_setparam_simple::create(DAE& dae)
 {
-	domGlsl_setparam_simpleRef ref = new domGlsl_setparam_simple;
+	domGlsl_setparam_simpleRef ref = new domGlsl_setparam_simple(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGlsl_setparam_simple::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "glsl_setparam_simple" );
 	meta->registerClass(domGlsl_setparam_simple::create, &meta);
@@ -63,7 +63,7 @@ domGlsl_setparam_simple::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("Glsl_identifier"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_identifier"));
 		ma->setOffset( daeOffsetOf( domGlsl_setparam_simple , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

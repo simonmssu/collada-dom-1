@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_materials::create()
+domLibrary_materials::create(DAE& dae)
 {
-	domLibrary_materialsRef ref = new domLibrary_materials;
+	domLibrary_materialsRef ref = new domLibrary_materials(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domLibrary_materials::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "library_materials" );
 	meta->registerClass(domLibrary_materials::create, &meta);
@@ -69,7 +69,7 @@ domLibrary_materials::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domLibrary_materials , attrId ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domLibrary_materials::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLibrary_materials , attrName ));
 		ma->setContainer( meta );
 	

@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domPolygons::create()
+domPolygons::create(DAE& dae)
 {
-	domPolygonsRef ref = new domPolygons;
+	domPolygonsRef ref = new domPolygons(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domPolygons::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "polygons" );
 	meta->registerClass(domPolygons::create, &meta);
@@ -85,7 +85,7 @@ domPolygons::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domPolygons , attrName ));
 		ma->setContainer( meta );
 	
@@ -96,7 +96,7 @@ domPolygons::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domPolygons , attrCount ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -108,7 +108,7 @@ domPolygons::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "material" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domPolygons , attrMaterial ));
 		ma->setContainer( meta );
 	
@@ -122,9 +122,9 @@ domPolygons::registerElement(DAE& dae)
 }
 
 daeElementRef
-domPolygons::domPh::create()
+domPolygons::domPh::create(DAE& dae)
 {
-	domPolygons::domPhRef ref = new domPolygons::domPh;
+	domPolygons::domPhRef ref = new domPolygons::domPh(dae);
 	return ref;
 }
 
@@ -135,7 +135,7 @@ domPolygons::domPh::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "ph" );
 	meta->registerClass(domPolygons::domPh::create, &meta);
@@ -167,9 +167,9 @@ domPolygons::domPh::registerElement(DAE& dae)
 }
 
 daeElementRef
-domPolygons::domPh::domH::create()
+domPolygons::domPh::domH::create(DAE& dae)
 {
-	domPolygons::domPh::domHRef ref = new domPolygons::domPh::domH;
+	domPolygons::domPh::domHRef ref = new domPolygons::domPh::domH(dae);
 	return ref;
 }
 
@@ -180,7 +180,7 @@ domPolygons::domPh::domH::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "h" );
 	meta->registerClass(domPolygons::domPh::domH::create, &meta);
@@ -190,7 +190,7 @@ domPolygons::domPh::domH::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("ListOfUInts"));
+		ma->setType( dae.getAtomicTypes().get("ListOfUInts"));
 		ma->setOffset( daeOffsetOf( domPolygons::domPh::domH , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

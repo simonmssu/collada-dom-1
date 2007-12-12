@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSpline::create()
+domSpline::create(DAE& dae)
 {
-	domSplineRef ref = new domSpline;
+	domSplineRef ref = new domSpline(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domSpline::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "spline" );
 	meta->registerClass(domSpline::create, &meta);
@@ -69,7 +69,7 @@ domSpline::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "closed" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domSpline , attrClosed ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -84,9 +84,9 @@ domSpline::registerElement(DAE& dae)
 }
 
 daeElementRef
-domSpline::domControl_vertices::create()
+domSpline::domControl_vertices::create(DAE& dae)
 {
-	domSpline::domControl_verticesRef ref = new domSpline::domControl_vertices;
+	domSpline::domControl_verticesRef ref = new domSpline::domControl_vertices(dae);
 	return ref;
 }
 
@@ -97,7 +97,7 @@ domSpline::domControl_vertices::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "control_vertices" );
 	meta->registerClass(domSpline::domControl_vertices::create, &meta);

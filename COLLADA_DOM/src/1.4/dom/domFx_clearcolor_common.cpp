@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_clearcolor_common::create()
+domFx_clearcolor_common::create(DAE& dae)
 {
-	domFx_clearcolor_commonRef ref = new domFx_clearcolor_common;
+	domFx_clearcolor_commonRef ref = new domFx_clearcolor_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_clearcolor_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_clearcolor_common" );
 	meta->registerClass(domFx_clearcolor_common::create, &meta);
@@ -44,7 +44,7 @@ domFx_clearcolor_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_color_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_color_common"));
 		ma->setOffset( daeOffsetOf( domFx_clearcolor_common , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domFx_clearcolor_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_clearcolor_common , attrIndex ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");

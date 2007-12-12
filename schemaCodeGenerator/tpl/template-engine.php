@@ -194,48 +194,61 @@ function printAllSubChildren( & $elem, $prefix, $suffix ) {
 	}
 }
 
+function beginConstructorInitializer(& $initializerListStarted) {
+	if (!$initializerListStarted)
+		print " : ";
+	else
+		print ", ";
+	$initializerListStarted = true;
+}
+
 function printConstructors( $elemName, & $bag, $base, $indent ) {
 	//print the protected ctor and copy stuff
 	print $indent ."protected:\n";
 	print $indent ."\t/**\n". $indent ."\t * Constructor\n". $indent ."\t */\n";
 	print $indent ."\t". $elemName ."(DAE& dae)";
-	//list preconstructor initialization of elements
-	if ( count($bag['elements']) > 0 || count($bag['attributes']) > 0 ) {
-		print " : ";
-		$index = 0;
+	$initializerListStarted = false;
+
+	// !!!steveT Remove
+	// if ($elemName == "domInputLocal") {
+	// 	print "steveT - " . $bag['isAComplexType'] . "\n";
+	// 	print "steveT - " . $bag['complex_type'] . "\n";
+	// }
+	
+	if ($bag['isAComplexType'] && $bag['complex_type']) {
+		beginConstructorInitializer($initializerListStarted);
+		$baseClass = $_globals['prefix'] . ucfirst( $bag['base_type'] ) . "_complexType(dae)";
+	}
+
+	if ($bag['useXMLNS']) {
+		beginConstructorInitializer($initializerListStarted);
+		print "attrXmlns(dae)";
+	}
+	
+	// Constructor initialization of attributes
+	if (count($bag['attributes']) > 0) {
 		foreach( $bag['attributes'] as $attr_name => & $a_list ) {
+			beginConstructorInitializer($initializerListStarted);
+
 			$attr_name = ucfirst($attr_name);
 			$type = $a_list['type'];
-			if ($index != 0)
-				print ", ";
 			print "attr" . $attr_name . "(";
 			if ($type == 'xs:anyURI' || $type == 'URIFragmentType' )
 				print "dae";
 			print ")";
-			$index++;
 		}
-
-		if ( count($bag['elements']) > 0 ) {
-			if ( count($bag['attributes'] ) > 0 ) {
-				print ', ';
-			}
-			$maxOccurs = $bag['element_attrs'][ $bag['elements'][0] ]['maxOccurs'];
-			$maxOccurs = ($maxOccurs == 'unbounded' || $maxOccurs > 1);
-			print "elem" . ucfirst($bag['elements'][0]) . ($maxOccurs ? "_array" : "") . "()";
-			for( $i=1; $i<count( $bag['elements'] ); $i++ ) {
-				$maxOccurs = $bag['element_attrs'][ $bag['elements'][$i] ]['maxOccurs'];
-				$maxOccurs = ($maxOccurs == 'unbounded' || $maxOccurs > 1);
-				print ", elem" . ucfirst($bag['elements'][$i]) . ($maxOccurs ? "_array" : "") . "()";
-			}
-		}					
 	}
+	
+	// Constructor initialization of elements
+	for( $i=0; $i<count( $bag['elements'] ); $i++ ) {
+		$maxOccurs = $bag['element_attrs'][ $bag['elements'][$i] ]['maxOccurs'];
+		$maxOccurs = ($maxOccurs == 'unbounded' || $maxOccurs > 1);
+		beginConstructorInitializer($initializerListStarted);
+		print "elem" . ucfirst($bag['elements'][$i]) . ($maxOccurs ? "_array" : "") . "()";
+	}
+
 	if ( ($bag['content_type'] != '' || $bag['mixed']) && !$bag['abstract'] ) {
-		if ( count( $bag['attributes'] ) > 0 || count( $bag['elements'] ) > 0 ) {
-			print ", ";
-		}
-		else {
-			print " : ";
-		}
+		beginConstructorInitializer($initializerListStarted);
 		if ($bag['content_type'] == "xs:anyURI" || $bag['content_type'] == 'URIFragmentType')
 			print "_value(dae)";
 		else

@@ -25,7 +25,7 @@
   $dom_scoped_element = implode( '::', $_domContext );
 
 ?><?= $_globals['meta_prefix'] ?>ElementRef
-<?= $scoped_element ?>::create()
+<?= $scoped_element ?>::create(DAE& dae)
 {
 	<?= $scoped_element ?>Ref ref = new <?= $scoped_element ?>;
 	return ref;
@@ -36,7 +36,7 @@
 {
     if ( _Meta != NULL ) return _Meta;
     
-    _Meta = new daeMetaElement;
+    _Meta = new daeMetaElement(dae);
     _Meta->setName( "<?= $bag['element_name'] ?>" );
 	_Meta->registerClass(<?= $scoped_element ?>::create, &_Meta);
 

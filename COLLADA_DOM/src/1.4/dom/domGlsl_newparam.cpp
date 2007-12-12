@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_newparam::create()
+domGlsl_newparam::create(DAE& dae)
 {
-	domGlsl_newparamRef ref = new domGlsl_newparam;
+	domGlsl_newparamRef ref = new domGlsl_newparam(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGlsl_newparam::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "glsl_newparam" );
 	meta->registerClass(domGlsl_newparam::create, &meta);
@@ -91,7 +91,7 @@ domGlsl_newparam::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("Glsl_identifier"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_identifier"));
 		ma->setOffset( daeOffsetOf( domGlsl_newparam , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -106,9 +106,9 @@ domGlsl_newparam::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_newparam::domSemantic::create()
+domGlsl_newparam::domSemantic::create(DAE& dae)
 {
-	domGlsl_newparam::domSemanticRef ref = new domGlsl_newparam::domSemantic;
+	domGlsl_newparam::domSemanticRef ref = new domGlsl_newparam::domSemantic(dae);
 	return ref;
 }
 
@@ -119,7 +119,7 @@ domGlsl_newparam::domSemantic::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "semantic" );
 	meta->registerClass(domGlsl_newparam::domSemantic::create, &meta);
@@ -129,7 +129,7 @@ domGlsl_newparam::domSemantic::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGlsl_newparam::domSemantic , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -142,9 +142,9 @@ domGlsl_newparam::domSemantic::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_newparam::domModifier::create()
+domGlsl_newparam::domModifier::create(DAE& dae)
 {
-	domGlsl_newparam::domModifierRef ref = new domGlsl_newparam::domModifier;
+	domGlsl_newparam::domModifierRef ref = new domGlsl_newparam::domModifier(dae);
 	return ref;
 }
 
@@ -155,7 +155,7 @@ domGlsl_newparam::domModifier::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "modifier" );
 	meta->registerClass(domGlsl_newparam::domModifier::create, &meta);
@@ -165,7 +165,7 @@ domGlsl_newparam::domModifier::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_modifier_enum_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_modifier_enum_common"));
 		ma->setOffset( daeOffsetOf( domGlsl_newparam::domModifier , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

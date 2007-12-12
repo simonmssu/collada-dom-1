@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domName_array::create()
+domName_array::create(DAE& dae)
 {
-	domName_arrayRef ref = new domName_array;
+	domName_arrayRef ref = new domName_array(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domName_array::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "Name_array" );
 	meta->registerClass(domName_array::create, &meta);
@@ -44,7 +44,7 @@ domName_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("ListOfNames"));
+		ma->setType( dae.getAtomicTypes().get("ListOfNames"));
 		ma->setOffset( daeOffsetOf( domName_array , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domName_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domName_array , attrId ));
 		ma->setContainer( meta );
 	
@@ -65,7 +65,7 @@ domName_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domName_array , attrName ));
 		ma->setContainer( meta );
 	
@@ -76,7 +76,7 @@ domName_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domName_array , attrCount ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

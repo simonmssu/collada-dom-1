@@ -28,7 +28,7 @@ class domFx_profile_abstract : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_PROFILE_ABSTRACT; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FX_PROFILE_ABSTRACT; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FX_PROFILE_ABSTRACT; }
 
 protected:
 	/**

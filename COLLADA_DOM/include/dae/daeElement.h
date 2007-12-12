@@ -78,6 +78,8 @@ protected:
 	daeElement( const daeElement &cpy ) : daeRefCountedObj() { (void)cpy; };
 	virtual daeElement &operator=( const daeElement &cpy ) { (void)cpy; return *this; }
 
+	void init();
+
 	// This function is called internally.
 	void setDocument( daeDocument* c, bool notifyDocument );
 
@@ -88,6 +90,13 @@ public:
 	 * Use factories to create elements
 	 */
 	daeElement();
+	/**
+	 * Element Constructor.
+	 * @note This should not be used externally.
+	 * Use factories to create elements
+	 */
+	daeElement(DAE& dae);
+
 	/**
 	 * Element Destructor.
 	 * @note This should not be used externally, 
@@ -578,6 +587,6 @@ typedef daeSmartRef<const daeElement> daeElementConstRef;
 //#include <dae/daeArray.h>
 typedef daeTArray<daeElementRef> daeElementRefArray;
 
-extern daeElementRef DAECreateElement();
+extern daeElementRef DAECreateElement(DAE& dae);
 
 #endif //__DAE_ELEMENT_H__

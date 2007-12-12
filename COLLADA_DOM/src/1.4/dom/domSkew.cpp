@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSkew::create()
+domSkew::create(DAE& dae)
 {
-	domSkewRef ref = new domSkew;
+	domSkewRef ref = new domSkew(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domSkew::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "skew" );
 	meta->registerClass(domSkew::create, &meta);
@@ -44,7 +44,7 @@ domSkew::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float7"));
+		ma->setType( dae.getAtomicTypes().get("Float7"));
 		ma->setOffset( daeOffsetOf( domSkew , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domSkew::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domSkew , attrSid ));
 		ma->setContainer( meta );
 	

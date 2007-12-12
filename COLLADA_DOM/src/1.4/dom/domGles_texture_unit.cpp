@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texture_unit::create()
+domGles_texture_unit::create(DAE& dae)
 {
-	domGles_texture_unitRef ref = new domGles_texture_unit;
+	domGles_texture_unitRef ref = new domGles_texture_unit(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGles_texture_unit::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gles_texture_unit" );
 	meta->registerClass(domGles_texture_unit::create, &meta);
@@ -75,7 +75,7 @@ domGles_texture_unit::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_texture_unit , attrSid ));
 		ma->setContainer( meta );
 	
@@ -89,9 +89,9 @@ domGles_texture_unit::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_texture_unit::domSurface::create()
+domGles_texture_unit::domSurface::create(DAE& dae)
 {
-	domGles_texture_unit::domSurfaceRef ref = new domGles_texture_unit::domSurface;
+	domGles_texture_unit::domSurfaceRef ref = new domGles_texture_unit::domSurface(dae);
 	return ref;
 }
 
@@ -102,7 +102,7 @@ domGles_texture_unit::domSurface::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "surface" );
 	meta->registerClass(domGles_texture_unit::domSurface::create, &meta);
@@ -112,7 +112,7 @@ domGles_texture_unit::domSurface::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_texture_unit::domSurface , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -125,9 +125,9 @@ domGles_texture_unit::domSurface::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_texture_unit::domSampler_state::create()
+domGles_texture_unit::domSampler_state::create(DAE& dae)
 {
-	domGles_texture_unit::domSampler_stateRef ref = new domGles_texture_unit::domSampler_state;
+	domGles_texture_unit::domSampler_stateRef ref = new domGles_texture_unit::domSampler_state(dae);
 	return ref;
 }
 
@@ -138,7 +138,7 @@ domGles_texture_unit::domSampler_state::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "sampler_state" );
 	meta->registerClass(domGles_texture_unit::domSampler_state::create, &meta);
@@ -148,7 +148,7 @@ domGles_texture_unit::domSampler_state::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_texture_unit::domSampler_state , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -161,9 +161,9 @@ domGles_texture_unit::domSampler_state::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_texture_unit::domTexcoord::create()
+domGles_texture_unit::domTexcoord::create(DAE& dae)
 {
-	domGles_texture_unit::domTexcoordRef ref = new domGles_texture_unit::domTexcoord;
+	domGles_texture_unit::domTexcoordRef ref = new domGles_texture_unit::domTexcoord(dae);
 	return ref;
 }
 
@@ -174,7 +174,7 @@ domGles_texture_unit::domTexcoord::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "texcoord" );
 	meta->registerClass(domGles_texture_unit::domTexcoord::create, &meta);
@@ -185,7 +185,7 @@ domGles_texture_unit::domTexcoord::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_texture_unit::domTexcoord , attrSemantic ));
 		ma->setContainer( meta );
 	

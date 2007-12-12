@@ -24,7 +24,7 @@ class domEllipsoid : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ELLIPSOID; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ELLIPSOID; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ELLIPSOID; }
 public:
 	class domSize;
 
@@ -35,7 +35,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SIZE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SIZE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SIZE; }
 
 	protected:  // Value
 		/**

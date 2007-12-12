@@ -34,7 +34,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SEMANTIC; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SEMANTIC; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SEMANTIC; }
 
 	protected:  // Value
 		/**
@@ -91,7 +91,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT; }
 
 	protected:  // Value
 		/**
@@ -148,7 +148,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT2; }
 
 	protected:  // Value
 		/**
@@ -210,7 +210,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT3; }
 
 	protected:  // Value
 		/**
@@ -272,7 +272,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT4; }
 
 	protected:  // Value
 		/**
@@ -437,7 +437,7 @@ class domCommon_newparam_type : public daeElement, public domCommon_newparam_typ
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMON_NEWPARAM_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::COMMON_NEWPARAM_TYPE; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COMMON_NEWPARAM_TYPE; }
 
 public:	//Accessors and Mutators
 	/**

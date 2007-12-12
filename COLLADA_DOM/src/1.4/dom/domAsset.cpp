@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domAsset::create()
+domAsset::create(DAE& dae)
 {
-	domAssetRef ref = new domAsset;
+	domAssetRef ref = new domAsset(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domAsset::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "asset" );
 	meta->registerClass(domAsset::create, &meta);
@@ -108,9 +108,9 @@ domAsset::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domContributor::create()
+domAsset::domContributor::create(DAE& dae)
 {
-	domAsset::domContributorRef ref = new domAsset::domContributor;
+	domAsset::domContributorRef ref = new domAsset::domContributor(dae);
 	return ref;
 }
 
@@ -121,7 +121,7 @@ domAsset::domContributor::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "contributor" );
 	meta->registerClass(domAsset::domContributor::create, &meta);
@@ -171,9 +171,9 @@ domAsset::domContributor::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domContributor::domAuthor::create()
+domAsset::domContributor::domAuthor::create(DAE& dae)
 {
-	domAsset::domContributor::domAuthorRef ref = new domAsset::domContributor::domAuthor;
+	domAsset::domContributor::domAuthorRef ref = new domAsset::domContributor::domAuthor(dae);
 	return ref;
 }
 
@@ -184,7 +184,7 @@ domAsset::domContributor::domAuthor::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "author" );
 	meta->registerClass(domAsset::domContributor::domAuthor::create, &meta);
@@ -194,7 +194,7 @@ domAsset::domContributor::domAuthor::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domContributor::domAuthor , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -207,9 +207,9 @@ domAsset::domContributor::domAuthor::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domContributor::domAuthoring_tool::create()
+domAsset::domContributor::domAuthoring_tool::create(DAE& dae)
 {
-	domAsset::domContributor::domAuthoring_toolRef ref = new domAsset::domContributor::domAuthoring_tool;
+	domAsset::domContributor::domAuthoring_toolRef ref = new domAsset::domContributor::domAuthoring_tool(dae);
 	return ref;
 }
 
@@ -220,7 +220,7 @@ domAsset::domContributor::domAuthoring_tool::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "authoring_tool" );
 	meta->registerClass(domAsset::domContributor::domAuthoring_tool::create, &meta);
@@ -230,7 +230,7 @@ domAsset::domContributor::domAuthoring_tool::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domContributor::domAuthoring_tool , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -243,9 +243,9 @@ domAsset::domContributor::domAuthoring_tool::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domContributor::domComments::create()
+domAsset::domContributor::domComments::create(DAE& dae)
 {
-	domAsset::domContributor::domCommentsRef ref = new domAsset::domContributor::domComments;
+	domAsset::domContributor::domCommentsRef ref = new domAsset::domContributor::domComments(dae);
 	return ref;
 }
 
@@ -256,7 +256,7 @@ domAsset::domContributor::domComments::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "comments" );
 	meta->registerClass(domAsset::domContributor::domComments::create, &meta);
@@ -266,7 +266,7 @@ domAsset::domContributor::domComments::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domContributor::domComments , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -279,9 +279,9 @@ domAsset::domContributor::domComments::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domContributor::domCopyright::create()
+domAsset::domContributor::domCopyright::create(DAE& dae)
 {
-	domAsset::domContributor::domCopyrightRef ref = new domAsset::domContributor::domCopyright;
+	domAsset::domContributor::domCopyrightRef ref = new domAsset::domContributor::domCopyright(dae);
 	return ref;
 }
 
@@ -292,7 +292,7 @@ domAsset::domContributor::domCopyright::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "copyright" );
 	meta->registerClass(domAsset::domContributor::domCopyright::create, &meta);
@@ -302,7 +302,7 @@ domAsset::domContributor::domCopyright::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domContributor::domCopyright , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -315,9 +315,9 @@ domAsset::domContributor::domCopyright::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domContributor::domSource_data::create()
+domAsset::domContributor::domSource_data::create(DAE& dae)
 {
-	domAsset::domContributor::domSource_dataRef ref = new domAsset::domContributor::domSource_data;
+	domAsset::domContributor::domSource_dataRef ref = new domAsset::domContributor::domSource_data(dae);
 	ref->_value.setContainer( (domAsset::domContributor::domSource_data*)ref );
 	return ref;
 }
@@ -329,7 +329,7 @@ domAsset::domContributor::domSource_data::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "source_data" );
 	meta->registerClass(domAsset::domContributor::domSource_data::create, &meta);
@@ -339,7 +339,7 @@ domAsset::domContributor::domSource_data::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domAsset::domContributor::domSource_data , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -352,9 +352,9 @@ domAsset::domContributor::domSource_data::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domCreated::create()
+domAsset::domCreated::create(DAE& dae)
 {
-	domAsset::domCreatedRef ref = new domAsset::domCreated;
+	domAsset::domCreatedRef ref = new domAsset::domCreated(dae);
 	return ref;
 }
 
@@ -365,7 +365,7 @@ domAsset::domCreated::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "created" );
 	meta->registerClass(domAsset::domCreated::create, &meta);
@@ -375,7 +375,7 @@ domAsset::domCreated::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsDateTime"));
+		ma->setType( dae.getAtomicTypes().get("xsDateTime"));
 		ma->setOffset( daeOffsetOf( domAsset::domCreated , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -388,9 +388,9 @@ domAsset::domCreated::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domKeywords::create()
+domAsset::domKeywords::create(DAE& dae)
 {
-	domAsset::domKeywordsRef ref = new domAsset::domKeywords;
+	domAsset::domKeywordsRef ref = new domAsset::domKeywords(dae);
 	return ref;
 }
 
@@ -401,7 +401,7 @@ domAsset::domKeywords::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "keywords" );
 	meta->registerClass(domAsset::domKeywords::create, &meta);
@@ -411,7 +411,7 @@ domAsset::domKeywords::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domKeywords , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -424,9 +424,9 @@ domAsset::domKeywords::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domModified::create()
+domAsset::domModified::create(DAE& dae)
 {
-	domAsset::domModifiedRef ref = new domAsset::domModified;
+	domAsset::domModifiedRef ref = new domAsset::domModified(dae);
 	return ref;
 }
 
@@ -437,7 +437,7 @@ domAsset::domModified::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "modified" );
 	meta->registerClass(domAsset::domModified::create, &meta);
@@ -447,7 +447,7 @@ domAsset::domModified::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsDateTime"));
+		ma->setType( dae.getAtomicTypes().get("xsDateTime"));
 		ma->setOffset( daeOffsetOf( domAsset::domModified , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -460,9 +460,9 @@ domAsset::domModified::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domRevision::create()
+domAsset::domRevision::create(DAE& dae)
 {
-	domAsset::domRevisionRef ref = new domAsset::domRevision;
+	domAsset::domRevisionRef ref = new domAsset::domRevision(dae);
 	return ref;
 }
 
@@ -473,7 +473,7 @@ domAsset::domRevision::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "revision" );
 	meta->registerClass(domAsset::domRevision::create, &meta);
@@ -483,7 +483,7 @@ domAsset::domRevision::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domRevision , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -496,9 +496,9 @@ domAsset::domRevision::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domSubject::create()
+domAsset::domSubject::create(DAE& dae)
 {
-	domAsset::domSubjectRef ref = new domAsset::domSubject;
+	domAsset::domSubjectRef ref = new domAsset::domSubject(dae);
 	return ref;
 }
 
@@ -509,7 +509,7 @@ domAsset::domSubject::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "subject" );
 	meta->registerClass(domAsset::domSubject::create, &meta);
@@ -519,7 +519,7 @@ domAsset::domSubject::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domSubject , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -532,9 +532,9 @@ domAsset::domSubject::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domTitle::create()
+domAsset::domTitle::create(DAE& dae)
 {
-	domAsset::domTitleRef ref = new domAsset::domTitle;
+	domAsset::domTitleRef ref = new domAsset::domTitle(dae);
 	return ref;
 }
 
@@ -545,7 +545,7 @@ domAsset::domTitle::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "title" );
 	meta->registerClass(domAsset::domTitle::create, &meta);
@@ -555,7 +555,7 @@ domAsset::domTitle::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domAsset::domTitle , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -568,9 +568,9 @@ domAsset::domTitle::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domUnit::create()
+domAsset::domUnit::create(DAE& dae)
 {
-	domAsset::domUnitRef ref = new domAsset::domUnit;
+	domAsset::domUnitRef ref = new domAsset::domUnit(dae);
 	return ref;
 }
 
@@ -581,7 +581,7 @@ domAsset::domUnit::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "unit" );
 	meta->registerClass(domAsset::domUnit::create, &meta);
@@ -592,7 +592,7 @@ domAsset::domUnit::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "meter" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domAsset::domUnit , attrMeter ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1.0");
@@ -604,7 +604,7 @@ domAsset::domUnit::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNMTOKEN"));
+		ma->setType( dae.getAtomicTypes().get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domAsset::domUnit , attrName ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "meter");
@@ -619,9 +619,9 @@ domAsset::domUnit::registerElement(DAE& dae)
 }
 
 daeElementRef
-domAsset::domUp_axis::create()
+domAsset::domUp_axis::create(DAE& dae)
 {
-	domAsset::domUp_axisRef ref = new domAsset::domUp_axis;
+	domAsset::domUp_axisRef ref = new domAsset::domUp_axis(dae);
 	return ref;
 }
 
@@ -632,7 +632,7 @@ domAsset::domUp_axis::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "up_axis" );
 	meta->registerClass(domAsset::domUp_axis::create, &meta);
@@ -642,7 +642,7 @@ domAsset::domUp_axis::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("UpAxisType"));
+		ma->setType( dae.getAtomicTypes().get("UpAxisType"));
 		ma->setOffset( daeOffsetOf( domAsset::domUp_axis , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

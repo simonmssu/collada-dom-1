@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domProfile_GLES::create()
+domProfile_GLES::create(DAE& dae)
 {
-	domProfile_GLESRef ref = new domProfile_GLES;
+	domProfile_GLESRef ref = new domProfile_GLES(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domProfile_GLES::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "profile_GLES" );
 	meta->registerClass(domProfile_GLES::create, &meta);
@@ -91,7 +91,7 @@ domProfile_GLES::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES , attrId ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -103,7 +103,7 @@ domProfile_GLES::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "platform" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES , attrPlatform ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "PC");
@@ -119,9 +119,9 @@ domProfile_GLES::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::create()
+domProfile_GLES::domTechnique::create(DAE& dae)
 {
-	domProfile_GLES::domTechniqueRef ref = new domProfile_GLES::domTechnique;
+	domProfile_GLES::domTechniqueRef ref = new domProfile_GLES::domTechnique(dae);
 	return ref;
 }
 
@@ -132,7 +132,7 @@ domProfile_GLES::domTechnique::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique" );
 	meta->registerClass(domProfile_GLES::domTechnique::create, &meta);
@@ -201,7 +201,7 @@ domProfile_GLES::domTechnique::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES::domTechnique , attrId ));
 		ma->setContainer( meta );
 	
@@ -212,7 +212,7 @@ domProfile_GLES::domTechnique::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES::domTechnique , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -227,9 +227,9 @@ domProfile_GLES::domTechnique::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domSetparam::create()
+domProfile_GLES::domTechnique::domSetparam::create(DAE& dae)
 {
-	domProfile_GLES::domTechnique::domSetparamRef ref = new domProfile_GLES::domTechnique::domSetparam;
+	domProfile_GLES::domTechnique::domSetparamRef ref = new domProfile_GLES::domTechnique::domSetparam(dae);
 	return ref;
 }
 
@@ -240,7 +240,7 @@ domProfile_GLES::domTechnique::domSetparam::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "setparam" );
 	meta->registerClass(domProfile_GLES::domTechnique::domSetparam::create, &meta);
@@ -269,7 +269,7 @@ domProfile_GLES::domTechnique::domSetparam::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES::domTechnique::domSetparam , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -284,9 +284,9 @@ domProfile_GLES::domTechnique::domSetparam::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::create()
+domProfile_GLES::domTechnique::domPass::create(DAE& dae)
 {
-	domProfile_GLES::domTechnique::domPassRef ref = new domProfile_GLES::domTechnique::domPass;
+	domProfile_GLES::domTechnique::domPassRef ref = new domProfile_GLES::domTechnique::domPass(dae);
 	return ref;
 }
 
@@ -297,7 +297,7 @@ domProfile_GLES::domTechnique::domPass::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "pass" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::create, &meta);
@@ -384,7 +384,7 @@ domProfile_GLES::domTechnique::domPass::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES::domTechnique::domPass , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -399,9 +399,9 @@ domProfile_GLES::domTechnique::domPass::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domColor_target::create()
+domProfile_GLES::domTechnique::domPass::domColor_target::create(DAE& dae)
 {
-	domProfile_GLES::domTechnique::domPass::domColor_targetRef ref = new domProfile_GLES::domTechnique::domPass::domColor_target;
+	domProfile_GLES::domTechnique::domPass::domColor_targetRef ref = new domProfile_GLES::domTechnique::domPass::domColor_target(dae);
 	return ref;
 }
 
@@ -412,7 +412,7 @@ domProfile_GLES::domTechnique::domPass::domColor_target::registerElement(DAE& da
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "color_target" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domColor_target::create, &meta);
@@ -422,7 +422,7 @@ domProfile_GLES::domTechnique::domPass::domColor_target::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Gles_rendertarget_common"));
+		ma->setType( dae.getAtomicTypes().get("Gles_rendertarget_common"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES::domTechnique::domPass::domColor_target , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -435,9 +435,9 @@ domProfile_GLES::domTechnique::domPass::domColor_target::registerElement(DAE& da
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domDepth_target::create()
+domProfile_GLES::domTechnique::domPass::domDepth_target::create(DAE& dae)
 {
-	domProfile_GLES::domTechnique::domPass::domDepth_targetRef ref = new domProfile_GLES::domTechnique::domPass::domDepth_target;
+	domProfile_GLES::domTechnique::domPass::domDepth_targetRef ref = new domProfile_GLES::domTechnique::domPass::domDepth_target(dae);
 	return ref;
 }
 
@@ -448,7 +448,7 @@ domProfile_GLES::domTechnique::domPass::domDepth_target::registerElement(DAE& da
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "depth_target" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domDepth_target::create, &meta);
@@ -458,7 +458,7 @@ domProfile_GLES::domTechnique::domPass::domDepth_target::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Gles_rendertarget_common"));
+		ma->setType( dae.getAtomicTypes().get("Gles_rendertarget_common"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES::domTechnique::domPass::domDepth_target , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -471,9 +471,9 @@ domProfile_GLES::domTechnique::domPass::domDepth_target::registerElement(DAE& da
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domStencil_target::create()
+domProfile_GLES::domTechnique::domPass::domStencil_target::create(DAE& dae)
 {
-	domProfile_GLES::domTechnique::domPass::domStencil_targetRef ref = new domProfile_GLES::domTechnique::domPass::domStencil_target;
+	domProfile_GLES::domTechnique::domPass::domStencil_targetRef ref = new domProfile_GLES::domTechnique::domPass::domStencil_target(dae);
 	return ref;
 }
 
@@ -484,7 +484,7 @@ domProfile_GLES::domTechnique::domPass::domStencil_target::registerElement(DAE& 
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "stencil_target" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domStencil_target::create, &meta);
@@ -494,7 +494,7 @@ domProfile_GLES::domTechnique::domPass::domStencil_target::registerElement(DAE& 
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Gles_rendertarget_common"));
+		ma->setType( dae.getAtomicTypes().get("Gles_rendertarget_common"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES::domTechnique::domPass::domStencil_target , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -507,9 +507,9 @@ domProfile_GLES::domTechnique::domPass::domStencil_target::registerElement(DAE& 
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domColor_clear::create()
+domProfile_GLES::domTechnique::domPass::domColor_clear::create(DAE& dae)
 {
-	domProfile_GLES::domTechnique::domPass::domColor_clearRef ref = new domProfile_GLES::domTechnique::domPass::domColor_clear;
+	domProfile_GLES::domTechnique::domPass::domColor_clearRef ref = new domProfile_GLES::domTechnique::domPass::domColor_clear(dae);
 	return ref;
 }
 
@@ -520,7 +520,7 @@ domProfile_GLES::domTechnique::domPass::domColor_clear::registerElement(DAE& dae
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "color_clear" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domColor_clear::create, &meta);
@@ -530,7 +530,7 @@ domProfile_GLES::domTechnique::domPass::domColor_clear::registerElement(DAE& dae
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_color_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_color_common"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES::domTechnique::domPass::domColor_clear , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -543,9 +543,9 @@ domProfile_GLES::domTechnique::domPass::domColor_clear::registerElement(DAE& dae
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domDepth_clear::create()
+domProfile_GLES::domTechnique::domPass::domDepth_clear::create(DAE& dae)
 {
-	domProfile_GLES::domTechnique::domPass::domDepth_clearRef ref = new domProfile_GLES::domTechnique::domPass::domDepth_clear;
+	domProfile_GLES::domTechnique::domPass::domDepth_clearRef ref = new domProfile_GLES::domTechnique::domPass::domDepth_clear(dae);
 	return ref;
 }
 
@@ -556,7 +556,7 @@ domProfile_GLES::domTechnique::domPass::domDepth_clear::registerElement(DAE& dae
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "depth_clear" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domDepth_clear::create, &meta);
@@ -566,7 +566,7 @@ domProfile_GLES::domTechnique::domPass::domDepth_clear::registerElement(DAE& dae
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES::domTechnique::domPass::domDepth_clear , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -579,9 +579,9 @@ domProfile_GLES::domTechnique::domPass::domDepth_clear::registerElement(DAE& dae
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domStencil_clear::create()
+domProfile_GLES::domTechnique::domPass::domStencil_clear::create(DAE& dae)
 {
-	domProfile_GLES::domTechnique::domPass::domStencil_clearRef ref = new domProfile_GLES::domTechnique::domPass::domStencil_clear;
+	domProfile_GLES::domTechnique::domPass::domStencil_clearRef ref = new domProfile_GLES::domTechnique::domPass::domStencil_clear(dae);
 	return ref;
 }
 
@@ -592,7 +592,7 @@ domProfile_GLES::domTechnique::domPass::domStencil_clear::registerElement(DAE& d
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "stencil_clear" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domStencil_clear::create, &meta);
@@ -602,7 +602,7 @@ domProfile_GLES::domTechnique::domPass::domStencil_clear::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsByte"));
+		ma->setType( dae.getAtomicTypes().get("xsByte"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES::domTechnique::domPass::domStencil_clear , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -615,9 +615,9 @@ domProfile_GLES::domTechnique::domPass::domStencil_clear::registerElement(DAE& d
 }
 
 daeElementRef
-domProfile_GLES::domTechnique::domPass::domDraw::create()
+domProfile_GLES::domTechnique::domPass::domDraw::create(DAE& dae)
 {
-	domProfile_GLES::domTechnique::domPass::domDrawRef ref = new domProfile_GLES::domTechnique::domPass::domDraw;
+	domProfile_GLES::domTechnique::domPass::domDrawRef ref = new domProfile_GLES::domTechnique::domPass::domDraw(dae);
 	return ref;
 }
 
@@ -628,7 +628,7 @@ domProfile_GLES::domTechnique::domPass::domDraw::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "draw" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domDraw::create, &meta);
@@ -638,7 +638,7 @@ domProfile_GLES::domTechnique::domPass::domDraw::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_draw_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_draw_common"));
 		ma->setOffset( daeOffsetOf( domProfile_GLES::domTechnique::domPass::domDraw , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

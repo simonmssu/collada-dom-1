@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_light::create()
+domInstance_light::create(DAE& dae)
 {
-	domInstance_lightRef ref = new domInstance_light;
+	domInstance_lightRef ref = new domInstance_light(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domInstance_light::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "instance_light" );
 	meta->registerClass(domInstance_light::create, &meta);
@@ -57,7 +57,7 @@ domInstance_light::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "url" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstance_light , attrUrl ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -69,7 +69,7 @@ domInstance_light::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_light , attrSid ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domInstance_light::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_light , attrName ));
 		ma->setContainer( meta );
 	

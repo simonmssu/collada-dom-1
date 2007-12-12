@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_visual_scenes::create()
+domLibrary_visual_scenes::create(DAE& dae)
 {
-	domLibrary_visual_scenesRef ref = new domLibrary_visual_scenes;
+	domLibrary_visual_scenesRef ref = new domLibrary_visual_scenes(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domLibrary_visual_scenes::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "library_visual_scenes" );
 	meta->registerClass(domLibrary_visual_scenes::create, &meta);
@@ -69,7 +69,7 @@ domLibrary_visual_scenes::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domLibrary_visual_scenes , attrId ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domLibrary_visual_scenes::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLibrary_visual_scenes , attrName ));
 		ma->setContainer( meta );
 	

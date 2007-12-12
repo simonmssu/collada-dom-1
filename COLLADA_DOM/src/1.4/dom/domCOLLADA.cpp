@@ -25,9 +25,9 @@ extern daeString COLLADA_VERSION;
 extern daeString COLLADA_NAMESPACE;
 
 daeElementRef
-domCOLLADA::create()
+domCOLLADA::create(DAE& dae)
 {
-	domCOLLADARef ref = new domCOLLADA;
+	domCOLLADARef ref = new domCOLLADA(dae);
 	ref->attrXmlns.setContainer( (domCOLLADA*)ref );
 	ref->attrXml_base.setContainer( (domCOLLADA*)ref );
 	ref->_meta = _Meta;
@@ -44,7 +44,7 @@ domCOLLADA::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "COLLADA" );
 	meta->registerClass(domCOLLADA::create, &meta);
@@ -177,7 +177,7 @@ domCOLLADA::registerElement(DAE& dae)
 	{
 		daeMetaAttribute* ma = new daeMetaAttribute;
 		ma->setName( "xmlns" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domCOLLADA , attrXmlns ));
 		ma->setContainer( meta );
 		//ma->setIsRequired( true );
@@ -188,7 +188,7 @@ domCOLLADA::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "version" );
-		ma->setType( daeAtomicType::get("VersionType"));
+		ma->setType( dae.getAtomicTypes().get("VersionType"));
 		ma->setOffset( daeOffsetOf( domCOLLADA , attrVersion ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -200,7 +200,7 @@ domCOLLADA::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "xml_base" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domCOLLADA , attrXml_base ));
 		ma->setContainer( meta );
 	
@@ -214,9 +214,9 @@ domCOLLADA::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCOLLADA::domScene::create()
+domCOLLADA::domScene::create(DAE& dae)
 {
-	domCOLLADA::domSceneRef ref = new domCOLLADA::domScene;
+	domCOLLADA::domSceneRef ref = new domCOLLADA::domScene(dae);
 	return ref;
 }
 
@@ -227,7 +227,7 @@ domCOLLADA::domScene::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "scene" );
 	meta->registerClass(domCOLLADA::domScene::create, &meta);

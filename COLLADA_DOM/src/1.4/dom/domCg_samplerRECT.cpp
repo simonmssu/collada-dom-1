@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_samplerRECT::create()
+domCg_samplerRECT::create(DAE& dae)
 {
-	domCg_samplerRECTRef ref = new domCg_samplerRECT;
+	domCg_samplerRECTRef ref = new domCg_samplerRECT(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCg_samplerRECT::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "cg_samplerRECT" );
 	meta->registerClass(domCg_samplerRECT::create, &meta);

@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_clearstencil_common::create()
+domFx_clearstencil_common::create(DAE& dae)
 {
-	domFx_clearstencil_commonRef ref = new domFx_clearstencil_common;
+	domFx_clearstencil_commonRef ref = new domFx_clearstencil_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_clearstencil_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_clearstencil_common" );
 	meta->registerClass(domFx_clearstencil_common::create, &meta);
@@ -44,7 +44,7 @@ domFx_clearstencil_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsByte"));
+		ma->setType( dae.getAtomicTypes().get("xsByte"));
 		ma->setOffset( daeOffsetOf( domFx_clearstencil_common , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domFx_clearstencil_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_clearstencil_common , attrIndex ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");

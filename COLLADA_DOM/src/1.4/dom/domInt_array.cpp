@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInt_array::create()
+domInt_array::create(DAE& dae)
 {
-	domInt_arrayRef ref = new domInt_array;
+	domInt_arrayRef ref = new domInt_array(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domInt_array::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "int_array" );
 	meta->registerClass(domInt_array::create, &meta);
@@ -44,7 +44,7 @@ domInt_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("ListOfInts"));
+		ma->setType( dae.getAtomicTypes().get("ListOfInts"));
 		ma->setOffset( daeOffsetOf( domInt_array , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domInt_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrId ));
 		ma->setContainer( meta );
 	
@@ -65,7 +65,7 @@ domInt_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrName ));
 		ma->setContainer( meta );
 	
@@ -76,7 +76,7 @@ domInt_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrCount ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -88,7 +88,7 @@ domInt_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "minInclusive" );
-		ma->setType( daeAtomicType::get("xsInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsInteger"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrMinInclusive ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "-2147483648");
@@ -100,7 +100,7 @@ domInt_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "maxInclusive" );
-		ma->setType( daeAtomicType::get("xsInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsInteger"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrMaxInclusive ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "2147483647");

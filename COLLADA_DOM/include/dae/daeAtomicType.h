@@ -24,6 +24,7 @@
 #include <stdint.h>
 #endif 
 
+class DAE;
 class daeAtomicType;
 class daeMetaElement;
 
@@ -61,7 +62,7 @@ public:
 	/**
 	 * constructor
 	 */
-	daeAtomicType();
+	daeAtomicType(DAE& dae);
 	
 public:
 	/**
@@ -218,21 +219,21 @@ public:
 	daeChar*			align(daeChar* ptr) {
 		return (daeChar*)(((intptr_t)(ptr+_alignment-1))&(~(_alignment - 1))); }
 	
-protected:	
-	daeInt					_size;
-	daeInt					_alignment;
-	daeEnum					_typeEnum;
-	daeStringRef			_typeString;
-	daeStringRef			_printFormat;
-	daeStringRef			_scanFormat;
-	//daeStringRefArray		_nameBindings;
-	daeInt					_maxStringLength;
+protected:
+	DAE* _dae;
+	daeInt _size;
+	daeInt _alignment;
+	daeEnum _typeEnum;
+	daeStringRef _typeString;
+	daeStringRef _printFormat;
+	daeStringRef _scanFormat;
+	daeInt _maxStringLength;
 	
 public:
 	/**
 	 * An array of strings as name bindings for this type.
 	 */
-	daeStringRefArray		_nameBindings;
+	daeStringRefArray _nameBindings;
 
 public: // Static Interface
 	/** An enum for identifying the different atomic types */
@@ -279,7 +280,7 @@ public: // Static Interface
 
 class DLLSPEC daeAtomicTypeList {
 public:
-	daeAtomicTypeList();
+	daeAtomicTypeList(DAE& dae);
 	~daeAtomicTypeList();
 	
 	/**
@@ -331,7 +332,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeBoolType();
+	daeBoolType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 	
@@ -356,7 +357,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeIntType();
+	daeIntType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -379,7 +380,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeLongType();
+	daeLongType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -402,7 +403,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeUIntType();
+	daeUIntType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -425,7 +426,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeULongType();
+	daeULongType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -448,7 +449,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeShortType();
+	daeShortType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -471,7 +472,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeFloatType();
+	daeFloatType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -496,7 +497,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeDoubleType();
+	daeDoubleType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -521,7 +522,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeStringRefType();
+	daeStringRefType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -549,7 +550,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeTokenType();
+	daeTokenType(DAE& dae);
 	
 public:
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
@@ -579,7 +580,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeElementRefType();
+	daeElementRefType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -612,7 +613,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeEnumType();
+	daeEnumType(DAE& dae);
 
 	/**
 	 * Destructor
@@ -643,7 +644,7 @@ public:
 	/** 
 	*  Constructor.
 	*/	
-	daeRawRefType();
+	daeRawRefType(DAE& dae);
 	
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
@@ -667,7 +668,7 @@ public:
 	/** 
 	*  Constructor.
 	*/	
-	daeResolverType();
+	daeResolverType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -696,7 +697,7 @@ public:
 	/** 
 	*  Constructor.
 	*/	
-	daeIDResolverType();
+	daeIDResolverType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 

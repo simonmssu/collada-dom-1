@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texture_pipeline::create()
+domGles_texture_pipeline::create(DAE& dae)
 {
-	domGles_texture_pipelineRef ref = new domGles_texture_pipeline;
+	domGles_texture_pipelineRef ref = new domGles_texture_pipeline(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGles_texture_pipeline::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gles_texture_pipeline" );
 	meta->registerClass(domGles_texture_pipeline::create, &meta);
@@ -73,7 +73,7 @@ domGles_texture_pipeline::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_texture_pipeline , attrSid ));
 		ma->setContainer( meta );
 	

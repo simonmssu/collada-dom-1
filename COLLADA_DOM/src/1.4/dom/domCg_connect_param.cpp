@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_connect_param::create()
+domCg_connect_param::create(DAE& dae)
 {
-	domCg_connect_paramRef ref = new domCg_connect_param;
+	domCg_connect_paramRef ref = new domCg_connect_param(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCg_connect_param::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "cg_connect_param" );
 	meta->registerClass(domCg_connect_param::create, &meta);
@@ -45,7 +45,7 @@ domCg_connect_param::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("Cg_identifier"));
+		ma->setType( dae.getAtomicTypes().get("Cg_identifier"));
 		ma->setOffset( daeOffsetOf( domCg_connect_param , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTrifans::create()
+domTrifans::create(DAE& dae)
 {
-	domTrifansRef ref = new domTrifans;
+	domTrifansRef ref = new domTrifans(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domTrifans::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "trifans" );
 	meta->registerClass(domTrifans::create, &meta);
@@ -69,7 +69,7 @@ domTrifans::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domTrifans , attrName ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domTrifans::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domTrifans , attrCount ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -92,7 +92,7 @@ domTrifans::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "material" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domTrifans , attrMaterial ));
 		ma->setContainer( meta );
 	

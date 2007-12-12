@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domMorph::create()
+domMorph::create(DAE& dae)
 {
-	domMorphRef ref = new domMorph;
+	domMorphRef ref = new domMorph(dae);
 	ref->attrSource.setContainer( (domMorph*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domMorph::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "morph" );
 	meta->registerClass(domMorph::create, &meta);
@@ -70,7 +70,7 @@ domMorph::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "method" );
-		ma->setType( daeAtomicType::get("MorphMethodType"));
+		ma->setType( dae.getAtomicTypes().get("MorphMethodType"));
 		ma->setOffset( daeOffsetOf( domMorph , attrMethod ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "NORMALIZED");
@@ -82,7 +82,7 @@ domMorph::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domMorph , attrSource ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -97,9 +97,9 @@ domMorph::registerElement(DAE& dae)
 }
 
 daeElementRef
-domMorph::domTargets::create()
+domMorph::domTargets::create(DAE& dae)
 {
-	domMorph::domTargetsRef ref = new domMorph::domTargets;
+	domMorph::domTargetsRef ref = new domMorph::domTargets(dae);
 	return ref;
 }
 
@@ -110,7 +110,7 @@ domMorph::domTargets::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "targets" );
 	meta->registerClass(domMorph::domTargets::create, &meta);

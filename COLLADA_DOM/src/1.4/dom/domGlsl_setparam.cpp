@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_setparam::create()
+domGlsl_setparam::create(DAE& dae)
 {
-	domGlsl_setparamRef ref = new domGlsl_setparam;
+	domGlsl_setparamRef ref = new domGlsl_setparam(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGlsl_setparam::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "glsl_setparam" );
 	meta->registerClass(domGlsl_setparam::create, &meta);
@@ -79,7 +79,7 @@ domGlsl_setparam::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("Glsl_identifier"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_identifier"));
 		ma->setOffset( daeOffsetOf( domGlsl_setparam , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -91,7 +91,7 @@ domGlsl_setparam::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "program" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGlsl_setparam , attrProgram ));
 		ma->setContainer( meta );
 	

@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_init_from_common::create()
+domFx_surface_init_from_common::create(DAE& dae)
 {
-	domFx_surface_init_from_commonRef ref = new domFx_surface_init_from_common;
+	domFx_surface_init_from_commonRef ref = new domFx_surface_init_from_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_surface_init_from_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_surface_init_from_common" );
 	meta->registerClass(domFx_surface_init_from_common::create, &meta);
@@ -44,7 +44,7 @@ domFx_surface_init_from_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsIDREF"));
+		ma->setType( dae.getAtomicTypes().get("xsIDREF"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_from_common , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domFx_surface_init_from_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "mip" );
-		ma->setType( daeAtomicType::get("xsUnsignedInt"));
+		ma->setType( dae.getAtomicTypes().get("xsUnsignedInt"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_from_common , attrMip ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -66,7 +66,7 @@ domFx_surface_init_from_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "slice" );
-		ma->setType( daeAtomicType::get("xsUnsignedInt"));
+		ma->setType( dae.getAtomicTypes().get("xsUnsignedInt"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_from_common , attrSlice ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -78,7 +78,7 @@ domFx_surface_init_from_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "face" );
-		ma->setType( daeAtomicType::get("Fx_surface_face_enum"));
+		ma->setType( dae.getAtomicTypes().get("Fx_surface_face_enum"));
 		ma->setOffset( daeOffsetOf( domFx_surface_init_from_common , attrFace ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "POSITIVE_X");

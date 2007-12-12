@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_controllers::create()
+domLibrary_controllers::create(DAE& dae)
 {
-	domLibrary_controllersRef ref = new domLibrary_controllers;
+	domLibrary_controllersRef ref = new domLibrary_controllers(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domLibrary_controllers::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "library_controllers" );
 	meta->registerClass(domLibrary_controllers::create, &meta);
@@ -69,7 +69,7 @@ domLibrary_controllers::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domLibrary_controllers , attrId ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domLibrary_controllers::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLibrary_controllers , attrName ));
 		ma->setContainer( meta );
 	

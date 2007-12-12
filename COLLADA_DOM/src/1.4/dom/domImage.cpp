@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domImage::create()
+domImage::create(DAE& dae)
 {
-	domImageRef ref = new domImage;
+	domImageRef ref = new domImage(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domImage::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "image" );
 	meta->registerClass(domImage::create, &meta);
@@ -85,7 +85,7 @@ domImage::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domImage , attrId ));
 		ma->setContainer( meta );
 	
@@ -96,7 +96,7 @@ domImage::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domImage , attrName ));
 		ma->setContainer( meta );
 	
@@ -107,7 +107,7 @@ domImage::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "format" );
-		ma->setType( daeAtomicType::get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsToken"));
 		ma->setOffset( daeOffsetOf( domImage , attrFormat ));
 		ma->setContainer( meta );
 	
@@ -118,7 +118,7 @@ domImage::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "height" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domImage , attrHeight ));
 		ma->setContainer( meta );
 	
@@ -129,7 +129,7 @@ domImage::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "width" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domImage , attrWidth ));
 		ma->setContainer( meta );
 	
@@ -140,7 +140,7 @@ domImage::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "depth" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domImage , attrDepth ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1");
@@ -155,9 +155,9 @@ domImage::registerElement(DAE& dae)
 }
 
 daeElementRef
-domImage::domData::create()
+domImage::domData::create(DAE& dae)
 {
-	domImage::domDataRef ref = new domImage::domData;
+	domImage::domDataRef ref = new domImage::domData(dae);
 	return ref;
 }
 
@@ -168,7 +168,7 @@ domImage::domData::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "data" );
 	meta->registerClass(domImage::domData::create, &meta);
@@ -178,7 +178,7 @@ domImage::domData::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("ListOfHexBinary"));
+		ma->setType( dae.getAtomicTypes().get("ListOfHexBinary"));
 		ma->setOffset( daeOffsetOf( domImage::domData , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -191,9 +191,9 @@ domImage::domData::registerElement(DAE& dae)
 }
 
 daeElementRef
-domImage::domInit_from::create()
+domImage::domInit_from::create(DAE& dae)
 {
-	domImage::domInit_fromRef ref = new domImage::domInit_from;
+	domImage::domInit_fromRef ref = new domImage::domInit_from(dae);
 	ref->_value.setContainer( (domImage::domInit_from*)ref );
 	return ref;
 }
@@ -205,7 +205,7 @@ domImage::domInit_from::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "init_from" );
 	meta->registerClass(domImage::domInit_from::create, &meta);
@@ -215,7 +215,7 @@ domImage::domInit_from::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domImage::domInit_from , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

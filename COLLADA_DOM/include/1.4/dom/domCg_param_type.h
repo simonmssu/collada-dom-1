@@ -34,7 +34,7 @@ class domCg_param_type : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_PARAM_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CG_PARAM_TYPE; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CG_PARAM_TYPE; }
 public:
 	class domBool;
 
@@ -45,7 +45,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL; }
 
 	protected:  // Value
 		/**
@@ -102,7 +102,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL1; }
 
 	protected:  // Value
 		/**
@@ -159,7 +159,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL2; }
 
 	protected:  // Value
 		/**
@@ -221,7 +221,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL3; }
 
 	protected:  // Value
 		/**
@@ -283,7 +283,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL4; }
 
 	protected:  // Value
 		/**
@@ -345,7 +345,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL1X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL1X1; }
 
 	protected:  // Value
 		/**
@@ -407,7 +407,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL1X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL1X2; }
 
 	protected:  // Value
 		/**
@@ -469,7 +469,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL1X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL1X3; }
 
 	protected:  // Value
 		/**
@@ -531,7 +531,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL1X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL1X4; }
 
 	protected:  // Value
 		/**
@@ -593,7 +593,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL2X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL2X1; }
 
 	protected:  // Value
 		/**
@@ -655,7 +655,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL2X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL2X2; }
 
 	protected:  // Value
 		/**
@@ -717,7 +717,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL2X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL2X3; }
 
 	protected:  // Value
 		/**
@@ -779,7 +779,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL2X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL2X4; }
 
 	protected:  // Value
 		/**
@@ -841,7 +841,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL3X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL3X1; }
 
 	protected:  // Value
 		/**
@@ -903,7 +903,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL3X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL3X2; }
 
 	protected:  // Value
 		/**
@@ -965,7 +965,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL3X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL3X3; }
 
 	protected:  // Value
 		/**
@@ -1027,7 +1027,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL3X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL3X4; }
 
 	protected:  // Value
 		/**
@@ -1089,7 +1089,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL4X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL4X1; }
 
 	protected:  // Value
 		/**
@@ -1151,7 +1151,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL4X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL4X2; }
 
 	protected:  // Value
 		/**
@@ -1213,7 +1213,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL4X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL4X3; }
 
 	protected:  // Value
 		/**
@@ -1275,7 +1275,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOOL4X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOOL4X4; }
 
 	protected:  // Value
 		/**
@@ -1337,7 +1337,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT; }
 
 	protected:  // Value
 		/**
@@ -1394,7 +1394,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT1; }
 
 	protected:  // Value
 		/**
@@ -1451,7 +1451,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT2; }
 
 	protected:  // Value
 		/**
@@ -1513,7 +1513,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT3; }
 
 	protected:  // Value
 		/**
@@ -1575,7 +1575,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT4; }
 
 	protected:  // Value
 		/**
@@ -1637,7 +1637,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT1X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT1X1; }
 
 	protected:  // Value
 		/**
@@ -1699,7 +1699,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT1X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT1X2; }
 
 	protected:  // Value
 		/**
@@ -1761,7 +1761,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT1X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT1X3; }
 
 	protected:  // Value
 		/**
@@ -1823,7 +1823,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT1X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT1X4; }
 
 	protected:  // Value
 		/**
@@ -1885,7 +1885,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT2X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT2X1; }
 
 	protected:  // Value
 		/**
@@ -1947,7 +1947,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT2X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT2X2; }
 
 	protected:  // Value
 		/**
@@ -2009,7 +2009,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT2X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT2X3; }
 
 	protected:  // Value
 		/**
@@ -2071,7 +2071,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT2X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT2X4; }
 
 	protected:  // Value
 		/**
@@ -2133,7 +2133,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT3X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT3X1; }
 
 	protected:  // Value
 		/**
@@ -2195,7 +2195,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT3X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT3X2; }
 
 	protected:  // Value
 		/**
@@ -2257,7 +2257,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT3X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT3X3; }
 
 	protected:  // Value
 		/**
@@ -2319,7 +2319,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT3X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT3X4; }
 
 	protected:  // Value
 		/**
@@ -2381,7 +2381,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT4X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT4X1; }
 
 	protected:  // Value
 		/**
@@ -2443,7 +2443,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT4X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT4X2; }
 
 	protected:  // Value
 		/**
@@ -2505,7 +2505,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT4X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT4X3; }
 
 	protected:  // Value
 		/**
@@ -2567,7 +2567,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FLOAT4X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT4X4; }
 
 	protected:  // Value
 		/**
@@ -2629,7 +2629,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT; }
 
 	protected:  // Value
 		/**
@@ -2686,7 +2686,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT1; }
 
 	protected:  // Value
 		/**
@@ -2743,7 +2743,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT2; }
 
 	protected:  // Value
 		/**
@@ -2805,7 +2805,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT3; }
 
 	protected:  // Value
 		/**
@@ -2867,7 +2867,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT4; }
 
 	protected:  // Value
 		/**
@@ -2929,7 +2929,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT1X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT1X1; }
 
 	protected:  // Value
 		/**
@@ -2991,7 +2991,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT1X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT1X2; }
 
 	protected:  // Value
 		/**
@@ -3053,7 +3053,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT1X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT1X3; }
 
 	protected:  // Value
 		/**
@@ -3115,7 +3115,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT1X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT1X4; }
 
 	protected:  // Value
 		/**
@@ -3177,7 +3177,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT2X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT2X1; }
 
 	protected:  // Value
 		/**
@@ -3239,7 +3239,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT2X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT2X2; }
 
 	protected:  // Value
 		/**
@@ -3301,7 +3301,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT2X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT2X3; }
 
 	protected:  // Value
 		/**
@@ -3363,7 +3363,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT2X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT2X4; }
 
 	protected:  // Value
 		/**
@@ -3425,7 +3425,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT3X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT3X1; }
 
 	protected:  // Value
 		/**
@@ -3487,7 +3487,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT3X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT3X2; }
 
 	protected:  // Value
 		/**
@@ -3549,7 +3549,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT3X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT3X3; }
 
 	protected:  // Value
 		/**
@@ -3611,7 +3611,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT3X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT3X4; }
 
 	protected:  // Value
 		/**
@@ -3673,7 +3673,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT4X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT4X1; }
 
 	protected:  // Value
 		/**
@@ -3735,7 +3735,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT4X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT4X2; }
 
 	protected:  // Value
 		/**
@@ -3797,7 +3797,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT4X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT4X3; }
 
 	protected:  // Value
 		/**
@@ -3859,7 +3859,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INT4X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INT4X4; }
 
 	protected:  // Value
 		/**
@@ -3921,7 +3921,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF; }
 
 	protected:  // Value
 		/**
@@ -3978,7 +3978,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF1; }
 
 	protected:  // Value
 		/**
@@ -4035,7 +4035,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF2; }
 
 	protected:  // Value
 		/**
@@ -4097,7 +4097,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF3; }
 
 	protected:  // Value
 		/**
@@ -4159,7 +4159,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF4; }
 
 	protected:  // Value
 		/**
@@ -4221,7 +4221,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF1X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF1X1; }
 
 	protected:  // Value
 		/**
@@ -4283,7 +4283,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF1X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF1X2; }
 
 	protected:  // Value
 		/**
@@ -4345,7 +4345,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF1X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF1X3; }
 
 	protected:  // Value
 		/**
@@ -4407,7 +4407,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF1X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF1X4; }
 
 	protected:  // Value
 		/**
@@ -4469,7 +4469,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF2X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF2X1; }
 
 	protected:  // Value
 		/**
@@ -4531,7 +4531,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF2X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF2X2; }
 
 	protected:  // Value
 		/**
@@ -4593,7 +4593,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF2X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF2X3; }
 
 	protected:  // Value
 		/**
@@ -4655,7 +4655,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF2X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF2X4; }
 
 	protected:  // Value
 		/**
@@ -4717,7 +4717,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF3X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF3X1; }
 
 	protected:  // Value
 		/**
@@ -4779,7 +4779,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF3X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF3X2; }
 
 	protected:  // Value
 		/**
@@ -4841,7 +4841,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF3X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF3X3; }
 
 	protected:  // Value
 		/**
@@ -4903,7 +4903,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF3X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF3X4; }
 
 	protected:  // Value
 		/**
@@ -4965,7 +4965,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF4X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF4X1; }
 
 	protected:  // Value
 		/**
@@ -5027,7 +5027,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF4X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF4X2; }
 
 	protected:  // Value
 		/**
@@ -5089,7 +5089,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF4X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF4X3; }
 
 	protected:  // Value
 		/**
@@ -5151,7 +5151,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF4X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF4X4; }
 
 	protected:  // Value
 		/**
@@ -5213,7 +5213,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED; }
 
 	protected:  // Value
 		/**
@@ -5270,7 +5270,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED1; }
 
 	protected:  // Value
 		/**
@@ -5327,7 +5327,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED2; }
 
 	protected:  // Value
 		/**
@@ -5389,7 +5389,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED3; }
 
 	protected:  // Value
 		/**
@@ -5451,7 +5451,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED4; }
 
 	protected:  // Value
 		/**
@@ -5513,7 +5513,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED1X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED1X1; }
 
 	protected:  // Value
 		/**
@@ -5575,7 +5575,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED1X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED1X2; }
 
 	protected:  // Value
 		/**
@@ -5637,7 +5637,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED1X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED1X3; }
 
 	protected:  // Value
 		/**
@@ -5699,7 +5699,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED1X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED1X4; }
 
 	protected:  // Value
 		/**
@@ -5761,7 +5761,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED2X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED2X1; }
 
 	protected:  // Value
 		/**
@@ -5823,7 +5823,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED2X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED2X2; }
 
 	protected:  // Value
 		/**
@@ -5885,7 +5885,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED2X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED2X3; }
 
 	protected:  // Value
 		/**
@@ -5947,7 +5947,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED2X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED2X4; }
 
 	protected:  // Value
 		/**
@@ -6009,7 +6009,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED3X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED3X1; }
 
 	protected:  // Value
 		/**
@@ -6071,7 +6071,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED3X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED3X2; }
 
 	protected:  // Value
 		/**
@@ -6133,7 +6133,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED3X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED3X3; }
 
 	protected:  // Value
 		/**
@@ -6195,7 +6195,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED3X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED3X4; }
 
 	protected:  // Value
 		/**
@@ -6257,7 +6257,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED4X1; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED4X1; }
 
 	protected:  // Value
 		/**
@@ -6319,7 +6319,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED4X2; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED4X2; }
 
 	protected:  // Value
 		/**
@@ -6381,7 +6381,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X3; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED4X3; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED4X3; }
 
 	protected:  // Value
 		/**
@@ -6443,7 +6443,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X4; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FIXED4X4; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FIXED4X4; }
 
 	protected:  // Value
 		/**
@@ -6505,7 +6505,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STRING; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::STRING; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::STRING; }
 
 	protected:  // Value
 		/**
@@ -6562,7 +6562,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ENUM; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ENUM; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ENUM; }
 
 	protected:  // Value
 		/**

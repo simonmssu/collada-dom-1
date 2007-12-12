@@ -36,7 +36,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SOURCE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SOURCE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SOURCE; }
 
 	protected:  // Value
 		/**
@@ -93,7 +93,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_S; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::WRAP_S; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::WRAP_S; }
 
 	protected:  // Value
 		/**
@@ -150,7 +150,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_T; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::WRAP_T; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::WRAP_T; }
 
 	protected:  // Value
 		/**
@@ -207,7 +207,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MINFILTER; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MINFILTER; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MINFILTER; }
 
 	protected:  // Value
 		/**
@@ -264,7 +264,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MAGFILTER; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MAGFILTER; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MAGFILTER; }
 
 	protected:  // Value
 		/**
@@ -380,7 +380,7 @@ class domFx_samplerDEPTH_common : public daeElement, public domFx_samplerDEPTH_c
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SAMPLERDEPTH_COMMON; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FX_SAMPLERDEPTH_COMMON; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FX_SAMPLERDEPTH_COMMON; }
 protected:
 	/**
 	 * Constructor

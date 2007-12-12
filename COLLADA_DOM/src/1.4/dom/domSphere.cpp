@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSphere::create()
+domSphere::create(DAE& dae)
 {
-	domSphereRef ref = new domSphere;
+	domSphereRef ref = new domSphere(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domSphere::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "sphere" );
 	meta->registerClass(domSphere::create, &meta);
@@ -66,9 +66,9 @@ domSphere::registerElement(DAE& dae)
 }
 
 daeElementRef
-domSphere::domRadius::create()
+domSphere::domRadius::create(DAE& dae)
 {
-	domSphere::domRadiusRef ref = new domSphere::domRadius;
+	domSphere::domRadiusRef ref = new domSphere::domRadius(dae);
 	return ref;
 }
 
@@ -79,7 +79,7 @@ domSphere::domRadius::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "radius" );
 	meta->registerClass(domSphere::domRadius::create, &meta);
@@ -89,7 +89,7 @@ domSphere::domRadius::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domSphere::domRadius , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

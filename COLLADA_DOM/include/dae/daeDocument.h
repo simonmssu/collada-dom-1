@@ -20,7 +20,7 @@
 #include <dae/daeURI.h>
 #include <dae/daeStringRef.h>
 
-class daeDatabase;
+class DAE;
 
 /**
  * The @c daeDocument class implements a COLLADA runtime database entry.
@@ -30,9 +30,9 @@ class daeDocument
 public:
 	/**
 	 * Constructor
-	 * @param database The database that owns this document. 
+	 * @param dae The dae that owns this document. 
 	 */
-	DLLSPEC daeDocument(daeDatabase* database = NULL);
+	DLLSPEC daeDocument(DAE& dae);
 
 	/**
 	 * Destructor
@@ -71,16 +71,9 @@ public:
 	const daeURI* getDocumentURI() const {return (&uri);}
 
 	/**
-	 * Accessor to get the database that owns this document.
-	 * @return Returns the database that owns this document.
+	 * Accessor to get the DAE that owns this document.
+	 * @return Returns the DAE that owns this document.
 	 */
-	daeDatabase* getDatabase() {return database;}
-	/**
-	 * Sets the database that owns this document.
-	 * @param database_ The database that is taking ownership of this document.
-	 */
-	void setDatabase(daeDatabase* database_) {database = database_;}
-
 	DAE* getDAE();
 
 	/**
@@ -145,22 +138,22 @@ public:
 
 private:
 	/**
-	* Top Level element for of the document, always a domCollada
-	* @remarks This member will eventually be taken private, use getDomRoot() to access it.
-	*/
+	 * The DAE that owns this document. The DAE's database is notified by the document when
+	 * elements are inserted, removed, or have their ID changed.
+	 */
+	DAE* dae;
+
+	/**
+	 * Top Level element for of the document, always a domCollada
+	 * @remarks This member will eventually be taken private, use getDomRoot() to access it.
+	 */
 	daeElementRef dom;
 	
 	/** 
-	* The URI of the document, may be blank if the document wasn't loaded from a URI
-	* @remarks This member will eventually be taken private, use getDocumentURI() to access it.
-	*/
-	daeURI uri;
-
-	/**
-	 * The database that owns this document. The database is notified by the document when
-	 * elements are inserted, removed, or have their ID changed.
+	 * The URI of the document, may be blank if the document wasn't loaded from a URI
+	 * @remarks This member will eventually be taken private, use getDocumentURI() to access it.
 	 */
-	daeDatabase* database;
+	daeURI uri;
 
 	daeStringRefArray referencedDocuments;
 	daeTArray< daeTArray<daeURI*>* > externalURIs;

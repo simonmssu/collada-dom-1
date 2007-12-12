@@ -82,7 +82,7 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeElement* dom, daeDocu
 	}
 	
 	// Make a new document
-	daeDocument *newDocument = new daeDocument(this);
+	daeDocument *newDocument = new daeDocument(dae);
 	// Create a Reference on the domCOLLADA passed into us
 	newDocument->setDomRoot(dom);
 	// Set the domCollada's document to this one
@@ -122,7 +122,7 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeDocument** document)
 		return DAE_ERR_COLLECTION_ALREADY_EXISTS;
 	}
 	// Make the new document
-	daeDocument *newDocument = new daeDocument(this);
+	daeDocument *newDocument = new daeDocument(dae);
 	// Make a domCOLLADA to be the root of this new document (this makes a reference so the domCOLLADA won't delete itself
 	daeElementRef myCOLLADA = topMeta->create();
 	// Set the domCollada's document to this one
@@ -143,7 +143,6 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeDocument** document)
 
 daeInt daeSTLDatabase::insertDocument( daeDocument *c ) {
 	documents.push_back(c);
-	c->setDatabase(this);
 	insertElement( c, c->getDomRoot() );
 	return DAE_OK;
 }
@@ -182,7 +181,7 @@ daeDocument* daeSTLDatabase::getDocument(daeString name)
 {
 	// Normalize the input string to an absolute URI with no fragment
 
-	daeURI tempURI(name, true);
+	daeURI tempURI(dae, name, true);
 	daeString targetURI = tempURI.getURI();
 
 	// Try to find a document that matches
@@ -393,7 +392,7 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 		if ( file ) 
 		{ 
 			// If a document URI was a search key (in file) resolve it to a text URI with no fragment
-			daeURI tempURI(file,true);
+			daeURI tempURI(dae, file,true);
 			daeDocument *col = getDocument( tempURI.getURI() );
 			if ( col == NULL ) {
 				return 0;
@@ -432,7 +431,7 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 		if ( file ) 
 		{ 
 			// If a document URI was a search key (in file) resolve it to a text URI with no fragment
-			daeURI tempURI(file,true);
+			daeURI tempURI(dae, file,true);
 			daeDocument *col = getDocument( tempURI.getURI() );
 			if ( col == NULL ) {
 				return 0;
@@ -459,7 +458,7 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 	}
 
 	//if you get here only a file was specified
-	daeURI tempURI(file,true);
+	daeURI tempURI(dae, file,true);
 	daeDocument *col = getDocument( tempURI.getURI() );
 	if ( col == NULL ) {
 		return 0;
@@ -521,7 +520,7 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 		if ( file ) 
 		{ 
 			// If a document URI was a search key (in file) resolve it to a text URI with no fragment
-			daeURI tempURI(file,true);
+			daeURI tempURI(dae, file, true);
 			daeDocument *col = getDocument( tempURI.getURI() );
 			if ( col == NULL ) {
 				*pElement = NULL;
@@ -578,7 +577,7 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 		if ( file ) 
 		{ 
 			// If a document URI was a search key (in file) resolve it to a text URI with no fragment
-			daeURI tempURI(file,true);
+			daeURI tempURI(dae, file, true);
 			daeDocument *col = getDocument( tempURI.getURI() );
 			if ( col == NULL ) {
 				return DAE_ERR_QUERY_NO_MATCH;
@@ -617,7 +616,7 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 	}
 
 	//if you get here only the file was specified - SLOW
-	daeURI tempURI(file,true);
+	daeURI tempURI(dae, file, true);
 	daeDocument *col = getDocument( tempURI.getURI() );
 	if ( col == NULL ) {
 		return DAE_ERR_QUERY_NO_MATCH;

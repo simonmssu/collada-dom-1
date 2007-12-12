@@ -32,7 +32,7 @@ class domSkin : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SKIN; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SKIN; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SKIN; }
 public:
 	class domBind_shape_matrix;
 
@@ -49,7 +49,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND_SHAPE_MATRIX; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BIND_SHAPE_MATRIX; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BIND_SHAPE_MATRIX; }
 
 	protected:  // Value
 		/**
@@ -116,7 +116,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::JOINTS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::JOINTS; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::JOINTS; }
 
 	protected:  // Elements
 /**
@@ -191,7 +191,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VERTEX_WEIGHTS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::VERTEX_WEIGHTS; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::VERTEX_WEIGHTS; }
 	public:
 		class domVcount;
 
@@ -206,7 +206,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VCOUNT; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::VCOUNT; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::VCOUNT; }
 
 		protected:  // Value
 			/**
@@ -274,7 +274,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::V; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::V; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::V; }
 
 		protected:  // Value
 			/**

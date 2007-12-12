@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFloat_array::create()
+domFloat_array::create(DAE& dae)
 {
-	domFloat_arrayRef ref = new domFloat_array;
+	domFloat_arrayRef ref = new domFloat_array(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFloat_array::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float_array" );
 	meta->registerClass(domFloat_array::create, &meta);
@@ -44,7 +44,7 @@ domFloat_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("ListOfFloats"));
+		ma->setType( dae.getAtomicTypes().get("ListOfFloats"));
 		ma->setOffset( daeOffsetOf( domFloat_array , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domFloat_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrId ));
 		ma->setContainer( meta );
 	
@@ -65,7 +65,7 @@ domFloat_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrName ));
 		ma->setContainer( meta );
 	
@@ -76,7 +76,7 @@ domFloat_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrCount ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -88,7 +88,7 @@ domFloat_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "digits" );
-		ma->setType( daeAtomicType::get("xsShort"));
+		ma->setType( dae.getAtomicTypes().get("xsShort"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrDigits ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "6");
@@ -100,7 +100,7 @@ domFloat_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "magnitude" );
-		ma->setType( daeAtomicType::get("xsShort"));
+		ma->setType( dae.getAtomicTypes().get("xsShort"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrMagnitude ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "38");

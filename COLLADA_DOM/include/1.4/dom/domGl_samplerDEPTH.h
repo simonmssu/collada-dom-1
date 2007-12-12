@@ -31,7 +31,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGl_samplerDEPTH_complexType(DAE& dae) {}
+	domGl_samplerDEPTH_complexType(DAE& dae) :  {}
 	/**
 	 * Destructor
 	 */
@@ -49,7 +49,7 @@ class domGl_samplerDEPTH : public daeElement, public domGl_samplerDEPTH_complexT
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GL_SAMPLERDEPTH; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::GL_SAMPLERDEPTH; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GL_SAMPLERDEPTH; }
 protected:
 	/**
 	 * Constructor

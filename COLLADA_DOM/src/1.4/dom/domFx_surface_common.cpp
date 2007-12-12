@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_common::create()
+domFx_surface_common::create(DAE& dae)
 {
-	domFx_surface_commonRef ref = new domFx_surface_common;
+	domFx_surface_commonRef ref = new domFx_surface_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_surface_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_surface_common" );
 	meta->registerClass(domFx_surface_common::create, &meta);
@@ -109,7 +109,7 @@ domFx_surface_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "type" );
-		ma->setType( daeAtomicType::get("Fx_surface_type_enum"));
+		ma->setType( dae.getAtomicTypes().get("Fx_surface_type_enum"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common , attrType ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -124,9 +124,9 @@ domFx_surface_common::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_surface_common::domFormat::create()
+domFx_surface_common::domFormat::create(DAE& dae)
 {
-	domFx_surface_common::domFormatRef ref = new domFx_surface_common::domFormat;
+	domFx_surface_common::domFormatRef ref = new domFx_surface_common::domFormat(dae);
 	return ref;
 }
 
@@ -137,7 +137,7 @@ domFx_surface_common::domFormat::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "format" );
 	meta->registerClass(domFx_surface_common::domFormat::create, &meta);
@@ -147,7 +147,7 @@ domFx_surface_common::domFormat::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsToken"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common::domFormat , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -160,9 +160,9 @@ domFx_surface_common::domFormat::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_surface_common::domSize::create()
+domFx_surface_common::domSize::create(DAE& dae)
 {
-	domFx_surface_common::domSizeRef ref = new domFx_surface_common::domSize;
+	domFx_surface_common::domSizeRef ref = new domFx_surface_common::domSize(dae);
 	return ref;
 }
 
@@ -173,7 +173,7 @@ domFx_surface_common::domSize::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "size" );
 	meta->registerClass(domFx_surface_common::domSize::create, &meta);
@@ -183,7 +183,7 @@ domFx_surface_common::domSize::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Int3"));
+		ma->setType( dae.getAtomicTypes().get("Int3"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common::domSize , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -196,9 +196,9 @@ domFx_surface_common::domSize::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_surface_common::domViewport_ratio::create()
+domFx_surface_common::domViewport_ratio::create(DAE& dae)
 {
-	domFx_surface_common::domViewport_ratioRef ref = new domFx_surface_common::domViewport_ratio;
+	domFx_surface_common::domViewport_ratioRef ref = new domFx_surface_common::domViewport_ratio(dae);
 	return ref;
 }
 
@@ -209,7 +209,7 @@ domFx_surface_common::domViewport_ratio::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "viewport_ratio" );
 	meta->registerClass(domFx_surface_common::domViewport_ratio::create, &meta);
@@ -219,7 +219,7 @@ domFx_surface_common::domViewport_ratio::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common::domViewport_ratio , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -232,9 +232,9 @@ domFx_surface_common::domViewport_ratio::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_surface_common::domMip_levels::create()
+domFx_surface_common::domMip_levels::create(DAE& dae)
 {
-	domFx_surface_common::domMip_levelsRef ref = new domFx_surface_common::domMip_levels;
+	domFx_surface_common::domMip_levelsRef ref = new domFx_surface_common::domMip_levels(dae);
 	return ref;
 }
 
@@ -245,7 +245,7 @@ domFx_surface_common::domMip_levels::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "mip_levels" );
 	meta->registerClass(domFx_surface_common::domMip_levels::create, &meta);
@@ -255,7 +255,7 @@ domFx_surface_common::domMip_levels::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsUnsignedInt"));
+		ma->setType( dae.getAtomicTypes().get("xsUnsignedInt"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common::domMip_levels , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -268,9 +268,9 @@ domFx_surface_common::domMip_levels::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_surface_common::domMipmap_generate::create()
+domFx_surface_common::domMipmap_generate::create(DAE& dae)
 {
-	domFx_surface_common::domMipmap_generateRef ref = new domFx_surface_common::domMipmap_generate;
+	domFx_surface_common::domMipmap_generateRef ref = new domFx_surface_common::domMipmap_generate(dae);
 	return ref;
 }
 
@@ -281,7 +281,7 @@ domFx_surface_common::domMipmap_generate::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "mipmap_generate" );
 	meta->registerClass(domFx_surface_common::domMipmap_generate::create, &meta);
@@ -291,7 +291,7 @@ domFx_surface_common::domMipmap_generate::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common::domMipmap_generate , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

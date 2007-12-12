@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_pipeline_settings::create()
+domGles_pipeline_settings::create(DAE& dae)
 {
-	domGles_pipeline_settingsRef ref = new domGles_pipeline_settings;
+	domGles_pipeline_settingsRef ref = new domGles_pipeline_settings(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGles_pipeline_settings::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gles_pipeline_settings" );
 	meta->registerClass(domGles_pipeline_settings::create, &meta);
@@ -497,9 +497,9 @@ domGles_pipeline_settings::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domAlpha_func::create()
+domGles_pipeline_settings::domAlpha_func::create(DAE& dae)
 {
-	domGles_pipeline_settings::domAlpha_funcRef ref = new domGles_pipeline_settings::domAlpha_func;
+	domGles_pipeline_settings::domAlpha_funcRef ref = new domGles_pipeline_settings::domAlpha_func(dae);
 	return ref;
 }
 
@@ -510,7 +510,7 @@ domGles_pipeline_settings::domAlpha_func::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "alpha_func" );
 	meta->registerClass(domGles_pipeline_settings::domAlpha_func::create, &meta);
@@ -542,9 +542,9 @@ domGles_pipeline_settings::domAlpha_func::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domAlpha_func::domFunc::create()
+domGles_pipeline_settings::domAlpha_func::domFunc::create(DAE& dae)
 {
-	domGles_pipeline_settings::domAlpha_func::domFuncRef ref = new domGles_pipeline_settings::domAlpha_func::domFunc;
+	domGles_pipeline_settings::domAlpha_func::domFuncRef ref = new domGles_pipeline_settings::domAlpha_func::domFunc(dae);
 	return ref;
 }
 
@@ -555,7 +555,7 @@ domGles_pipeline_settings::domAlpha_func::domFunc::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "func" );
 	meta->registerClass(domGles_pipeline_settings::domAlpha_func::domFunc::create, &meta);
@@ -566,7 +566,7 @@ domGles_pipeline_settings::domAlpha_func::domFunc::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gl_func_type"));
+		ma->setType( dae.getAtomicTypes().get("Gl_func_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domAlpha_func::domFunc , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ALWAYS");
@@ -579,7 +579,7 @@ domGles_pipeline_settings::domAlpha_func::domFunc::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domAlpha_func::domFunc , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -594,9 +594,9 @@ domGles_pipeline_settings::domAlpha_func::domFunc::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domAlpha_func::domValue::create()
+domGles_pipeline_settings::domAlpha_func::domValue::create(DAE& dae)
 {
-	domGles_pipeline_settings::domAlpha_func::domValueRef ref = new domGles_pipeline_settings::domAlpha_func::domValue;
+	domGles_pipeline_settings::domAlpha_func::domValueRef ref = new domGles_pipeline_settings::domAlpha_func::domValue(dae);
 	return ref;
 }
 
@@ -607,7 +607,7 @@ domGles_pipeline_settings::domAlpha_func::domValue::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "value" );
 	meta->registerClass(domGles_pipeline_settings::domAlpha_func::domValue::create, &meta);
@@ -618,7 +618,7 @@ domGles_pipeline_settings::domAlpha_func::domValue::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gl_alpha_value_type"));
+		ma->setType( dae.getAtomicTypes().get("Gl_alpha_value_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domAlpha_func::domValue , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0.0");
@@ -631,7 +631,7 @@ domGles_pipeline_settings::domAlpha_func::domValue::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domAlpha_func::domValue , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -646,9 +646,9 @@ domGles_pipeline_settings::domAlpha_func::domValue::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domBlend_func::create()
+domGles_pipeline_settings::domBlend_func::create(DAE& dae)
 {
-	domGles_pipeline_settings::domBlend_funcRef ref = new domGles_pipeline_settings::domBlend_func;
+	domGles_pipeline_settings::domBlend_funcRef ref = new domGles_pipeline_settings::domBlend_func(dae);
 	return ref;
 }
 
@@ -659,7 +659,7 @@ domGles_pipeline_settings::domBlend_func::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "blend_func" );
 	meta->registerClass(domGles_pipeline_settings::domBlend_func::create, &meta);
@@ -691,9 +691,9 @@ domGles_pipeline_settings::domBlend_func::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domBlend_func::domSrc::create()
+domGles_pipeline_settings::domBlend_func::domSrc::create(DAE& dae)
 {
-	domGles_pipeline_settings::domBlend_func::domSrcRef ref = new domGles_pipeline_settings::domBlend_func::domSrc;
+	domGles_pipeline_settings::domBlend_func::domSrcRef ref = new domGles_pipeline_settings::domBlend_func::domSrc(dae);
 	return ref;
 }
 
@@ -704,7 +704,7 @@ domGles_pipeline_settings::domBlend_func::domSrc::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "src" );
 	meta->registerClass(domGles_pipeline_settings::domBlend_func::domSrc::create, &meta);
@@ -715,7 +715,7 @@ domGles_pipeline_settings::domBlend_func::domSrc::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gl_blend_type"));
+		ma->setType( dae.getAtomicTypes().get("Gl_blend_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domBlend_func::domSrc , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ONE");
@@ -728,7 +728,7 @@ domGles_pipeline_settings::domBlend_func::domSrc::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domBlend_func::domSrc , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -743,9 +743,9 @@ domGles_pipeline_settings::domBlend_func::domSrc::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domBlend_func::domDest::create()
+domGles_pipeline_settings::domBlend_func::domDest::create(DAE& dae)
 {
-	domGles_pipeline_settings::domBlend_func::domDestRef ref = new domGles_pipeline_settings::domBlend_func::domDest;
+	domGles_pipeline_settings::domBlend_func::domDestRef ref = new domGles_pipeline_settings::domBlend_func::domDest(dae);
 	return ref;
 }
 
@@ -756,7 +756,7 @@ domGles_pipeline_settings::domBlend_func::domDest::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "dest" );
 	meta->registerClass(domGles_pipeline_settings::domBlend_func::domDest::create, &meta);
@@ -767,7 +767,7 @@ domGles_pipeline_settings::domBlend_func::domDest::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gl_blend_type"));
+		ma->setType( dae.getAtomicTypes().get("Gl_blend_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domBlend_func::domDest , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ZERO");
@@ -780,7 +780,7 @@ domGles_pipeline_settings::domBlend_func::domDest::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domBlend_func::domDest , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -795,9 +795,9 @@ domGles_pipeline_settings::domBlend_func::domDest::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domClear_color::create()
+domGles_pipeline_settings::domClear_color::create(DAE& dae)
 {
-	domGles_pipeline_settings::domClear_colorRef ref = new domGles_pipeline_settings::domClear_color;
+	domGles_pipeline_settings::domClear_colorRef ref = new domGles_pipeline_settings::domClear_color(dae);
 	return ref;
 }
 
@@ -808,7 +808,7 @@ domGles_pipeline_settings::domClear_color::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "clear_color" );
 	meta->registerClass(domGles_pipeline_settings::domClear_color::create, &meta);
@@ -819,7 +819,7 @@ domGles_pipeline_settings::domClear_color::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClear_color , attrValue ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -831,7 +831,7 @@ domGles_pipeline_settings::domClear_color::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClear_color , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -846,9 +846,9 @@ domGles_pipeline_settings::domClear_color::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domClear_stencil::create()
+domGles_pipeline_settings::domClear_stencil::create(DAE& dae)
 {
-	domGles_pipeline_settings::domClear_stencilRef ref = new domGles_pipeline_settings::domClear_stencil;
+	domGles_pipeline_settings::domClear_stencilRef ref = new domGles_pipeline_settings::domClear_stencil(dae);
 	return ref;
 }
 
@@ -859,7 +859,7 @@ domGles_pipeline_settings::domClear_stencil::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "clear_stencil" );
 	meta->registerClass(domGles_pipeline_settings::domClear_stencil::create, &meta);
@@ -870,7 +870,7 @@ domGles_pipeline_settings::domClear_stencil::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Int"));
+		ma->setType( dae.getAtomicTypes().get("Int"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClear_stencil , attrValue ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -882,7 +882,7 @@ domGles_pipeline_settings::domClear_stencil::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClear_stencil , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -897,9 +897,9 @@ domGles_pipeline_settings::domClear_stencil::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domClear_depth::create()
+domGles_pipeline_settings::domClear_depth::create(DAE& dae)
 {
-	domGles_pipeline_settings::domClear_depthRef ref = new domGles_pipeline_settings::domClear_depth;
+	domGles_pipeline_settings::domClear_depthRef ref = new domGles_pipeline_settings::domClear_depth(dae);
 	return ref;
 }
 
@@ -910,7 +910,7 @@ domGles_pipeline_settings::domClear_depth::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "clear_depth" );
 	meta->registerClass(domGles_pipeline_settings::domClear_depth::create, &meta);
@@ -921,7 +921,7 @@ domGles_pipeline_settings::domClear_depth::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClear_depth , attrValue ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -933,7 +933,7 @@ domGles_pipeline_settings::domClear_depth::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClear_depth , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -948,9 +948,9 @@ domGles_pipeline_settings::domClear_depth::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domClip_plane::create()
+domGles_pipeline_settings::domClip_plane::create(DAE& dae)
 {
-	domGles_pipeline_settings::domClip_planeRef ref = new domGles_pipeline_settings::domClip_plane;
+	domGles_pipeline_settings::domClip_planeRef ref = new domGles_pipeline_settings::domClip_plane(dae);
 	return ref;
 }
 
@@ -961,7 +961,7 @@ domGles_pipeline_settings::domClip_plane::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "clip_plane" );
 	meta->registerClass(domGles_pipeline_settings::domClip_plane::create, &meta);
@@ -972,7 +972,7 @@ domGles_pipeline_settings::domClip_plane::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool4"));
+		ma->setType( dae.getAtomicTypes().get("Bool4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClip_plane , attrValue ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -984,7 +984,7 @@ domGles_pipeline_settings::domClip_plane::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClip_plane , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -996,7 +996,7 @@ domGles_pipeline_settings::domClip_plane::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_CLIP_PLANES_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_CLIP_PLANES_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClip_plane , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -1011,9 +1011,9 @@ domGles_pipeline_settings::domClip_plane::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domColor_mask::create()
+domGles_pipeline_settings::domColor_mask::create(DAE& dae)
 {
-	domGles_pipeline_settings::domColor_maskRef ref = new domGles_pipeline_settings::domColor_mask;
+	domGles_pipeline_settings::domColor_maskRef ref = new domGles_pipeline_settings::domColor_mask(dae);
 	return ref;
 }
 
@@ -1024,7 +1024,7 @@ domGles_pipeline_settings::domColor_mask::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "color_mask" );
 	meta->registerClass(domGles_pipeline_settings::domColor_mask::create, &meta);
@@ -1035,7 +1035,7 @@ domGles_pipeline_settings::domColor_mask::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool4"));
+		ma->setType( dae.getAtomicTypes().get("Bool4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domColor_mask , attrValue ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1047,7 +1047,7 @@ domGles_pipeline_settings::domColor_mask::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domColor_mask , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1062,9 +1062,9 @@ domGles_pipeline_settings::domColor_mask::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domCull_face::create()
+domGles_pipeline_settings::domCull_face::create(DAE& dae)
 {
-	domGles_pipeline_settings::domCull_faceRef ref = new domGles_pipeline_settings::domCull_face;
+	domGles_pipeline_settings::domCull_faceRef ref = new domGles_pipeline_settings::domCull_face(dae);
 	return ref;
 }
 
@@ -1075,7 +1075,7 @@ domGles_pipeline_settings::domCull_face::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "cull_face" );
 	meta->registerClass(domGles_pipeline_settings::domCull_face::create, &meta);
@@ -1086,7 +1086,7 @@ domGles_pipeline_settings::domCull_face::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gl_face_type"));
+		ma->setType( dae.getAtomicTypes().get("Gl_face_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domCull_face , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "BACK");
@@ -1099,7 +1099,7 @@ domGles_pipeline_settings::domCull_face::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domCull_face , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1114,9 +1114,9 @@ domGles_pipeline_settings::domCull_face::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domDepth_func::create()
+domGles_pipeline_settings::domDepth_func::create(DAE& dae)
 {
-	domGles_pipeline_settings::domDepth_funcRef ref = new domGles_pipeline_settings::domDepth_func;
+	domGles_pipeline_settings::domDepth_funcRef ref = new domGles_pipeline_settings::domDepth_func(dae);
 	return ref;
 }
 
@@ -1127,7 +1127,7 @@ domGles_pipeline_settings::domDepth_func::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "depth_func" );
 	meta->registerClass(domGles_pipeline_settings::domDepth_func::create, &meta);
@@ -1138,7 +1138,7 @@ domGles_pipeline_settings::domDepth_func::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gl_func_type"));
+		ma->setType( dae.getAtomicTypes().get("Gl_func_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_func , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ALWAYS");
@@ -1151,7 +1151,7 @@ domGles_pipeline_settings::domDepth_func::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_func , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1166,9 +1166,9 @@ domGles_pipeline_settings::domDepth_func::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domDepth_mask::create()
+domGles_pipeline_settings::domDepth_mask::create(DAE& dae)
 {
-	domGles_pipeline_settings::domDepth_maskRef ref = new domGles_pipeline_settings::domDepth_mask;
+	domGles_pipeline_settings::domDepth_maskRef ref = new domGles_pipeline_settings::domDepth_mask(dae);
 	return ref;
 }
 
@@ -1179,7 +1179,7 @@ domGles_pipeline_settings::domDepth_mask::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "depth_mask" );
 	meta->registerClass(domGles_pipeline_settings::domDepth_mask::create, &meta);
@@ -1190,7 +1190,7 @@ domGles_pipeline_settings::domDepth_mask::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_mask , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -1203,7 +1203,7 @@ domGles_pipeline_settings::domDepth_mask::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_mask , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1218,9 +1218,9 @@ domGles_pipeline_settings::domDepth_mask::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domDepth_range::create()
+domGles_pipeline_settings::domDepth_range::create(DAE& dae)
 {
-	domGles_pipeline_settings::domDepth_rangeRef ref = new domGles_pipeline_settings::domDepth_range;
+	domGles_pipeline_settings::domDepth_rangeRef ref = new domGles_pipeline_settings::domDepth_range(dae);
 	return ref;
 }
 
@@ -1231,7 +1231,7 @@ domGles_pipeline_settings::domDepth_range::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "depth_range" );
 	meta->registerClass(domGles_pipeline_settings::domDepth_range::create, &meta);
@@ -1242,7 +1242,7 @@ domGles_pipeline_settings::domDepth_range::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_range , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0 1");
@@ -1255,7 +1255,7 @@ domGles_pipeline_settings::domDepth_range::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_range , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1270,9 +1270,9 @@ domGles_pipeline_settings::domDepth_range::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domFog_color::create()
+domGles_pipeline_settings::domFog_color::create(DAE& dae)
 {
-	domGles_pipeline_settings::domFog_colorRef ref = new domGles_pipeline_settings::domFog_color;
+	domGles_pipeline_settings::domFog_colorRef ref = new domGles_pipeline_settings::domFog_color(dae);
 	return ref;
 }
 
@@ -1283,7 +1283,7 @@ domGles_pipeline_settings::domFog_color::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fog_color" );
 	meta->registerClass(domGles_pipeline_settings::domFog_color::create, &meta);
@@ -1294,7 +1294,7 @@ domGles_pipeline_settings::domFog_color::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_color , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0 0 0 0");
@@ -1307,7 +1307,7 @@ domGles_pipeline_settings::domFog_color::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_color , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1322,9 +1322,9 @@ domGles_pipeline_settings::domFog_color::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domFog_density::create()
+domGles_pipeline_settings::domFog_density::create(DAE& dae)
 {
-	domGles_pipeline_settings::domFog_densityRef ref = new domGles_pipeline_settings::domFog_density;
+	domGles_pipeline_settings::domFog_densityRef ref = new domGles_pipeline_settings::domFog_density(dae);
 	return ref;
 }
 
@@ -1335,7 +1335,7 @@ domGles_pipeline_settings::domFog_density::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fog_density" );
 	meta->registerClass(domGles_pipeline_settings::domFog_density::create, &meta);
@@ -1346,7 +1346,7 @@ domGles_pipeline_settings::domFog_density::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_density , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1");
@@ -1359,7 +1359,7 @@ domGles_pipeline_settings::domFog_density::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_density , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1374,9 +1374,9 @@ domGles_pipeline_settings::domFog_density::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domFog_mode::create()
+domGles_pipeline_settings::domFog_mode::create(DAE& dae)
 {
-	domGles_pipeline_settings::domFog_modeRef ref = new domGles_pipeline_settings::domFog_mode;
+	domGles_pipeline_settings::domFog_modeRef ref = new domGles_pipeline_settings::domFog_mode(dae);
 	return ref;
 }
 
@@ -1387,7 +1387,7 @@ domGles_pipeline_settings::domFog_mode::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fog_mode" );
 	meta->registerClass(domGles_pipeline_settings::domFog_mode::create, &meta);
@@ -1398,7 +1398,7 @@ domGles_pipeline_settings::domFog_mode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gl_fog_type"));
+		ma->setType( dae.getAtomicTypes().get("Gl_fog_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_mode , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "EXP");
@@ -1411,7 +1411,7 @@ domGles_pipeline_settings::domFog_mode::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_mode , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1426,9 +1426,9 @@ domGles_pipeline_settings::domFog_mode::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domFog_start::create()
+domGles_pipeline_settings::domFog_start::create(DAE& dae)
 {
-	domGles_pipeline_settings::domFog_startRef ref = new domGles_pipeline_settings::domFog_start;
+	domGles_pipeline_settings::domFog_startRef ref = new domGles_pipeline_settings::domFog_start(dae);
 	return ref;
 }
 
@@ -1439,7 +1439,7 @@ domGles_pipeline_settings::domFog_start::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fog_start" );
 	meta->registerClass(domGles_pipeline_settings::domFog_start::create, &meta);
@@ -1450,7 +1450,7 @@ domGles_pipeline_settings::domFog_start::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_start , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -1463,7 +1463,7 @@ domGles_pipeline_settings::domFog_start::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_start , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1478,9 +1478,9 @@ domGles_pipeline_settings::domFog_start::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domFog_end::create()
+domGles_pipeline_settings::domFog_end::create(DAE& dae)
 {
-	domGles_pipeline_settings::domFog_endRef ref = new domGles_pipeline_settings::domFog_end;
+	domGles_pipeline_settings::domFog_endRef ref = new domGles_pipeline_settings::domFog_end(dae);
 	return ref;
 }
 
@@ -1491,7 +1491,7 @@ domGles_pipeline_settings::domFog_end::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fog_end" );
 	meta->registerClass(domGles_pipeline_settings::domFog_end::create, &meta);
@@ -1502,7 +1502,7 @@ domGles_pipeline_settings::domFog_end::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_end , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1");
@@ -1515,7 +1515,7 @@ domGles_pipeline_settings::domFog_end::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_end , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1530,9 +1530,9 @@ domGles_pipeline_settings::domFog_end::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domFront_face::create()
+domGles_pipeline_settings::domFront_face::create(DAE& dae)
 {
-	domGles_pipeline_settings::domFront_faceRef ref = new domGles_pipeline_settings::domFront_face;
+	domGles_pipeline_settings::domFront_faceRef ref = new domGles_pipeline_settings::domFront_face(dae);
 	return ref;
 }
 
@@ -1543,7 +1543,7 @@ domGles_pipeline_settings::domFront_face::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "front_face" );
 	meta->registerClass(domGles_pipeline_settings::domFront_face::create, &meta);
@@ -1554,7 +1554,7 @@ domGles_pipeline_settings::domFront_face::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gl_front_face_type"));
+		ma->setType( dae.getAtomicTypes().get("Gl_front_face_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFront_face , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "CCW");
@@ -1567,7 +1567,7 @@ domGles_pipeline_settings::domFront_face::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFront_face , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1582,9 +1582,9 @@ domGles_pipeline_settings::domFront_face::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domTexture_pipeline::create()
+domGles_pipeline_settings::domTexture_pipeline::create(DAE& dae)
 {
-	domGles_pipeline_settings::domTexture_pipelineRef ref = new domGles_pipeline_settings::domTexture_pipeline;
+	domGles_pipeline_settings::domTexture_pipelineRef ref = new domGles_pipeline_settings::domTexture_pipeline(dae);
 	return ref;
 }
 
@@ -1595,7 +1595,7 @@ domGles_pipeline_settings::domTexture_pipeline::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "texture_pipeline" );
 	meta->registerClass(domGles_pipeline_settings::domTexture_pipeline::create, &meta);
@@ -1618,7 +1618,7 @@ domGles_pipeline_settings::domTexture_pipeline::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domTexture_pipeline , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1633,9 +1633,9 @@ domGles_pipeline_settings::domTexture_pipeline::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLogic_op::create()
+domGles_pipeline_settings::domLogic_op::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLogic_opRef ref = new domGles_pipeline_settings::domLogic_op;
+	domGles_pipeline_settings::domLogic_opRef ref = new domGles_pipeline_settings::domLogic_op(dae);
 	return ref;
 }
 
@@ -1646,7 +1646,7 @@ domGles_pipeline_settings::domLogic_op::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "logic_op" );
 	meta->registerClass(domGles_pipeline_settings::domLogic_op::create, &meta);
@@ -1657,7 +1657,7 @@ domGles_pipeline_settings::domLogic_op::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gl_logic_op_type"));
+		ma->setType( dae.getAtomicTypes().get("Gl_logic_op_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLogic_op , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "COPY");
@@ -1670,7 +1670,7 @@ domGles_pipeline_settings::domLogic_op::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLogic_op , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1685,9 +1685,9 @@ domGles_pipeline_settings::domLogic_op::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_ambient::create()
+domGles_pipeline_settings::domLight_ambient::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_ambientRef ref = new domGles_pipeline_settings::domLight_ambient;
+	domGles_pipeline_settings::domLight_ambientRef ref = new domGles_pipeline_settings::domLight_ambient(dae);
 	return ref;
 }
 
@@ -1698,7 +1698,7 @@ domGles_pipeline_settings::domLight_ambient::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_ambient" );
 	meta->registerClass(domGles_pipeline_settings::domLight_ambient::create, &meta);
@@ -1709,7 +1709,7 @@ domGles_pipeline_settings::domLight_ambient::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_ambient , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0 0 0 1");
@@ -1722,7 +1722,7 @@ domGles_pipeline_settings::domLight_ambient::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_ambient , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1734,7 +1734,7 @@ domGles_pipeline_settings::domLight_ambient::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_LIGHTS_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_ambient , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -1749,9 +1749,9 @@ domGles_pipeline_settings::domLight_ambient::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_diffuse::create()
+domGles_pipeline_settings::domLight_diffuse::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_diffuseRef ref = new domGles_pipeline_settings::domLight_diffuse;
+	domGles_pipeline_settings::domLight_diffuseRef ref = new domGles_pipeline_settings::domLight_diffuse(dae);
 	return ref;
 }
 
@@ -1762,7 +1762,7 @@ domGles_pipeline_settings::domLight_diffuse::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_diffuse" );
 	meta->registerClass(domGles_pipeline_settings::domLight_diffuse::create, &meta);
@@ -1773,7 +1773,7 @@ domGles_pipeline_settings::domLight_diffuse::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_diffuse , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0 0 0 0");
@@ -1786,7 +1786,7 @@ domGles_pipeline_settings::domLight_diffuse::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_diffuse , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1798,7 +1798,7 @@ domGles_pipeline_settings::domLight_diffuse::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_LIGHTS_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_diffuse , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -1813,9 +1813,9 @@ domGles_pipeline_settings::domLight_diffuse::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_specular::create()
+domGles_pipeline_settings::domLight_specular::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_specularRef ref = new domGles_pipeline_settings::domLight_specular;
+	domGles_pipeline_settings::domLight_specularRef ref = new domGles_pipeline_settings::domLight_specular(dae);
 	return ref;
 }
 
@@ -1826,7 +1826,7 @@ domGles_pipeline_settings::domLight_specular::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_specular" );
 	meta->registerClass(domGles_pipeline_settings::domLight_specular::create, &meta);
@@ -1837,7 +1837,7 @@ domGles_pipeline_settings::domLight_specular::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_specular , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0 0 0 0");
@@ -1850,7 +1850,7 @@ domGles_pipeline_settings::domLight_specular::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_specular , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1862,7 +1862,7 @@ domGles_pipeline_settings::domLight_specular::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_LIGHTS_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_specular , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -1877,9 +1877,9 @@ domGles_pipeline_settings::domLight_specular::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_position::create()
+domGles_pipeline_settings::domLight_position::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_positionRef ref = new domGles_pipeline_settings::domLight_position;
+	domGles_pipeline_settings::domLight_positionRef ref = new domGles_pipeline_settings::domLight_position(dae);
 	return ref;
 }
 
@@ -1890,7 +1890,7 @@ domGles_pipeline_settings::domLight_position::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_position" );
 	meta->registerClass(domGles_pipeline_settings::domLight_position::create, &meta);
@@ -1901,7 +1901,7 @@ domGles_pipeline_settings::domLight_position::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_position , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0 0 1 0");
@@ -1914,7 +1914,7 @@ domGles_pipeline_settings::domLight_position::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_position , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1926,7 +1926,7 @@ domGles_pipeline_settings::domLight_position::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_LIGHTS_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_position , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -1941,9 +1941,9 @@ domGles_pipeline_settings::domLight_position::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_constant_attenuation::create()
+domGles_pipeline_settings::domLight_constant_attenuation::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_constant_attenuationRef ref = new domGles_pipeline_settings::domLight_constant_attenuation;
+	domGles_pipeline_settings::domLight_constant_attenuationRef ref = new domGles_pipeline_settings::domLight_constant_attenuation(dae);
 	return ref;
 }
 
@@ -1954,7 +1954,7 @@ domGles_pipeline_settings::domLight_constant_attenuation::registerElement(DAE& d
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_constant_attenuation" );
 	meta->registerClass(domGles_pipeline_settings::domLight_constant_attenuation::create, &meta);
@@ -1965,7 +1965,7 @@ domGles_pipeline_settings::domLight_constant_attenuation::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_constant_attenuation , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1");
@@ -1978,7 +1978,7 @@ domGles_pipeline_settings::domLight_constant_attenuation::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_constant_attenuation , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -1990,7 +1990,7 @@ domGles_pipeline_settings::domLight_constant_attenuation::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_LIGHTS_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_constant_attenuation , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -2005,9 +2005,9 @@ domGles_pipeline_settings::domLight_constant_attenuation::registerElement(DAE& d
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_linear_attenutation::create()
+domGles_pipeline_settings::domLight_linear_attenutation::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_linear_attenutationRef ref = new domGles_pipeline_settings::domLight_linear_attenutation;
+	domGles_pipeline_settings::domLight_linear_attenutationRef ref = new domGles_pipeline_settings::domLight_linear_attenutation(dae);
 	return ref;
 }
 
@@ -2018,7 +2018,7 @@ domGles_pipeline_settings::domLight_linear_attenutation::registerElement(DAE& da
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_linear_attenutation" );
 	meta->registerClass(domGles_pipeline_settings::domLight_linear_attenutation::create, &meta);
@@ -2029,7 +2029,7 @@ domGles_pipeline_settings::domLight_linear_attenutation::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_linear_attenutation , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1");
@@ -2042,7 +2042,7 @@ domGles_pipeline_settings::domLight_linear_attenutation::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_linear_attenutation , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2054,7 +2054,7 @@ domGles_pipeline_settings::domLight_linear_attenutation::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_LIGHTS_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_linear_attenutation , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -2069,9 +2069,9 @@ domGles_pipeline_settings::domLight_linear_attenutation::registerElement(DAE& da
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_quadratic_attenuation::create()
+domGles_pipeline_settings::domLight_quadratic_attenuation::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_quadratic_attenuationRef ref = new domGles_pipeline_settings::domLight_quadratic_attenuation;
+	domGles_pipeline_settings::domLight_quadratic_attenuationRef ref = new domGles_pipeline_settings::domLight_quadratic_attenuation(dae);
 	return ref;
 }
 
@@ -2082,7 +2082,7 @@ domGles_pipeline_settings::domLight_quadratic_attenuation::registerElement(DAE& 
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_quadratic_attenuation" );
 	meta->registerClass(domGles_pipeline_settings::domLight_quadratic_attenuation::create, &meta);
@@ -2093,7 +2093,7 @@ domGles_pipeline_settings::domLight_quadratic_attenuation::registerElement(DAE& 
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_quadratic_attenuation , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1");
@@ -2106,7 +2106,7 @@ domGles_pipeline_settings::domLight_quadratic_attenuation::registerElement(DAE& 
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_quadratic_attenuation , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2118,7 +2118,7 @@ domGles_pipeline_settings::domLight_quadratic_attenuation::registerElement(DAE& 
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_LIGHTS_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_quadratic_attenuation , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -2133,9 +2133,9 @@ domGles_pipeline_settings::domLight_quadratic_attenuation::registerElement(DAE& 
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_spot_cutoff::create()
+domGles_pipeline_settings::domLight_spot_cutoff::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_spot_cutoffRef ref = new domGles_pipeline_settings::domLight_spot_cutoff;
+	domGles_pipeline_settings::domLight_spot_cutoffRef ref = new domGles_pipeline_settings::domLight_spot_cutoff(dae);
 	return ref;
 }
 
@@ -2146,7 +2146,7 @@ domGles_pipeline_settings::domLight_spot_cutoff::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_spot_cutoff" );
 	meta->registerClass(domGles_pipeline_settings::domLight_spot_cutoff::create, &meta);
@@ -2157,7 +2157,7 @@ domGles_pipeline_settings::domLight_spot_cutoff::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_cutoff , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "180");
@@ -2170,7 +2170,7 @@ domGles_pipeline_settings::domLight_spot_cutoff::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_cutoff , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2182,7 +2182,7 @@ domGles_pipeline_settings::domLight_spot_cutoff::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_LIGHTS_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_cutoff , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -2197,9 +2197,9 @@ domGles_pipeline_settings::domLight_spot_cutoff::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_spot_direction::create()
+domGles_pipeline_settings::domLight_spot_direction::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_spot_directionRef ref = new domGles_pipeline_settings::domLight_spot_direction;
+	domGles_pipeline_settings::domLight_spot_directionRef ref = new domGles_pipeline_settings::domLight_spot_direction(dae);
 	return ref;
 }
 
@@ -2210,7 +2210,7 @@ domGles_pipeline_settings::domLight_spot_direction::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_spot_direction" );
 	meta->registerClass(domGles_pipeline_settings::domLight_spot_direction::create, &meta);
@@ -2221,7 +2221,7 @@ domGles_pipeline_settings::domLight_spot_direction::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float3"));
+		ma->setType( dae.getAtomicTypes().get("Float3"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_direction , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0 0 -1");
@@ -2234,7 +2234,7 @@ domGles_pipeline_settings::domLight_spot_direction::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_direction , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2246,7 +2246,7 @@ domGles_pipeline_settings::domLight_spot_direction::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_LIGHTS_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_direction , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -2261,9 +2261,9 @@ domGles_pipeline_settings::domLight_spot_direction::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_spot_exponent::create()
+domGles_pipeline_settings::domLight_spot_exponent::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_spot_exponentRef ref = new domGles_pipeline_settings::domLight_spot_exponent;
+	domGles_pipeline_settings::domLight_spot_exponentRef ref = new domGles_pipeline_settings::domLight_spot_exponent(dae);
 	return ref;
 }
 
@@ -2274,7 +2274,7 @@ domGles_pipeline_settings::domLight_spot_exponent::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_spot_exponent" );
 	meta->registerClass(domGles_pipeline_settings::domLight_spot_exponent::create, &meta);
@@ -2285,7 +2285,7 @@ domGles_pipeline_settings::domLight_spot_exponent::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_exponent , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -2298,7 +2298,7 @@ domGles_pipeline_settings::domLight_spot_exponent::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_exponent , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2310,7 +2310,7 @@ domGles_pipeline_settings::domLight_spot_exponent::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_LIGHTS_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_spot_exponent , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -2325,9 +2325,9 @@ domGles_pipeline_settings::domLight_spot_exponent::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_model_ambient::create()
+domGles_pipeline_settings::domLight_model_ambient::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_model_ambientRef ref = new domGles_pipeline_settings::domLight_model_ambient;
+	domGles_pipeline_settings::domLight_model_ambientRef ref = new domGles_pipeline_settings::domLight_model_ambient(dae);
 	return ref;
 }
 
@@ -2338,7 +2338,7 @@ domGles_pipeline_settings::domLight_model_ambient::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_model_ambient" );
 	meta->registerClass(domGles_pipeline_settings::domLight_model_ambient::create, &meta);
@@ -2349,7 +2349,7 @@ domGles_pipeline_settings::domLight_model_ambient::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_model_ambient , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0.2 0.2 0.2 1.0");
@@ -2362,7 +2362,7 @@ domGles_pipeline_settings::domLight_model_ambient::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_model_ambient , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2377,9 +2377,9 @@ domGles_pipeline_settings::domLight_model_ambient::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLine_width::create()
+domGles_pipeline_settings::domLine_width::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLine_widthRef ref = new domGles_pipeline_settings::domLine_width;
+	domGles_pipeline_settings::domLine_widthRef ref = new domGles_pipeline_settings::domLine_width(dae);
 	return ref;
 }
 
@@ -2390,7 +2390,7 @@ domGles_pipeline_settings::domLine_width::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "line_width" );
 	meta->registerClass(domGles_pipeline_settings::domLine_width::create, &meta);
@@ -2401,7 +2401,7 @@ domGles_pipeline_settings::domLine_width::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLine_width , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1");
@@ -2414,7 +2414,7 @@ domGles_pipeline_settings::domLine_width::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLine_width , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2429,9 +2429,9 @@ domGles_pipeline_settings::domLine_width::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domMaterial_ambient::create()
+domGles_pipeline_settings::domMaterial_ambient::create(DAE& dae)
 {
-	domGles_pipeline_settings::domMaterial_ambientRef ref = new domGles_pipeline_settings::domMaterial_ambient;
+	domGles_pipeline_settings::domMaterial_ambientRef ref = new domGles_pipeline_settings::domMaterial_ambient(dae);
 	return ref;
 }
 
@@ -2442,7 +2442,7 @@ domGles_pipeline_settings::domMaterial_ambient::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "material_ambient" );
 	meta->registerClass(domGles_pipeline_settings::domMaterial_ambient::create, &meta);
@@ -2453,7 +2453,7 @@ domGles_pipeline_settings::domMaterial_ambient::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_ambient , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0.2 0.2 0.2 1.0");
@@ -2466,7 +2466,7 @@ domGles_pipeline_settings::domMaterial_ambient::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_ambient , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2481,9 +2481,9 @@ domGles_pipeline_settings::domMaterial_ambient::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domMaterial_diffuse::create()
+domGles_pipeline_settings::domMaterial_diffuse::create(DAE& dae)
 {
-	domGles_pipeline_settings::domMaterial_diffuseRef ref = new domGles_pipeline_settings::domMaterial_diffuse;
+	domGles_pipeline_settings::domMaterial_diffuseRef ref = new domGles_pipeline_settings::domMaterial_diffuse(dae);
 	return ref;
 }
 
@@ -2494,7 +2494,7 @@ domGles_pipeline_settings::domMaterial_diffuse::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "material_diffuse" );
 	meta->registerClass(domGles_pipeline_settings::domMaterial_diffuse::create, &meta);
@@ -2505,7 +2505,7 @@ domGles_pipeline_settings::domMaterial_diffuse::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_diffuse , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0.8 0.8 0.8 1.0");
@@ -2518,7 +2518,7 @@ domGles_pipeline_settings::domMaterial_diffuse::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_diffuse , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2533,9 +2533,9 @@ domGles_pipeline_settings::domMaterial_diffuse::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domMaterial_emission::create()
+domGles_pipeline_settings::domMaterial_emission::create(DAE& dae)
 {
-	domGles_pipeline_settings::domMaterial_emissionRef ref = new domGles_pipeline_settings::domMaterial_emission;
+	domGles_pipeline_settings::domMaterial_emissionRef ref = new domGles_pipeline_settings::domMaterial_emission(dae);
 	return ref;
 }
 
@@ -2546,7 +2546,7 @@ domGles_pipeline_settings::domMaterial_emission::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "material_emission" );
 	meta->registerClass(domGles_pipeline_settings::domMaterial_emission::create, &meta);
@@ -2557,7 +2557,7 @@ domGles_pipeline_settings::domMaterial_emission::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_emission , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0 0 0 1");
@@ -2570,7 +2570,7 @@ domGles_pipeline_settings::domMaterial_emission::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_emission , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2585,9 +2585,9 @@ domGles_pipeline_settings::domMaterial_emission::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domMaterial_shininess::create()
+domGles_pipeline_settings::domMaterial_shininess::create(DAE& dae)
 {
-	domGles_pipeline_settings::domMaterial_shininessRef ref = new domGles_pipeline_settings::domMaterial_shininess;
+	domGles_pipeline_settings::domMaterial_shininessRef ref = new domGles_pipeline_settings::domMaterial_shininess(dae);
 	return ref;
 }
 
@@ -2598,7 +2598,7 @@ domGles_pipeline_settings::domMaterial_shininess::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "material_shininess" );
 	meta->registerClass(domGles_pipeline_settings::domMaterial_shininess::create, &meta);
@@ -2609,7 +2609,7 @@ domGles_pipeline_settings::domMaterial_shininess::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_shininess , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -2622,7 +2622,7 @@ domGles_pipeline_settings::domMaterial_shininess::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_shininess , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2637,9 +2637,9 @@ domGles_pipeline_settings::domMaterial_shininess::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domMaterial_specular::create()
+domGles_pipeline_settings::domMaterial_specular::create(DAE& dae)
 {
-	domGles_pipeline_settings::domMaterial_specularRef ref = new domGles_pipeline_settings::domMaterial_specular;
+	domGles_pipeline_settings::domMaterial_specularRef ref = new domGles_pipeline_settings::domMaterial_specular(dae);
 	return ref;
 }
 
@@ -2650,7 +2650,7 @@ domGles_pipeline_settings::domMaterial_specular::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "material_specular" );
 	meta->registerClass(domGles_pipeline_settings::domMaterial_specular::create, &meta);
@@ -2661,7 +2661,7 @@ domGles_pipeline_settings::domMaterial_specular::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_specular , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0 0 0 1");
@@ -2674,7 +2674,7 @@ domGles_pipeline_settings::domMaterial_specular::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMaterial_specular , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2689,9 +2689,9 @@ domGles_pipeline_settings::domMaterial_specular::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domModel_view_matrix::create()
+domGles_pipeline_settings::domModel_view_matrix::create(DAE& dae)
 {
-	domGles_pipeline_settings::domModel_view_matrixRef ref = new domGles_pipeline_settings::domModel_view_matrix;
+	domGles_pipeline_settings::domModel_view_matrixRef ref = new domGles_pipeline_settings::domModel_view_matrix(dae);
 	return ref;
 }
 
@@ -2702,7 +2702,7 @@ domGles_pipeline_settings::domModel_view_matrix::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "model_view_matrix" );
 	meta->registerClass(domGles_pipeline_settings::domModel_view_matrix::create, &meta);
@@ -2713,7 +2713,7 @@ domGles_pipeline_settings::domModel_view_matrix::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4x4"));
+		ma->setType( dae.getAtomicTypes().get("Float4x4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domModel_view_matrix , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
@@ -2726,7 +2726,7 @@ domGles_pipeline_settings::domModel_view_matrix::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domModel_view_matrix , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2741,9 +2741,9 @@ domGles_pipeline_settings::domModel_view_matrix::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domPoint_distance_attenuation::create()
+domGles_pipeline_settings::domPoint_distance_attenuation::create(DAE& dae)
 {
-	domGles_pipeline_settings::domPoint_distance_attenuationRef ref = new domGles_pipeline_settings::domPoint_distance_attenuation;
+	domGles_pipeline_settings::domPoint_distance_attenuationRef ref = new domGles_pipeline_settings::domPoint_distance_attenuation(dae);
 	return ref;
 }
 
@@ -2754,7 +2754,7 @@ domGles_pipeline_settings::domPoint_distance_attenuation::registerElement(DAE& d
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "point_distance_attenuation" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_distance_attenuation::create, &meta);
@@ -2765,7 +2765,7 @@ domGles_pipeline_settings::domPoint_distance_attenuation::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float3"));
+		ma->setType( dae.getAtomicTypes().get("Float3"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_distance_attenuation , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1 0 0");
@@ -2778,7 +2778,7 @@ domGles_pipeline_settings::domPoint_distance_attenuation::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_distance_attenuation , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2793,9 +2793,9 @@ domGles_pipeline_settings::domPoint_distance_attenuation::registerElement(DAE& d
 }
 
 daeElementRef
-domGles_pipeline_settings::domPoint_fade_threshold_size::create()
+domGles_pipeline_settings::domPoint_fade_threshold_size::create(DAE& dae)
 {
-	domGles_pipeline_settings::domPoint_fade_threshold_sizeRef ref = new domGles_pipeline_settings::domPoint_fade_threshold_size;
+	domGles_pipeline_settings::domPoint_fade_threshold_sizeRef ref = new domGles_pipeline_settings::domPoint_fade_threshold_size(dae);
 	return ref;
 }
 
@@ -2806,7 +2806,7 @@ domGles_pipeline_settings::domPoint_fade_threshold_size::registerElement(DAE& da
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "point_fade_threshold_size" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_fade_threshold_size::create, &meta);
@@ -2817,7 +2817,7 @@ domGles_pipeline_settings::domPoint_fade_threshold_size::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_fade_threshold_size , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1");
@@ -2830,7 +2830,7 @@ domGles_pipeline_settings::domPoint_fade_threshold_size::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_fade_threshold_size , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2845,9 +2845,9 @@ domGles_pipeline_settings::domPoint_fade_threshold_size::registerElement(DAE& da
 }
 
 daeElementRef
-domGles_pipeline_settings::domPoint_size::create()
+domGles_pipeline_settings::domPoint_size::create(DAE& dae)
 {
-	domGles_pipeline_settings::domPoint_sizeRef ref = new domGles_pipeline_settings::domPoint_size;
+	domGles_pipeline_settings::domPoint_sizeRef ref = new domGles_pipeline_settings::domPoint_size(dae);
 	return ref;
 }
 
@@ -2858,7 +2858,7 @@ domGles_pipeline_settings::domPoint_size::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "point_size" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_size::create, &meta);
@@ -2869,7 +2869,7 @@ domGles_pipeline_settings::domPoint_size::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_size , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1");
@@ -2882,7 +2882,7 @@ domGles_pipeline_settings::domPoint_size::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_size , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2897,9 +2897,9 @@ domGles_pipeline_settings::domPoint_size::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domPoint_size_min::create()
+domGles_pipeline_settings::domPoint_size_min::create(DAE& dae)
 {
-	domGles_pipeline_settings::domPoint_size_minRef ref = new domGles_pipeline_settings::domPoint_size_min;
+	domGles_pipeline_settings::domPoint_size_minRef ref = new domGles_pipeline_settings::domPoint_size_min(dae);
 	return ref;
 }
 
@@ -2910,7 +2910,7 @@ domGles_pipeline_settings::domPoint_size_min::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "point_size_min" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_size_min::create, &meta);
@@ -2921,7 +2921,7 @@ domGles_pipeline_settings::domPoint_size_min::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_size_min , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -2934,7 +2934,7 @@ domGles_pipeline_settings::domPoint_size_min::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_size_min , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -2949,9 +2949,9 @@ domGles_pipeline_settings::domPoint_size_min::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domPoint_size_max::create()
+domGles_pipeline_settings::domPoint_size_max::create(DAE& dae)
 {
-	domGles_pipeline_settings::domPoint_size_maxRef ref = new domGles_pipeline_settings::domPoint_size_max;
+	domGles_pipeline_settings::domPoint_size_maxRef ref = new domGles_pipeline_settings::domPoint_size_max(dae);
 	return ref;
 }
 
@@ -2962,7 +2962,7 @@ domGles_pipeline_settings::domPoint_size_max::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "point_size_max" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_size_max::create, &meta);
@@ -2973,7 +2973,7 @@ domGles_pipeline_settings::domPoint_size_max::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_size_max , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1");
@@ -2986,7 +2986,7 @@ domGles_pipeline_settings::domPoint_size_max::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_size_max , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3001,9 +3001,9 @@ domGles_pipeline_settings::domPoint_size_max::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domPolygon_offset::create()
+domGles_pipeline_settings::domPolygon_offset::create(DAE& dae)
 {
-	domGles_pipeline_settings::domPolygon_offsetRef ref = new domGles_pipeline_settings::domPolygon_offset;
+	domGles_pipeline_settings::domPolygon_offsetRef ref = new domGles_pipeline_settings::domPolygon_offset(dae);
 	return ref;
 }
 
@@ -3014,7 +3014,7 @@ domGles_pipeline_settings::domPolygon_offset::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "polygon_offset" );
 	meta->registerClass(domGles_pipeline_settings::domPolygon_offset::create, &meta);
@@ -3025,7 +3025,7 @@ domGles_pipeline_settings::domPolygon_offset::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPolygon_offset , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0 0");
@@ -3038,7 +3038,7 @@ domGles_pipeline_settings::domPolygon_offset::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPolygon_offset , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3053,9 +3053,9 @@ domGles_pipeline_settings::domPolygon_offset::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domProjection_matrix::create()
+domGles_pipeline_settings::domProjection_matrix::create(DAE& dae)
 {
-	domGles_pipeline_settings::domProjection_matrixRef ref = new domGles_pipeline_settings::domProjection_matrix;
+	domGles_pipeline_settings::domProjection_matrixRef ref = new domGles_pipeline_settings::domProjection_matrix(dae);
 	return ref;
 }
 
@@ -3066,7 +3066,7 @@ domGles_pipeline_settings::domProjection_matrix::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "projection_matrix" );
 	meta->registerClass(domGles_pipeline_settings::domProjection_matrix::create, &meta);
@@ -3077,7 +3077,7 @@ domGles_pipeline_settings::domProjection_matrix::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4x4"));
+		ma->setType( dae.getAtomicTypes().get("Float4x4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domProjection_matrix , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
@@ -3090,7 +3090,7 @@ domGles_pipeline_settings::domProjection_matrix::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domProjection_matrix , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3105,9 +3105,9 @@ domGles_pipeline_settings::domProjection_matrix::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domScissor::create()
+domGles_pipeline_settings::domScissor::create(DAE& dae)
 {
-	domGles_pipeline_settings::domScissorRef ref = new domGles_pipeline_settings::domScissor;
+	domGles_pipeline_settings::domScissorRef ref = new domGles_pipeline_settings::domScissor(dae);
 	return ref;
 }
 
@@ -3118,7 +3118,7 @@ domGles_pipeline_settings::domScissor::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "scissor" );
 	meta->registerClass(domGles_pipeline_settings::domScissor::create, &meta);
@@ -3129,7 +3129,7 @@ domGles_pipeline_settings::domScissor::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Int4"));
+		ma->setType( dae.getAtomicTypes().get("Int4"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domScissor , attrValue ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3141,7 +3141,7 @@ domGles_pipeline_settings::domScissor::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domScissor , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3156,9 +3156,9 @@ domGles_pipeline_settings::domScissor::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domShade_model::create()
+domGles_pipeline_settings::domShade_model::create(DAE& dae)
 {
-	domGles_pipeline_settings::domShade_modelRef ref = new domGles_pipeline_settings::domShade_model;
+	domGles_pipeline_settings::domShade_modelRef ref = new domGles_pipeline_settings::domShade_model(dae);
 	return ref;
 }
 
@@ -3169,7 +3169,7 @@ domGles_pipeline_settings::domShade_model::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "shade_model" );
 	meta->registerClass(domGles_pipeline_settings::domShade_model::create, &meta);
@@ -3180,7 +3180,7 @@ domGles_pipeline_settings::domShade_model::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gl_shade_model_type"));
+		ma->setType( dae.getAtomicTypes().get("Gl_shade_model_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domShade_model , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "SMOOTH");
@@ -3193,7 +3193,7 @@ domGles_pipeline_settings::domShade_model::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domShade_model , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3208,9 +3208,9 @@ domGles_pipeline_settings::domShade_model::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domStencil_func::create()
+domGles_pipeline_settings::domStencil_func::create(DAE& dae)
 {
-	domGles_pipeline_settings::domStencil_funcRef ref = new domGles_pipeline_settings::domStencil_func;
+	domGles_pipeline_settings::domStencil_funcRef ref = new domGles_pipeline_settings::domStencil_func(dae);
 	return ref;
 }
 
@@ -3221,7 +3221,7 @@ domGles_pipeline_settings::domStencil_func::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "stencil_func" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_func::create, &meta);
@@ -3259,9 +3259,9 @@ domGles_pipeline_settings::domStencil_func::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domStencil_func::domFunc::create()
+domGles_pipeline_settings::domStencil_func::domFunc::create(DAE& dae)
 {
-	domGles_pipeline_settings::domStencil_func::domFuncRef ref = new domGles_pipeline_settings::domStencil_func::domFunc;
+	domGles_pipeline_settings::domStencil_func::domFuncRef ref = new domGles_pipeline_settings::domStencil_func::domFunc(dae);
 	return ref;
 }
 
@@ -3272,7 +3272,7 @@ domGles_pipeline_settings::domStencil_func::domFunc::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "func" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_func::domFunc::create, &meta);
@@ -3283,7 +3283,7 @@ domGles_pipeline_settings::domStencil_func::domFunc::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gl_func_type"));
+		ma->setType( dae.getAtomicTypes().get("Gl_func_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_func::domFunc , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "ALWAYS");
@@ -3296,7 +3296,7 @@ domGles_pipeline_settings::domStencil_func::domFunc::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_func::domFunc , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3311,9 +3311,9 @@ domGles_pipeline_settings::domStencil_func::domFunc::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domStencil_func::domRef::create()
+domGles_pipeline_settings::domStencil_func::domRef::create(DAE& dae)
 {
-	domGles_pipeline_settings::domStencil_func::domRefRef ref = new domGles_pipeline_settings::domStencil_func::domRef;
+	domGles_pipeline_settings::domStencil_func::domRefRef ref = new domGles_pipeline_settings::domStencil_func::domRef(dae);
 	return ref;
 }
 
@@ -3324,7 +3324,7 @@ domGles_pipeline_settings::domStencil_func::domRef::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "ref" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_func::domRef::create, &meta);
@@ -3335,7 +3335,7 @@ domGles_pipeline_settings::domStencil_func::domRef::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("xsUnsignedByte"));
+		ma->setType( dae.getAtomicTypes().get("xsUnsignedByte"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_func::domRef , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -3348,7 +3348,7 @@ domGles_pipeline_settings::domStencil_func::domRef::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_func::domRef , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3363,9 +3363,9 @@ domGles_pipeline_settings::domStencil_func::domRef::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domStencil_func::domMask::create()
+domGles_pipeline_settings::domStencil_func::domMask::create(DAE& dae)
 {
-	domGles_pipeline_settings::domStencil_func::domMaskRef ref = new domGles_pipeline_settings::domStencil_func::domMask;
+	domGles_pipeline_settings::domStencil_func::domMaskRef ref = new domGles_pipeline_settings::domStencil_func::domMask(dae);
 	return ref;
 }
 
@@ -3376,7 +3376,7 @@ domGles_pipeline_settings::domStencil_func::domMask::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "mask" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_func::domMask::create, &meta);
@@ -3387,7 +3387,7 @@ domGles_pipeline_settings::domStencil_func::domMask::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("xsUnsignedByte"));
+		ma->setType( dae.getAtomicTypes().get("xsUnsignedByte"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_func::domMask , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "255");
@@ -3400,7 +3400,7 @@ domGles_pipeline_settings::domStencil_func::domMask::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_func::domMask , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3415,9 +3415,9 @@ domGles_pipeline_settings::domStencil_func::domMask::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domStencil_mask::create()
+domGles_pipeline_settings::domStencil_mask::create(DAE& dae)
 {
-	domGles_pipeline_settings::domStencil_maskRef ref = new domGles_pipeline_settings::domStencil_mask;
+	domGles_pipeline_settings::domStencil_maskRef ref = new domGles_pipeline_settings::domStencil_mask(dae);
 	return ref;
 }
 
@@ -3428,7 +3428,7 @@ domGles_pipeline_settings::domStencil_mask::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "stencil_mask" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_mask::create, &meta);
@@ -3439,7 +3439,7 @@ domGles_pipeline_settings::domStencil_mask::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Int"));
+		ma->setType( dae.getAtomicTypes().get("Int"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_mask , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "4294967295");
@@ -3452,7 +3452,7 @@ domGles_pipeline_settings::domStencil_mask::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_mask , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3467,9 +3467,9 @@ domGles_pipeline_settings::domStencil_mask::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domStencil_op::create()
+domGles_pipeline_settings::domStencil_op::create(DAE& dae)
 {
-	domGles_pipeline_settings::domStencil_opRef ref = new domGles_pipeline_settings::domStencil_op;
+	domGles_pipeline_settings::domStencil_opRef ref = new domGles_pipeline_settings::domStencil_op(dae);
 	return ref;
 }
 
@@ -3480,7 +3480,7 @@ domGles_pipeline_settings::domStencil_op::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "stencil_op" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_op::create, &meta);
@@ -3518,9 +3518,9 @@ domGles_pipeline_settings::domStencil_op::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domStencil_op::domFail::create()
+domGles_pipeline_settings::domStencil_op::domFail::create(DAE& dae)
 {
-	domGles_pipeline_settings::domStencil_op::domFailRef ref = new domGles_pipeline_settings::domStencil_op::domFail;
+	domGles_pipeline_settings::domStencil_op::domFailRef ref = new domGles_pipeline_settings::domStencil_op::domFail(dae);
 	return ref;
 }
 
@@ -3531,7 +3531,7 @@ domGles_pipeline_settings::domStencil_op::domFail::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fail" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_op::domFail::create, &meta);
@@ -3542,7 +3542,7 @@ domGles_pipeline_settings::domStencil_op::domFail::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gles_stencil_op_type"));
+		ma->setType( dae.getAtomicTypes().get("Gles_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_op::domFail , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "KEEP");
@@ -3555,7 +3555,7 @@ domGles_pipeline_settings::domStencil_op::domFail::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_op::domFail , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3570,9 +3570,9 @@ domGles_pipeline_settings::domStencil_op::domFail::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domStencil_op::domZfail::create()
+domGles_pipeline_settings::domStencil_op::domZfail::create(DAE& dae)
 {
-	domGles_pipeline_settings::domStencil_op::domZfailRef ref = new domGles_pipeline_settings::domStencil_op::domZfail;
+	domGles_pipeline_settings::domStencil_op::domZfailRef ref = new domGles_pipeline_settings::domStencil_op::domZfail(dae);
 	return ref;
 }
 
@@ -3583,7 +3583,7 @@ domGles_pipeline_settings::domStencil_op::domZfail::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "zfail" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_op::domZfail::create, &meta);
@@ -3594,7 +3594,7 @@ domGles_pipeline_settings::domStencil_op::domZfail::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gles_stencil_op_type"));
+		ma->setType( dae.getAtomicTypes().get("Gles_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_op::domZfail , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "KEEP");
@@ -3607,7 +3607,7 @@ domGles_pipeline_settings::domStencil_op::domZfail::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_op::domZfail , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3622,9 +3622,9 @@ domGles_pipeline_settings::domStencil_op::domZfail::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domStencil_op::domZpass::create()
+domGles_pipeline_settings::domStencil_op::domZpass::create(DAE& dae)
 {
-	domGles_pipeline_settings::domStencil_op::domZpassRef ref = new domGles_pipeline_settings::domStencil_op::domZpass;
+	domGles_pipeline_settings::domStencil_op::domZpassRef ref = new domGles_pipeline_settings::domStencil_op::domZpass(dae);
 	return ref;
 }
 
@@ -3635,7 +3635,7 @@ domGles_pipeline_settings::domStencil_op::domZpass::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "zpass" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_op::domZpass::create, &meta);
@@ -3646,7 +3646,7 @@ domGles_pipeline_settings::domStencil_op::domZpass::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Gles_stencil_op_type"));
+		ma->setType( dae.getAtomicTypes().get("Gles_stencil_op_type"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_op::domZpass , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "KEEP");
@@ -3659,7 +3659,7 @@ domGles_pipeline_settings::domStencil_op::domZpass::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_op::domZpass , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3674,9 +3674,9 @@ domGles_pipeline_settings::domStencil_op::domZpass::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domAlpha_test_enable::create()
+domGles_pipeline_settings::domAlpha_test_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domAlpha_test_enableRef ref = new domGles_pipeline_settings::domAlpha_test_enable;
+	domGles_pipeline_settings::domAlpha_test_enableRef ref = new domGles_pipeline_settings::domAlpha_test_enable(dae);
 	return ref;
 }
 
@@ -3687,7 +3687,7 @@ domGles_pipeline_settings::domAlpha_test_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "alpha_test_enable" );
 	meta->registerClass(domGles_pipeline_settings::domAlpha_test_enable::create, &meta);
@@ -3698,7 +3698,7 @@ domGles_pipeline_settings::domAlpha_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domAlpha_test_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -3711,7 +3711,7 @@ domGles_pipeline_settings::domAlpha_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domAlpha_test_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3726,9 +3726,9 @@ domGles_pipeline_settings::domAlpha_test_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domBlend_enable::create()
+domGles_pipeline_settings::domBlend_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domBlend_enableRef ref = new domGles_pipeline_settings::domBlend_enable;
+	domGles_pipeline_settings::domBlend_enableRef ref = new domGles_pipeline_settings::domBlend_enable(dae);
 	return ref;
 }
 
@@ -3739,7 +3739,7 @@ domGles_pipeline_settings::domBlend_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "blend_enable" );
 	meta->registerClass(domGles_pipeline_settings::domBlend_enable::create, &meta);
@@ -3750,7 +3750,7 @@ domGles_pipeline_settings::domBlend_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domBlend_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -3763,7 +3763,7 @@ domGles_pipeline_settings::domBlend_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domBlend_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3778,9 +3778,9 @@ domGles_pipeline_settings::domBlend_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domClip_plane_enable::create()
+domGles_pipeline_settings::domClip_plane_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domClip_plane_enableRef ref = new domGles_pipeline_settings::domClip_plane_enable;
+	domGles_pipeline_settings::domClip_plane_enableRef ref = new domGles_pipeline_settings::domClip_plane_enable(dae);
 	return ref;
 }
 
@@ -3791,7 +3791,7 @@ domGles_pipeline_settings::domClip_plane_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "clip_plane_enable" );
 	meta->registerClass(domGles_pipeline_settings::domClip_plane_enable::create, &meta);
@@ -3802,7 +3802,7 @@ domGles_pipeline_settings::domClip_plane_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClip_plane_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -3815,7 +3815,7 @@ domGles_pipeline_settings::domClip_plane_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClip_plane_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3827,7 +3827,7 @@ domGles_pipeline_settings::domClip_plane_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_CLIP_PLANES_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_CLIP_PLANES_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domClip_plane_enable , attrIndex ));
 		ma->setContainer( meta );
 	
@@ -3841,9 +3841,9 @@ domGles_pipeline_settings::domClip_plane_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domColor_logic_op_enable::create()
+domGles_pipeline_settings::domColor_logic_op_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domColor_logic_op_enableRef ref = new domGles_pipeline_settings::domColor_logic_op_enable;
+	domGles_pipeline_settings::domColor_logic_op_enableRef ref = new domGles_pipeline_settings::domColor_logic_op_enable(dae);
 	return ref;
 }
 
@@ -3854,7 +3854,7 @@ domGles_pipeline_settings::domColor_logic_op_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "color_logic_op_enable" );
 	meta->registerClass(domGles_pipeline_settings::domColor_logic_op_enable::create, &meta);
@@ -3865,7 +3865,7 @@ domGles_pipeline_settings::domColor_logic_op_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domColor_logic_op_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -3878,7 +3878,7 @@ domGles_pipeline_settings::domColor_logic_op_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domColor_logic_op_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3893,9 +3893,9 @@ domGles_pipeline_settings::domColor_logic_op_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domColor_material_enable::create()
+domGles_pipeline_settings::domColor_material_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domColor_material_enableRef ref = new domGles_pipeline_settings::domColor_material_enable;
+	domGles_pipeline_settings::domColor_material_enableRef ref = new domGles_pipeline_settings::domColor_material_enable(dae);
 	return ref;
 }
 
@@ -3906,7 +3906,7 @@ domGles_pipeline_settings::domColor_material_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "color_material_enable" );
 	meta->registerClass(domGles_pipeline_settings::domColor_material_enable::create, &meta);
@@ -3917,7 +3917,7 @@ domGles_pipeline_settings::domColor_material_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domColor_material_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "true");
@@ -3930,7 +3930,7 @@ domGles_pipeline_settings::domColor_material_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domColor_material_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3945,9 +3945,9 @@ domGles_pipeline_settings::domColor_material_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domCull_face_enable::create()
+domGles_pipeline_settings::domCull_face_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domCull_face_enableRef ref = new domGles_pipeline_settings::domCull_face_enable;
+	domGles_pipeline_settings::domCull_face_enableRef ref = new domGles_pipeline_settings::domCull_face_enable(dae);
 	return ref;
 }
 
@@ -3958,7 +3958,7 @@ domGles_pipeline_settings::domCull_face_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "cull_face_enable" );
 	meta->registerClass(domGles_pipeline_settings::domCull_face_enable::create, &meta);
@@ -3969,7 +3969,7 @@ domGles_pipeline_settings::domCull_face_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domCull_face_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -3982,7 +3982,7 @@ domGles_pipeline_settings::domCull_face_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domCull_face_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -3997,9 +3997,9 @@ domGles_pipeline_settings::domCull_face_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domDepth_test_enable::create()
+domGles_pipeline_settings::domDepth_test_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domDepth_test_enableRef ref = new domGles_pipeline_settings::domDepth_test_enable;
+	domGles_pipeline_settings::domDepth_test_enableRef ref = new domGles_pipeline_settings::domDepth_test_enable(dae);
 	return ref;
 }
 
@@ -4010,7 +4010,7 @@ domGles_pipeline_settings::domDepth_test_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "depth_test_enable" );
 	meta->registerClass(domGles_pipeline_settings::domDepth_test_enable::create, &meta);
@@ -4021,7 +4021,7 @@ domGles_pipeline_settings::domDepth_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_test_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4034,7 +4034,7 @@ domGles_pipeline_settings::domDepth_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDepth_test_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4049,9 +4049,9 @@ domGles_pipeline_settings::domDepth_test_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domDither_enable::create()
+domGles_pipeline_settings::domDither_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domDither_enableRef ref = new domGles_pipeline_settings::domDither_enable;
+	domGles_pipeline_settings::domDither_enableRef ref = new domGles_pipeline_settings::domDither_enable(dae);
 	return ref;
 }
 
@@ -4062,7 +4062,7 @@ domGles_pipeline_settings::domDither_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "dither_enable" );
 	meta->registerClass(domGles_pipeline_settings::domDither_enable::create, &meta);
@@ -4073,7 +4073,7 @@ domGles_pipeline_settings::domDither_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDither_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4086,7 +4086,7 @@ domGles_pipeline_settings::domDither_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domDither_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4101,9 +4101,9 @@ domGles_pipeline_settings::domDither_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domFog_enable::create()
+domGles_pipeline_settings::domFog_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domFog_enableRef ref = new domGles_pipeline_settings::domFog_enable;
+	domGles_pipeline_settings::domFog_enableRef ref = new domGles_pipeline_settings::domFog_enable(dae);
 	return ref;
 }
 
@@ -4114,7 +4114,7 @@ domGles_pipeline_settings::domFog_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fog_enable" );
 	meta->registerClass(domGles_pipeline_settings::domFog_enable::create, &meta);
@@ -4125,7 +4125,7 @@ domGles_pipeline_settings::domFog_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4138,7 +4138,7 @@ domGles_pipeline_settings::domFog_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domFog_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4153,9 +4153,9 @@ domGles_pipeline_settings::domFog_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domTexture_pipeline_enable::create()
+domGles_pipeline_settings::domTexture_pipeline_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domTexture_pipeline_enableRef ref = new domGles_pipeline_settings::domTexture_pipeline_enable;
+	domGles_pipeline_settings::domTexture_pipeline_enableRef ref = new domGles_pipeline_settings::domTexture_pipeline_enable(dae);
 	return ref;
 }
 
@@ -4166,7 +4166,7 @@ domGles_pipeline_settings::domTexture_pipeline_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "texture_pipeline_enable" );
 	meta->registerClass(domGles_pipeline_settings::domTexture_pipeline_enable::create, &meta);
@@ -4177,7 +4177,7 @@ domGles_pipeline_settings::domTexture_pipeline_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domTexture_pipeline_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4190,7 +4190,7 @@ domGles_pipeline_settings::domTexture_pipeline_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domTexture_pipeline_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4205,9 +4205,9 @@ domGles_pipeline_settings::domTexture_pipeline_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_enable::create()
+domGles_pipeline_settings::domLight_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_enableRef ref = new domGles_pipeline_settings::domLight_enable;
+	domGles_pipeline_settings::domLight_enableRef ref = new domGles_pipeline_settings::domLight_enable(dae);
 	return ref;
 }
 
@@ -4218,7 +4218,7 @@ domGles_pipeline_settings::domLight_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_enable" );
 	meta->registerClass(domGles_pipeline_settings::domLight_enable::create, &meta);
@@ -4229,7 +4229,7 @@ domGles_pipeline_settings::domLight_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4242,7 +4242,7 @@ domGles_pipeline_settings::domLight_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4254,7 +4254,7 @@ domGles_pipeline_settings::domLight_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("GLES_MAX_LIGHTS_index"));
+		ma->setType( dae.getAtomicTypes().get("GLES_MAX_LIGHTS_index"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_enable , attrIndex ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -4269,9 +4269,9 @@ domGles_pipeline_settings::domLight_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLighting_enable::create()
+domGles_pipeline_settings::domLighting_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLighting_enableRef ref = new domGles_pipeline_settings::domLighting_enable;
+	domGles_pipeline_settings::domLighting_enableRef ref = new domGles_pipeline_settings::domLighting_enable(dae);
 	return ref;
 }
 
@@ -4282,7 +4282,7 @@ domGles_pipeline_settings::domLighting_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "lighting_enable" );
 	meta->registerClass(domGles_pipeline_settings::domLighting_enable::create, &meta);
@@ -4293,7 +4293,7 @@ domGles_pipeline_settings::domLighting_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLighting_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4306,7 +4306,7 @@ domGles_pipeline_settings::domLighting_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLighting_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4321,9 +4321,9 @@ domGles_pipeline_settings::domLighting_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domLight_model_two_side_enable::create()
+domGles_pipeline_settings::domLight_model_two_side_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLight_model_two_side_enableRef ref = new domGles_pipeline_settings::domLight_model_two_side_enable;
+	domGles_pipeline_settings::domLight_model_two_side_enableRef ref = new domGles_pipeline_settings::domLight_model_two_side_enable(dae);
 	return ref;
 }
 
@@ -4334,7 +4334,7 @@ domGles_pipeline_settings::domLight_model_two_side_enable::registerElement(DAE& 
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light_model_two_side_enable" );
 	meta->registerClass(domGles_pipeline_settings::domLight_model_two_side_enable::create, &meta);
@@ -4345,7 +4345,7 @@ domGles_pipeline_settings::domLight_model_two_side_enable::registerElement(DAE& 
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_model_two_side_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4358,7 +4358,7 @@ domGles_pipeline_settings::domLight_model_two_side_enable::registerElement(DAE& 
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLight_model_two_side_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4373,9 +4373,9 @@ domGles_pipeline_settings::domLight_model_two_side_enable::registerElement(DAE& 
 }
 
 daeElementRef
-domGles_pipeline_settings::domLine_smooth_enable::create()
+domGles_pipeline_settings::domLine_smooth_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domLine_smooth_enableRef ref = new domGles_pipeline_settings::domLine_smooth_enable;
+	domGles_pipeline_settings::domLine_smooth_enableRef ref = new domGles_pipeline_settings::domLine_smooth_enable(dae);
 	return ref;
 }
 
@@ -4386,7 +4386,7 @@ domGles_pipeline_settings::domLine_smooth_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "line_smooth_enable" );
 	meta->registerClass(domGles_pipeline_settings::domLine_smooth_enable::create, &meta);
@@ -4397,7 +4397,7 @@ domGles_pipeline_settings::domLine_smooth_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLine_smooth_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4410,7 +4410,7 @@ domGles_pipeline_settings::domLine_smooth_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domLine_smooth_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4425,9 +4425,9 @@ domGles_pipeline_settings::domLine_smooth_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domMultisample_enable::create()
+domGles_pipeline_settings::domMultisample_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domMultisample_enableRef ref = new domGles_pipeline_settings::domMultisample_enable;
+	domGles_pipeline_settings::domMultisample_enableRef ref = new domGles_pipeline_settings::domMultisample_enable(dae);
 	return ref;
 }
 
@@ -4438,7 +4438,7 @@ domGles_pipeline_settings::domMultisample_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "multisample_enable" );
 	meta->registerClass(domGles_pipeline_settings::domMultisample_enable::create, &meta);
@@ -4449,7 +4449,7 @@ domGles_pipeline_settings::domMultisample_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMultisample_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4462,7 +4462,7 @@ domGles_pipeline_settings::domMultisample_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domMultisample_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4477,9 +4477,9 @@ domGles_pipeline_settings::domMultisample_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domNormalize_enable::create()
+domGles_pipeline_settings::domNormalize_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domNormalize_enableRef ref = new domGles_pipeline_settings::domNormalize_enable;
+	domGles_pipeline_settings::domNormalize_enableRef ref = new domGles_pipeline_settings::domNormalize_enable(dae);
 	return ref;
 }
 
@@ -4490,7 +4490,7 @@ domGles_pipeline_settings::domNormalize_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "normalize_enable" );
 	meta->registerClass(domGles_pipeline_settings::domNormalize_enable::create, &meta);
@@ -4501,7 +4501,7 @@ domGles_pipeline_settings::domNormalize_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domNormalize_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4514,7 +4514,7 @@ domGles_pipeline_settings::domNormalize_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domNormalize_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4529,9 +4529,9 @@ domGles_pipeline_settings::domNormalize_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domPoint_smooth_enable::create()
+domGles_pipeline_settings::domPoint_smooth_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domPoint_smooth_enableRef ref = new domGles_pipeline_settings::domPoint_smooth_enable;
+	domGles_pipeline_settings::domPoint_smooth_enableRef ref = new domGles_pipeline_settings::domPoint_smooth_enable(dae);
 	return ref;
 }
 
@@ -4542,7 +4542,7 @@ domGles_pipeline_settings::domPoint_smooth_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "point_smooth_enable" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_smooth_enable::create, &meta);
@@ -4553,7 +4553,7 @@ domGles_pipeline_settings::domPoint_smooth_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_smooth_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4566,7 +4566,7 @@ domGles_pipeline_settings::domPoint_smooth_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPoint_smooth_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4581,9 +4581,9 @@ domGles_pipeline_settings::domPoint_smooth_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domPolygon_offset_fill_enable::create()
+domGles_pipeline_settings::domPolygon_offset_fill_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domPolygon_offset_fill_enableRef ref = new domGles_pipeline_settings::domPolygon_offset_fill_enable;
+	domGles_pipeline_settings::domPolygon_offset_fill_enableRef ref = new domGles_pipeline_settings::domPolygon_offset_fill_enable(dae);
 	return ref;
 }
 
@@ -4594,7 +4594,7 @@ domGles_pipeline_settings::domPolygon_offset_fill_enable::registerElement(DAE& d
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "polygon_offset_fill_enable" );
 	meta->registerClass(domGles_pipeline_settings::domPolygon_offset_fill_enable::create, &meta);
@@ -4605,7 +4605,7 @@ domGles_pipeline_settings::domPolygon_offset_fill_enable::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPolygon_offset_fill_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4618,7 +4618,7 @@ domGles_pipeline_settings::domPolygon_offset_fill_enable::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domPolygon_offset_fill_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4633,9 +4633,9 @@ domGles_pipeline_settings::domPolygon_offset_fill_enable::registerElement(DAE& d
 }
 
 daeElementRef
-domGles_pipeline_settings::domRescale_normal_enable::create()
+domGles_pipeline_settings::domRescale_normal_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domRescale_normal_enableRef ref = new domGles_pipeline_settings::domRescale_normal_enable;
+	domGles_pipeline_settings::domRescale_normal_enableRef ref = new domGles_pipeline_settings::domRescale_normal_enable(dae);
 	return ref;
 }
 
@@ -4646,7 +4646,7 @@ domGles_pipeline_settings::domRescale_normal_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "rescale_normal_enable" );
 	meta->registerClass(domGles_pipeline_settings::domRescale_normal_enable::create, &meta);
@@ -4657,7 +4657,7 @@ domGles_pipeline_settings::domRescale_normal_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domRescale_normal_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4670,7 +4670,7 @@ domGles_pipeline_settings::domRescale_normal_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domRescale_normal_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4685,9 +4685,9 @@ domGles_pipeline_settings::domRescale_normal_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domSample_alpha_to_coverage_enable::create()
+domGles_pipeline_settings::domSample_alpha_to_coverage_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domSample_alpha_to_coverage_enableRef ref = new domGles_pipeline_settings::domSample_alpha_to_coverage_enable;
+	domGles_pipeline_settings::domSample_alpha_to_coverage_enableRef ref = new domGles_pipeline_settings::domSample_alpha_to_coverage_enable(dae);
 	return ref;
 }
 
@@ -4698,7 +4698,7 @@ domGles_pipeline_settings::domSample_alpha_to_coverage_enable::registerElement(D
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "sample_alpha_to_coverage_enable" );
 	meta->registerClass(domGles_pipeline_settings::domSample_alpha_to_coverage_enable::create, &meta);
@@ -4709,7 +4709,7 @@ domGles_pipeline_settings::domSample_alpha_to_coverage_enable::registerElement(D
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domSample_alpha_to_coverage_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4722,7 +4722,7 @@ domGles_pipeline_settings::domSample_alpha_to_coverage_enable::registerElement(D
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domSample_alpha_to_coverage_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4737,9 +4737,9 @@ domGles_pipeline_settings::domSample_alpha_to_coverage_enable::registerElement(D
 }
 
 daeElementRef
-domGles_pipeline_settings::domSample_alpha_to_one_enable::create()
+domGles_pipeline_settings::domSample_alpha_to_one_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domSample_alpha_to_one_enableRef ref = new domGles_pipeline_settings::domSample_alpha_to_one_enable;
+	domGles_pipeline_settings::domSample_alpha_to_one_enableRef ref = new domGles_pipeline_settings::domSample_alpha_to_one_enable(dae);
 	return ref;
 }
 
@@ -4750,7 +4750,7 @@ domGles_pipeline_settings::domSample_alpha_to_one_enable::registerElement(DAE& d
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "sample_alpha_to_one_enable" );
 	meta->registerClass(domGles_pipeline_settings::domSample_alpha_to_one_enable::create, &meta);
@@ -4761,7 +4761,7 @@ domGles_pipeline_settings::domSample_alpha_to_one_enable::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domSample_alpha_to_one_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4774,7 +4774,7 @@ domGles_pipeline_settings::domSample_alpha_to_one_enable::registerElement(DAE& d
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domSample_alpha_to_one_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4789,9 +4789,9 @@ domGles_pipeline_settings::domSample_alpha_to_one_enable::registerElement(DAE& d
 }
 
 daeElementRef
-domGles_pipeline_settings::domSample_coverage_enable::create()
+domGles_pipeline_settings::domSample_coverage_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domSample_coverage_enableRef ref = new domGles_pipeline_settings::domSample_coverage_enable;
+	domGles_pipeline_settings::domSample_coverage_enableRef ref = new domGles_pipeline_settings::domSample_coverage_enable(dae);
 	return ref;
 }
 
@@ -4802,7 +4802,7 @@ domGles_pipeline_settings::domSample_coverage_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "sample_coverage_enable" );
 	meta->registerClass(domGles_pipeline_settings::domSample_coverage_enable::create, &meta);
@@ -4813,7 +4813,7 @@ domGles_pipeline_settings::domSample_coverage_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domSample_coverage_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4826,7 +4826,7 @@ domGles_pipeline_settings::domSample_coverage_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domSample_coverage_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4841,9 +4841,9 @@ domGles_pipeline_settings::domSample_coverage_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domScissor_test_enable::create()
+domGles_pipeline_settings::domScissor_test_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domScissor_test_enableRef ref = new domGles_pipeline_settings::domScissor_test_enable;
+	domGles_pipeline_settings::domScissor_test_enableRef ref = new domGles_pipeline_settings::domScissor_test_enable(dae);
 	return ref;
 }
 
@@ -4854,7 +4854,7 @@ domGles_pipeline_settings::domScissor_test_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "scissor_test_enable" );
 	meta->registerClass(domGles_pipeline_settings::domScissor_test_enable::create, &meta);
@@ -4865,7 +4865,7 @@ domGles_pipeline_settings::domScissor_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domScissor_test_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4878,7 +4878,7 @@ domGles_pipeline_settings::domScissor_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domScissor_test_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -4893,9 +4893,9 @@ domGles_pipeline_settings::domScissor_test_enable::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_pipeline_settings::domStencil_test_enable::create()
+domGles_pipeline_settings::domStencil_test_enable::create(DAE& dae)
 {
-	domGles_pipeline_settings::domStencil_test_enableRef ref = new domGles_pipeline_settings::domStencil_test_enable;
+	domGles_pipeline_settings::domStencil_test_enableRef ref = new domGles_pipeline_settings::domStencil_test_enable(dae);
 	return ref;
 }
 
@@ -4906,7 +4906,7 @@ domGles_pipeline_settings::domStencil_test_enable::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "stencil_test_enable" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_test_enable::create, &meta);
@@ -4917,7 +4917,7 @@ domGles_pipeline_settings::domStencil_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_test_enable , attrValue ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "false");
@@ -4930,7 +4930,7 @@ domGles_pipeline_settings::domStencil_test_enable::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_pipeline_settings::domStencil_test_enable , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );

@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domConvex_mesh::create()
+domConvex_mesh::create(DAE& dae)
 {
-	domConvex_meshRef ref = new domConvex_mesh;
+	domConvex_meshRef ref = new domConvex_mesh(dae);
 	ref->attrConvex_hull_of.setContainer( (domConvex_mesh*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domConvex_mesh::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "convex_mesh" );
 	meta->registerClass(domConvex_mesh::create, &meta);
@@ -122,7 +122,7 @@ domConvex_mesh::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "convex_hull_of" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domConvex_mesh , attrConvex_hull_of ));
 		ma->setContainer( meta );
 	

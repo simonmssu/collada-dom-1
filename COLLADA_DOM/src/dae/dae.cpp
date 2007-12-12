@@ -135,7 +135,7 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 		defaultPlugin = true;
 #else
 #ifdef DOM_INCLUDE_LIBXML
-		plugin = new daeLIBXMLPlugin;
+		plugin = new daeLIBXMLPlugin(*this);
 		defaultPlugin = true;
 #else
 #ifdef DOM_INCLUDE_TINYXML
@@ -445,6 +445,10 @@ daeMetaElement* DAE::getMeta(int typeID) {
 	if (index < 0 || index >= int(metas.getCount()))
 		return NULL;
 	return metas[index];
+}
+
+daeMetaElementRefArray& DAE::getAllMetas() {
+	return metas;
 }
 
 void DAE::setMeta(int typeID, daeMetaElement& meta) {

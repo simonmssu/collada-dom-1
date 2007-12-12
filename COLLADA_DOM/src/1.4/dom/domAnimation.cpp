@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domAnimation::create()
+domAnimation::create(DAE& dae)
 {
-	domAnimationRef ref = new domAnimation;
+	domAnimationRef ref = new domAnimation(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domAnimation::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "animation" );
 	meta->registerClass(domAnimation::create, &meta);
@@ -151,7 +151,7 @@ domAnimation::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domAnimation , attrId ));
 		ma->setContainer( meta );
 	
@@ -162,7 +162,7 @@ domAnimation::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domAnimation , attrName ));
 		ma->setContainer( meta );
 	

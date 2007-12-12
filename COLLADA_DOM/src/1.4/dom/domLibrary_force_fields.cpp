@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_force_fields::create()
+domLibrary_force_fields::create(DAE& dae)
 {
-	domLibrary_force_fieldsRef ref = new domLibrary_force_fields;
+	domLibrary_force_fieldsRef ref = new domLibrary_force_fields(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domLibrary_force_fields::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "library_force_fields" );
 	meta->registerClass(domLibrary_force_fields::create, &meta);
@@ -69,7 +69,7 @@ domLibrary_force_fields::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domLibrary_force_fields , attrId ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domLibrary_force_fields::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLibrary_force_fields , attrName ));
 		ma->setContainer( meta );
 	

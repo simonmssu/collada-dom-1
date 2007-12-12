@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domForce_field::create()
+domForce_field::create(DAE& dae)
 {
-	domForce_fieldRef ref = new domForce_field;
+	domForce_fieldRef ref = new domForce_field(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domForce_field::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "force_field" );
 	meta->registerClass(domForce_field::create, &meta);
@@ -69,7 +69,7 @@ domForce_field::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domForce_field , attrId ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domForce_field::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domForce_field , attrName ));
 		ma->setContainer( meta );
 	

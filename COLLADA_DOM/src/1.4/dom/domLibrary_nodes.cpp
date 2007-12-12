@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_nodes::create()
+domLibrary_nodes::create(DAE& dae)
 {
-	domLibrary_nodesRef ref = new domLibrary_nodes;
+	domLibrary_nodesRef ref = new domLibrary_nodes(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domLibrary_nodes::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "library_nodes" );
 	meta->registerClass(domLibrary_nodes::create, &meta);
@@ -69,7 +69,7 @@ domLibrary_nodes::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domLibrary_nodes , attrId ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domLibrary_nodes::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLibrary_nodes , attrName ));
 		ma->setContainer( meta );
 	

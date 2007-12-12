@@ -17,6 +17,6 @@
 
 daeMetaElement* initializeDomMeta(DAE& dae)
 {
-	registerDomTypes(dae.getAtomicTypes());
+	registerDomTypes(dae);
 	return registerDomElements(dae);
 }

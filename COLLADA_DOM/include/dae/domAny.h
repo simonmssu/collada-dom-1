@@ -99,7 +99,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domAny() {}
+	virtual ~domAny();
 	/**
 	 * Copy Constructor
 	 */
@@ -131,7 +131,7 @@ public: // STATIC METHODS
 	 * @remarks Unlike other dom* elements, domAny will always create a new daeMetaElement when this 
 	 *          function is called. 
 	 */
-	static DLLSPEC daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 
 };
 

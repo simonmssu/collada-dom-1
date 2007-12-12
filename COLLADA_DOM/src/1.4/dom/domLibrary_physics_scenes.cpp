@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_physics_scenes::create()
+domLibrary_physics_scenes::create(DAE& dae)
 {
-	domLibrary_physics_scenesRef ref = new domLibrary_physics_scenes;
+	domLibrary_physics_scenesRef ref = new domLibrary_physics_scenes(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domLibrary_physics_scenes::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "library_physics_scenes" );
 	meta->registerClass(domLibrary_physics_scenes::create, &meta);
@@ -69,7 +69,7 @@ domLibrary_physics_scenes::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domLibrary_physics_scenes , attrId ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domLibrary_physics_scenes::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLibrary_physics_scenes , attrName ));
 		ma->setContainer( meta );
 	

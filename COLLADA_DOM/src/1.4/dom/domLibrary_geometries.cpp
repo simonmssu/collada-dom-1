@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLibrary_geometries::create()
+domLibrary_geometries::create(DAE& dae)
 {
-	domLibrary_geometriesRef ref = new domLibrary_geometries;
+	domLibrary_geometriesRef ref = new domLibrary_geometries(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domLibrary_geometries::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "library_geometries" );
 	meta->registerClass(domLibrary_geometries::create, &meta);
@@ -69,7 +69,7 @@ domLibrary_geometries::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domLibrary_geometries , attrId ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domLibrary_geometries::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLibrary_geometries , attrName ));
 		ma->setContainer( meta );
 	

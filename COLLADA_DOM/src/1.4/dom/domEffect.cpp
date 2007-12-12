@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domEffect::create()
+domEffect::create(DAE& dae)
 {
-	domEffectRef ref = new domEffect;
+	domEffectRef ref = new domEffect(dae);
 	return ref;
 }
 
@@ -39,7 +39,7 @@ domEffect::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "effect" );
 	meta->registerClass(domEffect::create, &meta);
@@ -123,7 +123,7 @@ domEffect::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domEffect , attrId ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -135,7 +135,7 @@ domEffect::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domEffect , attrName ));
 		ma->setContainer( meta );
 	

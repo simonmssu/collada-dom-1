@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCommon_color_or_texture_type::create()
+domCommon_color_or_texture_type::create(DAE& dae)
 {
-	domCommon_color_or_texture_typeRef ref = new domCommon_color_or_texture_type;
+	domCommon_color_or_texture_typeRef ref = new domCommon_color_or_texture_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCommon_color_or_texture_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "common_color_or_texture_type" );
 	meta->registerClass(domCommon_color_or_texture_type::create, &meta);
@@ -76,9 +76,9 @@ domCommon_color_or_texture_type::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCommon_color_or_texture_type::domColor::create()
+domCommon_color_or_texture_type::domColor::create(DAE& dae)
 {
-	domCommon_color_or_texture_type::domColorRef ref = new domCommon_color_or_texture_type::domColor;
+	domCommon_color_or_texture_type::domColorRef ref = new domCommon_color_or_texture_type::domColor(dae);
 	return ref;
 }
 
@@ -89,7 +89,7 @@ domCommon_color_or_texture_type::domColor::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "color" );
 	meta->registerClass(domCommon_color_or_texture_type::domColor::create, &meta);
@@ -99,7 +99,7 @@ domCommon_color_or_texture_type::domColor::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_color_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_color_common"));
 		ma->setOffset( daeOffsetOf( domCommon_color_or_texture_type::domColor , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -109,7 +109,7 @@ domCommon_color_or_texture_type::domColor::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCommon_color_or_texture_type::domColor , attrSid ));
 		ma->setContainer( meta );
 	
@@ -123,9 +123,9 @@ domCommon_color_or_texture_type::domColor::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCommon_color_or_texture_type::domParam::create()
+domCommon_color_or_texture_type::domParam::create(DAE& dae)
 {
-	domCommon_color_or_texture_type::domParamRef ref = new domCommon_color_or_texture_type::domParam;
+	domCommon_color_or_texture_type::domParamRef ref = new domCommon_color_or_texture_type::domParam(dae);
 	return ref;
 }
 
@@ -136,7 +136,7 @@ domCommon_color_or_texture_type::domParam::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "param" );
 	meta->registerClass(domCommon_color_or_texture_type::domParam::create, &meta);
@@ -147,7 +147,7 @@ domCommon_color_or_texture_type::domParam::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCommon_color_or_texture_type::domParam , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -162,9 +162,9 @@ domCommon_color_or_texture_type::domParam::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCommon_color_or_texture_type::domTexture::create()
+domCommon_color_or_texture_type::domTexture::create(DAE& dae)
 {
-	domCommon_color_or_texture_type::domTextureRef ref = new domCommon_color_or_texture_type::domTexture;
+	domCommon_color_or_texture_type::domTextureRef ref = new domCommon_color_or_texture_type::domTexture(dae);
 	return ref;
 }
 
@@ -175,7 +175,7 @@ domCommon_color_or_texture_type::domTexture::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "texture" );
 	meta->registerClass(domCommon_color_or_texture_type::domTexture::create, &meta);
@@ -198,7 +198,7 @@ domCommon_color_or_texture_type::domTexture::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "texture" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCommon_color_or_texture_type::domTexture , attrTexture ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -210,7 +210,7 @@ domCommon_color_or_texture_type::domTexture::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "texcoord" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCommon_color_or_texture_type::domTexture , attrTexcoord ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

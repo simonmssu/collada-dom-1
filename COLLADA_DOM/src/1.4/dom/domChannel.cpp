@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domChannel::create()
+domChannel::create(DAE& dae)
 {
-	domChannelRef ref = new domChannel;
+	domChannelRef ref = new domChannel(dae);
 	ref->attrSource.setContainer( (domChannel*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domChannel::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "channel" );
 	meta->registerClass(domChannel::create, &meta);
@@ -46,7 +46,7 @@ domChannel::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("URIFragmentType"));
+		ma->setType( dae.getAtomicTypes().get("URIFragmentType"));
 		ma->setOffset( daeOffsetOf( domChannel , attrSource ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -58,7 +58,7 @@ domChannel::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "target" );
-		ma->setType( daeAtomicType::get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsToken"));
 		ma->setOffset( daeOffsetOf( domChannel , attrTarget ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

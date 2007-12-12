@@ -32,9 +32,9 @@ domAny::create(DAE& dae)
 
 
 daeMetaElement *
-domAny::registerElement()
+domAny::registerElement(DAE& dae)
 {
-	daeMetaElement *_Meta = new daeMetaElement;
+	daeMetaElement *_Meta = new daeMetaElement(dae);
 	_Meta->setName( "any" );
 	_Meta->registerClass(domAny::create);
 	_Meta->setIsInnerClass( true );
@@ -57,7 +57,7 @@ domAny::registerElement()
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( getDAE()->getAtomicTypes().get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domAny , _value ));
 		ma->setContainer( _Meta );
 		_Meta->appendAttribute(ma);

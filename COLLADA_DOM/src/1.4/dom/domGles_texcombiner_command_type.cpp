@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texcombiner_command_type::create()
+domGles_texcombiner_command_type::create(DAE& dae)
 {
-	domGles_texcombiner_command_typeRef ref = new domGles_texcombiner_command_type;
+	domGles_texcombiner_command_typeRef ref = new domGles_texcombiner_command_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGles_texcombiner_command_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gles_texcombiner_command_type" );
 	meta->registerClass(domGles_texcombiner_command_type::create, &meta);

@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCylinder::create()
+domCylinder::create(DAE& dae)
 {
-	domCylinderRef ref = new domCylinder;
+	domCylinderRef ref = new domCylinder(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCylinder::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "cylinder" );
 	meta->registerClass(domCylinder::create, &meta);
@@ -72,9 +72,9 @@ domCylinder::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCylinder::domHeight::create()
+domCylinder::domHeight::create(DAE& dae)
 {
-	domCylinder::domHeightRef ref = new domCylinder::domHeight;
+	domCylinder::domHeightRef ref = new domCylinder::domHeight(dae);
 	return ref;
 }
 
@@ -85,7 +85,7 @@ domCylinder::domHeight::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "height" );
 	meta->registerClass(domCylinder::domHeight::create, &meta);
@@ -95,7 +95,7 @@ domCylinder::domHeight::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domCylinder::domHeight , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -108,9 +108,9 @@ domCylinder::domHeight::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCylinder::domRadius::create()
+domCylinder::domRadius::create(DAE& dae)
 {
-	domCylinder::domRadiusRef ref = new domCylinder::domRadius;
+	domCylinder::domRadiusRef ref = new domCylinder::domRadius(dae);
 	return ref;
 }
 
@@ -121,7 +121,7 @@ domCylinder::domRadius::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "radius" );
 	meta->registerClass(domCylinder::domRadius::create, &meta);
@@ -131,7 +131,7 @@ domCylinder::domRadius::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domCylinder::domRadius , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

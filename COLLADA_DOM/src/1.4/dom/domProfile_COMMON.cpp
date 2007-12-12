@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domProfile_COMMON::create()
+domProfile_COMMON::create(DAE& dae)
 {
-	domProfile_COMMONRef ref = new domProfile_COMMON;
+	domProfile_COMMONRef ref = new domProfile_COMMON(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domProfile_COMMON::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "profile_COMMON" );
 	meta->registerClass(domProfile_COMMON::create, &meta);
@@ -91,7 +91,7 @@ domProfile_COMMON::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domProfile_COMMON , attrId ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -106,9 +106,9 @@ domProfile_COMMON::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_COMMON::domTechnique::create()
+domProfile_COMMON::domTechnique::create(DAE& dae)
 {
-	domProfile_COMMON::domTechniqueRef ref = new domProfile_COMMON::domTechnique;
+	domProfile_COMMON::domTechniqueRef ref = new domProfile_COMMON::domTechnique(dae);
 	return ref;
 }
 
@@ -119,7 +119,7 @@ domProfile_COMMON::domTechnique::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique" );
 	meta->registerClass(domProfile_COMMON::domTechnique::create, &meta);
@@ -200,7 +200,7 @@ domProfile_COMMON::domTechnique::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domProfile_COMMON::domTechnique , attrId ));
 		ma->setContainer( meta );
 	
@@ -211,7 +211,7 @@ domProfile_COMMON::domTechnique::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domProfile_COMMON::domTechnique , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -226,9 +226,9 @@ domProfile_COMMON::domTechnique::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_COMMON::domTechnique::domConstant::create()
+domProfile_COMMON::domTechnique::domConstant::create(DAE& dae)
 {
-	domProfile_COMMON::domTechnique::domConstantRef ref = new domProfile_COMMON::domTechnique::domConstant;
+	domProfile_COMMON::domTechnique::domConstantRef ref = new domProfile_COMMON::domTechnique::domConstant(dae);
 	return ref;
 }
 
@@ -239,7 +239,7 @@ domProfile_COMMON::domTechnique::domConstant::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "constant" );
 	meta->registerClass(domProfile_COMMON::domTechnique::domConstant::create, &meta);
@@ -295,9 +295,9 @@ domProfile_COMMON::domTechnique::domConstant::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_COMMON::domTechnique::domLambert::create()
+domProfile_COMMON::domTechnique::domLambert::create(DAE& dae)
 {
-	domProfile_COMMON::domTechnique::domLambertRef ref = new domProfile_COMMON::domTechnique::domLambert;
+	domProfile_COMMON::domTechnique::domLambertRef ref = new domProfile_COMMON::domTechnique::domLambert(dae);
 	return ref;
 }
 
@@ -308,7 +308,7 @@ domProfile_COMMON::domTechnique::domLambert::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "lambert" );
 	meta->registerClass(domProfile_COMMON::domTechnique::domLambert::create, &meta);
@@ -376,9 +376,9 @@ domProfile_COMMON::domTechnique::domLambert::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_COMMON::domTechnique::domPhong::create()
+domProfile_COMMON::domTechnique::domPhong::create(DAE& dae)
 {
-	domProfile_COMMON::domTechnique::domPhongRef ref = new domProfile_COMMON::domTechnique::domPhong;
+	domProfile_COMMON::domTechnique::domPhongRef ref = new domProfile_COMMON::domTechnique::domPhong(dae);
 	return ref;
 }
 
@@ -389,7 +389,7 @@ domProfile_COMMON::domTechnique::domPhong::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "phong" );
 	meta->registerClass(domProfile_COMMON::domTechnique::domPhong::create, &meta);
@@ -469,9 +469,9 @@ domProfile_COMMON::domTechnique::domPhong::registerElement(DAE& dae)
 }
 
 daeElementRef
-domProfile_COMMON::domTechnique::domBlinn::create()
+domProfile_COMMON::domTechnique::domBlinn::create(DAE& dae)
 {
-	domProfile_COMMON::domTechnique::domBlinnRef ref = new domProfile_COMMON::domTechnique::domBlinn;
+	domProfile_COMMON::domTechnique::domBlinnRef ref = new domProfile_COMMON::domTechnique::domBlinn(dae);
 	return ref;
 }
 
@@ -482,7 +482,7 @@ domProfile_COMMON::domTechnique::domBlinn::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "blinn" );
 	meta->registerClass(domProfile_COMMON::domTechnique::domBlinn::create, &meta);

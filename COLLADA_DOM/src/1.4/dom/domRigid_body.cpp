@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domRigid_body::create()
+domRigid_body::create(DAE& dae)
 {
-	domRigid_bodyRef ref = new domRigid_body;
+	domRigid_bodyRef ref = new domRigid_body(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domRigid_body::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "rigid_body" );
 	meta->registerClass(domRigid_body::create, &meta);
@@ -69,7 +69,7 @@ domRigid_body::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_body , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -81,7 +81,7 @@ domRigid_body::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_body , attrName ));
 		ma->setContainer( meta );
 	
@@ -95,9 +95,9 @@ domRigid_body::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_body::domTechnique_common::create()
+domRigid_body::domTechnique_common::create(DAE& dae)
 {
-	domRigid_body::domTechnique_commonRef ref = new domRigid_body::domTechnique_common;
+	domRigid_body::domTechnique_commonRef ref = new domRigid_body::domTechnique_common(dae);
 	return ref;
 }
 
@@ -108,7 +108,7 @@ domRigid_body::domTechnique_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domRigid_body::domTechnique_common::create, &meta);
@@ -180,9 +180,9 @@ domRigid_body::domTechnique_common::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_body::domTechnique_common::domDynamic::create()
+domRigid_body::domTechnique_common::domDynamic::create(DAE& dae)
 {
-	domRigid_body::domTechnique_common::domDynamicRef ref = new domRigid_body::domTechnique_common::domDynamic;
+	domRigid_body::domTechnique_common::domDynamicRef ref = new domRigid_body::domTechnique_common::domDynamic(dae);
 	return ref;
 }
 
@@ -193,7 +193,7 @@ domRigid_body::domTechnique_common::domDynamic::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "dynamic" );
 	meta->registerClass(domRigid_body::domTechnique_common::domDynamic::create, &meta);
@@ -203,7 +203,7 @@ domRigid_body::domTechnique_common::domDynamic::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domRigid_body::domTechnique_common::domDynamic , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -213,7 +213,7 @@ domRigid_body::domTechnique_common::domDynamic::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_body::domTechnique_common::domDynamic , attrSid ));
 		ma->setContainer( meta );
 	
@@ -227,9 +227,9 @@ domRigid_body::domTechnique_common::domDynamic::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_body::domTechnique_common::domMass_frame::create()
+domRigid_body::domTechnique_common::domMass_frame::create(DAE& dae)
 {
-	domRigid_body::domTechnique_common::domMass_frameRef ref = new domRigid_body::domTechnique_common::domMass_frame;
+	domRigid_body::domTechnique_common::domMass_frameRef ref = new domRigid_body::domTechnique_common::domMass_frame(dae);
 	return ref;
 }
 
@@ -240,7 +240,7 @@ domRigid_body::domTechnique_common::domMass_frame::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "mass_frame" );
 	meta->registerClass(domRigid_body::domTechnique_common::domMass_frame::create, &meta);
@@ -276,9 +276,9 @@ domRigid_body::domTechnique_common::domMass_frame::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_body::domTechnique_common::domShape::create()
+domRigid_body::domTechnique_common::domShape::create(DAE& dae)
 {
-	domRigid_body::domTechnique_common::domShapeRef ref = new domRigid_body::domTechnique_common::domShape;
+	domRigid_body::domTechnique_common::domShapeRef ref = new domRigid_body::domTechnique_common::domShape(dae);
 	return ref;
 }
 
@@ -289,7 +289,7 @@ domRigid_body::domTechnique_common::domShape::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "shape" );
 	meta->registerClass(domRigid_body::domTechnique_common::domShape::create, &meta);
@@ -427,9 +427,9 @@ domRigid_body::domTechnique_common::domShape::registerElement(DAE& dae)
 }
 
 daeElementRef
-domRigid_body::domTechnique_common::domShape::domHollow::create()
+domRigid_body::domTechnique_common::domShape::domHollow::create(DAE& dae)
 {
-	domRigid_body::domTechnique_common::domShape::domHollowRef ref = new domRigid_body::domTechnique_common::domShape::domHollow;
+	domRigid_body::domTechnique_common::domShape::domHollowRef ref = new domRigid_body::domTechnique_common::domShape::domHollow(dae);
 	return ref;
 }
 
@@ -440,7 +440,7 @@ domRigid_body::domTechnique_common::domShape::domHollow::registerElement(DAE& da
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "hollow" );
 	meta->registerClass(domRigid_body::domTechnique_common::domShape::domHollow::create, &meta);
@@ -450,7 +450,7 @@ domRigid_body::domTechnique_common::domShape::domHollow::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domRigid_body::domTechnique_common::domShape::domHollow , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -460,7 +460,7 @@ domRigid_body::domTechnique_common::domShape::domHollow::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domRigid_body::domTechnique_common::domShape::domHollow , attrSid ));
 		ma->setContainer( meta );
 	

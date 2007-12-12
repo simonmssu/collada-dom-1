@@ -43,7 +43,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_transparent_type_complexType(DAE& dae) : attrOpaque() {}
+	domCommon_transparent_type_complexType(DAE& dae) : , attrOpaque() {}
 	/**
 	 * Destructor
 	 */
@@ -61,7 +61,7 @@ class domCommon_transparent_type : public daeElement, public domCommon_transpare
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMON_TRANSPARENT_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::COMMON_TRANSPARENT_TYPE; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COMMON_TRANSPARENT_TYPE; }
 
 public:	//Accessors and Mutators
 	/**

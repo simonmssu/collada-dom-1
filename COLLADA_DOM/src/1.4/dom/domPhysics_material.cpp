@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domPhysics_material::create()
+domPhysics_material::create(DAE& dae)
 {
-	domPhysics_materialRef ref = new domPhysics_material;
+	domPhysics_materialRef ref = new domPhysics_material(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domPhysics_material::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "physics_material" );
 	meta->registerClass(domPhysics_material::create, &meta);
@@ -75,7 +75,7 @@ domPhysics_material::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domPhysics_material , attrId ));
 		ma->setContainer( meta );
 	
@@ -86,7 +86,7 @@ domPhysics_material::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domPhysics_material , attrName ));
 		ma->setContainer( meta );
 	
@@ -100,9 +100,9 @@ domPhysics_material::registerElement(DAE& dae)
 }
 
 daeElementRef
-domPhysics_material::domTechnique_common::create()
+domPhysics_material::domTechnique_common::create(DAE& dae)
 {
-	domPhysics_material::domTechnique_commonRef ref = new domPhysics_material::domTechnique_common;
+	domPhysics_material::domTechnique_commonRef ref = new domPhysics_material::domTechnique_common(dae);
 	return ref;
 }
 
@@ -113,7 +113,7 @@ domPhysics_material::domTechnique_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domPhysics_material::domTechnique_common::create, &meta);

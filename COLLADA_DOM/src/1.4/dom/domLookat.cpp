@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLookat::create()
+domLookat::create(DAE& dae)
 {
-	domLookatRef ref = new domLookat;
+	domLookatRef ref = new domLookat(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domLookat::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "lookat" );
 	meta->registerClass(domLookat::create, &meta);
@@ -44,7 +44,7 @@ domLookat::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float3x3"));
+		ma->setType( dae.getAtomicTypes().get("Float3x3"));
 		ma->setOffset( daeOffsetOf( domLookat , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domLookat::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLookat , attrSid ));
 		ma->setContainer( meta );
 	

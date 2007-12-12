@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domPlane::create()
+domPlane::create(DAE& dae)
 {
-	domPlaneRef ref = new domPlane;
+	domPlaneRef ref = new domPlane(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domPlane::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "plane" );
 	meta->registerClass(domPlane::create, &meta);
@@ -66,9 +66,9 @@ domPlane::registerElement(DAE& dae)
 }
 
 daeElementRef
-domPlane::domEquation::create()
+domPlane::domEquation::create(DAE& dae)
 {
-	domPlane::domEquationRef ref = new domPlane::domEquation;
+	domPlane::domEquationRef ref = new domPlane::domEquation(dae);
 	return ref;
 }
 
@@ -79,7 +79,7 @@ domPlane::domEquation::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "equation" );
 	meta->registerClass(domPlane::domEquation::create, &meta);
@@ -89,7 +89,7 @@ domPlane::domEquation::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domPlane::domEquation , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

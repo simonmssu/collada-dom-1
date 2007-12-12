@@ -60,7 +60,7 @@ namespace {
 	}
 }
 
-daeLIBXMLPlugin::daeLIBXMLPlugin()
+daeLIBXMLPlugin::daeLIBXMLPlugin(DAE& dae) : dae(dae), rawRelPath(dae)
 {
 	 xmlInitParser();
 	 rawFile = NULL;

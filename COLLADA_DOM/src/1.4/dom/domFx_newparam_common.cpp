@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_newparam_common::create()
+domFx_newparam_common::create(DAE& dae)
 {
-	domFx_newparam_commonRef ref = new domFx_newparam_common;
+	domFx_newparam_commonRef ref = new domFx_newparam_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_newparam_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_newparam_common" );
 	meta->registerClass(domFx_newparam_common::create, &meta);
@@ -75,7 +75,7 @@ domFx_newparam_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFx_newparam_common , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -90,9 +90,9 @@ domFx_newparam_common::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_newparam_common::domSemantic::create()
+domFx_newparam_common::domSemantic::create(DAE& dae)
 {
-	domFx_newparam_common::domSemanticRef ref = new domFx_newparam_common::domSemantic;
+	domFx_newparam_common::domSemanticRef ref = new domFx_newparam_common::domSemantic(dae);
 	return ref;
 }
 
@@ -103,7 +103,7 @@ domFx_newparam_common::domSemantic::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "semantic" );
 	meta->registerClass(domFx_newparam_common::domSemantic::create, &meta);
@@ -113,7 +113,7 @@ domFx_newparam_common::domSemantic::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFx_newparam_common::domSemantic , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -126,9 +126,9 @@ domFx_newparam_common::domSemantic::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_newparam_common::domModifier::create()
+domFx_newparam_common::domModifier::create(DAE& dae)
 {
-	domFx_newparam_common::domModifierRef ref = new domFx_newparam_common::domModifier;
+	domFx_newparam_common::domModifierRef ref = new domFx_newparam_common::domModifier(dae);
 	return ref;
 }
 
@@ -139,7 +139,7 @@ domFx_newparam_common::domModifier::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "modifier" );
 	meta->registerClass(domFx_newparam_common::domModifier::create, &meta);
@@ -149,7 +149,7 @@ domFx_newparam_common::domModifier::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_modifier_enum_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_modifier_enum_common"));
 		ma->setOffset( daeOffsetOf( domFx_newparam_common::domModifier , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

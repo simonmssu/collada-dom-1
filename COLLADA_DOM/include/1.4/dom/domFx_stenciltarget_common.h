@@ -112,7 +112,7 @@ class domFx_stenciltarget_common : public daeElement, public domFx_stenciltarget
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_STENCILTARGET_COMMON; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FX_STENCILTARGET_COMMON; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FX_STENCILTARGET_COMMON; }
 
 public:	//Accessors and Mutators
 	/**

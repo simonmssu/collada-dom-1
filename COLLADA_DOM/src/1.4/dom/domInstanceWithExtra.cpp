@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstanceWithExtra::create()
+domInstanceWithExtra::create(DAE& dae)
 {
-	domInstanceWithExtraRef ref = new domInstanceWithExtra;
+	domInstanceWithExtraRef ref = new domInstanceWithExtra(dae);
 	ref->attrUrl.setContainer( (domInstanceWithExtra*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domInstanceWithExtra::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "InstanceWithExtra" );
 	meta->registerClass(domInstanceWithExtra::create, &meta);
@@ -58,7 +58,7 @@ domInstanceWithExtra::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "url" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstanceWithExtra , attrUrl ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -70,7 +70,7 @@ domInstanceWithExtra::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstanceWithExtra , attrSid ));
 		ma->setContainer( meta );
 	
@@ -81,7 +81,7 @@ domInstanceWithExtra::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstanceWithExtra , attrName ));
 		ma->setContainer( meta );
 	

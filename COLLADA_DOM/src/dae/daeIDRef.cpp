@@ -14,6 +14,7 @@
 #include <sstream>
 #include <dae.h>
 #include <dae/daeIDRef.h>
+#include <dae/daeDatabase.h>
 #include <dae/daeErrorHandler.h>
 
 void
@@ -79,11 +80,13 @@ daeIDRef::setID(daeString _IDString)
 }
 
 daeElementRef daeIDRef::getElement() const {
-	if (!element && container)
-		element = daeIDRefResolver::attemptResolveElement(id.c_str(), container->getDocumentURI()->getURI());
+	if (!element && container) {
+		element = container->getDAE()->getIDRefResolvers().resolveElement(
+			id.c_str(), container->getDocumentURI()->getURI());
+	}
 	return element;
 }
-	
+
 void daeIDRef::setElement(daeElementRef newref) {
 	element = newref;
 	id = element->getID() ? element->getID() : "";
@@ -98,7 +101,8 @@ daeIDRef::ResolveState daeIDRef::getState() const {
 	
 	// Try to resolve the ID
 	ResolveState result;
-	element = daeIDRefResolver::attemptResolveElement(id.c_str(), container->getDocumentURI()->getURI(), &result);
+	element = container->getDAE()->getIDRefResolvers().resolveElement(
+		id.c_str(), container->getDocumentURI()->getURI(), &result);
 	return result;
 }
 
@@ -206,7 +210,7 @@ daeElement* daeIDRefResolverList::resolveElement(
 	daeIDRef::ResolveState* result)
 {
 	for(size_t i = 0; i < resolvers.getCount(); i++)
-		if (daeElement* el = resolvers[i].->resolveElement(id, docURI, result))
+		if (daeElement* el = resolvers[i]->resolveElement(id, docURI, result))
 			return el;
 	return NULL;
 }

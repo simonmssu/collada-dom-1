@@ -35,7 +35,7 @@ class domProfile_COMMON : public domFx_profile_abstract
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROFILE_COMMON; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PROFILE_COMMON; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PROFILE_COMMON; }
 public:
 	class domTechnique;
 
@@ -50,7 +50,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TECHNIQUE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE; }
 	public:
 		class domConstant;
 
@@ -61,7 +61,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONSTANT; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CONSTANT; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CONSTANT; }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;
@@ -139,7 +139,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LAMBERT; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LAMBERT; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LAMBERT; }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;
@@ -229,7 +229,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PHONG; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PHONG; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PHONG; }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;
@@ -331,7 +331,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLINN; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BLINN; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BLINN; }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;

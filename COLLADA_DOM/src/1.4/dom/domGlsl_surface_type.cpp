@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_surface_type::create()
+domGlsl_surface_type::create(DAE& dae)
 {
-	domGlsl_surface_typeRef ref = new domGlsl_surface_type;
+	domGlsl_surface_typeRef ref = new domGlsl_surface_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGlsl_surface_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "glsl_surface_type" );
 	meta->registerClass(domGlsl_surface_type::create, &meta);
@@ -127,7 +127,7 @@ domGlsl_surface_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "type" );
-		ma->setType( daeAtomicType::get("Fx_surface_type_enum"));
+		ma->setType( dae.getAtomicTypes().get("Fx_surface_type_enum"));
 		ma->setOffset( daeOffsetOf( domGlsl_surface_type , attrType ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -142,9 +142,9 @@ domGlsl_surface_type::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_surface_type::domGenerator::create()
+domGlsl_surface_type::domGenerator::create(DAE& dae)
 {
-	domGlsl_surface_type::domGeneratorRef ref = new domGlsl_surface_type::domGenerator;
+	domGlsl_surface_type::domGeneratorRef ref = new domGlsl_surface_type::domGenerator(dae);
 	return ref;
 }
 
@@ -155,7 +155,7 @@ domGlsl_surface_type::domGenerator::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "generator" );
 	meta->registerClass(domGlsl_surface_type::domGenerator::create, &meta);
@@ -215,9 +215,9 @@ domGlsl_surface_type::domGenerator::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_surface_type::domGenerator::domName::create()
+domGlsl_surface_type::domGenerator::domName::create(DAE& dae)
 {
-	domGlsl_surface_type::domGenerator::domNameRef ref = new domGlsl_surface_type::domGenerator::domName;
+	domGlsl_surface_type::domGenerator::domNameRef ref = new domGlsl_surface_type::domGenerator::domName(dae);
 	return ref;
 }
 
@@ -228,7 +228,7 @@ domGlsl_surface_type::domGenerator::domName::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "name" );
 	meta->registerClass(domGlsl_surface_type::domGenerator::domName::create, &meta);
@@ -238,7 +238,7 @@ domGlsl_surface_type::domGenerator::domName::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGlsl_surface_type::domGenerator::domName , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -248,7 +248,7 @@ domGlsl_surface_type::domGenerator::domName::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGlsl_surface_type::domGenerator::domName , attrSource ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );

@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSkin::create()
+domSkin::create(DAE& dae)
 {
-	domSkinRef ref = new domSkin;
+	domSkinRef ref = new domSkin(dae);
 	ref->attrSource.setContainer( (domSkin*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domSkin::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "skin" );
 	meta->registerClass(domSkin::create, &meta);
@@ -82,7 +82,7 @@ domSkin::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domSkin , attrSource ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -97,9 +97,9 @@ domSkin::registerElement(DAE& dae)
 }
 
 daeElementRef
-domSkin::domBind_shape_matrix::create()
+domSkin::domBind_shape_matrix::create(DAE& dae)
 {
-	domSkin::domBind_shape_matrixRef ref = new domSkin::domBind_shape_matrix;
+	domSkin::domBind_shape_matrixRef ref = new domSkin::domBind_shape_matrix(dae);
 	return ref;
 }
 
@@ -110,7 +110,7 @@ domSkin::domBind_shape_matrix::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bind_shape_matrix" );
 	meta->registerClass(domSkin::domBind_shape_matrix::create, &meta);
@@ -120,7 +120,7 @@ domSkin::domBind_shape_matrix::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float4x4"));
+		ma->setType( dae.getAtomicTypes().get("Float4x4"));
 		ma->setOffset( daeOffsetOf( domSkin::domBind_shape_matrix , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -133,9 +133,9 @@ domSkin::domBind_shape_matrix::registerElement(DAE& dae)
 }
 
 daeElementRef
-domSkin::domJoints::create()
+domSkin::domJoints::create(DAE& dae)
 {
-	domSkin::domJointsRef ref = new domSkin::domJoints;
+	domSkin::domJointsRef ref = new domSkin::domJoints(dae);
 	return ref;
 }
 
@@ -146,7 +146,7 @@ domSkin::domJoints::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "joints" );
 	meta->registerClass(domSkin::domJoints::create, &meta);
@@ -178,9 +178,9 @@ domSkin::domJoints::registerElement(DAE& dae)
 }
 
 daeElementRef
-domSkin::domVertex_weights::create()
+domSkin::domVertex_weights::create(DAE& dae)
 {
-	domSkin::domVertex_weightsRef ref = new domSkin::domVertex_weights;
+	domSkin::domVertex_weightsRef ref = new domSkin::domVertex_weights(dae);
 	return ref;
 }
 
@@ -191,7 +191,7 @@ domSkin::domVertex_weights::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "vertex_weights" );
 	meta->registerClass(domSkin::domVertex_weights::create, &meta);
@@ -232,7 +232,7 @@ domSkin::domVertex_weights::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domSkin::domVertex_weights , attrCount ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -247,9 +247,9 @@ domSkin::domVertex_weights::registerElement(DAE& dae)
 }
 
 daeElementRef
-domSkin::domVertex_weights::domVcount::create()
+domSkin::domVertex_weights::domVcount::create(DAE& dae)
 {
-	domSkin::domVertex_weights::domVcountRef ref = new domSkin::domVertex_weights::domVcount;
+	domSkin::domVertex_weights::domVcountRef ref = new domSkin::domVertex_weights::domVcount(dae);
 	return ref;
 }
 
@@ -260,7 +260,7 @@ domSkin::domVertex_weights::domVcount::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "vcount" );
 	meta->registerClass(domSkin::domVertex_weights::domVcount::create, &meta);
@@ -270,7 +270,7 @@ domSkin::domVertex_weights::domVcount::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("ListOfUInts"));
+		ma->setType( dae.getAtomicTypes().get("ListOfUInts"));
 		ma->setOffset( daeOffsetOf( domSkin::domVertex_weights::domVcount , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -283,9 +283,9 @@ domSkin::domVertex_weights::domVcount::registerElement(DAE& dae)
 }
 
 daeElementRef
-domSkin::domVertex_weights::domV::create()
+domSkin::domVertex_weights::domV::create(DAE& dae)
 {
-	domSkin::domVertex_weights::domVRef ref = new domSkin::domVertex_weights::domV;
+	domSkin::domVertex_weights::domVRef ref = new domSkin::domVertex_weights::domV(dae);
 	return ref;
 }
 
@@ -296,7 +296,7 @@ domSkin::domVertex_weights::domV::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "v" );
 	meta->registerClass(domSkin::domVertex_weights::domV::create, &meta);
@@ -306,7 +306,7 @@ domSkin::domVertex_weights::domV::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("ListOfInts"));
+		ma->setType( dae.getAtomicTypes().get("ListOfInts"));
 		ma->setOffset( daeOffsetOf( domSkin::domVertex_weights::domV , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

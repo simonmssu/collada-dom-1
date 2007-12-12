@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_code_profile::create()
+domFx_code_profile::create(DAE& dae)
 {
-	domFx_code_profileRef ref = new domFx_code_profile;
+	domFx_code_profileRef ref = new domFx_code_profile(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_code_profile::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_code_profile" );
 	meta->registerClass(domFx_code_profile::create, &meta);
@@ -44,7 +44,7 @@ domFx_code_profile::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domFx_code_profile , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domFx_code_profile::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFx_code_profile , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );

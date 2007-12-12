@@ -35,7 +35,7 @@ class domProfile_GLES : public domFx_profile_abstract
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROFILE_GLES; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PROFILE_GLES; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PROFILE_GLES; }
 public:
 	class domTechnique;
 
@@ -50,7 +50,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TECHNIQUE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE; }
 	public:
 		class domSetparam;
 
@@ -61,7 +61,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SETPARAM; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SETPARAM; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SETPARAM; }
 		protected:  // Attribute
 			xsNCName attrRef;
 
@@ -137,7 +137,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PASS; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PASS; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PASS; }
 		public:
 			class domColor_target;
 
@@ -148,7 +148,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_TARGET; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::COLOR_TARGET; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COLOR_TARGET; }
 
 			protected:  // Value
 				/**
@@ -205,7 +205,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_TARGET; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::DEPTH_TARGET; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DEPTH_TARGET; }
 
 			protected:  // Value
 				/**
@@ -262,7 +262,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_TARGET; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::STENCIL_TARGET; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::STENCIL_TARGET; }
 
 			protected:  // Value
 				/**
@@ -319,7 +319,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_CLEAR; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::COLOR_CLEAR; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COLOR_CLEAR; }
 
 			protected:  // Value
 				/**
@@ -381,7 +381,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_CLEAR; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::DEPTH_CLEAR; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DEPTH_CLEAR; }
 
 			protected:  // Value
 				/**
@@ -438,7 +438,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_CLEAR; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::STENCIL_CLEAR; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::STENCIL_CLEAR; }
 
 			protected:  // Value
 				/**
@@ -495,7 +495,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DRAW; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::DRAW; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DRAW; }
 
 			protected:  // Value
 				/**

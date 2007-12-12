@@ -28,7 +28,7 @@ class domGles_pipeline_settings : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_PIPELINE_SETTINGS; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::GLES_PIPELINE_SETTINGS; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GLES_PIPELINE_SETTINGS; }
 public:
 	class domAlpha_func;
 
@@ -39,7 +39,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALPHA_FUNC; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ALPHA_FUNC; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ALPHA_FUNC; }
 	public:
 		class domFunc;
 
@@ -50,7 +50,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FUNC; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FUNC; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FUNC; }
 		protected:  // Attributes
 			domGl_func_type attrValue;
 			xsNCName attrParam;
@@ -116,7 +116,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VALUE; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::VALUE; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::VALUE; }
 		protected:  // Attributes
 			domGl_alpha_value_type attrValue;
 			xsNCName attrParam;
@@ -227,7 +227,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_FUNC; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BLEND_FUNC; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BLEND_FUNC; }
 	public:
 		class domSrc;
 
@@ -238,7 +238,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SRC; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SRC; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SRC; }
 		protected:  // Attributes
 			domGl_blend_type attrValue;
 			xsNCName attrParam;
@@ -304,7 +304,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEST; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::DEST; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DEST; }
 		protected:  // Attributes
 			domGl_blend_type attrValue;
 			xsNCName attrParam;
@@ -415,7 +415,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_COLOR; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CLEAR_COLOR; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CLEAR_COLOR; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -486,7 +486,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_STENCIL; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CLEAR_STENCIL; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CLEAR_STENCIL; }
 	protected:  // Attributes
 		domInt attrValue;
 		xsNCName attrParam;
@@ -552,7 +552,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_DEPTH; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CLEAR_DEPTH; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CLEAR_DEPTH; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -618,7 +618,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLIP_PLANE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CLIP_PLANE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CLIP_PLANE; }
 	protected:  // Attributes
 		domBool4 attrValue;
 		xsNCName attrParam;
@@ -701,7 +701,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_MASK; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::COLOR_MASK; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COLOR_MASK; }
 	protected:  // Attributes
 		domBool4 attrValue;
 		xsNCName attrParam;
@@ -772,7 +772,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CULL_FACE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CULL_FACE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CULL_FACE; }
 	protected:  // Attributes
 		domGl_face_type attrValue;
 		xsNCName attrParam;
@@ -838,7 +838,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_FUNC; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::DEPTH_FUNC; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DEPTH_FUNC; }
 	protected:  // Attributes
 		domGl_func_type attrValue;
 		xsNCName attrParam;
@@ -904,7 +904,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_MASK; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::DEPTH_MASK; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DEPTH_MASK; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -970,7 +970,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_RANGE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::DEPTH_RANGE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DEPTH_RANGE; }
 	protected:  // Attributes
 		domFloat2 attrValue;
 		xsNCName attrParam;
@@ -1041,7 +1041,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_COLOR; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FOG_COLOR; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FOG_COLOR; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -1112,7 +1112,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_DENSITY; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FOG_DENSITY; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FOG_DENSITY; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -1178,7 +1178,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_MODE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FOG_MODE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FOG_MODE; }
 	protected:  // Attributes
 		domGl_fog_type attrValue;
 		xsNCName attrParam;
@@ -1244,7 +1244,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_START; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FOG_START; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FOG_START; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -1310,7 +1310,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_END; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FOG_END; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FOG_END; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -1376,7 +1376,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FRONT_FACE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FRONT_FACE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FRONT_FACE; }
 	protected:  // Attributes
 		domGl_front_face_type attrValue;
 		xsNCName attrParam;
@@ -1442,7 +1442,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE_PIPELINE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TEXTURE_PIPELINE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TEXTURE_PIPELINE; }
 	protected:  // Attribute
 		xsNCName attrParam;
 
@@ -1503,7 +1503,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LOGIC_OP; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LOGIC_OP; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LOGIC_OP; }
 	protected:  // Attributes
 		domGl_logic_op_type attrValue;
 		xsNCName attrParam;
@@ -1569,7 +1569,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_AMBIENT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_AMBIENT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_AMBIENT; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -1652,7 +1652,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_DIFFUSE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_DIFFUSE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_DIFFUSE; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -1735,7 +1735,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPECULAR; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_SPECULAR; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_SPECULAR; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -1818,7 +1818,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_POSITION; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_POSITION; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_POSITION; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -1901,7 +1901,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_CONSTANT_ATTENUATION; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_CONSTANT_ATTENUATION; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_CONSTANT_ATTENUATION; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -1979,7 +1979,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_LINEAR_ATTENUTATION; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_LINEAR_ATTENUTATION; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_LINEAR_ATTENUTATION; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2057,7 +2057,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_QUADRATIC_ATTENUATION; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_QUADRATIC_ATTENUATION; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_QUADRATIC_ATTENUATION; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2135,7 +2135,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_CUTOFF; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_SPOT_CUTOFF; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_SPOT_CUTOFF; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2213,7 +2213,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_DIRECTION; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_SPOT_DIRECTION; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_SPOT_DIRECTION; }
 	protected:  // Attributes
 		domFloat3 attrValue;
 		xsNCName attrParam;
@@ -2296,7 +2296,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_EXPONENT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_SPOT_EXPONENT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_SPOT_EXPONENT; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2374,7 +2374,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_MODEL_AMBIENT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_MODEL_AMBIENT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_MODEL_AMBIENT; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -2445,7 +2445,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINE_WIDTH; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LINE_WIDTH; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LINE_WIDTH; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2511,7 +2511,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_AMBIENT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MATERIAL_AMBIENT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MATERIAL_AMBIENT; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -2582,7 +2582,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_DIFFUSE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MATERIAL_DIFFUSE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MATERIAL_DIFFUSE; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -2653,7 +2653,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_EMISSION; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MATERIAL_EMISSION; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MATERIAL_EMISSION; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -2724,7 +2724,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_SHININESS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MATERIAL_SHININESS; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MATERIAL_SHININESS; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2790,7 +2790,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_SPECULAR; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MATERIAL_SPECULAR; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MATERIAL_SPECULAR; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -2861,7 +2861,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODEL_VIEW_MATRIX; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MODEL_VIEW_MATRIX; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MODEL_VIEW_MATRIX; }
 	protected:  // Attributes
 		domFloat4x4 attrValue;
 		xsNCName attrParam;
@@ -2932,7 +2932,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_DISTANCE_ATTENUATION; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::POINT_DISTANCE_ATTENUATION; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::POINT_DISTANCE_ATTENUATION; }
 	protected:  // Attributes
 		domFloat3 attrValue;
 		xsNCName attrParam;
@@ -3003,7 +3003,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_FADE_THRESHOLD_SIZE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::POINT_FADE_THRESHOLD_SIZE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::POINT_FADE_THRESHOLD_SIZE; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -3069,7 +3069,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::POINT_SIZE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::POINT_SIZE; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -3135,7 +3135,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE_MIN; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::POINT_SIZE_MIN; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::POINT_SIZE_MIN; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -3201,7 +3201,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE_MAX; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::POINT_SIZE_MAX; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::POINT_SIZE_MAX; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -3267,7 +3267,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_OFFSET; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::POLYGON_OFFSET; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::POLYGON_OFFSET; }
 	protected:  // Attributes
 		domFloat2 attrValue;
 		xsNCName attrParam;
@@ -3338,7 +3338,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROJECTION_MATRIX; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PROJECTION_MATRIX; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PROJECTION_MATRIX; }
 	protected:  // Attributes
 		domFloat4x4 attrValue;
 		xsNCName attrParam;
@@ -3409,7 +3409,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCISSOR; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SCISSOR; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SCISSOR; }
 	protected:  // Attributes
 		domInt4 attrValue;
 		xsNCName attrParam;
@@ -3480,7 +3480,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SHADE_MODEL; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SHADE_MODEL; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SHADE_MODEL; }
 	protected:  // Attributes
 		domGl_shade_model_type attrValue;
 		xsNCName attrParam;
@@ -3546,7 +3546,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_FUNC; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::STENCIL_FUNC; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::STENCIL_FUNC; }
 	public:
 		class domFunc;
 
@@ -3557,7 +3557,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FUNC; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FUNC; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FUNC; }
 		protected:  // Attributes
 			domGl_func_type attrValue;
 			xsNCName attrParam;
@@ -3623,7 +3623,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::REF; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::REF; }
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
 			xsNCName attrParam;
@@ -3689,7 +3689,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MASK; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MASK; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MASK; }
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
 			xsNCName attrParam;
@@ -3806,7 +3806,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_MASK; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::STENCIL_MASK; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::STENCIL_MASK; }
 	protected:  // Attributes
 		domInt attrValue;
 		xsNCName attrParam;
@@ -3872,7 +3872,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_OP; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::STENCIL_OP; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::STENCIL_OP; }
 	public:
 		class domFail;
 
@@ -3883,7 +3883,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FAIL; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FAIL; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FAIL; }
 		protected:  // Attributes
 			domGles_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -3949,7 +3949,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ZFAIL; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ZFAIL; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ZFAIL; }
 		protected:  // Attributes
 			domGles_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -4015,7 +4015,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ZPASS; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ZPASS; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ZPASS; }
 		protected:  // Attributes
 			domGles_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -4132,7 +4132,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALPHA_TEST_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::ALPHA_TEST_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ALPHA_TEST_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4198,7 +4198,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BLEND_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BLEND_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4264,7 +4264,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLIP_PLANE_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CLIP_PLANE_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CLIP_PLANE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4342,7 +4342,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_LOGIC_OP_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::COLOR_LOGIC_OP_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COLOR_LOGIC_OP_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4408,7 +4408,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_MATERIAL_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::COLOR_MATERIAL_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COLOR_MATERIAL_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4474,7 +4474,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CULL_FACE_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CULL_FACE_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CULL_FACE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4540,7 +4540,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_TEST_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::DEPTH_TEST_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DEPTH_TEST_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4606,7 +4606,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DITHER_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::DITHER_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DITHER_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4672,7 +4672,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FOG_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FOG_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4738,7 +4738,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE_PIPELINE_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TEXTURE_PIPELINE_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TEXTURE_PIPELINE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4804,7 +4804,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4882,7 +4882,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHTING_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHTING_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHTING_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4948,7 +4948,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_MODEL_TWO_SIDE_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LIGHT_MODEL_TWO_SIDE_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LIGHT_MODEL_TWO_SIDE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5014,7 +5014,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINE_SMOOTH_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LINE_SMOOTH_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LINE_SMOOTH_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5080,7 +5080,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MULTISAMPLE_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MULTISAMPLE_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MULTISAMPLE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5146,7 +5146,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::NORMALIZE_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::NORMALIZE_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::NORMALIZE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5212,7 +5212,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SMOOTH_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::POINT_SMOOTH_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::POINT_SMOOTH_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5278,7 +5278,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_OFFSET_FILL_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::POLYGON_OFFSET_FILL_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::POLYGON_OFFSET_FILL_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5344,7 +5344,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RESCALE_NORMAL_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::RESCALE_NORMAL_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::RESCALE_NORMAL_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5410,7 +5410,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_ALPHA_TO_COVERAGE_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SAMPLE_ALPHA_TO_COVERAGE_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SAMPLE_ALPHA_TO_COVERAGE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5476,7 +5476,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_ALPHA_TO_ONE_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SAMPLE_ALPHA_TO_ONE_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SAMPLE_ALPHA_TO_ONE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5542,7 +5542,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_COVERAGE_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SAMPLE_COVERAGE_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SAMPLE_COVERAGE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5608,7 +5608,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCISSOR_TEST_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SCISSOR_TEST_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SCISSOR_TEST_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5674,7 +5674,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_TEST_ENABLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::STENCIL_TEST_ENABLE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::STENCIL_TEST_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;

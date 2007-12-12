@@ -31,7 +31,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGl_sampler3D_complexType(DAE& dae) {}
+	domGl_sampler3D_complexType(DAE& dae) :  {}
 	/**
 	 * Destructor
 	 */
@@ -49,7 +49,7 @@ class domGl_sampler3D : public daeElement, public domGl_sampler3D_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GL_SAMPLER3D; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::GL_SAMPLER3D; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GL_SAMPLER3D; }
 protected:
 	/**
 	 * Constructor

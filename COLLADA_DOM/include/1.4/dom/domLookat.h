@@ -30,7 +30,7 @@ class domLookat : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LOOKAT; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LOOKAT; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LOOKAT; }
 protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier

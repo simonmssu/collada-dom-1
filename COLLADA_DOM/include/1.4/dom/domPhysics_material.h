@@ -33,7 +33,7 @@ class domPhysics_material : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PHYSICS_MATERIAL; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PHYSICS_MATERIAL; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PHYSICS_MATERIAL; }
 public:
 	class domTechnique_common;
 
@@ -48,7 +48,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE_COMMON; }
 
 	protected:  // Elements
 /**

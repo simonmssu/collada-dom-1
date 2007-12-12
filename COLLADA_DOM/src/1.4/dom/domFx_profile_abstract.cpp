@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_profile_abstract::create()
+domFx_profile_abstract::create(DAE& dae)
 {
-	domFx_profile_abstractRef ref = new domFx_profile_abstract;
+	domFx_profile_abstractRef ref = new domFx_profile_abstract(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_profile_abstract::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_profile_abstract" );
 	meta->registerClass(domFx_profile_abstract::create, &meta);

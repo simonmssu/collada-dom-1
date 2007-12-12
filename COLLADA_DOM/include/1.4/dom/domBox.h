@@ -28,7 +28,7 @@ class domBox : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOX; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::BOX; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BOX; }
 public:
 	class domHalf_extents;
 
@@ -42,7 +42,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF_EXTENTS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::HALF_EXTENTS; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HALF_EXTENTS; }
 
 	protected:  // Value
 		/**

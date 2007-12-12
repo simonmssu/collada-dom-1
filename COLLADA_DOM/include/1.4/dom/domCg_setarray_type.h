@@ -135,7 +135,7 @@ class domCg_setarray_type : public daeElement, public domCg_setarray_type_comple
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SETARRAY_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::CG_SETARRAY_TYPE; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CG_SETARRAY_TYPE; }
 
 public:	//Accessors and Mutators
 	/**

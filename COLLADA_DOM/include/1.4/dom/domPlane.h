@@ -28,7 +28,7 @@ class domPlane : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PLANE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::PLANE; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PLANE; }
 public:
 	class domEquation;
 
@@ -43,7 +43,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::EQUATION; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::EQUATION; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::EQUATION; }
 
 	protected:  // Value
 		/**

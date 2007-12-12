@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLight::create()
+domLight::create(DAE& dae)
 {
-	domLightRef ref = new domLight;
+	domLightRef ref = new domLight(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domLight::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "light" );
 	meta->registerClass(domLight::create, &meta);
@@ -75,7 +75,7 @@ domLight::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domLight , attrId ));
 		ma->setContainer( meta );
 	
@@ -86,7 +86,7 @@ domLight::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLight , attrName ));
 		ma->setContainer( meta );
 	
@@ -100,9 +100,9 @@ domLight::registerElement(DAE& dae)
 }
 
 daeElementRef
-domLight::domTechnique_common::create()
+domLight::domTechnique_common::create(DAE& dae)
 {
-	domLight::domTechnique_commonRef ref = new domLight::domTechnique_common;
+	domLight::domTechnique_commonRef ref = new domLight::domTechnique_common(dae);
 	return ref;
 }
 
@@ -113,7 +113,7 @@ domLight::domTechnique_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domLight::domTechnique_common::create, &meta);
@@ -161,9 +161,9 @@ domLight::domTechnique_common::registerElement(DAE& dae)
 }
 
 daeElementRef
-domLight::domTechnique_common::domAmbient::create()
+domLight::domTechnique_common::domAmbient::create(DAE& dae)
 {
-	domLight::domTechnique_common::domAmbientRef ref = new domLight::domTechnique_common::domAmbient;
+	domLight::domTechnique_common::domAmbientRef ref = new domLight::domTechnique_common::domAmbient(dae);
 	return ref;
 }
 
@@ -174,7 +174,7 @@ domLight::domTechnique_common::domAmbient::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "ambient" );
 	meta->registerClass(domLight::domTechnique_common::domAmbient::create, &meta);
@@ -200,9 +200,9 @@ domLight::domTechnique_common::domAmbient::registerElement(DAE& dae)
 }
 
 daeElementRef
-domLight::domTechnique_common::domDirectional::create()
+domLight::domTechnique_common::domDirectional::create(DAE& dae)
 {
-	domLight::domTechnique_common::domDirectionalRef ref = new domLight::domTechnique_common::domDirectional;
+	domLight::domTechnique_common::domDirectionalRef ref = new domLight::domTechnique_common::domDirectional(dae);
 	return ref;
 }
 
@@ -213,7 +213,7 @@ domLight::domTechnique_common::domDirectional::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "directional" );
 	meta->registerClass(domLight::domTechnique_common::domDirectional::create, &meta);
@@ -239,9 +239,9 @@ domLight::domTechnique_common::domDirectional::registerElement(DAE& dae)
 }
 
 daeElementRef
-domLight::domTechnique_common::domPoint::create()
+domLight::domTechnique_common::domPoint::create(DAE& dae)
 {
-	domLight::domTechnique_common::domPointRef ref = new domLight::domTechnique_common::domPoint;
+	domLight::domTechnique_common::domPointRef ref = new domLight::domTechnique_common::domPoint(dae);
 	return ref;
 }
 
@@ -252,7 +252,7 @@ domLight::domTechnique_common::domPoint::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "point" );
 	meta->registerClass(domLight::domTechnique_common::domPoint::create, &meta);
@@ -296,9 +296,9 @@ domLight::domTechnique_common::domPoint::registerElement(DAE& dae)
 }
 
 daeElementRef
-domLight::domTechnique_common::domSpot::create()
+domLight::domTechnique_common::domSpot::create(DAE& dae)
 {
-	domLight::domTechnique_common::domSpotRef ref = new domLight::domTechnique_common::domSpot;
+	domLight::domTechnique_common::domSpotRef ref = new domLight::domTechnique_common::domSpot(dae);
 	return ref;
 }
 
@@ -309,7 +309,7 @@ domLight::domTechnique_common::domSpot::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "spot" );
 	meta->registerClass(domLight::domTechnique_common::domSpot::create, &meta);

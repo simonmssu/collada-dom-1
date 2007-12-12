@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_newparam::create()
+domCg_newparam::create(DAE& dae)
 {
-	domCg_newparamRef ref = new domCg_newparam;
+	domCg_newparamRef ref = new domCg_newparam(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCg_newparam::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "cg_newparam" );
 	meta->registerClass(domCg_newparam::create, &meta);
@@ -97,7 +97,7 @@ domCg_newparam::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("Cg_identifier"));
+		ma->setType( dae.getAtomicTypes().get("Cg_identifier"));
 		ma->setOffset( daeOffsetOf( domCg_newparam , attrSid ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -112,9 +112,9 @@ domCg_newparam::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCg_newparam::domSemantic::create()
+domCg_newparam::domSemantic::create(DAE& dae)
 {
-	domCg_newparam::domSemanticRef ref = new domCg_newparam::domSemantic;
+	domCg_newparam::domSemanticRef ref = new domCg_newparam::domSemantic(dae);
 	return ref;
 }
 
@@ -125,7 +125,7 @@ domCg_newparam::domSemantic::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "semantic" );
 	meta->registerClass(domCg_newparam::domSemantic::create, &meta);
@@ -135,7 +135,7 @@ domCg_newparam::domSemantic::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCg_newparam::domSemantic , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -148,9 +148,9 @@ domCg_newparam::domSemantic::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCg_newparam::domModifier::create()
+domCg_newparam::domModifier::create(DAE& dae)
 {
-	domCg_newparam::domModifierRef ref = new domCg_newparam::domModifier;
+	domCg_newparam::domModifierRef ref = new domCg_newparam::domModifier(dae);
 	return ref;
 }
 
@@ -161,7 +161,7 @@ domCg_newparam::domModifier::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "modifier" );
 	meta->registerClass(domCg_newparam::domModifier::create, &meta);
@@ -171,7 +171,7 @@ domCg_newparam::domModifier::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_modifier_enum_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_modifier_enum_common"));
 		ma->setOffset( daeOffsetOf( domCg_newparam::domModifier , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

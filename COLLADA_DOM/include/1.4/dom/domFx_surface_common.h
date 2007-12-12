@@ -46,7 +46,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FORMAT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FORMAT; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FORMAT; }
 
 	protected:  // Value
 		/**
@@ -106,7 +106,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SIZE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::SIZE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SIZE; }
 
 	protected:  // Value
 		/**
@@ -172,7 +172,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VIEWPORT_RATIO; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::VIEWPORT_RATIO; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::VIEWPORT_RATIO; }
 
 	protected:  // Value
 		/**
@@ -241,7 +241,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIP_LEVELS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MIP_LEVELS; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MIP_LEVELS; }
 
 	protected:  // Value
 		/**
@@ -304,7 +304,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPMAP_GENERATE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::MIPMAP_GENERATE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MIPMAP_GENERATE; }
 
 	protected:  // Value
 		/**
@@ -516,7 +516,7 @@ class domFx_surface_common : public daeElement, public domFx_surface_common_comp
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_COMMON; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::FX_SURFACE_COMMON; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FX_SURFACE_COMMON; }
 
 public:	//Accessors and Mutators
 	/**

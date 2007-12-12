@@ -34,7 +34,7 @@ class domVisual_scene : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VISUAL_SCENE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::VISUAL_SCENE; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::VISUAL_SCENE; }
 public:
 	class domEvaluate_scene;
 
@@ -50,7 +50,7 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::EVALUATE_SCENE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::EVALUATE_SCENE; }
+		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::EVALUATE_SCENE; }
 	public:
 		class domRender;
 
@@ -65,7 +65,7 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RENDER; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::RENDER; }
+			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::RENDER; }
 		public:
 			class domLayer;
 
@@ -80,7 +80,7 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LAYER; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LAYER; }
+				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LAYER; }
 
 			protected:  // Value
 				/**

@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domMaterial::create()
+domMaterial::create(DAE& dae)
 {
-	domMaterialRef ref = new domMaterial;
+	domMaterialRef ref = new domMaterial(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domMaterial::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "material" );
 	meta->registerClass(domMaterial::create, &meta);
@@ -69,7 +69,7 @@ domMaterial::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domMaterial , attrId ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domMaterial::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domMaterial , attrName ));
 		ma->setContainer( meta );
 	

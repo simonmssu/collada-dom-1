@@ -31,6 +31,7 @@
 #include <dae/daeErrorHandler.h>
 #include <dae/daeMetaElementAttribute.h>
 #include <dae/daeTinyXMLPlugin.h>
+#include <dae/daeDocument.h>
 
 using namespace std;
 

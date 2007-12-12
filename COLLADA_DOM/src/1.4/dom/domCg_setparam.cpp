@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_setparam::create()
+domCg_setparam::create(DAE& dae)
 {
-	domCg_setparamRef ref = new domCg_setparam;
+	domCg_setparamRef ref = new domCg_setparam(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCg_setparam::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "cg_setparam" );
 	meta->registerClass(domCg_setparam::create, &meta);
@@ -79,7 +79,7 @@ domCg_setparam::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("Cg_identifier"));
+		ma->setType( dae.getAtomicTypes().get("Cg_identifier"));
 		ma->setOffset( daeOffsetOf( domCg_setparam , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -91,7 +91,7 @@ domCg_setparam::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "program" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCg_setparam , attrProgram ));
 		ma->setContainer( meta );
 	

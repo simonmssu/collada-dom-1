@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_controller::create()
+domInstance_controller::create(DAE& dae)
 {
-	domInstance_controllerRef ref = new domInstance_controller;
+	domInstance_controllerRef ref = new domInstance_controller(dae);
 	ref->attrUrl.setContainer( (domInstance_controller*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domInstance_controller::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "instance_controller" );
 	meta->registerClass(domInstance_controller::create, &meta);
@@ -70,7 +70,7 @@ domInstance_controller::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "url" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstance_controller , attrUrl ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -82,7 +82,7 @@ domInstance_controller::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_controller , attrSid ));
 		ma->setContainer( meta );
 	
@@ -93,7 +93,7 @@ domInstance_controller::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_controller , attrName ));
 		ma->setContainer( meta );
 	
@@ -107,9 +107,9 @@ domInstance_controller::registerElement(DAE& dae)
 }
 
 daeElementRef
-domInstance_controller::domSkeleton::create()
+domInstance_controller::domSkeleton::create(DAE& dae)
 {
-	domInstance_controller::domSkeletonRef ref = new domInstance_controller::domSkeleton;
+	domInstance_controller::domSkeletonRef ref = new domInstance_controller::domSkeleton(dae);
 	ref->_value.setContainer( (domInstance_controller::domSkeleton*)ref );
 	return ref;
 }
@@ -121,7 +121,7 @@ domInstance_controller::domSkeleton::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "skeleton" );
 	meta->registerClass(domInstance_controller::domSkeleton::create, &meta);
@@ -131,7 +131,7 @@ domInstance_controller::domSkeleton::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstance_controller::domSkeleton , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

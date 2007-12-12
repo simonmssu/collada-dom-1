@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_samplerRECT_common::create()
+domFx_samplerRECT_common::create(DAE& dae)
 {
-	domFx_samplerRECT_commonRef ref = new domFx_samplerRECT_common;
+	domFx_samplerRECT_commonRef ref = new domFx_samplerRECT_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_samplerRECT_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_samplerRECT_common" );
 	meta->registerClass(domFx_samplerRECT_common::create, &meta);
@@ -114,9 +114,9 @@ domFx_samplerRECT_common::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerRECT_common::domSource::create()
+domFx_samplerRECT_common::domSource::create(DAE& dae)
 {
-	domFx_samplerRECT_common::domSourceRef ref = new domFx_samplerRECT_common::domSource;
+	domFx_samplerRECT_common::domSourceRef ref = new domFx_samplerRECT_common::domSource(dae);
 	return ref;
 }
 
@@ -127,7 +127,7 @@ domFx_samplerRECT_common::domSource::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "source" );
 	meta->registerClass(domFx_samplerRECT_common::domSource::create, &meta);
@@ -137,7 +137,7 @@ domFx_samplerRECT_common::domSource::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFx_samplerRECT_common::domSource , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -150,9 +150,9 @@ domFx_samplerRECT_common::domSource::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerRECT_common::domWrap_s::create()
+domFx_samplerRECT_common::domWrap_s::create(DAE& dae)
 {
-	domFx_samplerRECT_common::domWrap_sRef ref = new domFx_samplerRECT_common::domWrap_s;
+	domFx_samplerRECT_common::domWrap_sRef ref = new domFx_samplerRECT_common::domWrap_s(dae);
 	return ref;
 }
 
@@ -163,7 +163,7 @@ domFx_samplerRECT_common::domWrap_s::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "wrap_s" );
 	meta->registerClass(domFx_samplerRECT_common::domWrap_s::create, &meta);
@@ -173,7 +173,7 @@ domFx_samplerRECT_common::domWrap_s::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_wrap_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_wrap_common"));
 		ma->setOffset( daeOffsetOf( domFx_samplerRECT_common::domWrap_s , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -186,9 +186,9 @@ domFx_samplerRECT_common::domWrap_s::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerRECT_common::domWrap_t::create()
+domFx_samplerRECT_common::domWrap_t::create(DAE& dae)
 {
-	domFx_samplerRECT_common::domWrap_tRef ref = new domFx_samplerRECT_common::domWrap_t;
+	domFx_samplerRECT_common::domWrap_tRef ref = new domFx_samplerRECT_common::domWrap_t(dae);
 	return ref;
 }
 
@@ -199,7 +199,7 @@ domFx_samplerRECT_common::domWrap_t::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "wrap_t" );
 	meta->registerClass(domFx_samplerRECT_common::domWrap_t::create, &meta);
@@ -209,7 +209,7 @@ domFx_samplerRECT_common::domWrap_t::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_wrap_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_wrap_common"));
 		ma->setOffset( daeOffsetOf( domFx_samplerRECT_common::domWrap_t , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -222,9 +222,9 @@ domFx_samplerRECT_common::domWrap_t::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerRECT_common::domMinfilter::create()
+domFx_samplerRECT_common::domMinfilter::create(DAE& dae)
 {
-	domFx_samplerRECT_common::domMinfilterRef ref = new domFx_samplerRECT_common::domMinfilter;
+	domFx_samplerRECT_common::domMinfilterRef ref = new domFx_samplerRECT_common::domMinfilter(dae);
 	return ref;
 }
 
@@ -235,7 +235,7 @@ domFx_samplerRECT_common::domMinfilter::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "minfilter" );
 	meta->registerClass(domFx_samplerRECT_common::domMinfilter::create, &meta);
@@ -245,7 +245,7 @@ domFx_samplerRECT_common::domMinfilter::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_filter_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_filter_common"));
 		ma->setOffset( daeOffsetOf( domFx_samplerRECT_common::domMinfilter , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -258,9 +258,9 @@ domFx_samplerRECT_common::domMinfilter::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerRECT_common::domMagfilter::create()
+domFx_samplerRECT_common::domMagfilter::create(DAE& dae)
 {
-	domFx_samplerRECT_common::domMagfilterRef ref = new domFx_samplerRECT_common::domMagfilter;
+	domFx_samplerRECT_common::domMagfilterRef ref = new domFx_samplerRECT_common::domMagfilter(dae);
 	return ref;
 }
 
@@ -271,7 +271,7 @@ domFx_samplerRECT_common::domMagfilter::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "magfilter" );
 	meta->registerClass(domFx_samplerRECT_common::domMagfilter::create, &meta);
@@ -281,7 +281,7 @@ domFx_samplerRECT_common::domMagfilter::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_filter_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_filter_common"));
 		ma->setOffset( daeOffsetOf( domFx_samplerRECT_common::domMagfilter , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -294,9 +294,9 @@ domFx_samplerRECT_common::domMagfilter::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerRECT_common::domMipfilter::create()
+domFx_samplerRECT_common::domMipfilter::create(DAE& dae)
 {
-	domFx_samplerRECT_common::domMipfilterRef ref = new domFx_samplerRECT_common::domMipfilter;
+	domFx_samplerRECT_common::domMipfilterRef ref = new domFx_samplerRECT_common::domMipfilter(dae);
 	return ref;
 }
 
@@ -307,7 +307,7 @@ domFx_samplerRECT_common::domMipfilter::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "mipfilter" );
 	meta->registerClass(domFx_samplerRECT_common::domMipfilter::create, &meta);
@@ -317,7 +317,7 @@ domFx_samplerRECT_common::domMipfilter::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_filter_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_filter_common"));
 		ma->setOffset( daeOffsetOf( domFx_samplerRECT_common::domMipfilter , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -330,9 +330,9 @@ domFx_samplerRECT_common::domMipfilter::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerRECT_common::domBorder_color::create()
+domFx_samplerRECT_common::domBorder_color::create(DAE& dae)
 {
-	domFx_samplerRECT_common::domBorder_colorRef ref = new domFx_samplerRECT_common::domBorder_color;
+	domFx_samplerRECT_common::domBorder_colorRef ref = new domFx_samplerRECT_common::domBorder_color(dae);
 	return ref;
 }
 
@@ -343,7 +343,7 @@ domFx_samplerRECT_common::domBorder_color::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "border_color" );
 	meta->registerClass(domFx_samplerRECT_common::domBorder_color::create, &meta);
@@ -353,7 +353,7 @@ domFx_samplerRECT_common::domBorder_color::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_color_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_color_common"));
 		ma->setOffset( daeOffsetOf( domFx_samplerRECT_common::domBorder_color , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -366,9 +366,9 @@ domFx_samplerRECT_common::domBorder_color::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerRECT_common::domMipmap_maxlevel::create()
+domFx_samplerRECT_common::domMipmap_maxlevel::create(DAE& dae)
 {
-	domFx_samplerRECT_common::domMipmap_maxlevelRef ref = new domFx_samplerRECT_common::domMipmap_maxlevel;
+	domFx_samplerRECT_common::domMipmap_maxlevelRef ref = new domFx_samplerRECT_common::domMipmap_maxlevel(dae);
 	return ref;
 }
 
@@ -379,7 +379,7 @@ domFx_samplerRECT_common::domMipmap_maxlevel::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "mipmap_maxlevel" );
 	meta->registerClass(domFx_samplerRECT_common::domMipmap_maxlevel::create, &meta);
@@ -389,7 +389,7 @@ domFx_samplerRECT_common::domMipmap_maxlevel::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsUnsignedByte"));
+		ma->setType( dae.getAtomicTypes().get("xsUnsignedByte"));
 		ma->setOffset( daeOffsetOf( domFx_samplerRECT_common::domMipmap_maxlevel , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -402,9 +402,9 @@ domFx_samplerRECT_common::domMipmap_maxlevel::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerRECT_common::domMipmap_bias::create()
+domFx_samplerRECT_common::domMipmap_bias::create(DAE& dae)
 {
-	domFx_samplerRECT_common::domMipmap_biasRef ref = new domFx_samplerRECT_common::domMipmap_bias;
+	domFx_samplerRECT_common::domMipmap_biasRef ref = new domFx_samplerRECT_common::domMipmap_bias(dae);
 	return ref;
 }
 
@@ -415,7 +415,7 @@ domFx_samplerRECT_common::domMipmap_bias::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "mipmap_bias" );
 	meta->registerClass(domFx_samplerRECT_common::domMipmap_bias::create, &meta);
@@ -425,7 +425,7 @@ domFx_samplerRECT_common::domMipmap_bias::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsFloat"));
+		ma->setType( dae.getAtomicTypes().get("xsFloat"));
 		ma->setOffset( daeOffsetOf( domFx_samplerRECT_common::domMipmap_bias , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

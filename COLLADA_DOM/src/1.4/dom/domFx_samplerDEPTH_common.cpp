@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_samplerDEPTH_common::create()
+domFx_samplerDEPTH_common::create(DAE& dae)
 {
-	domFx_samplerDEPTH_commonRef ref = new domFx_samplerDEPTH_common;
+	domFx_samplerDEPTH_commonRef ref = new domFx_samplerDEPTH_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_samplerDEPTH_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_samplerDEPTH_common" );
 	meta->registerClass(domFx_samplerDEPTH_common::create, &meta);
@@ -90,9 +90,9 @@ domFx_samplerDEPTH_common::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerDEPTH_common::domSource::create()
+domFx_samplerDEPTH_common::domSource::create(DAE& dae)
 {
-	domFx_samplerDEPTH_common::domSourceRef ref = new domFx_samplerDEPTH_common::domSource;
+	domFx_samplerDEPTH_common::domSourceRef ref = new domFx_samplerDEPTH_common::domSource(dae);
 	return ref;
 }
 
@@ -103,7 +103,7 @@ domFx_samplerDEPTH_common::domSource::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "source" );
 	meta->registerClass(domFx_samplerDEPTH_common::domSource::create, &meta);
@@ -113,7 +113,7 @@ domFx_samplerDEPTH_common::domSource::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFx_samplerDEPTH_common::domSource , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -126,9 +126,9 @@ domFx_samplerDEPTH_common::domSource::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerDEPTH_common::domWrap_s::create()
+domFx_samplerDEPTH_common::domWrap_s::create(DAE& dae)
 {
-	domFx_samplerDEPTH_common::domWrap_sRef ref = new domFx_samplerDEPTH_common::domWrap_s;
+	domFx_samplerDEPTH_common::domWrap_sRef ref = new domFx_samplerDEPTH_common::domWrap_s(dae);
 	return ref;
 }
 
@@ -139,7 +139,7 @@ domFx_samplerDEPTH_common::domWrap_s::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "wrap_s" );
 	meta->registerClass(domFx_samplerDEPTH_common::domWrap_s::create, &meta);
@@ -149,7 +149,7 @@ domFx_samplerDEPTH_common::domWrap_s::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_wrap_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_wrap_common"));
 		ma->setOffset( daeOffsetOf( domFx_samplerDEPTH_common::domWrap_s , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -162,9 +162,9 @@ domFx_samplerDEPTH_common::domWrap_s::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerDEPTH_common::domWrap_t::create()
+domFx_samplerDEPTH_common::domWrap_t::create(DAE& dae)
 {
-	domFx_samplerDEPTH_common::domWrap_tRef ref = new domFx_samplerDEPTH_common::domWrap_t;
+	domFx_samplerDEPTH_common::domWrap_tRef ref = new domFx_samplerDEPTH_common::domWrap_t(dae);
 	return ref;
 }
 
@@ -175,7 +175,7 @@ domFx_samplerDEPTH_common::domWrap_t::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "wrap_t" );
 	meta->registerClass(domFx_samplerDEPTH_common::domWrap_t::create, &meta);
@@ -185,7 +185,7 @@ domFx_samplerDEPTH_common::domWrap_t::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_wrap_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_wrap_common"));
 		ma->setOffset( daeOffsetOf( domFx_samplerDEPTH_common::domWrap_t , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -198,9 +198,9 @@ domFx_samplerDEPTH_common::domWrap_t::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerDEPTH_common::domMinfilter::create()
+domFx_samplerDEPTH_common::domMinfilter::create(DAE& dae)
 {
-	domFx_samplerDEPTH_common::domMinfilterRef ref = new domFx_samplerDEPTH_common::domMinfilter;
+	domFx_samplerDEPTH_common::domMinfilterRef ref = new domFx_samplerDEPTH_common::domMinfilter(dae);
 	return ref;
 }
 
@@ -211,7 +211,7 @@ domFx_samplerDEPTH_common::domMinfilter::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "minfilter" );
 	meta->registerClass(domFx_samplerDEPTH_common::domMinfilter::create, &meta);
@@ -221,7 +221,7 @@ domFx_samplerDEPTH_common::domMinfilter::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_filter_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_filter_common"));
 		ma->setOffset( daeOffsetOf( domFx_samplerDEPTH_common::domMinfilter , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -234,9 +234,9 @@ domFx_samplerDEPTH_common::domMinfilter::registerElement(DAE& dae)
 }
 
 daeElementRef
-domFx_samplerDEPTH_common::domMagfilter::create()
+domFx_samplerDEPTH_common::domMagfilter::create(DAE& dae)
 {
-	domFx_samplerDEPTH_common::domMagfilterRef ref = new domFx_samplerDEPTH_common::domMagfilter;
+	domFx_samplerDEPTH_common::domMagfilterRef ref = new domFx_samplerDEPTH_common::domMagfilter(dae);
 	return ref;
 }
 
@@ -247,7 +247,7 @@ domFx_samplerDEPTH_common::domMagfilter::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "magfilter" );
 	meta->registerClass(domFx_samplerDEPTH_common::domMagfilter::create, &meta);
@@ -257,7 +257,7 @@ domFx_samplerDEPTH_common::domMagfilter::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_sampler_filter_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_sampler_filter_common"));
 		ma->setOffset( daeOffsetOf( domFx_samplerDEPTH_common::domMagfilter , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

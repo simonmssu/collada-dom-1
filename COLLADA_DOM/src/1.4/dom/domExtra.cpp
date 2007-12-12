@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domExtra::create()
+domExtra::create(DAE& dae)
 {
-	domExtraRef ref = new domExtra;
+	domExtraRef ref = new domExtra(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domExtra::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "extra" );
 	meta->registerClass(domExtra::create, &meta);
@@ -63,7 +63,7 @@ domExtra::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domExtra , attrId ));
 		ma->setContainer( meta );
 	
@@ -74,7 +74,7 @@ domExtra::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domExtra , attrName ));
 		ma->setContainer( meta );
 	
@@ -85,7 +85,7 @@ domExtra::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "type" );
-		ma->setType( daeAtomicType::get("xsNMTOKEN"));
+		ma->setType( dae.getAtomicTypes().get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domExtra , attrType ));
 		ma->setContainer( meta );
 	

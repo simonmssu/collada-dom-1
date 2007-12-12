@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_physics_model::create()
+domInstance_physics_model::create(DAE& dae)
 {
-	domInstance_physics_modelRef ref = new domInstance_physics_model;
+	domInstance_physics_modelRef ref = new domInstance_physics_model(dae);
 	ref->attrUrl.setContainer( (domInstance_physics_model*)ref );
 	ref->attrParent.setContainer( (domInstance_physics_model*)ref );
 	return ref;
@@ -37,7 +37,7 @@ domInstance_physics_model::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "instance_physics_model" );
 	meta->registerClass(domInstance_physics_model::create, &meta);
@@ -77,7 +77,7 @@ domInstance_physics_model::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "url" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstance_physics_model , attrUrl ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -89,7 +89,7 @@ domInstance_physics_model::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_physics_model , attrSid ));
 		ma->setContainer( meta );
 	
@@ -100,7 +100,7 @@ domInstance_physics_model::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_physics_model , attrName ));
 		ma->setContainer( meta );
 	
@@ -111,7 +111,7 @@ domInstance_physics_model::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "parent" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstance_physics_model , attrParent ));
 		ma->setContainer( meta );
 	

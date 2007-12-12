@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_stenciltarget_common::create()
+domFx_stenciltarget_common::create(DAE& dae)
 {
-	domFx_stenciltarget_commonRef ref = new domFx_stenciltarget_common;
+	domFx_stenciltarget_commonRef ref = new domFx_stenciltarget_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_stenciltarget_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_stenciltarget_common" );
 	meta->registerClass(domFx_stenciltarget_common::create, &meta);
@@ -44,7 +44,7 @@ domFx_stenciltarget_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFx_stenciltarget_common , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domFx_stenciltarget_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "index" );
-		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_stenciltarget_common , attrIndex ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -67,7 +67,7 @@ domFx_stenciltarget_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "face" );
-		ma->setType( daeAtomicType::get("Fx_surface_face_enum"));
+		ma->setType( dae.getAtomicTypes().get("Fx_surface_face_enum"));
 		ma->setOffset( daeOffsetOf( domFx_stenciltarget_common , attrFace ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "POSITIVE_X");
@@ -80,7 +80,7 @@ domFx_stenciltarget_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "mip" );
-		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_stenciltarget_common , attrMip ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");
@@ -93,7 +93,7 @@ domFx_stenciltarget_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "slice" );
-		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFx_stenciltarget_common , attrSlice ));
 		ma->setContainer( meta );
 		ma->setDefaultString( "0");

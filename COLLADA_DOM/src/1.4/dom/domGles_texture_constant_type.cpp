@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texture_constant_type::create()
+domGles_texture_constant_type::create(DAE& dae)
 {
-	domGles_texture_constant_typeRef ref = new domGles_texture_constant_type;
+	domGles_texture_constant_typeRef ref = new domGles_texture_constant_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGles_texture_constant_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gles_texture_constant_type" );
 	meta->registerClass(domGles_texture_constant_type::create, &meta);
@@ -45,7 +45,7 @@ domGles_texture_constant_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_texture_constant_type , attrValue ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -57,7 +57,7 @@ domGles_texture_constant_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "param" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGles_texture_constant_type , attrParam ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );

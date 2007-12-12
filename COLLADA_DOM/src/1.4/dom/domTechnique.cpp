@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTechnique::create()
+domTechnique::create(DAE& dae)
 {
-	domTechniqueRef ref = new domTechnique;
+	domTechniqueRef ref = new domTechnique(dae);
 	ref->attrXmlns.setContainer( (domTechnique*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domTechnique::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique" );
 	meta->registerClass(domTechnique::create, &meta);
@@ -61,7 +61,7 @@ domTechnique::registerElement(DAE& dae)
 	{
 		daeMetaAttribute* ma = new daeMetaAttribute;
 		ma->setName( "xmlns" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domTechnique , attrXmlns ));
 		ma->setContainer( meta );
 		//ma->setIsRequired( true );
@@ -72,7 +72,7 @@ domTechnique::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "profile" );
-		ma->setType( daeAtomicType::get("xsNMTOKEN"));
+		ma->setType( dae.getAtomicTypes().get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domTechnique , attrProfile ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

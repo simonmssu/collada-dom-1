@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_material::create()
+domInstance_material::create(DAE& dae)
 {
-	domInstance_materialRef ref = new domInstance_material;
+	domInstance_materialRef ref = new domInstance_material(dae);
 	ref->attrTarget.setContainer( (domInstance_material*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domInstance_material::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "instance_material" );
 	meta->registerClass(domInstance_material::create, &meta);
@@ -70,7 +70,7 @@ domInstance_material::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "symbol" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_material , attrSymbol ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -82,7 +82,7 @@ domInstance_material::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "target" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstance_material , attrTarget ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -94,7 +94,7 @@ domInstance_material::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_material , attrSid ));
 		ma->setContainer( meta );
 	
@@ -105,7 +105,7 @@ domInstance_material::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_material , attrName ));
 		ma->setContainer( meta );
 	
@@ -119,9 +119,9 @@ domInstance_material::registerElement(DAE& dae)
 }
 
 daeElementRef
-domInstance_material::domBind::create()
+domInstance_material::domBind::create(DAE& dae)
 {
-	domInstance_material::domBindRef ref = new domInstance_material::domBind;
+	domInstance_material::domBindRef ref = new domInstance_material::domBind(dae);
 	return ref;
 }
 
@@ -132,7 +132,7 @@ domInstance_material::domBind::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bind" );
 	meta->registerClass(domInstance_material::domBind::create, &meta);
@@ -143,7 +143,7 @@ domInstance_material::domBind::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_material::domBind , attrSemantic ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -155,7 +155,7 @@ domInstance_material::domBind::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "target" );
-		ma->setType( daeAtomicType::get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsToken"));
 		ma->setOffset( daeOffsetOf( domInstance_material::domBind , attrTarget ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -170,9 +170,9 @@ domInstance_material::domBind::registerElement(DAE& dae)
 }
 
 daeElementRef
-domInstance_material::domBind_vertex_input::create()
+domInstance_material::domBind_vertex_input::create(DAE& dae)
 {
-	domInstance_material::domBind_vertex_inputRef ref = new domInstance_material::domBind_vertex_input;
+	domInstance_material::domBind_vertex_inputRef ref = new domInstance_material::domBind_vertex_input(dae);
 	return ref;
 }
 
@@ -183,7 +183,7 @@ domInstance_material::domBind_vertex_input::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bind_vertex_input" );
 	meta->registerClass(domInstance_material::domBind_vertex_input::create, &meta);
@@ -194,7 +194,7 @@ domInstance_material::domBind_vertex_input::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_material::domBind_vertex_input , attrSemantic ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -206,7 +206,7 @@ domInstance_material::domBind_vertex_input::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "input_semantic" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_material::domBind_vertex_input , attrInput_semantic ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -218,7 +218,7 @@ domInstance_material::domBind_vertex_input::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "input_set" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domInstance_material::domBind_vertex_input , attrInput_set ));
 		ma->setContainer( meta );
 	

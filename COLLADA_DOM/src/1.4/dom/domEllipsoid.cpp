@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domEllipsoid::create()
+domEllipsoid::create(DAE& dae)
 {
-	domEllipsoidRef ref = new domEllipsoid;
+	domEllipsoidRef ref = new domEllipsoid(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domEllipsoid::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "ellipsoid" );
 	meta->registerClass(domEllipsoid::create, &meta);
@@ -60,9 +60,9 @@ domEllipsoid::registerElement(DAE& dae)
 }
 
 daeElementRef
-domEllipsoid::domSize::create()
+domEllipsoid::domSize::create(DAE& dae)
 {
-	domEllipsoid::domSizeRef ref = new domEllipsoid::domSize;
+	domEllipsoid::domSizeRef ref = new domEllipsoid::domSize(dae);
 	return ref;
 }
 
@@ -73,7 +73,7 @@ domEllipsoid::domSize::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "size" );
 	meta->registerClass(domEllipsoid::domSize::create, &meta);
@@ -83,7 +83,7 @@ domEllipsoid::domSize::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float3"));
+		ma->setType( dae.getAtomicTypes().get("Float3"));
 		ma->setOffset( daeOffsetOf( domEllipsoid::domSize , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

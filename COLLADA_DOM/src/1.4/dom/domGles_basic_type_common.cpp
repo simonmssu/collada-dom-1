@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_basic_type_common::create()
+domGles_basic_type_common::create(DAE& dae)
 {
-	domGles_basic_type_commonRef ref = new domGles_basic_type_common;
+	domGles_basic_type_commonRef ref = new domGles_basic_type_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGles_basic_type_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gles_basic_type_common" );
 	meta->registerClass(domGles_basic_type_common::create, &meta);
@@ -257,9 +257,9 @@ domGles_basic_type_common::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domBool::create()
+domGles_basic_type_common::domBool::create(DAE& dae)
 {
-	domGles_basic_type_common::domBoolRef ref = new domGles_basic_type_common::domBool;
+	domGles_basic_type_common::domBoolRef ref = new domGles_basic_type_common::domBool(dae);
 	return ref;
 }
 
@@ -270,7 +270,7 @@ domGles_basic_type_common::domBool::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bool" );
 	meta->registerClass(domGles_basic_type_common::domBool::create, &meta);
@@ -280,7 +280,7 @@ domGles_basic_type_common::domBool::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Bool"));
+		ma->setType( dae.getAtomicTypes().get("Bool"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domBool , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -293,9 +293,9 @@ domGles_basic_type_common::domBool::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domBool2::create()
+domGles_basic_type_common::domBool2::create(DAE& dae)
 {
-	domGles_basic_type_common::domBool2Ref ref = new domGles_basic_type_common::domBool2;
+	domGles_basic_type_common::domBool2Ref ref = new domGles_basic_type_common::domBool2(dae);
 	return ref;
 }
 
@@ -306,7 +306,7 @@ domGles_basic_type_common::domBool2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bool2" );
 	meta->registerClass(domGles_basic_type_common::domBool2::create, &meta);
@@ -316,7 +316,7 @@ domGles_basic_type_common::domBool2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Bool2"));
+		ma->setType( dae.getAtomicTypes().get("Bool2"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domBool2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -329,9 +329,9 @@ domGles_basic_type_common::domBool2::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domBool3::create()
+domGles_basic_type_common::domBool3::create(DAE& dae)
 {
-	domGles_basic_type_common::domBool3Ref ref = new domGles_basic_type_common::domBool3;
+	domGles_basic_type_common::domBool3Ref ref = new domGles_basic_type_common::domBool3(dae);
 	return ref;
 }
 
@@ -342,7 +342,7 @@ domGles_basic_type_common::domBool3::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bool3" );
 	meta->registerClass(domGles_basic_type_common::domBool3::create, &meta);
@@ -352,7 +352,7 @@ domGles_basic_type_common::domBool3::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Bool3"));
+		ma->setType( dae.getAtomicTypes().get("Bool3"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domBool3 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -365,9 +365,9 @@ domGles_basic_type_common::domBool3::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domBool4::create()
+domGles_basic_type_common::domBool4::create(DAE& dae)
 {
-	domGles_basic_type_common::domBool4Ref ref = new domGles_basic_type_common::domBool4;
+	domGles_basic_type_common::domBool4Ref ref = new domGles_basic_type_common::domBool4(dae);
 	return ref;
 }
 
@@ -378,7 +378,7 @@ domGles_basic_type_common::domBool4::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bool4" );
 	meta->registerClass(domGles_basic_type_common::domBool4::create, &meta);
@@ -388,7 +388,7 @@ domGles_basic_type_common::domBool4::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Bool4"));
+		ma->setType( dae.getAtomicTypes().get("Bool4"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domBool4 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -401,9 +401,9 @@ domGles_basic_type_common::domBool4::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domInt::create()
+domGles_basic_type_common::domInt::create(DAE& dae)
 {
-	domGles_basic_type_common::domIntRef ref = new domGles_basic_type_common::domInt;
+	domGles_basic_type_common::domIntRef ref = new domGles_basic_type_common::domInt(dae);
 	return ref;
 }
 
@@ -414,7 +414,7 @@ domGles_basic_type_common::domInt::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "int" );
 	meta->registerClass(domGles_basic_type_common::domInt::create, &meta);
@@ -424,7 +424,7 @@ domGles_basic_type_common::domInt::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Int"));
+		ma->setType( dae.getAtomicTypes().get("Int"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domInt , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -437,9 +437,9 @@ domGles_basic_type_common::domInt::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domInt2::create()
+domGles_basic_type_common::domInt2::create(DAE& dae)
 {
-	domGles_basic_type_common::domInt2Ref ref = new domGles_basic_type_common::domInt2;
+	domGles_basic_type_common::domInt2Ref ref = new domGles_basic_type_common::domInt2(dae);
 	return ref;
 }
 
@@ -450,7 +450,7 @@ domGles_basic_type_common::domInt2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "int2" );
 	meta->registerClass(domGles_basic_type_common::domInt2::create, &meta);
@@ -460,7 +460,7 @@ domGles_basic_type_common::domInt2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Int2"));
+		ma->setType( dae.getAtomicTypes().get("Int2"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domInt2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -473,9 +473,9 @@ domGles_basic_type_common::domInt2::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domInt3::create()
+domGles_basic_type_common::domInt3::create(DAE& dae)
 {
-	domGles_basic_type_common::domInt3Ref ref = new domGles_basic_type_common::domInt3;
+	domGles_basic_type_common::domInt3Ref ref = new domGles_basic_type_common::domInt3(dae);
 	return ref;
 }
 
@@ -486,7 +486,7 @@ domGles_basic_type_common::domInt3::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "int3" );
 	meta->registerClass(domGles_basic_type_common::domInt3::create, &meta);
@@ -496,7 +496,7 @@ domGles_basic_type_common::domInt3::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Int3"));
+		ma->setType( dae.getAtomicTypes().get("Int3"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domInt3 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -509,9 +509,9 @@ domGles_basic_type_common::domInt3::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domInt4::create()
+domGles_basic_type_common::domInt4::create(DAE& dae)
 {
-	domGles_basic_type_common::domInt4Ref ref = new domGles_basic_type_common::domInt4;
+	domGles_basic_type_common::domInt4Ref ref = new domGles_basic_type_common::domInt4(dae);
 	return ref;
 }
 
@@ -522,7 +522,7 @@ domGles_basic_type_common::domInt4::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "int4" );
 	meta->registerClass(domGles_basic_type_common::domInt4::create, &meta);
@@ -532,7 +532,7 @@ domGles_basic_type_common::domInt4::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Int4"));
+		ma->setType( dae.getAtomicTypes().get("Int4"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domInt4 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -545,9 +545,9 @@ domGles_basic_type_common::domInt4::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat::create()
+domGles_basic_type_common::domFloat::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloatRef ref = new domGles_basic_type_common::domFloat;
+	domGles_basic_type_common::domFloatRef ref = new domGles_basic_type_common::domFloat(dae);
 	return ref;
 }
 
@@ -558,7 +558,7 @@ domGles_basic_type_common::domFloat::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float" );
 	meta->registerClass(domGles_basic_type_common::domFloat::create, &meta);
@@ -568,7 +568,7 @@ domGles_basic_type_common::domFloat::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -581,9 +581,9 @@ domGles_basic_type_common::domFloat::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat2::create()
+domGles_basic_type_common::domFloat2::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat2Ref ref = new domGles_basic_type_common::domFloat2;
+	domGles_basic_type_common::domFloat2Ref ref = new domGles_basic_type_common::domFloat2(dae);
 	return ref;
 }
 
@@ -594,7 +594,7 @@ domGles_basic_type_common::domFloat2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float2" );
 	meta->registerClass(domGles_basic_type_common::domFloat2::create, &meta);
@@ -604,7 +604,7 @@ domGles_basic_type_common::domFloat2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -617,9 +617,9 @@ domGles_basic_type_common::domFloat2::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat3::create()
+domGles_basic_type_common::domFloat3::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat3Ref ref = new domGles_basic_type_common::domFloat3;
+	domGles_basic_type_common::domFloat3Ref ref = new domGles_basic_type_common::domFloat3(dae);
 	return ref;
 }
 
@@ -630,7 +630,7 @@ domGles_basic_type_common::domFloat3::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float3" );
 	meta->registerClass(domGles_basic_type_common::domFloat3::create, &meta);
@@ -640,7 +640,7 @@ domGles_basic_type_common::domFloat3::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float3"));
+		ma->setType( dae.getAtomicTypes().get("Float3"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat3 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -653,9 +653,9 @@ domGles_basic_type_common::domFloat3::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat4::create()
+domGles_basic_type_common::domFloat4::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat4Ref ref = new domGles_basic_type_common::domFloat4;
+	domGles_basic_type_common::domFloat4Ref ref = new domGles_basic_type_common::domFloat4(dae);
 	return ref;
 }
 
@@ -666,7 +666,7 @@ domGles_basic_type_common::domFloat4::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float4" );
 	meta->registerClass(domGles_basic_type_common::domFloat4::create, &meta);
@@ -676,7 +676,7 @@ domGles_basic_type_common::domFloat4::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat4 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -689,9 +689,9 @@ domGles_basic_type_common::domFloat4::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat1x1::create()
+domGles_basic_type_common::domFloat1x1::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat1x1Ref ref = new domGles_basic_type_common::domFloat1x1;
+	domGles_basic_type_common::domFloat1x1Ref ref = new domGles_basic_type_common::domFloat1x1(dae);
 	return ref;
 }
 
@@ -702,7 +702,7 @@ domGles_basic_type_common::domFloat1x1::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float1x1" );
 	meta->registerClass(domGles_basic_type_common::domFloat1x1::create, &meta);
@@ -712,7 +712,7 @@ domGles_basic_type_common::domFloat1x1::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat1x1 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -725,9 +725,9 @@ domGles_basic_type_common::domFloat1x1::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat1x2::create()
+domGles_basic_type_common::domFloat1x2::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat1x2Ref ref = new domGles_basic_type_common::domFloat1x2;
+	domGles_basic_type_common::domFloat1x2Ref ref = new domGles_basic_type_common::domFloat1x2(dae);
 	return ref;
 }
 
@@ -738,7 +738,7 @@ domGles_basic_type_common::domFloat1x2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float1x2" );
 	meta->registerClass(domGles_basic_type_common::domFloat1x2::create, &meta);
@@ -748,7 +748,7 @@ domGles_basic_type_common::domFloat1x2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat1x2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -761,9 +761,9 @@ domGles_basic_type_common::domFloat1x2::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat1x3::create()
+domGles_basic_type_common::domFloat1x3::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat1x3Ref ref = new domGles_basic_type_common::domFloat1x3;
+	domGles_basic_type_common::domFloat1x3Ref ref = new domGles_basic_type_common::domFloat1x3(dae);
 	return ref;
 }
 
@@ -774,7 +774,7 @@ domGles_basic_type_common::domFloat1x3::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float1x3" );
 	meta->registerClass(domGles_basic_type_common::domFloat1x3::create, &meta);
@@ -784,7 +784,7 @@ domGles_basic_type_common::domFloat1x3::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float3"));
+		ma->setType( dae.getAtomicTypes().get("Float3"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat1x3 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -797,9 +797,9 @@ domGles_basic_type_common::domFloat1x3::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat1x4::create()
+domGles_basic_type_common::domFloat1x4::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat1x4Ref ref = new domGles_basic_type_common::domFloat1x4;
+	domGles_basic_type_common::domFloat1x4Ref ref = new domGles_basic_type_common::domFloat1x4(dae);
 	return ref;
 }
 
@@ -810,7 +810,7 @@ domGles_basic_type_common::domFloat1x4::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float1x4" );
 	meta->registerClass(domGles_basic_type_common::domFloat1x4::create, &meta);
@@ -820,7 +820,7 @@ domGles_basic_type_common::domFloat1x4::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat1x4 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -833,9 +833,9 @@ domGles_basic_type_common::domFloat1x4::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat2x1::create()
+domGles_basic_type_common::domFloat2x1::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat2x1Ref ref = new domGles_basic_type_common::domFloat2x1;
+	domGles_basic_type_common::domFloat2x1Ref ref = new domGles_basic_type_common::domFloat2x1(dae);
 	return ref;
 }
 
@@ -846,7 +846,7 @@ domGles_basic_type_common::domFloat2x1::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float2x1" );
 	meta->registerClass(domGles_basic_type_common::domFloat2x1::create, &meta);
@@ -856,7 +856,7 @@ domGles_basic_type_common::domFloat2x1::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat2x1 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -869,9 +869,9 @@ domGles_basic_type_common::domFloat2x1::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat2x2::create()
+domGles_basic_type_common::domFloat2x2::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat2x2Ref ref = new domGles_basic_type_common::domFloat2x2;
+	domGles_basic_type_common::domFloat2x2Ref ref = new domGles_basic_type_common::domFloat2x2(dae);
 	return ref;
 }
 
@@ -882,7 +882,7 @@ domGles_basic_type_common::domFloat2x2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float2x2" );
 	meta->registerClass(domGles_basic_type_common::domFloat2x2::create, &meta);
@@ -892,7 +892,7 @@ domGles_basic_type_common::domFloat2x2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2x2"));
+		ma->setType( dae.getAtomicTypes().get("Float2x2"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat2x2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -905,9 +905,9 @@ domGles_basic_type_common::domFloat2x2::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat2x3::create()
+domGles_basic_type_common::domFloat2x3::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat2x3Ref ref = new domGles_basic_type_common::domFloat2x3;
+	domGles_basic_type_common::domFloat2x3Ref ref = new domGles_basic_type_common::domFloat2x3(dae);
 	return ref;
 }
 
@@ -918,7 +918,7 @@ domGles_basic_type_common::domFloat2x3::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float2x3" );
 	meta->registerClass(domGles_basic_type_common::domFloat2x3::create, &meta);
@@ -928,7 +928,7 @@ domGles_basic_type_common::domFloat2x3::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2x3"));
+		ma->setType( dae.getAtomicTypes().get("Float2x3"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat2x3 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -941,9 +941,9 @@ domGles_basic_type_common::domFloat2x3::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat2x4::create()
+domGles_basic_type_common::domFloat2x4::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat2x4Ref ref = new domGles_basic_type_common::domFloat2x4;
+	domGles_basic_type_common::domFloat2x4Ref ref = new domGles_basic_type_common::domFloat2x4(dae);
 	return ref;
 }
 
@@ -954,7 +954,7 @@ domGles_basic_type_common::domFloat2x4::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float2x4" );
 	meta->registerClass(domGles_basic_type_common::domFloat2x4::create, &meta);
@@ -964,7 +964,7 @@ domGles_basic_type_common::domFloat2x4::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2x4"));
+		ma->setType( dae.getAtomicTypes().get("Float2x4"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat2x4 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -977,9 +977,9 @@ domGles_basic_type_common::domFloat2x4::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat3x1::create()
+domGles_basic_type_common::domFloat3x1::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat3x1Ref ref = new domGles_basic_type_common::domFloat3x1;
+	domGles_basic_type_common::domFloat3x1Ref ref = new domGles_basic_type_common::domFloat3x1(dae);
 	return ref;
 }
 
@@ -990,7 +990,7 @@ domGles_basic_type_common::domFloat3x1::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float3x1" );
 	meta->registerClass(domGles_basic_type_common::domFloat3x1::create, &meta);
@@ -1000,7 +1000,7 @@ domGles_basic_type_common::domFloat3x1::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float3"));
+		ma->setType( dae.getAtomicTypes().get("Float3"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat3x1 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -1013,9 +1013,9 @@ domGles_basic_type_common::domFloat3x1::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat3x2::create()
+domGles_basic_type_common::domFloat3x2::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat3x2Ref ref = new domGles_basic_type_common::domFloat3x2;
+	domGles_basic_type_common::domFloat3x2Ref ref = new domGles_basic_type_common::domFloat3x2(dae);
 	return ref;
 }
 
@@ -1026,7 +1026,7 @@ domGles_basic_type_common::domFloat3x2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float3x2" );
 	meta->registerClass(domGles_basic_type_common::domFloat3x2::create, &meta);
@@ -1036,7 +1036,7 @@ domGles_basic_type_common::domFloat3x2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float3x2"));
+		ma->setType( dae.getAtomicTypes().get("Float3x2"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat3x2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -1049,9 +1049,9 @@ domGles_basic_type_common::domFloat3x2::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat3x3::create()
+domGles_basic_type_common::domFloat3x3::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat3x3Ref ref = new domGles_basic_type_common::domFloat3x3;
+	domGles_basic_type_common::domFloat3x3Ref ref = new domGles_basic_type_common::domFloat3x3(dae);
 	return ref;
 }
 
@@ -1062,7 +1062,7 @@ domGles_basic_type_common::domFloat3x3::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float3x3" );
 	meta->registerClass(domGles_basic_type_common::domFloat3x3::create, &meta);
@@ -1072,7 +1072,7 @@ domGles_basic_type_common::domFloat3x3::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float3x3"));
+		ma->setType( dae.getAtomicTypes().get("Float3x3"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat3x3 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -1085,9 +1085,9 @@ domGles_basic_type_common::domFloat3x3::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat3x4::create()
+domGles_basic_type_common::domFloat3x4::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat3x4Ref ref = new domGles_basic_type_common::domFloat3x4;
+	domGles_basic_type_common::domFloat3x4Ref ref = new domGles_basic_type_common::domFloat3x4(dae);
 	return ref;
 }
 
@@ -1098,7 +1098,7 @@ domGles_basic_type_common::domFloat3x4::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float3x4" );
 	meta->registerClass(domGles_basic_type_common::domFloat3x4::create, &meta);
@@ -1108,7 +1108,7 @@ domGles_basic_type_common::domFloat3x4::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float3x4"));
+		ma->setType( dae.getAtomicTypes().get("Float3x4"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat3x4 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -1121,9 +1121,9 @@ domGles_basic_type_common::domFloat3x4::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat4x1::create()
+domGles_basic_type_common::domFloat4x1::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat4x1Ref ref = new domGles_basic_type_common::domFloat4x1;
+	domGles_basic_type_common::domFloat4x1Ref ref = new domGles_basic_type_common::domFloat4x1(dae);
 	return ref;
 }
 
@@ -1134,7 +1134,7 @@ domGles_basic_type_common::domFloat4x1::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float4x1" );
 	meta->registerClass(domGles_basic_type_common::domFloat4x1::create, &meta);
@@ -1144,7 +1144,7 @@ domGles_basic_type_common::domFloat4x1::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat4x1 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -1157,9 +1157,9 @@ domGles_basic_type_common::domFloat4x1::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat4x2::create()
+domGles_basic_type_common::domFloat4x2::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat4x2Ref ref = new domGles_basic_type_common::domFloat4x2;
+	domGles_basic_type_common::domFloat4x2Ref ref = new domGles_basic_type_common::domFloat4x2(dae);
 	return ref;
 }
 
@@ -1170,7 +1170,7 @@ domGles_basic_type_common::domFloat4x2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float4x2" );
 	meta->registerClass(domGles_basic_type_common::domFloat4x2::create, &meta);
@@ -1180,7 +1180,7 @@ domGles_basic_type_common::domFloat4x2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float4x2"));
+		ma->setType( dae.getAtomicTypes().get("Float4x2"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat4x2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -1193,9 +1193,9 @@ domGles_basic_type_common::domFloat4x2::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat4x3::create()
+domGles_basic_type_common::domFloat4x3::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat4x3Ref ref = new domGles_basic_type_common::domFloat4x3;
+	domGles_basic_type_common::domFloat4x3Ref ref = new domGles_basic_type_common::domFloat4x3(dae);
 	return ref;
 }
 
@@ -1206,7 +1206,7 @@ domGles_basic_type_common::domFloat4x3::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float4x3" );
 	meta->registerClass(domGles_basic_type_common::domFloat4x3::create, &meta);
@@ -1216,7 +1216,7 @@ domGles_basic_type_common::domFloat4x3::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float4x3"));
+		ma->setType( dae.getAtomicTypes().get("Float4x3"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat4x3 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -1229,9 +1229,9 @@ domGles_basic_type_common::domFloat4x3::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domFloat4x4::create()
+domGles_basic_type_common::domFloat4x4::create(DAE& dae)
 {
-	domGles_basic_type_common::domFloat4x4Ref ref = new domGles_basic_type_common::domFloat4x4;
+	domGles_basic_type_common::domFloat4x4Ref ref = new domGles_basic_type_common::domFloat4x4(dae);
 	return ref;
 }
 
@@ -1242,7 +1242,7 @@ domGles_basic_type_common::domFloat4x4::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float4x4" );
 	meta->registerClass(domGles_basic_type_common::domFloat4x4::create, &meta);
@@ -1252,7 +1252,7 @@ domGles_basic_type_common::domFloat4x4::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float4x4"));
+		ma->setType( dae.getAtomicTypes().get("Float4x4"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domFloat4x4 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -1265,9 +1265,9 @@ domGles_basic_type_common::domFloat4x4::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGles_basic_type_common::domEnum::create()
+domGles_basic_type_common::domEnum::create(DAE& dae)
 {
-	domGles_basic_type_common::domEnumRef ref = new domGles_basic_type_common::domEnum;
+	domGles_basic_type_common::domEnumRef ref = new domGles_basic_type_common::domEnum(dae);
 	return ref;
 }
 
@@ -1278,7 +1278,7 @@ domGles_basic_type_common::domEnum::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "enum" );
 	meta->registerClass(domGles_basic_type_common::domEnum::create, &meta);
@@ -1288,7 +1288,7 @@ domGles_basic_type_common::domEnum::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Gles_enumeration"));
+		ma->setType( dae.getAtomicTypes().get("Gles_enumeration"));
 		ma->setOffset( daeOffsetOf( domGles_basic_type_common::domEnum , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

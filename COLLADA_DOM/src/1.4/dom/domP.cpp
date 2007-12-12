@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domP::create()
+domP::create(DAE& dae)
 {
-	domPRef ref = new domP;
+	domPRef ref = new domP(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domP::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "p" );
 	meta->registerClass(domP::create, &meta);
@@ -44,7 +44,7 @@ domP::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("ListOfUInts"));
+		ma->setType( dae.getAtomicTypes().get("ListOfUInts"));
 		ma->setOffset( daeOffsetOf( domP , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

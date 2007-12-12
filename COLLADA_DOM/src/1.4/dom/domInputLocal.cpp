@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInputLocal::create()
+domInputLocal::create(DAE& dae)
 {
-	domInputLocalRef ref = new domInputLocal;
+	domInputLocalRef ref = new domInputLocal(dae);
 	ref->attrSource.setContainer( (domInputLocal*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domInputLocal::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "InputLocal" );
 	meta->registerClass(domInputLocal::create, &meta);
@@ -46,7 +46,7 @@ domInputLocal::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
-		ma->setType( daeAtomicType::get("xsNMTOKEN"));
+		ma->setType( dae.getAtomicTypes().get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domInputLocal , attrSemantic ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -58,7 +58,7 @@ domInputLocal::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("URIFragmentType"));
+		ma->setType( dae.getAtomicTypes().get("URIFragmentType"));
 		ma->setOffset( daeOffsetOf( domInputLocal , attrSource ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

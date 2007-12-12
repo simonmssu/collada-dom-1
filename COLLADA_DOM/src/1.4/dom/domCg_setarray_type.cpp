@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_setarray_type::create()
+domCg_setarray_type::create(DAE& dae)
 {
-	domCg_setarray_typeRef ref = new domCg_setarray_type;
+	domCg_setarray_typeRef ref = new domCg_setarray_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCg_setarray_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "cg_setarray_type" );
 	meta->registerClass(domCg_setarray_type::create, &meta);
@@ -73,7 +73,7 @@ domCg_setarray_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "length" );
-		ma->setType( daeAtomicType::get("xsPositiveInteger"));
+		ma->setType( dae.getAtomicTypes().get("xsPositiveInteger"));
 		ma->setOffset( daeOffsetOf( domCg_setarray_type , attrLength ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );

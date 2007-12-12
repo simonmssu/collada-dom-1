@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInputGlobal::create()
+domInputGlobal::create(DAE& dae)
 {
-	domInputGlobalRef ref = new domInputGlobal;
+	domInputGlobalRef ref = new domInputGlobal(dae);
 	ref->attrSource.setContainer( (domInputGlobal*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domInputGlobal::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "InputGlobal" );
 	meta->registerClass(domInputGlobal::create, &meta);
@@ -46,7 +46,7 @@ domInputGlobal::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
-		ma->setType( daeAtomicType::get("xsNMTOKEN"));
+		ma->setType( dae.getAtomicTypes().get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domInputGlobal , attrSemantic ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -58,7 +58,7 @@ domInputGlobal::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInputGlobal , attrSource ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

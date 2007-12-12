@@ -83,7 +83,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	DLLSPEC daeMetaElement();
+	DLLSPEC daeMetaElement(DAE& dae);
 
 	/**
 	 * Destructor
@@ -91,6 +91,12 @@ public:
 	DLLSPEC ~daeMetaElement();
 
 public: // public accessors
+
+	/**
+	 * Gets the DAE object that owns this daeMetaElement.
+	 * @return Returns the owning DAE.
+	 */
+	DAE* getDAE();
 	
 	/**
 	 * Determines if elements of this type is an inner class.

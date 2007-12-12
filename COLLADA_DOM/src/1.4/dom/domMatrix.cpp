@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domMatrix::create()
+domMatrix::create(DAE& dae)
 {
-	domMatrixRef ref = new domMatrix;
+	domMatrixRef ref = new domMatrix(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domMatrix::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "matrix" );
 	meta->registerClass(domMatrix::create, &meta);
@@ -44,7 +44,7 @@ domMatrix::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float4x4"));
+		ma->setType( dae.getAtomicTypes().get("Float4x4"));
 		ma->setOffset( daeOffsetOf( domMatrix , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domMatrix::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domMatrix , attrSid ));
 		ma->setContainer( meta );
 	

@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domPhysics_model::create()
+domPhysics_model::create(DAE& dae)
 {
-	domPhysics_modelRef ref = new domPhysics_model;
+	domPhysics_modelRef ref = new domPhysics_model(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domPhysics_model::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "physics_model" );
 	meta->registerClass(domPhysics_model::create, &meta);
@@ -81,7 +81,7 @@ domPhysics_model::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domPhysics_model , attrId ));
 		ma->setContainer( meta );
 	
@@ -92,7 +92,7 @@ domPhysics_model::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domPhysics_model , attrName ));
 		ma->setContainer( meta );
 	

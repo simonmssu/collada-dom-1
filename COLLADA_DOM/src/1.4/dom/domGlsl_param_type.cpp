@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGlsl_param_type::create()
+domGlsl_param_type::create(DAE& dae)
 {
-	domGlsl_param_typeRef ref = new domGlsl_param_type;
+	domGlsl_param_typeRef ref = new domGlsl_param_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGlsl_param_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "glsl_param_type" );
 	meta->registerClass(domGlsl_param_type::create, &meta);
@@ -197,9 +197,9 @@ domGlsl_param_type::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domBool::create()
+domGlsl_param_type::domBool::create(DAE& dae)
 {
-	domGlsl_param_type::domBoolRef ref = new domGlsl_param_type::domBool;
+	domGlsl_param_type::domBoolRef ref = new domGlsl_param_type::domBool(dae);
 	return ref;
 }
 
@@ -210,7 +210,7 @@ domGlsl_param_type::domBool::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bool" );
 	meta->registerClass(domGlsl_param_type::domBool::create, &meta);
@@ -220,7 +220,7 @@ domGlsl_param_type::domBool::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_bool"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_bool"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domBool , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -233,9 +233,9 @@ domGlsl_param_type::domBool::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domBool2::create()
+domGlsl_param_type::domBool2::create(DAE& dae)
 {
-	domGlsl_param_type::domBool2Ref ref = new domGlsl_param_type::domBool2;
+	domGlsl_param_type::domBool2Ref ref = new domGlsl_param_type::domBool2(dae);
 	return ref;
 }
 
@@ -246,7 +246,7 @@ domGlsl_param_type::domBool2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bool2" );
 	meta->registerClass(domGlsl_param_type::domBool2::create, &meta);
@@ -256,7 +256,7 @@ domGlsl_param_type::domBool2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_bool2"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_bool2"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domBool2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -269,9 +269,9 @@ domGlsl_param_type::domBool2::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domBool3::create()
+domGlsl_param_type::domBool3::create(DAE& dae)
 {
-	domGlsl_param_type::domBool3Ref ref = new domGlsl_param_type::domBool3;
+	domGlsl_param_type::domBool3Ref ref = new domGlsl_param_type::domBool3(dae);
 	return ref;
 }
 
@@ -282,7 +282,7 @@ domGlsl_param_type::domBool3::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bool3" );
 	meta->registerClass(domGlsl_param_type::domBool3::create, &meta);
@@ -292,7 +292,7 @@ domGlsl_param_type::domBool3::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_bool3"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_bool3"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domBool3 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -305,9 +305,9 @@ domGlsl_param_type::domBool3::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domBool4::create()
+domGlsl_param_type::domBool4::create(DAE& dae)
 {
-	domGlsl_param_type::domBool4Ref ref = new domGlsl_param_type::domBool4;
+	domGlsl_param_type::domBool4Ref ref = new domGlsl_param_type::domBool4(dae);
 	return ref;
 }
 
@@ -318,7 +318,7 @@ domGlsl_param_type::domBool4::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bool4" );
 	meta->registerClass(domGlsl_param_type::domBool4::create, &meta);
@@ -328,7 +328,7 @@ domGlsl_param_type::domBool4::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_bool4"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_bool4"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domBool4 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -341,9 +341,9 @@ domGlsl_param_type::domBool4::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domFloat::create()
+domGlsl_param_type::domFloat::create(DAE& dae)
 {
-	domGlsl_param_type::domFloatRef ref = new domGlsl_param_type::domFloat;
+	domGlsl_param_type::domFloatRef ref = new domGlsl_param_type::domFloat(dae);
 	return ref;
 }
 
@@ -354,7 +354,7 @@ domGlsl_param_type::domFloat::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float" );
 	meta->registerClass(domGlsl_param_type::domFloat::create, &meta);
@@ -364,7 +364,7 @@ domGlsl_param_type::domFloat::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_float"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_float"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domFloat , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -377,9 +377,9 @@ domGlsl_param_type::domFloat::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domFloat2::create()
+domGlsl_param_type::domFloat2::create(DAE& dae)
 {
-	domGlsl_param_type::domFloat2Ref ref = new domGlsl_param_type::domFloat2;
+	domGlsl_param_type::domFloat2Ref ref = new domGlsl_param_type::domFloat2(dae);
 	return ref;
 }
 
@@ -390,7 +390,7 @@ domGlsl_param_type::domFloat2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float2" );
 	meta->registerClass(domGlsl_param_type::domFloat2::create, &meta);
@@ -400,7 +400,7 @@ domGlsl_param_type::domFloat2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_float2"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_float2"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domFloat2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -413,9 +413,9 @@ domGlsl_param_type::domFloat2::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domFloat3::create()
+domGlsl_param_type::domFloat3::create(DAE& dae)
 {
-	domGlsl_param_type::domFloat3Ref ref = new domGlsl_param_type::domFloat3;
+	domGlsl_param_type::domFloat3Ref ref = new domGlsl_param_type::domFloat3(dae);
 	return ref;
 }
 
@@ -426,7 +426,7 @@ domGlsl_param_type::domFloat3::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float3" );
 	meta->registerClass(domGlsl_param_type::domFloat3::create, &meta);
@@ -436,7 +436,7 @@ domGlsl_param_type::domFloat3::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_float3"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_float3"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domFloat3 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -449,9 +449,9 @@ domGlsl_param_type::domFloat3::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domFloat4::create()
+domGlsl_param_type::domFloat4::create(DAE& dae)
 {
-	domGlsl_param_type::domFloat4Ref ref = new domGlsl_param_type::domFloat4;
+	domGlsl_param_type::domFloat4Ref ref = new domGlsl_param_type::domFloat4(dae);
 	return ref;
 }
 
@@ -462,7 +462,7 @@ domGlsl_param_type::domFloat4::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float4" );
 	meta->registerClass(domGlsl_param_type::domFloat4::create, &meta);
@@ -472,7 +472,7 @@ domGlsl_param_type::domFloat4::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_float4"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_float4"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domFloat4 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -485,9 +485,9 @@ domGlsl_param_type::domFloat4::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domFloat2x2::create()
+domGlsl_param_type::domFloat2x2::create(DAE& dae)
 {
-	domGlsl_param_type::domFloat2x2Ref ref = new domGlsl_param_type::domFloat2x2;
+	domGlsl_param_type::domFloat2x2Ref ref = new domGlsl_param_type::domFloat2x2(dae);
 	return ref;
 }
 
@@ -498,7 +498,7 @@ domGlsl_param_type::domFloat2x2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float2x2" );
 	meta->registerClass(domGlsl_param_type::domFloat2x2::create, &meta);
@@ -508,7 +508,7 @@ domGlsl_param_type::domFloat2x2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_float2x2"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_float2x2"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domFloat2x2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -521,9 +521,9 @@ domGlsl_param_type::domFloat2x2::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domFloat3x3::create()
+domGlsl_param_type::domFloat3x3::create(DAE& dae)
 {
-	domGlsl_param_type::domFloat3x3Ref ref = new domGlsl_param_type::domFloat3x3;
+	domGlsl_param_type::domFloat3x3Ref ref = new domGlsl_param_type::domFloat3x3(dae);
 	return ref;
 }
 
@@ -534,7 +534,7 @@ domGlsl_param_type::domFloat3x3::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float3x3" );
 	meta->registerClass(domGlsl_param_type::domFloat3x3::create, &meta);
@@ -544,7 +544,7 @@ domGlsl_param_type::domFloat3x3::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_float3x3"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_float3x3"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domFloat3x3 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -557,9 +557,9 @@ domGlsl_param_type::domFloat3x3::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domFloat4x4::create()
+domGlsl_param_type::domFloat4x4::create(DAE& dae)
 {
-	domGlsl_param_type::domFloat4x4Ref ref = new domGlsl_param_type::domFloat4x4;
+	domGlsl_param_type::domFloat4x4Ref ref = new domGlsl_param_type::domFloat4x4(dae);
 	return ref;
 }
 
@@ -570,7 +570,7 @@ domGlsl_param_type::domFloat4x4::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "float4x4" );
 	meta->registerClass(domGlsl_param_type::domFloat4x4::create, &meta);
@@ -580,7 +580,7 @@ domGlsl_param_type::domFloat4x4::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_float4x4"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_float4x4"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domFloat4x4 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -593,9 +593,9 @@ domGlsl_param_type::domFloat4x4::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domInt::create()
+domGlsl_param_type::domInt::create(DAE& dae)
 {
-	domGlsl_param_type::domIntRef ref = new domGlsl_param_type::domInt;
+	domGlsl_param_type::domIntRef ref = new domGlsl_param_type::domInt(dae);
 	return ref;
 }
 
@@ -606,7 +606,7 @@ domGlsl_param_type::domInt::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "int" );
 	meta->registerClass(domGlsl_param_type::domInt::create, &meta);
@@ -616,7 +616,7 @@ domGlsl_param_type::domInt::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_int"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_int"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domInt , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -629,9 +629,9 @@ domGlsl_param_type::domInt::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domInt2::create()
+domGlsl_param_type::domInt2::create(DAE& dae)
 {
-	domGlsl_param_type::domInt2Ref ref = new domGlsl_param_type::domInt2;
+	domGlsl_param_type::domInt2Ref ref = new domGlsl_param_type::domInt2(dae);
 	return ref;
 }
 
@@ -642,7 +642,7 @@ domGlsl_param_type::domInt2::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "int2" );
 	meta->registerClass(domGlsl_param_type::domInt2::create, &meta);
@@ -652,7 +652,7 @@ domGlsl_param_type::domInt2::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_int2"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_int2"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domInt2 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -665,9 +665,9 @@ domGlsl_param_type::domInt2::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domInt3::create()
+domGlsl_param_type::domInt3::create(DAE& dae)
 {
-	domGlsl_param_type::domInt3Ref ref = new domGlsl_param_type::domInt3;
+	domGlsl_param_type::domInt3Ref ref = new domGlsl_param_type::domInt3(dae);
 	return ref;
 }
 
@@ -678,7 +678,7 @@ domGlsl_param_type::domInt3::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "int3" );
 	meta->registerClass(domGlsl_param_type::domInt3::create, &meta);
@@ -688,7 +688,7 @@ domGlsl_param_type::domInt3::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_int3"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_int3"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domInt3 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -701,9 +701,9 @@ domGlsl_param_type::domInt3::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domInt4::create()
+domGlsl_param_type::domInt4::create(DAE& dae)
 {
-	domGlsl_param_type::domInt4Ref ref = new domGlsl_param_type::domInt4;
+	domGlsl_param_type::domInt4Ref ref = new domGlsl_param_type::domInt4(dae);
 	return ref;
 }
 
@@ -714,7 +714,7 @@ domGlsl_param_type::domInt4::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "int4" );
 	meta->registerClass(domGlsl_param_type::domInt4::create, &meta);
@@ -724,7 +724,7 @@ domGlsl_param_type::domInt4::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Glsl_int4"));
+		ma->setType( dae.getAtomicTypes().get("Glsl_int4"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domInt4 , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -737,9 +737,9 @@ domGlsl_param_type::domInt4::registerElement(DAE& dae)
 }
 
 daeElementRef
-domGlsl_param_type::domEnum::create()
+domGlsl_param_type::domEnum::create(DAE& dae)
 {
-	domGlsl_param_type::domEnumRef ref = new domGlsl_param_type::domEnum;
+	domGlsl_param_type::domEnumRef ref = new domGlsl_param_type::domEnum(dae);
 	return ref;
 }
 
@@ -750,7 +750,7 @@ domGlsl_param_type::domEnum::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "enum" );
 	meta->registerClass(domGlsl_param_type::domEnum::create, &meta);
@@ -760,7 +760,7 @@ domGlsl_param_type::domEnum::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Gl_enumeration"));
+		ma->setType( dae.getAtomicTypes().get("Gl_enumeration"));
 		ma->setOffset( daeOffsetOf( domGlsl_param_type::domEnum , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

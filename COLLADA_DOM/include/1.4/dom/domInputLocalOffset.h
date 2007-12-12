@@ -123,7 +123,7 @@ class domInputLocalOffset : public daeElement, public domInputLocalOffset_comple
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INPUTLOCALOFFSET; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INPUTLOCALOFFSET; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INPUTLOCALOFFSET; }
 
 public:	//Accessors and Mutators
 	/**

@@ -33,7 +33,7 @@ class domTechnique : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::TECHNIQUE; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE; }
 protected:  // Attribute
 	/**
 	 * This element may specify its own xmlns.
@@ -101,7 +101,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domTechnique(DAE& dae) : attrProfile() {}
+	domTechnique(DAE& dae) : attrXmlns(dae), attrProfile() {}
 	/**
 	 * Destructor
 	 */

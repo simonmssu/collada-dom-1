@@ -34,7 +34,7 @@ class domLinestrips : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINESTRIPS; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::LINESTRIPS; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::LINESTRIPS; }
 protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.

@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGl_samplerCUBE::create()
+domGl_samplerCUBE::create(DAE& dae)
 {
-	domGl_samplerCUBERef ref = new domGl_samplerCUBE;
+	domGl_samplerCUBERef ref = new domGl_samplerCUBE(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGl_samplerCUBE::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gl_samplerCUBE" );
 	meta->registerClass(domGl_samplerCUBE::create, &meta);

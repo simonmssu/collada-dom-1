@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domBool_array::create()
+domBool_array::create(DAE& dae)
 {
-	domBool_arrayRef ref = new domBool_array;
+	domBool_arrayRef ref = new domBool_array(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domBool_array::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "bool_array" );
 	meta->registerClass(domBool_array::create, &meta);
@@ -44,7 +44,7 @@ domBool_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("ListOfBools"));
+		ma->setType( dae.getAtomicTypes().get("ListOfBools"));
 		ma->setOffset( daeOffsetOf( domBool_array , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -54,7 +54,7 @@ domBool_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domBool_array , attrId ));
 		ma->setContainer( meta );
 	
@@ -65,7 +65,7 @@ domBool_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domBool_array , attrName ));
 		ma->setContainer( meta );
 	
@@ -76,7 +76,7 @@ domBool_array::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domBool_array , attrCount ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

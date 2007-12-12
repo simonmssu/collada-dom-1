@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_annotate_common::create()
+domFx_annotate_common::create(DAE& dae)
 {
-	domFx_annotate_commonRef ref = new domFx_annotate_common;
+	domFx_annotate_commonRef ref = new domFx_annotate_common(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domFx_annotate_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "fx_annotate_common" );
 	meta->registerClass(domFx_annotate_common::create, &meta);
@@ -57,7 +57,7 @@ domFx_annotate_common::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFx_annotate_common , attrName ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

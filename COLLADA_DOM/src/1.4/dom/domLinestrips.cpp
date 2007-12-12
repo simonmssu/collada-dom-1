@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domLinestrips::create()
+domLinestrips::create(DAE& dae)
 {
-	domLinestripsRef ref = new domLinestrips;
+	domLinestripsRef ref = new domLinestrips(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domLinestrips::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "linestrips" );
 	meta->registerClass(domLinestrips::create, &meta);
@@ -69,7 +69,7 @@ domLinestrips::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLinestrips , attrName ));
 		ma->setContainer( meta );
 	
@@ -80,7 +80,7 @@ domLinestrips::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
-		ma->setType( daeAtomicType::get("Uint"));
+		ma->setType( dae.getAtomicTypes().get("Uint"));
 		ma->setOffset( daeOffsetOf( domLinestrips , attrCount ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -92,7 +92,7 @@ domLinestrips::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "material" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLinestrips , attrMaterial ));
 		ma->setContainer( meta );
 	

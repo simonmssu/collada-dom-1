@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCapsule::create()
+domCapsule::create(DAE& dae)
 {
-	domCapsuleRef ref = new domCapsule;
+	domCapsuleRef ref = new domCapsule(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCapsule::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "capsule" );
 	meta->registerClass(domCapsule::create, &meta);
@@ -72,9 +72,9 @@ domCapsule::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCapsule::domHeight::create()
+domCapsule::domHeight::create(DAE& dae)
 {
-	domCapsule::domHeightRef ref = new domCapsule::domHeight;
+	domCapsule::domHeightRef ref = new domCapsule::domHeight(dae);
 	return ref;
 }
 
@@ -85,7 +85,7 @@ domCapsule::domHeight::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "height" );
 	meta->registerClass(domCapsule::domHeight::create, &meta);
@@ -95,7 +95,7 @@ domCapsule::domHeight::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domCapsule::domHeight , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);
@@ -108,9 +108,9 @@ domCapsule::domHeight::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCapsule::domRadius::create()
+domCapsule::domRadius::create(DAE& dae)
 {
-	domCapsule::domRadiusRef ref = new domCapsule::domRadius;
+	domCapsule::domRadiusRef ref = new domCapsule::domRadius(dae);
 	return ref;
 }
 
@@ -121,7 +121,7 @@ domCapsule::domRadius::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "radius" );
 	meta->registerClass(domCapsule::domRadius::create, &meta);
@@ -131,7 +131,7 @@ domCapsule::domRadius::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domCapsule::domRadius , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

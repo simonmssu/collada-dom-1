@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domSource::create()
+domSource::create(DAE& dae)
 {
-	domSourceRef ref = new domSource;
+	domSourceRef ref = new domSource(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domSource::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "source" );
 	meta->registerClass(domSource::create, &meta);
@@ -109,7 +109,7 @@ domSource::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domSource , attrId ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -121,7 +121,7 @@ domSource::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domSource , attrName ));
 		ma->setContainer( meta );
 	
@@ -135,9 +135,9 @@ domSource::registerElement(DAE& dae)
 }
 
 daeElementRef
-domSource::domTechnique_common::create()
+domSource::domTechnique_common::create(DAE& dae)
 {
-	domSource::domTechnique_commonRef ref = new domSource::domTechnique_common;
+	domSource::domTechnique_commonRef ref = new domSource::domTechnique_common(dae);
 	return ref;
 }
 
@@ -148,7 +148,7 @@ domSource::domTechnique_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domSource::domTechnique_common::create, &meta);

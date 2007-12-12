@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_effect::create()
+domInstance_effect::create(DAE& dae)
 {
-	domInstance_effectRef ref = new domInstance_effect;
+	domInstance_effectRef ref = new domInstance_effect(dae);
 	ref->attrUrl.setContainer( (domInstance_effect*)ref );
 	return ref;
 }
@@ -36,7 +36,7 @@ domInstance_effect::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "instance_effect" );
 	meta->registerClass(domInstance_effect::create, &meta);
@@ -70,7 +70,7 @@ domInstance_effect::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "url" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstance_effect , attrUrl ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -82,7 +82,7 @@ domInstance_effect::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect , attrSid ));
 		ma->setContainer( meta );
 	
@@ -93,7 +93,7 @@ domInstance_effect::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect , attrName ));
 		ma->setContainer( meta );
 	
@@ -107,9 +107,9 @@ domInstance_effect::registerElement(DAE& dae)
 }
 
 daeElementRef
-domInstance_effect::domTechnique_hint::create()
+domInstance_effect::domTechnique_hint::create(DAE& dae)
 {
-	domInstance_effect::domTechnique_hintRef ref = new domInstance_effect::domTechnique_hint;
+	domInstance_effect::domTechnique_hintRef ref = new domInstance_effect::domTechnique_hint(dae);
 	return ref;
 }
 
@@ -120,7 +120,7 @@ domInstance_effect::domTechnique_hint::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique_hint" );
 	meta->registerClass(domInstance_effect::domTechnique_hint::create, &meta);
@@ -131,7 +131,7 @@ domInstance_effect::domTechnique_hint::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "platform" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect::domTechnique_hint , attrPlatform ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -143,7 +143,7 @@ domInstance_effect::domTechnique_hint::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "profile" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect::domTechnique_hint , attrProfile ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -155,7 +155,7 @@ domInstance_effect::domTechnique_hint::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect::domTechnique_hint , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -170,9 +170,9 @@ domInstance_effect::domTechnique_hint::registerElement(DAE& dae)
 }
 
 daeElementRef
-domInstance_effect::domSetparam::create()
+domInstance_effect::domSetparam::create(DAE& dae)
 {
-	domInstance_effect::domSetparamRef ref = new domInstance_effect::domSetparam;
+	domInstance_effect::domSetparamRef ref = new domInstance_effect::domSetparam(dae);
 	return ref;
 }
 
@@ -183,7 +183,7 @@ domInstance_effect::domSetparam::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "setparam" );
 	meta->registerClass(domInstance_effect::domSetparam::create, &meta);
@@ -206,7 +206,7 @@ domInstance_effect::domSetparam::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsToken"));
 		ma->setOffset( daeOffsetOf( domInstance_effect::domSetparam , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

@@ -124,7 +124,7 @@ class domInstanceWithExtra : public daeElement, public domInstanceWithExtra_comp
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCEWITHEXTRA; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INSTANCEWITHEXTRA; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INSTANCEWITHEXTRA; }
 
 public:	//Accessors and Mutators
 	/**

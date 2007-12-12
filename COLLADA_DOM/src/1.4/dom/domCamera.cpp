@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCamera::create()
+domCamera::create(DAE& dae)
 {
-	domCameraRef ref = new domCamera;
+	domCameraRef ref = new domCamera(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCamera::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "camera" );
 	meta->registerClass(domCamera::create, &meta);
@@ -75,7 +75,7 @@ domCamera::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domCamera , attrId ));
 		ma->setContainer( meta );
 	
@@ -86,7 +86,7 @@ domCamera::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCamera , attrName ));
 		ma->setContainer( meta );
 	
@@ -100,9 +100,9 @@ domCamera::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCamera::domOptics::create()
+domCamera::domOptics::create(DAE& dae)
 {
-	domCamera::domOpticsRef ref = new domCamera::domOptics;
+	domCamera::domOpticsRef ref = new domCamera::domOptics(dae);
 	return ref;
 }
 
@@ -113,7 +113,7 @@ domCamera::domOptics::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "optics" );
 	meta->registerClass(domCamera::domOptics::create, &meta);
@@ -151,9 +151,9 @@ domCamera::domOptics::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCamera::domOptics::domTechnique_common::create()
+domCamera::domOptics::domTechnique_common::create(DAE& dae)
 {
-	domCamera::domOptics::domTechnique_commonRef ref = new domCamera::domOptics::domTechnique_common;
+	domCamera::domOptics::domTechnique_commonRef ref = new domCamera::domOptics::domTechnique_common(dae);
 	return ref;
 }
 
@@ -164,7 +164,7 @@ domCamera::domOptics::domTechnique_common::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domCamera::domOptics::domTechnique_common::create, &meta);
@@ -200,9 +200,9 @@ domCamera::domOptics::domTechnique_common::registerElement(DAE& dae)
 }
 
 daeElementRef
-domCamera::domOptics::domTechnique_common::domOrthographic::create()
+domCamera::domOptics::domTechnique_common::domOrthographic::create(DAE& dae)
 {
-	domCamera::domOptics::domTechnique_common::domOrthographicRef ref = new domCamera::domOptics::domTechnique_common::domOrthographic;
+	domCamera::domOptics::domTechnique_common::domOrthographicRef ref = new domCamera::domOptics::domTechnique_common::domOrthographic(dae);
 	return ref;
 }
 
@@ -213,7 +213,7 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement(DAE&
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "orthographic" );
 	meta->registerClass(domCamera::domOptics::domTechnique_common::domOrthographic::create, &meta);
@@ -303,9 +303,9 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement(DAE&
 }
 
 daeElementRef
-domCamera::domOptics::domTechnique_common::domPerspective::create()
+domCamera::domOptics::domTechnique_common::domPerspective::create(DAE& dae)
 {
-	domCamera::domOptics::domTechnique_common::domPerspectiveRef ref = new domCamera::domOptics::domTechnique_common::domPerspective;
+	domCamera::domOptics::domTechnique_common::domPerspectiveRef ref = new domCamera::domOptics::domTechnique_common::domPerspective(dae);
 	return ref;
 }
 
@@ -316,7 +316,7 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement(DAE& 
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "perspective" );
 	meta->registerClass(domCamera::domOptics::domTechnique_common::domPerspective::create, &meta);
@@ -406,9 +406,9 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement(DAE& 
 }
 
 daeElementRef
-domCamera::domImager::create()
+domCamera::domImager::create(DAE& dae)
 {
-	domCamera::domImagerRef ref = new domCamera::domImager;
+	domCamera::domImagerRef ref = new domCamera::domImager(dae);
 	return ref;
 }
 
@@ -419,7 +419,7 @@ domCamera::domImager::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "imager" );
 	meta->registerClass(domCamera::domImager::create, &meta);

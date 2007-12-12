@@ -89,7 +89,7 @@ class domInputGlobal : public daeElement, public domInputGlobal_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INPUTGLOBAL; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::INPUTGLOBAL; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INPUTGLOBAL; }
 
 public:	//Accessors and Mutators
 	/**

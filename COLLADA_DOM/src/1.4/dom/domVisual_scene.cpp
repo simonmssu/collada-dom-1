@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domVisual_scene::create()
+domVisual_scene::create(DAE& dae)
 {
-	domVisual_sceneRef ref = new domVisual_scene;
+	domVisual_sceneRef ref = new domVisual_scene(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domVisual_scene::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "visual_scene" );
 	meta->registerClass(domVisual_scene::create, &meta);
@@ -75,7 +75,7 @@ domVisual_scene::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domVisual_scene , attrId ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );
@@ -87,7 +87,7 @@ domVisual_scene::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domVisual_scene , attrName ));
 		ma->setContainer( meta );
 	
@@ -101,9 +101,9 @@ domVisual_scene::registerElement(DAE& dae)
 }
 
 daeElementRef
-domVisual_scene::domEvaluate_scene::create()
+domVisual_scene::domEvaluate_scene::create(DAE& dae)
 {
-	domVisual_scene::domEvaluate_sceneRef ref = new domVisual_scene::domEvaluate_scene;
+	domVisual_scene::domEvaluate_sceneRef ref = new domVisual_scene::domEvaluate_scene(dae);
 	return ref;
 }
 
@@ -114,7 +114,7 @@ domVisual_scene::domEvaluate_scene::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "evaluate_scene" );
 	meta->registerClass(domVisual_scene::domEvaluate_scene::create, &meta);
@@ -137,7 +137,7 @@ domVisual_scene::domEvaluate_scene::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domVisual_scene::domEvaluate_scene , attrName ));
 		ma->setContainer( meta );
 	
@@ -151,9 +151,9 @@ domVisual_scene::domEvaluate_scene::registerElement(DAE& dae)
 }
 
 daeElementRef
-domVisual_scene::domEvaluate_scene::domRender::create()
+domVisual_scene::domEvaluate_scene::domRender::create(DAE& dae)
 {
-	domVisual_scene::domEvaluate_scene::domRenderRef ref = new domVisual_scene::domEvaluate_scene::domRender;
+	domVisual_scene::domEvaluate_scene::domRenderRef ref = new domVisual_scene::domEvaluate_scene::domRender(dae);
 	ref->attrCamera_node.setContainer( (domVisual_scene::domEvaluate_scene::domRender*)ref );
 	return ref;
 }
@@ -165,7 +165,7 @@ domVisual_scene::domEvaluate_scene::domRender::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "render" );
 	meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::create, &meta);
@@ -194,7 +194,7 @@ domVisual_scene::domEvaluate_scene::domRender::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "camera_node" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domVisual_scene::domEvaluate_scene::domRender , attrCamera_node ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );
@@ -209,9 +209,9 @@ domVisual_scene::domEvaluate_scene::domRender::registerElement(DAE& dae)
 }
 
 daeElementRef
-domVisual_scene::domEvaluate_scene::domRender::domLayer::create()
+domVisual_scene::domEvaluate_scene::domRender::domLayer::create(DAE& dae)
 {
-	domVisual_scene::domEvaluate_scene::domRender::domLayerRef ref = new domVisual_scene::domEvaluate_scene::domRender::domLayer;
+	domVisual_scene::domEvaluate_scene::domRender::domLayerRef ref = new domVisual_scene::domEvaluate_scene::domRender::domLayer(dae);
 	return ref;
 }
 
@@ -222,7 +222,7 @@ domVisual_scene::domEvaluate_scene::domRender::domLayer::registerElement(DAE& da
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "layer" );
 	meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::domLayer::create, &meta);
@@ -232,7 +232,7 @@ domVisual_scene::domEvaluate_scene::domRender::domLayer::registerElement(DAE& da
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domVisual_scene::domEvaluate_scene::domRender::domLayer , _value ));
 		ma->setContainer( meta );
 		meta->appendAttribute(ma);

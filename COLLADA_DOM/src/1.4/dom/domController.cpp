@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domController::create()
+domController::create(DAE& dae)
 {
-	domControllerRef ref = new domController;
+	domControllerRef ref = new domController(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domController::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "controller" );
 	meta->registerClass(domController::create, &meta);
@@ -85,7 +85,7 @@ domController::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domController , attrId ));
 		ma->setContainer( meta );
 	
@@ -96,7 +96,7 @@ domController::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domController , attrName ));
 		ma->setContainer( meta );
 	

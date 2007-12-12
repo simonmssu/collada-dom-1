@@ -59,7 +59,7 @@ public:
 		id_failed_no_document
 	};
 	
-private:	
+private:
 	/** ID used to refer to another element */
 	std::string id;
 

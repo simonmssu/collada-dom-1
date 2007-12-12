@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domGles_texcombiner_commandRGB_type::create()
+domGles_texcombiner_commandRGB_type::create(DAE& dae)
 {
-	domGles_texcombiner_commandRGB_typeRef ref = new domGles_texcombiner_commandRGB_type;
+	domGles_texcombiner_commandRGB_typeRef ref = new domGles_texcombiner_commandRGB_type(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domGles_texcombiner_commandRGB_type::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "gles_texcombiner_commandRGB_type" );
 	meta->registerClass(domGles_texcombiner_commandRGB_type::create, &meta);
@@ -57,7 +57,7 @@ domGles_texcombiner_commandRGB_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "operator" );
-		ma->setType( daeAtomicType::get("Gles_texcombiner_operatorRGB_enums"));
+		ma->setType( dae.getAtomicTypes().get("Gles_texcombiner_operatorRGB_enums"));
 		ma->setOffset( daeOffsetOf( domGles_texcombiner_commandRGB_type , attrOperator ));
 		ma->setContainer( meta );
 	
@@ -68,7 +68,7 @@ domGles_texcombiner_commandRGB_type::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "scale" );
-		ma->setType( daeAtomicType::get("xsFloat"));
+		ma->setType( dae.getAtomicTypes().get("xsFloat"));
 		ma->setOffset( daeOffsetOf( domGles_texcombiner_commandRGB_type , attrScale ));
 		ma->setContainer( meta );
 		ma->setIsRequired( false );

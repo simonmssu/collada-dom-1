@@ -22,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCg_setparam_simple::create()
+domCg_setparam_simple::create(DAE& dae)
 {
-	domCg_setparam_simpleRef ref = new domCg_setparam_simple;
+	domCg_setparam_simpleRef ref = new domCg_setparam_simple(dae);
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domCg_setparam_simple::registerElement(DAE& dae)
 	daeMetaElement* meta = dae.getMeta(getTypeStatic());
 	if ( meta != NULL ) return meta;
 
-	meta = new daeMetaElement;
+	meta = new daeMetaElement(dae);
 	dae.setMeta(getTypeStatic(), *meta);
 	meta->setName( "cg_setparam_simple" );
 	meta->registerClass(domCg_setparam_simple::create, &meta);
@@ -63,7 +63,7 @@ domCg_setparam_simple::registerElement(DAE& dae)
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("Cg_identifier"));
+		ma->setType( dae.getAtomicTypes().get("Cg_identifier"));
 		ma->setOffset( daeOffsetOf( domCg_setparam_simple , attrRef ));
 		ma->setContainer( meta );
 		ma->setIsRequired( true );

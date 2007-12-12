@@ -77,7 +77,7 @@ class domGles_texture_constant_type : public daeElement, public domGles_texture_
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXTURE_CONSTANT_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() const { return COLLADA_TYPE::GLES_TEXTURE_CONSTANT_TYPE; }
+	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GLES_TEXTURE_CONSTANT_TYPE; }
 
 public:	//Accessors and Mutators
 	/**
