@@ -65,7 +65,7 @@ void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 	defaultPlugin = false;
 	registerFunc = NULL;
 	topMeta = NULL;
-	metas.setCount(COLLADA_TYPE::TYPE_COUNT);
+	metas.setCount(COLLADA_TYPE::TYPE_COUNT-2);
 
 	topMeta = initializeDomMeta(*this);
 	DAEInstanceCount++;
