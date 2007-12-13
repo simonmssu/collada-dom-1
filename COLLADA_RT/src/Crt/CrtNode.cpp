@@ -102,6 +102,10 @@ void CrtNode::BuildLWMatrix( CrtFloat time )
 		UpdateLocalMatrix = CrtTrue; // force update if there were animations
 	} 
 	
+	// modified by wei
+	// Update all the transformations that have inverse kinematics
+	// end
+
 	// Process all the transforms in this node down into a single local transform matrix
 	// !!!GAC if we aren't animating, this doesn't need to be calculated every time.
 
@@ -206,8 +210,26 @@ void 	CrtNode::Render()
 		controller->Draw(this, InstanceControllers[i]);
 //		gNumTris += geometry->GetTotalNumTris();
 	}
+
+	
 	//CrtPrint(" %s Rendering Children \n", Name ); 
 	_CrtRender.PopMatrix(); 
+	
+	// draw corresponding frame:
+	GLfloat xconeDiffuse[] = {1.0f, 0.0f, 0.0f };
+	GLfloat yconeDiffuse[] = {0.0f, 1.0f, 0.0f };
+	GLfloat zconeDiffuse[] = {0.0f, 1.0f, 1.0f };
+
+	CrtVec3f diff(0.1f, 0.1f, 0.1f);
+
+	if (this->GetTypex() == eCrtJoint)
+	{
+		_CrtRender.DrawFrame(LocalToWorldMatrix, xconeDiffuse,yconeDiffuse,zconeDiffuse,diff);
+	}
+	else if (this->GetTypex() == eCrtNode)
+	{
+		_CrtRender.DrawFrame(LocalToWorldMatrix, xconeDiffuse,yconeDiffuse,zconeDiffuse,diff);
+	}
 
     // Render All Children 
 	if (Children)

@@ -33,6 +33,13 @@ class CrtInstanceController;
 
 const CrtInt MAX_ANIMS = 10; 
 
+enum CrtNodeType
+{
+	eCrtJoint=0,
+	eCrtNode,
+	eCrtLink
+};
+
 /**
  * This class represents a node in the RT scene graph
  */
@@ -53,7 +60,8 @@ class CrtNode: public CrtOrient
 	CrtBool 			OrientReady;
 	CrtInt				Idx; 
 	CrtInt				ParentIdx; 
-	CrtInt				Depth; 
+	CrtInt				Depth;
+	CrtInt				Typex; // two type of nodes defined for skinning and we can also use it for IK.
 public:
 //	std::vector <CrtInstanceCamera *> InstanceCameras;  
 	std::vector <CrtInstanceGeometry *> InstanceGeometries;  
@@ -74,7 +82,8 @@ public:
 	  OrientReady(CrtFalse),
 	  Idx(-1),
 	  ParentIdx(-1),
-	  Depth(0)
+	  Depth(0),
+	  Typex(eCrtNode)
 	{
 		Name[0] = 0;
 		Id[0] = 0;
@@ -100,6 +109,7 @@ public:
 protected:
 	friend class CrtScene; 
 	friend class CrtSkin;
+	friend class CrtIK; // modified by wei
 
 	inline	CrtNode	*SetNext( CrtNode * next )	{ Next = next; return this;}
 	inline	void	SetName( const CrtChar * n ){ CrtCpy(Name, n); }
@@ -135,7 +145,7 @@ protected:
 		memcpy( InverseBindMatrix, imat, sizeof( CrtMatrix ) ) ; 
 		InverseBindMatrixReady = CrtTrue; 
 	}
-	
+	inline void		SetTypex( CrtInt Typex_) {Typex = Typex_;}
 	void	DrawLineToChildren(); 
 	
 
@@ -170,7 +180,8 @@ public:
 //	inline	CrtInt			GetParentIdx(){ return ParentIdx; }
 	inline  CrtInt			GetDepth(){ return Depth; }
 	inline  CrtBool			GetIsUsedForSkinning(){ return UsedForSkinning; } 
-		
+	inline  CrtInt			GetTypex() {return Typex;}
+
 	inline	CrtInt		GetNumChildren()
 	{
 		CrtInt	num = 0; 

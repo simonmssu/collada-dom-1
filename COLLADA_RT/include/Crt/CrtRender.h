@@ -146,6 +146,17 @@ public:
 
 	CrtBool	InitWindow();
 	CrtBool	InitRenderSettings();
+
+	CrtBool DrawFloorGrid(int num_x, int num_z, int interval);
+	CrtBool InitBackground();
+	CrtBool	DrawCoordinates(); // provide maya style coordinate reference
+
+	// frame_world, the whole framework in world coordinate:
+	CrtBool DrawFrame(const CrtMatrix &frame_world, 
+					const float xconeDiffuse[],
+					const float yconeDiffuse[],
+					const float zconeDiffuse[],
+					const CrtVec3f diff); 
 	
 	CrtScene * Load( const CrtChar * fileName, const CrtChar * pathName = NULL );
 	CrtVoid UnLoad();

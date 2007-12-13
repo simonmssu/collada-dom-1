@@ -31,7 +31,7 @@ protected:  // Attributes
 
 protected:  // Elements
 	domAssetRef elemAsset;
-	domJointRef elemJoint;
+	domJoint_Array elemJoint_array;
 	domExtra_Array elemExtra_array;
 
 public:	//Accessors and Mutators
@@ -65,10 +65,15 @@ public:	//Accessors and Mutators
 	 */
 	const domAssetRef getAsset() const { return elemAsset; }
 	/**
-	 * Gets the joint element.
-	 * @return a daeSmartRef to the joint element.
+	 * Gets the joint element array.
+	 * @return Returns a reference to the array of joint elements.
 	 */
-	const domJointRef getJoint() const { return elemJoint; }
+	domJoint_Array &getJoint_array() { return elemJoint_array; }
+	/**
+	 * Gets the joint element array.
+	 * @return Returns a constant reference to the array of joint elements.
+	 */
+	const domJoint_Array &getJoint_array() const { return elemJoint_array; }
 	/**
 	 * Gets the extra element array.
 	 * @return Returns a reference to the array of extra elements.
@@ -83,7 +88,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_joints() : attrId(), attrName(), elemAsset(), elemJoint(), elemExtra_array() {}
+	domLibrary_joints() : attrId(), attrName(), elemAsset(), elemJoint_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

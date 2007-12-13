@@ -10,7 +10,6 @@
  * implied. See the License for the specific language governing permissions and limitations under the
  * License.
  */
-
 #include <dae/daeDom.h>
 #include <dom/domGlsl_param_type.h>
 #include <dae/daeMetaCMPolicy.h>

@@ -26,12 +26,8 @@
 
 namespace COLLADA_TYPE
 {
-#ifdef _MSC_VER
-	enum TypeEnum;
-#else
 	typedef const int TypeEnum;
-#endif
-};
+}
 
 class daeMetaElement;
 class daeMetaAttribute;
@@ -68,7 +64,7 @@ public:
 	/**
 	 * Macro that defines new and delete overrides for this class
 	 */
-	DAE_ALLOC;
+	DAE_ALLOC
 protected:
 	daeIntegrationObject*	_intObject;
 	daeElement*				_parent;

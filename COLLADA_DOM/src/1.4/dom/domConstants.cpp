@@ -10,7 +10,6 @@
  * implied. See the License for the specific language governing permissions and limitations under the
  * License.
  */
-
 #include <dom/domConstants.h>
 
 DLLSPEC daeString COLLADA_VERSION = "1.4.1";
@@ -588,6 +587,8 @@ DLLSPEC daeString COLLADA_TYPE_KINEMATICS_MODEL = "kinematics_model";
 DLLSPEC daeString COLLADA_TYPE_INSTANCE_JOINT = "instance_joint";
 DLLSPEC daeString COLLADA_TYPE_LINK = "link";
 DLLSPEC daeString COLLADA_TYPE_ATTACHMENT_FULL = "attachment_full";
+DLLSPEC daeString COLLADA_TYPE_ATTACHMENT_START = "attachment_start";
+DLLSPEC daeString COLLADA_TYPE_ATTACHMENT_END = "attachment_end";
 DLLSPEC daeString COLLADA_TYPE_ATTACH_POINT = "attach_point";
 DLLSPEC daeString COLLADA_TYPE_INSTANCE_KINEMATICS_MODEL = "instance_kinematics_model";
 DLLSPEC daeString COLLADA_TYPE_ATTACH = "attach";
@@ -1137,6 +1138,8 @@ DLLSPEC daeString COLLADA_ELEMENT_LINK = "link";
 DLLSPEC daeString COLLADA_ELEMENT_ATTACH_POINT = "attach_point";
 DLLSPEC daeString COLLADA_ELEMENT_INSTANCE_KINEMATICS_MODEL = "instance_kinematics_model";
 DLLSPEC daeString COLLADA_ELEMENT_ATTACHMENT_FULL = "attachment_full";
+DLLSPEC daeString COLLADA_ELEMENT_ATTACHMENT_START = "attachment_start";
+DLLSPEC daeString COLLADA_ELEMENT_ATTACHMENT_END = "attachment_end";
 DLLSPEC daeString COLLADA_ELEMENT_ATTACH = "attach";
 DLLSPEC daeString COLLADA_ELEMENT_BIND_JOINT = "bind_joint";
 DLLSPEC daeString COLLADA_ELEMENT_BIND_LINK = "bind_link";

@@ -82,13 +82,60 @@
     </node>
   </library_nodes>
 
+  <library_joints>
+    <joint id="shoulder">
+      <revolute>
+        <axis sid="axis_x">1 0 0</axis>
+      </revolute>
+      <revolute>
+        <axis sid="axis_y">0 1 0</axis>
+      </revolute>
+    </joint>
+
+    <joint id="elbow">
+      <revolute>
+        <axis sid="axis_y">0 1 0</axis>
+        <limits>
+          <min>0</min>
+          <max>90</max>
+        </limits>          
+      </revolute>      
+      <revolute>
+        <axis sid="axis_z">0 0 1</axis>
+        <limits>
+          <min>-180</min>
+          <max>180</max>
+        </limits>
+      </revolute>
+    </joint>
+
+    <joint id="wrist">
+      <revolute>
+        <axis sid="axis_x">1 0 0</axis>
+        <limits>
+          <min>-90</min>
+          <max>90</max>
+        </limits>
+      </revolute>    
+      <revolute>
+        <axis sid="axis_y">0 1 0</axis>
+        <limits>
+          <min>-45</min>
+          <max>45</max>
+        </limits>
+      </revolute>
+    </joint>
+
+  </library_joints>
+
   <library_kinematics_models>
     <kinematics_model id="simpleMan">
 
-      <instance_joint sid="j1" url="shoulder"/>
-      <instance_joint sid="j2" url="elbow"/>
-      <instance_joint sid="j3" url="wrist"/>
-
+      <instance_joint sid="j1" url="#shoulder"/>
+      <instance_joint sid="j2" url="#elbow"/>
+      <instance_joint sid="j3" url="#wrist"/>
+      <instance_joint sid="j3" url="#wrist"/>
+      
       <link sid="body">
         <attachment_full joint="j1">
           <translate>0 0 1</translate>
@@ -108,9 +155,69 @@
       </link>
 
     </kinematics_model>
+
+    <kinematics_model id="simpleMan">
+      
+    </kinematics_model>
   </library_kinematics_models>
 
-  
+  <library_kinematics_scenes>
+
+    <kinematics_scene id="Simple_man_in_kinematics_scene">
+      <instance_kinematics_model url="#simpleMan">
+        <bind_joint>
+          <value target="body/"
+        </bind_joint>
+        <bind_link
+  				source="./body"
+  				target="BODYBASE"/>
+        <bind_link
+  				source="./body/upper_arm"
+  				target="BODYBASE/UPPER_ARM"/>
+        <bind_link
+  				source="./body/upper_arm/fore_arm"
+          target="BODYBASE/UPPER_ARM/FORE_ARM"/>
+        <bind_link
+  				source="./body/upper_arm/fore_arm/hand"   				
+          target="BODYBASE/UPPER_ARM/FORE_ARM/HAND"/>
+      </instance_kinematics_model>
+      <instance_articulated_system  sid="arti_sys" url="#Simple_man_in_articulated_system" ref="Simple_man_in_kinematics_scene"/>
+    </kinematics_scene>
+  </library_kinematics_scenes>
+
+  <library_articulated_systems>
+    <articulated_system id="Simple_man_in_articulated_system">
+      <kinematics source="#simpleMan">
+        
+        <axis_info active="true" locked="false" target="j1/axis_x" sid="j1.axis_x" index="1" >
+          <!-- No soft limits now -->
+        </axis_info>
+        <axis_info active="true" locked="false" target="j1/axis_y" sid="j1.axis_y" index="2">
+          <!-- No soft limits now -->
+        </axis_info>
+        
+        <axis_info active="true" locked="false" target="j2/axis_y" sid="j2.axis_y" index="3">
+          <!-- No soft limits now -->
+        </axis_info>
+        <axis_info active="true" locked="false" target="j2/axis_z" sid="j2.axis_z" index="4">
+          <!-- No soft limits now -->
+        </axis_info>
+        
+        <axis_info active="true" locked="false" target="j3/axis_x" sid="j3.axis_x" index="5">
+          <!-- No soft limits now -->
+        </axis_info>
+        <axis_info active="true" locked="false" target="j3/axis_y" sid="j3.axis_y" index="6">
+          <!-- No soft limits now -->
+        </axis_info>
+        
+        <kinematics_frame>          
+          <origin ref="#simpleMan/base"/>          
+          <tip ref="#simpleMan/tip"/>
+        </kinematics_frame>
+      </kinematics>
+    </articulated_system>
+  </library_articulated_systems>
+
   <library_geometries>
     <geometry id="box-lib" name="box">
       <mesh>
@@ -261,5 +368,6 @@
 
   <scene>
     <instance_visual_scene url="#VisualSceneNode"/>
+    <instance_kinematics_scene url="#Simple_man_in_kinematics_scene" />
   </scene>
 </COLLADA>

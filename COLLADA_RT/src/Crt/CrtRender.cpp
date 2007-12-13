@@ -52,15 +52,15 @@ CrtBool  CrtRender::InitRenderSettings()
 
 // PRE: It will set after the camera
 // This function will draw the grid for reference
-/*CrtBool CrtRender::InitBackground()
+CrtBool CrtRender::InitBackground()
 {
 	// Todo: judge the up axis and use the other 2 since it may not be y and decided by collada files
 	// draw grid geometry. Lines: along x and along z:
-	DrawFloorGrid(20, 20, 20);
+	//DrawFloorGrid(20, 20, 20);
 	DrawCoordinates();
 	return CrtTrue;
 }
-*/
+
 CrtVoid	CrtRender::SetInitialPath( const CrtChar * path )
 {
 
@@ -309,8 +309,7 @@ CrtBool CrtRender::Render()
 	render_time.QuadPart = render_time.QuadPart - temp_time.QuadPart;
 #endif
 
-	// put the background here:
-//	_CrtRender.InitBackground();
+	_CrtRender.InitBackground();
 
 	return CrtTrue; 
 } 

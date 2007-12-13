@@ -160,6 +160,29 @@ struct CrtVec3f
 		
 		return v3; 
 	}; 	
+
+	// Added by wei: find maxium and minium component of vec3f:
+	inline CrtFloat Max() const
+	{
+		return  x > y ? ( (x > z) ? x:z ) : ( (y > z) ? y:z ) ;
+	}
+
+	inline CrtFloat Min() const
+	{
+		return  x < y ? ( (x < z) ? x:z ) : ( (y < z) ? y:z ) ;
+	}
+
+	inline CrtVec3f Multiply(const CrtVec3f v1) const
+	{
+		CrtVec3f v3;
+
+		v3.x = x * v1.x;
+		v3.y = y * v1.y;
+		v3.z = z * v1.z;
+
+		return v3;
+	}
+
 };
 
 struct CrtQuat; 

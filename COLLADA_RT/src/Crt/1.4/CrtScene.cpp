@@ -14,6 +14,7 @@
 #include "Crt/CrtNode.h"
 #include "Crt/CrtRender.h"
 #include "Crt/CrtScene.h" 
+#include "Crt/CrtTestInstancing.h"
 
 #include "dae.h"
 #include "dom/domConstants.h"
@@ -158,6 +159,9 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 		m_collada = 0;
 		return CrtFalse; 
 	}
+
+	// test for de referencing
+	CrtBool IsDeref_ = Deref_InstancingNode(m_collada, "boyShape2", "-clone");
 
 	CrtPrint("COLLADA_DOM Runtime database initialized from %s.\n\n", LFileName);
 	CrtPrint("nameOnly: %p\n\n", (void*)nameOnly);

@@ -10,7 +10,6 @@
  * implied. See the License for the specific language governing permissions and limitations under the
  * License.
  */
-
 #include <dae/daeDom.h>
 #include <dom/domInstance_physics_model.h>
 #include <dae/daeMetaCMPolicy.h>

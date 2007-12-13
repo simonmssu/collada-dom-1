@@ -30,9 +30,9 @@ protected:  // Attributes
 	xsNCName attrSid;
 
 protected:  // Elements
-	domJointTypeRef elemPrismatic;
-	domJointTypeRef elemRevolute;
-	domJointTypeRef elemScalable;
+	domJointType_Array elemPrismatic_array;
+	domJointType_Array elemRevolute_array;
+	domJointType_Array elemScalable_array;
 	domExtra_Array elemExtra_array;
 	/**
 	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
@@ -86,20 +86,35 @@ public:	//Accessors and Mutators
 	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[2] = true; }
 
 	/**
-	 * Gets the prismatic element.
-	 * @return a daeSmartRef to the prismatic element.
+	 * Gets the prismatic element array.
+	 * @return Returns a reference to the array of prismatic elements.
 	 */
-	const domJointTypeRef getPrismatic() const { return elemPrismatic; }
+	domJointType_Array &getPrismatic_array() { return elemPrismatic_array; }
 	/**
-	 * Gets the revolute element.
-	 * @return a daeSmartRef to the revolute element.
+	 * Gets the prismatic element array.
+	 * @return Returns a constant reference to the array of prismatic elements.
 	 */
-	const domJointTypeRef getRevolute() const { return elemRevolute; }
+	const domJointType_Array &getPrismatic_array() const { return elemPrismatic_array; }
 	/**
-	 * Gets the scalable element.
-	 * @return a daeSmartRef to the scalable element.
+	 * Gets the revolute element array.
+	 * @return Returns a reference to the array of revolute elements.
 	 */
-	const domJointTypeRef getScalable() const { return elemScalable; }
+	domJointType_Array &getRevolute_array() { return elemRevolute_array; }
+	/**
+	 * Gets the revolute element array.
+	 * @return Returns a constant reference to the array of revolute elements.
+	 */
+	const domJointType_Array &getRevolute_array() const { return elemRevolute_array; }
+	/**
+	 * Gets the scalable element array.
+	 * @return Returns a reference to the array of scalable elements.
+	 */
+	domJointType_Array &getScalable_array() { return elemScalable_array; }
+	/**
+	 * Gets the scalable element array.
+	 * @return Returns a constant reference to the array of scalable elements.
+	 */
+	const domJointType_Array &getScalable_array() const { return elemScalable_array; }
 	/**
 	 * Gets the extra element array.
 	 * @return Returns a reference to the array of extra elements.
@@ -125,7 +140,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domJoint() : attrId(), attrName(), attrSid(), elemPrismatic(), elemRevolute(), elemScalable(), elemExtra_array() {}
+	domJoint() : attrId(), attrName(), attrSid(), elemPrismatic_array(), elemRevolute_array(), elemScalable_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

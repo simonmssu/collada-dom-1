@@ -11,6 +11,14 @@
 				<float_array/>
 				<fx_sampler2D_common myAttr="value"/>
 				<my_element/>
+				<!-- The <expected_types> element is a list of the types daeElement::getTypeName is
+						 expected to return for the previous elements. If the type names don't match
+					   the test will fail. -->
+				<expected_types>
+					float_array
+					fx_sampler2D_common
+					any
+				</expected_types>
 			</technique>
 		</extra>
 	</library_nodes>

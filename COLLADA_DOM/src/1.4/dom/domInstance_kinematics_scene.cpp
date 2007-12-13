@@ -10,7 +10,6 @@
  * implied. See the License for the specific language governing permissions and limitations under the
  * License.
  */
-
 #include <dae/daeDom.h>
 #include <dom/domInstance_kinematics_scene.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -24,6 +23,7 @@ daeElementRef
 domInstance_kinematics_scene::create(daeInt)
 {
 	domInstance_kinematics_sceneRef ref = new domInstance_kinematics_scene;
+	ref->attrUrl.setContainer( (domInstance_kinematics_scene*)ref );
 	return ref;
 }
 
@@ -37,6 +37,17 @@ domInstance_kinematics_scene::registerElement()
     _Meta->setName( "instance_kinematics_scene" );
 	_Meta->registerClass(domInstance_kinematics_scene::create, &_Meta);
 
+
+	//	Add attribute: url
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "url" );
+		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setOffset( daeOffsetOf( domInstance_kinematics_scene , attrUrl ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
 	
 	
 	_Meta->setElementSize(sizeof(domInstance_kinematics_scene));

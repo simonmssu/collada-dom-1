@@ -314,8 +314,13 @@ daeLongType::daeLongType()
 	_maxStringLength = 32;
 	_nameBindings.append("xsLong");
 	_nameBindings.append("xsLongArray");
+#ifdef _MSC_VER
+	_printFormat = "%I64d";
+	_scanFormat = "%I64d";
+#else
 	_printFormat = "%lld";
 	_scanFormat = "%lld";
+#endif
 	_typeString = "long";
 }
 daeShortType::daeShortType()
@@ -353,8 +358,13 @@ daeULongType::daeULongType()
 	_maxStringLength = 32;
 	_nameBindings.append("ulong");
 	_nameBindings.append("xsUnsignedLong");
+#ifdef _MSC_VER
+	_printFormat = "%I64u";
+	_scanFormat = "%I64u";
+#else
 	_printFormat = "%llu";
 	_scanFormat = "%llu";
+#endif
 	_typeString = "ulong";
 }
 daeFloatType::daeFloatType()
@@ -588,26 +598,6 @@ daeBool daeStringRefType::memoryToString(daeChar* src, std::ostringstream& dst) 
 	return true;
 }
 
-namespace {
-	// String replace function. Usage: replace("abcdef", "cd", "12") --> "ab12ef"
-	std::string replace(const std::string& s, const std::string& replace, const std::string& replaceWith) {
-		if (replace.empty())
-			return s;
-	
-		std::string result;
-		size_t pos1 = 0, pos2 = s.find(replace);
-		while (pos2 != std::string::npos) {
-			result += s.substr(pos1, pos2-pos1);
-			result += replaceWith;
-			pos1 = pos2 + replace.length();
-			pos2 = s.find(replace, pos1);
-		}
-
-		result += s.substr(pos1, s.length()-pos1);
-		return result;
-	}
-}
-
 daeBool daeResolverType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	// Get the URI we are trying to write
 	daeURI *thisURI = ((daeURI *)src);
@@ -641,7 +631,7 @@ daeBool daeResolverType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	}
 
 	// Encode spaces with %20
-	dst << replace(s, " ", "%20");
+	dst << cdom::replace(s, " ", "%20");
 	return true;
 }
 
@@ -736,15 +726,17 @@ daeEnumType::stringToMemory(daeChar* src, daeChar* dst )
 	src = skipWhitespace(src);
 	daeChar* srcTmp = extractToken(src);
 
-	size_t index(0); 
-	if ( _strings->find(srcTmp,index) == DAE_ERR_QUERY_NO_MATCH ) return false;
-	daeEnum val = _values->get( index );
-	*((daeEnum*)dst) = val;
+	size_t index(0);
+	bool result = _strings->find(srcTmp, index) != DAE_ERR_QUERY_NO_MATCH;
+	if (result) {
+		daeEnum val = _values->get( index );
+		*((daeEnum*)dst) = val;
+	}
 
 	if (srcTmp != src)
 		delete[] srcTmp;
 
-	return true;
+	return result;
 }
 
 daeBool daeEnumType::memoryToString(daeChar* src, std::ostringstream& dst) {

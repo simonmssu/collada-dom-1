@@ -10,7 +10,6 @@
  * implied. See the License for the specific language governing permissions and limitations under the
  * License.
  */
-
 #ifndef __DOM_ELEMENTS_H__
 #define __DOM_ELEMENTS_H__
 

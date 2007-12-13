@@ -10,7 +10,6 @@
  * implied. See the License for the specific language governing permissions and limitations under the
  * License.
  */
-
 #include <dae/daeDom.h>
 #include <dom/domLink.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -48,15 +47,15 @@ domLink::registerElement()
 	cm->appendChild( mea );
 	
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
-	mea->setName( "ref_attachment" );
-	mea->setOffset( daeOffsetOf(domLink,elemRef_attachment_array) );
-	mea->setElementType( domLink::domRef_attachment::registerElement() );
+	mea->setName( "attachment_start" );
+	mea->setOffset( daeOffsetOf(domLink,elemAttachment_start_array) );
+	mea->setElementType( domLink::domAttachment_start::registerElement() );
 	cm->appendChild( mea );
 	
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
-	mea->setName( "attachment" );
-	mea->setOffset( daeOffsetOf(domLink,elemAttachment_array) );
-	mea->setElementType( domLink::domAttachment::registerElement() );
+	mea->setName( "attachment_end" );
+	mea->setOffset( daeOffsetOf(domLink,elemAttachment_end_array) );
+	mea->setElementType( domLink::domAttachment_end::registerElement() );
 	cm->appendChild( mea );
 	
 	cm->setMaxOrdinal( 2 );
@@ -113,16 +112,16 @@ domLink::domAttachment_full::registerElement()
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
-	mea->setName( "rotate" );
-	mea->setOffset( daeOffsetOf(domLink::domAttachment_full,elemRotate_array) );
-	mea->setElementType( domRotate::registerElement() );
-	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
 	mea->setName( "translate" );
 	mea->setOffset( daeOffsetOf(domLink::domAttachment_full,elemTranslate) );
 	mea->setElementType( domTranslate::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "rotate" );
+	mea->setOffset( daeOffsetOf(domLink::domAttachment_full,elemRotate_array) );
+	mea->setElementType( domRotate::registerElement() );
 	cm->appendChild( mea );
 	
 	mea = new daeMetaElementAttribute( _Meta, cm, 2, 1, 1 );
@@ -153,37 +152,37 @@ domLink::domAttachment_full::registerElement()
 }
 
 daeElementRef
-domLink::domRef_attachment::create(daeInt)
+domLink::domAttachment_start::create(daeInt)
 {
-	domLink::domRef_attachmentRef ref = new domLink::domRef_attachment;
+	domLink::domAttachment_startRef ref = new domLink::domAttachment_start;
 	return ref;
 }
 
 
 daeMetaElement *
-domLink::domRef_attachment::registerElement()
+domLink::domAttachment_start::registerElement()
 {
     if ( _Meta != NULL ) return _Meta;
     
     _Meta = new daeMetaElement;
-    _Meta->setName( "ref_attachment" );
-	_Meta->registerClass(domLink::domRef_attachment::create, &_Meta);
+    _Meta->setName( "attachment_start" );
+	_Meta->registerClass(domLink::domAttachment_start::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
-	mea->setName( "rotate" );
-	mea->setOffset( daeOffsetOf(domLink::domRef_attachment,elemRotate_array) );
-	mea->setElementType( domRotate::registerElement() );
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "translate" );
+	mea->setOffset( daeOffsetOf(domLink::domAttachment_start,elemTranslate) );
+	mea->setElementType( domTranslate::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
-	mea->setName( "translate" );
-	mea->setOffset( daeOffsetOf(domLink::domRef_attachment,elemTranslate) );
-	mea->setElementType( domTranslate::registerElement() );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "rotate" );
+	mea->setOffset( daeOffsetOf(domLink::domAttachment_start,elemRotate_array) );
+	mea->setElementType( domRotate::registerElement() );
 	cm->appendChild( mea );
 	
 	cm->setMaxOrdinal( 1 );
@@ -194,51 +193,51 @@ domLink::domRef_attachment::registerElement()
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "joint" );
 		ma->setType( daeAtomicType::get("Token"));
-		ma->setOffset( daeOffsetOf( domLink::domRef_attachment , attrJoint ));
+		ma->setOffset( daeOffsetOf( domLink::domAttachment_start , attrJoint ));
 		ma->setContainer( _Meta );
 	
 		_Meta->appendAttribute(ma);
 	}
 	
 	
-	_Meta->setElementSize(sizeof(domLink::domRef_attachment));
+	_Meta->setElementSize(sizeof(domLink::domAttachment_start));
 	_Meta->validate();
 
 	return _Meta;
 }
 
 daeElementRef
-domLink::domAttachment::create(daeInt)
+domLink::domAttachment_end::create(daeInt)
 {
-	domLink::domAttachmentRef ref = new domLink::domAttachment;
+	domLink::domAttachment_endRef ref = new domLink::domAttachment_end;
 	return ref;
 }
 
 
 daeMetaElement *
-domLink::domAttachment::registerElement()
+domLink::domAttachment_end::registerElement()
 {
     if ( _Meta != NULL ) return _Meta;
     
     _Meta = new daeMetaElement;
-    _Meta->setName( "attachment" );
-	_Meta->registerClass(domLink::domAttachment::create, &_Meta);
+    _Meta->setName( "attachment_end" );
+	_Meta->registerClass(domLink::domAttachment_end::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
-	mea->setName( "rotate" );
-	mea->setOffset( daeOffsetOf(domLink::domAttachment,elemRotate_array) );
-	mea->setElementType( domRotate::registerElement() );
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "translate" );
+	mea->setOffset( daeOffsetOf(domLink::domAttachment_end,elemTranslate) );
+	mea->setElementType( domTranslate::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
-	mea->setName( "translate" );
-	mea->setOffset( daeOffsetOf(domLink::domAttachment,elemTranslate) );
-	mea->setElementType( domTranslate::registerElement() );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "rotate" );
+	mea->setOffset( daeOffsetOf(domLink::domAttachment_end,elemRotate_array) );
+	mea->setElementType( domRotate::registerElement() );
 	cm->appendChild( mea );
 	
 	cm->setMaxOrdinal( 1 );
@@ -249,14 +248,14 @@ domLink::domAttachment::registerElement()
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "joint" );
 		ma->setType( daeAtomicType::get("Token"));
-		ma->setOffset( daeOffsetOf( domLink::domAttachment , attrJoint ));
+		ma->setOffset( daeOffsetOf( domLink::domAttachment_end , attrJoint ));
 		ma->setContainer( _Meta );
 	
 		_Meta->appendAttribute(ma);
 	}
 	
 	
-	_Meta->setElementSize(sizeof(domLink::domAttachment));
+	_Meta->setElementSize(sizeof(domLink::domAttachment_end));
 	_Meta->validate();
 
 	return _Meta;
@@ -265,7 +264,7 @@ domLink::domAttachment::registerElement()
 
 daeMetaElement * domLink::_Meta = NULL;
 daeMetaElement * domLink::domAttachment_full::_Meta = NULL;
-daeMetaElement * domLink::domRef_attachment::_Meta = NULL;
-daeMetaElement * domLink::domAttachment::_Meta = NULL;
+daeMetaElement * domLink::domAttachment_start::_Meta = NULL;
+daeMetaElement * domLink::domAttachment_end::_Meta = NULL;
 
 

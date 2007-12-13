@@ -10,7 +10,6 @@
  * implied. See the License for the specific language governing permissions and limitations under the
  * License.
  */
-
 #include <dae/daeDom.h>
 #include <dom/domLibrary_joints.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -47,9 +46,9 @@ domLibrary_joints::registerElement()
 	mea->setElementType( domAsset::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
 	mea->setName( "joint" );
-	mea->setOffset( daeOffsetOf(domLibrary_joints,elemJoint) );
+	mea->setOffset( daeOffsetOf(domLibrary_joints,elemJoint_array) );
 	mea->setElementType( domJoint::registerElement() );
 	cm->appendChild( mea );
 	

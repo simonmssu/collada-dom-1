@@ -653,9 +653,7 @@ CrtInt32 WINAPI WinMain(	HINSTANCE	hInstance,
 	CrtPrint("IS %d SECONDS\n", loadtime);
 	CrtPrint("IS %d CLOCK TICKS\n\n", clockload);
 
-	// test for de referencing
-	CrtScene *scene = _CrtRender.GetScene();
-	Deref_InstancingNode(scene->m_collada, "boyShape2", "-clone");
+	
 
 	// This block of code shows how to enumerate all the effects, get their parameters and then
 	// get their UI information.

@@ -17,8 +17,8 @@
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
-#include <dom/domRotate.h>
 #include <dom/domTranslate.h>
+#include <dom/domRotate.h>
 #include <dom/domLink.h>
 
 class domLink : public daeElement
@@ -39,8 +39,8 @@ public:
 		domToken attrJoint;
 
 	protected:  // Elements
-		domRotate_Array elemRotate_array;
 		domTranslateRef elemTranslate;
+		domRotate_Array elemRotate_array;
 		domLinkRef elemLink;
 
 	public:	//Accessors and Mutators
@@ -56,6 +56,11 @@ public:
 		void setJoint( domToken atJoint ) { attrJoint = atJoint; _validAttributeArray[0] = true; }
 
 		/**
+		 * Gets the translate element.
+		 * @return a daeSmartRef to the translate element.
+		 */
+		const domTranslateRef getTranslate() const { return elemTranslate; }
+		/**
 		 * Gets the rotate element array.
 		 * @return Returns a reference to the array of rotate elements.
 		 */
@@ -66,11 +71,6 @@ public:
 		 */
 		const domRotate_Array &getRotate_array() const { return elemRotate_array; }
 		/**
-		 * Gets the translate element.
-		 * @return a daeSmartRef to the translate element.
-		 */
-		const domTranslateRef getTranslate() const { return elemTranslate; }
-		/**
 		 * Gets the link element.
 		 * @return a daeSmartRef to the link element.
 		 */
@@ -79,7 +79,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAttachment_full() : attrJoint(), elemRotate_array(), elemTranslate(), elemLink() {}
+		domAttachment_full() : attrJoint(), elemTranslate(), elemRotate_array(), elemLink() {}
 		/**
 		 * Destructor
 		 */
@@ -114,21 +114,21 @@ public:
 		static DLLSPEC daeMetaElement* _Meta;
 	};
 
-	class domRef_attachment;
+	class domAttachment_start;
 
-	typedef daeSmartRef<domRef_attachment> domRef_attachmentRef;
-	typedef daeTArray<domRef_attachmentRef> domRef_attachment_Array;
+	typedef daeSmartRef<domAttachment_start> domAttachment_startRef;
+	typedef daeTArray<domAttachment_startRef> domAttachment_start_Array;
 
-	class domRef_attachment : public daeElement
+	class domAttachment_start : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF_ATTACHMENT; }
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ATTACHMENT_START; }
 	protected:  // Attribute
 		domToken attrJoint;
 
 	protected:  // Elements
-		domRotate_Array elemRotate_array;
 		domTranslateRef elemTranslate;
+		domRotate_Array elemRotate_array;
 
 	public:	//Accessors and Mutators
 		/**
@@ -143,6 +143,11 @@ public:
 		void setJoint( domToken atJoint ) { attrJoint = atJoint; _validAttributeArray[0] = true; }
 
 		/**
+		 * Gets the translate element.
+		 * @return a daeSmartRef to the translate element.
+		 */
+		const domTranslateRef getTranslate() const { return elemTranslate; }
+		/**
 		 * Gets the rotate element array.
 		 * @return Returns a reference to the array of rotate elements.
 		 */
@@ -152,28 +157,23 @@ public:
 		 * @return Returns a constant reference to the array of rotate elements.
 		 */
 		const domRotate_Array &getRotate_array() const { return elemRotate_array; }
-		/**
-		 * Gets the translate element.
-		 * @return a daeSmartRef to the translate element.
-		 */
-		const domTranslateRef getTranslate() const { return elemTranslate; }
 	protected:
 		/**
 		 * Constructor
 		 */
-		domRef_attachment() : attrJoint(), elemRotate_array(), elemTranslate() {}
+		domAttachment_start() : attrJoint(), elemTranslate(), elemRotate_array() {}
 		/**
 		 * Destructor
 		 */
-		virtual ~domRef_attachment() {}
+		virtual ~domAttachment_start() {}
 		/**
 		 * Copy Constructor
 		 */
-		domRef_attachment( const domRef_attachment &cpy ) : daeElement() { (void)cpy; }
+		domAttachment_start( const domAttachment_start &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
-		virtual domRef_attachment &operator=( const domRef_attachment &cpy ) { (void)cpy; return *this; }
+		virtual domAttachment_start &operator=( const domAttachment_start &cpy ) { (void)cpy; return *this; }
 
 	public: // STATIC METHODS
 		/**
@@ -196,21 +196,21 @@ public:
 		static DLLSPEC daeMetaElement* _Meta;
 	};
 
-	class domAttachment;
+	class domAttachment_end;
 
-	typedef daeSmartRef<domAttachment> domAttachmentRef;
-	typedef daeTArray<domAttachmentRef> domAttachment_Array;
+	typedef daeSmartRef<domAttachment_end> domAttachment_endRef;
+	typedef daeTArray<domAttachment_endRef> domAttachment_end_Array;
 
-	class domAttachment : public daeElement
+	class domAttachment_end : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ATTACHMENT; }
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ATTACHMENT_END; }
 	protected:  // Attribute
 		domToken attrJoint;
 
 	protected:  // Elements
-		domRotate_Array elemRotate_array;
 		domTranslateRef elemTranslate;
+		domRotate_Array elemRotate_array;
 
 	public:	//Accessors and Mutators
 		/**
@@ -225,6 +225,11 @@ public:
 		void setJoint( domToken atJoint ) { attrJoint = atJoint; _validAttributeArray[0] = true; }
 
 		/**
+		 * Gets the translate element.
+		 * @return a daeSmartRef to the translate element.
+		 */
+		const domTranslateRef getTranslate() const { return elemTranslate; }
+		/**
 		 * Gets the rotate element array.
 		 * @return Returns a reference to the array of rotate elements.
 		 */
@@ -234,28 +239,23 @@ public:
 		 * @return Returns a constant reference to the array of rotate elements.
 		 */
 		const domRotate_Array &getRotate_array() const { return elemRotate_array; }
-		/**
-		 * Gets the translate element.
-		 * @return a daeSmartRef to the translate element.
-		 */
-		const domTranslateRef getTranslate() const { return elemTranslate; }
 	protected:
 		/**
 		 * Constructor
 		 */
-		domAttachment() : attrJoint(), elemRotate_array(), elemTranslate() {}
+		domAttachment_end() : attrJoint(), elemTranslate(), elemRotate_array() {}
 		/**
 		 * Destructor
 		 */
-		virtual ~domAttachment() {}
+		virtual ~domAttachment_end() {}
 		/**
 		 * Copy Constructor
 		 */
-		domAttachment( const domAttachment &cpy ) : daeElement() { (void)cpy; }
+		domAttachment_end( const domAttachment_end &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
-		virtual domAttachment &operator=( const domAttachment &cpy ) { (void)cpy; return *this; }
+		virtual domAttachment_end &operator=( const domAttachment_end &cpy ) { (void)cpy; return *this; }
 
 	public: // STATIC METHODS
 		/**
@@ -285,8 +285,8 @@ protected:  // Attributes
 
 protected:  // Elements
 	domAttachment_full_Array elemAttachment_full_array;
-	domRef_attachment_Array elemRef_attachment_array;
-	domAttachment_Array elemAttachment_array;
+	domAttachment_start_Array elemAttachment_start_array;
+	domAttachment_end_Array elemAttachment_end_array;
 
 public:	//Accessors and Mutators
 	/**
@@ -322,30 +322,30 @@ public:	//Accessors and Mutators
 	 */
 	const domAttachment_full_Array &getAttachment_full_array() const { return elemAttachment_full_array; }
 	/**
-	 * Gets the ref_attachment element array.
-	 * @return Returns a reference to the array of ref_attachment elements.
+	 * Gets the attachment_start element array.
+	 * @return Returns a reference to the array of attachment_start elements.
 	 */
-	domRef_attachment_Array &getRef_attachment_array() { return elemRef_attachment_array; }
+	domAttachment_start_Array &getAttachment_start_array() { return elemAttachment_start_array; }
 	/**
-	 * Gets the ref_attachment element array.
-	 * @return Returns a constant reference to the array of ref_attachment elements.
+	 * Gets the attachment_start element array.
+	 * @return Returns a constant reference to the array of attachment_start elements.
 	 */
-	const domRef_attachment_Array &getRef_attachment_array() const { return elemRef_attachment_array; }
+	const domAttachment_start_Array &getAttachment_start_array() const { return elemAttachment_start_array; }
 	/**
-	 * Gets the attachment element array.
-	 * @return Returns a reference to the array of attachment elements.
+	 * Gets the attachment_end element array.
+	 * @return Returns a reference to the array of attachment_end elements.
 	 */
-	domAttachment_Array &getAttachment_array() { return elemAttachment_array; }
+	domAttachment_end_Array &getAttachment_end_array() { return elemAttachment_end_array; }
 	/**
-	 * Gets the attachment element array.
-	 * @return Returns a constant reference to the array of attachment elements.
+	 * Gets the attachment_end element array.
+	 * @return Returns a constant reference to the array of attachment_end elements.
 	 */
-	const domAttachment_Array &getAttachment_array() const { return elemAttachment_array; }
+	const domAttachment_end_Array &getAttachment_end_array() const { return elemAttachment_end_array; }
 protected:
 	/**
 	 * Constructor
 	 */
-	domLink() : attrSid(), attrName(), elemAttachment_full_array(), elemRef_attachment_array(), elemAttachment_array() {}
+	domLink() : attrSid(), attrName(), elemAttachment_full_array(), elemAttachment_start_array(), elemAttachment_end_array() {}
 	/**
 	 * Destructor
 	 */

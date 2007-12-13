@@ -17,6 +17,8 @@
 #include "Crt/CrtTypes.h"
 #include "Crt/CrtData.h"
 #include <string.h>
+#include <float.h>
+
 
 inline void CrtMatrixLoadIdentity(CrtMatrix LDstMtx)
 {
@@ -78,7 +80,13 @@ void CrtMatrixMult( const CrtMatrix LMtx1, const CrtMatrix LMtx2, CrtMatrix LDst
 void CrtMatrix4x4Mult(CrtMatrix LSrcMtx, CrtMatrix LDestMtx);
 void CrtMatrixTranslate(CrtMatrix LMatrix, CrtFloat LX, CrtFloat LY, CrtFloat LZ);
 void CrtQuaternionToMatrix(CrtQuat * LQ, CrtFloat * LMatrix);
+void CrtMatrixPlus( const CrtMatrix LMtx1, const CrtMatrix LMtx2, CrtMatrix LDstMtx);
 
+// Gram-Schmidt orthogonalization: reference: http://cgkit.sourceforge.net/doc2/mat4.html, but there is row-dominant matrix there
+CrtBool CrtOrtho(const CrtMatrix LSrcMtx, CrtMatrix LDestMtx);
+
+CrtFloat CrtMatrixDeterminant(const CrtMatrix LM);
+CrtBool CrtDecompose(const CrtMatrix LSrcMtx, CrtVec3f &Scale, CrtVec3f &Tran, CrtMatrix Rot);
 #endif // _CRT_MATRIX_H_
 
 

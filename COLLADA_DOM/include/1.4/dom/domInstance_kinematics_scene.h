@@ -22,12 +22,32 @@ class domInstance_kinematics_scene : public daeElement
 {
 public:
 	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_KINEMATICS_SCENE; }
+protected:  // Attribute
+	xsAnyURI attrUrl;
+
+
+public:	//Accessors and Mutators
+	/**
+	 * Gets the url attribute.
+	 * @return Returns a xsAnyURI reference of the url attribute.
+	 */
+	xsAnyURI &getUrl() { return attrUrl; }
+	/**
+	 * Gets the url attribute.
+	 * @return Returns a constant xsAnyURI reference of the url attribute.
+	 */
+	const xsAnyURI &getUrl() const { return attrUrl; }
+	/**
+	 * Sets the url attribute.
+	 * @param atUrl The new value for the url attribute.
+	 */
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
 
 protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_kinematics_scene() {}
+	domInstance_kinematics_scene() : attrUrl() {}
 	/**
 	 * Destructor
 	 */

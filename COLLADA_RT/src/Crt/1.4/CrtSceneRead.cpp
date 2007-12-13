@@ -24,6 +24,7 @@
 #include "Crt/CrtNode.h"
 #include "Crt/CrtGeometry.h"
 #include "Crt/CrtController.h"
+#include "Crt/CrtIKModel.h"
 
 #include <cfxEffect.h>
 #include <cfxMaterial.h>
@@ -41,6 +42,7 @@
 #include <stdio.h>
 #include <map>
 #include <string>
+
 using namespace std;
 
 // !!!GAC should not be a global, temporarily made it one during refactoring
@@ -729,7 +731,8 @@ CrtInt GrowVertexData(CrtGeometry * geometry, CrtUInt size)
 	return 0;
 }
 
-CrtInt SetVertexData(CrtOffsets& offset, CrtGeometry * geometry, domListOfUInts &values, CrtUInt i)
+// Update: we will have min and max vec3f here.
+CrtInt SetVertexData(CrtOffsets& offset, CrtGeometry * geometry, domListOfUInts &values, CrtUInt i, CrtVec3f &minBound, CrtVec3f &maxBound)
 {
 	domUint index;
 	index = values[i*offset.max_offset + offset.position_offset];
@@ -738,6 +741,15 @@ CrtInt SetVertexData(CrtOffsets& offset, CrtGeometry * geometry, domListOfUInts 
 	geometry->Points[geometry->vertexcount].x = (CrtFloat) (*offset.position_floats)[(size_t)index*3+0];
 	geometry->Points[geometry->vertexcount].y = (CrtFloat) (*offset.position_floats)[(size_t)index*3+1];
 	geometry->Points[geometry->vertexcount].z = (CrtFloat) (*offset.position_floats)[(size_t)index*3+2];
+
+	// update minBound and maxBound 
+	minBound.x = geometry->Points[geometry->vertexcount].x < minBound.x ? geometry->Points[geometry->vertexcount].x:minBound.x;
+	minBound.y = geometry->Points[geometry->vertexcount].y < minBound.y ? geometry->Points[geometry->vertexcount].y:minBound.y;
+	minBound.z = geometry->Points[geometry->vertexcount].z < minBound.z ? geometry->Points[geometry->vertexcount].z:minBound.z;
+
+	maxBound.x = geometry->Points[geometry->vertexcount].x > maxBound.x ? geometry->Points[geometry->vertexcount].x:maxBound.x;
+	maxBound.y = geometry->Points[geometry->vertexcount].y > maxBound.y ? geometry->Points[geometry->vertexcount].y:maxBound.y;
+	maxBound.z = geometry->Points[geometry->vertexcount].z > maxBound.z ? geometry->Points[geometry->vertexcount].z:maxBound.z;
 
 	if (offset.normal_offset != -1)
 	{
@@ -776,7 +788,7 @@ CrtLines * CrtScene::BuildLines(domLines * dom_lines, CrtGeometry * geometry)
 	lines->indexes = CrtNewData(CrtUInt, lines->count * 2);
 	for (CrtUInt ivertex=0; ivertex< lines->count * 2; ivertex++)
 	{
-		lines->indexes[ivertex] = SetVertexData(offsets, geometry, P, ivertex);
+		lines->indexes[ivertex] = SetVertexData(offsets, geometry, P, ivertex, lines->minBound, lines->maxBound);
 //		lines->indexes[ivertex] = (CrtUInt) P[ivertex*maxoffset ];
 	}
 
@@ -804,7 +816,7 @@ CrtLinestrips * CrtScene::BuildLineStrips(domLinestrips * dom_linestrips, CrtGeo
 
 		for (CrtUInt j=0; j< vcount ; j++)
 		{
-			strips[j] = SetVertexData(offsets, geometry, P[i]->getValue(), j);
+			strips[j] = SetVertexData(offsets, geometry, P[i]->getValue(), j, linestrips->minBound, linestrips->maxBound);
 //			strips[j] = (CrtUInt) P[i]->getValue()[j*maxoffset];
 		}
 		linestrips->countvector.push_back( vcount );
@@ -838,7 +850,7 @@ CrtTriStrips * CrtScene::BuildTriStrips(domTristrips * dom_tristrips, CrtGeometr
 
 		for (CrtUInt j=0; j< vcount ; j++)
 		{
-			strips[j] = SetVertexData(offsets, geometry, P[i]->getValue(), j);
+			strips[j] = SetVertexData(offsets, geometry, P[i]->getValue(), j, tristrips->minBound, tristrips->maxBound);
 //			strips[j] = (CrtUInt) P[i]->getValue()[j*maxoffset];
 		}
 		tristrips->countvector.push_back( vcount );
@@ -872,7 +884,7 @@ CrtTriFans * CrtScene::BuildTriFans(domTrifans * dom_trifans, CrtGeometry * geom
 
 		for (CrtUInt j=0; j< vcount ; j++)
 		{
-			strips[j] = SetVertexData(offsets, geometry, P[i]->getValue(), j);
+			strips[j] = SetVertexData(offsets, geometry, P[i]->getValue(), j, trifans->minBound, trifans->maxBound);
 //			strips[j] = (CrtUInt) P[i]->getValue()[j*maxoffset];
 		}
 		trifans->countvector.push_back( vcount );
@@ -905,7 +917,7 @@ CrtPolygons * CrtScene::BuildPolygons(domPolylist * dom_polylist, CrtGeometry * 
 
 		for (CrtUInt j=0; j< vcount ; j++)
 		{
-			vertices[j] = SetVertexData(offsets, geometry, P->getValue(), vertex_start_index+j);
+			vertices[j] = SetVertexData(offsets, geometry, P->getValue(), vertex_start_index+j, polygons->minBound, polygons->maxBound);
 //			vertices[j] = (CrtUInt) P->getValue()[(j+vertex_start_index)*maxoffset];
 		}
 		polygons->countvector.push_back( vcount );
@@ -945,7 +957,7 @@ CrtPolygons * CrtScene::BuildPolygons(domPolygons * dom_polygons, CrtGeometry * 
 		CrtUInt * vertices = CrtNewData(CrtUInt, vcount );
 		for (CrtUInt j=0; j< vcount ; j++)
 		{
-			vertices[j] = SetVertexData(offsets, geometry, P[i]->getValue(), j);
+			vertices[j] = SetVertexData(offsets, geometry, P[i]->getValue(), j, polygons->minBound, polygons->maxBound);
 //			vertices[j] = (CrtUInt) P[i]->getValue()[j*maxoffset];
 		}
 		polygons->countvector.push_back( vcount );
@@ -976,7 +988,7 @@ CrtTriangles * CrtScene::BuildTriangles(domTriangles * dom_triangles, CrtGeometr
 	triangles->indexes = CrtNewData(CrtUInt, triangles->count * 3);
 	for (CrtUInt ivertex=0; ivertex< triangles->count * 3; ivertex++)
 	{
-		triangles->indexes[ivertex] = SetVertexData(offsets, geometry, P, ivertex);
+		triangles->indexes[ivertex] = SetVertexData(offsets, geometry, P, ivertex, triangles->minBound, triangles->maxBound);
 //		triangles->indexes[ivertex] = (CrtUInt) P[ivertex*maxoffset ];
 	}
 
@@ -1751,6 +1763,18 @@ CrtBool CrtScene::ReadScene( domVisual_sceneRef scene )
 			}
 		}
 	}
+
+	// modified by wei
+	// for each instance_kinematics, it will find node for binding
+	for (CrtUInt i = 0;i < KinematicModelsInstances.size();i++)
+	{
+		// for each instance_kinematics model, need to decide whether it is in kinematics_scene
+		//if ()
+		{
+			// Retrive binding between kinematics model and CrtNodes
+		}
+	}
+	// end
 	return CrtTrue; 
 }
 
@@ -2148,10 +2172,17 @@ CrtNode * CrtScene::ReadNode( domNodeRef node, CrtNode * parentNode )
 	CrtNode * crtNode = CrtNew( CrtNode );
 	// Create a new node and initialize it with name and parent pointer
 	CrtAssert("No memory\n", crtNode!=NULL);
-	if ( node->getName() ) crtNode->SetName( node->getName() ); 
-	if ( node->getId() ) crtNode->SetId( node->getId() ); 
-	if ( node->getSid() ) crtNode->SetSid( node->getSid() ); 
-
+	if ( node->getName() ) 
+		crtNode->SetName( node->getName() ); 
+	if ( node->getId() ) 
+		crtNode->SetId( node->getId() ); 
+	if ( node->getSid() ) 
+		crtNode->SetSid( node->getSid() ); 
+	
+	// Set Joint based on type attribute of node: have to set link based on <instance_kinematics_model>
+	if ( node->getType() ==  NODETYPE_JOINT)
+		crtNode->SetTypex(eCrtJoint);
+	
 //	crtNode->SetDocURI( node->getDocumentURI()->getURI() ); 
 	crtNode->SetParent( parentNode ); 
 
@@ -2315,5 +2346,49 @@ CrtChar *CrtScene::ReadCfxBinaryFilename( domExtra_Array &extra_array )
 			}
 		}
 	}
+	return NULL;
+}
+
+// modified by wei
+// This function will read the simple Kinematics model from DOM and retrive the tree / chain from it
+// Simple Kinematics model here means model without instance_kinematics_model in it
+CrtKinematics_model *CrtScene::ReadSimpleKinematicsModels(domKinematics_modelRef lib)
+{
+	// There should be only
+	return NULL;
+}
+
+
+bool CrtScene::ReadInstanceKinematicsModel(const domKinematics_scene &parent, const domInstance_kinematics_modelRef instance)
+{
+	// It will bind the information in tree <link> in KinematicsModel and tree <node> in visual scene
+	// also it will check if every binding is valid or not
+
+	// scan all bind joints
+	for (size_t i = 0;i < (instance->getBind_joint_array()).getCount();i++)
+	{
+
+		domInstance_kinematics_model::domBind_joint *binding_joint = (instance->getBind_joint_array()).get(i).cast();
+		
+		ReadBindingsJoints(binding_joint, NULL, NULL);
+	}
+
+	// scan all bind links
+	for (size_t i = 0;i < (instance->getBind_link_array()).getCount();i++)
+	{
+		// get binding link
+		domInstance_kinematics_model::domBind_link *binding_link = (instance->getBind_link_array()).get(i).cast();
+		// resolve biding link -> node
+		ReadBindingsLinks(binding_link, NULL, NULL);
+		// for successful binding, bring it to CrtKinematics_Model? How to?
+	}
+
+	return true;
+}
+
+// this function will read instance_kinematics in Kinematics Model: 
+CrtKinematics_model *CrtScene::ReadInstanceKinematicsModel(domKinematics_model &parent, domInstance_kinematics_modelRef lib)
+{
+	// TODO: complicated Kinematics model
 	return NULL;
 }

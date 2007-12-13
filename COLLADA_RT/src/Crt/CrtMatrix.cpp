@@ -257,6 +257,8 @@ void CrtQuaternionToMatrix(CrtVec4f * LQ, CrtFloat * LMatrix)
 
 CrtFloat CrtPI = 3.14159f;
 
+
+
 void CrtMatrix4x4RotateAngleAxis(CrtMatrix LMatrix, CrtFloat LAxisX, CrtFloat LAxisY, CrtFloat LAxisZ, CrtFloat LAngle)
 {
 	CrtMatrix	LRotMatrix;
@@ -524,3 +526,112 @@ void CrtMatrixToQuat( const CrtMatrix rotMat, CrtQuat & RotQuat )
 	
 }; 
 
+CrtBool CrtOrtho(const CrtMatrix LSrcMtx, CrtMatrix LDestMtx)
+{
+	
+	// get 3x3 part: column
+	CrtVec3f vec_x(LSrcMtx[M00], LSrcMtx[M10], LSrcMtx[M20]);
+	CrtVec3f vec_y(LSrcMtx[M01], LSrcMtx[M11], LSrcMtx[M21]);
+	CrtVec3f vec_z(LSrcMtx[M02], LSrcMtx[M12], LSrcMtx[M22]);
+
+	// find reciproal of length(x) square:
+	float dotx = vec_x.DotProduct(&vec_x, &vec_x);
+
+	// whether it is less than threshold 
+	if (dotx < FLT_MIN)
+		return CrtFalse;
+
+	float rec_dotx = 1.0f / dotx;
+
+	// update vec_y and vec_z
+	vec_y += vec_x * (-vec_x.DotProduct(&vec_x, &vec_y) * rec_dotx);
+	vec_z += vec_x * (-vec_x.DotProduct(&vec_x, &vec_z) * rec_dotx);
+
+	float dot_y = vec_x.DotProduct(&vec_y, &vec_y);
+
+	// whether it is less than threshold
+	if (dot_y < FLT_MIN)
+		return CrtFalse;
+
+	float rec_doty = 1.0f / dot_y;
+
+	// update vec_z
+	vec_z += vec_z * (-vec_x.DotProduct(&vec_y, &vec_z) * rec_doty);
+
+	LDestMtx[M00] = vec_x.x; LDestMtx[M10] = vec_x.y, LDestMtx[M20] = vec_x.z;
+	LDestMtx[M01] = vec_y.x; LDestMtx[M11] = vec_y.y; LDestMtx[M21] = vec_y.z;
+	LDestMtx[M02] = vec_z.x; LDestMtx[M12] = vec_z.y; LDestMtx[M22] = vec_z.z;
+
+	return CrtTrue;
+}
+
+CrtFloat CrtMatrixDeterminant(const CrtMatrix LM)
+{
+	// !!!GAC Because this doesn't copy over the last column of the source to the dest, if the output matrix
+	// !!!GAC isn't initialized it may turn out a bogus 4x4 matrix, should this function set that column?
+
+	CrtFloat	LM00 = LM[M00], LM01 = LM[M01], LM02 = LM[M02],	// Use temporary storage, in case LM == LMI
+		LM10 = LM[M10], LM11 = LM[M11], LM12 = LM[M12],
+		LM20 = LM[M20], LM21 = LM[M21], LM22 = LM[M22];
+	return (LM22*LM11*LM00 - LM22*LM10*LM01 - LM21*LM12*LM00 + LM21*LM10*LM02 + LM20*LM12*LM01 - LM20*LM11*LM02);
+}
+
+CrtBool CrtDecompose(const CrtMatrix LSrcMtx, CrtVec3f &Scale, CrtVec3f &Tran, CrtMatrix Rot)
+{
+	CrtOrtho(LSrcMtx, Rot);
+	
+	CrtVec3f vec_x(Rot[M00], Rot[M10], Rot[M20]);
+	CrtVec3f vec_y(Rot[M01], Rot[M11], Rot[M21]);
+	CrtVec3f vec_z(Rot[M02], Rot[M12], Rot[M22]);
+
+	// find scaling factor
+	float lvx = sqrt( vec_x.DotProduct(&vec_x, &vec_x) );
+	float lvy = sqrt( vec_x.DotProduct(&vec_y, &vec_y) );
+	float lvz = sqrt( vec_x.DotProduct(&vec_z, &vec_z) );
+
+	// 
+	if ( lvx < FLT_MIN || lvy < FLT_MIN || lvz < FLT_MIN)
+		return CrtFalse;
+
+	// save scale factor
+	Scale.x = lvx; Scale.y = lvy; Scale.z = lvz;
+
+	vec_x /= lvx;
+	vec_y /= lvy;
+	vec_z /= lvz;
+
+	// set Rot result
+	Rot[M00]=vec_x.x; 
+	Rot[M01]=vec_y.x; 
+	Rot[M02]=vec_z.x; 
+	Rot[M03]=0.0f;
+
+	Rot[M10]=vec_x.y; 
+	Rot[M11]=vec_y.y; 
+	Rot[M12]=vec_z.y; 
+	Rot[M13] = 0.0f;
+
+	Rot[M20]=vec_x.z;
+	Rot[M21]=vec_y.z;
+	Rot[M22]=vec_z.z;
+	Rot[M23] = 0.0f;
+
+	Rot[M30] = 0.0f;
+	Rot[M31] = 0.0f;
+	Rot[M32] = 0.0f;
+	Rot[M33] = 1.0f;
+
+	// adjust rotate and scale
+	if (CrtMatrixDeterminant(Rot) < 0.0f)
+	{
+		Rot[M00] = -Rot[M00];
+		Rot[M10] = -Rot[M10]; 
+		Rot[M20] = -Rot[M20];
+		Scale.x = -Scale.x;
+	}
+
+	// set translate
+	Tran.x=LSrcMtx[M30];Tran.y=LSrcMtx[M31];Tran.z=LSrcMtx[M32];
+
+	return CrtTrue;
+}

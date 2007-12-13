@@ -18,6 +18,7 @@
 #include "Crt/CrtSkin.h"
 #include <string>
 #include <vector>
+#include <float.h>
 
 class CrtMaterial;
 #include "cfxLoader.h"
@@ -224,6 +225,7 @@ public:
 
 	CrtMultiArray	MultiArray; 
 	CrtVertexArray	BoundingBoxArray;
+	// These minBound and maxBound are in object space!
 	CrtVec3f		minBound;
 	CrtVec3f		maxBound;
 
@@ -254,6 +256,14 @@ public:
 		DataReadyForCg = CrtFalse; 
 		SkinIndicesCg = NULL;
 		SkinWeightsCg = NULL; 
+
+		minBound.x = FLT_MAX;
+		minBound.y = FLT_MAX;
+		minBound.z = FLT_MAX;
+
+		maxBound.x = -FLT_MAX;
+		maxBound.y = -FLT_MAX;
+		maxBound.z = -FLT_MAX;
 
 		indexes = 0;
 	}

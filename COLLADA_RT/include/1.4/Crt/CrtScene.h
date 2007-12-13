@@ -31,6 +31,9 @@
 #include "Crt/CrtPhysics.h"
 #include "Crt/CrtMorph.h"
 
+// modified by wei:
+#include "Crt/CrtIKModel.h"
+
 // VBO Extension Definitions, From glext.h
 #define GL_ARRAY_BUFFER                   0x8892
 #define GL_ELEMENT_ARRAY_BUFFER           0x8893
@@ -142,6 +145,15 @@ class domSampler;
 typedef daeSmartRef<domSampler> domSamplerRef;
 class domChannel;
 typedef daeSmartRef<domChannel> domChannelRef;
+
+// Modified by wei: IK model
+class domKinematics_model;
+typedef daeSmartRef<domKinematics_model> domKinematics_modelRef;
+class domKinematics_scene;
+typedef daeSmartRef<domKinematics_scene> domKinematics_sceneRef;
+class domInstance_kinematics_model;
+typedef daeSmartRef<domInstance_kinematics_model> domInstance_kinematics_modelRef;
+
 /**
  * The CrtScene class is the root of a scene that has been loaded from a collada file, all the parts
  * of the scene eventually link back here.
@@ -157,6 +169,10 @@ private:
 	std::vector<CrtInstanceLight *>			LightInstances;
 //	std::vector<CrtInstanceGeometry *>		GeometryInstances;
 //	std::vector<CrtInstanceController *>	ControllerInstances;
+	// modified by wei: Maybe we can remove it because Instance of Kinematics are just for linking:
+	// 1. link between Kinematics_model and Visual_scene, when parent is Kinematics_Scene
+	// 2. sub model of Kinematics_model, when parent is Kinematics_model
+	std::vector<CrtInstance_kinematics_model *> KinematicModelsInstances;
 
 public:
 	std::vector<CrtGeometry *>				Geometries;
@@ -170,6 +186,8 @@ public:
 	std::vector<CrtAnimation *>				Animations;
 	std::vector<CrtEffect *>				Effects;
 	std::map<std::string, CrtNode *>		Nodes;
+	// modified by wei
+	std::vector<CrtKinematics_model *> KinematicModels; 
 
 	DAE *			m_collada;
 	MyColladaConverter *	m_physics;
@@ -217,6 +235,17 @@ private:
 	CrtAnimSrc		*ReadAnimationSource( domSourceRef source );
 	CrtAnimSampler	*ReadAnimationSampler(CrtAnimation * animation, domSamplerRef sampler);
 	CrtAnimChannel  *ReadAnimationChannel(CrtAnimation * animation, domChannelRef channel);
+
+	// modified by wei
+	// This function will read the simple Kinematics model from DOM and retrive the tree / chain from it
+	// Simple Kinematics model here means model without instance_kinematics_model in it
+	CrtKinematics_model *CrtScene::ReadSimpleKinematicsModels(domKinematics_modelRef lib);
+	// this function will read instance_kinematics in Kinematic Scene
+	// parent and children of CrtNodes records information of original structure.
+	bool ReadInstanceKinematicsModel(const domKinematics_scene &parent, const domInstance_kinematics_modelRef lib);
+	// this function will read instance_kinematics in Kinematics Model
+	CrtKinematics_model *CrtScene::ReadInstanceKinematicsModel(domKinematics_model &parent, domInstance_kinematics_modelRef lib);
+	// end wei
 
 	CrtImage * GetTextureFromShader(map<string, domCommon_newparam_type*> &NewParams, domCommon_color_or_texture_type* shader);
 //	void ReadPhong(CrtEffect * effect, domProfile_COMMON::domTechnique::domPhong *phong);
@@ -452,8 +481,6 @@ public:
 	//CrtBool	Load( CrtChar * file ); 
 
 	//---------------------- End External Interfaces ---------------------------------//	
-	
-
 };	//CrtScene 
 
 

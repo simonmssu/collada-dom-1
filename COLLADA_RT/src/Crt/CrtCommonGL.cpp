@@ -21,6 +21,17 @@
 #include "Crt/CrtRender.h"
 #include "Crt/CrtTexture.h"
 
+#ifndef CELL // very limited glu support from PSGL.
+
+// We can assume that Nvidia puts correct glut and handle it correctly.
+#if defined (_MSC_VER)
+#pragma warning ( disable : 4505 )
+#endif
+
+#include <GL/glut.h>
+
+#endif // CELL
+
 // VBO Extension Definitions, From glext.h
 #define GL_ARRAY_BUFFER                   0x8892
 #define GL_ELEMENT_ARRAY_BUFFER           0x8893
@@ -194,6 +205,300 @@ void	CrtPolyGroup::DumpData()
 	}
 }
 */
+
+CrtBool CrtRender::DrawFloorGrid(int num_x, int num_z, int interval)
+{
+	int num_along_x, num_along_z;
+	int range_x, range_z;
+
+	range_x = num_x * interval;
+	range_z = num_z * interval;
+
+	num_along_x = range_z;
+	num_along_z = range_x;
+
+	// arrays to hold matrix information
+	GLdouble model_view[16];
+	glGetDoublev(GL_MODELVIEW_MATRIX, model_view);
+	GLdouble projection[16];
+	glGetDoublev(GL_PROJECTION_MATRIX, projection);
+
+
+	// save previous state of openGL
+	glPushAttrib(GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT | GL_LIGHTING_BIT );
+	
+	// disable lighting
+	glDisable(GL_LIGHTING);
+
+	// Set color to be white
+	glColor3f(0.9f, 0.9f, 0.9f);
+
+	// lines that is parallel with x axis
+	int base_z = -num_along_x;
+	glBegin(GL_LINES);
+	for (int i = 0;i < 2*num_x;i++)
+	{
+		// vertex (-range, 0, base_z++) -> (range, 0, base_z++)
+		glVertex3d( -range_x, 0, base_z );	
+		glVertex3d( range_x, 0, base_z ); 
+		// update lines
+		base_z+=interval;
+	}
+	glEnd();
+
+	// lines that is parallel with z axis
+	int base_x = -num_along_z;
+	glBegin(GL_LINES);
+	for (int i = 0;i < 2*num_z;i++)
+	{
+		// vertex (-range, 0, base_z++) -> (range, 0, base_z++)
+		glVertex3d( base_x, 0, -range_z  );	
+		glVertex3d( base_x, 0, range_z ); 
+		// update lines
+		base_x+=interval;
+	}
+	glEnd();
+
+	glPopAttrib();
+	return CrtTrue;
+}
+
+CrtBool CrtRender::DrawFrame(const CrtMatrix &frame_world, 
+							 const float xconeDiffuse[],
+							 const float yconeDiffuse[],
+							 const float zconeDiffuse[],
+							 const CrtVec3f diff
+							 )
+{
+#ifndef CELL // current PSGL doesn't support most glu functions
+	glPushAttrib(GL_ALL_ATTRIB_BITS); //(GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT | GL_LIGHTING_BIT | GL_VIEWPORT_BIT);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDisable(GL_LIGHTING);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+
+	CrtVec3f scale;
+	CrtVec3f tran;
+	CrtMatrix rot;
+
+//#define DEBUG_DECOMPOSE_MATRIX
+#ifdef DEBUG_DECOMPOSE_MATRIX
+	glGetFloatv(GL_MODELVIEW_MATRIX, rot);
+	CrtMatrix test;
+	glPushMatrix();
+	glLoadIdentity();
+	//glTranslatef(10, 10, 10);
+	
+	glTranslatef(10, 10, 10);
+	glGetFloatv(GL_MODELVIEW_MATRIX, test);
+	glRotatef(45, 1, 0, 0);
+	glGetFloatv(GL_MODELVIEW_MATRIX, test);
+	CrtDecompose(test, scale, tran, rot);
+	glTranslatef(10, 10, 10);
+	glRotatef(30, 1, 0, 0);
+	glGetFloatv(GL_MODELVIEW_MATRIX, test);
+
+	glScalef(5, 5, 3);
+	
+	glGetFloatv(GL_MODELVIEW_MATRIX, test);
+	CrtDecompose(test, scale, tran, rot);
+	glPopMatrix();
+#endif
+
+	CrtDecompose(frame_world, scale, tran, rot);
+
+	// define radius as min diff among bounding box of current geometry object
+	// define length as max diff among bounding box of current geometry object
+	CrtVec3f scaled_diff = diff.Multiply(scale);
+	CrtFloat cone_radius = scaled_diff.Min();
+	CrtFloat cone_height = scaled_diff.Max();
+
+	// load current matrix
+	rot[M30] = tran.x;
+	rot[M31] = tran.y;
+	rot[M32] = tran.z;
+	
+	glMultMatrixf(rot);
+
+		// draw the up vector with a cone
+		glColor3fv(yconeDiffuse);
+		glPushMatrix();
+		//glTranslatef(0, cone_radius, 0);
+		glRotatef(-90.0f, 1.0f, 0, 0);
+		// get matrix information:
+		// glGetDoublev(GL_MODELVIEW_MATRIX, model_view_axis[1]);
+		glutSolidCone(cone_radius, cone_height, 5, 5);
+		glPopMatrix();
+
+		// draw the left vector with a cone
+		glColor3fv(xconeDiffuse);
+		glPushMatrix();
+		glTranslatef(cone_radius, 0, 0);
+		glRotatef(90.0f, 0, 1.0f, 0);
+		//glGetDoublev(GL_MODELVIEW_MATRIX, model_view_axis[0]);
+		glutSolidCone(cone_radius, cone_height, 5, 5);
+		glPopMatrix();
+
+		// draw the out vector with a cone
+		glColor3fv(zconeDiffuse);
+		glPushMatrix();
+		glTranslatef(0, 0, cone_radius);
+		glRotatef(90.0f, 0, 0, 1.0f);
+		//glGetDoublev(GL_MODELVIEW_MATRIX, model_view_axis[2]);
+		glutSolidCone(cone_radius, cone_height, 5, 5);
+		glPopMatrix();
+			
+	glPopMatrix();
+
+	glPopAttrib();
+#endif
+	return CrtFalse;
+}
+
+// This will provide the coordinates at right-upper corner: Maya style
+CrtBool	CrtRender::DrawCoordinates()
+{
+#ifndef CELL // current PSGL doesn't support most glu functions
+	// material:
+	// reset the material: diffuse:
+	GLfloat cubeDiffuse[] = {1.0f, 1.0f, 1.0f };
+	GLfloat xconeDiffuse[] = {1.0f, 0.0f, 0.0f };
+	GLfloat yconeDiffuse[] = {0.0f, 1.0f, 0.0f };
+	GLfloat zconeDiffuse[] = {0.0f, 0.0f, 1.0f };
+
+	// light information:
+	GLfloat ambientLight[] = {0.5f, 0.5f, 0.5f, 1.0f};
+	// directional light: 0.0f as w for infinite far away
+	GLfloat lightPos[] = {0.0f, 0.0f, -10.0f, 0.0f};
+
+	// arrays to hold matrix information
+	GLdouble model_view[16];
+	glGetDoublev(GL_MODELVIEW_MATRIX, model_view);
+
+	// model view matrix for 3 axis:
+	GLdouble model_view_axis[3][16];
+	GLdouble projection[16];
+	GLint viewport[4];
+
+	// get float array
+	GLfloat model_view_f[16];
+	for (int i = 0;i < 16;i++)
+		model_view_f[i] = (float)model_view[i];
+
+	// set up lighting:
+	// save all attributes related to the lighting and viewport:
+	glPushAttrib(GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT | GL_LIGHTING_BIT | GL_VIEWPORT_BIT);
+
+	// setup lighting:
+	glEnable(GL_LIGHTING);
+
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, ambientLight);
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+	glEnable(GL_LIGHT0);
+	
+	glDisable(GL_LIGHT1);
+	glDisable(GL_LIGHT2);
+	glDisable(GL_LIGHT3);
+	glDisable(GL_LIGHT4);
+	glDisable(GL_LIGHT5);
+	glDisable(GL_LIGHT6);
+	glDisable(GL_LIGHT7);
+
+	GLfloat cube_center[3];
+	cube_center[0] = (GLfloat) (ScreenWidth - 50);
+	cube_center[1] = (GLfloat) (ScreenHeight - 50);
+	cube_center[2] = 0;
+	GLfloat cone_height = 20.0f;
+	GLfloat cone_radius = 5.0f;
+
+	glEnable(GL_COLOR_MATERIAL);
+	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+
+		glGetIntegerv(GL_VIEWPORT, viewport);
+
+		// Use ortho projection for the coordinates frame
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glOrtho(0, ScreenWidth, 0, ScreenHeight, -1000, 1000);
+		glGetDoublev(GL_PROJECTION_MATRIX, projection);
+
+			// draw a cooridnate frame there
+			glMatrixMode(GL_MODELVIEW);
+			glPushMatrix();
+			glLoadIdentity();
+			
+			// translate to the right-upper corner
+			glTranslatef(cube_center[0], cube_center[1], cube_center[2]);
+			
+			// elimate the translate of model view
+			for (int i = 12;i < 15;i++)
+				model_view_f[i] = 0.0;
+
+			// rotation part of model view
+			glMultMatrixf(model_view_f);
+
+			// draw the up vector with a cone
+			glColor3fv(yconeDiffuse);
+			glPushMatrix();
+			glTranslatef(0, cone_radius, 0);
+			glRotatef(-90.0f, 1.0f, 0, 0);
+			// get matrix information:
+			glGetDoublev(GL_MODELVIEW_MATRIX, model_view_axis[1]);
+			glutSolidCone(cone_radius, cone_height, 5, 5);
+			glPopMatrix();
+
+			// draw the left vector with a cone
+			glColor3fv(xconeDiffuse);
+			glPushMatrix();
+			glTranslatef(cone_radius, 0, 0);
+			glRotatef(90.0f, 0, 1.0f, 0);
+			glGetDoublev(GL_MODELVIEW_MATRIX, model_view_axis[0]);
+			glutSolidCone(cone_radius, cone_height, 5, 5);
+			glPopMatrix();
+
+			// draw the out vector with a cone
+			glColor3fv(zconeDiffuse);
+			glPushMatrix();
+			glTranslatef(0, 0, cone_radius);
+			glRotatef(90.0f, 0, 0, 1.0f);
+			glGetDoublev(GL_MODELVIEW_MATRIX, model_view_axis[2]);
+			glutSolidCone(cone_radius, cone_height, 5, 5);
+			glPopMatrix();
+			
+			// center there is a cube
+			glColor3fv(cubeDiffuse);
+			glutSolidCube (cone_radius * 2.0f);
+
+			char axis_letter[] = {'X', 'Y', 'Z'};
+			
+			glDisable(GL_COLOR_MATERIAL);
+			glColor3f(0.9f, 0.9f, 0.9f);
+			glDisable(GL_LIGHTING);
+			// clear all matrix since we only need to draw letters on screen now.
+			for (int i = 0;i < 3;i++)
+			{
+				glLoadIdentity();
+				GLdouble winx, winy, winz;
+				// Find a good position for letters
+				gluProject(0, 0, cone_height, model_view_axis[i], projection, viewport, &winx, &winy, &winz);
+				// draw x, y and z letters corresponding to coordinate frame:
+				glRasterPos2f((float)winx+2, (float)winy+2);
+				glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, axis_letter[i]);
+			}
+
+			glPopMatrix(); // restore original model view matrix
+
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix(); // restore original projection matrix
+		glMatrixMode(GL_MODELVIEW); // restore state of GL_MODELVIEW
+
+	glPopAttrib();
+#endif
+	return CrtTrue;
+}
 
 void 	CrtRender::SetMaterial( CrtMaterial * mat )
 {

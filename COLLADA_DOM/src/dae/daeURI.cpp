@@ -15,12 +15,15 @@
 #include <ctype.h>
 #include <dae/daeDocument.h>
 #include <dae/daeErrorHandler.h>
+#include <pcrecpp.h>
 
 #ifdef _WIN32
 #include <direct.h>  // for getcwd (windows)
 #else
 #include <unistd.h>  // for getcwd (linux)
 #endif
+
+using namespace std;
 
 daeString safeCreate(daeString src);
 void safeDelete(daeString src);
@@ -1280,3 +1283,95 @@ daeBool daeURIResolver::getAutoLoadExternalDocuments()
 	return _loadExternalDocuments; 
 }
 
+
+// String replace function. Usage: replace("abcdef", "cd", "12") --> "ab12ef"
+string cdom::replace(const string& s, const string& replace, const string& replaceWith) {
+	if (replace.empty())
+		return s;
+
+	string result;
+	size_t pos1 = 0, pos2 = s.find(replace);
+	while (pos2 != string::npos) {
+		result += s.substr(pos1, pos2-pos1);
+		result += replaceWith;
+		pos1 = pos2 + replace.length();
+		pos2 = s.find(replace, pos1);
+	}
+
+	result += s.substr(pos1, s.length()-pos1);
+	return result;
+}
+
+
+string cdom::filePathToUri(const string& filePath) {
+	string uri = filePath;
+
+	// Windows - convert "c:\" to "/c:\"
+	if (uri.length() >= 2  &&  isalpha(uri[0])  &&  uri[1] == ':')
+		uri.insert(0, "/");
+	else if (!uri.empty()  &&  uri[0] == '\\') {
+		// Windows - If it's an absolute path with no drive letter, or a UNC path,
+		// prepend "file:///"
+		uri.insert(0, "file:///");
+	}
+	
+	// Windows - convert backslashes to forward slashes
+	uri = replace(uri, "\\", "/");
+
+	// Convert spaces to %20
+	uri = replace(uri, " ", "%20");
+
+	return uri;
+}
+
+
+namespace {
+	// Returns true if parsing succeeded, false otherwise. Parsing can fail if the uri
+	// reference isn't properly formed.
+	bool parseUriRef(const string& uriRef,
+	                 string& scheme,
+	                 string& authority,
+	                 string& path,
+	                 string& query,
+	                 string& fragment) {
+		// This regular expression for parsing URI references comes from the URI spec:
+		//   http://tools.ietf.org/html/rfc3986#appendix-B
+		static pcrecpp::RE re("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
+		string s1, s3, s6, s8;
+		if (re.FullMatch(uriRef, &s1, &scheme, &s3, &authority, &path, &s6, &query, &s8, &fragment))
+			return true;
+
+		return false;
+	}
+}
+
+
+string cdom::uriToFilePath(const string& uriRef) {
+	string scheme, authority, path, query, fragment;
+	parseUriRef(uriRef, scheme, authority, path, query, fragment);
+
+	// Make sure we have a file scheme URI, or that it doesn't have a scheme
+	if (!scheme.empty()  &&  scheme != "file")
+		return "";
+
+	string filePath = path;
+
+#ifdef WIN32
+	// Windows - replace two leading slashes with one leading slash, so that
+	// ///otherComputer/file.dae becomes //otherComputer/file.dae
+	if (filePath.length() >= 2  &&  filePath[0] == '/'  &&  filePath[1] == '/')
+		filePath.erase(0, 1);
+
+	// Windows - convert "/C:/" to "C:/"
+	if (filePath.length() >= 3  &&  filePath[0] == '/'  &&  filePath[2] == ':')
+		filePath.erase(0, 1);
+
+	// Windows - convert forward slashes to back slashes
+	filePath = replace(filePath, "/", "\\");
+#endif
+
+	// Replace %20 with space
+	filePath = replace(filePath, "%20", " ");
+	
+	return filePath;
+}

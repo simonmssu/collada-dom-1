@@ -10,7 +10,6 @@
  * implied. See the License for the specific language governing permissions and limitations under the
  * License.
  */
-
 #include <dae/daeDom.h>
 #include <dom/domJoint.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -41,23 +40,23 @@ domJoint::registerElement()
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, -1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "prismatic" );
-	mea->setOffset( daeOffsetOf(domJoint,elemPrismatic) );
+	mea->setOffset( daeOffsetOf(domJoint,elemPrismatic_array) );
 	mea->setElementType( domJointType::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "revolute" );
-	mea->setOffset( daeOffsetOf(domJoint,elemRevolute) );
+	mea->setOffset( daeOffsetOf(domJoint,elemRevolute_array) );
 	mea->setElementType( domJointType::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "scalable" );
-	mea->setOffset( daeOffsetOf(domJoint,elemScalable) );
+	mea->setOffset( daeOffsetOf(domJoint,elemScalable_array) );
 	mea->setElementType( domJointType::registerElement() );
 	cm->appendChild( mea );
 	
@@ -65,13 +64,13 @@ domJoint::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3001, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domJoint,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 1 );
+	cm->setMaxOrdinal( 3001 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domJoint,_contents));
