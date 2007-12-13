@@ -78,7 +78,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBind_shape_matrix(DAE& dae) : _value() {}
+		domBind_shape_matrix(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -154,7 +154,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domJoints(DAE& dae) : elemInput_array(), elemExtra_array() {}
+		domJoints(DAE& dae) : daeElement(dae), elemInput_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -235,7 +235,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domVcount(DAE& dae) : _value() {}
+			domVcount(DAE& dae) : daeElement(dae), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -303,7 +303,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domV(DAE& dae) : _value() {}
+			domV(DAE& dae) : daeElement(dae), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -403,7 +403,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domVertex_weights(DAE& dae) : attrCount(), elemInput_array(), elemVcount(), elemV(), elemExtra_array() {}
+		domVertex_weights(DAE& dae) : daeElement(dae), attrCount(), elemInput_array(), elemVcount(), elemV(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -520,7 +520,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domSkin(DAE& dae) : attrSource(dae), elemBind_shape_matrix(), elemSource_array(), elemJoints(), elemVertex_weights(), elemExtra_array() {}
+	domSkin(DAE& dae) : daeElement(dae), attrSource(dae), elemBind_shape_matrix(), elemSource_array(), elemJoints(), elemVertex_weights(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

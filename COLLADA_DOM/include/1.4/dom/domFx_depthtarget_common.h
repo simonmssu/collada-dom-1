@@ -163,7 +163,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_depthtarget_common(DAE& dae) {}
+	domFx_depthtarget_common(DAE& dae) : daeElement(dae), domFx_depthtarget_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

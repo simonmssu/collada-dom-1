@@ -136,7 +136,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLinestrips(DAE& dae) : attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP_array(), elemExtra_array() {}
+	domLinestrips(DAE& dae) : daeElement(dae), attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

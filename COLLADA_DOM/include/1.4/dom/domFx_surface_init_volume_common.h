@@ -61,7 +61,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAll(DAE& dae) : attrRef() {}
+		domAll(DAE& dae) : daeElement(dae), attrRef() {}
 		/**
 		 * Destructor
 		 */
@@ -124,7 +124,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPrimary(DAE& dae) : attrRef() {}
+		domPrimary(DAE& dae) : daeElement(dae), attrRef() {}
 		/**
 		 * Destructor
 		 */
@@ -225,7 +225,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_volume_common(DAE& dae) {}
+	domFx_surface_init_volume_common(DAE& dae) : daeElement(dae), domFx_surface_init_volume_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

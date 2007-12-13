@@ -361,7 +361,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domNode(DAE& dae) : attrId(), attrName(), attrSid(), attrType(), attrLayer(), elemAsset(), elemLookat_array(), elemMatrix_array(), elemRotate_array(), elemScale_array(), elemSkew_array(), elemTranslate_array(), elemInstance_camera_array(), elemInstance_controller_array(), elemInstance_geometry_array(), elemInstance_light_array(), elemInstance_node_array(), elemNode_array(), elemExtra_array() {}
+	domNode(DAE& dae) : daeElement(dae), attrId(), attrName(), attrSid(), attrType(), attrLayer(), elemAsset(), elemLookat_array(), elemMatrix_array(), elemRotate_array(), elemScale_array(), elemSkew_array(), elemTranslate_array(), elemInstance_camera_array(), elemInstance_controller_array(), elemInstance_geometry_array(), elemInstance_light_array(), elemInstance_node_array(), elemNode_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

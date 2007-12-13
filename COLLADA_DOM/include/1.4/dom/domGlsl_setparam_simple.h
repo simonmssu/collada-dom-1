@@ -98,7 +98,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_setparam_simple(DAE& dae) {}
+	domGlsl_setparam_simple(DAE& dae) : daeElement(dae), domGlsl_setparam_simple_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

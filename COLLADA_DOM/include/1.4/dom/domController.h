@@ -145,7 +145,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domController(DAE& dae) : attrId(), attrName(), elemAsset(), elemSkin(), elemMorph(), elemExtra_array() {}
+	domController(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemSkin(), elemMorph(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

@@ -24,14 +24,14 @@ class DAE;
 /**
  * A depth texture sampler for the GLSL profile.
  */
-class domGl_samplerDEPTH_complexType : public domFx_samplerDEPTH_common_complexType
+class domGl_samplerDEPTH_complexType  : public domFx_samplerDEPTH_common_complexType
 {
 
 protected:
 	/**
 	 * Constructor
 	 */
-	domGl_samplerDEPTH_complexType(DAE& dae) :  {}
+	domGl_samplerDEPTH_complexType(DAE& dae) : domFx_samplerDEPTH_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */
@@ -54,7 +54,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGl_samplerDEPTH(DAE& dae) {}
+	domGl_samplerDEPTH(DAE& dae) : daeElement(dae), domGl_samplerDEPTH_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

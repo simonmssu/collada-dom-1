@@ -20,6 +20,7 @@
 #include <dae/daeErrorHandler.h>
 #include <dae/daeRawResolver.h>
 #include <dae/daeStandardURIResolver.h>
+#include <dom/domTypes.h>
 
 #ifndef NO_DEFAULT_PLUGIN
 
@@ -64,6 +65,7 @@ void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 	defaultPlugin = false;
 	registerFunc = NULL;
 	topMeta = NULL;
+	metas.setCount(COLLADA_TYPE::TYPE_COUNT);
 
 	topMeta = initializeDomMeta(*this);
 	DAEInstanceCount++;
@@ -479,4 +481,8 @@ daeURI& DAE::getBaseURI() {
 
 void DAE::setBaseURI(daeURI& uri) {
 	baseUri = uri;
+}
+
+daeIDRefResolverList& DAE::getIDRefResolvers() {
+	return idRefResolvers;
 }

@@ -67,7 +67,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSemantic(DAE& dae) : _value() {}
+		domSemantic(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -127,7 +127,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domModifier(DAE& dae) : _value() {}
+		domModifier(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -287,7 +287,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_newparam(DAE& dae) {}
+	domCg_newparam(DAE& dae) : daeElement(dae), domCg_newparam_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

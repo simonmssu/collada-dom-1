@@ -102,7 +102,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domAngular_velocity(DAE& dae) : _value() {}
+			domAngular_velocity(DAE& dae) : daeElement(dae), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -167,7 +167,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domVelocity(DAE& dae) : _value() {}
+			domVelocity(DAE& dae) : daeElement(dae), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -242,7 +242,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domDynamic(DAE& dae) : attrSid(), _value() {}
+			domDynamic(DAE& dae) : daeElement(dae), attrSid(), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -331,7 +331,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domMass_frame(DAE& dae) : elemTranslate_array(), elemRotate_array() {}
+			domMass_frame(DAE& dae) : daeElement(dae), elemTranslate_array(), elemRotate_array() {}
 			/**
 			 * Destructor
 			 */
@@ -417,7 +417,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domHollow(DAE& dae) : attrSid(), _value() {}
+				domHollow(DAE& dae) : daeElement(dae), attrSid(), _value() {}
 				/**
 				 * Destructor
 				 */
@@ -589,7 +589,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domShape(DAE& dae) : elemHollow(), elemMass(), elemDensity(), elemInstance_physics_material(), elemPhysics_material(), elemInstance_geometry(), elemPlane(), elemBox(), elemSphere(), elemCylinder(), elemTapered_cylinder(), elemCapsule(), elemTapered_capsule(), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
+			domShape(DAE& dae) : daeElement(dae), elemHollow(), elemMass(), elemDensity(), elemInstance_physics_material(), elemPhysics_material(), elemInstance_geometry(), elemPlane(), elemBox(), elemSphere(), elemCylinder(), elemTapered_cylinder(), elemCapsule(), elemTapered_capsule(), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
 			/**
 			 * Destructor
 			 */
@@ -715,7 +715,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique_common(DAE& dae) : elemAngular_velocity(), elemVelocity(), elemDynamic(), elemMass(), elemMass_frame(), elemInertia(), elemInstance_physics_material(), elemPhysics_material(), elemShape_array() {}
+		domTechnique_common(DAE& dae) : daeElement(dae), elemAngular_velocity(), elemVelocity(), elemDynamic(), elemMass(), elemMass_frame(), elemInertia(), elemInstance_physics_material(), elemPhysics_material(), elemShape_array() {}
 		/**
 		 * Destructor
 		 */
@@ -858,7 +858,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_rigid_body(DAE& dae) : attrBody(), attrSid(), attrName(), attrTarget(dae), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
+	domInstance_rigid_body(DAE& dae) : daeElement(dae), attrBody(), attrSid(), attrName(), attrTarget(dae), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

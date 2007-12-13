@@ -112,7 +112,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_visual_scenes(DAE& dae) : attrId(), attrName(), elemAsset(), elemVisual_scene_array(), elemExtra_array() {}
+	domLibrary_visual_scenes(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemVisual_scene_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

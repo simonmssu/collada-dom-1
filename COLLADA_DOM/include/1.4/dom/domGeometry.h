@@ -151,7 +151,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGeometry(DAE& dae) : attrId(), attrName(), elemAsset(), elemConvex_mesh(), elemMesh(), elemSpline(), elemExtra_array() {}
+	domGeometry(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemConvex_mesh(), elemMesh(), elemSpline(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

@@ -103,7 +103,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domTargetableFloat(DAE& dae) {}
+	domTargetableFloat(DAE& dae) : daeElement(dae), domTargetableFloat_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

@@ -101,7 +101,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domTechnique(DAE& dae) : attrXmlns(dae), attrProfile() {}
+	domTechnique(DAE& dae) : daeElement(dae), attrXmlns(dae), attrProfile() {}
 	/**
 	 * Destructor
 	 */

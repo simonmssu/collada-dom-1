@@ -57,7 +57,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSurface(DAE& dae) : _value() {}
+		domSurface(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -114,7 +114,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSampler_state(DAE& dae) : _value() {}
+		domSampler_state(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -168,7 +168,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTexcoord(DAE& dae) : attrSemantic() {}
+		domTexcoord(DAE& dae) : daeElement(dae), attrSemantic() {}
 		/**
 		 * Destructor
 		 */
@@ -284,7 +284,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texture_unit(DAE& dae) {}
+	domGles_texture_unit(DAE& dae) : daeElement(dae), domGles_texture_unit_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

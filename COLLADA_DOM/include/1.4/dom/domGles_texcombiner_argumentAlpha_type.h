@@ -124,7 +124,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texcombiner_argumentAlpha_type(DAE& dae) {}
+	domGles_texcombiner_argumentAlpha_type(DAE& dae) : daeElement(dae), domGles_texcombiner_argumentAlpha_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

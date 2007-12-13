@@ -64,7 +64,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSize(DAE& dae) : _value() {}
+		domSize(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -103,7 +103,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domEllipsoid(DAE& dae) : elemSize() {}
+	domEllipsoid(DAE& dae) : daeElement(dae), elemSize() {}
 	/**
 	 * Destructor
 	 */

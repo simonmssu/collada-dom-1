@@ -66,7 +66,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domRadius(DAE& dae) : _value() {}
+		domRadius(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -122,7 +122,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domSphere(DAE& dae) : elemRadius(), elemExtra_array() {}
+	domSphere(DAE& dae) : daeElement(dae), elemRadius(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

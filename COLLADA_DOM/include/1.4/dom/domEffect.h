@@ -180,7 +180,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domEffect(DAE& dae) : attrId(), attrName(), elemAsset(), elemAnnotate_array(), elemImage_array(), elemNewparam_array(), elemFx_profile_abstract_array(), elemExtra_array() {}
+	domEffect(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemAnnotate_array(), elemImage_array(), elemNewparam_array(), elemFx_profile_abstract_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

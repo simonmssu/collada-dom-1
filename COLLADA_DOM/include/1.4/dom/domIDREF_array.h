@@ -108,7 +108,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domIDREF_array(DAE& dae) : attrId(), attrName(), attrCount(), _value() {}
+	domIDREF_array(DAE& dae) : daeElement(dae), attrId(), attrName(), attrCount(), _value() {}
 	/**
 	 * Destructor
 	 */

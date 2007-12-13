@@ -75,7 +75,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domColor(DAE& dae) : attrSid(), _value() {}
+		domColor(DAE& dae) : daeElement(dae), attrSid(), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -129,7 +129,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domParam(DAE& dae) : attrRef() {}
+		domParam(DAE& dae) : daeElement(dae), attrRef() {}
 		/**
 		 * Destructor
 		 */
@@ -202,7 +202,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTexture(DAE& dae) : attrTexture(), attrTexcoord(), elemExtra() {}
+		domTexture(DAE& dae) : daeElement(dae), attrTexture(), attrTexcoord(), elemExtra() {}
 		/**
 		 * Destructor
 		 */
@@ -301,7 +301,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_color_or_texture_type(DAE& dae) {}
+	domCommon_color_or_texture_type(DAE& dae) : daeElement(dae), domCommon_color_or_texture_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

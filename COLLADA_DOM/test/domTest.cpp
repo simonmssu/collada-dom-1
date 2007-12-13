@@ -832,7 +832,7 @@ DefineTest(cloneCrash) {
 	CheckResult(initFrom && initFrom->getValue().getElement());
 
 	// The DOM used to crash here
-	daeElement::resolveAll();
+	dae.resolveAll();
 
 	return testResult(true);
 }
@@ -900,20 +900,21 @@ string toString(daeAtomicType& type, daeMemoryRef value) {
 }
 
 DefineTest(atomicTypeOps) {
-	daeUIntType UIntType;
-	daeIntType IntType;
-	daeLongType LongType;
-	daeShortType ShortType;
-	daeULongType ULongType;
-	daeFloatType FloatType;
-	daeDoubleType DoubleType;
-	daeStringRefType StringRefType;
-	daeElementRefType ElementRefType;
-	daeEnumType EnumType;
-	daeResolverType ResolverType;
-	daeIDResolverType IDResolverType;
-	daeBoolType BoolType;
-	daeTokenType TokenType;
+	DAE dae;
+	daeUIntType UIntType(dae);
+	daeIntType IntType(dae);
+	daeLongType LongType(dae);
+	daeShortType ShortType(dae);
+	daeULongType ULongType(dae);
+	daeFloatType FloatType(dae);
+	daeDoubleType DoubleType(dae);
+	daeStringRefType StringRefType(dae);
+	daeElementRefType ElementRefType(dae);
+	daeEnumType EnumType(dae);
+	daeResolverType ResolverType(dae);
+	daeIDResolverType IDResolverType(dae);
+	daeBoolType BoolType(dae);
+	daeTokenType TokenType(dae);
 
 	EnumType._values = new daeEnumArray;
 	EnumType._strings = new daeStringRefArray;
@@ -930,7 +931,7 @@ DefineTest(atomicTypeOps) {
 	daeStringRef StringRef("StringRef");
 	//	daeElementRef ElementRef(0x12345678);
 	daeEnum Enum(0);
-	daeURI uri("http://www.example.com/#fragment");
+	daeURI uri(dae, "http://www.example.com/#fragment");
 	daeIDRef IDRef("sampleID");
 	daeBool Bool(false);
 	daeStringRef Token("token");
@@ -1204,8 +1205,8 @@ DefineTest(uriConversion) {
 
 DefineTest(makeRelativeTo) {
 	DAE dae;
-	daeURI uri1("myFolder/myFile.dae");
-	daeURI uri2("myFolder/myFile.dae");
+	daeURI uri1(dae, "myFolder/myFile.dae");
+	daeURI uri2(dae, "myFolder/myFile.dae");
 	uri1.makeRelativeTo(&uri2);
 	return testResult(true);
 }
@@ -1245,6 +1246,16 @@ DefineTest(multipleDae) {
 	DAE dae1;
 	DAE dae2;
 	CheckResult(dae2.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+	return testResult(true);
+}
+
+
+DefineTest(simple) {
+	DAE dae;
+	const daeMetaElementRefArray &metas = dae.getAllMetas();
+	for (size_t i = 0; i < metas.getCount(); i++)
+		if (!metas[i])
+			cout << i << endl;
 	return testResult(true);
 }
 

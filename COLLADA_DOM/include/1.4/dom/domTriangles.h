@@ -131,7 +131,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domTriangles(DAE& dae) : attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP(), elemExtra_array() {}
+	domTriangles(DAE& dae) : daeElement(dae), attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

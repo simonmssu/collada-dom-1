@@ -188,7 +188,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domAnimation(DAE& dae) : attrId(), attrName(), elemAsset(), elemSource_array(), elemSampler_array(), elemChannel_array(), elemAnimation_array(), elemExtra_array() {}
+	domAnimation(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemSource_array(), elemSampler_array(), elemChannel_array(), elemAnimation_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

@@ -100,7 +100,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique_hint(DAE& dae) : attrPlatform(), attrProfile(), attrRef() {}
+		domTechnique_hint(DAE& dae) : daeElement(dae), attrPlatform(), attrProfile(), attrRef() {}
 		/**
 		 * Destructor
 		 */
@@ -164,7 +164,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSetparam(DAE& dae) : attrRef(), elemFx_basic_type_common() {}
+		domSetparam(DAE& dae) : daeElement(dae), attrRef(), elemFx_basic_type_common() {}
 		/**
 		 * Destructor
 		 */
@@ -296,7 +296,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_effect(DAE& dae) : attrUrl(dae), attrSid(), attrName(), elemTechnique_hint_array(), elemSetparam_array(), elemExtra_array() {}
+	domInstance_effect(DAE& dae) : daeElement(dae), attrUrl(dae), attrSid(), attrName(), elemTechnique_hint_array(), elemSetparam_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

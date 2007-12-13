@@ -161,7 +161,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texture_pipeline(DAE& dae) {}
+	domGles_texture_pipeline(DAE& dae) : daeElement(dae), domGles_texture_pipeline_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

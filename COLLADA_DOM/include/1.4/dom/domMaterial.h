@@ -106,7 +106,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domMaterial(DAE& dae) : attrId(), attrName(), elemAsset(), elemInstance_effect(), elemExtra_array() {}
+	domMaterial(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemInstance_effect(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

@@ -60,7 +60,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSource(DAE& dae) : _value() {}
+		domSource(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -117,7 +117,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domWrap_s(DAE& dae) : _value() {}
+		domWrap_s(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -174,7 +174,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domWrap_t(DAE& dae) : _value() {}
+		domWrap_t(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -231,7 +231,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domWrap_p(DAE& dae) : _value() {}
+		domWrap_p(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -288,7 +288,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMinfilter(DAE& dae) : _value() {}
+		domMinfilter(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -345,7 +345,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMagfilter(DAE& dae) : _value() {}
+		domMagfilter(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -402,7 +402,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMipfilter(DAE& dae) : _value() {}
+		domMipfilter(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -464,7 +464,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBorder_color(DAE& dae) : _value() {}
+		domBorder_color(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -521,7 +521,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMipmap_maxlevel(DAE& dae) : _value() {}
+		domMipmap_maxlevel(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -578,7 +578,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMipmap_bias(DAE& dae) : _value() {}
+		domMipmap_bias(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -705,7 +705,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_sampler3D_common(DAE& dae) {}
+	domFx_sampler3D_common(DAE& dae) : daeElement(dae), domFx_sampler3D_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

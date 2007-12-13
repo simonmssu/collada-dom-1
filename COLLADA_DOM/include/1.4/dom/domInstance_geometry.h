@@ -119,7 +119,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_geometry(DAE& dae) : attrUrl(dae), attrSid(), attrName(), elemBind_material(), elemExtra_array() {}
+	domInstance_geometry(DAE& dae) : daeElement(dae), attrUrl(dae), attrSid(), attrName(), elemBind_material(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

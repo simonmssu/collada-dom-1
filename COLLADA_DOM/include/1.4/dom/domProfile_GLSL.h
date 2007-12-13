@@ -109,7 +109,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domDraw(DAE& dae) : _value() {}
+				domDraw(DAE& dae) : daeElement(dae), _value() {}
 				/**
 				 * Destructor
 				 */
@@ -185,7 +185,7 @@ public:
 					/**
 					 * Constructor
 					 */
-					domCompiler_target(DAE& dae) : _value() {}
+					domCompiler_target(DAE& dae) : daeElement(dae), _value() {}
 					/**
 					 * Destructor
 					 */
@@ -245,7 +245,7 @@ public:
 					/**
 					 * Constructor
 					 */
-					domCompiler_options(DAE& dae) : _value() {}
+					domCompiler_options(DAE& dae) : daeElement(dae), _value() {}
 					/**
 					 * Destructor
 					 */
@@ -318,7 +318,7 @@ public:
 					/**
 					 * Constructor
 					 */
-					domName(DAE& dae) : attrSource(), _value() {}
+					domName(DAE& dae) : daeElement(dae), attrSource(), _value() {}
 					/**
 					 * Destructor
 					 */
@@ -386,7 +386,7 @@ public:
 						/**
 						 * Constructor
 						 */
-						domParam(DAE& dae) : attrRef() {}
+						domParam(DAE& dae) : daeElement(dae), attrRef() {}
 						/**
 						 * Destructor
 						 */
@@ -473,7 +473,7 @@ public:
 					/**
 					 * Constructor
 					 */
-					domBind(DAE& dae) : attrSymbol(), elemGlsl_param_type(), elemParam() {}
+					domBind(DAE& dae) : daeElement(dae), attrSymbol(), elemGlsl_param_type(), elemParam() {}
 					/**
 					 * Destructor
 					 */
@@ -577,7 +577,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domShader(DAE& dae) : attrStage(), elemAnnotate_array(), elemCompiler_target(), elemCompiler_options(), elemName(), elemBind_array() {}
+				domShader(DAE& dae) : daeElement(dae), attrStage(), elemAnnotate_array(), elemCompiler_target(), elemCompiler_options(), elemName(), elemBind_array() {}
 				/**
 				 * Destructor
 				 */
@@ -773,7 +773,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domPass(DAE& dae) : attrSid(), elemAnnotate_array(), elemColor_target_array(), elemDepth_target_array(), elemStencil_target_array(), elemColor_clear_array(), elemDepth_clear_array(), elemStencil_clear_array(), elemDraw(), elemGl_pipeline_settings_array(), elemShader_array(), elemExtra_array() {}
+			domPass(DAE& dae) : daeElement(dae), attrSid(), elemAnnotate_array(), elemColor_target_array(), elemDepth_target_array(), elemStencil_target_array(), elemColor_clear_array(), elemDepth_clear_array(), elemStencil_clear_array(), elemDraw(), elemGl_pipeline_settings_array(), elemShader_array(), elemExtra_array() {}
 			/**
 			 * Destructor
 			 */
@@ -960,7 +960,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique(DAE& dae) : attrId(), attrSid(), elemAnnotate_array(), elemCode_array(), elemInclude_array(), elemImage_array(), elemNewparam_array(), elemSetparam_array(), elemPass_array(), elemExtra_array() {}
+		domTechnique(DAE& dae) : daeElement(dae), attrId(), attrSid(), elemAnnotate_array(), elemCode_array(), elemInclude_array(), elemImage_array(), elemNewparam_array(), elemSetparam_array(), elemPass_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -1114,7 +1114,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domProfile_GLSL(DAE& dae) : attrId(), elemAsset(), elemCode_array(), elemInclude_array(), elemImage_array(), elemNewparam_array(), elemTechnique_array(), elemExtra_array() {}
+	domProfile_GLSL(DAE& dae) : domFx_profile_abstract(dae), attrId(), elemAsset(), elemCode_array(), elemInclude_array(), elemImage_array(), elemNewparam_array(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

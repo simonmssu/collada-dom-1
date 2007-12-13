@@ -146,7 +146,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domRef_attachment(DAE& dae) : attrRigid_body(dae), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
+		domRef_attachment(DAE& dae) : daeElement(dae), attrRigid_body(dae), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -280,7 +280,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAttachment(DAE& dae) : attrRigid_body(dae), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
+		domAttachment(DAE& dae) : daeElement(dae), attrRigid_body(dae), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -374,7 +374,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domEnabled(DAE& dae) : attrSid(), _value() {}
+			domEnabled(DAE& dae) : daeElement(dae), attrSid(), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -452,7 +452,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domInterpenetrate(DAE& dae) : attrSid(), _value() {}
+			domInterpenetrate(DAE& dae) : daeElement(dae), attrSid(), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -532,7 +532,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domSwing_cone_and_twist(DAE& dae) : elemMin(), elemMax() {}
+				domSwing_cone_and_twist(DAE& dae) : daeElement(dae), elemMin(), elemMax() {}
 				/**
 				 * Destructor
 				 */
@@ -595,7 +595,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domLinear(DAE& dae) : elemMin(), elemMax() {}
+				domLinear(DAE& dae) : daeElement(dae), elemMin(), elemMax() {}
 				/**
 				 * Destructor
 				 */
@@ -649,7 +649,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domLimits(DAE& dae) : elemSwing_cone_and_twist(), elemLinear() {}
+			domLimits(DAE& dae) : daeElement(dae), elemSwing_cone_and_twist(), elemLinear() {}
 			/**
 			 * Destructor
 			 */
@@ -736,7 +736,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domAngular(DAE& dae) : elemStiffness(), elemDamping(), elemTarget_value() {}
+				domAngular(DAE& dae) : daeElement(dae), elemStiffness(), elemDamping(), elemTarget_value() {}
 				/**
 				 * Destructor
 				 */
@@ -809,7 +809,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domLinear(DAE& dae) : elemStiffness(), elemDamping(), elemTarget_value() {}
+				domLinear(DAE& dae) : daeElement(dae), elemStiffness(), elemDamping(), elemTarget_value() {}
 				/**
 				 * Destructor
 				 */
@@ -860,7 +860,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domSpring(DAE& dae) : elemAngular(), elemLinear() {}
+			domSpring(DAE& dae) : daeElement(dae), elemAngular(), elemLinear() {}
 			/**
 			 * Destructor
 			 */
@@ -932,7 +932,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique_common(DAE& dae) : elemEnabled(), elemInterpenetrate(), elemLimits(), elemSpring() {}
+		domTechnique_common(DAE& dae) : daeElement(dae), elemEnabled(), elemInterpenetrate(), elemLimits(), elemSpring() {}
 		/**
 		 * Destructor
 		 */
@@ -1057,7 +1057,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domRigid_constraint(DAE& dae) : attrSid(), attrName(), elemRef_attachment(), elemAttachment(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
+	domRigid_constraint(DAE& dae) : daeElement(dae), attrSid(), attrName(), elemRef_attachment(), elemAttachment(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

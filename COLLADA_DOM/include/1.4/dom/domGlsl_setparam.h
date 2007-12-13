@@ -153,7 +153,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_setparam(DAE& dae) {}
+	domGlsl_setparam(DAE& dae) : daeElement(dae), domGlsl_setparam_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

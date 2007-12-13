@@ -29,7 +29,7 @@ class DAE;
  * Declares a resource that can be used both as the source for texture samples
  * and as the target of a rendering pass.
  */
-class domCg_surface_type_complexType : public domFx_surface_common_complexType
+class domCg_surface_type_complexType  : public domFx_surface_common_complexType
 {
 public:
 	class domGenerator;
@@ -95,7 +95,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domName(DAE& dae) : attrSource(), _value() {}
+			domName(DAE& dae) : daeElement(dae), attrSource(), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -221,7 +221,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domGenerator(DAE& dae) : elemAnnotate_array(), elemCode_array(), elemInclude_array(), elemName(), elemSetparam_array() {}
+		domGenerator(DAE& dae) : daeElement(dae), elemAnnotate_array(), elemCode_array(), elemInclude_array(), elemName(), elemSetparam_array() {}
 		/**
 		 * Destructor
 		 */
@@ -263,7 +263,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_surface_type_complexType(DAE& dae) : , elemGenerator() {}
+	domCg_surface_type_complexType(DAE& dae) : domFx_surface_common_complexType(dae), elemGenerator() {}
 	/**
 	 * Destructor
 	 */
@@ -286,7 +286,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_surface_type(DAE& dae) {}
+	domCg_surface_type(DAE& dae) : daeElement(dae), domCg_surface_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

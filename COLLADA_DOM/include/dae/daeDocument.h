@@ -77,6 +77,12 @@ public:
 	DAE* getDAE();
 
 	/**
+	 * Accessor to get the database associated with this document.
+	 * @return Returns the database associated with this document.
+	 */
+	daeDatabase* getDatabase();
+
+	/**
 	 * This function is used to track how a document gets modified. It gets called internally.
 	 * @param element The element that was added to this document.
 	 * @note This function is called internally and not meant to be called by the client application.

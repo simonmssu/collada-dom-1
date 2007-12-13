@@ -21,7 +21,7 @@
 #include <dom/domCommon_color_or_texture_type.h>
 class DAE;
 
-class domCommon_transparent_type_complexType : public domCommon_color_or_texture_type_complexType
+class domCommon_transparent_type_complexType  : public domCommon_color_or_texture_type_complexType
 {
 protected:  // Attribute
 	domFx_opaque_enum attrOpaque;
@@ -43,7 +43,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_transparent_type_complexType(DAE& dae) : , attrOpaque() {}
+	domCommon_transparent_type_complexType(DAE& dae) : domCommon_color_or_texture_type_complexType(dae), attrOpaque() {}
 	/**
 	 * Destructor
 	 */
@@ -79,7 +79,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_transparent_type(DAE& dae) {}
+	domCommon_transparent_type(DAE& dae) : daeElement(dae), domCommon_transparent_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

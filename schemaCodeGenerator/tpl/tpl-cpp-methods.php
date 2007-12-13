@@ -52,7 +52,7 @@
 		print "\tref->_value.setContainer( (". $scoped_element ."*)ref );\n";
 	}
 	if ( $scoped_element == "domCOLLADA" ) {
-		print "\tref->_meta = _Meta;\n";
+		print "\tref->_meta = dae.getMeta(domCOLLADA::getTypeStatic());\n";
 		print "\tref->setAttribute(\"version\", COLLADA_VERSION );\n";
 		print "\tref->setAttribute(\"xmlns\", COLLADA_NAMESPACE );\n";
 		print "\tref->_meta = NULL;\n";

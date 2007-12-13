@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_controllers(DAE& dae) : attrId(), attrName(), elemAsset(), elemController_array(), elemExtra_array() {}
+	domLibrary_controllers(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemController_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

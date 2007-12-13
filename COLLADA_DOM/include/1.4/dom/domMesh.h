@@ -208,7 +208,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domMesh(DAE& dae) : elemSource_array(), elemVertices(), elemLines_array(), elemLinestrips_array(), elemPolygons_array(), elemPolylist_array(), elemTriangles_array(), elemTrifans_array(), elemTristrips_array(), elemExtra_array() {}
+	domMesh(DAE& dae) : daeElement(dae), elemSource_array(), elemVertices(), elemLines_array(), elemLinestrips_array(), elemPolygons_array(), elemPolylist_array(), elemTriangles_array(), elemTrifans_array(), elemTristrips_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

@@ -139,7 +139,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_setarray_type(DAE& dae) {}
+	domGlsl_setarray_type(DAE& dae) : daeElement(dae), domGlsl_setarray_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

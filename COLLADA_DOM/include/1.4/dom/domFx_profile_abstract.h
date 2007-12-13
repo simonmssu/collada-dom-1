@@ -34,7 +34,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_profile_abstract(DAE& dae) {}
+	domFx_profile_abstract(DAE& dae) : daeElement(dae) {}
 	/**
 	 * Destructor
 	 */

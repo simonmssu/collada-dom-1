@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_images(DAE& dae) : attrId(), attrName(), elemAsset(), elemImage_array(), elemExtra_array() {}
+	domLibrary_images(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemImage_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

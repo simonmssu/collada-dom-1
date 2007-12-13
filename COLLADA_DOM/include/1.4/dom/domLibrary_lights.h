@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_lights(DAE& dae) : attrId(), attrName(), elemAsset(), elemLight_array(), elemExtra_array() {}
+	domLibrary_lights(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemLight_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

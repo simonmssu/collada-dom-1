@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_geometries(DAE& dae) : attrId(), attrName(), elemAsset(), elemGeometry_array(), elemExtra_array() {}
+	domLibrary_geometries(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemGeometry_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

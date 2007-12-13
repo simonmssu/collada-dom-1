@@ -100,7 +100,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domSetparam(DAE& dae) : attrRef(), elemAnnotate_array(), elemGles_basic_type_common() {}
+			domSetparam(DAE& dae) : daeElement(dae), attrRef(), elemAnnotate_array(), elemGles_basic_type_common() {}
 			/**
 			 * Destructor
 			 */
@@ -172,7 +172,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domColor_target(DAE& dae) : _value() {}
+				domColor_target(DAE& dae) : daeElement(dae), _value() {}
 				/**
 				 * Destructor
 				 */
@@ -229,7 +229,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domDepth_target(DAE& dae) : _value() {}
+				domDepth_target(DAE& dae) : daeElement(dae), _value() {}
 				/**
 				 * Destructor
 				 */
@@ -286,7 +286,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domStencil_target(DAE& dae) : _value() {}
+				domStencil_target(DAE& dae) : daeElement(dae), _value() {}
 				/**
 				 * Destructor
 				 */
@@ -348,7 +348,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domColor_clear(DAE& dae) : _value() {}
+				domColor_clear(DAE& dae) : daeElement(dae), _value() {}
 				/**
 				 * Destructor
 				 */
@@ -405,7 +405,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domDepth_clear(DAE& dae) : _value() {}
+				domDepth_clear(DAE& dae) : daeElement(dae), _value() {}
 				/**
 				 * Destructor
 				 */
@@ -462,7 +462,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domStencil_clear(DAE& dae) : _value() {}
+				domStencil_clear(DAE& dae) : daeElement(dae), _value() {}
 				/**
 				 * Destructor
 				 */
@@ -519,7 +519,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domDraw(DAE& dae) : _value() {}
+				domDraw(DAE& dae) : daeElement(dae), _value() {}
 				/**
 				 * Destructor
 				 */
@@ -670,7 +670,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domPass(DAE& dae) : attrSid(), elemAnnotate_array(), elemColor_target(), elemDepth_target(), elemStencil_target(), elemColor_clear(), elemDepth_clear(), elemStencil_clear(), elemDraw(), elemGles_pipeline_settings_array(), elemExtra_array() {}
+			domPass(DAE& dae) : daeElement(dae), attrSid(), elemAnnotate_array(), elemColor_target(), elemDepth_target(), elemStencil_target(), elemColor_clear(), elemDepth_clear(), elemStencil_clear(), elemDraw(), elemGles_pipeline_settings_array(), elemExtra_array() {}
 			/**
 			 * Destructor
 			 */
@@ -836,7 +836,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique(DAE& dae) : attrId(), attrSid(), elemAsset(), elemAnnotate_array(), elemImage_array(), elemNewparam_array(), elemSetparam_array(), elemPass_array(), elemExtra_array() {}
+		domTechnique(DAE& dae) : daeElement(dae), attrId(), attrSid(), elemAsset(), elemAnnotate_array(), elemImage_array(), elemNewparam_array(), elemSetparam_array(), elemPass_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -984,7 +984,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domProfile_GLES(DAE& dae) : attrId(), attrPlatform(), elemAsset(), elemImage_array(), elemNewparam_array(), elemTechnique_array(), elemExtra_array() {}
+	domProfile_GLES(DAE& dae) : domFx_profile_abstract(dae), attrId(), attrPlatform(), elemAsset(), elemImage_array(), elemNewparam_array(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

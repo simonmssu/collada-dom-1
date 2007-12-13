@@ -142,7 +142,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFloat_array(DAE& dae) : attrId(), attrName(), attrCount(), attrDigits(), attrMagnitude(), _value() {}
+	domFloat_array(DAE& dae) : daeElement(dae), attrId(), attrName(), attrCount(), attrDigits(), attrMagnitude(), _value() {}
 	/**
 	 * Destructor
 	 */

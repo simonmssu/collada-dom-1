@@ -113,7 +113,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domForce_field(DAE& dae) : attrId(), attrName(), elemAsset(), elemTechnique_array(), elemExtra_array() {}
+	domForce_field(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

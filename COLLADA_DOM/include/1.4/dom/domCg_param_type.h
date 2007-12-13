@@ -69,7 +69,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool(DAE& dae) : _value() {}
+		domBool(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -126,7 +126,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool1(DAE& dae) : _value() {}
+		domBool1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -188,7 +188,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool2(DAE& dae) : _value() {}
+		domBool2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -250,7 +250,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool3(DAE& dae) : _value() {}
+		domBool3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -312,7 +312,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool4(DAE& dae) : _value() {}
+		domBool4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -374,7 +374,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool1x1(DAE& dae) : _value() {}
+		domBool1x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -436,7 +436,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool1x2(DAE& dae) : _value() {}
+		domBool1x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -498,7 +498,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool1x3(DAE& dae) : _value() {}
+		domBool1x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -560,7 +560,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool1x4(DAE& dae) : _value() {}
+		domBool1x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -622,7 +622,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool2x1(DAE& dae) : _value() {}
+		domBool2x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -684,7 +684,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool2x2(DAE& dae) : _value() {}
+		domBool2x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -746,7 +746,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool2x3(DAE& dae) : _value() {}
+		domBool2x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -808,7 +808,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool2x4(DAE& dae) : _value() {}
+		domBool2x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -870,7 +870,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool3x1(DAE& dae) : _value() {}
+		domBool3x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -932,7 +932,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool3x2(DAE& dae) : _value() {}
+		domBool3x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -994,7 +994,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool3x3(DAE& dae) : _value() {}
+		domBool3x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1056,7 +1056,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool3x4(DAE& dae) : _value() {}
+		domBool3x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1118,7 +1118,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool4x1(DAE& dae) : _value() {}
+		domBool4x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1180,7 +1180,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool4x2(DAE& dae) : _value() {}
+		domBool4x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1242,7 +1242,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool4x3(DAE& dae) : _value() {}
+		domBool4x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1304,7 +1304,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool4x4(DAE& dae) : _value() {}
+		domBool4x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1361,7 +1361,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat(DAE& dae) : _value() {}
+		domFloat(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1418,7 +1418,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1(DAE& dae) : _value() {}
+		domFloat1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1480,7 +1480,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2(DAE& dae) : _value() {}
+		domFloat2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1542,7 +1542,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3(DAE& dae) : _value() {}
+		domFloat3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1604,7 +1604,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4(DAE& dae) : _value() {}
+		domFloat4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1666,7 +1666,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x1(DAE& dae) : _value() {}
+		domFloat1x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1728,7 +1728,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x2(DAE& dae) : _value() {}
+		domFloat1x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1790,7 +1790,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x3(DAE& dae) : _value() {}
+		domFloat1x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1852,7 +1852,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x4(DAE& dae) : _value() {}
+		domFloat1x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1914,7 +1914,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x1(DAE& dae) : _value() {}
+		domFloat2x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1976,7 +1976,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x2(DAE& dae) : _value() {}
+		domFloat2x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2038,7 +2038,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x3(DAE& dae) : _value() {}
+		domFloat2x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2100,7 +2100,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x4(DAE& dae) : _value() {}
+		domFloat2x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2162,7 +2162,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x1(DAE& dae) : _value() {}
+		domFloat3x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2224,7 +2224,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x2(DAE& dae) : _value() {}
+		domFloat3x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2286,7 +2286,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x3(DAE& dae) : _value() {}
+		domFloat3x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2348,7 +2348,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x4(DAE& dae) : _value() {}
+		domFloat3x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2410,7 +2410,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x1(DAE& dae) : _value() {}
+		domFloat4x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2472,7 +2472,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x2(DAE& dae) : _value() {}
+		domFloat4x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2534,7 +2534,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x3(DAE& dae) : _value() {}
+		domFloat4x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2596,7 +2596,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x4(DAE& dae) : _value() {}
+		domFloat4x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2653,7 +2653,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt(DAE& dae) : _value() {}
+		domInt(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2710,7 +2710,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt1(DAE& dae) : _value() {}
+		domInt1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2772,7 +2772,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt2(DAE& dae) : _value() {}
+		domInt2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2834,7 +2834,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt3(DAE& dae) : _value() {}
+		domInt3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2896,7 +2896,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt4(DAE& dae) : _value() {}
+		domInt4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2958,7 +2958,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt1x1(DAE& dae) : _value() {}
+		domInt1x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3020,7 +3020,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt1x2(DAE& dae) : _value() {}
+		domInt1x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3082,7 +3082,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt1x3(DAE& dae) : _value() {}
+		domInt1x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3144,7 +3144,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt1x4(DAE& dae) : _value() {}
+		domInt1x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3206,7 +3206,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt2x1(DAE& dae) : _value() {}
+		domInt2x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3268,7 +3268,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt2x2(DAE& dae) : _value() {}
+		domInt2x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3330,7 +3330,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt2x3(DAE& dae) : _value() {}
+		domInt2x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3392,7 +3392,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt2x4(DAE& dae) : _value() {}
+		domInt2x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3454,7 +3454,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt3x1(DAE& dae) : _value() {}
+		domInt3x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3516,7 +3516,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt3x2(DAE& dae) : _value() {}
+		domInt3x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3578,7 +3578,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt3x3(DAE& dae) : _value() {}
+		domInt3x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3640,7 +3640,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt3x4(DAE& dae) : _value() {}
+		domInt3x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3702,7 +3702,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt4x1(DAE& dae) : _value() {}
+		domInt4x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3764,7 +3764,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt4x2(DAE& dae) : _value() {}
+		domInt4x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3826,7 +3826,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt4x3(DAE& dae) : _value() {}
+		domInt4x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3888,7 +3888,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt4x4(DAE& dae) : _value() {}
+		domInt4x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -3945,7 +3945,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf(DAE& dae) : _value() {}
+		domHalf(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4002,7 +4002,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf1(DAE& dae) : _value() {}
+		domHalf1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4064,7 +4064,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf2(DAE& dae) : _value() {}
+		domHalf2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4126,7 +4126,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf3(DAE& dae) : _value() {}
+		domHalf3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4188,7 +4188,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf4(DAE& dae) : _value() {}
+		domHalf4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4250,7 +4250,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf1x1(DAE& dae) : _value() {}
+		domHalf1x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4312,7 +4312,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf1x2(DAE& dae) : _value() {}
+		domHalf1x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4374,7 +4374,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf1x3(DAE& dae) : _value() {}
+		domHalf1x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4436,7 +4436,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf1x4(DAE& dae) : _value() {}
+		domHalf1x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4498,7 +4498,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf2x1(DAE& dae) : _value() {}
+		domHalf2x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4560,7 +4560,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf2x2(DAE& dae) : _value() {}
+		domHalf2x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4622,7 +4622,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf2x3(DAE& dae) : _value() {}
+		domHalf2x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4684,7 +4684,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf2x4(DAE& dae) : _value() {}
+		domHalf2x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4746,7 +4746,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf3x1(DAE& dae) : _value() {}
+		domHalf3x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4808,7 +4808,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf3x2(DAE& dae) : _value() {}
+		domHalf3x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4870,7 +4870,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf3x3(DAE& dae) : _value() {}
+		domHalf3x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4932,7 +4932,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf3x4(DAE& dae) : _value() {}
+		domHalf3x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -4994,7 +4994,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf4x1(DAE& dae) : _value() {}
+		domHalf4x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5056,7 +5056,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf4x2(DAE& dae) : _value() {}
+		domHalf4x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5118,7 +5118,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf4x3(DAE& dae) : _value() {}
+		domHalf4x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5180,7 +5180,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf4x4(DAE& dae) : _value() {}
+		domHalf4x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5237,7 +5237,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed(DAE& dae) : _value() {}
+		domFixed(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5294,7 +5294,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed1(DAE& dae) : _value() {}
+		domFixed1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5356,7 +5356,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed2(DAE& dae) : _value() {}
+		domFixed2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5418,7 +5418,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed3(DAE& dae) : _value() {}
+		domFixed3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5480,7 +5480,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed4(DAE& dae) : _value() {}
+		domFixed4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5542,7 +5542,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed1x1(DAE& dae) : _value() {}
+		domFixed1x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5604,7 +5604,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed1x2(DAE& dae) : _value() {}
+		domFixed1x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5666,7 +5666,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed1x3(DAE& dae) : _value() {}
+		domFixed1x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5728,7 +5728,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed1x4(DAE& dae) : _value() {}
+		domFixed1x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5790,7 +5790,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed2x1(DAE& dae) : _value() {}
+		domFixed2x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5852,7 +5852,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed2x2(DAE& dae) : _value() {}
+		domFixed2x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5914,7 +5914,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed2x3(DAE& dae) : _value() {}
+		domFixed2x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -5976,7 +5976,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed2x4(DAE& dae) : _value() {}
+		domFixed2x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -6038,7 +6038,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed3x1(DAE& dae) : _value() {}
+		domFixed3x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -6100,7 +6100,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed3x2(DAE& dae) : _value() {}
+		domFixed3x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -6162,7 +6162,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed3x3(DAE& dae) : _value() {}
+		domFixed3x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -6224,7 +6224,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed3x4(DAE& dae) : _value() {}
+		domFixed3x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -6286,7 +6286,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed4x1(DAE& dae) : _value() {}
+		domFixed4x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -6348,7 +6348,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed4x2(DAE& dae) : _value() {}
+		domFixed4x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -6410,7 +6410,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed4x3(DAE& dae) : _value() {}
+		domFixed4x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -6472,7 +6472,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed4x4(DAE& dae) : _value() {}
+		domFixed4x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -6529,7 +6529,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domString(DAE& dae) : _value() {}
+		domString(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -6586,7 +6586,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domEnum(DAE& dae) : _value() {}
+		domEnum(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -7328,7 +7328,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_param_type(DAE& dae) : elemBool(), elemBool1(), elemBool2(), elemBool3(), elemBool4(), elemBool1x1(), elemBool1x2(), elemBool1x3(), elemBool1x4(), elemBool2x1(), elemBool2x2(), elemBool2x3(), elemBool2x4(), elemBool3x1(), elemBool3x2(), elemBool3x3(), elemBool3x4(), elemBool4x1(), elemBool4x2(), elemBool4x3(), elemBool4x4(), elemFloat(), elemFloat1(), elemFloat2(), elemFloat3(), elemFloat4(), elemFloat1x1(), elemFloat1x2(), elemFloat1x3(), elemFloat1x4(), elemFloat2x1(), elemFloat2x2(), elemFloat2x3(), elemFloat2x4(), elemFloat3x1(), elemFloat3x2(), elemFloat3x3(), elemFloat3x4(), elemFloat4x1(), elemFloat4x2(), elemFloat4x3(), elemFloat4x4(), elemInt(), elemInt1(), elemInt2(), elemInt3(), elemInt4(), elemInt1x1(), elemInt1x2(), elemInt1x3(), elemInt1x4(), elemInt2x1(), elemInt2x2(), elemInt2x3(), elemInt2x4(), elemInt3x1(), elemInt3x2(), elemInt3x3(), elemInt3x4(), elemInt4x1(), elemInt4x2(), elemInt4x3(), elemInt4x4(), elemHalf(), elemHalf1(), elemHalf2(), elemHalf3(), elemHalf4(), elemHalf1x1(), elemHalf1x2(), elemHalf1x3(), elemHalf1x4(), elemHalf2x1(), elemHalf2x2(), elemHalf2x3(), elemHalf2x4(), elemHalf3x1(), elemHalf3x2(), elemHalf3x3(), elemHalf3x4(), elemHalf4x1(), elemHalf4x2(), elemHalf4x3(), elemHalf4x4(), elemFixed(), elemFixed1(), elemFixed2(), elemFixed3(), elemFixed4(), elemFixed1x1(), elemFixed1x2(), elemFixed1x3(), elemFixed1x4(), elemFixed2x1(), elemFixed2x2(), elemFixed2x3(), elemFixed2x4(), elemFixed3x1(), elemFixed3x2(), elemFixed3x3(), elemFixed3x4(), elemFixed4x1(), elemFixed4x2(), elemFixed4x3(), elemFixed4x4(), elemSurface(), elemSampler1D(), elemSampler2D(), elemSampler3D(), elemSamplerRECT(), elemSamplerCUBE(), elemSamplerDEPTH(), elemString(), elemEnum() {}
+	domCg_param_type(DAE& dae) : daeElement(dae), elemBool(), elemBool1(), elemBool2(), elemBool3(), elemBool4(), elemBool1x1(), elemBool1x2(), elemBool1x3(), elemBool1x4(), elemBool2x1(), elemBool2x2(), elemBool2x3(), elemBool2x4(), elemBool3x1(), elemBool3x2(), elemBool3x3(), elemBool3x4(), elemBool4x1(), elemBool4x2(), elemBool4x3(), elemBool4x4(), elemFloat(), elemFloat1(), elemFloat2(), elemFloat3(), elemFloat4(), elemFloat1x1(), elemFloat1x2(), elemFloat1x3(), elemFloat1x4(), elemFloat2x1(), elemFloat2x2(), elemFloat2x3(), elemFloat2x4(), elemFloat3x1(), elemFloat3x2(), elemFloat3x3(), elemFloat3x4(), elemFloat4x1(), elemFloat4x2(), elemFloat4x3(), elemFloat4x4(), elemInt(), elemInt1(), elemInt2(), elemInt3(), elemInt4(), elemInt1x1(), elemInt1x2(), elemInt1x3(), elemInt1x4(), elemInt2x1(), elemInt2x2(), elemInt2x3(), elemInt2x4(), elemInt3x1(), elemInt3x2(), elemInt3x3(), elemInt3x4(), elemInt4x1(), elemInt4x2(), elemInt4x3(), elemInt4x4(), elemHalf(), elemHalf1(), elemHalf2(), elemHalf3(), elemHalf4(), elemHalf1x1(), elemHalf1x2(), elemHalf1x3(), elemHalf1x4(), elemHalf2x1(), elemHalf2x2(), elemHalf2x3(), elemHalf2x4(), elemHalf3x1(), elemHalf3x2(), elemHalf3x3(), elemHalf3x4(), elemHalf4x1(), elemHalf4x2(), elemHalf4x3(), elemHalf4x4(), elemFixed(), elemFixed1(), elemFixed2(), elemFixed3(), elemFixed4(), elemFixed1x1(), elemFixed1x2(), elemFixed1x3(), elemFixed1x4(), elemFixed2x1(), elemFixed2x2(), elemFixed2x3(), elemFixed2x4(), elemFixed3x1(), elemFixed3x2(), elemFixed3x3(), elemFixed3x4(), elemFixed4x1(), elemFixed4x2(), elemFixed4x3(), elemFixed4x4(), elemSurface(), elemSampler1D(), elemSampler2D(), elemSampler3D(), elemSamplerRECT(), elemSamplerCUBE(), elemSamplerDEPTH(), elemString(), elemEnum() {}
 	/**
 	 * Destructor
 	 */

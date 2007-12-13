@@ -73,7 +73,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique_common(DAE& dae) : elemGravity(), elemTime_step() {}
+		domTechnique_common(DAE& dae) : daeElement(dae), elemGravity(), elemTime_step() {}
 		/**
 		 * Destructor
 		 */
@@ -218,7 +218,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domPhysics_scene(DAE& dae) : attrId(), attrName(), elemAsset(), elemInstance_force_field_array(), elemInstance_physics_model_array(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
+	domPhysics_scene(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemInstance_force_field_array(), elemInstance_physics_model_array(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

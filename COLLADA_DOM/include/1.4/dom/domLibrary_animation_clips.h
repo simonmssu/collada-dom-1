@@ -113,7 +113,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_animation_clips(DAE& dae) : attrId(), attrName(), elemAsset(), elemAnimation_clip_array(), elemExtra_array() {}
+	domLibrary_animation_clips(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemAnimation_clip_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

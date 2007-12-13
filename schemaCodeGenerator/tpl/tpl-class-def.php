@@ -57,23 +57,18 @@
 	}
 
 	// SUBSTITION GROUP/INHERITANCE
-	$base = '';
+	$baseClasses = array();
 	if ( $bag['isAComplexType'] ) {
-		$baseClass = '';
-		if ( $bag['complex_type'] ) {
-			$baseClass = ": public ". $_globals['prefix'] . ucfirst( $bag['base_type'] ) . "_complexType";
-			$base = $_globals['prefix'] . ucfirst( $bag['base_type'] ) . "_complexType";
-		}
-		print $indent ."class ". $full_element_name ."_complexType ". $baseClass ."\n".$indent."{\n";
+		if ( $bag['complex_type'] )
+			$baseClasses[] = $_globals['prefix'] . ucfirst( $bag['base_type'] ) . "_complexType";
+		print $indent ."class ". $full_element_name ."_complexType ".
+		      getInheritanceStatement($baseClasses) ."\n".$indent."{\n";
 	}
 	else {
-		$baseClass = ( $bag['substitution_group'] != '' ? $_globals['prefix'] . ucfirst( $bag['substitution_group'] ) : 'daeElement' );
-		$base = $baseClass;
-		if ( $bag['complex_type'] ) {
-			$baseClass .= ", public ". $_globals['prefix'] . ucfirst( $bag['base_type'] ) . "_complexType";
-			$base .= "(), ". $_globals['prefix'] . ucfirst( $bag['base_type'] ) . "_complexType";
-		}
-		print $indent ."class ". $full_element_name ." : public ". $baseClass ."\n".$indent."{\n";
+		$baseClasses[] = ($bag['substitution_group'] != '' ? $_globals['prefix'] . ucfirst($bag['substitution_group']) : 'daeElement');
+		if ( $bag['complex_type'] )
+			$baseClasses[] = $_globals['prefix'] . ucfirst( $bag['base_type'] ) . "_complexType";
+		print $indent ."class ". $full_element_name . getInheritanceStatement($baseClasses) . "\n".$indent."{\n";
 		print $indent ."public:\n";
 		print $indent ."\tvirtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
 		print $indent ."\tstatic COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
@@ -440,13 +435,18 @@
 			}
 		}
 	}
-	
+
+	if ($full_element_name == "domInputLocal") {
+		// print "steveT - " . $bag['isAComplexType'] . "\n";
+		// print "steveT - " . $bag['complex_type'] . "\n";
+	}
+
   //CONSTRUCTORS  
 	if ( !$bag['isAComplexType'] ) {
-		printConstructors( $full_element_name, $bag, $base, $indent );
+		printConstructors( $full_element_name, $bag, $baseClasses, $indent );
 	}
 	else {
-		printConstructors( $full_element_name ."_complexType", $bag, $base, $indent );
+		printConstructors( $full_element_name ."_complexType", $bag, $baseClasses, $indent );
 		
 		print $indent ."};\n\n";
 		print $indent ."/**\n". $indent ." * An element of type ". $full_element_name ."_complexType.\n". $indent ." */\n";
@@ -463,7 +463,8 @@
 		}
 		
 		$dummy = array();
-		printConstructors( $full_element_name, $dummy, "daeElement(), ". $full_element_name ."_complexType", $indent );
+		//printConstructors( $full_element_name, $dummy, $baseClasses, $indent );
+		printConstructors( $full_element_name, $dummy, array("daeElement", $full_element_name . "_complexType"), $indent );
 	}
 	
 	print "\n".$indent ."public: // STATIC METHODS\n";

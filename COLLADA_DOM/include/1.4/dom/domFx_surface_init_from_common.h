@@ -149,7 +149,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_from_common(DAE& dae) {}
+	domFx_surface_init_from_common(DAE& dae) : daeElement(dae), domFx_surface_init_from_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

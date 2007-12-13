@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_animations(DAE& dae) : attrId(), attrName(), elemAsset(), elemAnimation_array(), elemExtra_array() {}
+	domLibrary_animations(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemAnimation_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

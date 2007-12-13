@@ -150,7 +150,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domAnimation_clip(DAE& dae) : attrId(), attrName(), attrStart(), attrEnd(), elemAsset(), elemInstance_animation_array(), elemExtra_array() {}
+	domAnimation_clip(DAE& dae) : daeElement(dae), attrId(), attrName(), attrStart(), attrEnd(), elemAsset(), elemInstance_animation_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

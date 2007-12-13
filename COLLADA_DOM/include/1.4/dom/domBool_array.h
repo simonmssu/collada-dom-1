@@ -108,7 +108,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domBool_array(DAE& dae) : attrId(), attrName(), attrCount(), _value() {}
+	domBool_array(DAE& dae) : daeElement(dae), attrId(), attrName(), attrCount(), _value() {}
 	/**
 	 * Destructor
 	 */

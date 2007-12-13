@@ -24,14 +24,14 @@ class DAE;
 /**
  * A two-dimensional texture sampler for the GLSL profile.
  */
-class domGl_samplerRECT_complexType : public domFx_samplerRECT_common_complexType
+class domGl_samplerRECT_complexType  : public domFx_samplerRECT_common_complexType
 {
 
 protected:
 	/**
 	 * Constructor
 	 */
-	domGl_samplerRECT_complexType(DAE& dae) :  {}
+	domGl_samplerRECT_complexType(DAE& dae) : domFx_samplerRECT_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */
@@ -54,7 +54,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGl_samplerRECT(DAE& dae) {}
+	domGl_samplerRECT(DAE& dae) : daeElement(dae), domGl_samplerRECT_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

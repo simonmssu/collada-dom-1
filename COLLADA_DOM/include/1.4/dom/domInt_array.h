@@ -141,7 +141,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInt_array(DAE& dae) : attrId(), attrName(), attrCount(), attrMinInclusive(), attrMaxInclusive(), _value() {}
+	domInt_array(DAE& dae) : daeElement(dae), attrId(), attrName(), attrCount(), attrMinInclusive(), attrMaxInclusive(), _value() {}
 	/**
 	 * Destructor
 	 */

@@ -67,7 +67,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domChannels(DAE& dae) : _value() {}
+		domChannels(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -129,7 +129,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domRange(DAE& dae) : _value() {}
+		domRange(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -192,7 +192,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPrecision(DAE& dae) : _value() {}
+		domPrecision(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -253,7 +253,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domOption(DAE& dae) : _value() {}
+		domOption(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -369,7 +369,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_format_hint_common(DAE& dae) {}
+	domFx_surface_format_hint_common(DAE& dae) : daeElement(dae), domFx_surface_format_hint_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

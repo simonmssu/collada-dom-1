@@ -163,7 +163,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_colortarget_common(DAE& dae) {}
+	domFx_colortarget_common(DAE& dae) : daeElement(dae), domFx_colortarget_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

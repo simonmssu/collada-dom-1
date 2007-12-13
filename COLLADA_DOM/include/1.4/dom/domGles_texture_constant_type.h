@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texture_constant_type(DAE& dae) {}
+	domGles_texture_constant_type(DAE& dae) : daeElement(dae), domGles_texture_constant_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

@@ -61,7 +61,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAll(DAE& dae) : attrRef() {}
+		domAll(DAE& dae) : daeElement(dae), attrRef() {}
 		/**
 		 * Destructor
 		 */
@@ -138,7 +138,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domOrder(DAE& dae) : _value() {}
+			domOrder(DAE& dae) : daeElement(dae), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -204,7 +204,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPrimary(DAE& dae) : attrRef(), elemOrder_array() {}
+		domPrimary(DAE& dae) : daeElement(dae), attrRef(), elemOrder_array() {}
 		/**
 		 * Destructor
 		 */
@@ -266,7 +266,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFace(DAE& dae) : attrRef() {}
+		domFace(DAE& dae) : daeElement(dae), attrRef() {}
 		/**
 		 * Destructor
 		 */
@@ -381,7 +381,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_cube_common(DAE& dae) {}
+	domFx_surface_init_cube_common(DAE& dae) : daeElement(dae), domFx_surface_init_cube_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

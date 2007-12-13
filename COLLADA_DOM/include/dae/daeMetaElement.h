@@ -400,13 +400,6 @@ public:
 	DLLSPEC void setCMRoot( daeMetaCMPolicy *cm );
 
 public:
-	
-	/**
-	 * Releases all of the meta information contained in @c daeMetaElements.
-	 */
-// 	static DLLSPEC void releaseMetas();
-
-// 	static const daeTArray<daeSmartRef<daeMetaElement> > &getAllMetas() { return _metas(); }
 };
 
 typedef daeSmartRef<daeMetaElement> daeMetaElementRef;

@@ -185,6 +185,10 @@ daeURI::reset()
 //	container = NULL;   // !!!GAC don't want to clear this, our container doesn't change once it's set
 }
 
+DAE* daeURI::getDAE() const {
+	return dae;
+}
+
 daeString
 findCharacterReverse(daeString string, daeChar stopChar)
 {

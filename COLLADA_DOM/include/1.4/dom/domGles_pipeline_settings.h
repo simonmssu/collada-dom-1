@@ -83,7 +83,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domFunc(DAE& dae) : attrValue(), attrParam() {}
+			domFunc(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 			/**
 			 * Destructor
 			 */
@@ -149,7 +149,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domValue(DAE& dae) : attrValue(), attrParam() {}
+			domValue(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 			/**
 			 * Destructor
 			 */
@@ -194,7 +194,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAlpha_func(DAE& dae) : elemFunc(), elemValue() {}
+		domAlpha_func(DAE& dae) : daeElement(dae), elemFunc(), elemValue() {}
 		/**
 		 * Destructor
 		 */
@@ -271,7 +271,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domSrc(DAE& dae) : attrValue(), attrParam() {}
+			domSrc(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 			/**
 			 * Destructor
 			 */
@@ -337,7 +337,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domDest(DAE& dae) : attrValue(), attrParam() {}
+			domDest(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 			/**
 			 * Destructor
 			 */
@@ -382,7 +382,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBlend_func(DAE& dae) : elemSrc(), elemDest() {}
+		domBlend_func(DAE& dae) : daeElement(dae), elemSrc(), elemDest() {}
 		/**
 		 * Destructor
 		 */
@@ -453,7 +453,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domClear_color(DAE& dae) : attrValue(), attrParam() {}
+		domClear_color(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -519,7 +519,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domClear_stencil(DAE& dae) : attrValue(), attrParam() {}
+		domClear_stencil(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -585,7 +585,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domClear_depth(DAE& dae) : attrValue(), attrParam() {}
+		domClear_depth(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -668,7 +668,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domClip_plane(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domClip_plane(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -739,7 +739,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domColor_mask(DAE& dae) : attrValue(), attrParam() {}
+		domColor_mask(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -805,7 +805,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domCull_face(DAE& dae) : attrValue(), attrParam() {}
+		domCull_face(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -871,7 +871,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domDepth_func(DAE& dae) : attrValue(), attrParam() {}
+		domDepth_func(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -937,7 +937,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domDepth_mask(DAE& dae) : attrValue(), attrParam() {}
+		domDepth_mask(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -1008,7 +1008,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domDepth_range(DAE& dae) : attrValue(), attrParam() {}
+		domDepth_range(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -1079,7 +1079,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFog_color(DAE& dae) : attrValue(), attrParam() {}
+		domFog_color(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -1145,7 +1145,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFog_density(DAE& dae) : attrValue(), attrParam() {}
+		domFog_density(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -1211,7 +1211,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFog_mode(DAE& dae) : attrValue(), attrParam() {}
+		domFog_mode(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -1277,7 +1277,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFog_start(DAE& dae) : attrValue(), attrParam() {}
+		domFog_start(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -1343,7 +1343,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFog_end(DAE& dae) : attrValue(), attrParam() {}
+		domFog_end(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -1409,7 +1409,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFront_face(DAE& dae) : attrValue(), attrParam() {}
+		domFront_face(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -1470,7 +1470,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTexture_pipeline(DAE& dae) : attrParam(), elemValue() {}
+		domTexture_pipeline(DAE& dae) : daeElement(dae), attrParam(), elemValue() {}
 		/**
 		 * Destructor
 		 */
@@ -1536,7 +1536,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLogic_op(DAE& dae) : attrValue(), attrParam() {}
+		domLogic_op(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -1619,7 +1619,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_ambient(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domLight_ambient(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -1702,7 +1702,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_diffuse(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domLight_diffuse(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -1785,7 +1785,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_specular(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domLight_specular(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -1868,7 +1868,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_position(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domLight_position(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -1946,7 +1946,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_constant_attenuation(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domLight_constant_attenuation(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -2024,7 +2024,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_linear_attenutation(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domLight_linear_attenutation(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -2102,7 +2102,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_quadratic_attenuation(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domLight_quadratic_attenuation(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -2180,7 +2180,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_spot_cutoff(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domLight_spot_cutoff(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -2263,7 +2263,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_spot_direction(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domLight_spot_direction(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -2341,7 +2341,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_spot_exponent(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domLight_spot_exponent(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -2412,7 +2412,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_model_ambient(DAE& dae) : attrValue(), attrParam() {}
+		domLight_model_ambient(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -2478,7 +2478,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLine_width(DAE& dae) : attrValue(), attrParam() {}
+		domLine_width(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -2549,7 +2549,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMaterial_ambient(DAE& dae) : attrValue(), attrParam() {}
+		domMaterial_ambient(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -2620,7 +2620,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMaterial_diffuse(DAE& dae) : attrValue(), attrParam() {}
+		domMaterial_diffuse(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -2691,7 +2691,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMaterial_emission(DAE& dae) : attrValue(), attrParam() {}
+		domMaterial_emission(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -2757,7 +2757,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMaterial_shininess(DAE& dae) : attrValue(), attrParam() {}
+		domMaterial_shininess(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -2828,7 +2828,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMaterial_specular(DAE& dae) : attrValue(), attrParam() {}
+		domMaterial_specular(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -2899,7 +2899,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domModel_view_matrix(DAE& dae) : attrValue(), attrParam() {}
+		domModel_view_matrix(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -2970,7 +2970,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPoint_distance_attenuation(DAE& dae) : attrValue(), attrParam() {}
+		domPoint_distance_attenuation(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -3036,7 +3036,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPoint_fade_threshold_size(DAE& dae) : attrValue(), attrParam() {}
+		domPoint_fade_threshold_size(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -3102,7 +3102,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPoint_size(DAE& dae) : attrValue(), attrParam() {}
+		domPoint_size(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -3168,7 +3168,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPoint_size_min(DAE& dae) : attrValue(), attrParam() {}
+		domPoint_size_min(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -3234,7 +3234,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPoint_size_max(DAE& dae) : attrValue(), attrParam() {}
+		domPoint_size_max(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -3305,7 +3305,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPolygon_offset(DAE& dae) : attrValue(), attrParam() {}
+		domPolygon_offset(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -3376,7 +3376,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domProjection_matrix(DAE& dae) : attrValue(), attrParam() {}
+		domProjection_matrix(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -3447,7 +3447,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domScissor(DAE& dae) : attrValue(), attrParam() {}
+		domScissor(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -3513,7 +3513,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domShade_model(DAE& dae) : attrValue(), attrParam() {}
+		domShade_model(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -3590,7 +3590,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domFunc(DAE& dae) : attrValue(), attrParam() {}
+			domFunc(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 			/**
 			 * Destructor
 			 */
@@ -3656,7 +3656,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domRef(DAE& dae) : attrValue(), attrParam() {}
+			domRef(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 			/**
 			 * Destructor
 			 */
@@ -3722,7 +3722,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domMask(DAE& dae) : attrValue(), attrParam() {}
+			domMask(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 			/**
 			 * Destructor
 			 */
@@ -3773,7 +3773,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domStencil_func(DAE& dae) : elemFunc(), elemRef(), elemMask() {}
+		domStencil_func(DAE& dae) : daeElement(dae), elemFunc(), elemRef(), elemMask() {}
 		/**
 		 * Destructor
 		 */
@@ -3839,7 +3839,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domStencil_mask(DAE& dae) : attrValue(), attrParam() {}
+		domStencil_mask(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -3916,7 +3916,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domFail(DAE& dae) : attrValue(), attrParam() {}
+			domFail(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 			/**
 			 * Destructor
 			 */
@@ -3982,7 +3982,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domZfail(DAE& dae) : attrValue(), attrParam() {}
+			domZfail(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 			/**
 			 * Destructor
 			 */
@@ -4048,7 +4048,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domZpass(DAE& dae) : attrValue(), attrParam() {}
+			domZpass(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 			/**
 			 * Destructor
 			 */
@@ -4099,7 +4099,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domStencil_op(DAE& dae) : elemFail(), elemZfail(), elemZpass() {}
+		domStencil_op(DAE& dae) : daeElement(dae), elemFail(), elemZfail(), elemZpass() {}
 		/**
 		 * Destructor
 		 */
@@ -4165,7 +4165,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAlpha_test_enable(DAE& dae) : attrValue(), attrParam() {}
+		domAlpha_test_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -4231,7 +4231,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBlend_enable(DAE& dae) : attrValue(), attrParam() {}
+		domBlend_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -4309,7 +4309,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domClip_plane_enable(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domClip_plane_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -4375,7 +4375,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domColor_logic_op_enable(DAE& dae) : attrValue(), attrParam() {}
+		domColor_logic_op_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -4441,7 +4441,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domColor_material_enable(DAE& dae) : attrValue(), attrParam() {}
+		domColor_material_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -4507,7 +4507,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domCull_face_enable(DAE& dae) : attrValue(), attrParam() {}
+		domCull_face_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -4573,7 +4573,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domDepth_test_enable(DAE& dae) : attrValue(), attrParam() {}
+		domDepth_test_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -4639,7 +4639,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domDither_enable(DAE& dae) : attrValue(), attrParam() {}
+		domDither_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -4705,7 +4705,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFog_enable(DAE& dae) : attrValue(), attrParam() {}
+		domFog_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -4771,7 +4771,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTexture_pipeline_enable(DAE& dae) : attrValue(), attrParam() {}
+		domTexture_pipeline_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -4849,7 +4849,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_enable(DAE& dae) : attrValue(), attrParam(), attrIndex() {}
+		domLight_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam(), attrIndex() {}
 		/**
 		 * Destructor
 		 */
@@ -4915,7 +4915,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLighting_enable(DAE& dae) : attrValue(), attrParam() {}
+		domLighting_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -4981,7 +4981,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLight_model_two_side_enable(DAE& dae) : attrValue(), attrParam() {}
+		domLight_model_two_side_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -5047,7 +5047,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domLine_smooth_enable(DAE& dae) : attrValue(), attrParam() {}
+		domLine_smooth_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -5113,7 +5113,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMultisample_enable(DAE& dae) : attrValue(), attrParam() {}
+		domMultisample_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -5179,7 +5179,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domNormalize_enable(DAE& dae) : attrValue(), attrParam() {}
+		domNormalize_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -5245,7 +5245,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPoint_smooth_enable(DAE& dae) : attrValue(), attrParam() {}
+		domPoint_smooth_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -5311,7 +5311,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPolygon_offset_fill_enable(DAE& dae) : attrValue(), attrParam() {}
+		domPolygon_offset_fill_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -5377,7 +5377,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domRescale_normal_enable(DAE& dae) : attrValue(), attrParam() {}
+		domRescale_normal_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -5443,7 +5443,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSample_alpha_to_coverage_enable(DAE& dae) : attrValue(), attrParam() {}
+		domSample_alpha_to_coverage_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -5509,7 +5509,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSample_alpha_to_one_enable(DAE& dae) : attrValue(), attrParam() {}
+		domSample_alpha_to_one_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -5575,7 +5575,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSample_coverage_enable(DAE& dae) : attrValue(), attrParam() {}
+		domSample_coverage_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -5641,7 +5641,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domScissor_test_enable(DAE& dae) : attrValue(), attrParam() {}
+		domScissor_test_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -5707,7 +5707,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domStencil_test_enable(DAE& dae) : attrValue(), attrParam() {}
+		domStencil_test_enable(DAE& dae) : daeElement(dae), attrValue(), attrParam() {}
 		/**
 		 * Destructor
 		 */
@@ -6203,7 +6203,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_pipeline_settings(DAE& dae) : elemAlpha_func(), elemBlend_func(), elemClear_color(), elemClear_stencil(), elemClear_depth(), elemClip_plane(), elemColor_mask(), elemCull_face(), elemDepth_func(), elemDepth_mask(), elemDepth_range(), elemFog_color(), elemFog_density(), elemFog_mode(), elemFog_start(), elemFog_end(), elemFront_face(), elemTexture_pipeline(), elemLogic_op(), elemLight_ambient(), elemLight_diffuse(), elemLight_specular(), elemLight_position(), elemLight_constant_attenuation(), elemLight_linear_attenutation(), elemLight_quadratic_attenuation(), elemLight_spot_cutoff(), elemLight_spot_direction(), elemLight_spot_exponent(), elemLight_model_ambient(), elemLine_width(), elemMaterial_ambient(), elemMaterial_diffuse(), elemMaterial_emission(), elemMaterial_shininess(), elemMaterial_specular(), elemModel_view_matrix(), elemPoint_distance_attenuation(), elemPoint_fade_threshold_size(), elemPoint_size(), elemPoint_size_min(), elemPoint_size_max(), elemPolygon_offset(), elemProjection_matrix(), elemScissor(), elemShade_model(), elemStencil_func(), elemStencil_mask(), elemStencil_op(), elemAlpha_test_enable(), elemBlend_enable(), elemClip_plane_enable(), elemColor_logic_op_enable(), elemColor_material_enable(), elemCull_face_enable(), elemDepth_test_enable(), elemDither_enable(), elemFog_enable(), elemTexture_pipeline_enable(), elemLight_enable(), elemLighting_enable(), elemLight_model_two_side_enable(), elemLine_smooth_enable(), elemMultisample_enable(), elemNormalize_enable(), elemPoint_smooth_enable(), elemPolygon_offset_fill_enable(), elemRescale_normal_enable(), elemSample_alpha_to_coverage_enable(), elemSample_alpha_to_one_enable(), elemSample_coverage_enable(), elemScissor_test_enable(), elemStencil_test_enable() {}
+	domGles_pipeline_settings(DAE& dae) : daeElement(dae), elemAlpha_func(), elemBlend_func(), elemClear_color(), elemClear_stencil(), elemClear_depth(), elemClip_plane(), elemColor_mask(), elemCull_face(), elemDepth_func(), elemDepth_mask(), elemDepth_range(), elemFog_color(), elemFog_density(), elemFog_mode(), elemFog_start(), elemFog_end(), elemFront_face(), elemTexture_pipeline(), elemLogic_op(), elemLight_ambient(), elemLight_diffuse(), elemLight_specular(), elemLight_position(), elemLight_constant_attenuation(), elemLight_linear_attenutation(), elemLight_quadratic_attenuation(), elemLight_spot_cutoff(), elemLight_spot_direction(), elemLight_spot_exponent(), elemLight_model_ambient(), elemLine_width(), elemMaterial_ambient(), elemMaterial_diffuse(), elemMaterial_emission(), elemMaterial_shininess(), elemMaterial_specular(), elemModel_view_matrix(), elemPoint_distance_attenuation(), elemPoint_fade_threshold_size(), elemPoint_size(), elemPoint_size_min(), elemPoint_size_max(), elemPolygon_offset(), elemProjection_matrix(), elemScissor(), elemShade_model(), elemStencil_func(), elemStencil_mask(), elemStencil_op(), elemAlpha_test_enable(), elemBlend_enable(), elemClip_plane_enable(), elemColor_logic_op_enable(), elemColor_material_enable(), elemCull_face_enable(), elemDepth_test_enable(), elemDither_enable(), elemFog_enable(), elemTexture_pipeline_enable(), elemLight_enable(), elemLighting_enable(), elemLight_model_two_side_enable(), elemLine_smooth_enable(), elemMultisample_enable(), elemNormalize_enable(), elemPoint_smooth_enable(), elemPolygon_offset_fill_enable(), elemRescale_normal_enable(), elemSample_alpha_to_coverage_enable(), elemSample_alpha_to_one_enable(), elemSample_coverage_enable(), elemScissor_test_enable(), elemStencil_test_enable() {}
 	/**
 	 * Destructor
 	 */

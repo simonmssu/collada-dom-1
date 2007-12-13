@@ -58,7 +58,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSemantic(DAE& dae) : _value() {}
+		domSemantic(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -115,7 +115,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat(DAE& dae) : _value() {}
+		domFloat(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -177,7 +177,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2(DAE& dae) : _value() {}
+		domFloat2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -239,7 +239,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3(DAE& dae) : _value() {}
+		domFloat3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -301,7 +301,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4(DAE& dae) : _value() {}
+		domFloat4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -455,7 +455,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_newparam_type(DAE& dae) {}
+	domCommon_newparam_type(DAE& dae) : daeElement(dae), domCommon_newparam_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

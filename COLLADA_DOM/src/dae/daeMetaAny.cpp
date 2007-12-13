@@ -46,7 +46,7 @@ daeMetaElement * daeMetaAny::findChild( daeString elementName ) {
 		const daeMetaElementRefArray &metas = _container->getDAE()->getAllMetas();
 		size_t cnt = metas.getCount();
 		for ( size_t x = 0; x < cnt; x++ ) {
-			if ( !metas[x]->getIsInnerClass() && strcmp( elementName, metas[x]->getName() ) == 0 ) {
+			if ( metas[x] && !metas[x]->getIsInnerClass() && strcmp( elementName, metas[x]->getName() ) == 0 ) {
 				return metas[x];
 			}
 		}

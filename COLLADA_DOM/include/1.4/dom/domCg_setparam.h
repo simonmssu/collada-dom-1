@@ -158,7 +158,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_setparam(DAE& dae) {}
+	domCg_setparam(DAE& dae) : daeElement(dae), domCg_setparam_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

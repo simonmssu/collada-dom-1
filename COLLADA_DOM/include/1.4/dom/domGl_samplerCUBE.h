@@ -24,14 +24,14 @@ class DAE;
 /**
  * A cube map texture sampler for the GLSL profile.
  */
-class domGl_samplerCUBE_complexType : public domFx_samplerCUBE_common_complexType
+class domGl_samplerCUBE_complexType  : public domFx_samplerCUBE_common_complexType
 {
 
 protected:
 	/**
 	 * Constructor
 	 */
-	domGl_samplerCUBE_complexType(DAE& dae) :  {}
+	domGl_samplerCUBE_complexType(DAE& dae) : domFx_samplerCUBE_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */
@@ -54,7 +54,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGl_samplerCUBE(DAE& dae) {}
+	domGl_samplerCUBE(DAE& dae) : daeElement(dae), domGl_samplerCUBE_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

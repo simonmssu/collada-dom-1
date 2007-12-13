@@ -114,7 +114,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domExtra(DAE& dae) : attrId(), attrName(), attrType(), elemAsset(), elemTechnique_array() {}
+	domExtra(DAE& dae) : daeElement(dae), attrId(), attrName(), attrType(), elemAsset(), elemTechnique_array() {}
 	/**
 	 * Destructor
 	 */

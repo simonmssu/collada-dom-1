@@ -163,7 +163,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_stenciltarget_common(DAE& dae) {}
+	domFx_stenciltarget_common(DAE& dae) : daeElement(dae), domFx_stenciltarget_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

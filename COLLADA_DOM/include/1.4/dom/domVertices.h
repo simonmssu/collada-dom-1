@@ -105,7 +105,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domVertices(DAE& dae) : attrId(), attrName(), elemInput_array(), elemExtra_array() {}
+	domVertices(DAE& dae) : daeElement(dae), attrId(), attrName(), elemInput_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

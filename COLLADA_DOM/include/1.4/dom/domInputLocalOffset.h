@@ -179,7 +179,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInputLocalOffset(DAE& dae) {}
+	domInputLocalOffset(DAE& dae) : daeElement(dae), domInputLocalOffset_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

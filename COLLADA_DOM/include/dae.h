@@ -17,6 +17,7 @@
 #include <dae/daeTypes.h>
 #include <dae/daeError.h>
 #include <dae/daeInterface.h>
+#include <dae/daeDatabase.h>
 #include <dae/daeIOPlugin.h>
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeAtomicType.h>
@@ -46,7 +47,7 @@ public:
 	 */
 	DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL)
 		: atomicTypes(*this),
-	    baseUri(*this)
+	    baseUri(*this, true)
 	{
 		// See the end of the thread linked below for an explanation of why we have the DAE
 		// constructor set up this way. Basically, I'm going to be changing the build output 

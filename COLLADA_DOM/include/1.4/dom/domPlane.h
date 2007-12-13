@@ -72,7 +72,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domEquation(DAE& dae) : _value() {}
+		domEquation(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -129,7 +129,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domPlane(DAE& dae) : elemEquation(), elemExtra_array() {}
+	domPlane(DAE& dae) : daeElement(dae), elemEquation(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

@@ -84,7 +84,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domAmbient(DAE& dae) : elemColor() {}
+			domAmbient(DAE& dae) : daeElement(dae), elemColor() {}
 			/**
 			 * Destructor
 			 */
@@ -144,7 +144,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domDirectional(DAE& dae) : elemColor() {}
+			domDirectional(DAE& dae) : daeElement(dae), elemColor() {}
 			/**
 			 * Destructor
 			 */
@@ -236,7 +236,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domPoint(DAE& dae) : elemColor(), elemConstant_attenuation(), elemLinear_attenuation(), elemQuadratic_attenuation() {}
+			domPoint(DAE& dae) : daeElement(dae), elemColor(), elemConstant_attenuation(), elemLinear_attenuation(), elemQuadratic_attenuation() {}
 			/**
 			 * Destructor
 			 */
@@ -354,7 +354,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domSpot(DAE& dae) : elemColor(), elemConstant_attenuation(), elemLinear_attenuation(), elemQuadratic_attenuation(), elemFalloff_angle(), elemFalloff_exponent() {}
+			domSpot(DAE& dae) : daeElement(dae), elemColor(), elemConstant_attenuation(), elemLinear_attenuation(), elemQuadratic_attenuation(), elemFalloff_angle(), elemFalloff_exponent() {}
 			/**
 			 * Destructor
 			 */
@@ -470,7 +470,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique_common(DAE& dae) : elemAmbient(), elemDirectional(), elemPoint(), elemSpot() {}
+		domTechnique_common(DAE& dae) : daeElement(dae), elemAmbient(), elemDirectional(), elemPoint(), elemSpot() {}
 		/**
 		 * Destructor
 		 */
@@ -586,7 +586,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLight(DAE& dae) : attrId(), attrName(), elemAsset(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
+	domLight(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

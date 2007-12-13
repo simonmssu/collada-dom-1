@@ -70,7 +70,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFormat(DAE& dae) : _value() {}
+		domFormat(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -135,7 +135,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSize(DAE& dae) : _value() {}
+		domSize(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -201,7 +201,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domViewport_ratio(DAE& dae) : _value() {}
+		domViewport_ratio(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -265,7 +265,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMip_levels(DAE& dae) : _value() {}
+		domMip_levels(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -328,7 +328,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMipmap_generate(DAE& dae) : _value() {}
+		domMipmap_generate(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -534,7 +534,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_common(DAE& dae) {}
+	domFx_surface_common(DAE& dae) : daeElement(dae), domFx_surface_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

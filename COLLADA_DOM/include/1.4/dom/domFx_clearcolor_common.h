@@ -99,7 +99,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_clearcolor_common(DAE& dae) {}
+	domFx_clearcolor_common(DAE& dae) : daeElement(dae), domFx_clearcolor_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

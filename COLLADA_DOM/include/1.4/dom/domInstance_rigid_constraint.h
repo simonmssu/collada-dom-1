@@ -100,7 +100,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_rigid_constraint(DAE& dae) : attrConstraint(), attrSid(), attrName(), elemExtra_array() {}
+	domInstance_rigid_constraint(DAE& dae) : daeElement(dae), attrConstraint(), attrSid(), attrName(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

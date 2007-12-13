@@ -81,7 +81,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_connect_param(DAE& dae) {}
+	domCg_connect_param(DAE& dae) : daeElement(dae), domCg_connect_param_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

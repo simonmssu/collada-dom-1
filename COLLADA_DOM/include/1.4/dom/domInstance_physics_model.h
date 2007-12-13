@@ -179,7 +179,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_physics_model(DAE& dae) : attrUrl(dae), attrSid(), attrName(), attrParent(dae), elemInstance_force_field_array(), elemInstance_rigid_body_array(), elemInstance_rigid_constraint_array(), elemExtra_array() {}
+	domInstance_physics_model(DAE& dae) : daeElement(dae), attrUrl(dae), attrSid(), attrName(), attrParent(dae), elemInstance_force_field_array(), elemInstance_rigid_body_array(), elemInstance_rigid_constraint_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

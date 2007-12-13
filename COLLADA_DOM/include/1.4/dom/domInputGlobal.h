@@ -123,7 +123,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInputGlobal(DAE& dae) {}
+	domInputGlobal(DAE& dae) : daeElement(dae), domInputGlobal_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

@@ -76,7 +76,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domMatrix(DAE& dae) : attrSid(), _value() {}
+	domMatrix(DAE& dae) : daeElement(dae), attrSid(), _value() {}
 	/**
 	 * Destructor
 	 */

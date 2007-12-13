@@ -64,7 +64,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAll(DAE& dae) : attrRef() {}
+		domAll(DAE& dae) : daeElement(dae), attrRef() {}
 		/**
 		 * Destructor
 		 */
@@ -154,7 +154,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_planar_common(DAE& dae) {}
+	domFx_surface_init_planar_common(DAE& dae) : daeElement(dae), domFx_surface_init_planar_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

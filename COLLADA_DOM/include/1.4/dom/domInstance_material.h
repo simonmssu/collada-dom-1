@@ -84,7 +84,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBind(DAE& dae) : attrSemantic(), attrTarget() {}
+		domBind(DAE& dae) : daeElement(dae), attrSemantic(), attrTarget() {}
 		/**
 		 * Destructor
 		 */
@@ -175,7 +175,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBind_vertex_input(DAE& dae) : attrSemantic(), attrInput_semantic(), attrInput_set() {}
+		domBind_vertex_input(DAE& dae) : daeElement(dae), attrSemantic(), attrInput_semantic(), attrInput_set() {}
 		/**
 		 * Destructor
 		 */
@@ -322,7 +322,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_material(DAE& dae) : attrSymbol(), attrTarget(dae), attrSid(), attrName(), elemBind_array(), elemBind_vertex_input_array(), elemExtra_array() {}
+	domInstance_material(DAE& dae) : daeElement(dae), attrSymbol(), attrTarget(dae), attrSid(), attrName(), elemBind_array(), elemBind_vertex_input_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

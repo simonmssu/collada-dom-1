@@ -104,7 +104,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domLayer(DAE& dae) : _value() {}
+				domLayer(DAE& dae) : daeElement(dae), _value() {}
 				/**
 				 * Destructor
 				 */
@@ -185,7 +185,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domRender(DAE& dae) : attrCamera_node(dae), elemLayer_array(), elemInstance_effect() {}
+			domRender(DAE& dae) : daeElement(dae), attrCamera_node(dae), elemLayer_array(), elemInstance_effect() {}
 			/**
 			 * Destructor
 			 */
@@ -249,7 +249,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domEvaluate_scene(DAE& dae) : attrName(), elemRender_array() {}
+		domEvaluate_scene(DAE& dae) : daeElement(dae), attrName(), elemRender_array() {}
 		/**
 		 * Destructor
 		 */
@@ -370,7 +370,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domVisual_scene(DAE& dae) : attrId(), attrName(), elemAsset(), elemNode_array(), elemEvaluate_scene_array(), elemExtra_array() {}
+	domVisual_scene(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemNode_array(), elemEvaluate_scene_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

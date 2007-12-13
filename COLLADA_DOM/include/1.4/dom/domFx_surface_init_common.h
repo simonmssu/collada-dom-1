@@ -57,7 +57,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInit_as_null(DAE& dae) {}
+		domInit_as_null(DAE& dae) : daeElement(dae) {}
 		/**
 		 * Destructor
 		 */
@@ -100,7 +100,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInit_as_target(DAE& dae) {}
+		domInit_as_target(DAE& dae) : daeElement(dae) {}
 		/**
 		 * Destructor
 		 */
@@ -228,7 +228,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_common(DAE& dae) : elemInit_as_null(), elemInit_as_target(), elemInit_cube(), elemInit_volume(), elemInit_planar(), elemInit_from_array() {}
+	domFx_surface_init_common(DAE& dae) : daeElement(dae), elemInit_as_null(), elemInit_as_target(), elemInit_cube(), elemInit_volume(), elemInit_planar(), elemInit_from_array() {}
 	/**
 	 * Destructor
 	 */

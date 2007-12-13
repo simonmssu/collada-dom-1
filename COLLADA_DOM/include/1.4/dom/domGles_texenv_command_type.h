@@ -109,7 +109,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texenv_command_type(DAE& dae) {}
+	domGles_texenv_command_type(DAE& dae) : daeElement(dae), domGles_texenv_command_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

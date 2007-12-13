@@ -72,7 +72,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique_common(DAE& dae) : elemInstance_material_array() {}
+		domTechnique_common(DAE& dae) : daeElement(dae), elemInstance_material_array() {}
 		/**
 		 * Destructor
 		 */
@@ -160,7 +160,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domBind_material(DAE& dae) : elemParam_array(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
+	domBind_material(DAE& dae) : daeElement(dae), elemParam_array(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

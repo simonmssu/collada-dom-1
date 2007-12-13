@@ -66,7 +66,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool(DAE& dae) : _value() {}
+		domBool(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -128,7 +128,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool2(DAE& dae) : _value() {}
+		domBool2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -190,7 +190,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool3(DAE& dae) : _value() {}
+		domBool3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -252,7 +252,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool4(DAE& dae) : _value() {}
+		domBool4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -309,7 +309,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt(DAE& dae) : _value() {}
+		domInt(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -371,7 +371,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt2(DAE& dae) : _value() {}
+		domInt2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -433,7 +433,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt3(DAE& dae) : _value() {}
+		domInt3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -495,7 +495,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt4(DAE& dae) : _value() {}
+		domInt4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -552,7 +552,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat(DAE& dae) : _value() {}
+		domFloat(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -614,7 +614,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2(DAE& dae) : _value() {}
+		domFloat2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -676,7 +676,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3(DAE& dae) : _value() {}
+		domFloat3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -738,7 +738,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4(DAE& dae) : _value() {}
+		domFloat4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -795,7 +795,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x1(DAE& dae) : _value() {}
+		domFloat1x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -857,7 +857,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x2(DAE& dae) : _value() {}
+		domFloat1x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -919,7 +919,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x3(DAE& dae) : _value() {}
+		domFloat1x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -981,7 +981,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x4(DAE& dae) : _value() {}
+		domFloat1x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1043,7 +1043,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x1(DAE& dae) : _value() {}
+		domFloat2x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1105,7 +1105,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x2(DAE& dae) : _value() {}
+		domFloat2x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1167,7 +1167,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x3(DAE& dae) : _value() {}
+		domFloat2x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1229,7 +1229,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x4(DAE& dae) : _value() {}
+		domFloat2x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1291,7 +1291,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x1(DAE& dae) : _value() {}
+		domFloat3x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1353,7 +1353,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x2(DAE& dae) : _value() {}
+		domFloat3x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1415,7 +1415,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x3(DAE& dae) : _value() {}
+		domFloat3x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1477,7 +1477,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x4(DAE& dae) : _value() {}
+		domFloat3x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1539,7 +1539,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x1(DAE& dae) : _value() {}
+		domFloat4x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1601,7 +1601,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x2(DAE& dae) : _value() {}
+		domFloat4x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1663,7 +1663,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x3(DAE& dae) : _value() {}
+		domFloat4x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1725,7 +1725,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x4(DAE& dae) : _value() {}
+		domFloat4x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1782,7 +1782,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domEnum(DAE& dae) : _value() {}
+		domEnum(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -2038,7 +2038,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_basic_type_common(DAE& dae) : elemBool(), elemBool2(), elemBool3(), elemBool4(), elemInt(), elemInt2(), elemInt3(), elemInt4(), elemFloat(), elemFloat2(), elemFloat3(), elemFloat4(), elemFloat1x1(), elemFloat1x2(), elemFloat1x3(), elemFloat1x4(), elemFloat2x1(), elemFloat2x2(), elemFloat2x3(), elemFloat2x4(), elemFloat3x1(), elemFloat3x2(), elemFloat3x3(), elemFloat3x4(), elemFloat4x1(), elemFloat4x2(), elemFloat4x3(), elemFloat4x4(), elemSurface(), elemTexture_pipeline(), elemSampler_state(), elemTexture_unit(), elemEnum() {}
+	domGles_basic_type_common(DAE& dae) : daeElement(dae), elemBool(), elemBool2(), elemBool3(), elemBool4(), elemInt(), elemInt2(), elemInt3(), elemInt4(), elemFloat(), elemFloat2(), elemFloat3(), elemFloat4(), elemFloat1x1(), elemFloat1x2(), elemFloat1x3(), elemFloat1x4(), elemFloat2x1(), elemFloat2x2(), elemFloat2x3(), elemFloat2x4(), elemFloat3x1(), elemFloat3x2(), elemFloat3x3(), elemFloat3x4(), elemFloat4x1(), elemFloat4x2(), elemFloat4x3(), elemFloat4x4(), elemSurface(), elemTexture_pipeline(), elemSampler_state(), elemTexture_unit(), elemEnum() {}
 	/**
 	 * Destructor
 	 */

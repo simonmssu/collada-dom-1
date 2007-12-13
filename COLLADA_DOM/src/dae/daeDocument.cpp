@@ -98,3 +98,7 @@ const daeTArray<daeURI*> *daeDocument::getExternalURIs(daeStringRef docURI) cons
 DAE* daeDocument::getDAE() {
 	return dae;
 }
+
+daeDatabase* daeDocument::getDatabase() {
+	return dae->getDatabase();
+}

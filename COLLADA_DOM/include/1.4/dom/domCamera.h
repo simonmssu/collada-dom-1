@@ -165,7 +165,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domOrthographic(DAE& dae) : elemXmag(), elemYmag(), elemAspect_ratio(), elemZnear(), elemZfar() {}
+				domOrthographic(DAE& dae) : daeElement(dae), elemXmag(), elemYmag(), elemAspect_ratio(), elemZnear(), elemZfar() {}
 				/**
 				 * Destructor
 				 */
@@ -289,7 +289,7 @@ public:
 				/**
 				 * Constructor
 				 */
-				domPerspective(DAE& dae) : elemXfov(), elemYfov(), elemAspect_ratio(), elemZnear(), elemZfar() {}
+				domPerspective(DAE& dae) : daeElement(dae), elemXfov(), elemYfov(), elemAspect_ratio(), elemZnear(), elemZfar() {}
 				/**
 				 * Destructor
 				 */
@@ -367,7 +367,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domTechnique_common(DAE& dae) : elemOrthographic(), elemPerspective() {}
+			domTechnique_common(DAE& dae) : daeElement(dae), elemOrthographic(), elemPerspective() {}
 			/**
 			 * Destructor
 			 */
@@ -439,7 +439,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domOptics(DAE& dae) : elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
+		domOptics(DAE& dae) : daeElement(dae), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -513,7 +513,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domImager(DAE& dae) : elemTechnique_array(), elemExtra_array() {}
+		domImager(DAE& dae) : daeElement(dae), elemTechnique_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -624,7 +624,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCamera(DAE& dae) : attrId(), attrName(), elemAsset(), elemOptics(), elemImager(), elemExtra_array() {}
+	domCamera(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemOptics(), elemImager(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

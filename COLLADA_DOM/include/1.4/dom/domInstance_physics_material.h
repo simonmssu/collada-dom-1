@@ -73,7 +73,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_physics_material(DAE& dae) {}
+	domInstance_physics_material(DAE& dae) : daeElement(dae), domInstanceWithExtra_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

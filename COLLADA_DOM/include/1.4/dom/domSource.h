@@ -70,7 +70,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique_common(DAE& dae) : elemAccessor() {}
+		domTechnique_common(DAE& dae) : daeElement(dae), elemAccessor() {}
 		/**
 		 * Destructor
 		 */
@@ -242,7 +242,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domSource(DAE& dae) : attrId(), attrName(), elemAsset(), elemIDREF_array(), elemName_array(), elemBool_array(), elemFloat_array(), elemInt_array(), elemTechnique_common(), elemTechnique_array() {}
+	domSource(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemIDREF_array(), elemName_array(), elemBool_array(), elemFloat_array(), elemInt_array(), elemTechnique_common(), elemTechnique_array() {}
 	/**
 	 * Destructor
 	 */

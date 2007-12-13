@@ -136,7 +136,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domTrifans(DAE& dae) : attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP_array(), elemExtra_array() {}
+	domTrifans(DAE& dae) : daeElement(dae), attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

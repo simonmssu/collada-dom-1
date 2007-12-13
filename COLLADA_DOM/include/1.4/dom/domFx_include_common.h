@@ -126,7 +126,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_include_common(DAE& dae) {}
+	domFx_include_common(DAE& dae) : daeElement(dae), domFx_include_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

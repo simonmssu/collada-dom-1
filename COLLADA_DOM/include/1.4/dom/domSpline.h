@@ -84,7 +84,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domControl_vertices(DAE& dae) : elemInput_array(), elemExtra_array() {}
+		domControl_vertices(DAE& dae) : daeElement(dae), elemInput_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -168,7 +168,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domSpline(DAE& dae) : attrClosed(), elemSource_array(), elemControl_vertices(), elemExtra_array() {}
+	domSpline(DAE& dae) : daeElement(dae), attrClosed(), elemSource_array(), elemControl_vertices(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

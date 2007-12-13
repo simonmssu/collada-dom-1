@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_cameras(DAE& dae) : attrId(), attrName(), elemAsset(), elemCamera_array(), elemExtra_array() {}
+	domLibrary_cameras(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemCamera_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

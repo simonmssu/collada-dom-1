@@ -59,7 +59,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domP(DAE& dae) : _value() {}
+	domP(DAE& dae) : daeElement(dae), _value() {}
 	/**
 	 * Destructor
 	 */

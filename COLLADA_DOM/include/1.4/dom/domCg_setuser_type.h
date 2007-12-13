@@ -197,7 +197,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_setuser_type(DAE& dae) {}
+	domCg_setuser_type(DAE& dae) : daeElement(dae), domCg_setuser_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

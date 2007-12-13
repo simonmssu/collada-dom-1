@@ -74,7 +74,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domSampler(DAE& dae) : attrId(), elemInput_array() {}
+	domSampler(DAE& dae) : daeElement(dae), attrId(), elemInput_array() {}
 	/**
 	 * Destructor
 	 */

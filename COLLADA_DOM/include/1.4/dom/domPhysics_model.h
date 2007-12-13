@@ -145,7 +145,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domPhysics_model(DAE& dae) : attrId(), attrName(), elemAsset(), elemRigid_body_array(), elemRigid_constraint_array(), elemInstance_physics_model_array(), elemExtra_array() {}
+	domPhysics_model(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemRigid_body_array(), elemRigid_constraint_array(), elemInstance_physics_model_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

@@ -69,7 +69,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat(DAE& dae) : attrSid(), _value() {}
+		domFloat(DAE& dae) : daeElement(dae), attrSid(), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -123,7 +123,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domParam(DAE& dae) : attrRef() {}
+		domParam(DAE& dae) : daeElement(dae), attrRef() {}
 		/**
 		 * Destructor
 		 */
@@ -216,7 +216,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_float_or_param_type(DAE& dae) {}
+	domCommon_float_or_param_type(DAE& dae) : daeElement(dae), domCommon_float_or_param_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

@@ -79,7 +79,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domVcount(DAE& dae) : _value() {}
+		domVcount(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -211,7 +211,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domPolylist(DAE& dae) : attrName(), attrCount(), attrMaterial(), elemInput_array(), elemVcount(), elemP(), elemExtra_array() {}
+	domPolylist(DAE& dae) : daeElement(dae), attrName(), attrCount(), attrMaterial(), elemInput_array(), elemVcount(), elemP(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

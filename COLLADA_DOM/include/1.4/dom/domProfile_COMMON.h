@@ -106,7 +106,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domConstant(DAE& dae) : elemEmission(), elemReflective(), elemReflectivity(), elemTransparent(), elemTransparency(), elemIndex_of_refraction() {}
+			domConstant(DAE& dae) : daeElement(dae), elemEmission(), elemReflective(), elemReflectivity(), elemTransparent(), elemTransparency(), elemIndex_of_refraction() {}
 			/**
 			 * Destructor
 			 */
@@ -196,7 +196,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domLambert(DAE& dae) : elemEmission(), elemAmbient(), elemDiffuse(), elemReflective(), elemReflectivity(), elemTransparent(), elemTransparency(), elemIndex_of_refraction() {}
+			domLambert(DAE& dae) : daeElement(dae), elemEmission(), elemAmbient(), elemDiffuse(), elemReflective(), elemReflectivity(), elemTransparent(), elemTransparency(), elemIndex_of_refraction() {}
 			/**
 			 * Destructor
 			 */
@@ -298,7 +298,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domPhong(DAE& dae) : elemEmission(), elemAmbient(), elemDiffuse(), elemSpecular(), elemShininess(), elemReflective(), elemReflectivity(), elemTransparent(), elemTransparency(), elemIndex_of_refraction() {}
+			domPhong(DAE& dae) : daeElement(dae), elemEmission(), elemAmbient(), elemDiffuse(), elemSpecular(), elemShininess(), elemReflective(), elemReflectivity(), elemTransparent(), elemTransparency(), elemIndex_of_refraction() {}
 			/**
 			 * Destructor
 			 */
@@ -400,7 +400,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domBlinn(DAE& dae) : elemEmission(), elemAmbient(), elemDiffuse(), elemSpecular(), elemShininess(), elemReflective(), elemReflectivity(), elemTransparent(), elemTransparency(), elemIndex_of_refraction() {}
+			domBlinn(DAE& dae) : daeElement(dae), elemEmission(), elemAmbient(), elemDiffuse(), elemSpecular(), elemShininess(), elemReflective(), elemReflectivity(), elemTransparent(), elemTransparency(), elemIndex_of_refraction() {}
 			/**
 			 * Destructor
 			 */
@@ -564,7 +564,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique(DAE& dae) : attrId(), attrSid(), elemAsset(), elemImage_array(), elemNewparam_array(), elemConstant(), elemLambert(), elemPhong(), elemBlinn(), elemExtra_array() {}
+		domTechnique(DAE& dae) : daeElement(dae), attrId(), attrSid(), elemAsset(), elemImage_array(), elemNewparam_array(), elemConstant(), elemLambert(), elemPhong(), elemBlinn(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -694,7 +694,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domProfile_COMMON(DAE& dae) : attrId(), elemAsset(), elemImage_array(), elemNewparam_array(), elemTechnique(), elemExtra_array() {}
+	domProfile_COMMON(DAE& dae) : domFx_profile_abstract(dae), attrId(), elemAsset(), elemImage_array(), elemNewparam_array(), elemTechnique(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

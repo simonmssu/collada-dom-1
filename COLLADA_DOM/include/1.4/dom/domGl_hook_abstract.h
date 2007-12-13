@@ -30,7 +30,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGl_hook_abstract(DAE& dae) {}
+	domGl_hook_abstract(DAE& dae) : daeElement(dae) {}
 	/**
 	 * Destructor
 	 */

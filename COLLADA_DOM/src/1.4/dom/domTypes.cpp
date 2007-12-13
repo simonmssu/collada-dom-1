@@ -19,6 +19,7 @@
 void registerDomTypes(DAE& dae)
 {
 	daeAtomicType* type = NULL;
+	daeAtomicTypeList& atomicTypes = dae.getAtomicTypes();
 
 	// TYPEDEF: Bool	//check if this type has an existing base
 	type = atomicTypes.get("xsBoolean");

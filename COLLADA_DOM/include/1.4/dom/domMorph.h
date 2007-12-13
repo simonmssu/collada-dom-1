@@ -85,7 +85,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTargets(DAE& dae) : elemInput_array(), elemExtra_array() {}
+		domTargets(DAE& dae) : daeElement(dae), elemInput_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -194,7 +194,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domMorph(DAE& dae) : attrMethod(), attrSource(dae), elemSource_array(), elemTargets(), elemExtra_array() {}
+	domMorph(DAE& dae) : daeElement(dae), attrMethod(), attrSource(dae), elemSource_array(), elemTargets(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

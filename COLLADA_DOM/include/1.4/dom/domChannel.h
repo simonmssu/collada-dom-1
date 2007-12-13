@@ -75,7 +75,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domChannel(DAE& dae) : attrSource(dae), attrTarget() {}
+	domChannel(DAE& dae) : daeElement(dae), attrSource(dae), attrTarget() {}
 	/**
 	 * Destructor
 	 */

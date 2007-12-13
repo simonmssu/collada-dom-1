@@ -77,7 +77,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLookat(DAE& dae) : attrSid(), _value() {}
+	domLookat(DAE& dae) : daeElement(dae), attrSid(), _value() {}
 	/**
 	 * Destructor
 	 */

@@ -153,7 +153,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_setarray_type(DAE& dae) {}
+	domCg_setarray_type(DAE& dae) : daeElement(dae), domCg_setarray_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

@@ -75,7 +75,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domSkew(DAE& dae) : attrSid(), _value() {}
+	domSkew(DAE& dae) : daeElement(dae), attrSid(), _value() {}
 	/**
 	 * Destructor
 	 */

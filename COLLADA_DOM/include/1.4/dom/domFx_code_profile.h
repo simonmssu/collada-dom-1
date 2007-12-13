@@ -103,7 +103,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_code_profile(DAE& dae) {}
+	domFx_code_profile(DAE& dae) : daeElement(dae), domFx_code_profile_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

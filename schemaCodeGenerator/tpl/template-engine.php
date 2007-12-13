@@ -194,6 +194,15 @@ function printAllSubChildren( & $elem, $prefix, $suffix ) {
 	}
 }
 
+function getInheritanceStatement($baseClasses) {
+	if (count($baseClasses) == 0)
+		return "";
+	$statement = " : public " . $baseClasses[0];
+	for ($i = 1; $i < count($baseClasses); $i++)
+		$statement .= ", public " . $baseClasses[$i];
+	return $statement;
+}
+
 function beginConstructorInitializer(& $initializerListStarted) {
 	if (!$initializerListStarted)
 		print " : ";
@@ -202,23 +211,21 @@ function beginConstructorInitializer(& $initializerListStarted) {
 	$initializerListStarted = true;
 }
 
-function printConstructors( $elemName, & $bag, $base, $indent ) {
+function printBaseClassInitializers($baseClasses, & $initializerListStarted) {
+	for ($i = 0; $i < count($baseClasses); $i++) {
+		beginConstructorInitializer($initializerListStarted);
+		print $baseClasses[$i] . "(dae)";
+	}
+}
+
+function printConstructors( $elemName, & $bag, $baseClasses, $indent ) {
 	//print the protected ctor and copy stuff
 	print $indent ."protected:\n";
 	print $indent ."\t/**\n". $indent ."\t * Constructor\n". $indent ."\t */\n";
 	print $indent ."\t". $elemName ."(DAE& dae)";
 	$initializerListStarted = false;
 
-	// !!!steveT Remove
-	// if ($elemName == "domInputLocal") {
-	// 	print "steveT - " . $bag['isAComplexType'] . "\n";
-	// 	print "steveT - " . $bag['complex_type'] . "\n";
-	// }
-	
-	if ($bag['isAComplexType'] && $bag['complex_type']) {
-		beginConstructorInitializer($initializerListStarted);
-		$baseClass = $_globals['prefix'] . ucfirst( $bag['base_type'] ) . "_complexType(dae)";
-	}
+	printBaseClassInitializers($baseClasses, $initializerListStarted);
 
 	if ($bag['useXMLNS']) {
 		beginConstructorInitializer($initializerListStarted);

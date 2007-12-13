@@ -91,7 +91,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domH(DAE& dae) : _value() {}
+			domH(DAE& dae) : daeElement(dae), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -148,7 +148,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPh(DAE& dae) : elemP(), elemH_array() {}
+		domPh(DAE& dae) : daeElement(dae), elemP(), elemH_array() {}
 		/**
 		 * Destructor
 		 */
@@ -313,7 +313,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domPolygons(DAE& dae) : attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP_array(), elemPh_array(), elemExtra_array() {}
+	domPolygons(DAE& dae) : daeElement(dae), attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP_array(), elemPh_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

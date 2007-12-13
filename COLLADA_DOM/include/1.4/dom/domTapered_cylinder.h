@@ -67,7 +67,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHeight(DAE& dae) : _value() {}
+		domHeight(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -134,7 +134,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domRadius1(DAE& dae) : _value() {}
+		domRadius1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -200,7 +200,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domRadius2(DAE& dae) : _value() {}
+		domRadius2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -279,7 +279,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domTapered_cylinder(DAE& dae) : elemHeight(), elemRadius1(), elemRadius2(), elemExtra_array() {}
+	domTapered_cylinder(DAE& dae) : daeElement(dae), elemHeight(), elemRadius1(), elemRadius2(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

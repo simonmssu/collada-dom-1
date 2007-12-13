@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_materials(DAE& dae) : attrId(), attrName(), elemAsset(), elemMaterial_array(), elemExtra_array() {}
+	domLibrary_materials(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemMaterial_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

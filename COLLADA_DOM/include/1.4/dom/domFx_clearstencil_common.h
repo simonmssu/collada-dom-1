@@ -94,7 +94,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_clearstencil_common(DAE& dae) {}
+	domFx_clearstencil_common(DAE& dae) : daeElement(dae), domFx_clearstencil_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

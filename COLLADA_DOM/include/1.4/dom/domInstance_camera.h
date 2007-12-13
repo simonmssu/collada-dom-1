@@ -73,7 +73,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_camera(DAE& dae) {}
+	domInstance_camera(DAE& dae) : daeElement(dae), domInstanceWithExtra_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

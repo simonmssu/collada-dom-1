@@ -169,7 +169,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstanceWithExtra(DAE& dae) {}
+	domInstanceWithExtra(DAE& dae) : daeElement(dae), domInstanceWithExtra_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

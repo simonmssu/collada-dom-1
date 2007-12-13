@@ -94,7 +94,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_cleardepth_common(DAE& dae) {}
+	domFx_cleardepth_common(DAE& dae) : daeElement(dae), domFx_cleardepth_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

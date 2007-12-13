@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_effects(DAE& dae) : attrId(), attrName(), elemAsset(), elemEffect_array(), elemExtra_array() {}
+	domLibrary_effects(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemEffect_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

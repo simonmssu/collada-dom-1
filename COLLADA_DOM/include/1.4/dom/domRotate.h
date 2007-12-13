@@ -75,7 +75,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domRotate(DAE& dae) : attrSid(), _value() {}
+	domRotate(DAE& dae) : daeElement(dae), attrSid(), _value() {}
 	/**
 	 * Destructor
 	 */

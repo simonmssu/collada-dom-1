@@ -35,6 +35,7 @@ foreach( $bag as $type => $meta )
 void registerDomTypes(DAE& dae)
 {
 	daeAtomicType* type = NULL;
+	daeAtomicTypeList& atomicTypes = dae.getAtomicTypes();
 
 <?php
 

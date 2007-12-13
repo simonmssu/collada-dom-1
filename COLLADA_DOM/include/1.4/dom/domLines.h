@@ -131,7 +131,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLines(DAE& dae) : attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP(), elemExtra_array() {}
+	domLines(DAE& dae) : daeElement(dae), attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

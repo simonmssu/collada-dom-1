@@ -30,7 +30,7 @@ domCOLLADA::create(DAE& dae)
 	domCOLLADARef ref = new domCOLLADA(dae);
 	ref->attrXmlns.setContainer( (domCOLLADA*)ref );
 	ref->attrXml_base.setContainer( (domCOLLADA*)ref );
-	ref->_meta = _Meta;
+	ref->_meta = dae.getMeta(domCOLLADA::getTypeStatic());
 	ref->setAttribute("version", COLLADA_VERSION );
 	ref->setAttribute("xmlns", COLLADA_NAMESPACE );
 	ref->_meta = NULL;

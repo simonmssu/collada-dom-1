@@ -77,7 +77,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domData(DAE& dae) : _value() {}
+		domData(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -143,7 +143,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInit_from(DAE& dae) : _value(dae) {}
+		domInit_from(DAE& dae) : daeElement(dae), _value(dae) {}
 		/**
 		 * Destructor
 		 */
@@ -344,7 +344,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domImage(DAE& dae) : attrId(), attrName(), attrFormat(), attrHeight(), attrWidth(), attrDepth(), elemAsset(), elemData(), elemInit_from(), elemExtra_array() {}
+	domImage(DAE& dae) : daeElement(dae), attrId(), attrName(), attrFormat(), attrHeight(), attrWidth(), attrDepth(), elemAsset(), elemData(), elemInit_from(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

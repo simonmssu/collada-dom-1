@@ -136,7 +136,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domTristrips(DAE& dae) : attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP_array(), elemExtra_array() {}
+	domTristrips(DAE& dae) : daeElement(dae), attrName(), attrCount(), attrMaterial(), elemInput_array(), elemP_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

@@ -85,7 +85,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTechnique_common(DAE& dae) : elemDynamic_friction(), elemRestitution(), elemStatic_friction() {}
+		domTechnique_common(DAE& dae) : daeElement(dae), elemDynamic_friction(), elemRestitution(), elemStatic_friction() {}
 		/**
 		 * Destructor
 		 */
@@ -202,7 +202,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domPhysics_material(DAE& dae) : attrId(), attrName(), elemAsset(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
+	domPhysics_material(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

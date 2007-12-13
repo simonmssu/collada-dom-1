@@ -86,7 +86,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_annotate_common(DAE& dae) {}
+	domFx_annotate_common(DAE& dae) : daeElement(dae), domFx_annotate_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

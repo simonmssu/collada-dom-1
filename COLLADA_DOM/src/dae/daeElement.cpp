@@ -631,8 +631,5 @@ daeElement* daeElement::getAncestor(daeString eltName) {
 }
 
 DAE* daeElement::getDAE() {
-	// !!!steveT This is no good. What happens if the element is removed
-	// from a document? We need to keep a pointer to the DAE object in the
-	// daeMetaElement and use that instead.
-	return (_document ? _document->getDAE() : NULL);
+	return _meta->getDAE();
 }

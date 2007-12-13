@@ -112,7 +112,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_physics_models(DAE& dae) : attrId(), attrName(), elemAsset(), elemPhysics_model_array(), elemExtra_array() {}
+	domLibrary_physics_models(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemPhysics_model_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

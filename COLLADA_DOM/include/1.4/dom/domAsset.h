@@ -81,7 +81,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domAuthor(DAE& dae) : _value() {}
+			domAuthor(DAE& dae) : daeElement(dae), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -142,7 +142,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domAuthoring_tool(DAE& dae) : _value() {}
+			domAuthoring_tool(DAE& dae) : daeElement(dae), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -203,7 +203,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domComments(DAE& dae) : _value() {}
+			domComments(DAE& dae) : daeElement(dae), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -264,7 +264,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domCopyright(DAE& dae) : _value() {}
+			domCopyright(DAE& dae) : daeElement(dae), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -330,7 +330,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domSource_data(DAE& dae) : _value(dae) {}
+			domSource_data(DAE& dae) : daeElement(dae), _value(dae) {}
 			/**
 			 * Destructor
 			 */
@@ -413,7 +413,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domContributor(DAE& dae) : elemAuthor(), elemAuthoring_tool(), elemComments(), elemCopyright(), elemSource_data() {}
+		domContributor(DAE& dae) : daeElement(dae), elemAuthor(), elemAuthoring_tool(), elemComments(), elemCopyright(), elemSource_data() {}
 		/**
 		 * Destructor
 		 */
@@ -475,7 +475,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domCreated(DAE& dae) : _value() {}
+		domCreated(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -536,7 +536,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domKeywords(DAE& dae) : _value() {}
+		domKeywords(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -598,7 +598,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domModified(DAE& dae) : _value() {}
+		domModified(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -659,7 +659,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domRevision(DAE& dae) : _value() {}
+		domRevision(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -720,7 +720,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSubject(DAE& dae) : _value() {}
+		domSubject(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -781,7 +781,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domTitle(DAE& dae) : _value() {}
+		domTitle(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -860,7 +860,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domUnit(DAE& dae) : attrMeter(), attrName() {}
+		domUnit(DAE& dae) : daeElement(dae), attrMeter(), attrName() {}
 		/**
 		 * Destructor
 		 */
@@ -923,7 +923,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domUp_axis(DAE& dae) : _value() {}
+		domUp_axis(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -1058,7 +1058,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domAsset(DAE& dae) : elemContributor_array(), elemCreated(), elemKeywords(), elemModified(), elemRevision(), elemSubject(), elemTitle(), elemUnit(), elemUp_axis() {}
+	domAsset(DAE& dae) : daeElement(dae), elemContributor_array(), elemCreated(), elemKeywords(), elemModified(), elemRevision(), elemSubject(), elemTitle(), elemUnit(), elemUp_axis() {}
 	/**
 	 * Destructor
 	 */

@@ -125,7 +125,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domAccessor(DAE& dae) : attrCount(), attrOffset(), attrSource(dae), attrStride(), elemParam_array() {}
+	domAccessor(DAE& dae) : daeElement(dae), attrCount(), attrOffset(), attrSource(dae), attrStride(), elemParam_array() {}
 	/**
 	 * Destructor
 	 */

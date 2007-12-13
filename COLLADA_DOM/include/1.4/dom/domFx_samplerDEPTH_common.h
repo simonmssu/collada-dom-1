@@ -60,7 +60,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSource(DAE& dae) : _value() {}
+		domSource(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -117,7 +117,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domWrap_s(DAE& dae) : _value() {}
+		domWrap_s(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -174,7 +174,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domWrap_t(DAE& dae) : _value() {}
+		domWrap_t(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -231,7 +231,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMinfilter(DAE& dae) : _value() {}
+		domMinfilter(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -288,7 +288,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domMagfilter(DAE& dae) : _value() {}
+		domMagfilter(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -385,7 +385,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_samplerDEPTH_common(DAE& dae) {}
+	domFx_samplerDEPTH_common(DAE& dae) : daeElement(dae), domFx_samplerDEPTH_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

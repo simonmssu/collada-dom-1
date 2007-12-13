@@ -117,7 +117,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domParam(DAE& dae) : attrName(), attrSid(), attrSemantic(), attrType(), _value() {}
+	domParam(DAE& dae) : daeElement(dae), attrName(), attrSid(), attrSemantic(), attrType(), _value() {}
 	/**
 	 * Destructor
 	 */

@@ -29,7 +29,7 @@ class DAE;
  * A surface type for the GLSL profile. This surface inherits from the fx_surface_common
  * type and adds the ability to programmatically generate textures.
  */
-class domGlsl_surface_type_complexType : public domFx_surface_common_complexType
+class domGlsl_surface_type_complexType  : public domFx_surface_common_complexType
 {
 public:
 	class domGenerator;
@@ -95,7 +95,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domName(DAE& dae) : attrSource(), _value() {}
+			domName(DAE& dae) : daeElement(dae), attrSource(), _value() {}
 			/**
 			 * Destructor
 			 */
@@ -222,7 +222,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domGenerator(DAE& dae) : elemAnnotate_array(), elemCode_array(), elemInclude_array(), elemName(), elemSetparam_array() {}
+		domGenerator(DAE& dae) : daeElement(dae), elemAnnotate_array(), elemCode_array(), elemInclude_array(), elemName(), elemSetparam_array() {}
 		/**
 		 * Destructor
 		 */
@@ -264,7 +264,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_surface_type_complexType(DAE& dae) : , elemGenerator() {}
+	domGlsl_surface_type_complexType(DAE& dae) : domFx_surface_common_complexType(dae), elemGenerator() {}
 	/**
 	 * Destructor
 	 */
@@ -287,7 +287,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_surface_type(DAE& dae) {}
+	domGlsl_surface_type(DAE& dae) : daeElement(dae), domGlsl_surface_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

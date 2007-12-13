@@ -165,7 +165,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_newarray_type(DAE& dae) {}
+	domCg_newarray_type(DAE& dae) : daeElement(dae), domCg_newarray_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */

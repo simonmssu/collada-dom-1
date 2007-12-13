@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_force_fields(DAE& dae) : attrId(), attrName(), elemAsset(), elemForce_field_array(), elemExtra_array() {}
+	domLibrary_force_fields(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemForce_field_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

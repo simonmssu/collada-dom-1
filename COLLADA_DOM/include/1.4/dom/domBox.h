@@ -71,7 +71,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf_extents(DAE& dae) : _value() {}
+		domHalf_extents(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
@@ -127,7 +127,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domBox(DAE& dae) : elemHalf_extents(), elemExtra_array() {}
+	domBox(DAE& dae) : daeElement(dae), elemHalf_extents(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

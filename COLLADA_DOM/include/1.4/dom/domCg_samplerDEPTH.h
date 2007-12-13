@@ -21,14 +21,14 @@
 #include <dom/domFx_samplerDEPTH_common.h>
 class DAE;
 
-class domCg_samplerDEPTH_complexType : public domFx_samplerDEPTH_common_complexType
+class domCg_samplerDEPTH_complexType  : public domFx_samplerDEPTH_common_complexType
 {
 
 protected:
 	/**
 	 * Constructor
 	 */
-	domCg_samplerDEPTH_complexType(DAE& dae) :  {}
+	domCg_samplerDEPTH_complexType(DAE& dae) : domFx_samplerDEPTH_common_complexType(dae) {}
 	/**
 	 * Destructor
 	 */
@@ -51,7 +51,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_samplerDEPTH(DAE& dae) {}
+	domCg_samplerDEPTH(DAE& dae) : daeElement(dae), domCg_samplerDEPTH_complexType(dae) {}
 	/**
 	 * Destructor
 	 */
