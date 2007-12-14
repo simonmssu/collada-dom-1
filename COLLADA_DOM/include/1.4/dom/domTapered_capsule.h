@@ -29,7 +29,8 @@ class domTapered_capsule : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TAPERED_CAPSULE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TAPERED_CAPSULE; }
+	static daeInt typeIDStatic() { return 785; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 public:
 	class domHeight;
 
@@ -44,7 +45,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HEIGHT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HEIGHT; }
+		static daeInt typeIDStatic() { return 786; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -105,7 +107,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RADIUS1; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::RADIUS1; }
+		static daeInt typeIDStatic() { return 787; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -171,7 +174,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RADIUS2; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::RADIUS2; }
+		static daeInt typeIDStatic() { return 788; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**

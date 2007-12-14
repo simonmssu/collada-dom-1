@@ -33,11 +33,11 @@ domInstance_material::create(DAE& dae)
 daeMetaElement *
 domInstance_material::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "instance_material" );
 	meta->registerClass(domInstance_material::create, &meta);
 
@@ -129,11 +129,11 @@ domInstance_material::domBind::create(DAE& dae)
 daeMetaElement *
 domInstance_material::domBind::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bind" );
 	meta->registerClass(domInstance_material::domBind::create, &meta);
 
@@ -180,11 +180,11 @@ domInstance_material::domBind_vertex_input::create(DAE& dae)
 daeMetaElement *
 domInstance_material::domBind_vertex_input::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bind_vertex_input" );
 	meta->registerClass(domInstance_material::domBind_vertex_input::create, &meta);
 

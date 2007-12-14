@@ -80,7 +80,8 @@ class domGlsl_setparam_simple : public daeElement, public domGlsl_setparam_simpl
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLSL_SETPARAM_SIMPLE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GLSL_SETPARAM_SIMPLE; }
+	static daeInt typeIDStatic() { return 111; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

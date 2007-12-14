@@ -147,7 +147,8 @@ class domCg_newarray_type : public daeElement, public domCg_newarray_type_comple
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_NEWARRAY_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CG_NEWARRAY_TYPE; }
+	static daeInt typeIDStatic() { return 134; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

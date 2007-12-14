@@ -134,3 +134,7 @@ daeMetaElement* registerDomElements(DAE& dae)
 	meta->setIsTrackableForQueries(true);
 	return meta;	
 }
+
+daeInt DLLSPEC colladaTypeCount() {
+	return <?php /* +1 for <any> */ print ($_globals['typeID']+1); ?>;
+}

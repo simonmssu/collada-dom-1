@@ -52,7 +52,7 @@
 		print "\tref->_value.setContainer( (". $scoped_element ."*)ref );\n";
 	}
 	if ( $scoped_element == "domCOLLADA" ) {
-		print "\tref->_meta = dae.getMeta(domCOLLADA::getTypeStatic());\n";
+		print "\tref->_meta = dae.getMeta(domCOLLADA::typeIDStatic());\n";
 		print "\tref->setAttribute(\"version\", COLLADA_VERSION );\n";
 		print "\tref->setAttribute(\"xmlns\", COLLADA_NAMESPACE );\n";
 		print "\tref->_meta = NULL;\n";
@@ -98,11 +98,11 @@
 <?= $_globals['meta_prefix'] ?>MetaElement *
 <?= $scoped_element ?>::registerElement(DAE& dae)
 {
-	<?= $_globals['meta_prefix'] ?>MetaElement* meta = dae.getMeta(getTypeStatic());
+	<?= $_globals['meta_prefix'] ?>MetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "<?= $bag['element_name'] ?>" );
 	meta->registerClass(<?= $scoped_element ?>::create, &meta);
 

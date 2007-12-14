@@ -30,7 +30,8 @@ class domP : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::P; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::P; }
+	static daeInt typeIDStatic() { return 617; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 protected:  // Value
 	/**

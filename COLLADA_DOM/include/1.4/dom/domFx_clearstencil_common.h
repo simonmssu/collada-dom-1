@@ -76,7 +76,8 @@ class domFx_clearstencil_common : public daeElement, public domFx_clearstencil_c
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_CLEARSTENCIL_COMMON; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FX_CLEARSTENCIL_COMMON; }
+	static daeInt typeIDStatic() { return 90; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

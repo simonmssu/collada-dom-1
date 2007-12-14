@@ -32,11 +32,11 @@ domCommon_newparam_type::create(DAE& dae)
 daeMetaElement *
 domCommon_newparam_type::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "common_newparam_type" );
 	meta->registerClass(domCommon_newparam_type::create, &meta);
 
@@ -128,11 +128,11 @@ domCommon_newparam_type::domSemantic::create(DAE& dae)
 daeMetaElement *
 domCommon_newparam_type::domSemantic::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "semantic" );
 	meta->registerClass(domCommon_newparam_type::domSemantic::create, &meta);
 
@@ -164,11 +164,11 @@ domCommon_newparam_type::domFloat::create(DAE& dae)
 daeMetaElement *
 domCommon_newparam_type::domFloat::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float" );
 	meta->registerClass(domCommon_newparam_type::domFloat::create, &meta);
 
@@ -200,11 +200,11 @@ domCommon_newparam_type::domFloat2::create(DAE& dae)
 daeMetaElement *
 domCommon_newparam_type::domFloat2::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2" );
 	meta->registerClass(domCommon_newparam_type::domFloat2::create, &meta);
 
@@ -236,11 +236,11 @@ domCommon_newparam_type::domFloat3::create(DAE& dae)
 daeMetaElement *
 domCommon_newparam_type::domFloat3::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3" );
 	meta->registerClass(domCommon_newparam_type::domFloat3::create, &meta);
 
@@ -272,11 +272,11 @@ domCommon_newparam_type::domFloat4::create(DAE& dae)
 daeMetaElement *
 domCommon_newparam_type::domFloat4::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4" );
 	meta->registerClass(domCommon_newparam_type::domFloat4::create, &meta);
 

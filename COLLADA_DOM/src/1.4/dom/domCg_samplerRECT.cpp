@@ -32,11 +32,11 @@ domCg_samplerRECT::create(DAE& dae)
 daeMetaElement *
 domCg_samplerRECT::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cg_samplerRECT" );
 	meta->registerClass(domCg_samplerRECT::create, &meta);
 

@@ -129,7 +129,8 @@ class domCg_setparam : public daeElement, public domCg_setparam_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SETPARAM; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CG_SETPARAM; }
+	static daeInt typeIDStatic() { return 144; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

@@ -32,11 +32,11 @@ domGlsl_param_type::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "glsl_param_type" );
 	meta->registerClass(domGlsl_param_type::create, &meta);
 
@@ -207,11 +207,11 @@ domGlsl_param_type::domBool::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domBool::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool" );
 	meta->registerClass(domGlsl_param_type::domBool::create, &meta);
 
@@ -243,11 +243,11 @@ domGlsl_param_type::domBool2::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domBool2::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool2" );
 	meta->registerClass(domGlsl_param_type::domBool2::create, &meta);
 
@@ -279,11 +279,11 @@ domGlsl_param_type::domBool3::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domBool3::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool3" );
 	meta->registerClass(domGlsl_param_type::domBool3::create, &meta);
 
@@ -315,11 +315,11 @@ domGlsl_param_type::domBool4::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domBool4::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool4" );
 	meta->registerClass(domGlsl_param_type::domBool4::create, &meta);
 
@@ -351,11 +351,11 @@ domGlsl_param_type::domFloat::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domFloat::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float" );
 	meta->registerClass(domGlsl_param_type::domFloat::create, &meta);
 
@@ -387,11 +387,11 @@ domGlsl_param_type::domFloat2::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domFloat2::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2" );
 	meta->registerClass(domGlsl_param_type::domFloat2::create, &meta);
 
@@ -423,11 +423,11 @@ domGlsl_param_type::domFloat3::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domFloat3::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3" );
 	meta->registerClass(domGlsl_param_type::domFloat3::create, &meta);
 
@@ -459,11 +459,11 @@ domGlsl_param_type::domFloat4::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domFloat4::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4" );
 	meta->registerClass(domGlsl_param_type::domFloat4::create, &meta);
 
@@ -495,11 +495,11 @@ domGlsl_param_type::domFloat2x2::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domFloat2x2::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2x2" );
 	meta->registerClass(domGlsl_param_type::domFloat2x2::create, &meta);
 
@@ -531,11 +531,11 @@ domGlsl_param_type::domFloat3x3::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domFloat3x3::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3x3" );
 	meta->registerClass(domGlsl_param_type::domFloat3x3::create, &meta);
 
@@ -567,11 +567,11 @@ domGlsl_param_type::domFloat4x4::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domFloat4x4::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4x4" );
 	meta->registerClass(domGlsl_param_type::domFloat4x4::create, &meta);
 
@@ -603,11 +603,11 @@ domGlsl_param_type::domInt::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domInt::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int" );
 	meta->registerClass(domGlsl_param_type::domInt::create, &meta);
 
@@ -639,11 +639,11 @@ domGlsl_param_type::domInt2::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domInt2::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int2" );
 	meta->registerClass(domGlsl_param_type::domInt2::create, &meta);
 
@@ -675,11 +675,11 @@ domGlsl_param_type::domInt3::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domInt3::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int3" );
 	meta->registerClass(domGlsl_param_type::domInt3::create, &meta);
 
@@ -711,11 +711,11 @@ domGlsl_param_type::domInt4::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domInt4::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int4" );
 	meta->registerClass(domGlsl_param_type::domInt4::create, &meta);
 
@@ -747,11 +747,11 @@ domGlsl_param_type::domEnum::create(DAE& dae)
 daeMetaElement *
 domGlsl_param_type::domEnum::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "enum" );
 	meta->registerClass(domGlsl_param_type::domEnum::create, &meta);
 

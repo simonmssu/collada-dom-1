@@ -32,11 +32,11 @@ domPolylist::create(DAE& dae)
 daeMetaElement *
 domPolylist::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "polylist" );
 	meta->registerClass(domPolylist::create, &meta);
 
@@ -122,11 +122,11 @@ domPolylist::domVcount::create(DAE& dae)
 daeMetaElement *
 domPolylist::domVcount::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "vcount" );
 	meta->registerClass(domPolylist::domVcount::create, &meta);
 

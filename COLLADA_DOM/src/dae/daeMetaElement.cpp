@@ -141,7 +141,8 @@ daeMetaElement::addContents(daeInt offset)
 	meaa->setName("contents");
 	meaa->setOffset(offset);
 	meaa->setContainer( this);
-	meaa->setElementType( daeElement::getMeta() );
+	// !!!steveT Remove
+	//meaa->setElementType( daeElement::getMeta() );
 	_metaContents = meaa;
 }
 void
@@ -238,8 +239,9 @@ daeMetaElement::appendAttribute(daeMetaAttribute* attr)
 void
 daeMetaElement::validate()
 {
-	if (_createFunc == NULL)
-		_createFunc = DAECreateElement;
+	// !!!steveT wtf is going on here
+	// if (_createFunc == NULL)
+	// 	_createFunc = DAECreateElement;
 	if (_elementSize == 0)
 	{
 		daeInt place=0;

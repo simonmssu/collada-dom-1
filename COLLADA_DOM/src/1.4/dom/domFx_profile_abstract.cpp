@@ -32,11 +32,11 @@ domFx_profile_abstract::create(DAE& dae)
 daeMetaElement *
 domFx_profile_abstract::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_profile_abstract" );
 	meta->registerClass(domFx_profile_abstract::create, &meta);
 

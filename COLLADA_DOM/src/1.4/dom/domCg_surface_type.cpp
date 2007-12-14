@@ -32,11 +32,11 @@ domCg_surface_type::create(DAE& dae)
 daeMetaElement *
 domCg_surface_type::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cg_surface_type" );
 	meta->registerClass(domCg_surface_type::create, &meta);
 
@@ -152,11 +152,11 @@ domCg_surface_type::domGenerator::create(DAE& dae)
 daeMetaElement *
 domCg_surface_type::domGenerator::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "generator" );
 	meta->registerClass(domCg_surface_type::domGenerator::create, &meta);
 
@@ -225,11 +225,11 @@ domCg_surface_type::domGenerator::domName::create(DAE& dae)
 daeMetaElement *
 domCg_surface_type::domGenerator::domName::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "name" );
 	meta->registerClass(domCg_surface_type::domGenerator::domName::create, &meta);
 

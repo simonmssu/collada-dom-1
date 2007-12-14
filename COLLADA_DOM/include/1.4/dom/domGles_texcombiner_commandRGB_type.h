@@ -89,7 +89,8 @@ class domGles_texcombiner_commandRGB_type : public daeElement, public domGles_te
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXCOMBINER_COMMANDRGB_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GLES_TEXCOMBINER_COMMANDRGB_TYPE; }
+	static daeInt typeIDStatic() { return 149; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

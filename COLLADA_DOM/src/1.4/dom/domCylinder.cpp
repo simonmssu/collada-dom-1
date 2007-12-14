@@ -32,11 +32,11 @@ domCylinder::create(DAE& dae)
 daeMetaElement *
 domCylinder::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cylinder" );
 	meta->registerClass(domCylinder::create, &meta);
 
@@ -82,11 +82,11 @@ domCylinder::domHeight::create(DAE& dae)
 daeMetaElement *
 domCylinder::domHeight::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "height" );
 	meta->registerClass(domCylinder::domHeight::create, &meta);
 
@@ -118,11 +118,11 @@ domCylinder::domRadius::create(DAE& dae)
 daeMetaElement *
 domCylinder::domRadius::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "radius" );
 	meta->registerClass(domCylinder::domRadius::create, &meta);
 

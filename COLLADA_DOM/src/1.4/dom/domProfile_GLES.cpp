@@ -32,11 +32,11 @@ domProfile_GLES::create(DAE& dae)
 daeMetaElement *
 domProfile_GLES::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "profile_GLES" );
 	meta->registerClass(domProfile_GLES::create, &meta);
 
@@ -129,11 +129,11 @@ domProfile_GLES::domTechnique::create(DAE& dae)
 daeMetaElement *
 domProfile_GLES::domTechnique::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique" );
 	meta->registerClass(domProfile_GLES::domTechnique::create, &meta);
 
@@ -237,11 +237,11 @@ domProfile_GLES::domTechnique::domSetparam::create(DAE& dae)
 daeMetaElement *
 domProfile_GLES::domTechnique::domSetparam::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "setparam" );
 	meta->registerClass(domProfile_GLES::domTechnique::domSetparam::create, &meta);
 
@@ -294,11 +294,11 @@ domProfile_GLES::domTechnique::domPass::create(DAE& dae)
 daeMetaElement *
 domProfile_GLES::domTechnique::domPass::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "pass" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::create, &meta);
 
@@ -409,11 +409,11 @@ domProfile_GLES::domTechnique::domPass::domColor_target::create(DAE& dae)
 daeMetaElement *
 domProfile_GLES::domTechnique::domPass::domColor_target::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "color_target" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domColor_target::create, &meta);
 
@@ -445,11 +445,11 @@ domProfile_GLES::domTechnique::domPass::domDepth_target::create(DAE& dae)
 daeMetaElement *
 domProfile_GLES::domTechnique::domPass::domDepth_target::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "depth_target" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domDepth_target::create, &meta);
 
@@ -481,11 +481,11 @@ domProfile_GLES::domTechnique::domPass::domStencil_target::create(DAE& dae)
 daeMetaElement *
 domProfile_GLES::domTechnique::domPass::domStencil_target::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "stencil_target" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domStencil_target::create, &meta);
 
@@ -517,11 +517,11 @@ domProfile_GLES::domTechnique::domPass::domColor_clear::create(DAE& dae)
 daeMetaElement *
 domProfile_GLES::domTechnique::domPass::domColor_clear::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "color_clear" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domColor_clear::create, &meta);
 
@@ -553,11 +553,11 @@ domProfile_GLES::domTechnique::domPass::domDepth_clear::create(DAE& dae)
 daeMetaElement *
 domProfile_GLES::domTechnique::domPass::domDepth_clear::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "depth_clear" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domDepth_clear::create, &meta);
 
@@ -589,11 +589,11 @@ domProfile_GLES::domTechnique::domPass::domStencil_clear::create(DAE& dae)
 daeMetaElement *
 domProfile_GLES::domTechnique::domPass::domStencil_clear::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "stencil_clear" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domStencil_clear::create, &meta);
 
@@ -625,11 +625,11 @@ domProfile_GLES::domTechnique::domPass::domDraw::create(DAE& dae)
 daeMetaElement *
 domProfile_GLES::domTechnique::domPass::domDraw::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "draw" );
 	meta->registerClass(domProfile_GLES::domTechnique::domPass::domDraw::create, &meta);
 

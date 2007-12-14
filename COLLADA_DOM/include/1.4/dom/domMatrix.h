@@ -29,7 +29,8 @@ class domMatrix : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATRIX; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MATRIX; }
+	static daeInt typeIDStatic() { return 630; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier

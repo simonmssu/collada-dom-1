@@ -32,11 +32,11 @@ domFx_samplerRECT_common::create(DAE& dae)
 daeMetaElement *
 domFx_samplerRECT_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_samplerRECT_common" );
 	meta->registerClass(domFx_samplerRECT_common::create, &meta);
 
@@ -124,11 +124,11 @@ domFx_samplerRECT_common::domSource::create(DAE& dae)
 daeMetaElement *
 domFx_samplerRECT_common::domSource::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "source" );
 	meta->registerClass(domFx_samplerRECT_common::domSource::create, &meta);
 
@@ -160,11 +160,11 @@ domFx_samplerRECT_common::domWrap_s::create(DAE& dae)
 daeMetaElement *
 domFx_samplerRECT_common::domWrap_s::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "wrap_s" );
 	meta->registerClass(domFx_samplerRECT_common::domWrap_s::create, &meta);
 
@@ -196,11 +196,11 @@ domFx_samplerRECT_common::domWrap_t::create(DAE& dae)
 daeMetaElement *
 domFx_samplerRECT_common::domWrap_t::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "wrap_t" );
 	meta->registerClass(domFx_samplerRECT_common::domWrap_t::create, &meta);
 
@@ -232,11 +232,11 @@ domFx_samplerRECT_common::domMinfilter::create(DAE& dae)
 daeMetaElement *
 domFx_samplerRECT_common::domMinfilter::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "minfilter" );
 	meta->registerClass(domFx_samplerRECT_common::domMinfilter::create, &meta);
 
@@ -268,11 +268,11 @@ domFx_samplerRECT_common::domMagfilter::create(DAE& dae)
 daeMetaElement *
 domFx_samplerRECT_common::domMagfilter::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "magfilter" );
 	meta->registerClass(domFx_samplerRECT_common::domMagfilter::create, &meta);
 
@@ -304,11 +304,11 @@ domFx_samplerRECT_common::domMipfilter::create(DAE& dae)
 daeMetaElement *
 domFx_samplerRECT_common::domMipfilter::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mipfilter" );
 	meta->registerClass(domFx_samplerRECT_common::domMipfilter::create, &meta);
 
@@ -340,11 +340,11 @@ domFx_samplerRECT_common::domBorder_color::create(DAE& dae)
 daeMetaElement *
 domFx_samplerRECT_common::domBorder_color::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "border_color" );
 	meta->registerClass(domFx_samplerRECT_common::domBorder_color::create, &meta);
 
@@ -376,11 +376,11 @@ domFx_samplerRECT_common::domMipmap_maxlevel::create(DAE& dae)
 daeMetaElement *
 domFx_samplerRECT_common::domMipmap_maxlevel::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mipmap_maxlevel" );
 	meta->registerClass(domFx_samplerRECT_common::domMipmap_maxlevel::create, &meta);
 
@@ -412,11 +412,11 @@ domFx_samplerRECT_common::domMipmap_bias::create(DAE& dae)
 daeMetaElement *
 domFx_samplerRECT_common::domMipmap_bias::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mipmap_bias" );
 	meta->registerClass(domFx_samplerRECT_common::domMipmap_bias::create, &meta);
 

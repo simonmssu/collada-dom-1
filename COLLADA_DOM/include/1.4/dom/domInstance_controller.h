@@ -30,7 +30,8 @@ class domInstance_controller : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_CONTROLLER; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INSTANCE_CONTROLLER; }
+	static daeInt typeIDStatic() { return 689; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 public:
 	class domSkeleton;
 
@@ -46,7 +47,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SKELETON; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SKELETON; }
+		static daeInt typeIDStatic() { return 690; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**

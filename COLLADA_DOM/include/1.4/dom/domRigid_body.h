@@ -46,7 +46,8 @@ class domRigid_body : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RIGID_BODY; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::RIGID_BODY; }
+	static daeInt typeIDStatic() { return 795; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 public:
 	class domTechnique_common;
 
@@ -61,7 +62,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+		static daeInt typeIDStatic() { return 796; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 	public:
 		class domDynamic;
 
@@ -75,7 +77,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DYNAMIC; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DYNAMIC; }
+			static daeInt typeIDStatic() { return 797; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 		protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier
@@ -156,7 +159,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MASS_FRAME; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MASS_FRAME; }
+			static daeInt typeIDStatic() { return 798; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 
 		protected:  // Elements
 			domTranslate_Array elemTranslate_array;
@@ -248,7 +252,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SHAPE; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SHAPE; }
+			static daeInt typeIDStatic() { return 799; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 		public:
 			class domHollow;
 
@@ -262,7 +267,8 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HOLLOW; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::HOLLOW; }
+				static daeInt typeIDStatic() { return 800; }
+				virtual daeInt typeID() const { return typeIDStatic(); }
 			protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier

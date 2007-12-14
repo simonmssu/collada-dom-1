@@ -65,7 +65,7 @@ void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 	defaultPlugin = false;
 	registerFunc = NULL;
 	topMeta = NULL;
-	metas.setCount(COLLADA_TYPE::TYPE_COUNT-2);
+	metas.setCount(colladaTypeCount());
 
 	topMeta = initializeDomMeta(*this);
 	DAEInstanceCount++;
@@ -442,22 +442,20 @@ daeAtomicTypeList& DAE::getAtomicTypes() {
 	return atomicTypes;
 }
 
-daeMetaElement* DAE::getMeta(int typeID) {
-	int index = typeID - 2;
-	if (index < 0 || index >= int(metas.getCount()))
+daeMetaElement* DAE::getMeta(daeInt typeID) {
+	if (typeID < 0 || typeID >= daeInt(metas.getCount()))
 		return NULL;
-	return metas[index];
+	return metas[typeID];
 }
 
 daeMetaElementRefArray& DAE::getAllMetas() {
 	return metas;
 }
 
-void DAE::setMeta(int typeID, daeMetaElement& meta) {
-	int index = typeID - 2;
-	if (index < 0 || index >= int(metas.getCount()))
+void DAE::setMeta(daeInt typeID, daeMetaElement& meta) {
+	if (typeID < 0 || typeID >= daeInt(metas.getCount()))
 		return;
-	metas[index] = &meta;
+	metas[typeID] = &meta;
 }
 
 void DAE::appendResolveElement(daeElement* elem) {

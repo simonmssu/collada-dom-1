@@ -28,7 +28,8 @@ class domInstance_rigid_constraint : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_RIGID_CONSTRAINT; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INSTANCE_RIGID_CONSTRAINT; }
+	static daeInt typeIDStatic() { return 711; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 protected:  // Attributes
 /**
  *  The constraint attribute indicates which rigid_constraing to instantiate.

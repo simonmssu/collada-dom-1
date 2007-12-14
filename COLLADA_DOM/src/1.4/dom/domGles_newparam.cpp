@@ -32,11 +32,11 @@ domGles_newparam::create(DAE& dae)
 daeMetaElement *
 domGles_newparam::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "gles_newparam" );
 	meta->registerClass(domGles_newparam::create, &meta);
 
@@ -100,11 +100,11 @@ domGles_newparam::domSemantic::create(DAE& dae)
 daeMetaElement *
 domGles_newparam::domSemantic::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "semantic" );
 	meta->registerClass(domGles_newparam::domSemantic::create, &meta);
 
@@ -136,11 +136,11 @@ domGles_newparam::domModifier::create(DAE& dae)
 daeMetaElement *
 domGles_newparam::domModifier::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "modifier" );
 	meta->registerClass(domGles_newparam::domModifier::create, &meta);
 

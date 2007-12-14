@@ -512,6 +512,8 @@ public:
 	 */
 	daeString getTypeName() const;
 
+	virtual daeInt typeID() const = 0;
+
 	/**
 	 * Gets this element's name.
 	 * @return Returns the string for the name.
@@ -587,6 +589,6 @@ typedef daeSmartRef<const daeElement> daeElementConstRef;
 //#include <dae/daeArray.h>
 typedef daeTArray<daeElementRef> daeElementRefArray;
 
-extern daeElementRef DAECreateElement(DAE& dae);
+//extern daeElementRef DAECreateElement(DAE& dae);
 
 #endif //__DAE_ELEMENT_H__

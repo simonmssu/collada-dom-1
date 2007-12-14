@@ -2935,3 +2935,7 @@ daeMetaElement* registerDomElements(DAE& dae)
 	meta->setIsTrackableForQueries(true);
 	return meta;	
 }
+
+daeInt DLLSPEC colladaTypeCount() {
+	return 815;
+}

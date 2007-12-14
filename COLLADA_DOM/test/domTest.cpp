@@ -17,6 +17,8 @@
 #include <dae/daeErrorHandler.h>
 #include <dom/domFx_surface_init_from_common.h>
 #include <../include/modules/stdErrPlugin.h>
+#include <dom/domEllipsoid.h>
+#include <dom/domInputGlobal.h>
 
 // We use the boost filesystem library for cross-platform file system support. You'll need
 // to have boost on your machine for this to work. For the Windows build boost is provided
@@ -1243,6 +1245,8 @@ DefineTest(xmlNavigation) {
 
 
 DefineTest(multipleDae) {
+	// Basically we just want to make sure that having multiple DAE objects doesn't
+	// crash the DOM.
 	DAE dae1;
 	DAE dae2;
 	CheckResult(dae2.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
@@ -1250,13 +1254,31 @@ DefineTest(multipleDae) {
 }
 
 
-DefineTest(simple) {
+DefineTest(unusedTypeCheck) {
 	DAE dae;
+
+	// The following types are defined in the schema but aren't used anywhere in
+	// Collada, so they should have a null meta entry:
+	//   ellipsoid
+	//   ellipsoid/size
+	//   InputGlobal
+	// Also, <any> doesn't use a single global meta, so it'll also show up in the
+	// set of elements that don't have metas.
+	set<int> expectedUnusedTypes;
+	expectedUnusedTypes.insert(domEllipsoid::typeIDStatic());
+	expectedUnusedTypes.insert(domEllipsoid::domSize::typeIDStatic());
+	expectedUnusedTypes.insert(domInputGlobal::typeIDStatic());
+	expectedUnusedTypes.insert(domAny::typeIDStatic());
+
+	// Collect the list of types that don't have a corresponding meta defined
+	set<int> actualUnusedTypes;
 	const daeMetaElementRefArray &metas = dae.getAllMetas();
 	for (size_t i = 0; i < metas.getCount(); i++)
 		if (!metas[i])
-			cout << i << endl;
-	return testResult(true);
+			actualUnusedTypes.insert(i);
+
+	// Make sure the set of unused types matches what we expect
+	return testResult(expectedUnusedTypes == actualUnusedTypes);
 }
 
 

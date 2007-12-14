@@ -46,7 +46,8 @@ class domCg_sampler2D : public daeElement, public domCg_sampler2D_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SAMPLER2D; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CG_SAMPLER2D; }
+	static daeInt typeIDStatic() { return 128; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 protected:
 	/**
 	 * Constructor

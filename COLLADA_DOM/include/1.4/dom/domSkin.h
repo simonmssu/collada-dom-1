@@ -32,7 +32,8 @@ class domSkin : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SKIN; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SKIN; }
+	static daeInt typeIDStatic() { return 656; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 public:
 	class domBind_shape_matrix;
 
@@ -49,7 +50,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND_SHAPE_MATRIX; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BIND_SHAPE_MATRIX; }
+		static daeInt typeIDStatic() { return 657; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -116,7 +118,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::JOINTS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::JOINTS; }
+		static daeInt typeIDStatic() { return 658; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Elements
 /**
@@ -191,7 +194,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VERTEX_WEIGHTS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::VERTEX_WEIGHTS; }
+		static daeInt typeIDStatic() { return 659; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 	public:
 		class domVcount;
 
@@ -206,7 +210,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VCOUNT; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::VCOUNT; }
+			static daeInt typeIDStatic() { return 660; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 
 		protected:  // Value
 			/**
@@ -274,7 +279,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::V; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::V; }
+			static daeInt typeIDStatic() { return 661; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 
 		protected:  // Value
 			/**

@@ -84,7 +84,8 @@ class domGles_texcombiner_argumentRGB_type : public daeElement, public domGles_t
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXCOMBINER_ARGUMENTRGB_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GLES_TEXCOMBINER_ARGUMENTRGB_TYPE; }
+	static daeInt typeIDStatic() { return 147; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

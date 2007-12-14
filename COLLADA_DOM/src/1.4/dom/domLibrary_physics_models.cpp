@@ -32,11 +32,11 @@ domLibrary_physics_models::create(DAE& dae)
 daeMetaElement *
 domLibrary_physics_models::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_physics_models" );
 	meta->registerClass(domLibrary_physics_models::create, &meta);
 

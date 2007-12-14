@@ -71,7 +71,8 @@
 		print $indent ."class ". $full_element_name . getInheritanceStatement($baseClasses) . "\n".$indent."{\n";
 		print $indent ."public:\n";
 		print $indent ."\tvirtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
-		print $indent ."\tstatic COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
+		print $indent ."\tstatic daeInt typeIDStatic() { return ". $_globals['typeID']++ ."; }\n";
+		print $indent ."\tvirtual daeInt typeID() const { return typeIDStatic(); }\n";
 	}
 
   // INTERNAL CLASSES
@@ -454,8 +455,9 @@
 		print $indent ."{\n";
 		print $indent ."public:\n";
 		print $indent ."\tvirtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
-		print $indent ."\tstatic COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
-		
+		print $indent ."\tstatic daeInt typeIDStatic() { return ". $_globals['typeID']++ ."; }\n";
+		print $indent ."\tvirtual daeInt typeID() const { return typeIDStatic(); }\n";
+
 		if ( $_globals['accessorsAndMutators'] && ( $bag['useXMLNS'] || count($bag['attributes'])>0 ) ) {
 			//generate accessors and mutators for everything
 			print "\n". $indent ."public:\t//Accessors and Mutators\n";

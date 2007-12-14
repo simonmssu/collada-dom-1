@@ -29,7 +29,8 @@ class domInstance_node : public daeElement, public domInstanceWithExtra_complexT
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_NODE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INSTANCE_NODE; }
+	static daeInt typeIDStatic() { return 700; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 	/**
 	 * Gets the url attribute.

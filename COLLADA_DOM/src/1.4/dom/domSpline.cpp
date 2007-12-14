@@ -32,11 +32,11 @@ domSpline::create(DAE& dae)
 daeMetaElement *
 domSpline::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "spline" );
 	meta->registerClass(domSpline::create, &meta);
 
@@ -94,11 +94,11 @@ domSpline::domControl_vertices::create(DAE& dae)
 daeMetaElement *
 domSpline::domControl_vertices::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "control_vertices" );
 	meta->registerClass(domSpline::domControl_vertices::create, &meta);
 

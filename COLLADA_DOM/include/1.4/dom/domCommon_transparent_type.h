@@ -61,7 +61,8 @@ class domCommon_transparent_type : public daeElement, public domCommon_transpare
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMON_TRANSPARENT_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COMMON_TRANSPARENT_TYPE; }
+	static daeInt typeIDStatic() { return 120; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

@@ -32,11 +32,11 @@ domFx_surface_common::create(DAE& dae)
 daeMetaElement *
 domFx_surface_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_surface_common" );
 	meta->registerClass(domFx_surface_common::create, &meta);
 
@@ -134,11 +134,11 @@ domFx_surface_common::domFormat::create(DAE& dae)
 daeMetaElement *
 domFx_surface_common::domFormat::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "format" );
 	meta->registerClass(domFx_surface_common::domFormat::create, &meta);
 
@@ -170,11 +170,11 @@ domFx_surface_common::domSize::create(DAE& dae)
 daeMetaElement *
 domFx_surface_common::domSize::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "size" );
 	meta->registerClass(domFx_surface_common::domSize::create, &meta);
 
@@ -206,11 +206,11 @@ domFx_surface_common::domViewport_ratio::create(DAE& dae)
 daeMetaElement *
 domFx_surface_common::domViewport_ratio::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "viewport_ratio" );
 	meta->registerClass(domFx_surface_common::domViewport_ratio::create, &meta);
 
@@ -242,11 +242,11 @@ domFx_surface_common::domMip_levels::create(DAE& dae)
 daeMetaElement *
 domFx_surface_common::domMip_levels::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mip_levels" );
 	meta->registerClass(domFx_surface_common::domMip_levels::create, &meta);
 
@@ -278,11 +278,11 @@ domFx_surface_common::domMipmap_generate::create(DAE& dae)
 daeMetaElement *
 domFx_surface_common::domMipmap_generate::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mipmap_generate" );
 	meta->registerClass(domFx_surface_common::domMipmap_generate::create, &meta);
 

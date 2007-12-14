@@ -18,6 +18,7 @@
 #include <dae/daeArrayTypes.h>
 #include <dae/daeElement.h>
 #include <dae/daeMetaAttribute.h>
+#include <dae/daeRefCountedObj.h>
 
 class DAE;
 class daeMetaCMPolicy;
@@ -43,7 +44,7 @@ typedef daeElementRef (*daeElementConstructFunctionPtr)(DAE& dae);
  * @par
  * See @c daeElement for information about the functionality that every @c daeElement implements.
  */
-class daeMetaElement : public daeElement
+class daeMetaElement : public daeRefCountedObj
 {
 protected:
 	daeStringRef _name;

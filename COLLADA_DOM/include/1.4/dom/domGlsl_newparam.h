@@ -35,7 +35,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SEMANTIC; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SEMANTIC; }
+		static daeInt typeIDStatic() { return 108; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -92,7 +93,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODIFIER; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MODIFIER; }
+		static daeInt typeIDStatic() { return 109; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -240,7 +242,8 @@ class domGlsl_newparam : public daeElement, public domGlsl_newparam_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLSL_NEWPARAM; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GLSL_NEWPARAM; }
+	static daeInt typeIDStatic() { return 110; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

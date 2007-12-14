@@ -32,11 +32,11 @@ domFx_clearcolor_common::create(DAE& dae)
 daeMetaElement *
 domFx_clearcolor_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_clearcolor_common" );
 	meta->registerClass(domFx_clearcolor_common::create, &meta);
 

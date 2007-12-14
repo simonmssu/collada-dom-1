@@ -32,11 +32,11 @@ domEllipsoid::create(DAE& dae)
 daeMetaElement *
 domEllipsoid::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "ellipsoid" );
 	meta->registerClass(domEllipsoid::create, &meta);
 
@@ -70,11 +70,11 @@ domEllipsoid::domSize::create(DAE& dae)
 daeMetaElement *
 domEllipsoid::domSize::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "size" );
 	meta->registerClass(domEllipsoid::domSize::create, &meta);
 

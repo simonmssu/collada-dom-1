@@ -46,6 +46,7 @@ $_globals['constStrings'] = array(); //used to store all the constant strings ne
 $_globals['elementTypes'] = array();
 $_globals['elementNames'] = array();
 $_globals['elementNames'][] = "COLLADA"; //needed because no elements have this as a child.
+$_globals['typeID'] = 0;
 
 $_globals['target_dir'] = '';
 

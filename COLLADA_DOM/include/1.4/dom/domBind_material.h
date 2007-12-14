@@ -32,7 +32,8 @@ class domBind_material : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND_MATERIAL; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BIND_MATERIAL; }
+	static daeInt typeIDStatic() { return 686; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 public:
 	class domTechnique_common;
 
@@ -47,7 +48,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+		static daeInt typeIDStatic() { return 687; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Element
 /**

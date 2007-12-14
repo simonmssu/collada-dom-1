@@ -32,7 +32,8 @@ class domCamera : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CAMERA; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CAMERA; }
+	static daeInt typeIDStatic() { return 645; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 public:
 	class domOptics;
 
@@ -47,7 +48,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::OPTICS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::OPTICS; }
+		static daeInt typeIDStatic() { return 646; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 	public:
 		class domTechnique_common;
 
@@ -62,7 +64,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+			static daeInt typeIDStatic() { return 647; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 		public:
 			class domOrthographic;
 
@@ -77,7 +80,8 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ORTHOGRAPHIC; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ORTHOGRAPHIC; }
+				static daeInt typeIDStatic() { return 648; }
+				virtual daeInt typeID() const { return typeIDStatic(); }
 
 			protected:  // Elements
 /**
@@ -201,7 +205,8 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PERSPECTIVE; }
-				static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PERSPECTIVE; }
+				static daeInt typeIDStatic() { return 649; }
+				virtual daeInt typeID() const { return typeIDStatic(); }
 
 			protected:  // Elements
 /**
@@ -475,7 +480,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::IMAGER; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::IMAGER; }
+		static daeInt typeIDStatic() { return 650; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Elements
 /**

@@ -68,7 +68,8 @@ class domFx_annotate_common : public daeElement, public domFx_annotate_common_co
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_ANNOTATE_COMMON; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FX_ANNOTATE_COMMON; }
+	static daeInt typeIDStatic() { return 91; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

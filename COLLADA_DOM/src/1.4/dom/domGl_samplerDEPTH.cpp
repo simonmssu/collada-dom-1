@@ -32,11 +32,11 @@ domGl_samplerDEPTH::create(DAE& dae)
 daeMetaElement *
 domGl_samplerDEPTH::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "gl_samplerDEPTH" );
 	meta->registerClass(domGl_samplerDEPTH::create, &meta);
 

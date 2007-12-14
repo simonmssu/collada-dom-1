@@ -29,7 +29,8 @@ class domInstance_camera : public daeElement, public domInstanceWithExtra_comple
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_CAMERA; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INSTANCE_CAMERA; }
+	static daeInt typeIDStatic() { return 688; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 	/**
 	 * Gets the url attribute.

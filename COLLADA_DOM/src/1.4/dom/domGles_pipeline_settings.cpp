@@ -32,11 +32,11 @@ domGles_pipeline_settings::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "gles_pipeline_settings" );
 	meta->registerClass(domGles_pipeline_settings::create, &meta);
 
@@ -507,11 +507,11 @@ domGles_pipeline_settings::domAlpha_func::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domAlpha_func::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "alpha_func" );
 	meta->registerClass(domGles_pipeline_settings::domAlpha_func::create, &meta);
 
@@ -552,11 +552,11 @@ domGles_pipeline_settings::domAlpha_func::domFunc::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domAlpha_func::domFunc::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "func" );
 	meta->registerClass(domGles_pipeline_settings::domAlpha_func::domFunc::create, &meta);
 
@@ -604,11 +604,11 @@ domGles_pipeline_settings::domAlpha_func::domValue::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domAlpha_func::domValue::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "value" );
 	meta->registerClass(domGles_pipeline_settings::domAlpha_func::domValue::create, &meta);
 
@@ -656,11 +656,11 @@ domGles_pipeline_settings::domBlend_func::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domBlend_func::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "blend_func" );
 	meta->registerClass(domGles_pipeline_settings::domBlend_func::create, &meta);
 
@@ -701,11 +701,11 @@ domGles_pipeline_settings::domBlend_func::domSrc::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domBlend_func::domSrc::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "src" );
 	meta->registerClass(domGles_pipeline_settings::domBlend_func::domSrc::create, &meta);
 
@@ -753,11 +753,11 @@ domGles_pipeline_settings::domBlend_func::domDest::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domBlend_func::domDest::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "dest" );
 	meta->registerClass(domGles_pipeline_settings::domBlend_func::domDest::create, &meta);
 
@@ -805,11 +805,11 @@ domGles_pipeline_settings::domClear_color::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domClear_color::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "clear_color" );
 	meta->registerClass(domGles_pipeline_settings::domClear_color::create, &meta);
 
@@ -856,11 +856,11 @@ domGles_pipeline_settings::domClear_stencil::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domClear_stencil::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "clear_stencil" );
 	meta->registerClass(domGles_pipeline_settings::domClear_stencil::create, &meta);
 
@@ -907,11 +907,11 @@ domGles_pipeline_settings::domClear_depth::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domClear_depth::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "clear_depth" );
 	meta->registerClass(domGles_pipeline_settings::domClear_depth::create, &meta);
 
@@ -958,11 +958,11 @@ domGles_pipeline_settings::domClip_plane::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domClip_plane::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "clip_plane" );
 	meta->registerClass(domGles_pipeline_settings::domClip_plane::create, &meta);
 
@@ -1021,11 +1021,11 @@ domGles_pipeline_settings::domColor_mask::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domColor_mask::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "color_mask" );
 	meta->registerClass(domGles_pipeline_settings::domColor_mask::create, &meta);
 
@@ -1072,11 +1072,11 @@ domGles_pipeline_settings::domCull_face::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domCull_face::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cull_face" );
 	meta->registerClass(domGles_pipeline_settings::domCull_face::create, &meta);
 
@@ -1124,11 +1124,11 @@ domGles_pipeline_settings::domDepth_func::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domDepth_func::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "depth_func" );
 	meta->registerClass(domGles_pipeline_settings::domDepth_func::create, &meta);
 
@@ -1176,11 +1176,11 @@ domGles_pipeline_settings::domDepth_mask::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domDepth_mask::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "depth_mask" );
 	meta->registerClass(domGles_pipeline_settings::domDepth_mask::create, &meta);
 
@@ -1228,11 +1228,11 @@ domGles_pipeline_settings::domDepth_range::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domDepth_range::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "depth_range" );
 	meta->registerClass(domGles_pipeline_settings::domDepth_range::create, &meta);
 
@@ -1280,11 +1280,11 @@ domGles_pipeline_settings::domFog_color::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domFog_color::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fog_color" );
 	meta->registerClass(domGles_pipeline_settings::domFog_color::create, &meta);
 
@@ -1332,11 +1332,11 @@ domGles_pipeline_settings::domFog_density::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domFog_density::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fog_density" );
 	meta->registerClass(domGles_pipeline_settings::domFog_density::create, &meta);
 
@@ -1384,11 +1384,11 @@ domGles_pipeline_settings::domFog_mode::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domFog_mode::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fog_mode" );
 	meta->registerClass(domGles_pipeline_settings::domFog_mode::create, &meta);
 
@@ -1436,11 +1436,11 @@ domGles_pipeline_settings::domFog_start::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domFog_start::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fog_start" );
 	meta->registerClass(domGles_pipeline_settings::domFog_start::create, &meta);
 
@@ -1488,11 +1488,11 @@ domGles_pipeline_settings::domFog_end::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domFog_end::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fog_end" );
 	meta->registerClass(domGles_pipeline_settings::domFog_end::create, &meta);
 
@@ -1540,11 +1540,11 @@ domGles_pipeline_settings::domFront_face::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domFront_face::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "front_face" );
 	meta->registerClass(domGles_pipeline_settings::domFront_face::create, &meta);
 
@@ -1592,11 +1592,11 @@ domGles_pipeline_settings::domTexture_pipeline::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domTexture_pipeline::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "texture_pipeline" );
 	meta->registerClass(domGles_pipeline_settings::domTexture_pipeline::create, &meta);
 
@@ -1643,11 +1643,11 @@ domGles_pipeline_settings::domLogic_op::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLogic_op::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "logic_op" );
 	meta->registerClass(domGles_pipeline_settings::domLogic_op::create, &meta);
 
@@ -1695,11 +1695,11 @@ domGles_pipeline_settings::domLight_ambient::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_ambient::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_ambient" );
 	meta->registerClass(domGles_pipeline_settings::domLight_ambient::create, &meta);
 
@@ -1759,11 +1759,11 @@ domGles_pipeline_settings::domLight_diffuse::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_diffuse::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_diffuse" );
 	meta->registerClass(domGles_pipeline_settings::domLight_diffuse::create, &meta);
 
@@ -1823,11 +1823,11 @@ domGles_pipeline_settings::domLight_specular::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_specular::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_specular" );
 	meta->registerClass(domGles_pipeline_settings::domLight_specular::create, &meta);
 
@@ -1887,11 +1887,11 @@ domGles_pipeline_settings::domLight_position::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_position::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_position" );
 	meta->registerClass(domGles_pipeline_settings::domLight_position::create, &meta);
 
@@ -1951,11 +1951,11 @@ domGles_pipeline_settings::domLight_constant_attenuation::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_constant_attenuation::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_constant_attenuation" );
 	meta->registerClass(domGles_pipeline_settings::domLight_constant_attenuation::create, &meta);
 
@@ -2015,11 +2015,11 @@ domGles_pipeline_settings::domLight_linear_attenutation::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_linear_attenutation::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_linear_attenutation" );
 	meta->registerClass(domGles_pipeline_settings::domLight_linear_attenutation::create, &meta);
 
@@ -2079,11 +2079,11 @@ domGles_pipeline_settings::domLight_quadratic_attenuation::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_quadratic_attenuation::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_quadratic_attenuation" );
 	meta->registerClass(domGles_pipeline_settings::domLight_quadratic_attenuation::create, &meta);
 
@@ -2143,11 +2143,11 @@ domGles_pipeline_settings::domLight_spot_cutoff::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_spot_cutoff::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_spot_cutoff" );
 	meta->registerClass(domGles_pipeline_settings::domLight_spot_cutoff::create, &meta);
 
@@ -2207,11 +2207,11 @@ domGles_pipeline_settings::domLight_spot_direction::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_spot_direction::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_spot_direction" );
 	meta->registerClass(domGles_pipeline_settings::domLight_spot_direction::create, &meta);
 
@@ -2271,11 +2271,11 @@ domGles_pipeline_settings::domLight_spot_exponent::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_spot_exponent::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_spot_exponent" );
 	meta->registerClass(domGles_pipeline_settings::domLight_spot_exponent::create, &meta);
 
@@ -2335,11 +2335,11 @@ domGles_pipeline_settings::domLight_model_ambient::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_model_ambient::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_model_ambient" );
 	meta->registerClass(domGles_pipeline_settings::domLight_model_ambient::create, &meta);
 
@@ -2387,11 +2387,11 @@ domGles_pipeline_settings::domLine_width::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLine_width::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "line_width" );
 	meta->registerClass(domGles_pipeline_settings::domLine_width::create, &meta);
 
@@ -2439,11 +2439,11 @@ domGles_pipeline_settings::domMaterial_ambient::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domMaterial_ambient::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "material_ambient" );
 	meta->registerClass(domGles_pipeline_settings::domMaterial_ambient::create, &meta);
 
@@ -2491,11 +2491,11 @@ domGles_pipeline_settings::domMaterial_diffuse::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domMaterial_diffuse::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "material_diffuse" );
 	meta->registerClass(domGles_pipeline_settings::domMaterial_diffuse::create, &meta);
 
@@ -2543,11 +2543,11 @@ domGles_pipeline_settings::domMaterial_emission::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domMaterial_emission::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "material_emission" );
 	meta->registerClass(domGles_pipeline_settings::domMaterial_emission::create, &meta);
 
@@ -2595,11 +2595,11 @@ domGles_pipeline_settings::domMaterial_shininess::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domMaterial_shininess::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "material_shininess" );
 	meta->registerClass(domGles_pipeline_settings::domMaterial_shininess::create, &meta);
 
@@ -2647,11 +2647,11 @@ domGles_pipeline_settings::domMaterial_specular::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domMaterial_specular::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "material_specular" );
 	meta->registerClass(domGles_pipeline_settings::domMaterial_specular::create, &meta);
 
@@ -2699,11 +2699,11 @@ domGles_pipeline_settings::domModel_view_matrix::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domModel_view_matrix::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "model_view_matrix" );
 	meta->registerClass(domGles_pipeline_settings::domModel_view_matrix::create, &meta);
 
@@ -2751,11 +2751,11 @@ domGles_pipeline_settings::domPoint_distance_attenuation::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domPoint_distance_attenuation::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "point_distance_attenuation" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_distance_attenuation::create, &meta);
 
@@ -2803,11 +2803,11 @@ domGles_pipeline_settings::domPoint_fade_threshold_size::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domPoint_fade_threshold_size::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "point_fade_threshold_size" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_fade_threshold_size::create, &meta);
 
@@ -2855,11 +2855,11 @@ domGles_pipeline_settings::domPoint_size::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domPoint_size::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "point_size" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_size::create, &meta);
 
@@ -2907,11 +2907,11 @@ domGles_pipeline_settings::domPoint_size_min::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domPoint_size_min::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "point_size_min" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_size_min::create, &meta);
 
@@ -2959,11 +2959,11 @@ domGles_pipeline_settings::domPoint_size_max::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domPoint_size_max::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "point_size_max" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_size_max::create, &meta);
 
@@ -3011,11 +3011,11 @@ domGles_pipeline_settings::domPolygon_offset::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domPolygon_offset::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "polygon_offset" );
 	meta->registerClass(domGles_pipeline_settings::domPolygon_offset::create, &meta);
 
@@ -3063,11 +3063,11 @@ domGles_pipeline_settings::domProjection_matrix::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domProjection_matrix::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "projection_matrix" );
 	meta->registerClass(domGles_pipeline_settings::domProjection_matrix::create, &meta);
 
@@ -3115,11 +3115,11 @@ domGles_pipeline_settings::domScissor::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domScissor::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "scissor" );
 	meta->registerClass(domGles_pipeline_settings::domScissor::create, &meta);
 
@@ -3166,11 +3166,11 @@ domGles_pipeline_settings::domShade_model::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domShade_model::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "shade_model" );
 	meta->registerClass(domGles_pipeline_settings::domShade_model::create, &meta);
 
@@ -3218,11 +3218,11 @@ domGles_pipeline_settings::domStencil_func::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domStencil_func::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "stencil_func" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_func::create, &meta);
 
@@ -3269,11 +3269,11 @@ domGles_pipeline_settings::domStencil_func::domFunc::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domStencil_func::domFunc::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "func" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_func::domFunc::create, &meta);
 
@@ -3321,11 +3321,11 @@ domGles_pipeline_settings::domStencil_func::domRef::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domStencil_func::domRef::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "ref" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_func::domRef::create, &meta);
 
@@ -3373,11 +3373,11 @@ domGles_pipeline_settings::domStencil_func::domMask::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domStencil_func::domMask::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mask" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_func::domMask::create, &meta);
 
@@ -3425,11 +3425,11 @@ domGles_pipeline_settings::domStencil_mask::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domStencil_mask::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "stencil_mask" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_mask::create, &meta);
 
@@ -3477,11 +3477,11 @@ domGles_pipeline_settings::domStencil_op::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domStencil_op::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "stencil_op" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_op::create, &meta);
 
@@ -3528,11 +3528,11 @@ domGles_pipeline_settings::domStencil_op::domFail::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domStencil_op::domFail::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fail" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_op::domFail::create, &meta);
 
@@ -3580,11 +3580,11 @@ domGles_pipeline_settings::domStencil_op::domZfail::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domStencil_op::domZfail::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "zfail" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_op::domZfail::create, &meta);
 
@@ -3632,11 +3632,11 @@ domGles_pipeline_settings::domStencil_op::domZpass::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domStencil_op::domZpass::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "zpass" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_op::domZpass::create, &meta);
 
@@ -3684,11 +3684,11 @@ domGles_pipeline_settings::domAlpha_test_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domAlpha_test_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "alpha_test_enable" );
 	meta->registerClass(domGles_pipeline_settings::domAlpha_test_enable::create, &meta);
 
@@ -3736,11 +3736,11 @@ domGles_pipeline_settings::domBlend_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domBlend_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "blend_enable" );
 	meta->registerClass(domGles_pipeline_settings::domBlend_enable::create, &meta);
 
@@ -3788,11 +3788,11 @@ domGles_pipeline_settings::domClip_plane_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domClip_plane_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "clip_plane_enable" );
 	meta->registerClass(domGles_pipeline_settings::domClip_plane_enable::create, &meta);
 
@@ -3851,11 +3851,11 @@ domGles_pipeline_settings::domColor_logic_op_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domColor_logic_op_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "color_logic_op_enable" );
 	meta->registerClass(domGles_pipeline_settings::domColor_logic_op_enable::create, &meta);
 
@@ -3903,11 +3903,11 @@ domGles_pipeline_settings::domColor_material_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domColor_material_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "color_material_enable" );
 	meta->registerClass(domGles_pipeline_settings::domColor_material_enable::create, &meta);
 
@@ -3955,11 +3955,11 @@ domGles_pipeline_settings::domCull_face_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domCull_face_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cull_face_enable" );
 	meta->registerClass(domGles_pipeline_settings::domCull_face_enable::create, &meta);
 
@@ -4007,11 +4007,11 @@ domGles_pipeline_settings::domDepth_test_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domDepth_test_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "depth_test_enable" );
 	meta->registerClass(domGles_pipeline_settings::domDepth_test_enable::create, &meta);
 
@@ -4059,11 +4059,11 @@ domGles_pipeline_settings::domDither_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domDither_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "dither_enable" );
 	meta->registerClass(domGles_pipeline_settings::domDither_enable::create, &meta);
 
@@ -4111,11 +4111,11 @@ domGles_pipeline_settings::domFog_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domFog_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fog_enable" );
 	meta->registerClass(domGles_pipeline_settings::domFog_enable::create, &meta);
 
@@ -4163,11 +4163,11 @@ domGles_pipeline_settings::domTexture_pipeline_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domTexture_pipeline_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "texture_pipeline_enable" );
 	meta->registerClass(domGles_pipeline_settings::domTexture_pipeline_enable::create, &meta);
 
@@ -4215,11 +4215,11 @@ domGles_pipeline_settings::domLight_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_enable" );
 	meta->registerClass(domGles_pipeline_settings::domLight_enable::create, &meta);
 
@@ -4279,11 +4279,11 @@ domGles_pipeline_settings::domLighting_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLighting_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "lighting_enable" );
 	meta->registerClass(domGles_pipeline_settings::domLighting_enable::create, &meta);
 
@@ -4331,11 +4331,11 @@ domGles_pipeline_settings::domLight_model_two_side_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLight_model_two_side_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light_model_two_side_enable" );
 	meta->registerClass(domGles_pipeline_settings::domLight_model_two_side_enable::create, &meta);
 
@@ -4383,11 +4383,11 @@ domGles_pipeline_settings::domLine_smooth_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domLine_smooth_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "line_smooth_enable" );
 	meta->registerClass(domGles_pipeline_settings::domLine_smooth_enable::create, &meta);
 
@@ -4435,11 +4435,11 @@ domGles_pipeline_settings::domMultisample_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domMultisample_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "multisample_enable" );
 	meta->registerClass(domGles_pipeline_settings::domMultisample_enable::create, &meta);
 
@@ -4487,11 +4487,11 @@ domGles_pipeline_settings::domNormalize_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domNormalize_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "normalize_enable" );
 	meta->registerClass(domGles_pipeline_settings::domNormalize_enable::create, &meta);
 
@@ -4539,11 +4539,11 @@ domGles_pipeline_settings::domPoint_smooth_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domPoint_smooth_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "point_smooth_enable" );
 	meta->registerClass(domGles_pipeline_settings::domPoint_smooth_enable::create, &meta);
 
@@ -4591,11 +4591,11 @@ domGles_pipeline_settings::domPolygon_offset_fill_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domPolygon_offset_fill_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "polygon_offset_fill_enable" );
 	meta->registerClass(domGles_pipeline_settings::domPolygon_offset_fill_enable::create, &meta);
 
@@ -4643,11 +4643,11 @@ domGles_pipeline_settings::domRescale_normal_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domRescale_normal_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "rescale_normal_enable" );
 	meta->registerClass(domGles_pipeline_settings::domRescale_normal_enable::create, &meta);
 
@@ -4695,11 +4695,11 @@ domGles_pipeline_settings::domSample_alpha_to_coverage_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domSample_alpha_to_coverage_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "sample_alpha_to_coverage_enable" );
 	meta->registerClass(domGles_pipeline_settings::domSample_alpha_to_coverage_enable::create, &meta);
 
@@ -4747,11 +4747,11 @@ domGles_pipeline_settings::domSample_alpha_to_one_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domSample_alpha_to_one_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "sample_alpha_to_one_enable" );
 	meta->registerClass(domGles_pipeline_settings::domSample_alpha_to_one_enable::create, &meta);
 
@@ -4799,11 +4799,11 @@ domGles_pipeline_settings::domSample_coverage_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domSample_coverage_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "sample_coverage_enable" );
 	meta->registerClass(domGles_pipeline_settings::domSample_coverage_enable::create, &meta);
 
@@ -4851,11 +4851,11 @@ domGles_pipeline_settings::domScissor_test_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domScissor_test_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "scissor_test_enable" );
 	meta->registerClass(domGles_pipeline_settings::domScissor_test_enable::create, &meta);
 
@@ -4903,11 +4903,11 @@ domGles_pipeline_settings::domStencil_test_enable::create(DAE& dae)
 daeMetaElement *
 domGles_pipeline_settings::domStencil_test_enable::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "stencil_test_enable" );
 	meta->registerClass(domGles_pipeline_settings::domStencil_test_enable::create, &meta);
 

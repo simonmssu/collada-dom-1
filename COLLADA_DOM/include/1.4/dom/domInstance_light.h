@@ -29,7 +29,8 @@ class domInstance_light : public daeElement, public domInstanceWithExtra_complex
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_LIGHT; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INSTANCE_LIGHT; }
+	static daeInt typeIDStatic() { return 696; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 	/**
 	 * Gets the url attribute.

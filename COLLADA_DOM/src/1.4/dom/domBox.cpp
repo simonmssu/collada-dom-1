@@ -32,11 +32,11 @@ domBox::create(DAE& dae)
 daeMetaElement *
 domBox::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "box" );
 	meta->registerClass(domBox::create, &meta);
 
@@ -76,11 +76,11 @@ domBox::domHalf_extents::create(DAE& dae)
 daeMetaElement *
 domBox::domHalf_extents::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half_extents" );
 	meta->registerClass(domBox::domHalf_extents::create, &meta);
 

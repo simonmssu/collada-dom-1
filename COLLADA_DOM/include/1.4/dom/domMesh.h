@@ -38,7 +38,8 @@ class domMesh : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MESH; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MESH; }
+	static daeInt typeIDStatic() { return 614; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 protected:  // Elements
 /**

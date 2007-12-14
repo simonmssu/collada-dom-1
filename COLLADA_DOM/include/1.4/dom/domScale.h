@@ -29,7 +29,8 @@ class domScale : public daeElement, public domTargetableFloat3_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCALE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SCALE; }
+	static daeInt typeIDStatic() { return 632; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 	/**
 	 * Gets the sid attribute.

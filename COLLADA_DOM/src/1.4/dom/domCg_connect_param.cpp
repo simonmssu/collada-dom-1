@@ -32,11 +32,11 @@ domCg_connect_param::create(DAE& dae)
 daeMetaElement *
 domCg_connect_param::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cg_connect_param" );
 	meta->registerClass(domCg_connect_param::create, &meta);
 

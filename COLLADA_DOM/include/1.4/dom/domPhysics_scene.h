@@ -31,7 +31,8 @@ class domPhysics_scene : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PHYSICS_SCENE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PHYSICS_SCENE; }
+	static daeInt typeIDStatic() { return 793; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 public:
 	class domTechnique_common;
 
@@ -46,7 +47,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+		static daeInt typeIDStatic() { return 794; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Elements
 /**

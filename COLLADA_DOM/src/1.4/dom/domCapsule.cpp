@@ -32,11 +32,11 @@ domCapsule::create(DAE& dae)
 daeMetaElement *
 domCapsule::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "capsule" );
 	meta->registerClass(domCapsule::create, &meta);
 
@@ -82,11 +82,11 @@ domCapsule::domHeight::create(DAE& dae)
 daeMetaElement *
 domCapsule::domHeight::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "height" );
 	meta->registerClass(domCapsule::domHeight::create, &meta);
 
@@ -118,11 +118,11 @@ domCapsule::domRadius::create(DAE& dae)
 daeMetaElement *
 domCapsule::domRadius::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "radius" );
 	meta->registerClass(domCapsule::domRadius::create, &meta);
 

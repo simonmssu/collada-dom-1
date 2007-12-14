@@ -80,7 +80,8 @@ class domGles_texenv_command_type : public daeElement, public domGles_texenv_com
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXENV_COMMAND_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GLES_TEXENV_COMMAND_TYPE; }
+	static daeInt typeIDStatic() { return 146; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

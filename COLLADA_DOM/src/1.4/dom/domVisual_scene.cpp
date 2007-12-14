@@ -32,11 +32,11 @@ domVisual_scene::create(DAE& dae)
 daeMetaElement *
 domVisual_scene::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "visual_scene" );
 	meta->registerClass(domVisual_scene::create, &meta);
 
@@ -111,11 +111,11 @@ domVisual_scene::domEvaluate_scene::create(DAE& dae)
 daeMetaElement *
 domVisual_scene::domEvaluate_scene::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "evaluate_scene" );
 	meta->registerClass(domVisual_scene::domEvaluate_scene::create, &meta);
 
@@ -162,11 +162,11 @@ domVisual_scene::domEvaluate_scene::domRender::create(DAE& dae)
 daeMetaElement *
 domVisual_scene::domEvaluate_scene::domRender::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "render" );
 	meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::create, &meta);
 
@@ -219,11 +219,11 @@ domVisual_scene::domEvaluate_scene::domRender::domLayer::create(DAE& dae)
 daeMetaElement *
 domVisual_scene::domEvaluate_scene::domRender::domLayer::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "layer" );
 	meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::domLayer::create, &meta);
 

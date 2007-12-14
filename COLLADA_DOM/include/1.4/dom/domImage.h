@@ -33,7 +33,8 @@ class domImage : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::IMAGE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::IMAGE; }
+	static daeInt typeIDStatic() { return 635; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 public:
 	class domData;
 
@@ -48,7 +49,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DATA; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::DATA; }
+		static daeInt typeIDStatic() { return 636; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -114,7 +116,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INIT_FROM; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INIT_FROM; }
+		static daeInt typeIDStatic() { return 637; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**

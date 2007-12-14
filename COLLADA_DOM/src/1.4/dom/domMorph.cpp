@@ -33,11 +33,11 @@ domMorph::create(DAE& dae)
 daeMetaElement *
 domMorph::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "morph" );
 	meta->registerClass(domMorph::create, &meta);
 
@@ -107,11 +107,11 @@ domMorph::domTargets::create(DAE& dae)
 daeMetaElement *
 domMorph::domTargets::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "targets" );
 	meta->registerClass(domMorph::domTargets::create, &meta);
 

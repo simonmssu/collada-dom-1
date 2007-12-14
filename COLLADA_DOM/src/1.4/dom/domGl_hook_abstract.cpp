@@ -32,11 +32,11 @@ domGl_hook_abstract::create(DAE& dae)
 daeMetaElement *
 domGl_hook_abstract::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "gl_hook_abstract" );
 	meta->registerClass(domGl_hook_abstract::create, &meta);
 

@@ -33,7 +33,8 @@ class domPhysics_model : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PHYSICS_MODEL; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PHYSICS_MODEL; }
+	static daeInt typeIDStatic() { return 813; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 protected:  // Attributes
 /**
  *  The id attribute is a text string containing the unique identifier of

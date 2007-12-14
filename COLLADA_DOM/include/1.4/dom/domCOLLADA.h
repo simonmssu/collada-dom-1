@@ -46,7 +46,8 @@ class domCOLLADA : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLLADA; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COLLADA; }
+	static daeInt typeIDStatic() { return 602; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 public:
 	class domScene;
 
@@ -64,7 +65,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCENE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SCENE; }
+		static daeInt typeIDStatic() { return 603; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Elements
 /**

@@ -32,11 +32,11 @@ domLibrary_materials::create(DAE& dae)
 daeMetaElement *
 domLibrary_materials::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_materials" );
 	meta->registerClass(domLibrary_materials::create, &meta);
 

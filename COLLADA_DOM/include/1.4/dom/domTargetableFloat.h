@@ -85,7 +85,8 @@ class domTargetableFloat : public daeElement, public domTargetableFloat_complexT
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TARGETABLEFLOAT; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TARGETABLEFLOAT; }
+	static daeInt typeIDStatic() { return 4; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

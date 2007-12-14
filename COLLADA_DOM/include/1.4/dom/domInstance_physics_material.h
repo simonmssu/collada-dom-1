@@ -29,7 +29,8 @@ class domInstance_physics_material : public daeElement, public domInstanceWithEx
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_PHYSICS_MATERIAL; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::INSTANCE_PHYSICS_MATERIAL; }
+	static daeInt typeIDStatic() { return 701; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 	/**
 	 * Gets the url attribute.

@@ -18,6 +18,7 @@
 #include <dae/daeArray.h>
 #include <dae/daeURI.h>
 #include <dae/daeIDRef.h>
+#include <dom/domTypes.h>
 
 /**
  * The domAny class allows for weakly typed xml elements.  This class is used anywhere in the 
@@ -89,7 +90,10 @@ public:
 	 * Gets the element type.
 	 * @return Returns the COLLADA_TYPE::TypeEnum value corresponding to this element's type.
 	 */
-	virtual COLLADA_TYPE::TypeEnum getElementType() const { return (COLLADA_TYPE::TypeEnum)1; }
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ANY; }
+
+	static daeInt typeIDStatic() { return colladaTypeCount()-1; }
+	virtual daeInt typeID() const { return colladaTypeCount()-1; }
 
 protected:
 	/**

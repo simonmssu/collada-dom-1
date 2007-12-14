@@ -32,11 +32,11 @@ domFx_surface_init_from_common::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_from_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_surface_init_from_common" );
 	meta->registerClass(domFx_surface_init_from_common::create, &meta);
 

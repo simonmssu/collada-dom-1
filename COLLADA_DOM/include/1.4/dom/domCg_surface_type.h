@@ -44,7 +44,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GENERATOR; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GENERATOR; }
+		static daeInt typeIDStatic() { return 137; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 	public:
 		class domName;
 
@@ -58,7 +59,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::NAME; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::NAME; }
+			static daeInt typeIDStatic() { return 138; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 		protected:  // Attribute
 			xsNCName attrSource;
 
@@ -281,7 +283,8 @@ class domCg_surface_type : public daeElement, public domCg_surface_type_complexT
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SURFACE_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CG_SURFACE_TYPE; }
+	static daeInt typeIDStatic() { return 139; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 protected:
 	/**
 	 * Constructor

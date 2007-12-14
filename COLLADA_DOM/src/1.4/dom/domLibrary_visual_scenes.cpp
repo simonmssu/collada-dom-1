@@ -32,11 +32,11 @@ domLibrary_visual_scenes::create(DAE& dae)
 daeMetaElement *
 domLibrary_visual_scenes::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_visual_scenes" );
 	meta->registerClass(domLibrary_visual_scenes::create, &meta);
 

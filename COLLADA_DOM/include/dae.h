@@ -122,9 +122,9 @@ public:
 
 	daeAtomicTypeList& getAtomicTypes();
 
-	daeMetaElement* getMeta(int typeID);
+	daeMetaElement* getMeta(daeInt typeID);
 	daeMetaElementRefArray& getAllMetas();
-	void setMeta(int typeID, daeMetaElement& meta);
+	void setMeta(daeInt typeID, daeMetaElement& meta);
 
 	/**
 	 * Appends the passed in element to the list of elements that need to be resolved.
@@ -169,7 +169,7 @@ private:
 template <typename T> 
 inline T *daeSafeCast( daeElement *element ) 
 { 
-	if (element && element->getMeta() == element->getDAE()->getMeta(T::getTypeStatic()))
+	if (element  &&  element->typeID() == T::typeIDStatic())
 		return (T *)element; 
 	return NULL; 
 }

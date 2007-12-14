@@ -33,11 +33,11 @@ domFx_include_common::create(DAE& dae)
 daeMetaElement *
 domFx_include_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_include_common" );
 	meta->registerClass(domFx_include_common::create, &meta);
 

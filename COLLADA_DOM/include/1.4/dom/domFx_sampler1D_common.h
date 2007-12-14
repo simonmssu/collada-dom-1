@@ -36,7 +36,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SOURCE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SOURCE; }
+		static daeInt typeIDStatic() { return 28; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -93,7 +94,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_S; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::WRAP_S; }
+		static daeInt typeIDStatic() { return 29; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -150,7 +152,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MINFILTER; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MINFILTER; }
+		static daeInt typeIDStatic() { return 30; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -207,7 +210,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MAGFILTER; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MAGFILTER; }
+		static daeInt typeIDStatic() { return 31; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -264,7 +268,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPFILTER; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MIPFILTER; }
+		static daeInt typeIDStatic() { return 32; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -321,7 +326,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BORDER_COLOR; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::BORDER_COLOR; }
+		static daeInt typeIDStatic() { return 33; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -383,7 +389,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPMAP_MAXLEVEL; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MIPMAP_MAXLEVEL; }
+		static daeInt typeIDStatic() { return 34; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -440,7 +447,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPMAP_BIAS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MIPMAP_BIAS; }
+		static daeInt typeIDStatic() { return 35; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -574,7 +582,8 @@ class domFx_sampler1D_common : public daeElement, public domFx_sampler1D_common_
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SAMPLER1D_COMMON; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FX_SAMPLER1D_COMMON; }
+	static daeInt typeIDStatic() { return 36; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 protected:
 	/**
 	 * Constructor

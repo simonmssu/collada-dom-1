@@ -33,7 +33,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SURFACE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SURFACE; }
+		static daeInt typeIDStatic() { return 153; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -90,7 +91,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLER_STATE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SAMPLER_STATE; }
+		static daeInt typeIDStatic() { return 154; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -147,7 +149,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXCOORD; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TEXCOORD; }
+		static daeInt typeIDStatic() { return 155; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 	protected:  // Attribute
 		xsNCName attrSemantic;
 
@@ -266,7 +269,8 @@ class domGles_texture_unit : public daeElement, public domGles_texture_unit_comp
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXTURE_UNIT; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GLES_TEXTURE_UNIT; }
+	static daeInt typeIDStatic() { return 156; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

@@ -32,11 +32,11 @@ domTrifans::create(DAE& dae)
 daeMetaElement *
 domTrifans::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "trifans" );
 	meta->registerClass(domTrifans::create, &meta);
 

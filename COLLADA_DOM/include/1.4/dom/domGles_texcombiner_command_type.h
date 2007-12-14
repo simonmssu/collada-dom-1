@@ -69,7 +69,8 @@ class domGles_texcombiner_command_type : public daeElement, public domGles_texco
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXCOMBINER_COMMAND_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GLES_TEXCOMBINER_COMMAND_TYPE; }
+	static daeInt typeIDStatic() { return 151; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 protected:
 	/**
 	 * Constructor

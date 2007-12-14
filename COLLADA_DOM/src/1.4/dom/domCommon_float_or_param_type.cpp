@@ -32,11 +32,11 @@ domCommon_float_or_param_type::create(DAE& dae)
 daeMetaElement *
 domCommon_float_or_param_type::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "common_float_or_param_type" );
 	meta->registerClass(domCommon_float_or_param_type::create, &meta);
 
@@ -80,11 +80,11 @@ domCommon_float_or_param_type::domFloat::create(DAE& dae)
 daeMetaElement *
 domCommon_float_or_param_type::domFloat::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float" );
 	meta->registerClass(domCommon_float_or_param_type::domFloat::create, &meta);
 
@@ -127,11 +127,11 @@ domCommon_float_or_param_type::domParam::create(DAE& dae)
 daeMetaElement *
 domCommon_float_or_param_type::domParam::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "param" );
 	meta->registerClass(domCommon_float_or_param_type::domParam::create, &meta);
 

@@ -32,11 +32,11 @@ domSource::create(DAE& dae)
 daeMetaElement *
 domSource::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "source" );
 	meta->registerClass(domSource::create, &meta);
 
@@ -145,11 +145,11 @@ domSource::domTechnique_common::create(DAE& dae)
 daeMetaElement *
 domSource::domTechnique_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domSource::domTechnique_common::create, &meta);
 

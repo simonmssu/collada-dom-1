@@ -23,10 +23,11 @@
 #include <dae/daeURI.h>
 #include <dae/domAny.h>
 
-daeElementRef DAECreateElement(DAE& dae)
-{
-	return new daeElement(dae);
-}
+// !!!steveT Remove
+// daeElementRef DAECreateElement(DAE& dae)
+// {
+// 	return new daeElement(dae);
+// }
 
 daeIntegrationObject*
 daeElement::getIntObject( IntegrationState from_state, IntegrationState to_state )

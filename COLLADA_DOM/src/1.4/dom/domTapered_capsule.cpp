@@ -32,11 +32,11 @@ domTapered_capsule::create(DAE& dae)
 daeMetaElement *
 domTapered_capsule::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "tapered_capsule" );
 	meta->registerClass(domTapered_capsule::create, &meta);
 
@@ -88,11 +88,11 @@ domTapered_capsule::domHeight::create(DAE& dae)
 daeMetaElement *
 domTapered_capsule::domHeight::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "height" );
 	meta->registerClass(domTapered_capsule::domHeight::create, &meta);
 
@@ -124,11 +124,11 @@ domTapered_capsule::domRadius1::create(DAE& dae)
 daeMetaElement *
 domTapered_capsule::domRadius1::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "radius1" );
 	meta->registerClass(domTapered_capsule::domRadius1::create, &meta);
 
@@ -160,11 +160,11 @@ domTapered_capsule::domRadius2::create(DAE& dae)
 daeMetaElement *
 domTapered_capsule::domRadius2::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "radius2" );
 	meta->registerClass(domTapered_capsule::domRadius2::create, &meta);
 

@@ -32,11 +32,11 @@ domImage::create(DAE& dae)
 daeMetaElement *
 domImage::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "image" );
 	meta->registerClass(domImage::create, &meta);
 
@@ -165,11 +165,11 @@ domImage::domData::create(DAE& dae)
 daeMetaElement *
 domImage::domData::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "data" );
 	meta->registerClass(domImage::domData::create, &meta);
 
@@ -202,11 +202,11 @@ domImage::domInit_from::create(DAE& dae)
 daeMetaElement *
 domImage::domInit_from::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "init_from" );
 	meta->registerClass(domImage::domInit_from::create, &meta);
 

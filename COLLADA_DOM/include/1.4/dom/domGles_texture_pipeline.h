@@ -143,7 +143,8 @@ class domGles_texture_pipeline : public daeElement, public domGles_texture_pipel
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXTURE_PIPELINE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GLES_TEXTURE_PIPELINE; }
+	static daeInt typeIDStatic() { return 152; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

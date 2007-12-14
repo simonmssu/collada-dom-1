@@ -32,11 +32,11 @@ domFx_surface_init_cube_common::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_cube_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_surface_init_cube_common" );
 	meta->registerClass(domFx_surface_init_cube_common::create, &meta);
 
@@ -86,11 +86,11 @@ domFx_surface_init_cube_common::domAll::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_cube_common::domAll::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "all" );
 	meta->registerClass(domFx_surface_init_cube_common::domAll::create, &meta);
 
@@ -125,11 +125,11 @@ domFx_surface_init_cube_common::domPrimary::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_cube_common::domPrimary::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "primary" );
 	meta->registerClass(domFx_surface_init_cube_common::domPrimary::create, &meta);
 
@@ -176,11 +176,11 @@ domFx_surface_init_cube_common::domPrimary::domOrder::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_cube_common::domPrimary::domOrder::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "order" );
 	meta->registerClass(domFx_surface_init_cube_common::domPrimary::domOrder::create, &meta);
 
@@ -212,11 +212,11 @@ domFx_surface_init_cube_common::domFace::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_cube_common::domFace::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "face" );
 	meta->registerClass(domFx_surface_init_cube_common::domFace::create, &meta);
 

@@ -32,11 +32,11 @@ domPhysics_material::create(DAE& dae)
 daeMetaElement *
 domPhysics_material::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "physics_material" );
 	meta->registerClass(domPhysics_material::create, &meta);
 
@@ -110,11 +110,11 @@ domPhysics_material::domTechnique_common::create(DAE& dae)
 daeMetaElement *
 domPhysics_material::domTechnique_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domPhysics_material::domTechnique_common::create, &meta);
 

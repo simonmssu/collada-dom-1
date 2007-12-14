@@ -112,7 +112,8 @@ class domFx_depthtarget_common : public daeElement, public domFx_depthtarget_com
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_DEPTHTARGET_COMMON; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FX_DEPTHTARGET_COMMON; }
+	static daeInt typeIDStatic() { return 86; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**

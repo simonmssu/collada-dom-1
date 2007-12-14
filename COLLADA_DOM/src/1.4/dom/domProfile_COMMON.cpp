@@ -32,11 +32,11 @@ domProfile_COMMON::create(DAE& dae)
 daeMetaElement *
 domProfile_COMMON::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "profile_COMMON" );
 	meta->registerClass(domProfile_COMMON::create, &meta);
 
@@ -116,11 +116,11 @@ domProfile_COMMON::domTechnique::create(DAE& dae)
 daeMetaElement *
 domProfile_COMMON::domTechnique::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique" );
 	meta->registerClass(domProfile_COMMON::domTechnique::create, &meta);
 
@@ -236,11 +236,11 @@ domProfile_COMMON::domTechnique::domConstant::create(DAE& dae)
 daeMetaElement *
 domProfile_COMMON::domTechnique::domConstant::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "constant" );
 	meta->registerClass(domProfile_COMMON::domTechnique::domConstant::create, &meta);
 
@@ -305,11 +305,11 @@ domProfile_COMMON::domTechnique::domLambert::create(DAE& dae)
 daeMetaElement *
 domProfile_COMMON::domTechnique::domLambert::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "lambert" );
 	meta->registerClass(domProfile_COMMON::domTechnique::domLambert::create, &meta);
 
@@ -386,11 +386,11 @@ domProfile_COMMON::domTechnique::domPhong::create(DAE& dae)
 daeMetaElement *
 domProfile_COMMON::domTechnique::domPhong::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "phong" );
 	meta->registerClass(domProfile_COMMON::domTechnique::domPhong::create, &meta);
 
@@ -479,11 +479,11 @@ domProfile_COMMON::domTechnique::domBlinn::create(DAE& dae)
 daeMetaElement *
 domProfile_COMMON::domTechnique::domBlinn::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "blinn" );
 	meta->registerClass(domProfile_COMMON::domTechnique::domBlinn::create, &meta);
 

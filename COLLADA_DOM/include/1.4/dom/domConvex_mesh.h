@@ -41,7 +41,8 @@ class domConvex_mesh : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONVEX_MESH; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CONVEX_MESH; }
+	static daeInt typeIDStatic() { return 789; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 protected:  // Attribute
 /**
  *  The convex_hull_of attribute is a URI string of geometry to compute the

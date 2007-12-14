@@ -1239,8 +1239,9 @@ namespace COLLADA_TYPE
 		LINEAR = 516,
 		SPRING = 517,
 		ANGULAR = 518,
-		PHYSICS_MODEL = 519,
-		TYPE_COUNT = 520;
+		PHYSICS_MODEL = 519;
 }
+
+daeInt DLLSPEC colladaTypeCount();
 
 #endif

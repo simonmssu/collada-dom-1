@@ -32,7 +32,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::FLOAT; }
+		static daeInt typeIDStatic() { return 113; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 	protected:  // Attribute
 		xsNCName attrSid;
 
@@ -102,7 +103,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::PARAM; }
+		static daeInt typeIDStatic() { return 114; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 	protected:  // Attribute
 		xsNCName attrRef;
 
@@ -211,7 +213,8 @@ class domCommon_float_or_param_type : public daeElement, public domCommon_float_
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMON_FLOAT_OR_PARAM_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COMMON_FLOAT_OR_PARAM_TYPE; }
+	static daeInt typeIDStatic() { return 115; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 protected:
 	/**
 	 * Constructor

@@ -28,7 +28,8 @@ class domAsset : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ASSET; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::ASSET; }
+	static daeInt typeIDStatic() { return 664; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 public:
 	class domContributor;
 
@@ -42,7 +43,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONTRIBUTOR; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CONTRIBUTOR; }
+		static daeInt typeIDStatic() { return 665; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 	public:
 		class domAuthor;
 
@@ -57,7 +59,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AUTHOR; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::AUTHOR; }
+			static daeInt typeIDStatic() { return 666; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 
 		protected:  // Value
 			/**
@@ -118,7 +121,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AUTHORING_TOOL; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::AUTHORING_TOOL; }
+			static daeInt typeIDStatic() { return 667; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 
 		protected:  // Value
 			/**
@@ -179,7 +183,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMENTS; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COMMENTS; }
+			static daeInt typeIDStatic() { return 668; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 
 		protected:  // Value
 			/**
@@ -240,7 +245,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COPYRIGHT; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::COPYRIGHT; }
+			static daeInt typeIDStatic() { return 669; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 
 		protected:  // Value
 			/**
@@ -301,7 +307,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SOURCE_DATA; }
-			static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SOURCE_DATA; }
+			static daeInt typeIDStatic() { return 670; }
+			virtual daeInt typeID() const { return typeIDStatic(); }
 
 		protected:  // Value
 			/**
@@ -451,7 +458,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CREATED; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::CREATED; }
+		static daeInt typeIDStatic() { return 671; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -512,7 +520,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::KEYWORDS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::KEYWORDS; }
+		static daeInt typeIDStatic() { return 672; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -574,7 +583,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODIFIED; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::MODIFIED; }
+		static daeInt typeIDStatic() { return 673; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -635,7 +645,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REVISION; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::REVISION; }
+		static daeInt typeIDStatic() { return 674; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -696,7 +707,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SUBJECT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::SUBJECT; }
+		static daeInt typeIDStatic() { return 675; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -757,7 +769,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TITLE; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::TITLE; }
+		static daeInt typeIDStatic() { return 676; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**
@@ -819,7 +832,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::UNIT; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::UNIT; }
+		static daeInt typeIDStatic() { return 677; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 	protected:  // Attributes
 /**
  *  The meter attribute specifies the measurement with respect to the meter.
@@ -899,7 +913,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::UP_AXIS; }
-		static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::UP_AXIS; }
+		static daeInt typeIDStatic() { return 678; }
+		virtual daeInt typeID() const { return typeIDStatic(); }
 
 	protected:  // Value
 		/**

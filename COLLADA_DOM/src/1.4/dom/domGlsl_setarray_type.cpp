@@ -32,11 +32,11 @@ domGlsl_setarray_type::create(DAE& dae)
 daeMetaElement *
 domGlsl_setarray_type::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(getTypeStatic());
+	daeMetaElement* meta = dae.getMeta(typeIDStatic());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(getTypeStatic(), *meta);
+	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "glsl_setarray_type" );
 	meta->registerClass(domGlsl_setarray_type::create, &meta);
 

@@ -121,7 +121,8 @@ class domGlsl_setarray_type : public daeElement, public domGlsl_setarray_type_co
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLSL_SETARRAY_TYPE; }
-	static COLLADA_TYPE::TypeEnum getTypeStatic() { return COLLADA_TYPE::GLSL_SETARRAY_TYPE; }
+	static daeInt typeIDStatic() { return 104; }
+	virtual daeInt typeID() const { return typeIDStatic(); }
 
 public:	//Accessors and Mutators
 	/**
