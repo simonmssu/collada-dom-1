@@ -38,7 +38,7 @@ domParam::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "param" );
-	meta->registerClass(domParam::create, &meta);
+	meta->registerClass(domParam::create);
 
 	//	Add attribute: _value
 	{

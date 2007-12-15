@@ -38,7 +38,7 @@ domTranslate::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "translate" );
-	meta->registerClass(domTranslate::create, &meta);
+	meta->registerClass(domTranslate::create);
 
 	//	Add attribute: _value
 	{

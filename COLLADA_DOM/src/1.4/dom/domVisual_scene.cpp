@@ -38,7 +38,7 @@ domVisual_scene::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "visual_scene" );
-	meta->registerClass(domVisual_scene::create, &meta);
+	meta->registerClass(domVisual_scene::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -117,7 +117,7 @@ domVisual_scene::domEvaluate_scene::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "evaluate_scene" );
-	meta->registerClass(domVisual_scene::domEvaluate_scene::create, &meta);
+	meta->registerClass(domVisual_scene::domEvaluate_scene::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -168,7 +168,7 @@ domVisual_scene::domEvaluate_scene::domRender::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "render" );
-	meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::create, &meta);
+	meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -225,7 +225,7 @@ domVisual_scene::domEvaluate_scene::domRender::domLayer::registerElement(DAE& da
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "layer" );
-	meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::domLayer::create, &meta);
+	meta->registerClass(domVisual_scene::domEvaluate_scene::domRender::domLayer::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

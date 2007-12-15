@@ -38,7 +38,7 @@ domPhysics_scene::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "physics_scene" );
-	meta->registerClass(domPhysics_scene::create, &meta);
+	meta->registerClass(domPhysics_scene::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -128,7 +128,7 @@ domPhysics_scene::domTechnique_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique_common" );
-	meta->registerClass(domPhysics_scene::domTechnique_common::create, &meta);
+	meta->registerClass(domPhysics_scene::domTechnique_common::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

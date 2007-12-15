@@ -38,7 +38,7 @@ domName_array::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "Name_array" );
-	meta->registerClass(domName_array::create, &meta);
+	meta->registerClass(domName_array::create);
 
 	//	Add attribute: _value
 	{

@@ -38,7 +38,7 @@ domTristrips::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "tristrips" );
-	meta->registerClass(domTristrips::create, &meta);
+	meta->registerClass(domTristrips::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

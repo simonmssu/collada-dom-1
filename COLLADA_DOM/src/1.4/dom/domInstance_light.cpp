@@ -38,7 +38,7 @@ domInstance_light::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "instance_light" );
-	meta->registerClass(domInstance_light::create, &meta);
+	meta->registerClass(domInstance_light::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

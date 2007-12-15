@@ -38,7 +38,7 @@ domGlsl_surface_type::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "glsl_surface_type" );
-	meta->registerClass(domGlsl_surface_type::create, &meta);
+	meta->registerClass(domGlsl_surface_type::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -158,7 +158,7 @@ domGlsl_surface_type::domGenerator::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "generator" );
-	meta->registerClass(domGlsl_surface_type::domGenerator::create, &meta);
+	meta->registerClass(domGlsl_surface_type::domGenerator::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -231,7 +231,7 @@ domGlsl_surface_type::domGenerator::domName::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "name" );
-	meta->registerClass(domGlsl_surface_type::domGenerator::domName::create, &meta);
+	meta->registerClass(domGlsl_surface_type::domGenerator::domName::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

@@ -38,7 +38,7 @@ domRotate::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "rotate" );
-	meta->registerClass(domRotate::create, &meta);
+	meta->registerClass(domRotate::create);
 
 	//	Add attribute: _value
 	{

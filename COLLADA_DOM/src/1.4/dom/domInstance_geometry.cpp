@@ -39,7 +39,7 @@ domInstance_geometry::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "instance_geometry" );
-	meta->registerClass(domInstance_geometry::create, &meta);
+	meta->registerClass(domInstance_geometry::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

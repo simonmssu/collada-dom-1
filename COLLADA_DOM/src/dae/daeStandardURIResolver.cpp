@@ -43,7 +43,6 @@ daeStandardURIResolver::isExtensionSupported(daeString extension)
 }
 		
 daeBool daeStandardURIResolver::isProtocolSupported(daeString protocol) {
-	// !!!steveT Need to test the performance of the getSupportedProtocols call
 	size_t index;
 	return (protocol  &&  dae->getIOPlugin()->getSupportedProtocols().find(protocol, index) == DAE_OK);
 }

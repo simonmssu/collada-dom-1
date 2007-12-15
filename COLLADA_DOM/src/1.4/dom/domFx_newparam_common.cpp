@@ -38,7 +38,7 @@ domFx_newparam_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_newparam_common" );
-	meta->registerClass(domFx_newparam_common::create, &meta);
+	meta->registerClass(domFx_newparam_common::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -106,7 +106,7 @@ domFx_newparam_common::domSemantic::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "semantic" );
-	meta->registerClass(domFx_newparam_common::domSemantic::create, &meta);
+	meta->registerClass(domFx_newparam_common::domSemantic::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -142,7 +142,7 @@ domFx_newparam_common::domModifier::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "modifier" );
-	meta->registerClass(domFx_newparam_common::domModifier::create, &meta);
+	meta->registerClass(domFx_newparam_common::domModifier::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

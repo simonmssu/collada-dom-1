@@ -38,7 +38,7 @@ domFx_cleardepth_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_cleardepth_common" );
-	meta->registerClass(domFx_cleardepth_common::create, &meta);
+	meta->registerClass(domFx_cleardepth_common::create);
 
 	//	Add attribute: _value
 	{

@@ -38,7 +38,7 @@ domFx_surface_init_volume_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_surface_init_volume_common" );
-	meta->registerClass(domFx_surface_init_volume_common::create, &meta);
+	meta->registerClass(domFx_surface_init_volume_common::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -86,7 +86,7 @@ domFx_surface_init_volume_common::domAll::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "all" );
-	meta->registerClass(domFx_surface_init_volume_common::domAll::create, &meta);
+	meta->registerClass(domFx_surface_init_volume_common::domAll::create);
 
 	meta->setIsInnerClass( true );
 
@@ -125,7 +125,7 @@ domFx_surface_init_volume_common::domPrimary::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "primary" );
-	meta->registerClass(domFx_surface_init_volume_common::domPrimary::create, &meta);
+	meta->registerClass(domFx_surface_init_volume_common::domPrimary::create);
 
 	meta->setIsInnerClass( true );
 

@@ -38,7 +38,7 @@ domImage::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "image" );
-	meta->registerClass(domImage::create, &meta);
+	meta->registerClass(domImage::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -171,7 +171,7 @@ domImage::domData::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "data" );
-	meta->registerClass(domImage::domData::create, &meta);
+	meta->registerClass(domImage::domData::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -208,7 +208,7 @@ domImage::domInit_from::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "init_from" );
-	meta->registerClass(domImage::domInit_from::create, &meta);
+	meta->registerClass(domImage::domInit_from::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

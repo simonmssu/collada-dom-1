@@ -38,7 +38,7 @@ domLines::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "lines" );
-	meta->registerClass(domLines::create, &meta);
+	meta->registerClass(domLines::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

@@ -38,7 +38,7 @@ domCg_samplerCUBE::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cg_samplerCUBE" );
-	meta->registerClass(domCg_samplerCUBE::create, &meta);
+	meta->registerClass(domCg_samplerCUBE::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

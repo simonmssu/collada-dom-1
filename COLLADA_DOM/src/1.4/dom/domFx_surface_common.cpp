@@ -38,7 +38,7 @@ domFx_surface_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_surface_common" );
-	meta->registerClass(domFx_surface_common::create, &meta);
+	meta->registerClass(domFx_surface_common::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -140,7 +140,7 @@ domFx_surface_common::domFormat::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "format" );
-	meta->registerClass(domFx_surface_common::domFormat::create, &meta);
+	meta->registerClass(domFx_surface_common::domFormat::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -176,7 +176,7 @@ domFx_surface_common::domSize::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "size" );
-	meta->registerClass(domFx_surface_common::domSize::create, &meta);
+	meta->registerClass(domFx_surface_common::domSize::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -212,7 +212,7 @@ domFx_surface_common::domViewport_ratio::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "viewport_ratio" );
-	meta->registerClass(domFx_surface_common::domViewport_ratio::create, &meta);
+	meta->registerClass(domFx_surface_common::domViewport_ratio::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -248,7 +248,7 @@ domFx_surface_common::domMip_levels::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mip_levels" );
-	meta->registerClass(domFx_surface_common::domMip_levels::create, &meta);
+	meta->registerClass(domFx_surface_common::domMip_levels::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -284,7 +284,7 @@ domFx_surface_common::domMipmap_generate::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mipmap_generate" );
-	meta->registerClass(domFx_surface_common::domMipmap_generate::create, &meta);
+	meta->registerClass(domFx_surface_common::domMipmap_generate::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

@@ -38,7 +38,7 @@ domAsset::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "asset" );
-	meta->registerClass(domAsset::create, &meta);
+	meta->registerClass(domAsset::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -124,7 +124,7 @@ domAsset::domContributor::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "contributor" );
-	meta->registerClass(domAsset::domContributor::create, &meta);
+	meta->registerClass(domAsset::domContributor::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -187,7 +187,7 @@ domAsset::domContributor::domAuthor::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "author" );
-	meta->registerClass(domAsset::domContributor::domAuthor::create, &meta);
+	meta->registerClass(domAsset::domContributor::domAuthor::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -223,7 +223,7 @@ domAsset::domContributor::domAuthoring_tool::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "authoring_tool" );
-	meta->registerClass(domAsset::domContributor::domAuthoring_tool::create, &meta);
+	meta->registerClass(domAsset::domContributor::domAuthoring_tool::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -259,7 +259,7 @@ domAsset::domContributor::domComments::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "comments" );
-	meta->registerClass(domAsset::domContributor::domComments::create, &meta);
+	meta->registerClass(domAsset::domContributor::domComments::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -295,7 +295,7 @@ domAsset::domContributor::domCopyright::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "copyright" );
-	meta->registerClass(domAsset::domContributor::domCopyright::create, &meta);
+	meta->registerClass(domAsset::domContributor::domCopyright::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -332,7 +332,7 @@ domAsset::domContributor::domSource_data::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "source_data" );
-	meta->registerClass(domAsset::domContributor::domSource_data::create, &meta);
+	meta->registerClass(domAsset::domContributor::domSource_data::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -368,7 +368,7 @@ domAsset::domCreated::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "created" );
-	meta->registerClass(domAsset::domCreated::create, &meta);
+	meta->registerClass(domAsset::domCreated::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -404,7 +404,7 @@ domAsset::domKeywords::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "keywords" );
-	meta->registerClass(domAsset::domKeywords::create, &meta);
+	meta->registerClass(domAsset::domKeywords::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -440,7 +440,7 @@ domAsset::domModified::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "modified" );
-	meta->registerClass(domAsset::domModified::create, &meta);
+	meta->registerClass(domAsset::domModified::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -476,7 +476,7 @@ domAsset::domRevision::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "revision" );
-	meta->registerClass(domAsset::domRevision::create, &meta);
+	meta->registerClass(domAsset::domRevision::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -512,7 +512,7 @@ domAsset::domSubject::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "subject" );
-	meta->registerClass(domAsset::domSubject::create, &meta);
+	meta->registerClass(domAsset::domSubject::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -548,7 +548,7 @@ domAsset::domTitle::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "title" );
-	meta->registerClass(domAsset::domTitle::create, &meta);
+	meta->registerClass(domAsset::domTitle::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -584,7 +584,7 @@ domAsset::domUnit::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "unit" );
-	meta->registerClass(domAsset::domUnit::create, &meta);
+	meta->registerClass(domAsset::domUnit::create);
 
 	meta->setIsInnerClass( true );
 
@@ -635,7 +635,7 @@ domAsset::domUp_axis::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "up_axis" );
-	meta->registerClass(domAsset::domUp_axis::create, &meta);
+	meta->registerClass(domAsset::domUp_axis::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

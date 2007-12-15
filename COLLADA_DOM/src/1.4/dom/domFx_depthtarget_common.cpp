@@ -38,7 +38,7 @@ domFx_depthtarget_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_depthtarget_common" );
-	meta->registerClass(domFx_depthtarget_common::create, &meta);
+	meta->registerClass(domFx_depthtarget_common::create);
 
 	//	Add attribute: _value
 	{

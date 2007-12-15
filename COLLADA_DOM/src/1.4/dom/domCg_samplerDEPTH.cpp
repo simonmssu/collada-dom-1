@@ -38,7 +38,7 @@ domCg_samplerDEPTH::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cg_samplerDEPTH" );
-	meta->registerClass(domCg_samplerDEPTH::create, &meta);
+	meta->registerClass(domCg_samplerDEPTH::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

@@ -38,7 +38,7 @@ domFx_code_profile::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_code_profile" );
-	meta->registerClass(domFx_code_profile::create, &meta);
+	meta->registerClass(domFx_code_profile::create);
 
 	//	Add attribute: _value
 	{

@@ -38,7 +38,7 @@ domLibrary_lights::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_lights" );
-	meta->registerClass(domLibrary_lights::create, &meta);
+	meta->registerClass(domLibrary_lights::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

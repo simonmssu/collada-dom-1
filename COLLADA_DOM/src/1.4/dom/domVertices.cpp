@@ -38,7 +38,7 @@ domVertices::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "vertices" );
-	meta->registerClass(domVertices::create, &meta);
+	meta->registerClass(domVertices::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

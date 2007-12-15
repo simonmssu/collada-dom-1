@@ -11,6 +11,7 @@
  * License.
  */
 
+#include <dae.h>
 #include <dom/domTypes.h>
 #include <dae/daeDom.h>
 #include <dom/domCOLLADA.h>

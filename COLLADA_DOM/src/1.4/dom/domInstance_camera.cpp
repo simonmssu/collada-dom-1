@@ -38,7 +38,7 @@ domInstance_camera::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "instance_camera" );
-	meta->registerClass(domInstance_camera::create, &meta);
+	meta->registerClass(domInstance_camera::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

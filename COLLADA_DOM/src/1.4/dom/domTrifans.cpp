@@ -38,7 +38,7 @@ domTrifans::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "trifans" );
-	meta->registerClass(domTrifans::create, &meta);
+	meta->registerClass(domTrifans::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

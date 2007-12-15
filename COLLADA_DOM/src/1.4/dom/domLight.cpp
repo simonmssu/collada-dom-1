@@ -38,7 +38,7 @@ domLight::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "light" );
-	meta->registerClass(domLight::create, &meta);
+	meta->registerClass(domLight::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -116,7 +116,7 @@ domLight::domTechnique_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique_common" );
-	meta->registerClass(domLight::domTechnique_common::create, &meta);
+	meta->registerClass(domLight::domTechnique_common::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -177,7 +177,7 @@ domLight::domTechnique_common::domAmbient::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "ambient" );
-	meta->registerClass(domLight::domTechnique_common::domAmbient::create, &meta);
+	meta->registerClass(domLight::domTechnique_common::domAmbient::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -216,7 +216,7 @@ domLight::domTechnique_common::domDirectional::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "directional" );
-	meta->registerClass(domLight::domTechnique_common::domDirectional::create, &meta);
+	meta->registerClass(domLight::domTechnique_common::domDirectional::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -255,7 +255,7 @@ domLight::domTechnique_common::domPoint::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "point" );
-	meta->registerClass(domLight::domTechnique_common::domPoint::create, &meta);
+	meta->registerClass(domLight::domTechnique_common::domPoint::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -312,7 +312,7 @@ domLight::domTechnique_common::domSpot::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "spot" );
-	meta->registerClass(domLight::domTechnique_common::domSpot::create, &meta);
+	meta->registerClass(domLight::domTechnique_common::domSpot::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

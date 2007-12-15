@@ -38,7 +38,7 @@ domFx_surface_init_planar_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_surface_init_planar_common" );
-	meta->registerClass(domFx_surface_init_planar_common::create, &meta);
+	meta->registerClass(domFx_surface_init_planar_common::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -80,7 +80,7 @@ domFx_surface_init_planar_common::domAll::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "all" );
-	meta->registerClass(domFx_surface_init_planar_common::domAll::create, &meta);
+	meta->registerClass(domFx_surface_init_planar_common::domAll::create);
 
 	meta->setIsInnerClass( true );
 

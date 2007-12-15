@@ -38,7 +38,7 @@ domSpline::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "spline" );
-	meta->registerClass(domSpline::create, &meta);
+	meta->registerClass(domSpline::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -100,7 +100,7 @@ domSpline::domControl_vertices::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "control_vertices" );
-	meta->registerClass(domSpline::domControl_vertices::create, &meta);
+	meta->registerClass(domSpline::domControl_vertices::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

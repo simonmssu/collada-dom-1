@@ -38,7 +38,7 @@ domLibrary_cameras::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_cameras" );
-	meta->registerClass(domLibrary_cameras::create, &meta);
+	meta->registerClass(domLibrary_cameras::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

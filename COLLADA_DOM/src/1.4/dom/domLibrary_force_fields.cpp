@@ -38,7 +38,7 @@ domLibrary_force_fields::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_force_fields" );
-	meta->registerClass(domLibrary_force_fields::create, &meta);
+	meta->registerClass(domLibrary_force_fields::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

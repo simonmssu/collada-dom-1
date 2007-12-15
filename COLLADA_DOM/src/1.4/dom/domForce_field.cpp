@@ -38,7 +38,7 @@ domForce_field::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "force_field" );
-	meta->registerClass(domForce_field::create, &meta);
+	meta->registerClass(domForce_field::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

@@ -39,7 +39,7 @@ domInputLocalOffset::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "InputLocalOffset" );
-	meta->registerClass(domInputLocalOffset::create, &meta);
+	meta->registerClass(domInputLocalOffset::create);
 
 
 	//	Add attribute: offset

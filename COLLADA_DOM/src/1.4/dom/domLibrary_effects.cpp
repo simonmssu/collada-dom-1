@@ -38,7 +38,7 @@ domLibrary_effects::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_effects" );
-	meta->registerClass(domLibrary_effects::create, &meta);
+	meta->registerClass(domLibrary_effects::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

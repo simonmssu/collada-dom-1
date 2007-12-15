@@ -933,10 +933,13 @@ daeArray* daeRawRefType::createArray() {
 }
 
 daeArray* daeResolverType::createArray() {
-	// !!!steveT What do we want to do here?
+	// !!!steveT
+	// The daeURI object no longer has a constructor that takes no arguments, so
+	// it's not compatible with daeTArray. Therefore this method currently can't be used,
+	// and asserts if you try to use it. The DOM doesn't ever call this code now,
+	// so the situation is sort of alright, but we might need to fix this in the future.
 	assert(false);
 	return NULL;
-	//return new daeTArray<daeURI>;
 }
 
 daeArray* daeIDResolverType::createArray() {

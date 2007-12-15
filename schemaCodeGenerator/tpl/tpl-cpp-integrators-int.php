@@ -38,7 +38,7 @@
     
     _Meta = new daeMetaElement(dae);
     _Meta->setName( "<?= $bag['element_name'] ?>" );
-	_Meta->registerClass(<?= $scoped_element ?>::create, &_Meta);
+	_Meta->registerClass(<?= $scoped_element ?>::create);
 
 	<?= $dom_scoped_element ?>::_Meta->setMetaIntegration(_Meta);
 

@@ -38,7 +38,7 @@ domCg_sampler3D::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cg_sampler3D" );
-	meta->registerClass(domCg_sampler3D::create, &meta);
+	meta->registerClass(domCg_sampler3D::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

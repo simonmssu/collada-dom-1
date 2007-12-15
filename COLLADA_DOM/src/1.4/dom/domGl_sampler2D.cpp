@@ -38,7 +38,7 @@ domGl_sampler2D::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "gl_sampler2D" );
-	meta->registerClass(domGl_sampler2D::create, &meta);
+	meta->registerClass(domGl_sampler2D::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

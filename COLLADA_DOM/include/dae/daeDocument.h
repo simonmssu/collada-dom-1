@@ -14,13 +14,13 @@
 #ifndef __DAE_DOCUMENT__
 #define __DAE_DOCUMENT__
 
-#include <dae.h>
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
 #include <dae/daeURI.h>
 #include <dae/daeStringRef.h>
 
 class DAE;
+class daeDatabase;
 
 /**
  * The @c daeDocument class implements a COLLADA runtime database entry.

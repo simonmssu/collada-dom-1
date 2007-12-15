@@ -38,7 +38,7 @@ domMesh::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mesh" );
-	meta->registerClass(domMesh::create, &meta);
+	meta->registerClass(domMesh::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

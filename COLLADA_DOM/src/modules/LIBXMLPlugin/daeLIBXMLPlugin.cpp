@@ -35,6 +35,11 @@
 
 using namespace std;
 
+// This should be moved to daeIOPlugin.cpp if we ever create such a file
+const daeTArray<std::string>& daeIOPlugin::getSupportedProtocols() {
+	return supportedProtocols;
+}
+
 // Some helper functions for working with libxml
 namespace {
 	daeInt getCurrentLineNumber(xmlTextReaderPtr reader) {
@@ -62,22 +67,17 @@ namespace {
 
 daeLIBXMLPlugin::daeLIBXMLPlugin(DAE& dae) : dae(dae), rawRelPath(dae)
 {
-	 xmlInitParser();
-	 rawFile = NULL;
-	 rawByteCount = 0;
-	 saveRawFile = false;
+	supportedProtocols.append("file");
+	supportedProtocols.append("http");
+	xmlInitParser();
+	rawFile = NULL;
+	rawByteCount = 0;
+	saveRawFile = false;
 }
 
 daeLIBXMLPlugin::~daeLIBXMLPlugin()
 {
 	 xmlCleanupParser();
-}
-
-daeTArray<std::string> daeLIBXMLPlugin::getSupportedProtocols() {
-	daeTArray<std::string> protocols;
-	protocols.append("file");
-	protocols.append("http");
-	return protocols;
 }
 
 daeInt daeLIBXMLPlugin::setOption( daeString option, daeString value )

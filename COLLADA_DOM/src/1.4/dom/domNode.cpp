@@ -38,7 +38,7 @@ domNode::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "node" );
-	meta->registerClass(domNode::create, &meta);
+	meta->registerClass(domNode::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

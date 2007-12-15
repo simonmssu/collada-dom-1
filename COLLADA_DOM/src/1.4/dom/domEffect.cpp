@@ -42,7 +42,7 @@ domEffect::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "effect" );
-	meta->registerClass(domEffect::create, &meta);
+	meta->registerClass(domEffect::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

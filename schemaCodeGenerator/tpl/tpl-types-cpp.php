@@ -16,6 +16,7 @@ if ( $_globals['copyright'] ) {
 print $_globals['copyright_text'];
 }
 ?>
+#include <dae.h>
 #include <<?= $_globals['prefix'] . '/' . $_globals['prefix'] ?>Types.h>
 #include <dae/daeDom.h>
 #include <dom/domCOLLADA.h>

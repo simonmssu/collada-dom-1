@@ -38,7 +38,7 @@ domLibrary_animation_clips::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_animation_clips" );
-	meta->registerClass(domLibrary_animation_clips::create, &meta);
+	meta->registerClass(domLibrary_animation_clips::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

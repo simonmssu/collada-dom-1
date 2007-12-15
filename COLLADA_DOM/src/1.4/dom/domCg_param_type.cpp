@@ -38,7 +38,7 @@ domCg_param_type::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cg_param_type" );
-	meta->registerClass(domCg_param_type::create, &meta);
+	meta->registerClass(domCg_param_type::create);
 
 	meta->setIsTransparent( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -759,7 +759,7 @@ domCg_param_type::domBool::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool" );
-	meta->registerClass(domCg_param_type::domBool::create, &meta);
+	meta->registerClass(domCg_param_type::domBool::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -795,7 +795,7 @@ domCg_param_type::domBool1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool1" );
-	meta->registerClass(domCg_param_type::domBool1::create, &meta);
+	meta->registerClass(domCg_param_type::domBool1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -831,7 +831,7 @@ domCg_param_type::domBool2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool2" );
-	meta->registerClass(domCg_param_type::domBool2::create, &meta);
+	meta->registerClass(domCg_param_type::domBool2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -867,7 +867,7 @@ domCg_param_type::domBool3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool3" );
-	meta->registerClass(domCg_param_type::domBool3::create, &meta);
+	meta->registerClass(domCg_param_type::domBool3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -903,7 +903,7 @@ domCg_param_type::domBool4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool4" );
-	meta->registerClass(domCg_param_type::domBool4::create, &meta);
+	meta->registerClass(domCg_param_type::domBool4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -939,7 +939,7 @@ domCg_param_type::domBool1x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool1x1" );
-	meta->registerClass(domCg_param_type::domBool1x1::create, &meta);
+	meta->registerClass(domCg_param_type::domBool1x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -975,7 +975,7 @@ domCg_param_type::domBool1x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool1x2" );
-	meta->registerClass(domCg_param_type::domBool1x2::create, &meta);
+	meta->registerClass(domCg_param_type::domBool1x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1011,7 +1011,7 @@ domCg_param_type::domBool1x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool1x3" );
-	meta->registerClass(domCg_param_type::domBool1x3::create, &meta);
+	meta->registerClass(domCg_param_type::domBool1x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1047,7 +1047,7 @@ domCg_param_type::domBool1x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool1x4" );
-	meta->registerClass(domCg_param_type::domBool1x4::create, &meta);
+	meta->registerClass(domCg_param_type::domBool1x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1083,7 +1083,7 @@ domCg_param_type::domBool2x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool2x1" );
-	meta->registerClass(domCg_param_type::domBool2x1::create, &meta);
+	meta->registerClass(domCg_param_type::domBool2x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1119,7 +1119,7 @@ domCg_param_type::domBool2x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool2x2" );
-	meta->registerClass(domCg_param_type::domBool2x2::create, &meta);
+	meta->registerClass(domCg_param_type::domBool2x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1155,7 +1155,7 @@ domCg_param_type::domBool2x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool2x3" );
-	meta->registerClass(domCg_param_type::domBool2x3::create, &meta);
+	meta->registerClass(domCg_param_type::domBool2x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1191,7 +1191,7 @@ domCg_param_type::domBool2x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool2x4" );
-	meta->registerClass(domCg_param_type::domBool2x4::create, &meta);
+	meta->registerClass(domCg_param_type::domBool2x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1227,7 +1227,7 @@ domCg_param_type::domBool3x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool3x1" );
-	meta->registerClass(domCg_param_type::domBool3x1::create, &meta);
+	meta->registerClass(domCg_param_type::domBool3x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1263,7 +1263,7 @@ domCg_param_type::domBool3x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool3x2" );
-	meta->registerClass(domCg_param_type::domBool3x2::create, &meta);
+	meta->registerClass(domCg_param_type::domBool3x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1299,7 +1299,7 @@ domCg_param_type::domBool3x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool3x3" );
-	meta->registerClass(domCg_param_type::domBool3x3::create, &meta);
+	meta->registerClass(domCg_param_type::domBool3x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1335,7 +1335,7 @@ domCg_param_type::domBool3x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool3x4" );
-	meta->registerClass(domCg_param_type::domBool3x4::create, &meta);
+	meta->registerClass(domCg_param_type::domBool3x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1371,7 +1371,7 @@ domCg_param_type::domBool4x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool4x1" );
-	meta->registerClass(domCg_param_type::domBool4x1::create, &meta);
+	meta->registerClass(domCg_param_type::domBool4x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1407,7 +1407,7 @@ domCg_param_type::domBool4x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool4x2" );
-	meta->registerClass(domCg_param_type::domBool4x2::create, &meta);
+	meta->registerClass(domCg_param_type::domBool4x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1443,7 +1443,7 @@ domCg_param_type::domBool4x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool4x3" );
-	meta->registerClass(domCg_param_type::domBool4x3::create, &meta);
+	meta->registerClass(domCg_param_type::domBool4x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1479,7 +1479,7 @@ domCg_param_type::domBool4x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool4x4" );
-	meta->registerClass(domCg_param_type::domBool4x4::create, &meta);
+	meta->registerClass(domCg_param_type::domBool4x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1515,7 +1515,7 @@ domCg_param_type::domFloat::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float" );
-	meta->registerClass(domCg_param_type::domFloat::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1551,7 +1551,7 @@ domCg_param_type::domFloat1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float1" );
-	meta->registerClass(domCg_param_type::domFloat1::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1587,7 +1587,7 @@ domCg_param_type::domFloat2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2" );
-	meta->registerClass(domCg_param_type::domFloat2::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1623,7 +1623,7 @@ domCg_param_type::domFloat3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3" );
-	meta->registerClass(domCg_param_type::domFloat3::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1659,7 +1659,7 @@ domCg_param_type::domFloat4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4" );
-	meta->registerClass(domCg_param_type::domFloat4::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1695,7 +1695,7 @@ domCg_param_type::domFloat1x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float1x1" );
-	meta->registerClass(domCg_param_type::domFloat1x1::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat1x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1731,7 +1731,7 @@ domCg_param_type::domFloat1x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float1x2" );
-	meta->registerClass(domCg_param_type::domFloat1x2::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat1x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1767,7 +1767,7 @@ domCg_param_type::domFloat1x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float1x3" );
-	meta->registerClass(domCg_param_type::domFloat1x3::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat1x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1803,7 +1803,7 @@ domCg_param_type::domFloat1x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float1x4" );
-	meta->registerClass(domCg_param_type::domFloat1x4::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat1x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1839,7 +1839,7 @@ domCg_param_type::domFloat2x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2x1" );
-	meta->registerClass(domCg_param_type::domFloat2x1::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat2x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1875,7 +1875,7 @@ domCg_param_type::domFloat2x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2x2" );
-	meta->registerClass(domCg_param_type::domFloat2x2::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat2x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1911,7 +1911,7 @@ domCg_param_type::domFloat2x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2x3" );
-	meta->registerClass(domCg_param_type::domFloat2x3::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat2x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1947,7 +1947,7 @@ domCg_param_type::domFloat2x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2x4" );
-	meta->registerClass(domCg_param_type::domFloat2x4::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat2x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -1983,7 +1983,7 @@ domCg_param_type::domFloat3x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3x1" );
-	meta->registerClass(domCg_param_type::domFloat3x1::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat3x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2019,7 +2019,7 @@ domCg_param_type::domFloat3x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3x2" );
-	meta->registerClass(domCg_param_type::domFloat3x2::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat3x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2055,7 +2055,7 @@ domCg_param_type::domFloat3x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3x3" );
-	meta->registerClass(domCg_param_type::domFloat3x3::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat3x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2091,7 +2091,7 @@ domCg_param_type::domFloat3x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3x4" );
-	meta->registerClass(domCg_param_type::domFloat3x4::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat3x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2127,7 +2127,7 @@ domCg_param_type::domFloat4x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4x1" );
-	meta->registerClass(domCg_param_type::domFloat4x1::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat4x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2163,7 +2163,7 @@ domCg_param_type::domFloat4x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4x2" );
-	meta->registerClass(domCg_param_type::domFloat4x2::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat4x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2199,7 +2199,7 @@ domCg_param_type::domFloat4x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4x3" );
-	meta->registerClass(domCg_param_type::domFloat4x3::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat4x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2235,7 +2235,7 @@ domCg_param_type::domFloat4x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4x4" );
-	meta->registerClass(domCg_param_type::domFloat4x4::create, &meta);
+	meta->registerClass(domCg_param_type::domFloat4x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2271,7 +2271,7 @@ domCg_param_type::domInt::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int" );
-	meta->registerClass(domCg_param_type::domInt::create, &meta);
+	meta->registerClass(domCg_param_type::domInt::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2307,7 +2307,7 @@ domCg_param_type::domInt1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int1" );
-	meta->registerClass(domCg_param_type::domInt1::create, &meta);
+	meta->registerClass(domCg_param_type::domInt1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2343,7 +2343,7 @@ domCg_param_type::domInt2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int2" );
-	meta->registerClass(domCg_param_type::domInt2::create, &meta);
+	meta->registerClass(domCg_param_type::domInt2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2379,7 +2379,7 @@ domCg_param_type::domInt3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int3" );
-	meta->registerClass(domCg_param_type::domInt3::create, &meta);
+	meta->registerClass(domCg_param_type::domInt3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2415,7 +2415,7 @@ domCg_param_type::domInt4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int4" );
-	meta->registerClass(domCg_param_type::domInt4::create, &meta);
+	meta->registerClass(domCg_param_type::domInt4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2451,7 +2451,7 @@ domCg_param_type::domInt1x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int1x1" );
-	meta->registerClass(domCg_param_type::domInt1x1::create, &meta);
+	meta->registerClass(domCg_param_type::domInt1x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2487,7 +2487,7 @@ domCg_param_type::domInt1x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int1x2" );
-	meta->registerClass(domCg_param_type::domInt1x2::create, &meta);
+	meta->registerClass(domCg_param_type::domInt1x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2523,7 +2523,7 @@ domCg_param_type::domInt1x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int1x3" );
-	meta->registerClass(domCg_param_type::domInt1x3::create, &meta);
+	meta->registerClass(domCg_param_type::domInt1x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2559,7 +2559,7 @@ domCg_param_type::domInt1x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int1x4" );
-	meta->registerClass(domCg_param_type::domInt1x4::create, &meta);
+	meta->registerClass(domCg_param_type::domInt1x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2595,7 +2595,7 @@ domCg_param_type::domInt2x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int2x1" );
-	meta->registerClass(domCg_param_type::domInt2x1::create, &meta);
+	meta->registerClass(domCg_param_type::domInt2x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2631,7 +2631,7 @@ domCg_param_type::domInt2x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int2x2" );
-	meta->registerClass(domCg_param_type::domInt2x2::create, &meta);
+	meta->registerClass(domCg_param_type::domInt2x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2667,7 +2667,7 @@ domCg_param_type::domInt2x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int2x3" );
-	meta->registerClass(domCg_param_type::domInt2x3::create, &meta);
+	meta->registerClass(domCg_param_type::domInt2x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2703,7 +2703,7 @@ domCg_param_type::domInt2x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int2x4" );
-	meta->registerClass(domCg_param_type::domInt2x4::create, &meta);
+	meta->registerClass(domCg_param_type::domInt2x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2739,7 +2739,7 @@ domCg_param_type::domInt3x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int3x1" );
-	meta->registerClass(domCg_param_type::domInt3x1::create, &meta);
+	meta->registerClass(domCg_param_type::domInt3x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2775,7 +2775,7 @@ domCg_param_type::domInt3x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int3x2" );
-	meta->registerClass(domCg_param_type::domInt3x2::create, &meta);
+	meta->registerClass(domCg_param_type::domInt3x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2811,7 +2811,7 @@ domCg_param_type::domInt3x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int3x3" );
-	meta->registerClass(domCg_param_type::domInt3x3::create, &meta);
+	meta->registerClass(domCg_param_type::domInt3x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2847,7 +2847,7 @@ domCg_param_type::domInt3x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int3x4" );
-	meta->registerClass(domCg_param_type::domInt3x4::create, &meta);
+	meta->registerClass(domCg_param_type::domInt3x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2883,7 +2883,7 @@ domCg_param_type::domInt4x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int4x1" );
-	meta->registerClass(domCg_param_type::domInt4x1::create, &meta);
+	meta->registerClass(domCg_param_type::domInt4x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2919,7 +2919,7 @@ domCg_param_type::domInt4x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int4x2" );
-	meta->registerClass(domCg_param_type::domInt4x2::create, &meta);
+	meta->registerClass(domCg_param_type::domInt4x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2955,7 +2955,7 @@ domCg_param_type::domInt4x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int4x3" );
-	meta->registerClass(domCg_param_type::domInt4x3::create, &meta);
+	meta->registerClass(domCg_param_type::domInt4x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -2991,7 +2991,7 @@ domCg_param_type::domInt4x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int4x4" );
-	meta->registerClass(domCg_param_type::domInt4x4::create, &meta);
+	meta->registerClass(domCg_param_type::domInt4x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3027,7 +3027,7 @@ domCg_param_type::domHalf::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half" );
-	meta->registerClass(domCg_param_type::domHalf::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3063,7 +3063,7 @@ domCg_param_type::domHalf1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half1" );
-	meta->registerClass(domCg_param_type::domHalf1::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3099,7 +3099,7 @@ domCg_param_type::domHalf2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half2" );
-	meta->registerClass(domCg_param_type::domHalf2::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3135,7 +3135,7 @@ domCg_param_type::domHalf3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half3" );
-	meta->registerClass(domCg_param_type::domHalf3::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3171,7 +3171,7 @@ domCg_param_type::domHalf4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half4" );
-	meta->registerClass(domCg_param_type::domHalf4::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3207,7 +3207,7 @@ domCg_param_type::domHalf1x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half1x1" );
-	meta->registerClass(domCg_param_type::domHalf1x1::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf1x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3243,7 +3243,7 @@ domCg_param_type::domHalf1x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half1x2" );
-	meta->registerClass(domCg_param_type::domHalf1x2::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf1x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3279,7 +3279,7 @@ domCg_param_type::domHalf1x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half1x3" );
-	meta->registerClass(domCg_param_type::domHalf1x3::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf1x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3315,7 +3315,7 @@ domCg_param_type::domHalf1x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half1x4" );
-	meta->registerClass(domCg_param_type::domHalf1x4::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf1x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3351,7 +3351,7 @@ domCg_param_type::domHalf2x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half2x1" );
-	meta->registerClass(domCg_param_type::domHalf2x1::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf2x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3387,7 +3387,7 @@ domCg_param_type::domHalf2x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half2x2" );
-	meta->registerClass(domCg_param_type::domHalf2x2::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf2x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3423,7 +3423,7 @@ domCg_param_type::domHalf2x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half2x3" );
-	meta->registerClass(domCg_param_type::domHalf2x3::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf2x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3459,7 +3459,7 @@ domCg_param_type::domHalf2x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half2x4" );
-	meta->registerClass(domCg_param_type::domHalf2x4::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf2x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3495,7 +3495,7 @@ domCg_param_type::domHalf3x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half3x1" );
-	meta->registerClass(domCg_param_type::domHalf3x1::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf3x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3531,7 +3531,7 @@ domCg_param_type::domHalf3x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half3x2" );
-	meta->registerClass(domCg_param_type::domHalf3x2::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf3x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3567,7 +3567,7 @@ domCg_param_type::domHalf3x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half3x3" );
-	meta->registerClass(domCg_param_type::domHalf3x3::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf3x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3603,7 +3603,7 @@ domCg_param_type::domHalf3x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half3x4" );
-	meta->registerClass(domCg_param_type::domHalf3x4::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf3x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3639,7 +3639,7 @@ domCg_param_type::domHalf4x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half4x1" );
-	meta->registerClass(domCg_param_type::domHalf4x1::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf4x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3675,7 +3675,7 @@ domCg_param_type::domHalf4x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half4x2" );
-	meta->registerClass(domCg_param_type::domHalf4x2::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf4x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3711,7 +3711,7 @@ domCg_param_type::domHalf4x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half4x3" );
-	meta->registerClass(domCg_param_type::domHalf4x3::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf4x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3747,7 +3747,7 @@ domCg_param_type::domHalf4x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half4x4" );
-	meta->registerClass(domCg_param_type::domHalf4x4::create, &meta);
+	meta->registerClass(domCg_param_type::domHalf4x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3783,7 +3783,7 @@ domCg_param_type::domFixed::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed" );
-	meta->registerClass(domCg_param_type::domFixed::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3819,7 +3819,7 @@ domCg_param_type::domFixed1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed1" );
-	meta->registerClass(domCg_param_type::domFixed1::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3855,7 +3855,7 @@ domCg_param_type::domFixed2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed2" );
-	meta->registerClass(domCg_param_type::domFixed2::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3891,7 +3891,7 @@ domCg_param_type::domFixed3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed3" );
-	meta->registerClass(domCg_param_type::domFixed3::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3927,7 +3927,7 @@ domCg_param_type::domFixed4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed4" );
-	meta->registerClass(domCg_param_type::domFixed4::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3963,7 +3963,7 @@ domCg_param_type::domFixed1x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed1x1" );
-	meta->registerClass(domCg_param_type::domFixed1x1::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed1x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -3999,7 +3999,7 @@ domCg_param_type::domFixed1x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed1x2" );
-	meta->registerClass(domCg_param_type::domFixed1x2::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed1x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4035,7 +4035,7 @@ domCg_param_type::domFixed1x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed1x3" );
-	meta->registerClass(domCg_param_type::domFixed1x3::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed1x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4071,7 +4071,7 @@ domCg_param_type::domFixed1x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed1x4" );
-	meta->registerClass(domCg_param_type::domFixed1x4::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed1x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4107,7 +4107,7 @@ domCg_param_type::domFixed2x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed2x1" );
-	meta->registerClass(domCg_param_type::domFixed2x1::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed2x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4143,7 +4143,7 @@ domCg_param_type::domFixed2x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed2x2" );
-	meta->registerClass(domCg_param_type::domFixed2x2::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed2x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4179,7 +4179,7 @@ domCg_param_type::domFixed2x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed2x3" );
-	meta->registerClass(domCg_param_type::domFixed2x3::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed2x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4215,7 +4215,7 @@ domCg_param_type::domFixed2x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed2x4" );
-	meta->registerClass(domCg_param_type::domFixed2x4::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed2x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4251,7 +4251,7 @@ domCg_param_type::domFixed3x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed3x1" );
-	meta->registerClass(domCg_param_type::domFixed3x1::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed3x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4287,7 +4287,7 @@ domCg_param_type::domFixed3x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed3x2" );
-	meta->registerClass(domCg_param_type::domFixed3x2::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed3x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4323,7 +4323,7 @@ domCg_param_type::domFixed3x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed3x3" );
-	meta->registerClass(domCg_param_type::domFixed3x3::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed3x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4359,7 +4359,7 @@ domCg_param_type::domFixed3x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed3x4" );
-	meta->registerClass(domCg_param_type::domFixed3x4::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed3x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4395,7 +4395,7 @@ domCg_param_type::domFixed4x1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed4x1" );
-	meta->registerClass(domCg_param_type::domFixed4x1::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed4x1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4431,7 +4431,7 @@ domCg_param_type::domFixed4x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed4x2" );
-	meta->registerClass(domCg_param_type::domFixed4x2::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed4x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4467,7 +4467,7 @@ domCg_param_type::domFixed4x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed4x3" );
-	meta->registerClass(domCg_param_type::domFixed4x3::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed4x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4503,7 +4503,7 @@ domCg_param_type::domFixed4x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fixed4x4" );
-	meta->registerClass(domCg_param_type::domFixed4x4::create, &meta);
+	meta->registerClass(domCg_param_type::domFixed4x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4539,7 +4539,7 @@ domCg_param_type::domString::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "string" );
-	meta->registerClass(domCg_param_type::domString::create, &meta);
+	meta->registerClass(domCg_param_type::domString::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -4575,7 +4575,7 @@ domCg_param_type::domEnum::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "enum" );
-	meta->registerClass(domCg_param_type::domEnum::create, &meta);
+	meta->registerClass(domCg_param_type::domEnum::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

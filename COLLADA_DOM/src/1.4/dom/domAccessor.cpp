@@ -39,7 +39,7 @@ domAccessor::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "accessor" );
-	meta->registerClass(domAccessor::create, &meta);
+	meta->registerClass(domAccessor::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

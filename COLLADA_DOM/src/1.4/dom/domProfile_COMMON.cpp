@@ -38,7 +38,7 @@ domProfile_COMMON::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "profile_COMMON" );
-	meta->registerClass(domProfile_COMMON::create, &meta);
+	meta->registerClass(domProfile_COMMON::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -122,7 +122,7 @@ domProfile_COMMON::domTechnique::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique" );
-	meta->registerClass(domProfile_COMMON::domTechnique::create, &meta);
+	meta->registerClass(domProfile_COMMON::domTechnique::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -242,7 +242,7 @@ domProfile_COMMON::domTechnique::domConstant::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "constant" );
-	meta->registerClass(domProfile_COMMON::domTechnique::domConstant::create, &meta);
+	meta->registerClass(domProfile_COMMON::domTechnique::domConstant::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -311,7 +311,7 @@ domProfile_COMMON::domTechnique::domLambert::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "lambert" );
-	meta->registerClass(domProfile_COMMON::domTechnique::domLambert::create, &meta);
+	meta->registerClass(domProfile_COMMON::domTechnique::domLambert::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -392,7 +392,7 @@ domProfile_COMMON::domTechnique::domPhong::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "phong" );
-	meta->registerClass(domProfile_COMMON::domTechnique::domPhong::create, &meta);
+	meta->registerClass(domProfile_COMMON::domTechnique::domPhong::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -485,7 +485,7 @@ domProfile_COMMON::domTechnique::domBlinn::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "blinn" );
-	meta->registerClass(domProfile_COMMON::domTechnique::domBlinn::create, &meta);
+	meta->registerClass(domProfile_COMMON::domTechnique::domBlinn::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

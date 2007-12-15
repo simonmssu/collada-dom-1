@@ -38,7 +38,7 @@ domFx_surface_init_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_surface_init_common" );
-	meta->registerClass(domFx_surface_init_common::create, &meta);
+	meta->registerClass(domFx_surface_init_common::create);
 
 	meta->setIsTransparent( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -111,7 +111,7 @@ domFx_surface_init_common::domInit_as_null::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "init_as_null" );
-	meta->registerClass(domFx_surface_init_common::domInit_as_null::create, &meta);
+	meta->registerClass(domFx_surface_init_common::domInit_as_null::create);
 
 	meta->setIsInnerClass( true );
 
@@ -138,7 +138,7 @@ domFx_surface_init_common::domInit_as_target::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "init_as_target" );
-	meta->registerClass(domFx_surface_init_common::domInit_as_target::create, &meta);
+	meta->registerClass(domFx_surface_init_common::domInit_as_target::create);
 
 	meta->setIsInnerClass( true );
 

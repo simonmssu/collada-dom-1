@@ -38,7 +38,7 @@ domRigid_constraint::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "rigid_constraint" );
-	meta->registerClass(domRigid_constraint::create, &meta);
+	meta->registerClass(domRigid_constraint::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -124,7 +124,7 @@ domRigid_constraint::domRef_attachment::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "ref_attachment" );
-	meta->registerClass(domRigid_constraint::domRef_attachment::create, &meta);
+	meta->registerClass(domRigid_constraint::domRef_attachment::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -191,7 +191,7 @@ domRigid_constraint::domAttachment::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "attachment" );
-	meta->registerClass(domRigid_constraint::domAttachment::create, &meta);
+	meta->registerClass(domRigid_constraint::domAttachment::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -257,7 +257,7 @@ domRigid_constraint::domTechnique_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique_common" );
-	meta->registerClass(domRigid_constraint::domTechnique_common::create, &meta);
+	meta->registerClass(domRigid_constraint::domTechnique_common::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -314,7 +314,7 @@ domRigid_constraint::domTechnique_common::domEnabled::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "enabled" );
-	meta->registerClass(domRigid_constraint::domTechnique_common::domEnabled::create, &meta);
+	meta->registerClass(domRigid_constraint::domTechnique_common::domEnabled::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -361,7 +361,7 @@ domRigid_constraint::domTechnique_common::domInterpenetrate::registerElement(DAE
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "interpenetrate" );
-	meta->registerClass(domRigid_constraint::domTechnique_common::domInterpenetrate::create, &meta);
+	meta->registerClass(domRigid_constraint::domTechnique_common::domInterpenetrate::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -408,7 +408,7 @@ domRigid_constraint::domTechnique_common::domLimits::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "limits" );
-	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::create, &meta);
+	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -453,7 +453,7 @@ domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::re
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "swing_cone_and_twist" );
-	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::create, &meta);
+	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -498,7 +498,7 @@ domRigid_constraint::domTechnique_common::domLimits::domLinear::registerElement(
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "linear" );
-	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::domLinear::create, &meta);
+	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::domLinear::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -543,7 +543,7 @@ domRigid_constraint::domTechnique_common::domSpring::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "spring" );
-	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::create, &meta);
+	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -588,7 +588,7 @@ domRigid_constraint::domTechnique_common::domSpring::domAngular::registerElement
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "angular" );
-	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::domAngular::create, &meta);
+	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::domAngular::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -639,7 +639,7 @@ domRigid_constraint::domTechnique_common::domSpring::domLinear::registerElement(
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "linear" );
-	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::domLinear::create, &meta);
+	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::domLinear::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

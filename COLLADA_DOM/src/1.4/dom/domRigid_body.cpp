@@ -38,7 +38,7 @@ domRigid_body::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "rigid_body" );
-	meta->registerClass(domRigid_body::create, &meta);
+	meta->registerClass(domRigid_body::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -111,7 +111,7 @@ domRigid_body::domTechnique_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique_common" );
-	meta->registerClass(domRigid_body::domTechnique_common::create, &meta);
+	meta->registerClass(domRigid_body::domTechnique_common::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -196,7 +196,7 @@ domRigid_body::domTechnique_common::domDynamic::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "dynamic" );
-	meta->registerClass(domRigid_body::domTechnique_common::domDynamic::create, &meta);
+	meta->registerClass(domRigid_body::domTechnique_common::domDynamic::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -243,7 +243,7 @@ domRigid_body::domTechnique_common::domMass_frame::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mass_frame" );
-	meta->registerClass(domRigid_body::domTechnique_common::domMass_frame::create, &meta);
+	meta->registerClass(domRigid_body::domTechnique_common::domMass_frame::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -292,7 +292,7 @@ domRigid_body::domTechnique_common::domShape::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "shape" );
-	meta->registerClass(domRigid_body::domTechnique_common::domShape::create, &meta);
+	meta->registerClass(domRigid_body::domTechnique_common::domShape::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -443,7 +443,7 @@ domRigid_body::domTechnique_common::domShape::domHollow::registerElement(DAE& da
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "hollow" );
-	meta->registerClass(domRigid_body::domTechnique_common::domShape::domHollow::create, &meta);
+	meta->registerClass(domRigid_body::domTechnique_common::domShape::domHollow::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

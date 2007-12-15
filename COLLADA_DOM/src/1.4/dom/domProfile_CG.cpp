@@ -38,7 +38,7 @@ domProfile_CG::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "profile_CG" );
-	meta->registerClass(domProfile_CG::create, &meta);
+	meta->registerClass(domProfile_CG::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -153,7 +153,7 @@ domProfile_CG::domTechnique::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique" );
-	meta->registerClass(domProfile_CG::domTechnique::create, &meta);
+	meta->registerClass(domProfile_CG::domTechnique::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -279,7 +279,7 @@ domProfile_CG::domTechnique::domPass::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "pass" );
-	meta->registerClass(domProfile_CG::domTechnique::domPass::create, &meta);
+	meta->registerClass(domProfile_CG::domTechnique::domPass::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -400,7 +400,7 @@ domProfile_CG::domTechnique::domPass::domDraw::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "draw" );
-	meta->registerClass(domProfile_CG::domTechnique::domPass::domDraw::create, &meta);
+	meta->registerClass(domProfile_CG::domTechnique::domPass::domDraw::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -436,7 +436,7 @@ domProfile_CG::domTechnique::domPass::domShader::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "shader" );
-	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::create, &meta);
+	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -516,7 +516,7 @@ domProfile_CG::domTechnique::domPass::domShader::domCompiler_target::registerEle
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "compiler_target" );
-	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domCompiler_target::create, &meta);
+	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domCompiler_target::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -552,7 +552,7 @@ domProfile_CG::domTechnique::domPass::domShader::domCompiler_options::registerEl
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "compiler_options" );
-	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domCompiler_options::create, &meta);
+	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domCompiler_options::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -588,7 +588,7 @@ domProfile_CG::domTechnique::domPass::domShader::domName::registerElement(DAE& d
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "name" );
-	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domName::create, &meta);
+	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domName::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -636,7 +636,7 @@ domProfile_CG::domTechnique::domPass::domShader::domBind::registerElement(DAE& d
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bind" );
-	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domBind::create, &meta);
+	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domBind::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -697,7 +697,7 @@ domProfile_CG::domTechnique::domPass::domShader::domBind::domParam::registerElem
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "param" );
-	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domBind::domParam::create, &meta);
+	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domBind::domParam::create);
 
 	meta->setIsInnerClass( true );
 

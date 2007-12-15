@@ -38,7 +38,7 @@ domFx_surface_init_cube_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_surface_init_cube_common" );
-	meta->registerClass(domFx_surface_init_cube_common::create, &meta);
+	meta->registerClass(domFx_surface_init_cube_common::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -92,7 +92,7 @@ domFx_surface_init_cube_common::domAll::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "all" );
-	meta->registerClass(domFx_surface_init_cube_common::domAll::create, &meta);
+	meta->registerClass(domFx_surface_init_cube_common::domAll::create);
 
 	meta->setIsInnerClass( true );
 
@@ -131,7 +131,7 @@ domFx_surface_init_cube_common::domPrimary::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "primary" );
-	meta->registerClass(domFx_surface_init_cube_common::domPrimary::create, &meta);
+	meta->registerClass(domFx_surface_init_cube_common::domPrimary::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -182,7 +182,7 @@ domFx_surface_init_cube_common::domPrimary::domOrder::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "order" );
-	meta->registerClass(domFx_surface_init_cube_common::domPrimary::domOrder::create, &meta);
+	meta->registerClass(domFx_surface_init_cube_common::domPrimary::domOrder::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -218,7 +218,7 @@ domFx_surface_init_cube_common::domFace::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "face" );
-	meta->registerClass(domFx_surface_init_cube_common::domFace::create, &meta);
+	meta->registerClass(domFx_surface_init_cube_common::domFace::create);
 
 	meta->setIsInnerClass( true );
 

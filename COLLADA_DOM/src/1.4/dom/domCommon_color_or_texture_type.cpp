@@ -38,7 +38,7 @@ domCommon_color_or_texture_type::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "common_color_or_texture_type" );
-	meta->registerClass(domCommon_color_or_texture_type::create, &meta);
+	meta->registerClass(domCommon_color_or_texture_type::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -92,7 +92,7 @@ domCommon_color_or_texture_type::domColor::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "color" );
-	meta->registerClass(domCommon_color_or_texture_type::domColor::create, &meta);
+	meta->registerClass(domCommon_color_or_texture_type::domColor::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -139,7 +139,7 @@ domCommon_color_or_texture_type::domParam::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "param" );
-	meta->registerClass(domCommon_color_or_texture_type::domParam::create, &meta);
+	meta->registerClass(domCommon_color_or_texture_type::domParam::create);
 
 	meta->setIsInnerClass( true );
 
@@ -178,7 +178,7 @@ domCommon_color_or_texture_type::domTexture::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "texture" );
-	meta->registerClass(domCommon_color_or_texture_type::domTexture::create, &meta);
+	meta->registerClass(domCommon_color_or_texture_type::domTexture::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

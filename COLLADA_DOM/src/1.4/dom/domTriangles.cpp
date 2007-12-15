@@ -38,7 +38,7 @@ domTriangles::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "triangles" );
-	meta->registerClass(domTriangles::create, &meta);
+	meta->registerClass(domTriangles::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

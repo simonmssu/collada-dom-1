@@ -38,7 +38,7 @@ domGles_sampler_state::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "gles_sampler_state" );
-	meta->registerClass(domGles_sampler_state::create, &meta);
+	meta->registerClass(domGles_sampler_state::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -129,7 +129,7 @@ domGles_sampler_state::domWrap_s::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "wrap_s" );
-	meta->registerClass(domGles_sampler_state::domWrap_s::create, &meta);
+	meta->registerClass(domGles_sampler_state::domWrap_s::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -165,7 +165,7 @@ domGles_sampler_state::domWrap_t::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "wrap_t" );
-	meta->registerClass(domGles_sampler_state::domWrap_t::create, &meta);
+	meta->registerClass(domGles_sampler_state::domWrap_t::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -201,7 +201,7 @@ domGles_sampler_state::domMinfilter::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "minfilter" );
-	meta->registerClass(domGles_sampler_state::domMinfilter::create, &meta);
+	meta->registerClass(domGles_sampler_state::domMinfilter::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -237,7 +237,7 @@ domGles_sampler_state::domMagfilter::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "magfilter" );
-	meta->registerClass(domGles_sampler_state::domMagfilter::create, &meta);
+	meta->registerClass(domGles_sampler_state::domMagfilter::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -273,7 +273,7 @@ domGles_sampler_state::domMipfilter::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mipfilter" );
-	meta->registerClass(domGles_sampler_state::domMipfilter::create, &meta);
+	meta->registerClass(domGles_sampler_state::domMipfilter::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -309,7 +309,7 @@ domGles_sampler_state::domMipmap_maxlevel::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mipmap_maxlevel" );
-	meta->registerClass(domGles_sampler_state::domMipmap_maxlevel::create, &meta);
+	meta->registerClass(domGles_sampler_state::domMipmap_maxlevel::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -345,7 +345,7 @@ domGles_sampler_state::domMipmap_bias::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mipmap_bias" );
-	meta->registerClass(domGles_sampler_state::domMipmap_bias::create, &meta);
+	meta->registerClass(domGles_sampler_state::domMipmap_bias::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

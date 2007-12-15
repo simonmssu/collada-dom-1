@@ -38,7 +38,7 @@ domTapered_capsule::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "tapered_capsule" );
-	meta->registerClass(domTapered_capsule::create, &meta);
+	meta->registerClass(domTapered_capsule::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -94,7 +94,7 @@ domTapered_capsule::domHeight::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "height" );
-	meta->registerClass(domTapered_capsule::domHeight::create, &meta);
+	meta->registerClass(domTapered_capsule::domHeight::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -130,7 +130,7 @@ domTapered_capsule::domRadius1::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "radius1" );
-	meta->registerClass(domTapered_capsule::domRadius1::create, &meta);
+	meta->registerClass(domTapered_capsule::domRadius1::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -166,7 +166,7 @@ domTapered_capsule::domRadius2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "radius2" );
-	meta->registerClass(domTapered_capsule::domRadius2::create, &meta);
+	meta->registerClass(domTapered_capsule::domRadius2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

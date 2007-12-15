@@ -38,7 +38,7 @@ domMatrix::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "matrix" );
-	meta->registerClass(domMatrix::create, &meta);
+	meta->registerClass(domMatrix::create);
 
 	//	Add attribute: _value
 	{

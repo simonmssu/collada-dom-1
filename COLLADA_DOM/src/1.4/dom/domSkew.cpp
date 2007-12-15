@@ -38,7 +38,7 @@ domSkew::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "skew" );
-	meta->registerClass(domSkew::create, &meta);
+	meta->registerClass(domSkew::create);
 
 	//	Add attribute: _value
 	{

@@ -104,7 +104,7 @@
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "<?= $bag['element_name'] ?>" );
-	meta->registerClass(<?= $scoped_element ?>::create, &meta);
+	meta->registerClass(<?= $scoped_element ?>::create);
 
 <?php
 	if ( $bag['isAGroup'] ) {

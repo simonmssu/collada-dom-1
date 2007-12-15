@@ -39,7 +39,7 @@ domInstance_controller::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "instance_controller" );
-	meta->registerClass(domInstance_controller::create, &meta);
+	meta->registerClass(domInstance_controller::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -124,7 +124,7 @@ domInstance_controller::domSkeleton::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "skeleton" );
-	meta->registerClass(domInstance_controller::domSkeleton::create, &meta);
+	meta->registerClass(domInstance_controller::domSkeleton::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

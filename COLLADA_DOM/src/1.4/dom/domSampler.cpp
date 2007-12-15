@@ -38,7 +38,7 @@ domSampler::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "sampler" );
-	meta->registerClass(domSampler::create, &meta);
+	meta->registerClass(domSampler::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

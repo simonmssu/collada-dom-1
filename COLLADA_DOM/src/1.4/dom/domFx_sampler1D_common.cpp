@@ -38,7 +38,7 @@ domFx_sampler1D_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_sampler1D_common" );
-	meta->registerClass(domFx_sampler1D_common::create, &meta);
+	meta->registerClass(domFx_sampler1D_common::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -124,7 +124,7 @@ domFx_sampler1D_common::domSource::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "source" );
-	meta->registerClass(domFx_sampler1D_common::domSource::create, &meta);
+	meta->registerClass(domFx_sampler1D_common::domSource::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -160,7 +160,7 @@ domFx_sampler1D_common::domWrap_s::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "wrap_s" );
-	meta->registerClass(domFx_sampler1D_common::domWrap_s::create, &meta);
+	meta->registerClass(domFx_sampler1D_common::domWrap_s::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -196,7 +196,7 @@ domFx_sampler1D_common::domMinfilter::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "minfilter" );
-	meta->registerClass(domFx_sampler1D_common::domMinfilter::create, &meta);
+	meta->registerClass(domFx_sampler1D_common::domMinfilter::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -232,7 +232,7 @@ domFx_sampler1D_common::domMagfilter::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "magfilter" );
-	meta->registerClass(domFx_sampler1D_common::domMagfilter::create, &meta);
+	meta->registerClass(domFx_sampler1D_common::domMagfilter::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -268,7 +268,7 @@ domFx_sampler1D_common::domMipfilter::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mipfilter" );
-	meta->registerClass(domFx_sampler1D_common::domMipfilter::create, &meta);
+	meta->registerClass(domFx_sampler1D_common::domMipfilter::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -304,7 +304,7 @@ domFx_sampler1D_common::domBorder_color::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "border_color" );
-	meta->registerClass(domFx_sampler1D_common::domBorder_color::create, &meta);
+	meta->registerClass(domFx_sampler1D_common::domBorder_color::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -340,7 +340,7 @@ domFx_sampler1D_common::domMipmap_maxlevel::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mipmap_maxlevel" );
-	meta->registerClass(domFx_sampler1D_common::domMipmap_maxlevel::create, &meta);
+	meta->registerClass(domFx_sampler1D_common::domMipmap_maxlevel::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -376,7 +376,7 @@ domFx_sampler1D_common::domMipmap_bias::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "mipmap_bias" );
-	meta->registerClass(domFx_sampler1D_common::domMipmap_bias::create, &meta);
+	meta->registerClass(domFx_sampler1D_common::domMipmap_bias::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

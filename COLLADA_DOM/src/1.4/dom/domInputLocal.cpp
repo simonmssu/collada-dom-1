@@ -39,7 +39,7 @@ domInputLocal::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "InputLocal" );
-	meta->registerClass(domInputLocal::create, &meta);
+	meta->registerClass(domInputLocal::create);
 
 
 	//	Add attribute: semantic

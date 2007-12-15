@@ -38,7 +38,7 @@ domFx_annotate_type_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_annotate_type_common" );
-	meta->registerClass(domFx_annotate_type_common::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::create);
 
 	meta->setIsTransparent( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -171,7 +171,7 @@ domFx_annotate_type_common::domBool::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool" );
-	meta->registerClass(domFx_annotate_type_common::domBool::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domBool::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -207,7 +207,7 @@ domFx_annotate_type_common::domBool2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool2" );
-	meta->registerClass(domFx_annotate_type_common::domBool2::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domBool2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -243,7 +243,7 @@ domFx_annotate_type_common::domBool3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool3" );
-	meta->registerClass(domFx_annotate_type_common::domBool3::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domBool3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -279,7 +279,7 @@ domFx_annotate_type_common::domBool4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool4" );
-	meta->registerClass(domFx_annotate_type_common::domBool4::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domBool4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -315,7 +315,7 @@ domFx_annotate_type_common::domInt::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int" );
-	meta->registerClass(domFx_annotate_type_common::domInt::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domInt::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -351,7 +351,7 @@ domFx_annotate_type_common::domInt2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int2" );
-	meta->registerClass(domFx_annotate_type_common::domInt2::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domInt2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -387,7 +387,7 @@ domFx_annotate_type_common::domInt3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int3" );
-	meta->registerClass(domFx_annotate_type_common::domInt3::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domInt3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -423,7 +423,7 @@ domFx_annotate_type_common::domInt4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int4" );
-	meta->registerClass(domFx_annotate_type_common::domInt4::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domInt4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -459,7 +459,7 @@ domFx_annotate_type_common::domFloat::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float" );
-	meta->registerClass(domFx_annotate_type_common::domFloat::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domFloat::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -495,7 +495,7 @@ domFx_annotate_type_common::domFloat2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2" );
-	meta->registerClass(domFx_annotate_type_common::domFloat2::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domFloat2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -531,7 +531,7 @@ domFx_annotate_type_common::domFloat3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3" );
-	meta->registerClass(domFx_annotate_type_common::domFloat3::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domFloat3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -567,7 +567,7 @@ domFx_annotate_type_common::domFloat4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4" );
-	meta->registerClass(domFx_annotate_type_common::domFloat4::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domFloat4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -603,7 +603,7 @@ domFx_annotate_type_common::domFloat2x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2x2" );
-	meta->registerClass(domFx_annotate_type_common::domFloat2x2::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domFloat2x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -639,7 +639,7 @@ domFx_annotate_type_common::domFloat3x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3x3" );
-	meta->registerClass(domFx_annotate_type_common::domFloat3x3::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domFloat3x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -675,7 +675,7 @@ domFx_annotate_type_common::domFloat4x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4x4" );
-	meta->registerClass(domFx_annotate_type_common::domFloat4x4::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domFloat4x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -711,7 +711,7 @@ domFx_annotate_type_common::domString::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "string" );
-	meta->registerClass(domFx_annotate_type_common::domString::create, &meta);
+	meta->registerClass(domFx_annotate_type_common::domString::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

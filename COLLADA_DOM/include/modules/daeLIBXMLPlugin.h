@@ -25,10 +25,10 @@ class DAE;
 
 /**
  * The @c daeLIBXMLPlugin class derives from @c daeIOPluginCommon and implements an XML
- * input/output backend using libxml2 as a parser. When using this plugin, daeInterface::load() expects
+ * input/output backend using libxml2 as a parser. When using this plugin, DAE::load() expects
  * an rfc 2396 compliant URI,  any URI supported by libxml2 should be properly 
  * handled including ones with network schemes and authority.  If the URI contains a fragment it will be ignored
- * and the entire referenced document will be loaded.  daeInterface::saveAs will only
+ * and the entire referenced document will be loaded.  DAE::saveAs will only
  * handle a filename path at present (ie: no scheme or authority).
  */
 class DLLSPEC daeLIBXMLPlugin : public daeIOPluginCommon
@@ -52,8 +52,6 @@ public:
 		daeInt* lineNumber,
 		daeInt* totalBytes,
 		daeBool reset = false );
-
-	virtual daeTArray<std::string> getSupportedProtocols();
 
 	/**
 	 * setOption allows you to set options for this IOPlugin. Which options a plugin supports is

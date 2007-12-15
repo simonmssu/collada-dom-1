@@ -38,7 +38,7 @@ domPolylist::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "polylist" );
-	meta->registerClass(domPolylist::create, &meta);
+	meta->registerClass(domPolylist::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -128,7 +128,7 @@ domPolylist::domVcount::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "vcount" );
-	meta->registerClass(domPolylist::domVcount::create, &meta);
+	meta->registerClass(domPolylist::domVcount::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

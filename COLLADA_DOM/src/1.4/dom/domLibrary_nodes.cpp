@@ -38,7 +38,7 @@ domLibrary_nodes::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_nodes" );
-	meta->registerClass(domLibrary_nodes::create, &meta);
+	meta->registerClass(domLibrary_nodes::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

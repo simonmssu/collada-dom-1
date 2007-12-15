@@ -38,7 +38,7 @@ domFx_colortarget_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_colortarget_common" );
-	meta->registerClass(domFx_colortarget_common::create, &meta);
+	meta->registerClass(domFx_colortarget_common::create);
 
 	//	Add attribute: _value
 	{

@@ -38,7 +38,7 @@ domLibrary_materials::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_materials" );
-	meta->registerClass(domLibrary_materials::create, &meta);
+	meta->registerClass(domLibrary_materials::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

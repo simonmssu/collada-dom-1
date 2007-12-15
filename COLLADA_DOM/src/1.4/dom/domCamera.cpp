@@ -38,7 +38,7 @@ domCamera::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "camera" );
-	meta->registerClass(domCamera::create, &meta);
+	meta->registerClass(domCamera::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -116,7 +116,7 @@ domCamera::domOptics::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "optics" );
-	meta->registerClass(domCamera::domOptics::create, &meta);
+	meta->registerClass(domCamera::domOptics::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -167,7 +167,7 @@ domCamera::domOptics::domTechnique_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique_common" );
-	meta->registerClass(domCamera::domOptics::domTechnique_common::create, &meta);
+	meta->registerClass(domCamera::domOptics::domTechnique_common::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -216,7 +216,7 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement(DAE&
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "orthographic" );
-	meta->registerClass(domCamera::domOptics::domTechnique_common::domOrthographic::create, &meta);
+	meta->registerClass(domCamera::domOptics::domTechnique_common::domOrthographic::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -319,7 +319,7 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement(DAE& 
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "perspective" );
-	meta->registerClass(domCamera::domOptics::domTechnique_common::domPerspective::create, &meta);
+	meta->registerClass(domCamera::domOptics::domTechnique_common::domPerspective::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -422,7 +422,7 @@ domCamera::domImager::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "imager" );
-	meta->registerClass(domCamera::domImager::create, &meta);
+	meta->registerClass(domCamera::domImager::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

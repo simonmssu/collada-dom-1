@@ -38,7 +38,7 @@ domFx_surface_init_from_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_surface_init_from_common" );
-	meta->registerClass(domFx_surface_init_from_common::create, &meta);
+	meta->registerClass(domFx_surface_init_from_common::create);
 
 	//	Add attribute: _value
 	{

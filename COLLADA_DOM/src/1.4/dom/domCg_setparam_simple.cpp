@@ -38,7 +38,7 @@ domCg_setparam_simple::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cg_setparam_simple" );
-	meta->registerClass(domCg_setparam_simple::create, &meta);
+	meta->registerClass(domCg_setparam_simple::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

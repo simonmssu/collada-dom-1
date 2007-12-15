@@ -38,7 +38,7 @@ domBox::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "box" );
-	meta->registerClass(domBox::create, &meta);
+	meta->registerClass(domBox::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -82,7 +82,7 @@ domBox::domHalf_extents::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "half_extents" );
-	meta->registerClass(domBox::domHalf_extents::create, &meta);
+	meta->registerClass(domBox::domHalf_extents::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

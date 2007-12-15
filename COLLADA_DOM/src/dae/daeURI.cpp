@@ -11,6 +11,7 @@
  * License. 
  */
 
+#include <dae.h>
 #include <dae/daeURI.h>
 #include <ctype.h>
 #include <dae/daeDocument.h>

@@ -38,7 +38,7 @@ domLookat::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "lookat" );
-	meta->registerClass(domLookat::create, &meta);
+	meta->registerClass(domLookat::create);
 
 	//	Add attribute: _value
 	{

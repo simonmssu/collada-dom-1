@@ -39,7 +39,7 @@ domInputGlobal::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "InputGlobal" );
-	meta->registerClass(domInputGlobal::create, &meta);
+	meta->registerClass(domInputGlobal::create);
 
 
 	//	Add attribute: semantic

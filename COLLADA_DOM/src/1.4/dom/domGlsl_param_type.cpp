@@ -38,7 +38,7 @@ domGlsl_param_type::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "glsl_param_type" );
-	meta->registerClass(domGlsl_param_type::create, &meta);
+	meta->registerClass(domGlsl_param_type::create);
 
 	meta->setIsTransparent( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -213,7 +213,7 @@ domGlsl_param_type::domBool::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool" );
-	meta->registerClass(domGlsl_param_type::domBool::create, &meta);
+	meta->registerClass(domGlsl_param_type::domBool::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -249,7 +249,7 @@ domGlsl_param_type::domBool2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool2" );
-	meta->registerClass(domGlsl_param_type::domBool2::create, &meta);
+	meta->registerClass(domGlsl_param_type::domBool2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -285,7 +285,7 @@ domGlsl_param_type::domBool3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool3" );
-	meta->registerClass(domGlsl_param_type::domBool3::create, &meta);
+	meta->registerClass(domGlsl_param_type::domBool3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -321,7 +321,7 @@ domGlsl_param_type::domBool4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bool4" );
-	meta->registerClass(domGlsl_param_type::domBool4::create, &meta);
+	meta->registerClass(domGlsl_param_type::domBool4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -357,7 +357,7 @@ domGlsl_param_type::domFloat::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float" );
-	meta->registerClass(domGlsl_param_type::domFloat::create, &meta);
+	meta->registerClass(domGlsl_param_type::domFloat::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -393,7 +393,7 @@ domGlsl_param_type::domFloat2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2" );
-	meta->registerClass(domGlsl_param_type::domFloat2::create, &meta);
+	meta->registerClass(domGlsl_param_type::domFloat2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -429,7 +429,7 @@ domGlsl_param_type::domFloat3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3" );
-	meta->registerClass(domGlsl_param_type::domFloat3::create, &meta);
+	meta->registerClass(domGlsl_param_type::domFloat3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -465,7 +465,7 @@ domGlsl_param_type::domFloat4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4" );
-	meta->registerClass(domGlsl_param_type::domFloat4::create, &meta);
+	meta->registerClass(domGlsl_param_type::domFloat4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -501,7 +501,7 @@ domGlsl_param_type::domFloat2x2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float2x2" );
-	meta->registerClass(domGlsl_param_type::domFloat2x2::create, &meta);
+	meta->registerClass(domGlsl_param_type::domFloat2x2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -537,7 +537,7 @@ domGlsl_param_type::domFloat3x3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float3x3" );
-	meta->registerClass(domGlsl_param_type::domFloat3x3::create, &meta);
+	meta->registerClass(domGlsl_param_type::domFloat3x3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -573,7 +573,7 @@ domGlsl_param_type::domFloat4x4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "float4x4" );
-	meta->registerClass(domGlsl_param_type::domFloat4x4::create, &meta);
+	meta->registerClass(domGlsl_param_type::domFloat4x4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -609,7 +609,7 @@ domGlsl_param_type::domInt::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int" );
-	meta->registerClass(domGlsl_param_type::domInt::create, &meta);
+	meta->registerClass(domGlsl_param_type::domInt::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -645,7 +645,7 @@ domGlsl_param_type::domInt2::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int2" );
-	meta->registerClass(domGlsl_param_type::domInt2::create, &meta);
+	meta->registerClass(domGlsl_param_type::domInt2::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -681,7 +681,7 @@ domGlsl_param_type::domInt3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int3" );
-	meta->registerClass(domGlsl_param_type::domInt3::create, &meta);
+	meta->registerClass(domGlsl_param_type::domInt3::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -717,7 +717,7 @@ domGlsl_param_type::domInt4::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "int4" );
-	meta->registerClass(domGlsl_param_type::domInt4::create, &meta);
+	meta->registerClass(domGlsl_param_type::domInt4::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -753,7 +753,7 @@ domGlsl_param_type::domEnum::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "enum" );
-	meta->registerClass(domGlsl_param_type::domEnum::create, &meta);
+	meta->registerClass(domGlsl_param_type::domEnum::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

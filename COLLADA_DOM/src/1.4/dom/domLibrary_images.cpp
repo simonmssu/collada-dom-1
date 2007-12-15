@@ -38,7 +38,7 @@ domLibrary_images::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_images" );
-	meta->registerClass(domLibrary_images::create, &meta);
+	meta->registerClass(domLibrary_images::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

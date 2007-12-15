@@ -38,7 +38,7 @@ domGles_texture_constant_type::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "gles_texture_constant_type" );
-	meta->registerClass(domGles_texture_constant_type::create, &meta);
+	meta->registerClass(domGles_texture_constant_type::create);
 
 
 	//	Add attribute: value

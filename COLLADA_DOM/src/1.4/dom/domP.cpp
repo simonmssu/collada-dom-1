@@ -38,7 +38,7 @@ domP::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "p" );
-	meta->registerClass(domP::create, &meta);
+	meta->registerClass(domP::create);
 
 	//	Add attribute: _value
 	{

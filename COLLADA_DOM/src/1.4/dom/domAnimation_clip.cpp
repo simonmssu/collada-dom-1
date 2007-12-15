@@ -38,7 +38,7 @@ domAnimation_clip::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "animation_clip" );
-	meta->registerClass(domAnimation_clip::create, &meta);
+	meta->registerClass(domAnimation_clip::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

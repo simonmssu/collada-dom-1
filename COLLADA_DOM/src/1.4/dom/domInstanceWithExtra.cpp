@@ -39,7 +39,7 @@ domInstanceWithExtra::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "InstanceWithExtra" );
-	meta->registerClass(domInstanceWithExtra::create, &meta);
+	meta->registerClass(domInstanceWithExtra::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

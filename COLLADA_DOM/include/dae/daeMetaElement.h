@@ -294,15 +294,12 @@ public:
 	DLLSPEC void appendAttribute(daeMetaAttribute* attr);
 
 	/**
-	 * Registers the function that can construct a C++ instance of this class and the 
-	 * pointer to the classes static meta.  Necessary for the factory system such that C++
-	 * can still call @c new and the @c vptr will still be initialized even when
-	 * constructed via the factory system.
+	 * Registers the function that can construct a C++ instance of this class.
+	 * Necessary for the factory system such that C++ can still call @c new and the
+	 * @c vptr will still be initialized even when constructed via the factory system.
 	 * @param func Pointer to a function that does object construction.
-	 * @param metaPtr Pointer to the class static meta pointer.
 	 */
-	// !!!steveT Remove the second parameter. It's useless now.
-	void registerClass(daeElementConstructFunctionPtr func, daeMetaElement** metaPtr = NULL ) {
+	void registerClass(daeElementConstructFunctionPtr func) {
 		_createFunc = func; }
 
 	/**

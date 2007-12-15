@@ -47,7 +47,7 @@ domCOLLADA::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "COLLADA" );
-	meta->registerClass(domCOLLADA::create, &meta);
+	meta->registerClass(domCOLLADA::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -230,7 +230,7 @@ domCOLLADA::domScene::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "scene" );
-	meta->registerClass(domCOLLADA::domScene::create, &meta);
+	meta->registerClass(domCOLLADA::domScene::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

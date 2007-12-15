@@ -38,7 +38,7 @@ domCg_newparam::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cg_newparam" );
-	meta->registerClass(domCg_newparam::create, &meta);
+	meta->registerClass(domCg_newparam::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -128,7 +128,7 @@ domCg_newparam::domSemantic::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "semantic" );
-	meta->registerClass(domCg_newparam::domSemantic::create, &meta);
+	meta->registerClass(domCg_newparam::domSemantic::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -164,7 +164,7 @@ domCg_newparam::domModifier::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "modifier" );
-	meta->registerClass(domCg_newparam::domModifier::create, &meta);
+	meta->registerClass(domCg_newparam::domModifier::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

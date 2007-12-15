@@ -39,7 +39,7 @@ domTechnique::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique" );
-	meta->registerClass(domTechnique::create, &meta);
+	meta->registerClass(domTechnique::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );

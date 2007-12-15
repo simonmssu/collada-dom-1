@@ -39,7 +39,7 @@ domConvex_mesh::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "convex_mesh" );
-	meta->registerClass(domConvex_mesh::create, &meta);
+	meta->registerClass(domConvex_mesh::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

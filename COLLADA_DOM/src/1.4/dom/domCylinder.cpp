@@ -38,7 +38,7 @@ domCylinder::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cylinder" );
-	meta->registerClass(domCylinder::create, &meta);
+	meta->registerClass(domCylinder::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -88,7 +88,7 @@ domCylinder::domHeight::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "height" );
-	meta->registerClass(domCylinder::domHeight::create, &meta);
+	meta->registerClass(domCylinder::domHeight::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -124,7 +124,7 @@ domCylinder::domRadius::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "radius" );
-	meta->registerClass(domCylinder::domRadius::create, &meta);
+	meta->registerClass(domCylinder::domRadius::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

@@ -38,7 +38,7 @@ domFx_surface_format_hint_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_surface_format_hint_common" );
-	meta->registerClass(domFx_surface_format_hint_common::create, &meta);
+	meta->registerClass(domFx_surface_format_hint_common::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -100,7 +100,7 @@ domFx_surface_format_hint_common::domChannels::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "channels" );
-	meta->registerClass(domFx_surface_format_hint_common::domChannels::create, &meta);
+	meta->registerClass(domFx_surface_format_hint_common::domChannels::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -136,7 +136,7 @@ domFx_surface_format_hint_common::domRange::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "range" );
-	meta->registerClass(domFx_surface_format_hint_common::domRange::create, &meta);
+	meta->registerClass(domFx_surface_format_hint_common::domRange::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -172,7 +172,7 @@ domFx_surface_format_hint_common::domPrecision::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "precision" );
-	meta->registerClass(domFx_surface_format_hint_common::domPrecision::create, &meta);
+	meta->registerClass(domFx_surface_format_hint_common::domPrecision::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -208,7 +208,7 @@ domFx_surface_format_hint_common::domOption::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "option" );
-	meta->registerClass(domFx_surface_format_hint_common::domOption::create, &meta);
+	meta->registerClass(domFx_surface_format_hint_common::domOption::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

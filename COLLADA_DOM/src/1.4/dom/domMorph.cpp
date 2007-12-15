@@ -39,7 +39,7 @@ domMorph::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "morph" );
-	meta->registerClass(domMorph::create, &meta);
+	meta->registerClass(domMorph::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -113,7 +113,7 @@ domMorph::domTargets::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "targets" );
-	meta->registerClass(domMorph::domTargets::create, &meta);
+	meta->registerClass(domMorph::domTargets::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

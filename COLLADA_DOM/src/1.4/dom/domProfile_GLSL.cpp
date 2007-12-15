@@ -38,7 +38,7 @@ domProfile_GLSL::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "profile_GLSL" );
-	meta->registerClass(domProfile_GLSL::create, &meta);
+	meta->registerClass(domProfile_GLSL::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -140,7 +140,7 @@ domProfile_GLSL::domTechnique::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique" );
-	meta->registerClass(domProfile_GLSL::domTechnique::create, &meta);
+	meta->registerClass(domProfile_GLSL::domTechnique::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -260,7 +260,7 @@ domProfile_GLSL::domTechnique::domPass::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "pass" );
-	meta->registerClass(domProfile_GLSL::domTechnique::domPass::create, &meta);
+	meta->registerClass(domProfile_GLSL::domTechnique::domPass::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -381,7 +381,7 @@ domProfile_GLSL::domTechnique::domPass::domDraw::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "draw" );
-	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domDraw::create, &meta);
+	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domDraw::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -417,7 +417,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "shader" );
-	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::create, &meta);
+	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -497,7 +497,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::registerE
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "compiler_target" );
-	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::create, &meta);
+	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -533,7 +533,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::register
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "compiler_options" );
-	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::create, &meta);
+	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -569,7 +569,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domName::registerElement(DAE&
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "name" );
-	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domName::create, &meta);
+	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domName::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -617,7 +617,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domBind::registerElement(DAE&
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bind" );
-	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domBind::create, &meta);
+	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domBind::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -678,7 +678,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam::registerEl
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "param" );
-	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam::create, &meta);
+	meta->registerClass(domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam::create);
 
 	meta->setIsInnerClass( true );
 

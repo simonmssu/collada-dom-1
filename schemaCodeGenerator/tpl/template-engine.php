@@ -271,16 +271,6 @@ function printConstructors( $elemName, & $bag, $baseClasses, $indent ) {
 	}
 	print "}\n";
 
-	// !!!steveT Am I sure it's ok to comment out the copy constructor?
-	// print $indent ."\t/**\n". $indent ."\t * Copy Constructor\n". $indent ."\t */\n";
-	// if ( $base != '' ) {
-	// 	print $indent ."\t".$elemName ."( const ".$elemName ." &cpy ) : ";
-	// 	print $base ."() { (void)cpy; }\n";
-	// }
-	// else {
-	// 	print $indent ."\t".$elemName ."( const ".$elemName ." &cpy ) { (void)cpy; }\n";
-	// }
-	
 	print $indent ."\t/**\n". $indent ."\t * Overloaded assignment operator\n". $indent ."\t */\n";
 	print $indent ."\tvirtual ".$elemName ." &operator=( const ".$elemName ." &cpy ) { (void)cpy; return *this; }\n";
 }

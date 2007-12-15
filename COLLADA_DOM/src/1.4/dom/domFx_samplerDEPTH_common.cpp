@@ -38,7 +38,7 @@ domFx_samplerDEPTH_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_samplerDEPTH_common" );
-	meta->registerClass(domFx_samplerDEPTH_common::create, &meta);
+	meta->registerClass(domFx_samplerDEPTH_common::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -106,7 +106,7 @@ domFx_samplerDEPTH_common::domSource::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "source" );
-	meta->registerClass(domFx_samplerDEPTH_common::domSource::create, &meta);
+	meta->registerClass(domFx_samplerDEPTH_common::domSource::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -142,7 +142,7 @@ domFx_samplerDEPTH_common::domWrap_s::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "wrap_s" );
-	meta->registerClass(domFx_samplerDEPTH_common::domWrap_s::create, &meta);
+	meta->registerClass(domFx_samplerDEPTH_common::domWrap_s::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -178,7 +178,7 @@ domFx_samplerDEPTH_common::domWrap_t::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "wrap_t" );
-	meta->registerClass(domFx_samplerDEPTH_common::domWrap_t::create, &meta);
+	meta->registerClass(domFx_samplerDEPTH_common::domWrap_t::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -214,7 +214,7 @@ domFx_samplerDEPTH_common::domMinfilter::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "minfilter" );
-	meta->registerClass(domFx_samplerDEPTH_common::domMinfilter::create, &meta);
+	meta->registerClass(domFx_samplerDEPTH_common::domMinfilter::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -250,7 +250,7 @@ domFx_samplerDEPTH_common::domMagfilter::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "magfilter" );
-	meta->registerClass(domFx_samplerDEPTH_common::domMagfilter::create, &meta);
+	meta->registerClass(domFx_samplerDEPTH_common::domMagfilter::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

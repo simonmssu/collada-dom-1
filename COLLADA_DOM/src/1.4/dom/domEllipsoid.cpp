@@ -38,7 +38,7 @@ domEllipsoid::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "ellipsoid" );
-	meta->registerClass(domEllipsoid::create, &meta);
+	meta->registerClass(domEllipsoid::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -76,7 +76,7 @@ domEllipsoid::domSize::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "size" );
-	meta->registerClass(domEllipsoid::domSize::create, &meta);
+	meta->registerClass(domEllipsoid::domSize::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

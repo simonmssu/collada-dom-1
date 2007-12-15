@@ -39,7 +39,7 @@ domChannel::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "channel" );
-	meta->registerClass(domChannel::create, &meta);
+	meta->registerClass(domChannel::create);
 
 
 	//	Add attribute: source

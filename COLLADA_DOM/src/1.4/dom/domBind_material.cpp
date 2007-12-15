@@ -38,7 +38,7 @@ domBind_material::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bind_material" );
-	meta->registerClass(domBind_material::create, &meta);
+	meta->registerClass(domBind_material::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -94,7 +94,7 @@ domBind_material::domTechnique_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "technique_common" );
-	meta->registerClass(domBind_material::domTechnique_common::create, &meta);
+	meta->registerClass(domBind_material::domTechnique_common::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

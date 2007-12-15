@@ -38,7 +38,7 @@ domMaterial::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "material" );
-	meta->registerClass(domMaterial::create, &meta);
+	meta->registerClass(domMaterial::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

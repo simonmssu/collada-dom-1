@@ -38,7 +38,7 @@ domGles_texture_unit::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "gles_texture_unit" );
-	meta->registerClass(domGles_texture_unit::create, &meta);
+	meta->registerClass(domGles_texture_unit::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -105,7 +105,7 @@ domGles_texture_unit::domSurface::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "surface" );
-	meta->registerClass(domGles_texture_unit::domSurface::create, &meta);
+	meta->registerClass(domGles_texture_unit::domSurface::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -141,7 +141,7 @@ domGles_texture_unit::domSampler_state::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "sampler_state" );
-	meta->registerClass(domGles_texture_unit::domSampler_state::create, &meta);
+	meta->registerClass(domGles_texture_unit::domSampler_state::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -177,7 +177,7 @@ domGles_texture_unit::domTexcoord::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "texcoord" );
-	meta->registerClass(domGles_texture_unit::domTexcoord::create, &meta);
+	meta->registerClass(domGles_texture_unit::domTexcoord::create);
 
 	meta->setIsInnerClass( true );
 

@@ -39,7 +39,7 @@ domFx_include_common::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "fx_include_common" );
-	meta->registerClass(domFx_include_common::create, &meta);
+	meta->registerClass(domFx_include_common::create);
 
 
 	//	Add attribute: sid

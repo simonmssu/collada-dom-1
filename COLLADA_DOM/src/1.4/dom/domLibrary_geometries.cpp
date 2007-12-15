@@ -38,7 +38,7 @@ domLibrary_geometries::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_geometries" );
-	meta->registerClass(domLibrary_geometries::create, &meta);
+	meta->registerClass(domLibrary_geometries::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

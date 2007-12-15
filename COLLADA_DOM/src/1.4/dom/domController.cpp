@@ -38,7 +38,7 @@ domController::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "controller" );
-	meta->registerClass(domController::create, &meta);
+	meta->registerClass(domController::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

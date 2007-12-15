@@ -38,7 +38,7 @@ domTargetableFloat3::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "TargetableFloat3" );
-	meta->registerClass(domTargetableFloat3::create, &meta);
+	meta->registerClass(domTargetableFloat3::create);
 
 	//	Add attribute: _value
 	{

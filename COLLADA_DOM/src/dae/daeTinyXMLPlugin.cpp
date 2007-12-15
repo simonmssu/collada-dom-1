@@ -44,16 +44,11 @@ namespace {
 daeTinyXMLPlugin::daeTinyXMLPlugin()
 {
   m_doc = NULL;
+	supportedProtocols.append("file");
 }
 
 daeTinyXMLPlugin::~daeTinyXMLPlugin()
 {
-}
-
-daeTArray<std::string> daeTinyXMLPlugin::getSupportedProtocols() {
-	daeTArray<std::string> protocols;
-	protocols.append("file");
-	return protocols;
 }
 
 daeInt daeTinyXMLPlugin::setOption( daeString option, daeString value )
@@ -77,7 +72,6 @@ void daeTinyXMLPlugin::getProgress(daeInt* bytesParsed,
 
 
 daeElementRef daeTinyXMLPlugin::readFromFile(const daeURI& uri) {
-	// !!!steveT: Replace this with real URI to file path code, and update the resolver to only handle the file scheme
 	string file = cdom::uriToFilePath(uri.getURI());
 	if (file.empty())
 		return NULL;

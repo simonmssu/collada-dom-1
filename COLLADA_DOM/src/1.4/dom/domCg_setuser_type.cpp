@@ -38,7 +38,7 @@ domCg_setuser_type::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "cg_setuser_type" );
-	meta->registerClass(domCg_setuser_type::create, &meta);
+	meta->registerClass(domCg_setuser_type::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

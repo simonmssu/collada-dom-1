@@ -39,7 +39,7 @@ domSkin::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "skin" );
-	meta->registerClass(domSkin::create, &meta);
+	meta->registerClass(domSkin::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -113,7 +113,7 @@ domSkin::domBind_shape_matrix::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "bind_shape_matrix" );
-	meta->registerClass(domSkin::domBind_shape_matrix::create, &meta);
+	meta->registerClass(domSkin::domBind_shape_matrix::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -149,7 +149,7 @@ domSkin::domJoints::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "joints" );
-	meta->registerClass(domSkin::domJoints::create, &meta);
+	meta->registerClass(domSkin::domJoints::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -194,7 +194,7 @@ domSkin::domVertex_weights::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "vertex_weights" );
-	meta->registerClass(domSkin::domVertex_weights::create, &meta);
+	meta->registerClass(domSkin::domVertex_weights::create);
 
 	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -263,7 +263,7 @@ domSkin::domVertex_weights::domVcount::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "vcount" );
-	meta->registerClass(domSkin::domVertex_weights::domVcount::create, &meta);
+	meta->registerClass(domSkin::domVertex_weights::domVcount::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -299,7 +299,7 @@ domSkin::domVertex_weights::domV::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "v" );
-	meta->registerClass(domSkin::domVertex_weights::domV::create, &meta);
+	meta->registerClass(domSkin::domVertex_weights::domV::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

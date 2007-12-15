@@ -38,7 +38,7 @@ domSphere::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "sphere" );
-	meta->registerClass(domSphere::create, &meta);
+	meta->registerClass(domSphere::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -82,7 +82,7 @@ domSphere::domRadius::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "radius" );
-	meta->registerClass(domSphere::domRadius::create, &meta);
+	meta->registerClass(domSphere::domRadius::create);
 
 	meta->setIsInnerClass( true );
 	//	Add attribute: _value

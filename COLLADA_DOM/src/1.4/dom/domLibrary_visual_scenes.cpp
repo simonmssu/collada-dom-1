@@ -38,7 +38,7 @@ domLibrary_visual_scenes::registerElement(DAE& dae)
 	meta = new daeMetaElement(dae);
 	dae.setMeta(typeIDStatic(), *meta);
 	meta->setName( "library_visual_scenes" );
-	meta->registerClass(domLibrary_visual_scenes::create, &meta);
+	meta->registerClass(domLibrary_visual_scenes::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
