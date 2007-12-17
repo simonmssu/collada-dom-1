@@ -21,6 +21,7 @@
 #include <dae/daeRawResolver.h>
 #include <dae/daeStandardURIResolver.h>
 #include <dom/domTypes.h>
+#include <dom/domCOLLADA.h>
 
 #ifndef NO_DEFAULT_PLUGIN
 
@@ -64,10 +65,9 @@ void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 	defaultDatabase = false;
 	defaultPlugin = false;
 	registerFunc = NULL;
-	topMeta = NULL;
 	metas.setCount(colladaTypeCount());
 
-	topMeta = initializeDomMeta(*this);
+	initializeDomMeta(*this);
 	DAEInstanceCount++;
 	uriResolvers.addResolver(new daeStandardURIResolver(*this));
 	uriResolvers.addResolver(new daeRawResolver(*this));
@@ -108,7 +108,7 @@ daeInt DAE::setDatabase(daeDatabase* _database)
 		database = new daeSTLDatabase(*this);
 		defaultDatabase = true;
 	}
-	database->setMeta(topMeta);
+	database->setMeta(getMeta(domCOLLADA::typeIDStatic()));
 	return DAE_OK;
 }
 
@@ -157,7 +157,7 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 		return DAE_ERR_BACKEND_IO;
 #endif // NO_DEFAULT_PLUGIN
 	}
-	int res = plugin->setMeta(topMeta);
+	int res = plugin->setMeta(getMeta(domCOLLADA::typeIDStatic()));
 	if (res != DAE_OK)
 	{
 		if (defaultPlugin)

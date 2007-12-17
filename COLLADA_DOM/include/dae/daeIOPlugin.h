@@ -134,6 +134,8 @@ public:
 	virtual daeString getOption( daeString option ) = 0;
 
 protected:
+	// This is an array of the URI protocols supported by this plugin, e.g. "http", "file",
+	// etc. Each plugin should set initialize this variable in the constructor.
 	daeTArray<std::string> supportedProtocols;
 };
 

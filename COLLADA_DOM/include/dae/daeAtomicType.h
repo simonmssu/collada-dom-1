@@ -278,15 +278,16 @@ public: // Static Interface
 };
 
 
+// This is a container class for storing a modifiable list of daeAtomicType objects.
 class DLLSPEC daeAtomicTypeList {
 public:
 	daeAtomicTypeList(DAE& dae);
 	~daeAtomicTypeList();
 	
 	/**
-	 * Appends a new type to the global list of types.
+	 * Appends a new type to the list.
 	 * @param t Type to append.
-	 * @return Returns the index of the type in the list of types.
+	 * @return Returns the index of the type in the list.
 	 */
 	daeInt append(daeAtomicType* t);
 
@@ -298,8 +299,8 @@ public:
 	const daeAtomicType* getByIndex(daeInt index);
 
 	/**
-	 * Gets the number of known atomic types.
-	 * @return Returns the number of known atomic types.
+	 * Gets the number of atomic types in the list.
+	 * @return Returns the number of atomic types in the list.
 	 */
 	daeInt getCount();
 

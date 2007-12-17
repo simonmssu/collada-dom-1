@@ -38,6 +38,10 @@ public:
 	 */
 	virtual DLLSPEC ~daeDatabase() {}
 
+	/**
+	 * Get the associated DAE object.
+	 * @return The associated DAE object.
+	 */
 	virtual DAE* getDAE();
 	
 	/** @name Documents */

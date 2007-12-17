@@ -371,6 +371,10 @@ public:
 	 */
 	daeDocument* getCollection() const { return _document; }
 
+	/**
+	 * Get the associated DAE object.
+	 * @return The associated DAE object.
+	 */
 	DAE* getDAE();
 	
 	/**
@@ -512,6 +516,11 @@ public:
 	 */
 	daeString getTypeName() const;
 
+	/**
+	 * Returns this element's type ID. Every element is an instance of a type specified in
+	 * the Collada schema, and every schema type has a unique ID.
+	 * @return The element's type ID.
+	 */
 	virtual daeInt typeID() const = 0;
 
 	/**
@@ -588,7 +597,5 @@ typedef daeSmartRef<daeElement> daeElementRef;
 typedef daeSmartRef<const daeElement> daeElementConstRef;
 //#include <dae/daeArray.h>
 typedef daeTArray<daeElementRef> daeElementRefArray;
-
-//extern daeElementRef DAECreateElement(DAE& dae);
 
 #endif //__DAE_ELEMENT_H__

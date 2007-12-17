@@ -461,6 +461,7 @@ protected:
 };
 
 
+// This is a container class for storing a modifiable list of daeURIResolver objects.
 class daeURIResolverList {
 public:
 	daeURIResolverList();

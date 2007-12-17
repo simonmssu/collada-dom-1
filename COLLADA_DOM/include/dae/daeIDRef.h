@@ -221,7 +221,7 @@ class DLLSPEC daeDefaultIDRefResolver : public daeIDRefResolver
 public:
 	/**
 	 * Constructor
-	 * @param database @c daeDatabase for this implementation.
+	 * @param dae @c dae for this implementation.
 	 */
 	daeDefaultIDRefResolver(DAE& dae);
 
@@ -244,6 +244,7 @@ public:
 };
 
 
+// This is a container class for storing a modifiable list of daeIDRefResolver objects.
 class daeIDRefResolverList {
 public:
 	daeIDRefResolverList();

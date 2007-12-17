@@ -71,9 +71,6 @@ protected:
 	daeBool _allowsAny;
 	daeBool _innerClass;
 	
-// 	DLLSPEC static daeTArray<daeSmartRef<daeMetaElement> >		&_metas();
-// 	DLLSPEC static daeTArray< daeMetaElement** >				&_classMetaPointers();
-
 	daeMetaCMPolicy* _contentModel;	
 	daeMetaArrayAttribute* _metaCMData;
 	daeUInt _numMetaChoices;
@@ -396,8 +393,6 @@ public:
 	 * @param cm The root element of the tree of content model policy elements.
 	 */
 	DLLSPEC void setCMRoot( daeMetaCMPolicy *cm );
-
-public:
 };
 
 typedef daeSmartRef<daeMetaElement> daeMetaElementRef;

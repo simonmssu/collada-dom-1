@@ -45,7 +45,7 @@ public:
 	// IO plugin will be used.
 	DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL)
 		: atomicTypes(*this),
-	    baseUri(*this, true)
+		  baseUri(*this, true)
 	{
 		// See the end of the thread linked below for an explanation of why we have the DAE
 		// constructor set up this way. Basically, I'm going to be changing the build output 
@@ -147,8 +147,7 @@ private:
 	daeIOPlugin *plugin;
 	bool defaultDatabase;
 	bool defaultPlugin;
-	daeIntegrationLibraryFunc registerFunc; 
-	daeMetaElement *topMeta;
+	daeIntegrationLibraryFunc registerFunc;
 	daeAtomicTypeList atomicTypes;
 	daeMetaElementRefArray metas;
 	daeElementRefArray resolveArray;
