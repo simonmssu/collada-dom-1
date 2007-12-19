@@ -32,7 +32,6 @@ $_globals['copyright_text'] = "/*\n" .
 $_globals['depth'] = 0;
 $_globals['meta_prefix'] = 'dae';
 $_globals['prefix'] = 'dom';
-$_globals['int_prefix'] = 'int';
 $_globals['language'] = 'en';
 $_globals['dom_dir'] = 'gen/dom/';
 $_globals['tmp_dir'] = 'tmp/';
@@ -60,24 +59,13 @@ $_globals['templates'] = array(
   'TYPES_CPP' => 'tpl/tpl-types-cpp.php',
   'INCLUDES' => 'tpl/tpl-includes.php',
   'HEADER' => 'tpl/tpl-dot-h.php',
-  'HEADER_INT' => 'tpl/tpl-dot-h-int.php',
   'HEADER_FILE' => 'tpl/tpl-header.php',
-  'REGISTER_LIST' => 'tpl/tpl-register-list-int.php',
-  'REGISTER_LIST_FILE' => 'tpl/tpl-register-list-file.php',
   'INCLUDE_LIST' => 'tpl/tpl-include-list.php',
-  'INCLUDE_LIST_FILE' => 'tpl/tpl-include-list-file.php',
   'CPP_FILE' => 'tpl/tpl-cpp.php',
-  'HEADER_FILE_INT' => 'tpl/tpl-header-int.php',
-  'CPP_FILE_INT' => 'tpl/tpl-cpp-int.php',
   'CPP' => 'tpl/tpl-cpp-body.php',
-  'CPP_INT' => 'tpl/tpl-cpp-body-int.php',
-  'CPP_STATIC_INT' => 'tpl/tpl-cpp-static-int.php',
-  'CPP_INTEGRATORS_INT' => 'tpl/tpl-cpp-integrators-int.php',
-  'CPP_INTERFACE_INT' => 'tpl/tpl-cpp-interface-int.php',
   'CPP_STATIC' => 'tpl/tpl-cpp-static.php',
   'CPP_METHODS' => 'tpl/tpl-cpp-methods.php',
   'CLASS' => 'tpl/tpl-class-def.php',
-  'CLASS_INT' => 'tpl/tpl-class-def-int.php',
   'ELEMENTS_FILE' => 'tpl/tpl-elements-file.php',
   'ELEMENTS' => 'tpl/tpl-elements.php',
   'CONSTANTS_FILE' => 'tpl/tpl-constants-file.php',
@@ -110,15 +98,11 @@ function initGen( $file )
   $_globals['gen_start_time'] = date( "M d Y H:i:s" );
   $_globals['file_name'] = $file;
 
-  // Full code gen
-  $_globals['int_dir'] = ($_globals['full_code'] ? 'gen/int/' : 'gen/int-minimal/');
-
   // Verify target dirs exist, create if not
   makeGenDir( getcwd() . "/gen" );
   makeGenDir( getcwd() . "/" . $_globals['dom_dir'] );
   makeGenDir( getcwd() . "/" . $_globals['dom_dir'] . 'include/' );
   makeGenDir( getcwd() . "/" . $_globals['dom_dir'] . 'src/' );
-  makeGenDir( getcwd() . "/" . $_globals['int_dir'] );
 
   // Start buffering output
   ob_start();

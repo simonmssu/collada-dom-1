@@ -150,18 +150,10 @@ foreach( $meta as $k => &$local_meta )
   // Generate the dom
   print applyTemplate( 'HEADER_FILE', $local_meta );
   print applyTemplate( 'CPP_FILE', $local_meta );
-  
-  // Generate the integration objects
-  print applyTemplate( 'HEADER_FILE_INT', $local_meta );
-  print applyTemplate( 'CPP_FILE_INT', $local_meta );
 }
 
 print applyTemplate( 'TYPES_HEADER_FILE', $typemeta );
 print applyTemplate( 'TYPES_CPP_FILE', $typemeta );
-
-// Generate a single includes file and a register() function .cpp
-print applyTemplate( 'REGISTER_LIST_FILE', $meta );
-print applyTemplate( 'INCLUDE_LIST_FILE', $meta );
 
 print applyTemplate( 'ELEMENTS_FILE', $meta );
 print applyTemplate( 'CONSTANTS_FILE', $_globals['constStrings'] );
