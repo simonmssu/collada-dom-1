@@ -32,11 +32,11 @@ domPlane::create(DAE& dae)
 daeMetaElement *
 domPlane::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "plane" );
 	meta->registerClass(domPlane::create);
 
@@ -76,11 +76,11 @@ domPlane::domEquation::create(DAE& dae)
 daeMetaElement *
 domPlane::domEquation::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "equation" );
 	meta->registerClass(domPlane::domEquation::create);
 

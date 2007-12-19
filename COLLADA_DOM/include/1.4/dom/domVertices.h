@@ -32,8 +32,8 @@ class domVertices : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VERTICES; }
-	static daeInt typeIDStatic() { return 628; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 628; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
  *  The id attribute is a text string containing the unique identifier of

@@ -30,8 +30,8 @@ class domInstance_effect : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_EFFECT; }
-	static daeInt typeIDStatic() { return 691; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 691; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique_hint;
 
@@ -45,8 +45,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_HINT; }
-		static daeInt typeIDStatic() { return 692; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 692; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 /**
  *  A platform defines a string that specifies which platform this is hint
@@ -138,8 +138,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SETPARAM; }
-		static daeInt typeIDStatic() { return 693; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 693; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attribute
 		xsToken attrRef;
 

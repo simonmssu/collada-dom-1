@@ -43,8 +43,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CHANNELS; }
-		static daeInt typeIDStatic() { return 6; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 6; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -106,8 +106,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RANGE; }
-		static daeInt typeIDStatic() { return 7; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 7; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -170,8 +170,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PRECISION; }
-		static daeInt typeIDStatic() { return 8; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 8; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -232,8 +232,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::OPTION; }
-		static daeInt typeIDStatic() { return 9; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 9; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -368,8 +368,8 @@ class domFx_surface_format_hint_common : public daeElement, public domFx_surface
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_FORMAT_HINT_COMMON; }
-	static daeInt typeIDStatic() { return 10; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 10; }
+	virtual daeInt typeID() const { return ID(); }
 protected:
 	/**
 	 * Constructor

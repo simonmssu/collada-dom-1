@@ -36,8 +36,8 @@ class domSource : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SOURCE; }
-	static daeInt typeIDStatic() { return 611; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 611; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique_common;
 
@@ -52,8 +52,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
-		static daeInt typeIDStatic() { return 612; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 612; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Element
 /**

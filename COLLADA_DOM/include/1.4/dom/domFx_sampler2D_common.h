@@ -36,8 +36,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SOURCE; }
-		static daeInt typeIDStatic() { return 37; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 37; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -94,8 +94,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_S; }
-		static daeInt typeIDStatic() { return 38; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 38; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -152,8 +152,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_T; }
-		static daeInt typeIDStatic() { return 39; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 39; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -210,8 +210,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MINFILTER; }
-		static daeInt typeIDStatic() { return 40; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 40; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -268,8 +268,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MAGFILTER; }
-		static daeInt typeIDStatic() { return 41; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 41; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -326,8 +326,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPFILTER; }
-		static daeInt typeIDStatic() { return 42; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 42; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -384,8 +384,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BORDER_COLOR; }
-		static daeInt typeIDStatic() { return 43; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 43; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -447,8 +447,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPMAP_MAXLEVEL; }
-		static daeInt typeIDStatic() { return 44; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 44; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -505,8 +505,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPMAP_BIAS; }
-		static daeInt typeIDStatic() { return 45; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 45; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -646,8 +646,8 @@ class domFx_sampler2D_common : public daeElement, public domFx_sampler2D_common_
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SAMPLER2D_COMMON; }
-	static daeInt typeIDStatic() { return 46; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 46; }
+	virtual daeInt typeID() const { return ID(); }
 protected:
 	/**
 	 * Constructor

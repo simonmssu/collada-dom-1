@@ -32,11 +32,11 @@ domRigid_constraint::create(DAE& dae)
 daeMetaElement *
 domRigid_constraint::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "rigid_constraint" );
 	meta->registerClass(domRigid_constraint::create);
 
@@ -118,11 +118,11 @@ domRigid_constraint::domRef_attachment::create(DAE& dae)
 daeMetaElement *
 domRigid_constraint::domRef_attachment::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "ref_attachment" );
 	meta->registerClass(domRigid_constraint::domRef_attachment::create);
 
@@ -185,11 +185,11 @@ domRigid_constraint::domAttachment::create(DAE& dae)
 daeMetaElement *
 domRigid_constraint::domAttachment::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "attachment" );
 	meta->registerClass(domRigid_constraint::domAttachment::create);
 
@@ -251,11 +251,11 @@ domRigid_constraint::domTechnique_common::create(DAE& dae)
 daeMetaElement *
 domRigid_constraint::domTechnique_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::create);
 
@@ -308,11 +308,11 @@ domRigid_constraint::domTechnique_common::domEnabled::create(DAE& dae)
 daeMetaElement *
 domRigid_constraint::domTechnique_common::domEnabled::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "enabled" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domEnabled::create);
 
@@ -355,11 +355,11 @@ domRigid_constraint::domTechnique_common::domInterpenetrate::create(DAE& dae)
 daeMetaElement *
 domRigid_constraint::domTechnique_common::domInterpenetrate::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "interpenetrate" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domInterpenetrate::create);
 
@@ -402,11 +402,11 @@ domRigid_constraint::domTechnique_common::domLimits::create(DAE& dae)
 daeMetaElement *
 domRigid_constraint::domTechnique_common::domLimits::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "limits" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::create);
 
@@ -447,11 +447,11 @@ domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::cr
 daeMetaElement *
 domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "swing_cone_and_twist" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::create);
 
@@ -492,11 +492,11 @@ domRigid_constraint::domTechnique_common::domLimits::domLinear::create(DAE& dae)
 daeMetaElement *
 domRigid_constraint::domTechnique_common::domLimits::domLinear::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "linear" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domLimits::domLinear::create);
 
@@ -537,11 +537,11 @@ domRigid_constraint::domTechnique_common::domSpring::create(DAE& dae)
 daeMetaElement *
 domRigid_constraint::domTechnique_common::domSpring::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "spring" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::create);
 
@@ -582,11 +582,11 @@ domRigid_constraint::domTechnique_common::domSpring::domAngular::create(DAE& dae
 daeMetaElement *
 domRigid_constraint::domTechnique_common::domSpring::domAngular::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "angular" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::domAngular::create);
 
@@ -633,11 +633,11 @@ domRigid_constraint::domTechnique_common::domSpring::domLinear::create(DAE& dae)
 daeMetaElement *
 domRigid_constraint::domTechnique_common::domSpring::domLinear::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "linear" );
 	meta->registerClass(domRigid_constraint::domTechnique_common::domSpring::domLinear::create);
 

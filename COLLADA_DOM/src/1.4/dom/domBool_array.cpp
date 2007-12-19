@@ -32,11 +32,11 @@ domBool_array::create(DAE& dae)
 daeMetaElement *
 domBool_array::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "bool_array" );
 	meta->registerClass(domBool_array::create);
 

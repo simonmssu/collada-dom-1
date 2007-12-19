@@ -85,8 +85,8 @@ class domFx_code_profile : public daeElement, public domFx_code_profile_complexT
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_CODE_PROFILE; }
-	static daeInt typeIDStatic() { return 96; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 96; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**

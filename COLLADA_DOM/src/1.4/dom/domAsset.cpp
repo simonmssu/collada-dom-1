@@ -32,11 +32,11 @@ domAsset::create(DAE& dae)
 daeMetaElement *
 domAsset::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "asset" );
 	meta->registerClass(domAsset::create);
 
@@ -118,11 +118,11 @@ domAsset::domContributor::create(DAE& dae)
 daeMetaElement *
 domAsset::domContributor::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "contributor" );
 	meta->registerClass(domAsset::domContributor::create);
 
@@ -181,11 +181,11 @@ domAsset::domContributor::domAuthor::create(DAE& dae)
 daeMetaElement *
 domAsset::domContributor::domAuthor::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "author" );
 	meta->registerClass(domAsset::domContributor::domAuthor::create);
 
@@ -217,11 +217,11 @@ domAsset::domContributor::domAuthoring_tool::create(DAE& dae)
 daeMetaElement *
 domAsset::domContributor::domAuthoring_tool::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "authoring_tool" );
 	meta->registerClass(domAsset::domContributor::domAuthoring_tool::create);
 
@@ -253,11 +253,11 @@ domAsset::domContributor::domComments::create(DAE& dae)
 daeMetaElement *
 domAsset::domContributor::domComments::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "comments" );
 	meta->registerClass(domAsset::domContributor::domComments::create);
 
@@ -289,11 +289,11 @@ domAsset::domContributor::domCopyright::create(DAE& dae)
 daeMetaElement *
 domAsset::domContributor::domCopyright::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "copyright" );
 	meta->registerClass(domAsset::domContributor::domCopyright::create);
 
@@ -326,11 +326,11 @@ domAsset::domContributor::domSource_data::create(DAE& dae)
 daeMetaElement *
 domAsset::domContributor::domSource_data::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "source_data" );
 	meta->registerClass(domAsset::domContributor::domSource_data::create);
 
@@ -362,11 +362,11 @@ domAsset::domCreated::create(DAE& dae)
 daeMetaElement *
 domAsset::domCreated::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "created" );
 	meta->registerClass(domAsset::domCreated::create);
 
@@ -398,11 +398,11 @@ domAsset::domKeywords::create(DAE& dae)
 daeMetaElement *
 domAsset::domKeywords::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "keywords" );
 	meta->registerClass(domAsset::domKeywords::create);
 
@@ -434,11 +434,11 @@ domAsset::domModified::create(DAE& dae)
 daeMetaElement *
 domAsset::domModified::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "modified" );
 	meta->registerClass(domAsset::domModified::create);
 
@@ -470,11 +470,11 @@ domAsset::domRevision::create(DAE& dae)
 daeMetaElement *
 domAsset::domRevision::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "revision" );
 	meta->registerClass(domAsset::domRevision::create);
 
@@ -506,11 +506,11 @@ domAsset::domSubject::create(DAE& dae)
 daeMetaElement *
 domAsset::domSubject::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "subject" );
 	meta->registerClass(domAsset::domSubject::create);
 
@@ -542,11 +542,11 @@ domAsset::domTitle::create(DAE& dae)
 daeMetaElement *
 domAsset::domTitle::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "title" );
 	meta->registerClass(domAsset::domTitle::create);
 
@@ -578,11 +578,11 @@ domAsset::domUnit::create(DAE& dae)
 daeMetaElement *
 domAsset::domUnit::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "unit" );
 	meta->registerClass(domAsset::domUnit::create);
 
@@ -629,11 +629,11 @@ domAsset::domUp_axis::create(DAE& dae)
 daeMetaElement *
 domAsset::domUp_axis::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "up_axis" );
 	meta->registerClass(domAsset::domUp_axis::create);
 

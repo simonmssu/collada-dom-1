@@ -71,8 +71,8 @@
 		print $indent ."class ". $full_element_name . getInheritanceStatement($baseClasses) . "\n".$indent."{\n";
 		print $indent ."public:\n";
 		print $indent ."\tvirtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
-		print $indent ."\tstatic daeInt typeIDStatic() { return ". $_globals['typeID']++ ."; }\n";
-		print $indent ."\tvirtual daeInt typeID() const { return typeIDStatic(); }\n";
+		print $indent ."\tstatic daeInt ID() { return ". $_globals['typeID']++ ."; }\n";
+		print $indent ."\tvirtual daeInt typeID() const { return ID(); }\n";
 	}
 
   // INTERNAL CLASSES
@@ -437,11 +437,6 @@
 		}
 	}
 
-	if ($full_element_name == "domInputLocal") {
-		// print "steveT - " . $bag['isAComplexType'] . "\n";
-		// print "steveT - " . $bag['complex_type'] . "\n";
-	}
-
   //CONSTRUCTORS  
 	if ( !$bag['isAComplexType'] ) {
 		printConstructors( $full_element_name, $bag, $baseClasses, $indent );
@@ -455,8 +450,8 @@
 		print $indent ."{\n";
 		print $indent ."public:\n";
 		print $indent ."\tvirtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
-		print $indent ."\tstatic daeInt typeIDStatic() { return ". $_globals['typeID']++ ."; }\n";
-		print $indent ."\tvirtual daeInt typeID() const { return typeIDStatic(); }\n";
+		print $indent ."\tstatic daeInt ID() { return ". $_globals['typeID']++ ."; }\n";
+		print $indent ."\tvirtual daeInt typeID() const { return ID(); }\n";
 
 		if ( $_globals['accessorsAndMutators'] && ( $bag['useXMLNS'] || count($bag['attributes'])>0 ) ) {
 			//generate accessors and mutators for everything
@@ -465,7 +460,6 @@
 		}
 		
 		$dummy = array();
-		//printConstructors( $full_element_name, $dummy, $baseClasses, $indent );
 		printConstructors( $full_element_name, $dummy, array("daeElement", $full_element_name . "_complexType"), $indent );
 	}
 	

@@ -34,8 +34,8 @@ class domPolylist : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYLIST; }
-	static daeInt typeIDStatic() { return 623; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 623; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domVcount;
 
@@ -51,8 +51,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VCOUNT; }
-		static daeInt typeIDStatic() { return 624; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 624; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**

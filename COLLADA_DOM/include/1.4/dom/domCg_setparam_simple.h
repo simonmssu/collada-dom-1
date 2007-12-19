@@ -80,8 +80,8 @@ class domCg_setparam_simple : public daeElement, public domCg_setparam_simple_co
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SETPARAM_SIMPLE; }
-	static daeInt typeIDStatic() { return 143; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 143; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**

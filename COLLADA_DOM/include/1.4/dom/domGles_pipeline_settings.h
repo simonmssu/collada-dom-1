@@ -28,8 +28,8 @@ class domGles_pipeline_settings : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_PIPELINE_SETTINGS; }
-	static daeInt typeIDStatic() { return 488; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 488; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domAlpha_func;
 
@@ -40,8 +40,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALPHA_FUNC; }
-		static daeInt typeIDStatic() { return 489; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 489; }
+		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domFunc;
 
@@ -52,8 +52,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FUNC; }
-			static daeInt typeIDStatic() { return 490; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 490; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			domGl_func_type attrValue;
 			xsNCName attrParam;
@@ -119,8 +119,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VALUE; }
-			static daeInt typeIDStatic() { return 491; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 491; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			domGl_alpha_value_type attrValue;
 			xsNCName attrParam;
@@ -231,8 +231,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_FUNC; }
-		static daeInt typeIDStatic() { return 492; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 492; }
+		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domSrc;
 
@@ -243,8 +243,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SRC; }
-			static daeInt typeIDStatic() { return 493; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 493; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			domGl_blend_type attrValue;
 			xsNCName attrParam;
@@ -310,8 +310,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEST; }
-			static daeInt typeIDStatic() { return 494; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 494; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			domGl_blend_type attrValue;
 			xsNCName attrParam;
@@ -422,8 +422,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_COLOR; }
-		static daeInt typeIDStatic() { return 495; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 495; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -494,8 +494,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_STENCIL; }
-		static daeInt typeIDStatic() { return 496; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 496; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domInt attrValue;
 		xsNCName attrParam;
@@ -561,8 +561,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_DEPTH; }
-		static daeInt typeIDStatic() { return 497; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 497; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -628,8 +628,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLIP_PLANE; }
-		static daeInt typeIDStatic() { return 498; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 498; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool4 attrValue;
 		xsNCName attrParam;
@@ -712,8 +712,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_MASK; }
-		static daeInt typeIDStatic() { return 499; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 499; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool4 attrValue;
 		xsNCName attrParam;
@@ -784,8 +784,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CULL_FACE; }
-		static daeInt typeIDStatic() { return 500; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 500; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domGl_face_type attrValue;
 		xsNCName attrParam;
@@ -851,8 +851,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_FUNC; }
-		static daeInt typeIDStatic() { return 501; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 501; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domGl_func_type attrValue;
 		xsNCName attrParam;
@@ -918,8 +918,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_MASK; }
-		static daeInt typeIDStatic() { return 502; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 502; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -985,8 +985,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_RANGE; }
-		static daeInt typeIDStatic() { return 503; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 503; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat2 attrValue;
 		xsNCName attrParam;
@@ -1057,8 +1057,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_COLOR; }
-		static daeInt typeIDStatic() { return 504; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 504; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -1129,8 +1129,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_DENSITY; }
-		static daeInt typeIDStatic() { return 505; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 505; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -1196,8 +1196,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_MODE; }
-		static daeInt typeIDStatic() { return 506; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 506; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domGl_fog_type attrValue;
 		xsNCName attrParam;
@@ -1263,8 +1263,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_START; }
-		static daeInt typeIDStatic() { return 507; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 507; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -1330,8 +1330,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_END; }
-		static daeInt typeIDStatic() { return 508; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 508; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -1397,8 +1397,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FRONT_FACE; }
-		static daeInt typeIDStatic() { return 509; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 509; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domGl_front_face_type attrValue;
 		xsNCName attrParam;
@@ -1464,8 +1464,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE_PIPELINE; }
-		static daeInt typeIDStatic() { return 510; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 510; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attribute
 		xsNCName attrParam;
 
@@ -1526,8 +1526,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LOGIC_OP; }
-		static daeInt typeIDStatic() { return 511; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 511; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domGl_logic_op_type attrValue;
 		xsNCName attrParam;
@@ -1593,8 +1593,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_AMBIENT; }
-		static daeInt typeIDStatic() { return 512; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 512; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -1677,8 +1677,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_DIFFUSE; }
-		static daeInt typeIDStatic() { return 513; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 513; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -1761,8 +1761,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPECULAR; }
-		static daeInt typeIDStatic() { return 514; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 514; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -1845,8 +1845,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_POSITION; }
-		static daeInt typeIDStatic() { return 515; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 515; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -1929,8 +1929,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_CONSTANT_ATTENUATION; }
-		static daeInt typeIDStatic() { return 516; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 516; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2008,8 +2008,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_LINEAR_ATTENUTATION; }
-		static daeInt typeIDStatic() { return 517; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 517; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2087,8 +2087,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_QUADRATIC_ATTENUATION; }
-		static daeInt typeIDStatic() { return 518; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 518; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2166,8 +2166,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_CUTOFF; }
-		static daeInt typeIDStatic() { return 519; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 519; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2245,8 +2245,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_DIRECTION; }
-		static daeInt typeIDStatic() { return 520; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 520; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat3 attrValue;
 		xsNCName attrParam;
@@ -2329,8 +2329,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_EXPONENT; }
-		static daeInt typeIDStatic() { return 521; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 521; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2408,8 +2408,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_MODEL_AMBIENT; }
-		static daeInt typeIDStatic() { return 522; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 522; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -2480,8 +2480,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINE_WIDTH; }
-		static daeInt typeIDStatic() { return 523; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 523; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2547,8 +2547,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_AMBIENT; }
-		static daeInt typeIDStatic() { return 524; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 524; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -2619,8 +2619,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_DIFFUSE; }
-		static daeInt typeIDStatic() { return 525; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 525; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -2691,8 +2691,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_EMISSION; }
-		static daeInt typeIDStatic() { return 526; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 526; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -2763,8 +2763,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_SHININESS; }
-		static daeInt typeIDStatic() { return 527; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 527; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -2830,8 +2830,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_SPECULAR; }
-		static daeInt typeIDStatic() { return 528; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 528; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -2902,8 +2902,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODEL_VIEW_MATRIX; }
-		static daeInt typeIDStatic() { return 529; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 529; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4x4 attrValue;
 		xsNCName attrParam;
@@ -2974,8 +2974,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_DISTANCE_ATTENUATION; }
-		static daeInt typeIDStatic() { return 530; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 530; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat3 attrValue;
 		xsNCName attrParam;
@@ -3046,8 +3046,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_FADE_THRESHOLD_SIZE; }
-		static daeInt typeIDStatic() { return 531; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 531; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -3113,8 +3113,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE; }
-		static daeInt typeIDStatic() { return 532; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 532; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -3180,8 +3180,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE_MIN; }
-		static daeInt typeIDStatic() { return 533; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 533; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -3247,8 +3247,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE_MAX; }
-		static daeInt typeIDStatic() { return 534; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 534; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -3314,8 +3314,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_OFFSET; }
-		static daeInt typeIDStatic() { return 535; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 535; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat2 attrValue;
 		xsNCName attrParam;
@@ -3386,8 +3386,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROJECTION_MATRIX; }
-		static daeInt typeIDStatic() { return 536; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 536; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domFloat4x4 attrValue;
 		xsNCName attrParam;
@@ -3458,8 +3458,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCISSOR; }
-		static daeInt typeIDStatic() { return 537; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 537; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domInt4 attrValue;
 		xsNCName attrParam;
@@ -3530,8 +3530,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SHADE_MODEL; }
-		static daeInt typeIDStatic() { return 538; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 538; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domGl_shade_model_type attrValue;
 		xsNCName attrParam;
@@ -3597,8 +3597,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_FUNC; }
-		static daeInt typeIDStatic() { return 539; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 539; }
+		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domFunc;
 
@@ -3609,8 +3609,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FUNC; }
-			static daeInt typeIDStatic() { return 540; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 540; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			domGl_func_type attrValue;
 			xsNCName attrParam;
@@ -3676,8 +3676,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF; }
-			static daeInt typeIDStatic() { return 541; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 541; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
 			xsNCName attrParam;
@@ -3743,8 +3743,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MASK; }
-			static daeInt typeIDStatic() { return 542; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 542; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
 			xsNCName attrParam;
@@ -3861,8 +3861,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_MASK; }
-		static daeInt typeIDStatic() { return 543; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 543; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domInt attrValue;
 		xsNCName attrParam;
@@ -3928,8 +3928,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_OP; }
-		static daeInt typeIDStatic() { return 544; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 544; }
+		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domFail;
 
@@ -3940,8 +3940,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FAIL; }
-			static daeInt typeIDStatic() { return 545; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 545; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			domGles_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -4007,8 +4007,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ZFAIL; }
-			static daeInt typeIDStatic() { return 546; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 546; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			domGles_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -4074,8 +4074,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ZPASS; }
-			static daeInt typeIDStatic() { return 547; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 547; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attributes
 			domGles_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -4192,8 +4192,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALPHA_TEST_ENABLE; }
-		static daeInt typeIDStatic() { return 548; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 548; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4259,8 +4259,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_ENABLE; }
-		static daeInt typeIDStatic() { return 549; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 549; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4326,8 +4326,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLIP_PLANE_ENABLE; }
-		static daeInt typeIDStatic() { return 550; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 550; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4405,8 +4405,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_LOGIC_OP_ENABLE; }
-		static daeInt typeIDStatic() { return 551; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 551; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4472,8 +4472,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_MATERIAL_ENABLE; }
-		static daeInt typeIDStatic() { return 552; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 552; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4539,8 +4539,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CULL_FACE_ENABLE; }
-		static daeInt typeIDStatic() { return 553; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 553; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4606,8 +4606,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_TEST_ENABLE; }
-		static daeInt typeIDStatic() { return 554; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 554; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4673,8 +4673,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DITHER_ENABLE; }
-		static daeInt typeIDStatic() { return 555; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 555; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4740,8 +4740,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_ENABLE; }
-		static daeInt typeIDStatic() { return 556; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 556; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4807,8 +4807,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE_PIPELINE_ENABLE; }
-		static daeInt typeIDStatic() { return 557; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 557; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4874,8 +4874,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_ENABLE; }
-		static daeInt typeIDStatic() { return 558; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 558; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -4953,8 +4953,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHTING_ENABLE; }
-		static daeInt typeIDStatic() { return 559; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 559; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5020,8 +5020,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_MODEL_TWO_SIDE_ENABLE; }
-		static daeInt typeIDStatic() { return 560; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 560; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5087,8 +5087,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINE_SMOOTH_ENABLE; }
-		static daeInt typeIDStatic() { return 561; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 561; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5154,8 +5154,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MULTISAMPLE_ENABLE; }
-		static daeInt typeIDStatic() { return 562; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 562; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5221,8 +5221,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::NORMALIZE_ENABLE; }
-		static daeInt typeIDStatic() { return 563; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 563; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5288,8 +5288,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SMOOTH_ENABLE; }
-		static daeInt typeIDStatic() { return 564; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 564; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5355,8 +5355,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_OFFSET_FILL_ENABLE; }
-		static daeInt typeIDStatic() { return 565; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 565; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5422,8 +5422,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RESCALE_NORMAL_ENABLE; }
-		static daeInt typeIDStatic() { return 566; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 566; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5489,8 +5489,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_ALPHA_TO_COVERAGE_ENABLE; }
-		static daeInt typeIDStatic() { return 567; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 567; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5556,8 +5556,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_ALPHA_TO_ONE_ENABLE; }
-		static daeInt typeIDStatic() { return 568; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 568; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5623,8 +5623,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_COVERAGE_ENABLE; }
-		static daeInt typeIDStatic() { return 569; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 569; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5690,8 +5690,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCISSOR_TEST_ENABLE; }
-		static daeInt typeIDStatic() { return 570; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 570; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5757,8 +5757,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_TEST_ENABLE; }
-		static daeInt typeIDStatic() { return 571; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 571; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;

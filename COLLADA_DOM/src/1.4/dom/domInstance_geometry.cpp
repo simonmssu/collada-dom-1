@@ -33,11 +33,11 @@ domInstance_geometry::create(DAE& dae)
 daeMetaElement *
 domInstance_geometry::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "instance_geometry" );
 	meta->registerClass(domInstance_geometry::create);
 

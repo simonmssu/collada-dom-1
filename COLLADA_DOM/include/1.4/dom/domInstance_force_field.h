@@ -29,8 +29,8 @@ class domInstance_force_field : public daeElement, public domInstanceWithExtra_c
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_FORCE_FIELD; }
-	static daeInt typeIDStatic() { return 694; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 694; }
+	virtual daeInt typeID() const { return ID(); }
 
 	/**
 	 * Gets the url attribute.

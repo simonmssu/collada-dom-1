@@ -33,8 +33,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR; }
-		static daeInt typeIDStatic() { return 116; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 116; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attribute
 		xsNCName attrSid;
 
@@ -109,8 +109,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
-		static daeInt typeIDStatic() { return 117; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 117; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attribute
 		xsNCName attrRef;
 
@@ -164,8 +164,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE; }
-		static daeInt typeIDStatic() { return 118; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 118; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 		xsNCName attrTexture;
 		xsNCName attrTexcoord;
@@ -299,8 +299,8 @@ class domCommon_color_or_texture_type : public daeElement, public domCommon_colo
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMON_COLOR_OR_TEXTURE_TYPE; }
-	static daeInt typeIDStatic() { return 119; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 119; }
+	virtual daeInt typeID() const { return ID(); }
 protected:
 	/**
 	 * Constructor

@@ -33,11 +33,11 @@ domInstance_effect::create(DAE& dae)
 daeMetaElement *
 domInstance_effect::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "instance_effect" );
 	meta->registerClass(domInstance_effect::create);
 
@@ -117,11 +117,11 @@ domInstance_effect::domTechnique_hint::create(DAE& dae)
 daeMetaElement *
 domInstance_effect::domTechnique_hint::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "technique_hint" );
 	meta->registerClass(domInstance_effect::domTechnique_hint::create);
 
@@ -180,11 +180,11 @@ domInstance_effect::domSetparam::create(DAE& dae)
 daeMetaElement *
 domInstance_effect::domSetparam::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "setparam" );
 	meta->registerClass(domInstance_effect::domSetparam::create);
 

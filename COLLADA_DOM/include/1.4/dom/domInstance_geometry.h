@@ -30,8 +30,8 @@ class domInstance_geometry : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_GEOMETRY; }
-	static daeInt typeIDStatic() { return 695; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 695; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
  *  The url attribute refers to resource.  This may refer to a local resource

@@ -32,11 +32,11 @@ domGlsl_newparam::create(DAE& dae)
 daeMetaElement *
 domGlsl_newparam::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "glsl_newparam" );
 	meta->registerClass(domGlsl_newparam::create);
 
@@ -116,11 +116,11 @@ domGlsl_newparam::domSemantic::create(DAE& dae)
 daeMetaElement *
 domGlsl_newparam::domSemantic::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "semantic" );
 	meta->registerClass(domGlsl_newparam::domSemantic::create);
 
@@ -152,11 +152,11 @@ domGlsl_newparam::domModifier::create(DAE& dae)
 daeMetaElement *
 domGlsl_newparam::domModifier::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "modifier" );
 	meta->registerClass(domGlsl_newparam::domModifier::create);
 

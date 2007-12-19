@@ -89,8 +89,8 @@ class domInputLocal : public daeElement, public domInputLocal_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INPUTLOCAL; }
-	static daeInt typeIDStatic() { return 1; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 1; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**

@@ -32,11 +32,11 @@ domInstance_node::create(DAE& dae)
 daeMetaElement *
 domInstance_node::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "instance_node" );
 	meta->registerClass(domInstance_node::create);
 

@@ -32,11 +32,11 @@ domLight::create(DAE& dae)
 daeMetaElement *
 domLight::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "light" );
 	meta->registerClass(domLight::create);
 
@@ -110,11 +110,11 @@ domLight::domTechnique_common::create(DAE& dae)
 daeMetaElement *
 domLight::domTechnique_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domLight::domTechnique_common::create);
 
@@ -171,11 +171,11 @@ domLight::domTechnique_common::domAmbient::create(DAE& dae)
 daeMetaElement *
 domLight::domTechnique_common::domAmbient::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "ambient" );
 	meta->registerClass(domLight::domTechnique_common::domAmbient::create);
 
@@ -210,11 +210,11 @@ domLight::domTechnique_common::domDirectional::create(DAE& dae)
 daeMetaElement *
 domLight::domTechnique_common::domDirectional::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "directional" );
 	meta->registerClass(domLight::domTechnique_common::domDirectional::create);
 
@@ -249,11 +249,11 @@ domLight::domTechnique_common::domPoint::create(DAE& dae)
 daeMetaElement *
 domLight::domTechnique_common::domPoint::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "point" );
 	meta->registerClass(domLight::domTechnique_common::domPoint::create);
 
@@ -306,11 +306,11 @@ domLight::domTechnique_common::domSpot::create(DAE& dae)
 daeMetaElement *
 domLight::domTechnique_common::domSpot::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "spot" );
 	meta->registerClass(domLight::domTechnique_common::domSpot::create);
 

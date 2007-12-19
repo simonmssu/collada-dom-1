@@ -33,11 +33,11 @@ domInstance_controller::create(DAE& dae)
 daeMetaElement *
 domInstance_controller::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "instance_controller" );
 	meta->registerClass(domInstance_controller::create);
 
@@ -118,11 +118,11 @@ domInstance_controller::domSkeleton::create(DAE& dae)
 daeMetaElement *
 domInstance_controller::domSkeleton::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "skeleton" );
 	meta->registerClass(domInstance_controller::domSkeleton::create);
 

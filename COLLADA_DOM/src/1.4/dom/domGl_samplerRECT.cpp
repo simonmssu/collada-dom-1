@@ -32,11 +32,11 @@ domGl_samplerRECT::create(DAE& dae)
 daeMetaElement *
 domGl_samplerRECT::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "gl_samplerRECT" );
 	meta->registerClass(domGl_samplerRECT::create);
 

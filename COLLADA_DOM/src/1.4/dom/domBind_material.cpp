@@ -32,11 +32,11 @@ domBind_material::create(DAE& dae)
 daeMetaElement *
 domBind_material::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "bind_material" );
 	meta->registerClass(domBind_material::create);
 
@@ -88,11 +88,11 @@ domBind_material::domTechnique_common::create(DAE& dae)
 daeMetaElement *
 domBind_material::domTechnique_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domBind_material::domTechnique_common::create);
 

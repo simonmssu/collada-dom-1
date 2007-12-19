@@ -33,11 +33,11 @@ domConvex_mesh::create(DAE& dae)
 daeMetaElement *
 domConvex_mesh::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "convex_mesh" );
 	meta->registerClass(domConvex_mesh::create);
 

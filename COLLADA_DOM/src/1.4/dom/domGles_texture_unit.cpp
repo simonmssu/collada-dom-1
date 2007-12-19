@@ -32,11 +32,11 @@ domGles_texture_unit::create(DAE& dae)
 daeMetaElement *
 domGles_texture_unit::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "gles_texture_unit" );
 	meta->registerClass(domGles_texture_unit::create);
 
@@ -99,11 +99,11 @@ domGles_texture_unit::domSurface::create(DAE& dae)
 daeMetaElement *
 domGles_texture_unit::domSurface::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "surface" );
 	meta->registerClass(domGles_texture_unit::domSurface::create);
 
@@ -135,11 +135,11 @@ domGles_texture_unit::domSampler_state::create(DAE& dae)
 daeMetaElement *
 domGles_texture_unit::domSampler_state::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "sampler_state" );
 	meta->registerClass(domGles_texture_unit::domSampler_state::create);
 
@@ -171,11 +171,11 @@ domGles_texture_unit::domTexcoord::create(DAE& dae)
 daeMetaElement *
 domGles_texture_unit::domTexcoord::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "texcoord" );
 	meta->registerClass(domGles_texture_unit::domTexcoord::create);
 

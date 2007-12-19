@@ -85,8 +85,8 @@ class domGles_texcombiner_commandAlpha_type : public daeElement, public domGles_
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXCOMBINER_COMMANDALPHA_TYPE; }
-	static daeInt typeIDStatic() { return 150; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 150; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**

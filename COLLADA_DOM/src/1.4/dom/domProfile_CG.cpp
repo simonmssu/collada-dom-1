@@ -32,11 +32,11 @@ domProfile_CG::create(DAE& dae)
 daeMetaElement *
 domProfile_CG::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "profile_CG" );
 	meta->registerClass(domProfile_CG::create);
 
@@ -147,11 +147,11 @@ domProfile_CG::domTechnique::create(DAE& dae)
 daeMetaElement *
 domProfile_CG::domTechnique::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "technique" );
 	meta->registerClass(domProfile_CG::domTechnique::create);
 
@@ -273,11 +273,11 @@ domProfile_CG::domTechnique::domPass::create(DAE& dae)
 daeMetaElement *
 domProfile_CG::domTechnique::domPass::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "pass" );
 	meta->registerClass(domProfile_CG::domTechnique::domPass::create);
 
@@ -394,11 +394,11 @@ domProfile_CG::domTechnique::domPass::domDraw::create(DAE& dae)
 daeMetaElement *
 domProfile_CG::domTechnique::domPass::domDraw::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "draw" );
 	meta->registerClass(domProfile_CG::domTechnique::domPass::domDraw::create);
 
@@ -430,11 +430,11 @@ domProfile_CG::domTechnique::domPass::domShader::create(DAE& dae)
 daeMetaElement *
 domProfile_CG::domTechnique::domPass::domShader::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "shader" );
 	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::create);
 
@@ -510,11 +510,11 @@ domProfile_CG::domTechnique::domPass::domShader::domCompiler_target::create(DAE&
 daeMetaElement *
 domProfile_CG::domTechnique::domPass::domShader::domCompiler_target::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "compiler_target" );
 	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domCompiler_target::create);
 
@@ -546,11 +546,11 @@ domProfile_CG::domTechnique::domPass::domShader::domCompiler_options::create(DAE
 daeMetaElement *
 domProfile_CG::domTechnique::domPass::domShader::domCompiler_options::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "compiler_options" );
 	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domCompiler_options::create);
 
@@ -582,11 +582,11 @@ domProfile_CG::domTechnique::domPass::domShader::domName::create(DAE& dae)
 daeMetaElement *
 domProfile_CG::domTechnique::domPass::domShader::domName::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "name" );
 	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domName::create);
 
@@ -630,11 +630,11 @@ domProfile_CG::domTechnique::domPass::domShader::domBind::create(DAE& dae)
 daeMetaElement *
 domProfile_CG::domTechnique::domPass::domShader::domBind::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "bind" );
 	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domBind::create);
 
@@ -691,11 +691,11 @@ domProfile_CG::domTechnique::domPass::domShader::domBind::domParam::create(DAE& 
 daeMetaElement *
 domProfile_CG::domTechnique::domPass::domShader::domBind::domParam::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "param" );
 	meta->registerClass(domProfile_CG::domTechnique::domPass::domShader::domBind::domParam::create);
 

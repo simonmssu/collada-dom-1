@@ -33,11 +33,11 @@ domSkin::create(DAE& dae)
 daeMetaElement *
 domSkin::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "skin" );
 	meta->registerClass(domSkin::create);
 
@@ -107,11 +107,11 @@ domSkin::domBind_shape_matrix::create(DAE& dae)
 daeMetaElement *
 domSkin::domBind_shape_matrix::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "bind_shape_matrix" );
 	meta->registerClass(domSkin::domBind_shape_matrix::create);
 
@@ -143,11 +143,11 @@ domSkin::domJoints::create(DAE& dae)
 daeMetaElement *
 domSkin::domJoints::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "joints" );
 	meta->registerClass(domSkin::domJoints::create);
 
@@ -188,11 +188,11 @@ domSkin::domVertex_weights::create(DAE& dae)
 daeMetaElement *
 domSkin::domVertex_weights::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "vertex_weights" );
 	meta->registerClass(domSkin::domVertex_weights::create);
 
@@ -257,11 +257,11 @@ domSkin::domVertex_weights::domVcount::create(DAE& dae)
 daeMetaElement *
 domSkin::domVertex_weights::domVcount::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "vcount" );
 	meta->registerClass(domSkin::domVertex_weights::domVcount::create);
 
@@ -293,11 +293,11 @@ domSkin::domVertex_weights::domV::create(DAE& dae)
 daeMetaElement *
 domSkin::domVertex_weights::domV::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "v" );
 	meta->registerClass(domSkin::domVertex_weights::domV::create);
 

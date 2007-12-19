@@ -28,8 +28,8 @@ class domBool_array : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL_ARRAY; }
-	static daeInt typeIDStatic() { return 606; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 606; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
  *  The id attribute is a text string containing the unique identifier of

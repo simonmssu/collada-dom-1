@@ -32,8 +32,8 @@ class domMorph : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MORPH; }
-	static daeInt typeIDStatic() { return 662; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 662; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTargets;
 
@@ -48,8 +48,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TARGETS; }
-		static daeInt typeIDStatic() { return 663; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 663; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Elements
 /**

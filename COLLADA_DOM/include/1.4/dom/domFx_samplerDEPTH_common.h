@@ -36,8 +36,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SOURCE; }
-		static daeInt typeIDStatic() { return 79; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 79; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -94,8 +94,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_S; }
-		static daeInt typeIDStatic() { return 80; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 80; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -152,8 +152,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_T; }
-		static daeInt typeIDStatic() { return 81; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 81; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -210,8 +210,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MINFILTER; }
-		static daeInt typeIDStatic() { return 82; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 82; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -268,8 +268,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MAGFILTER; }
-		static daeInt typeIDStatic() { return 83; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 83; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -385,8 +385,8 @@ class domFx_samplerDEPTH_common : public daeElement, public domFx_samplerDEPTH_c
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SAMPLERDEPTH_COMMON; }
-	static daeInt typeIDStatic() { return 84; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 84; }
+	virtual daeInt typeID() const { return ID(); }
 protected:
 	/**
 	 * Constructor

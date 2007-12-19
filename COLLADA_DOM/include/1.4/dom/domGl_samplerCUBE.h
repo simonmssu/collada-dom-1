@@ -49,8 +49,8 @@ class domGl_samplerCUBE : public daeElement, public domGl_samplerCUBE_complexTyp
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GL_SAMPLERCUBE; }
-	static daeInt typeIDStatic() { return 100; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 100; }
+	virtual daeInt typeID() const { return ID(); }
 protected:
 	/**
 	 * Constructor

@@ -30,8 +30,8 @@ class domSampler : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLER; }
-	static daeInt typeIDStatic() { return 654; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 654; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attribute
 /**
  *  The id attribute is a text string containing the unique identifier of

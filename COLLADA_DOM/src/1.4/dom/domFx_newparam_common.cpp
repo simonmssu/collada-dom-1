@@ -32,11 +32,11 @@ domFx_newparam_common::create(DAE& dae)
 daeMetaElement *
 domFx_newparam_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "fx_newparam_common" );
 	meta->registerClass(domFx_newparam_common::create);
 
@@ -100,11 +100,11 @@ domFx_newparam_common::domSemantic::create(DAE& dae)
 daeMetaElement *
 domFx_newparam_common::domSemantic::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "semantic" );
 	meta->registerClass(domFx_newparam_common::domSemantic::create);
 
@@ -136,11 +136,11 @@ domFx_newparam_common::domModifier::create(DAE& dae)
 daeMetaElement *
 domFx_newparam_common::domModifier::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "modifier" );
 	meta->registerClass(domFx_newparam_common::domModifier::create);
 

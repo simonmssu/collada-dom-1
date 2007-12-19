@@ -31,8 +31,8 @@ class domAccessor : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ACCESSOR; }
-	static daeInt typeIDStatic() { return 609; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 609; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
  *  The count attribute indicates the number of times the array is accessed.

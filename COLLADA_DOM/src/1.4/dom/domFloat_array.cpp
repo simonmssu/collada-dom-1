@@ -32,11 +32,11 @@ domFloat_array::create(DAE& dae)
 daeMetaElement *
 domFloat_array::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "float_array" );
 	meta->registerClass(domFloat_array::create);
 

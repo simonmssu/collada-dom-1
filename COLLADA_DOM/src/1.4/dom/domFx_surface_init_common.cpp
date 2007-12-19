@@ -32,11 +32,11 @@ domFx_surface_init_common::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "fx_surface_init_common" );
 	meta->registerClass(domFx_surface_init_common::create);
 
@@ -105,11 +105,11 @@ domFx_surface_init_common::domInit_as_null::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_common::domInit_as_null::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "init_as_null" );
 	meta->registerClass(domFx_surface_init_common::domInit_as_null::create);
 
@@ -132,11 +132,11 @@ domFx_surface_init_common::domInit_as_target::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_common::domInit_as_target::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "init_as_target" );
 	meta->registerClass(domFx_surface_init_common::domInit_as_target::create);
 

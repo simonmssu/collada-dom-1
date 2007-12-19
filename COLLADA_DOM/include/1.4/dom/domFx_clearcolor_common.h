@@ -81,8 +81,8 @@ class domFx_clearcolor_common : public daeElement, public domFx_clearcolor_commo
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_CLEARCOLOR_COMMON; }
-	static daeInt typeIDStatic() { return 88; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 88; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**

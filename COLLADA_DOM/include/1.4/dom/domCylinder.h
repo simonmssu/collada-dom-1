@@ -29,8 +29,8 @@ class domCylinder : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CYLINDER; }
-	static daeInt typeIDStatic() { return 775; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 775; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domHeight;
 
@@ -44,8 +44,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HEIGHT; }
-		static daeInt typeIDStatic() { return 776; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 776; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -105,8 +105,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RADIUS; }
-		static daeInt typeIDStatic() { return 777; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 777; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**

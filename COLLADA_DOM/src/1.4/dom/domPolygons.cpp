@@ -32,11 +32,11 @@ domPolygons::create(DAE& dae)
 daeMetaElement *
 domPolygons::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "polygons" );
 	meta->registerClass(domPolygons::create);
 
@@ -132,11 +132,11 @@ domPolygons::domPh::create(DAE& dae)
 daeMetaElement *
 domPolygons::domPh::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "ph" );
 	meta->registerClass(domPolygons::domPh::create);
 
@@ -177,11 +177,11 @@ domPolygons::domPh::domH::create(DAE& dae)
 daeMetaElement *
 domPolygons::domPh::domH::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "h" );
 	meta->registerClass(domPolygons::domPh::domH::create);
 

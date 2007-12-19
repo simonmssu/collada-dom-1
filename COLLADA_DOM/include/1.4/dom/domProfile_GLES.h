@@ -35,8 +35,8 @@ class domProfile_GLES : public domFx_profile_abstract
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROFILE_GLES; }
-	static daeInt typeIDStatic() { return 756; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 756; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique;
 
@@ -51,8 +51,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
-		static daeInt typeIDStatic() { return 757; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 757; }
+		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domSetparam;
 
@@ -63,8 +63,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SETPARAM; }
-			static daeInt typeIDStatic() { return 758; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 758; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attribute
 			xsNCName attrRef;
 
@@ -140,8 +140,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PASS; }
-			static daeInt typeIDStatic() { return 759; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 759; }
+			virtual daeInt typeID() const { return ID(); }
 		public:
 			class domColor_target;
 
@@ -152,8 +152,8 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_TARGET; }
-				static daeInt typeIDStatic() { return 760; }
-				virtual daeInt typeID() const { return typeIDStatic(); }
+				static daeInt ID() { return 760; }
+				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Value
 				/**
@@ -210,8 +210,8 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_TARGET; }
-				static daeInt typeIDStatic() { return 761; }
-				virtual daeInt typeID() const { return typeIDStatic(); }
+				static daeInt ID() { return 761; }
+				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Value
 				/**
@@ -268,8 +268,8 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_TARGET; }
-				static daeInt typeIDStatic() { return 762; }
-				virtual daeInt typeID() const { return typeIDStatic(); }
+				static daeInt ID() { return 762; }
+				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Value
 				/**
@@ -326,8 +326,8 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_CLEAR; }
-				static daeInt typeIDStatic() { return 763; }
-				virtual daeInt typeID() const { return typeIDStatic(); }
+				static daeInt ID() { return 763; }
+				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Value
 				/**
@@ -389,8 +389,8 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_CLEAR; }
-				static daeInt typeIDStatic() { return 764; }
-				virtual daeInt typeID() const { return typeIDStatic(); }
+				static daeInt ID() { return 764; }
+				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Value
 				/**
@@ -447,8 +447,8 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_CLEAR; }
-				static daeInt typeIDStatic() { return 765; }
-				virtual daeInt typeID() const { return typeIDStatic(); }
+				static daeInt ID() { return 765; }
+				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Value
 				/**
@@ -505,8 +505,8 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DRAW; }
-				static daeInt typeIDStatic() { return 766; }
-				virtual daeInt typeID() const { return typeIDStatic(); }
+				static daeInt ID() { return 766; }
+				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Value
 				/**

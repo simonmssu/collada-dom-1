@@ -113,8 +113,7 @@ daeURI::daeURI(DAE& dae, daeString uriString, daeBool nofrag) : dae(&dae)
 		// Generate the URI without changing the string
 		setURI(uriString);
 	}
-	if(nofrag)
-		validate();
+	validate();
 }
 
 daeURI::daeURI(daeURI& baseURI, daeString uriString) : dae(baseURI.getDAE())

@@ -32,11 +32,11 @@ domInstance_force_field::create(DAE& dae)
 daeMetaElement *
 domInstance_force_field::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "instance_force_field" );
 	meta->registerClass(domInstance_force_field::create);
 

@@ -32,11 +32,11 @@ domRotate::create(DAE& dae)
 daeMetaElement *
 domRotate::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "rotate" );
 	meta->registerClass(domRotate::create);
 

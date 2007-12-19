@@ -35,8 +35,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALL; }
-		static daeInt typeIDStatic() { return 13; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 13; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attribute
 		xsIDREF attrRef;
 
@@ -99,8 +99,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PRIMARY; }
-		static daeInt typeIDStatic() { return 14; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 14; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attribute
 		xsIDREF attrRef;
 
@@ -222,8 +222,8 @@ class domFx_surface_init_volume_common : public daeElement, public domFx_surface
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_INIT_VOLUME_COMMON; }
-	static daeInt typeIDStatic() { return 15; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 15; }
+	virtual daeInt typeID() const { return ID(); }
 protected:
 	/**
 	 * Constructor

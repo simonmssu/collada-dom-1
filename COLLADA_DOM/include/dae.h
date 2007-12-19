@@ -134,7 +134,7 @@ public:
 
 	// The base URI used for resolving relative URI references.
 	daeURI& getBaseURI();
-	void setBaseURI(daeURI& uri);
+	void setBaseURI(const daeURI& uri);
 
 	// Returns the list of ID reference resolvers. You can modify the list to add new
 	// resolvers.
@@ -160,7 +160,7 @@ private:
 template <typename T> 
 inline T *daeSafeCast(daeElement *element)
 { 
-	if (element  &&  element->typeID() == T::typeIDStatic())
+	if (element  &&  element->typeID() == T::ID())
 		return (T*)element; 
 	return NULL; 
 }

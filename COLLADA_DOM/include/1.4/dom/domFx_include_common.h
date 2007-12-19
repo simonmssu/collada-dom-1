@@ -92,8 +92,8 @@ class domFx_include_common : public daeElement, public domFx_include_common_comp
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_INCLUDE_COMMON; }
-	static daeInt typeIDStatic() { return 92; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 92; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**

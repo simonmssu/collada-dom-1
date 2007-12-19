@@ -171,6 +171,7 @@ namespace COLLADA_TYPE
 
 }
 
+// Returns the total number of schema types/dom* classes
 daeInt DLLSPEC colladaTypeCount();
 
 #endif

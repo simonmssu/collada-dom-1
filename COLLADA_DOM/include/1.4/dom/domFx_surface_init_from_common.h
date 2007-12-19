@@ -109,8 +109,8 @@ class domFx_surface_init_from_common : public daeElement, public domFx_surface_i
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_INIT_FROM_COMMON; }
-	static daeInt typeIDStatic() { return 21; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 21; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**

@@ -124,8 +124,8 @@ class domGlsl_setparam : public daeElement, public domGlsl_setparam_complexType
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLSL_SETPARAM; }
-	static daeInt typeIDStatic() { return 112; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 112; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**

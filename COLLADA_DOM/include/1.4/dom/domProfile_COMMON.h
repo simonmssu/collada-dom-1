@@ -35,8 +35,8 @@ class domProfile_COMMON : public domFx_profile_abstract
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROFILE_COMMON; }
-	static daeInt typeIDStatic() { return 740; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 740; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domTechnique;
 
@@ -51,8 +51,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
-		static daeInt typeIDStatic() { return 741; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 741; }
+		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domConstant;
 
@@ -63,8 +63,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONSTANT; }
-			static daeInt typeIDStatic() { return 742; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 742; }
+			virtual daeInt typeID() const { return ID(); }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;
@@ -142,8 +142,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LAMBERT; }
-			static daeInt typeIDStatic() { return 743; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 743; }
+			virtual daeInt typeID() const { return ID(); }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;
@@ -233,8 +233,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PHONG; }
-			static daeInt typeIDStatic() { return 744; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 744; }
+			virtual daeInt typeID() const { return ID(); }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;
@@ -336,8 +336,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLINN; }
-			static daeInt typeIDStatic() { return 745; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 745; }
+			virtual daeInt typeID() const { return ID(); }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;

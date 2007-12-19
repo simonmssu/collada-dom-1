@@ -32,11 +32,11 @@ domCg_samplerCUBE::create(DAE& dae)
 daeMetaElement *
 domCg_samplerCUBE::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "cg_samplerCUBE" );
 	meta->registerClass(domCg_samplerCUBE::create);
 

@@ -32,11 +32,11 @@ domLibrary_geometries::create(DAE& dae)
 daeMetaElement *
 domLibrary_geometries::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "library_geometries" );
 	meta->registerClass(domLibrary_geometries::create);
 

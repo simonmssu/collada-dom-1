@@ -32,11 +32,11 @@ domTargetableFloat3::create(DAE& dae)
 daeMetaElement *
 domTargetableFloat3::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "TargetableFloat3" );
 	meta->registerClass(domTargetableFloat3::create);
 

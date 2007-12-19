@@ -32,11 +32,11 @@ domGles_texture_pipeline::create(DAE& dae)
 daeMetaElement *
 domGles_texture_pipeline::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "gles_texture_pipeline" );
 	meta->registerClass(domGles_texture_pipeline::create);
 

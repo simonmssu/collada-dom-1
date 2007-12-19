@@ -46,8 +46,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FORMAT; }
-		static daeInt typeIDStatic() { return 22; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 22; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -107,8 +107,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SIZE; }
-		static daeInt typeIDStatic() { return 23; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 23; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -174,8 +174,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VIEWPORT_RATIO; }
-		static daeInt typeIDStatic() { return 24; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 24; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -244,8 +244,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIP_LEVELS; }
-		static daeInt typeIDStatic() { return 25; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 25; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -308,8 +308,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPMAP_GENERATE; }
-		static daeInt typeIDStatic() { return 26; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 26; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -521,8 +521,8 @@ class domFx_surface_common : public daeElement, public domFx_surface_common_comp
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_COMMON; }
-	static daeInt typeIDStatic() { return 27; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 27; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**

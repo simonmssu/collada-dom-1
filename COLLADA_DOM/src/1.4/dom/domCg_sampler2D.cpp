@@ -32,11 +32,11 @@ domCg_sampler2D::create(DAE& dae)
 daeMetaElement *
 domCg_sampler2D::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "cg_sampler2D" );
 	meta->registerClass(domCg_sampler2D::create);
 

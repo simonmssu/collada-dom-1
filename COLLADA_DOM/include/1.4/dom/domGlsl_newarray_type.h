@@ -121,8 +121,8 @@ class domGlsl_newarray_type : public daeElement, public domGlsl_newarray_type_co
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLSL_NEWARRAY_TYPE; }
-	static daeInt typeIDStatic() { return 103; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 103; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**

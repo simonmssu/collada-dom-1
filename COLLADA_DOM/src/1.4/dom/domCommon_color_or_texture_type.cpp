@@ -32,11 +32,11 @@ domCommon_color_or_texture_type::create(DAE& dae)
 daeMetaElement *
 domCommon_color_or_texture_type::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "common_color_or_texture_type" );
 	meta->registerClass(domCommon_color_or_texture_type::create);
 
@@ -86,11 +86,11 @@ domCommon_color_or_texture_type::domColor::create(DAE& dae)
 daeMetaElement *
 domCommon_color_or_texture_type::domColor::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "color" );
 	meta->registerClass(domCommon_color_or_texture_type::domColor::create);
 
@@ -133,11 +133,11 @@ domCommon_color_or_texture_type::domParam::create(DAE& dae)
 daeMetaElement *
 domCommon_color_or_texture_type::domParam::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "param" );
 	meta->registerClass(domCommon_color_or_texture_type::domParam::create);
 
@@ -172,11 +172,11 @@ domCommon_color_or_texture_type::domTexture::create(DAE& dae)
 daeMetaElement *
 domCommon_color_or_texture_type::domTexture::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "texture" );
 	meta->registerClass(domCommon_color_or_texture_type::domTexture::create);
 

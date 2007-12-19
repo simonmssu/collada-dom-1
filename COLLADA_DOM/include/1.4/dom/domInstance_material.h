@@ -29,8 +29,8 @@ class domInstance_material : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_MATERIAL; }
-	static daeInt typeIDStatic() { return 697; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 697; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domBind;
 
@@ -44,8 +44,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND; }
-		static daeInt typeIDStatic() { return 698; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 698; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 /**
  *  The semantic attribute specifies which effect parameter to bind. 
@@ -123,8 +123,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND_VERTEX_INPUT; }
-		static daeInt typeIDStatic() { return 699; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 699; }
+		virtual daeInt typeID() const { return ID(); }
 	protected:  // Attributes
 /**
  *  The semantic attribute specifies which effect parameter to bind. 

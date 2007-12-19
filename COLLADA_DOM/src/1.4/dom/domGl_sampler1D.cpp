@@ -32,11 +32,11 @@ domGl_sampler1D::create(DAE& dae)
 daeMetaElement *
 domGl_sampler1D::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "gl_sampler1D" );
 	meta->registerClass(domGl_sampler1D::create);
 

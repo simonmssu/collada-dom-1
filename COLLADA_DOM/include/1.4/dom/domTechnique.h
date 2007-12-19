@@ -33,8 +33,8 @@ class domTechnique : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
-	static daeInt typeIDStatic() { return 680; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 680; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attribute
 	/**
 	 * This element may specify its own xmlns.

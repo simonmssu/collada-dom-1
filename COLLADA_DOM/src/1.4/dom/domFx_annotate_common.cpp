@@ -32,11 +32,11 @@ domFx_annotate_common::create(DAE& dae)
 daeMetaElement *
 domFx_annotate_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "fx_annotate_common" );
 	meta->registerClass(domFx_annotate_common::create);
 

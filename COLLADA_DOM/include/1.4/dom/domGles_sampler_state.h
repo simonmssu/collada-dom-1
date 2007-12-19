@@ -37,8 +37,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_S; }
-		static daeInt typeIDStatic() { return 157; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 157; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -95,8 +95,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_T; }
-		static daeInt typeIDStatic() { return 158; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 158; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -153,8 +153,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MINFILTER; }
-		static daeInt typeIDStatic() { return 159; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 159; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -211,8 +211,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MAGFILTER; }
-		static daeInt typeIDStatic() { return 160; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 160; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -269,8 +269,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPFILTER; }
-		static daeInt typeIDStatic() { return 161; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 161; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -327,8 +327,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPMAP_MAXLEVEL; }
-		static daeInt typeIDStatic() { return 162; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 162; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -385,8 +385,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPMAP_BIAS; }
-		static daeInt typeIDStatic() { return 163; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 163; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -536,8 +536,8 @@ class domGles_sampler_state : public daeElement, public domGles_sampler_state_co
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_SAMPLER_STATE; }
-	static daeInt typeIDStatic() { return 164; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 164; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**

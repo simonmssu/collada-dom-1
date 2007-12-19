@@ -34,8 +34,8 @@ class domTrifans : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TRIFANS; }
-	static daeInt typeIDStatic() { return 626; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 626; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.

@@ -32,11 +32,11 @@ domRigid_body::create(DAE& dae)
 daeMetaElement *
 domRigid_body::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "rigid_body" );
 	meta->registerClass(domRigid_body::create);
 
@@ -105,11 +105,11 @@ domRigid_body::domTechnique_common::create(DAE& dae)
 daeMetaElement *
 domRigid_body::domTechnique_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "technique_common" );
 	meta->registerClass(domRigid_body::domTechnique_common::create);
 
@@ -190,11 +190,11 @@ domRigid_body::domTechnique_common::domDynamic::create(DAE& dae)
 daeMetaElement *
 domRigid_body::domTechnique_common::domDynamic::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "dynamic" );
 	meta->registerClass(domRigid_body::domTechnique_common::domDynamic::create);
 
@@ -237,11 +237,11 @@ domRigid_body::domTechnique_common::domMass_frame::create(DAE& dae)
 daeMetaElement *
 domRigid_body::domTechnique_common::domMass_frame::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "mass_frame" );
 	meta->registerClass(domRigid_body::domTechnique_common::domMass_frame::create);
 
@@ -286,11 +286,11 @@ domRigid_body::domTechnique_common::domShape::create(DAE& dae)
 daeMetaElement *
 domRigid_body::domTechnique_common::domShape::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "shape" );
 	meta->registerClass(domRigid_body::domTechnique_common::domShape::create);
 
@@ -437,11 +437,11 @@ domRigid_body::domTechnique_common::domShape::domHollow::create(DAE& dae)
 daeMetaElement *
 domRigid_body::domTechnique_common::domShape::domHollow::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "hollow" );
 	meta->registerClass(domRigid_body::domTechnique_common::domShape::domHollow::create);
 

@@ -30,8 +30,8 @@ class domLibrary_images : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIBRARY_IMAGES; }
-	static daeInt typeIDStatic() { return 719; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 719; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
  *  The id attribute is a text string containing the unique identifier of

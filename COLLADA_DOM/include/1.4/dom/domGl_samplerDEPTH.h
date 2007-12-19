@@ -49,8 +49,8 @@ class domGl_samplerDEPTH : public daeElement, public domGl_samplerDEPTH_complexT
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GL_SAMPLERDEPTH; }
-	static daeInt typeIDStatic() { return 102; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 102; }
+	virtual daeInt typeID() const { return ID(); }
 protected:
 	/**
 	 * Constructor

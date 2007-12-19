@@ -32,11 +32,11 @@ domFx_surface_format_hint_common::create(DAE& dae)
 daeMetaElement *
 domFx_surface_format_hint_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "fx_surface_format_hint_common" );
 	meta->registerClass(domFx_surface_format_hint_common::create);
 
@@ -94,11 +94,11 @@ domFx_surface_format_hint_common::domChannels::create(DAE& dae)
 daeMetaElement *
 domFx_surface_format_hint_common::domChannels::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "channels" );
 	meta->registerClass(domFx_surface_format_hint_common::domChannels::create);
 
@@ -130,11 +130,11 @@ domFx_surface_format_hint_common::domRange::create(DAE& dae)
 daeMetaElement *
 domFx_surface_format_hint_common::domRange::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "range" );
 	meta->registerClass(domFx_surface_format_hint_common::domRange::create);
 
@@ -166,11 +166,11 @@ domFx_surface_format_hint_common::domPrecision::create(DAE& dae)
 daeMetaElement *
 domFx_surface_format_hint_common::domPrecision::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "precision" );
 	meta->registerClass(domFx_surface_format_hint_common::domPrecision::create);
 
@@ -202,11 +202,11 @@ domFx_surface_format_hint_common::domOption::create(DAE& dae)
 daeMetaElement *
 domFx_surface_format_hint_common::domOption::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "option" );
 	meta->registerClass(domFx_surface_format_hint_common::domOption::create);
 

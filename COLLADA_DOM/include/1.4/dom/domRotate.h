@@ -28,8 +28,8 @@ class domRotate : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ROTATE; }
-	static daeInt typeIDStatic() { return 631; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 631; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier

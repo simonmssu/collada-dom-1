@@ -32,11 +32,11 @@ domCg_setarray_type::create(DAE& dae)
 daeMetaElement *
 domCg_setarray_type::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "cg_setarray_type" );
 	meta->registerClass(domCg_setarray_type::create);
 

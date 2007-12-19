@@ -92,7 +92,7 @@ public:
 	 */
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ANY; }
 
-	static daeInt typeIDStatic() { return colladaTypeCount()-1; }
+	static daeInt ID() { return colladaTypeCount()-1; }
 	virtual daeInt typeID() const { return colladaTypeCount()-1; }
 
 protected:

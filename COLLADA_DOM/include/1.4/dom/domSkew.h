@@ -28,8 +28,8 @@ class domSkew : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SKEW; }
-	static daeInt typeIDStatic() { return 633; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 633; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier

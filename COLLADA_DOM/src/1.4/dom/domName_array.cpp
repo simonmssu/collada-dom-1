@@ -32,11 +32,11 @@ domName_array::create(DAE& dae)
 daeMetaElement *
 domName_array::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "Name_array" );
 	meta->registerClass(domName_array::create);
 

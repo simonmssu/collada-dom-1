@@ -14,7 +14,7 @@
 #ifndef __DAE_INTEGRATION_OBJECT_H__
 #define __DAE_INTEGRATION_OBJECT_H__
 
-#include <dae/daeElement.h>
+#include <dae/daeRefCountedObj.h>
 
 class daeIntegrationObject;
 typedef daeSmartRef<daeIntegrationObject> daeIntegrationObjectRef;
@@ -22,17 +22,17 @@ typedef daeSmartRef<daeIntegrationObject> daeIntegrationObjectRef;
  * The @c daeIntegrationObject class provides methods to translate COLLADA
  * objects to and from application objects.
  */
-class daeIntegrationObject : public daeElement
+class DLLSPEC daeIntegrationObject : public daeRefCountedObj
 {
 public:
 	/**
 	 *  Constructor.
 	 */
-	DLLSPEC daeIntegrationObject() { _element = NULL; _object = NULL; _from_state = int_uninitialized; _to_state = int_uninitialized; }
+	daeIntegrationObject() { _element = NULL; _object = NULL; _from_state = int_uninitialized; _to_state = int_uninitialized; }
 	/**
 	 *  Destructor.
 	 */
-	virtual DLLSPEC ~daeIntegrationObject() {}
+	virtual ~daeIntegrationObject() {}
 
 public:
 	/** A pointer to the element associated with this integration object. */
@@ -74,31 +74,31 @@ protected:
 	 * for this integration template. This method sets up the integration object for the DOM class.
 	 * @param element A daeSmartRef to the element to convert into the user's structure.
 	 */
-	virtual DLLSPEC void createFrom(daeElementRef element) = 0;
+	virtual void createFrom(daeElementRef element) = 0;
 	/**
 	 * Defines the code to convert the COLLADA Object Model data structure into your application-specific 
 	 * data structure.
 	 */
-	virtual DLLSPEC void fromCOLLADA() = 0;
+	virtual void fromCOLLADA() = 0;
 	/**
 	 * Defines any postprocessing code that must execute after the basic conversion.
 	 */
-	virtual DLLSPEC void fromCOLLADAPostProcess() = 0;
+	virtual void fromCOLLADAPostProcess() = 0;
 	/**
 	 * Defines code to create the COLLADA Object Model data structure associated with the DOM class for 
 	 * this template.
 	 * @param userData A pointer to the application-specific data structure to convert to the DOM structure.
 	 */
-	virtual DLLSPEC void createTo(void *userData) = 0;
+	virtual void createTo(void *userData) = 0;
 	/**
 	 * Defines the code to convert your application's data structures back into COLLADA Object Model data 
 	 * structures.
 	 */
-	virtual DLLSPEC void toCOLLADA() = 0;
+	virtual void toCOLLADA() = 0;
 	/**
 	 * Defines any postprocessing code that must execute after the basic conversion.
 	 */
-	virtual DLLSPEC void toCOLLADAPostProcess() = 0;
+	virtual void toCOLLADAPostProcess() = 0;
 
 public:
 	/**

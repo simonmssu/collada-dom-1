@@ -30,7 +30,7 @@ domCOLLADA::create(DAE& dae)
 	domCOLLADARef ref = new domCOLLADA(dae);
 	ref->attrXmlns.setContainer( (domCOLLADA*)ref );
 	ref->attrXml_base.setContainer( (domCOLLADA*)ref );
-	ref->_meta = dae.getMeta(domCOLLADA::typeIDStatic());
+	ref->_meta = dae.getMeta(domCOLLADA::ID());
 	ref->setAttribute("version", COLLADA_VERSION );
 	ref->setAttribute("xmlns", COLLADA_NAMESPACE );
 	ref->_meta = NULL;
@@ -41,11 +41,11 @@ domCOLLADA::create(DAE& dae)
 daeMetaElement *
 domCOLLADA::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "COLLADA" );
 	meta->registerClass(domCOLLADA::create);
 
@@ -224,11 +224,11 @@ domCOLLADA::domScene::create(DAE& dae)
 daeMetaElement *
 domCOLLADA::domScene::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "scene" );
 	meta->registerClass(domCOLLADA::domScene::create);
 

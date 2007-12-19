@@ -34,8 +34,8 @@ class domVisual_scene : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VISUAL_SCENE; }
-	static daeInt typeIDStatic() { return 682; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 682; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domEvaluate_scene;
 
@@ -51,8 +51,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::EVALUATE_SCENE; }
-		static daeInt typeIDStatic() { return 683; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 683; }
+		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domRender;
 
@@ -67,8 +67,8 @@ public:
 		{
 		public:
 			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RENDER; }
-			static daeInt typeIDStatic() { return 684; }
-			virtual daeInt typeID() const { return typeIDStatic(); }
+			static daeInt ID() { return 684; }
+			virtual daeInt typeID() const { return ID(); }
 		public:
 			class domLayer;
 
@@ -83,8 +83,8 @@ public:
 			{
 			public:
 				virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LAYER; }
-				static daeInt typeIDStatic() { return 685; }
-				virtual daeInt typeID() const { return typeIDStatic(); }
+				static daeInt ID() { return 685; }
+				virtual daeInt typeID() const { return ID(); }
 
 			protected:  // Value
 				/**

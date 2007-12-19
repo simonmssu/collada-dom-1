@@ -32,11 +32,11 @@ domGles_texcombiner_argumentRGB_type::create(DAE& dae)
 daeMetaElement *
 domGles_texcombiner_argumentRGB_type::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "gles_texcombiner_argumentRGB_type" );
 	meta->registerClass(domGles_texcombiner_argumentRGB_type::create);
 

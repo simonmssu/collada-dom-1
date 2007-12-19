@@ -32,11 +32,11 @@ domFx_sampler1D_common::create(DAE& dae)
 daeMetaElement *
 domFx_sampler1D_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "fx_sampler1D_common" );
 	meta->registerClass(domFx_sampler1D_common::create);
 
@@ -118,11 +118,11 @@ domFx_sampler1D_common::domSource::create(DAE& dae)
 daeMetaElement *
 domFx_sampler1D_common::domSource::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "source" );
 	meta->registerClass(domFx_sampler1D_common::domSource::create);
 
@@ -154,11 +154,11 @@ domFx_sampler1D_common::domWrap_s::create(DAE& dae)
 daeMetaElement *
 domFx_sampler1D_common::domWrap_s::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "wrap_s" );
 	meta->registerClass(domFx_sampler1D_common::domWrap_s::create);
 
@@ -190,11 +190,11 @@ domFx_sampler1D_common::domMinfilter::create(DAE& dae)
 daeMetaElement *
 domFx_sampler1D_common::domMinfilter::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "minfilter" );
 	meta->registerClass(domFx_sampler1D_common::domMinfilter::create);
 
@@ -226,11 +226,11 @@ domFx_sampler1D_common::domMagfilter::create(DAE& dae)
 daeMetaElement *
 domFx_sampler1D_common::domMagfilter::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "magfilter" );
 	meta->registerClass(domFx_sampler1D_common::domMagfilter::create);
 
@@ -262,11 +262,11 @@ domFx_sampler1D_common::domMipfilter::create(DAE& dae)
 daeMetaElement *
 domFx_sampler1D_common::domMipfilter::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "mipfilter" );
 	meta->registerClass(domFx_sampler1D_common::domMipfilter::create);
 
@@ -298,11 +298,11 @@ domFx_sampler1D_common::domBorder_color::create(DAE& dae)
 daeMetaElement *
 domFx_sampler1D_common::domBorder_color::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "border_color" );
 	meta->registerClass(domFx_sampler1D_common::domBorder_color::create);
 
@@ -334,11 +334,11 @@ domFx_sampler1D_common::domMipmap_maxlevel::create(DAE& dae)
 daeMetaElement *
 domFx_sampler1D_common::domMipmap_maxlevel::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "mipmap_maxlevel" );
 	meta->registerClass(domFx_sampler1D_common::domMipmap_maxlevel::create);
 
@@ -370,11 +370,11 @@ domFx_sampler1D_common::domMipmap_bias::create(DAE& dae)
 daeMetaElement *
 domFx_sampler1D_common::domMipmap_bias::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "mipmap_bias" );
 	meta->registerClass(domFx_sampler1D_common::domMipmap_bias::create);
 

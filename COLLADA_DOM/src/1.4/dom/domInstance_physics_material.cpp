@@ -32,11 +32,11 @@ domInstance_physics_material::create(DAE& dae)
 daeMetaElement *
 domInstance_physics_material::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "instance_physics_material" );
 	meta->registerClass(domInstance_physics_material::create);
 

@@ -1250,6 +1250,7 @@ DefineTest(multipleDae) {
 	DAE dae1;
 	DAE dae2;
 	CheckResult(dae2.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+	CheckResult(dae1.loadFile(lookupTestFile("duck.dae").c_str()) == DAE_OK);
 	return testResult(true);
 }
 
@@ -1265,10 +1266,10 @@ DefineTest(unusedTypeCheck) {
 	// Also, <any> doesn't use a single global meta, so it'll also show up in the
 	// set of elements that don't have metas.
 	set<int> expectedUnusedTypes;
-	expectedUnusedTypes.insert(domEllipsoid::typeIDStatic());
-	expectedUnusedTypes.insert(domEllipsoid::domSize::typeIDStatic());
-	expectedUnusedTypes.insert(domInputGlobal::typeIDStatic());
-	expectedUnusedTypes.insert(domAny::typeIDStatic());
+	expectedUnusedTypes.insert(domEllipsoid::ID());
+	expectedUnusedTypes.insert(domEllipsoid::domSize::ID());
+	expectedUnusedTypes.insert(domInputGlobal::ID());
+	expectedUnusedTypes.insert(domAny::ID());
 
 	// Collect the list of types that don't have a corresponding meta defined
 	set<int> actualUnusedTypes;
@@ -1282,7 +1283,66 @@ DefineTest(unusedTypeCheck) {
 }
 
 
-// Returns true if all tests names are valid
+DefineTest(domCommon_transparent_type) {
+	DAE dae;
+	CheckResult(dae.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+
+	daeElement* elt = NULL;
+	dae.getDatabase()->getElement(&elt, 0, NULL, "common_transparent_type");
+	domCommon_transparent_type* transparent = daeSafeCast<domCommon_transparent_type>(elt);
+	CheckResult(transparent);
+
+	CheckResult(transparent->getColor() != NULL);
+	CheckResult(transparent->getParam() == NULL);
+	CheckResult(transparent->getTexture() == NULL);
+	CheckResult(transparent->getOpaque() == FX_OPAQUE_ENUM_A_ONE);
+
+	return testResult(true);
+};
+
+
+DefineTest(resolveAll) {
+	DAE dae;
+	string file = lookupTestFile("cube.dae");
+	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+
+	daeElement* node = dae.getDomFile(file.c_str())->getDescendant("node");
+	CheckResult(node);
+
+	domInstance_geometry* instanceGeom = daeSafeCast<domInstance_geometry>(
+		node->createAndPlace("instance_geometry"));
+	CheckResult(instanceGeom);
+	domInstance_material* instanceMtl = daeSafeCast<domInstance_material>(
+		instanceGeom->createAndPlace("bind_material")->createAndPlace("technique_common")->
+		createAndPlace("instance_material"));
+	CheckResult(instanceMtl);
+
+	instanceGeom->getUrl().setURI("#box-lib");
+	instanceMtl->getTarget().setURI("#Blue");
+	CheckResult(instanceGeom->getUrl().getElement() == NULL);
+	CheckResult(instanceMtl->getTarget().getElement() == NULL);
+
+	dae.resolveAll();
+	
+	CheckResult(instanceGeom->getUrl().getElement() != NULL);
+	CheckResult(instanceMtl->getTarget().getElement() != NULL);
+
+	return testResult(true);
+}
+
+
+DefineTest(baseURI) {
+	DAE dae1, dae2;
+	dae1.setBaseURI(daeURI(dae1, "http://www.example.com/"));
+	daeURI uri1(dae1, "myFolder/myFile.dae");
+	daeURI uri2(dae2, "myFolder/myFile.dae");
+	CheckResult(string(uri1.getURI()) != uri2.getURI());
+	CheckResult(string(uri1.getURI()) == "http://www.example.com/myFolder/myFile.dae");
+	return testResult(true);
+}
+
+
+// Returns true if all test names are valid
 bool checkTests(const set<string>& tests) {
 	bool invalidTestFound = false;
 	for (set<string>::const_iterator iter = tests.begin(); iter != tests.end(); iter++) {

@@ -1242,6 +1242,7 @@ namespace COLLADA_TYPE
 		PHYSICS_MODEL = 519;
 }
 
+// Returns the total number of schema types/dom* classes
 daeInt DLLSPEC colladaTypeCount();
 
 #endif

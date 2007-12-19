@@ -36,11 +36,11 @@ domEffect::create(DAE& dae)
 daeMetaElement *
 domEffect::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "effect" );
 	meta->registerClass(domEffect::create);
 

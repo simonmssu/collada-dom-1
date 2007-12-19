@@ -32,11 +32,11 @@ domGlsl_setparam_simple::create(DAE& dae)
 daeMetaElement *
 domGlsl_setparam_simple::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "glsl_setparam_simple" );
 	meta->registerClass(domGlsl_setparam_simple::create);
 

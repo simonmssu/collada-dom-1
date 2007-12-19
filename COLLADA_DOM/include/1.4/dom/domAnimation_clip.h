@@ -31,8 +31,8 @@ class domAnimation_clip : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ANIMATION_CLIP; }
-	static daeInt typeIDStatic() { return 652; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 652; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
  *  The id attribute is a text string containing the unique identifier of

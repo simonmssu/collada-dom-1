@@ -33,8 +33,8 @@ class domFx_surface_init_common : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_INIT_COMMON; }
-	static daeInt typeIDStatic() { return 168; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 168; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domInit_as_null;
 
@@ -52,8 +52,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INIT_AS_NULL; }
-		static daeInt typeIDStatic() { return 169; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 169; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:
 		/**
@@ -96,8 +96,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INIT_AS_TARGET; }
-		static daeInt typeIDStatic() { return 170; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 170; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:
 		/**

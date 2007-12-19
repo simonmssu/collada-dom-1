@@ -32,11 +32,11 @@ domGles_sampler_state::create(DAE& dae)
 daeMetaElement *
 domGles_sampler_state::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "gles_sampler_state" );
 	meta->registerClass(domGles_sampler_state::create);
 
@@ -123,11 +123,11 @@ domGles_sampler_state::domWrap_s::create(DAE& dae)
 daeMetaElement *
 domGles_sampler_state::domWrap_s::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "wrap_s" );
 	meta->registerClass(domGles_sampler_state::domWrap_s::create);
 
@@ -159,11 +159,11 @@ domGles_sampler_state::domWrap_t::create(DAE& dae)
 daeMetaElement *
 domGles_sampler_state::domWrap_t::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "wrap_t" );
 	meta->registerClass(domGles_sampler_state::domWrap_t::create);
 
@@ -195,11 +195,11 @@ domGles_sampler_state::domMinfilter::create(DAE& dae)
 daeMetaElement *
 domGles_sampler_state::domMinfilter::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "minfilter" );
 	meta->registerClass(domGles_sampler_state::domMinfilter::create);
 
@@ -231,11 +231,11 @@ domGles_sampler_state::domMagfilter::create(DAE& dae)
 daeMetaElement *
 domGles_sampler_state::domMagfilter::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "magfilter" );
 	meta->registerClass(domGles_sampler_state::domMagfilter::create);
 
@@ -267,11 +267,11 @@ domGles_sampler_state::domMipfilter::create(DAE& dae)
 daeMetaElement *
 domGles_sampler_state::domMipfilter::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "mipfilter" );
 	meta->registerClass(domGles_sampler_state::domMipfilter::create);
 
@@ -303,11 +303,11 @@ domGles_sampler_state::domMipmap_maxlevel::create(DAE& dae)
 daeMetaElement *
 domGles_sampler_state::domMipmap_maxlevel::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "mipmap_maxlevel" );
 	meta->registerClass(domGles_sampler_state::domMipmap_maxlevel::create);
 
@@ -339,11 +339,11 @@ domGles_sampler_state::domMipmap_bias::create(DAE& dae)
 daeMetaElement *
 domGles_sampler_state::domMipmap_bias::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "mipmap_bias" );
 	meta->registerClass(domGles_sampler_state::domMipmap_bias::create);
 

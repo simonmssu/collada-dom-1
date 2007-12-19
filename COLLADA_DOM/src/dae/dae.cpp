@@ -108,7 +108,7 @@ daeInt DAE::setDatabase(daeDatabase* _database)
 		database = new daeSTLDatabase(*this);
 		defaultDatabase = true;
 	}
-	database->setMeta(getMeta(domCOLLADA::typeIDStatic()));
+	database->setMeta(getMeta(domCOLLADA::ID()));
 	return DAE_OK;
 }
 
@@ -157,7 +157,7 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 		return DAE_ERR_BACKEND_IO;
 #endif // NO_DEFAULT_PLUGIN
 	}
-	int res = plugin->setMeta(getMeta(domCOLLADA::typeIDStatic()));
+	int res = plugin->setMeta(getMeta(domCOLLADA::ID()));
 	if (res != DAE_OK)
 	{
 		if (defaultPlugin)
@@ -463,7 +463,6 @@ void DAE::appendResolveElement(daeElement* elem) {
 }
 
 void DAE::resolveAll() {
-	// !!!steveT Make sure this works ok
 	for (size_t i = 0; i < resolveArray.getCount(); i++)
 		resolveArray[i]->resolve();
 	resolveArray.clear();
@@ -477,7 +476,7 @@ daeURI& DAE::getBaseURI() {
 	return baseUri;
 }
 
-void DAE::setBaseURI(daeURI& uri) {
+void DAE::setBaseURI(const daeURI& uri) {
 	baseUri = uri;
 }
 

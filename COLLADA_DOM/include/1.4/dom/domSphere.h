@@ -28,8 +28,8 @@ class domSphere : public daeElement
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPHERE; }
-	static daeInt typeIDStatic() { return 771; }
-	virtual daeInt typeID() const { return typeIDStatic(); }
+	static daeInt ID() { return 771; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domRadius;
 
@@ -43,8 +43,8 @@ public:
 	{
 	public:
 		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RADIUS; }
-		static daeInt typeIDStatic() { return 772; }
-		virtual daeInt typeID() const { return typeIDStatic(); }
+		static daeInt ID() { return 772; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**

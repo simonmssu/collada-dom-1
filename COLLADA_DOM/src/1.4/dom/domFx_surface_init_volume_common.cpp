@@ -32,11 +32,11 @@ domFx_surface_init_volume_common::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_volume_common::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "fx_surface_init_volume_common" );
 	meta->registerClass(domFx_surface_init_volume_common::create);
 
@@ -80,11 +80,11 @@ domFx_surface_init_volume_common::domAll::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_volume_common::domAll::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "all" );
 	meta->registerClass(domFx_surface_init_volume_common::domAll::create);
 
@@ -119,11 +119,11 @@ domFx_surface_init_volume_common::domPrimary::create(DAE& dae)
 daeMetaElement *
 domFx_surface_init_volume_common::domPrimary::registerElement(DAE& dae)
 {
-	daeMetaElement* meta = dae.getMeta(typeIDStatic());
+	daeMetaElement* meta = dae.getMeta(ID());
 	if ( meta != NULL ) return meta;
 
 	meta = new daeMetaElement(dae);
-	dae.setMeta(typeIDStatic(), *meta);
+	dae.setMeta(ID(), *meta);
 	meta->setName( "primary" );
 	meta->registerClass(domFx_surface_init_volume_common::domPrimary::create);
 
