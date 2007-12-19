@@ -20,7 +20,6 @@
 #include <dae/daeMetaAttribute.h>
 #include <dae/daeIOPlugin.h>
 
-class daeIntegrationObject;
 class daeMetaElement;
 class daeDocument;
 
@@ -57,21 +56,13 @@ protected:
   // Reading support for subclasses
 	typedef std::pair<daeString, daeString> attrPair;
 	DLLSPEC daeElementRef beginReadElement(daeElement* parentElement, 
-																				 daeString elementName, 
-																				 const std::vector<attrPair>& attributes,
-																				 daeInt lineNumber);
+	                                       daeString elementName, 
+	                                       const std::vector<attrPair>& attributes,
+	                                       daeInt lineNumber);
 	DLLSPEC bool readElementText(daeElement* element, daeString text, daeInt elementLineNumber);
 
 private:
-	typedef struct
-	{
-		daeElement* element;
-		daeIntegrationObject* intObject;
-	} INTEGRATION_ITEM;
-	
 	daeMetaElement* topMeta;
-
-	void postProcessDom(daeDocument *document, daeElement* element, std::vector<INTEGRATION_ITEM> &intItems);
 };
 
 #endif //__DAE_IO_PLUGIN_COMMON__

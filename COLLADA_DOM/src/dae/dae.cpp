@@ -64,7 +64,6 @@ void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 	plugin = NULL;
 	defaultDatabase = false;
 	defaultPlugin = false;
-	registerFunc = NULL;
 	metas.setCount(colladaTypeCount());
 
 	initializeDomMeta(*this);
@@ -171,18 +170,6 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 	return DAE_OK;
 }
 
-// Integration Library Setup
-daeIntegrationLibraryFunc DAE::getIntegrationLibrary()
-{
-	return registerFunc;
-}
-
-daeInt DAE::setIntegrationLibrary(daeIntegrationLibraryFunc _registerFunc)
-{
-	registerFunc = _registerFunc;
-	return DAE_OK;
-}
-
 // batch file operations
 daeInt DAE::load(daeString uri, daeString docBuffer)
 {
@@ -192,9 +179,6 @@ daeInt DAE::load(daeString uri, daeString docBuffer)
 	if (!plugin)
 		setIOPlugin(NULL);
 	
-	if (registerFunc) 
-		registerFunc();
-
 	if ( !plugin || !database ) {
 		//printf( "no plugin or database\n" );
 		daeErrorHandler::get()->handleError("no plugin or database\n");
@@ -218,9 +202,6 @@ daeInt DAE::save(daeString uri, daeBool replace)
 	if (!plugin)
 		setIOPlugin(NULL);
 
-	if (registerFunc) 
-		registerFunc();
-	
 	if ( !plugin || !database ) {
 		return DAE_ERR_BACKEND_IO;
 	}
@@ -244,9 +225,6 @@ daeInt DAE::save(daeUInt documentIndex, daeBool replace)
 	if (!plugin)
 		setIOPlugin(NULL);
 
-	if (registerFunc) 
-		registerFunc();
-	
 	if ( !plugin || !database ) {
 		return DAE_ERR_BACKEND_IO;
 	}
@@ -269,9 +247,6 @@ daeInt DAE::saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace)
 	if (!plugin)
 		setIOPlugin(NULL);
 
-	if (registerFunc) 
-		registerFunc();
-	
 	if ( !plugin || !database ) {
 		return DAE_ERR_BACKEND_IO;
 	}
@@ -296,9 +271,6 @@ daeInt DAE::saveAs(daeString uriToSaveTo, daeUInt documentIndex, daeBool replace
 	if (!plugin)
 		setIOPlugin(NULL);
 
-	if (registerFunc) 
-		registerFunc();
-	
 	if ( !plugin || !database ) {
 		return DAE_ERR_BACKEND_IO;
 	}

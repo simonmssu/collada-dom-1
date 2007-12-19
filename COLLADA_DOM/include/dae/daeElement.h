@@ -32,7 +32,6 @@ namespace COLLADA_TYPE
 class DAE;
 class daeMetaElement;
 class daeMetaAttribute;
-class daeIntegrationObject;
 class daeDocument;
 class daeURI;
 
@@ -55,25 +54,12 @@ public:
 	 */
 	DAE_ALLOC
 protected:
-	daeIntegrationObject* _intObject;
 	daeElement* _parent;
 	daeDocument* _document;
 	daeMetaElement* _meta;
 	daeString _elementName;
 	daeBoolArray _validAttributeArray;
 
-public:
-	/** An enum that describes the state of user integration with this object */
-	enum IntegrationState {
-		/** The user integration is not initialized */
-		int_uninitialized,
-		/** The user integration object has been created */
-		int_created,
-		/** The user integration object has been converted */
-		int_converted,
-		/** The user integration object is completed */
-		int_finished
-	};
 protected:
 	daeElement( const daeElement &cpy ) : daeRefCountedObj() { (void)cpy; };
 	virtual daeElement &operator=( const daeElement &cpy ) { (void)cpy; return *this; }
@@ -491,19 +477,6 @@ public:
 	 * @return Returns the associated meta information.
 	 */
 	inline daeMetaElement* getMeta() { return _meta; }
-
-	/**
-	 * Gets the integration object associated with this @c daeElement object.
-	 * See @c daeIntegrationObject for more details.
-	 * Integration Objects can be automatically created and associated
-	 * with the COLLADA dom via the meta-factory mechanism and
-	 * can be very useful for using the API to integrate with COLLADA.
-	 * @param from_state Specifies where in the conversion process from COLLADA you are interested. A full conversion is the default.
-	 * @param to_state Specifies where in the conversion process to COLLADA you are interested. No conversion is the default.
-	 * @return Returns the @c daeIntegrationObject associated with this COLLADA element
-	 * instance.
-	 */
-	daeIntegrationObject* getIntObject( IntegrationState from_state = int_converted, IntegrationState to_state = int_uninitialized );
 
 	/**
 	 * Gets the element type.

@@ -165,15 +165,7 @@ daeInt daeTinyXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repl
 
 void daeTinyXMLPlugin::writeElement( daeElement* element )
 {
-	daeIntegrationObject* _intObject = element->getIntObject();
 	daeMetaElement* _meta = element->getMeta();
-	if(_intObject)
-	{
-		// added in response to bug 478
-		_intObject->toCOLLADAChecked();
-		_intObject->toCOLLADAPostProcessChecked();
-	}
-
   if (!_meta->getIsTransparent() ) 
   {
 		TiXmlElement* tiElm = new TiXmlElement( element->getElementName() );  

@@ -67,7 +67,7 @@ DEP_LIBS += $(LIB_PATH)/$(LIB_PREFIX)dom_shared$(LIB_DYN_SUFFIX)
 endif
 
 # files
-SRC	:= domTest.cpp
+SRC	:= domTest.cpp integrationExample.cpp
 
 EXE_LCOPT	+= $(addprefix -L, $(LIB_PATH))
 

@@ -19,16 +19,9 @@
 #include <../include/modules/stdErrPlugin.h>
 #include <dom/domEllipsoid.h>
 #include <dom/domInputGlobal.h>
+#include "domTest.h"
 
-// We use the boost filesystem library for cross-platform file system support. You'll need
-// to have boost on your machine for this to work. For the Windows build boost is provided
-// in the external-libs folder, but for Linux/Mac it's expected that you'll install a boost
-// obtained via your distro's package manager. For example on Debian/Ubuntu, you can run
-//   apt-get install libboost-filesystem-dev
-// to install the boost filesystem library on your machine.
-#include <boost/filesystem/convenience.hpp>
 namespace fs = boost::filesystem;
-
 using namespace std;
 
 float toFloat(const string& s) {
@@ -53,11 +46,6 @@ string toString(const T& val) {
 #endif
 
 
-#define CheckResult(val) \
-	if (!(val)) { \
-		return testResult(false, __LINE__); \
-	}
-
 #define CheckResultWithMsg(val, msg) \
 	if (!(val)) { \
 		return testResult(false, __LINE__, msg); \
@@ -73,56 +61,35 @@ string toString(const T& val) {
 		} \
 	}
 
-struct domTest;
-map<string, domTest*> g_tests;
+map<string, domTest*>& registeredTests() {
+	static map<string, domTest*> tests;
+	return tests;
+}
 
-struct testResult {
-	bool passed;
-	int line; // If the test failed, the line number it failed on, or -1 if the line
-	          // number isn't available.
-	string msg; // An error message for the user. Usually empty.
+fs::path& dataPath() {
+	static fs::path dataPath_;
+	return dataPath_;
+}
 
-	testResult() : passed(true), line(-1) { }
-	testResult(bool passed, int line = -1, const string& msg = "")
-	  : passed(passed),
-	    line(line),
-	    msg(msg) {
-	}
-};
-
-struct domTest {
-	string name;
-	domTest(const string& name) : name(name) {
-		g_tests[name] = this;
-	}
-	virtual ~domTest() { };
-	virtual testResult run() = 0;
-};
-
-#define DefineTest(testName) \
-	struct domTest_##testName : public domTest { \
-		domTest_##testName() : domTest(#testName) { } \
-		testResult run();	\
-	}; \
-	domTest_##testName domTest_##testName##Obj; \
-	testResult domTest_##testName::run()
+fs::path& tmpPath() {
+	static fs::path tmpPath_;
+	return tmpPath_;
+}
 
 #define RunTest(testName) \
 	{ \
-		map<string, domTest*>::iterator iter = g_tests.find(#testName); \
-		CheckResult(iter != g_tests.end()); \
+		map<string, domTest*>::iterator iter = registeredTests().find(#testName); \
+		CheckResult(iter != registeredTests().end()); \
 		CheckResult(iter->second->run()); \
 	}
 
 
-fs::path g_dataPath;
 string lookupTestFile(const string& fileName) {
-	return (g_dataPath / fileName).native_file_string();
+	return (dataPath() / fileName).native_file_string();
 }
 
-fs::path g_tmpPath;
 string getTmpFile(const string& fileName) {
-	return (g_tmpPath / fileName).native_file_string();
+	return (tmpPath() / fileName).native_file_string();
 }
 
 
@@ -1346,7 +1313,7 @@ DefineTest(baseURI) {
 bool checkTests(const set<string>& tests) {
 	bool invalidTestFound = false;
 	for (set<string>::const_iterator iter = tests.begin(); iter != tests.end(); iter++) {
-		if (g_tests.find(*iter) == g_tests.end()) {
+		if (registeredTests().find(*iter) == registeredTests().end()) {
 			if (!invalidTestFound)
 				cout << "Invalid arguments:\n";
 			cout << "  " << *iter << endl;
@@ -1361,7 +1328,7 @@ bool checkTests(const set<string>& tests) {
 map<string, testResult> runTests(const set<string>& tests) {
 	map<string, testResult> failedTests;
 	for (set<string>::const_iterator iter = tests.begin(); iter != tests.end(); iter++) {
-		testResult result = g_tests[*iter]->run();
+		testResult result = registeredTests()[*iter]->run();
 		if (!result.passed)
 			failedTests[*iter] = result;
 	}
@@ -1439,24 +1406,27 @@ int main(int argc, char* argv[]) {
 	// Shut the DOM up
 	daeErrorHandler::setErrorHandler(&quietErrorHandler::getInstance());
 
-	g_dataPath = (fs::path(argv[0]).branch_path()/"../../test/data/").normalize();
-	g_tmpPath = g_dataPath / "tmp";
-	tmpDir tmp(g_tmpPath, !leaveTmpFiles);
+	dataPath() = (fs::path(argv[0]).branch_path()/"../../test/data/").normalize();
+	tmpPath() = dataPath() / "tmp";
+	tmpDir tmp(tmpPath(), !leaveTmpFiles);
 
 	if (checkTests(tests) == false)
 		return 0;
 
 	// -printTest
 	if (printTests) {
-		for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
+		map<string, domTest*>::iterator iter;
+		for (iter = registeredTests().begin(); iter != registeredTests().end(); iter++)
 			cout << iter->second->name << endl;
 		return 0;
 	}
 
 	// -all
-	if (allTests)
-		for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
+	if (allTests) {
+		map<string, domTest*>::iterator iter;
+		for (iter = registeredTests().begin(); iter != registeredTests().end(); iter++)
 			tests.insert(iter->first);
+	}
 
 	// test1 test2 ...
  	printTestResults(runTests(tests));

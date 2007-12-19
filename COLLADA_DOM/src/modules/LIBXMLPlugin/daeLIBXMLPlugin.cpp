@@ -305,14 +305,7 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 
 void daeLIBXMLPlugin::writeElement( daeElement* element )
 {
-	daeIntegrationObject* _intObject = element->getIntObject();
 	daeMetaElement* _meta = element->getMeta();
-	if(_intObject)
-	{
-		// added in response to bug 478
-		_intObject->toCOLLADAChecked();
-		_intObject->toCOLLADAPostProcessChecked();
-	}
 
 	//intercept <source> elements for special handling
 	if ( saveRawFile )

@@ -83,28 +83,7 @@ daeInt daeIOPluginCommon::read(daeURI& uri, daeString docBuffer)
 	if (res!= DAE_OK)
 		return res;
 
-	// Make a vector to store a list of the integration items that need to be processed later
-	// postProcessDom will fill this in for us (this should probably not be done in the IOPlugin)
-	
-	vector<INTEGRATION_ITEM> intItems;
-	
-	//insert the elements into the database, for this DB the elements are the Collada object which have
-	//an ID. 
-	//this function will fill the _integrationItems array as well
-	postProcessDom(document, domObject, intItems);
 	database->getDAE()->resolveAll();
-
-	//create the integration objects
-	int size = (int)intItems.size();
-	int i;
-	for (i=0;i<size;i++)
-		intItems[i].intObject->createFromChecked(intItems[i].element);
-	
-	for (i=0;i<size;i++)
-		intItems[i].intObject->fromCOLLADAChecked();
-
-	for (i=0;i<size;i++)
-		intItems[i].intObject->fromCOLLADAPostProcessChecked();
 
 	return DAE_OK;
 }
@@ -160,29 +139,3 @@ bool daeIOPluginCommon::readElementText(daeElement* element, daeString text, dae
 	daeErrorHandler::get()->handleWarning(msg.str().c_str());
 	return false;
 }
-
-// postProcessDom traverses all elements below the passed in one and creates a list of all the integration objects.
-// this should probably NOT be done in the IO plugin.
-void daeIOPluginCommon::postProcessDom(daeDocument *document, daeElement* element, std::vector<INTEGRATION_ITEM> &intItems)
-{
-	// Null element?  Return
-	if (!element)
-		return;
-
-	// If this element has an integration object, add it to a list so we can process them all in a bunch later
-	if (element->getIntObject(daeElement::int_uninitialized))
-	{
-		INTEGRATION_ITEM item;
-		item.element = element;
-		item.intObject = element->getIntObject(daeElement::int_uninitialized);
-		intItems.push_back(item);
-	}
-
-	// Recursively call postProcessDom on all of this element's children
-	daeElementRefArray children;
-	element->getChildren( children );
-	for ( size_t x = 0; x < children.getCount(); x++ ) {
-		postProcessDom(document, children.get(x), intItems);
-	}
-}
-

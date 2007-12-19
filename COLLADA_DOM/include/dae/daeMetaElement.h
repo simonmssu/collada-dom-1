@@ -58,7 +58,6 @@ protected:
 	daeMetaElementArrayAttribute* _metaContents;
 	daeMetaArrayAttribute* _metaContentsOrder;
 
-	daeMetaElement* _metaIntegration;
 	daeMetaAttributeRef _metaID;
 
 	daeMetaAttributePtrArray _resolvers;
@@ -154,23 +153,6 @@ public: // public accessors
 	 * @param allows True if this element allows for any child element, false otherwise.
 	 */
 	void setAllowsAny( daeBool allows ) { _allowsAny = allows; }
-
-	/**
-	 * Gets the @c daeMetaElement for the corresponding integration object
-	 * associated with this COLLADA element (if any).
-	 * @return Returns the @c daeMetaElement for the integration object; this can
-	 * be used as a factory.
-	 */
-	daeMetaElement* getMetaIntegration() { return _metaIntegration; }
-
-	/**
-	 * Sets the @c daeMetaElement for the corresponding integration object
-	 * associated with this COLLADA element (if any).
-	 * @param mI @c daeMetaElement for the integration object; this is
-	 * used as a factory to automatically create this integration object
-	 * whenever an instance of this element is created.
-	 */
-	void setMetaIntegration(daeMetaElement* mI) { _metaIntegration = mI; }
 
 	/**
 	 * Gets the @c daeMetaAttribute for the non-element contents of a @c daeElement.

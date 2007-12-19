@@ -183,7 +183,7 @@ public:
 
 	/**
 	* Unloads all of the documents of the runtime database.
-	* This function frees all the @c dom* objects and integration objects created so far,
+	* This function frees all the @c dom* objects created so far,
 	* except any objects on which you still have a smart pointer reference (@c daeSmartRef).
 	* @return Returns @c DAE_OK if all documents successfully unloaded, otherwise returns a negative value as defined in daeError.h.
 	*/

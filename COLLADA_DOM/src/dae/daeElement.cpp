@@ -19,42 +19,8 @@
 #include <dae/daeDatabase.h>
 #include <dae/daeErrorHandler.h>
 
-#include <dae/daeIntegrationObject.h>
 #include <dae/daeURI.h>
 #include <dae/domAny.h>
-
-daeIntegrationObject*
-daeElement::getIntObject( IntegrationState from_state, IntegrationState to_state )
-{
-	if ( !_intObject ) {
-		return NULL;
-	}
-	if ( from_state >= int_created ) {
-		if ( _intObject->_from_state < int_created ) {
-			daeErrorHandler::get()->handleWarning("Warning: getIntObject tries to get object that is not created (from)");
-			return NULL;
-		}
-		if ( from_state >= int_converted ) {
-			_intObject->fromCOLLADAChecked();
-			if ( from_state == int_finished ) {
-				_intObject->fromCOLLADAPostProcessChecked();
-			}
-		}
-	}
-	if ( to_state >= int_created ) {
-		if ( _intObject->_to_state < int_created ) {
-			daeErrorHandler::get()->handleWarning("Warning: getIntObject tries to get object that is not created (to)");
-			return NULL;
-		}
-		if ( to_state >= int_converted ) {
-			_intObject->toCOLLADAChecked();
-			if ( to_state == int_finished ) {
-				_intObject->toCOLLADAPostProcessChecked();
-			}
-		}
-	}
-	return _intObject;
-}
 
 daeElementRef
 daeElement::createElement(daeString className)
@@ -389,13 +355,6 @@ daeElement::setup(daeMetaElement* meta)
 	_meta = meta;
 	if (meta->needsResolve())
 		getDAE()->appendResolveElement(this);
-	daeMetaElement* intlibMeta = meta->getMetaIntegration();
-	if (intlibMeta != NULL)
-	{
-		 daeElementRef intObj = intlibMeta->create();
-		 intObj->ref(); //inc the ref count
-		_intObject = (daeIntegrationObject*)(daeElement*)intObj;
-	}
 	daeMetaAttributeRefArray& attrs = meta->getMetaAttributes();
 	int macnt = (int)attrs.getCount();
 
@@ -428,7 +387,6 @@ daeElement::setup(daeMetaElement* meta)
 }
 
 void daeElement::init() {
-	_intObject = NULL;
 	_parent = NULL;
 	_document = NULL;
 	_meta = NULL;
@@ -445,9 +403,6 @@ daeElement::daeElement(DAE& dae) {
 
 daeElement::~daeElement()
 {
-	if (_intObject)
-		_intObject->release();
-
 	if (_elementName) {
 		delete[] _elementName;
 		_elementName = NULL;

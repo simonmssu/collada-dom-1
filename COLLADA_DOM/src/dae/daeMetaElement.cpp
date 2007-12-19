@@ -101,7 +101,6 @@ daeMetaElement::daeMetaElement(DAE& dae) : dae(dae)
 	_metaValue = NULL;
 	_metaContents = NULL;
 	_metaContentsOrder = NULL; // sthomas
-	_metaIntegration = NULL;
 	_metaID = NULL;
 	_isTrackableForQueries = true;
 	_usesStringContents = false;
@@ -120,7 +119,6 @@ daeMetaElement::~daeMetaElement()
 	delete _contentModel;
 	delete _metaContentsOrder;
 	delete _metaCMData;
-	delete _metaIntegration;
 }
 
 DAE* daeMetaElement::getDAE() {
