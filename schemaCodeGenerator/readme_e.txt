@@ -17,19 +17,3 @@ affect any other PHP programs on your system as well.
 
 On Linux/Mac, you should be able to use the PHP 5 that comes with your distro for running
 the code generator.
-
-
-Important note!
----------------
-
-The code generator has a few bugs that cause it to generate incorrect output in some of
-the files. In these cases, the code that ships with the DOM serves as a reference
-for how the code generator is supposed to work. When overwriting the code that comes with
-the DOM with the output of the code generator, the following files should be merged 
-carefully to make sure that the correct code is used: 
-- domFx_surface_common.h, domFx_surface_common.cpp
-- domConstants.h, domConstants.cpp
-- domCommon_transparent_type.h
-- domCamera.cpp
-
-In general you'll want to keep the code that ships with the DOM for those files.
