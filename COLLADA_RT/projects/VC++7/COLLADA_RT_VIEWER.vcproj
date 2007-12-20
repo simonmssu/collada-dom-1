@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="COLLADA_RT_VIEWER"
+	ProjectGUID="{8B0BD623-09D5-4298-BF93-FC31540CC854}"
+	RootNamespace="COLLADA_RT_2_VIEWER"
+	Keyword="Win32Proj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="../../tmp/vc7_1.4_debug/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc7_1.4_debug/$(ProjectName)"
+			ConfigurationType="1">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/include&quot;;&quot;$(COLLADA_FX_LOCATION)/include&quot;;&quot;C:/Program Files/Nvidia Corporation/Cg/include&quot;;../../include/1.4;../../include;&quot;$(COLLADA_DOM_LOCATION)/include&quot;;&quot;$(COLLADA_DOM_LOCATION)/include/1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/src&quot;"
+				PreprocessorDefinitions="CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;"
+				RuntimeLibrary="3"
+				WarningLevel="3"
+				DebugInformationFormat="4"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada_dae.lib libcollada_dom.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib pcre.lib pcrecpp.lib"
+				OutputFile="../../bin/vc7_1.4_debug/$(ProjectName).exe"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories="../../lib/vc7_1.4_debug;&quot;$(COLLADA_DOM_LOCATION)/lib/vc7_1.4_debug&quot;;&quot;$(COLLADA_FX_LOCATION)/lib/vc7_1.4_debug&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/lib/vc7_1.4_debug&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/lib&quot;;&quot;$(CG_LIB_PATH)&quot;;$(COLLADA_EXTERNAL_LIBS_LOCATION)\pcre\lib\vc7.1\"
+				IgnoreDefaultLibraryNames="msvcrt"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
+				SubSystem="2"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="xcopy /Y $(COLLADA_EXTERNAL_LIBS_LOCATION)\devil\win32\lib\DevIL.dll $(TargetDir)"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="../../tmp/vc7_1.4/$(ProjectName)"
+			IntermediateDirectory="../../tmp/vc7_1.4/$(ProjectName)"
+			ConfigurationType="1">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/include&quot;;&quot;$(COLLADA_FX_LOCATION)/include&quot;;&quot;C:/Program Files/Nvidia Corporation/Cg/include&quot;;../../include/1.4;../../include;&quot;$(COLLADA_DOM_LOCATION)/include&quot;;&quot;$(COLLADA_DOM_LOCATION)/include/1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/src&quot;"
+				PreprocessorDefinitions="CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;"
+				RuntimeLibrary="2"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada_dae.lib libcollada_dom.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib pcre.lib pcrecpp.lib"
+				OutputFile="../../bin/vc7_1.4/$(ProjectName).exe"
+				AdditionalLibraryDirectories="../../lib/vc7_1.4;&quot;$(COLLADA_DOM_LOCATION)/lib/vc7_1.4&quot;;&quot;$(COLLADA_FX_LOCATION)/lib/vc7_1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/bullet/lib/vc7_1.4&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/libxml2/win32/lib&quot;;&quot;$(COLLADA_EXTERNAL_LIBS_LOCATION)/devIL/win32/lib&quot;;&quot;$(CG_LIB_PATH)&quot;;$(COLLADA_EXTERNAL_LIBS_LOCATION)\pcre\lib\vc7.1\"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="xcopy /Y $(COLLADA_EXTERNAL_LIBS_LOCATION)\devil\win32\lib\DevIL.dll $(TargetDir)"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			<File
+				RelativePath="..\..\platform\Win32\mainPC.cpp">
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
