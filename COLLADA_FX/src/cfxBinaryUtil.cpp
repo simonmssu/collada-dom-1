@@ -107,6 +107,7 @@
 #include <cfxError.h>
 #include <cfxLoader.h>
 
+#include <dae.h>
 #include <dae/daeURI.h>
 
 //File Header identifiers
@@ -1308,9 +1309,10 @@ cfxBool cfxBinaryUtil::save(const std::string& file, const std::map<std::string,
 		printf( "Failed to open %s for writing.\n", file.c_str() );
 		return false;
 	}
+	// It'd be better if this code just did a getcwd call instead of relying on the DOM for this
+	DAE dae;
 	fileName = file;
-	daeURI(2);
-	daeURI tmp( fileName.c_str() );
+	daeURI tmp( dae, fileName.c_str() );
 	tmp.validate();
 	fileName = tmp.getURI();
 	fileName = fileName.substr( 7 ); //remove the file://

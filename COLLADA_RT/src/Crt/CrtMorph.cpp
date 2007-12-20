@@ -60,7 +60,7 @@ CrtVoid	CrtMorph::Update( CrtFloat time)
 					CrtAnimChannel * channel = Anim->Channels[i];
 					CrtChar * target_member = channel->GetTargetMember();
 					CrtInt TargetMemberIndex = TargetMemberToIndex(target_member);
-					Anim->AnimateChannelFloat(weights[TargetMemberIndex], Anim->Channels[i]->GetTarget(), NULL, time);
+					Anim->AnimateChannelFloat(weights[TargetMemberIndex], Anim->Channels[i]->GetTarget(), 0, time);
 				}
 			}
 		} else {

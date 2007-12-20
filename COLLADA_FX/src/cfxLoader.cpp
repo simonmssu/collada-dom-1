@@ -429,6 +429,15 @@ void loadAnnotateArray(domFx_annotate_common_Array& annotateArrayElement, cfxAnn
 */
 
 
+namespace {
+	domFx_surface_init_from_common_Array* getInitFromArray(domFx_surface_common_complexType* surface) {
+		if (surface && surface->getFx_surface_init_common())
+			return &surface->getFx_surface_init_common()->getInit_from_array();
+		return NULL;
+	}
+}
+
+
 void loadNewParamArray(domFx_newparam_common_Array& newParamArrayElement, cfxParamable* paramable, cfxEffect* effect)
 {
 
@@ -446,9 +455,9 @@ void loadNewParamArray(domFx_newparam_common_Array& newParamArrayElement, cfxPar
 	    if(name == "fx_surface_common")
 		{
 			std::string init_from;
-			domFx_surface_common_complexType::domInit_from_Array &initFromArray = paramInitializer->getSurface()->getInit_from_array();
-			if (initFromArray.getCount() > 0)
-				init_from = initFromArray.get(0)->getValue().get(0).getID();
+			domFx_surface_init_from_common_Array* initFromArray = getInitFromArray(paramInitializer->getSurface());
+			if (initFromArray && initFromArray->getCount() > 0)
+				init_from = initFromArray->get(0)->getValue().get(0).getID();
 		    cfxSurface* surface = new cfxSurface( 
 							 init_from,
 							 paramInitializer->getSurface()->getFormat()->getValue()
@@ -511,9 +520,9 @@ void loadNewParamArray(domCg_newparam_Array& newParamArrayElement, cfxParamable*
 	    if(name == "cg_surface_type")
 		{
 			std::string init_from;
-			domFx_surface_common_complexType::domInit_from_Array &initFromArray = paramInitializer->getSurface()->getInit_from_array();
-			if (initFromArray.getCount() > 0)
-				init_from = initFromArray.get(0)->getValue().get(0).getID();
+			domFx_surface_init_from_common_Array* initFromArray = getInitFromArray(paramInitializer->getSurface());
+			if (initFromArray && initFromArray->getCount() > 0)
+				init_from = initFromArray->get(0)->getValue().get(0).getID();
 		    cfxSurface* surface = new cfxSurface( 
 							 init_from, 
 							 paramInitializer->getSurface()->getFormat()->getValue()
@@ -573,9 +582,10 @@ void loadSetParamArray(domInstance_effect::domSetparam_Array& setParamArrayEleme
 	    if(name == "fx_surface_common")
 		{
 			std::string init_from;
-			domFx_surface_common_complexType::domInit_from_Array &initFromArray = paramInitializer->getSurface()->getInit_from_array();
-			if (initFromArray.getCount() > 0)
-				init_from = initFromArray.get(0)->getValue().get(0).getID();
+			domFx_surface_init_from_common_Array* initFromArray = getInitFromArray(paramInitializer->getSurface());
+
+			if (initFromArray && initFromArray->getCount() > 0)
+				init_from = initFromArray->get(0)->getValue().get(0).getID();
 			// lookup surface by name
 			cfxSurface* surface = effect->getSurfaceByName(setParamElement->getRef());
 		    cfxSurface* newSurface = new cfxSurface( 

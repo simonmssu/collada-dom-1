@@ -625,7 +625,7 @@ daeURI::validate(daeURI* baseURI)
 		len += strlen(id);
 	}
 	daeChar* newURI = (daeChar*)
-		daeMemorySystem::malloc("uri", len + 4 );
+		daeMemorySystem::malloc("uri", len + 5 );
 	*newURI = 0;
 
 	if(protocol != NULL && *protocol != 0)

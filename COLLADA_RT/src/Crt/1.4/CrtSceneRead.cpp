@@ -218,7 +218,7 @@ CrtFloat ReadFloatOrParamType(CrtEffect * effect, domCommon_float_or_param_typeR
 //		color_or_texture->getParam();
 	return (CrtFloat) 0;
 }
-CrtColor4f ReadColorOrTextureType(CrtEffect * effect, domCommon_color_or_texture_typeRef color_or_texture)
+CrtColor4f ReadColorOrTextureType(CrtEffect * effect, domCommon_color_or_texture_type_complexType* color_or_texture)
 {
 	(void) effect;
 	if (color_or_texture->getColor())
@@ -248,7 +248,7 @@ public:
 
 	domCommon_color_or_texture_type *reflective;
 	domCommon_float_or_param_type   *reflectivity;
-	domCommon_color_or_texture_type *transparent;
+	domCommon_color_or_texture_type_complexType *transparent;
 	domCommon_float_or_param_type   *transarency;
 	domCommon_float_or_param_type   *index_of_refaction;
 }; 
@@ -418,7 +418,10 @@ CrtImage * CrtScene::GetTextureFromShader(map<string, domCommon_newparam_type*> 
 	}
 	string surface_SID = NewParams[sampler2D_SID]->getSampler2D()->getSource()->getValue();
 
-	xsIDREF& idRef = NewParams[surface_SID]->getSurface()->getInit_from_array()[0]->getValue();
+	if (!NewParams[surface_SID]->getSurface()->getFx_surface_init_common())
+		return NULL;
+
+	xsIDREF& idRef = NewParams[surface_SID]->getSurface()->getFx_surface_init_common()->getInit_from_array()[0]->getValue();
 	idRef.resolveElement();
 	domImage* image_element = (domImage*)(domElement*) idRef.getElement();;
 	return ReadImage(image_element);
