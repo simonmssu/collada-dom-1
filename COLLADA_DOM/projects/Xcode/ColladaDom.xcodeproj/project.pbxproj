@@ -271,6 +271,7 @@
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2F04B2C80CCEA4B200769B99 /* daeDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeDatabase.cpp; sourceTree = "<group>"; };
 		2FB53B5E0D1B29C7008B2EC4 /* integrationExample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = integrationExample.cpp; sourceTree = "<group>"; };
+		2FB53B700D1B3D80008B2EC4 /* domTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = domTest.h; path = ../../test/domTest.h; sourceTree = SOURCE_ROOT; };
 		8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Collada141Dom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAccessor.cpp; sourceTree = "<group>"; };
 		AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAnimation.cpp; sourceTree = "<group>"; };
@@ -764,6 +765,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		2FB53B710D1B3D8B008B2EC4 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				2FB53B700D1B3D80008B2EC4 /* domTest.h */,
+			);
+			name = test;
+			sourceTree = "<group>";
+		};
 		AD012B280BCFEE5100BBFE92 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -1036,6 +1045,7 @@
 		AD76C5770BD7FE7C00486DB0 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				2FB53B710D1B3D8B008B2EC4 /* test */,
 				AD76C5AF0BD7FE7C00486DB0 /* 1.4 */,
 				AD76C65E0BD7FE7C00486DB0 /* dae */,
 				AD76C6810BD7FE7C00486DB0 /* dae.h */,
