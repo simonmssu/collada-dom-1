@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F04B2C90CCEA4B200769B99 /* daeDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F04B2C80CCEA4B200769B99 /* daeDatabase.cpp */; };
+		2FB53B5F0D1B29C7008B2EC4 /* integrationExample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2FB53B5E0D1B29C7008B2EC4 /* integrationExample.cpp */; };
 		8D07F2C00486CC7A007CD1D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		AD012C700BCFEE5100BBFE92 /* domAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */; };
 		AD012C710BCFEE5100BBFE92 /* domAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */; };
@@ -269,6 +270,7 @@
 /* Begin PBXFileReference section */
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2F04B2C80CCEA4B200769B99 /* daeDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = daeDatabase.cpp; sourceTree = "<group>"; };
+		2FB53B5E0D1B29C7008B2EC4 /* integrationExample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = integrationExample.cpp; sourceTree = "<group>"; };
 		8D07F2C80486CC7A007CD1D0 /* Collada141Dom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Collada141Dom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD012B630BCFEE5100BBFE92 /* domAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAccessor.cpp; sourceTree = "<group>"; };
 		AD012B640BCFEE5100BBFE92 /* domAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = domAnimation.cpp; sourceTree = "<group>"; };
@@ -659,8 +661,6 @@
 		AD76C6680BD7FE7C00486DB0 /* daeErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeErrorHandler.h; sourceTree = "<group>"; };
 		AD76C6690BD7FE7C00486DB0 /* daeGCCPlatform.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeGCCPlatform.h; sourceTree = "<group>"; };
 		AD76C66B0BD7FE7C00486DB0 /* daeIDRef.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeIDRef.h; sourceTree = "<group>"; };
-		AD76C66C0BD7FE7C00486DB0 /* daeIntegrationObject.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeIntegrationObject.h; sourceTree = "<group>"; };
-		AD76C66D0BD7FE7C00486DB0 /* daeInterface.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeInterface.h; sourceTree = "<group>"; };
 		AD76C66E0BD7FE7C00486DB0 /* daeIOPlugin.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeIOPlugin.h; sourceTree = "<group>"; };
 		AD76C66F0BD7FE7C00486DB0 /* daeMemorySystem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeMemorySystem.h; sourceTree = "<group>"; };
 		AD76C6700BD7FE7C00486DB0 /* daeMetaAny.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = daeMetaAny.h; sourceTree = "<group>"; };
@@ -1254,8 +1254,6 @@
 				AD76C6680BD7FE7C00486DB0 /* daeErrorHandler.h */,
 				AD76C6690BD7FE7C00486DB0 /* daeGCCPlatform.h */,
 				AD76C66B0BD7FE7C00486DB0 /* daeIDRef.h */,
-				AD76C66C0BD7FE7C00486DB0 /* daeIntegrationObject.h */,
-				AD76C66D0BD7FE7C00486DB0 /* daeInterface.h */,
 				AD76C66E0BD7FE7C00486DB0 /* daeIOPlugin.h */,
 				AD76C66F0BD7FE7C00486DB0 /* daeMemorySystem.h */,
 				AD76C6700BD7FE7C00486DB0 /* daeMetaAny.h */,
@@ -1292,6 +1290,7 @@
 		ADFAE4300CCFF9E40097ABB3 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				2FB53B5E0D1B29C7008B2EC4 /* integrationExample.cpp */,
 				ADFAE43E0CCFF9E50097ABB3 /* domTest.cpp */,
 			);
 			name = test;
@@ -1379,10 +1378,12 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 4FADC24608B4156D00ABE55E /* Build configuration list for PBXProject "ColladaDom" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 0867D691FE84028FC02AAC07 /* COLLADA_DOM */;
 			productRefGroup = 034768DDFF38A45A11DB9C8B /* Products */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				8D07F2BC0486CC7A007CD1D0 /* Collada141Dom */,
 				ADFAE4600CCFFED10097ABB3 /* UnitTest */,
@@ -1648,6 +1649,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADFAE46E0CCFFF590097ABB3 /* domTest.cpp in Sources */,
+				2FB53B5F0D1B29C7008B2EC4 /* integrationExample.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
