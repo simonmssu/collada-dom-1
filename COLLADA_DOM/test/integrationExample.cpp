@@ -175,7 +175,7 @@ DefineTest(integration) {
 		CheckResult(dae.getDatabase()->getElementCount(NULL, "geometry") == convData.meshTable.getCount());
 		CheckResult(dae.getDatabase()->getElementCount(NULL, "material") == convData.mtlTable.getCount());
 	}
-	catch (const exception& e) {
+	catch (const exception&) {
 		return testResult(false);
 	}
 

@@ -45,5 +45,9 @@ typedef int intptr_t;
 #pragma warning(disable: 4251)
 // warning C4100: 'profile' : unreferenced formal parameter
 #pragma warning(disable: 4100)
+// warning C4355: 'this' : used in base member initializer list
+#pragma warning(disable: 4355)
+// warning C4512: 'daeDatabase' : assignment operator could not be generated
+#pragma warning(disable: 4512)
 
 #endif

@@ -1243,7 +1243,7 @@ DefineTest(unusedTypeCheck) {
 	const daeMetaElementRefArray &metas = dae.getAllMetas();
 	for (size_t i = 0; i < metas.getCount(); i++)
 		if (!metas[i])
-			actualUnusedTypes.insert(i);
+			actualUnusedTypes.insert((int)i);
 
 	// Make sure the set of unused types matches what we expect
 	return testResult(expectedUnusedTypes == actualUnusedTypes);

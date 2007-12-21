@@ -339,12 +339,6 @@
 				RelativePath="..\..\include\dae\daeIDRef.h">
 			</File>
 			<File
-				RelativePath="..\..\include\dae\daeIntegrationObject.h">
-			</File>
-			<File
-				RelativePath="..\..\include\dae\daeInterface.h">
-			</File>
-			<File
 				RelativePath="..\..\include\dae\daeIOPlugin.h">
 			</File>
 			<File
