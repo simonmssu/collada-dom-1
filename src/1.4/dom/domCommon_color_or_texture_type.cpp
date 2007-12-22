@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domCommon_color_or_texture_type.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,208 +22,205 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCommon_color_or_texture_type::create(daeInt)
+domCommon_color_or_texture_type::create(DAE& dae)
 {
-	domCommon_color_or_texture_typeRef ref = new domCommon_color_or_texture_type;
+	domCommon_color_or_texture_typeRef ref = new domCommon_color_or_texture_type(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domCommon_color_or_texture_type::registerElement()
+domCommon_color_or_texture_type::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "common_color_or_texture_type" );
-	_Meta->registerClass(domCommon_color_or_texture_type::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "common_color_or_texture_type" );
+	meta->registerClass(domCommon_color_or_texture_type::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
+	cm = new daeMetaChoice( meta, cm, 0, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "color" );
 	mea->setOffset( daeOffsetOf(domCommon_color_or_texture_type,elemColor) );
-	mea->setElementType( domCommon_color_or_texture_type::domColor::registerElement() );
+	mea->setElementType( domCommon_color_or_texture_type::domColor::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "param" );
 	mea->setOffset( daeOffsetOf(domCommon_color_or_texture_type,elemParam) );
-	mea->setElementType( domCommon_color_or_texture_type::domParam::registerElement() );
+	mea->setElementType( domCommon_color_or_texture_type::domParam::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "texture" );
 	mea->setOffset( daeOffsetOf(domCommon_color_or_texture_type,elemTexture) );
-	mea->setElementType( domCommon_color_or_texture_type::domTexture::registerElement() );
+	mea->setElementType( domCommon_color_or_texture_type::domTexture::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm->setMaxOrdinal( 0 );
-	_Meta->setCMRoot( cm );	
-	// Ordered list of sub-elements
-    _Meta->addContents(daeOffsetOf(domCommon_color_or_texture_type,_contents));
-    _Meta->addContentsOrder(daeOffsetOf(domCommon_color_or_texture_type,_contentsOrder));
-        
-    _Meta->addCMDataArray(daeOffsetOf(domCommon_color_or_texture_type,_CMData), 1);	
-	
-	_Meta->setElementSize(sizeof(domCommon_color_or_texture_type));
-	_Meta->validate();
 
-	return _Meta;
+	cm->setMaxOrdinal( 0 );
+	meta->setCMRoot( cm );	
+	// Ordered list of sub-elements
+	meta->addContents(daeOffsetOf(domCommon_color_or_texture_type,_contents));
+	meta->addContentsOrder(daeOffsetOf(domCommon_color_or_texture_type,_contentsOrder));
+
+	meta->addCMDataArray(daeOffsetOf(domCommon_color_or_texture_type,_CMData), 1);
+	meta->setElementSize(sizeof(domCommon_color_or_texture_type));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domCommon_color_or_texture_type::domColor::create(daeInt)
+domCommon_color_or_texture_type::domColor::create(DAE& dae)
 {
-	domCommon_color_or_texture_type::domColorRef ref = new domCommon_color_or_texture_type::domColor;
+	domCommon_color_or_texture_type::domColorRef ref = new domCommon_color_or_texture_type::domColor(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domCommon_color_or_texture_type::domColor::registerElement()
+domCommon_color_or_texture_type::domColor::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "color" );
-	_Meta->registerClass(domCommon_color_or_texture_type::domColor::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "color" );
+	meta->registerClass(domCommon_color_or_texture_type::domColor::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_color_common"));
+		ma->setType( dae.getAtomicTypes().get("Fx_color_common"));
 		ma->setOffset( daeOffsetOf( domCommon_color_or_texture_type::domColor , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: sid
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCommon_color_or_texture_type::domColor , attrSid ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domCommon_color_or_texture_type::domColor));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domCommon_color_or_texture_type::domColor));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domCommon_color_or_texture_type::domParam::create(daeInt)
+domCommon_color_or_texture_type::domParam::create(DAE& dae)
 {
-	domCommon_color_or_texture_type::domParamRef ref = new domCommon_color_or_texture_type::domParam;
+	domCommon_color_or_texture_type::domParamRef ref = new domCommon_color_or_texture_type::domParam(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domCommon_color_or_texture_type::domParam::registerElement()
+domCommon_color_or_texture_type::domParam::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "param" );
-	_Meta->registerClass(domCommon_color_or_texture_type::domParam::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "param" );
+	meta->registerClass(domCommon_color_or_texture_type::domParam::create);
+
+	meta->setIsInnerClass( true );
 
 	//	Add attribute: ref
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCommon_color_or_texture_type::domParam , attrRef ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domCommon_color_or_texture_type::domParam));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domCommon_color_or_texture_type::domParam));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domCommon_color_or_texture_type::domTexture::create(daeInt)
+domCommon_color_or_texture_type::domTexture::create(DAE& dae)
 {
-	domCommon_color_or_texture_type::domTextureRef ref = new domCommon_color_or_texture_type::domTexture;
+	domCommon_color_or_texture_type::domTextureRef ref = new domCommon_color_or_texture_type::domTexture(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domCommon_color_or_texture_type::domTexture::registerElement()
+domCommon_color_or_texture_type::domTexture::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "texture" );
-	_Meta->registerClass(domCommon_color_or_texture_type::domTexture::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "texture" );
+	meta->registerClass(domCommon_color_or_texture_type::domTexture::create);
+
+	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domCommon_color_or_texture_type::domTexture,elemExtra) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 0 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 
 	//	Add attribute: texture
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "texture" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCommon_color_or_texture_type::domTexture , attrTexture ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: texcoord
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "texcoord" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCommon_color_or_texture_type::domTexture , attrTexcoord ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domCommon_color_or_texture_type::domTexture));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domCommon_color_or_texture_type::domTexture));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domCommon_color_or_texture_type::_Meta = NULL;
-daeMetaElement * domCommon_color_or_texture_type::domColor::_Meta = NULL;
-daeMetaElement * domCommon_color_or_texture_type::domParam::_Meta = NULL;
-daeMetaElement * domCommon_color_or_texture_type::domTexture::_Meta = NULL;
-
 

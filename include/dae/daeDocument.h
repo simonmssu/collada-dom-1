@@ -19,24 +19,25 @@
 #include <dae/daeURI.h>
 #include <dae/daeStringRef.h>
 
+class DAE;
 class daeDatabase;
 
 /**
  * The @c daeDocument class implements a COLLADA runtime database entry.
  */
-class daeDocument
+class DLLSPEC daeDocument
 {
 public:
 	/**
 	 * Constructor
-	 * @param database The database that owns this document. 
+	 * @param dae The dae that owns this document. 
 	 */
-	DLLSPEC daeDocument(daeDatabase* database = NULL);
+	daeDocument(DAE& dae);
 
-    /**
-    * Destructor
-    */
-    DLLSPEC ~daeDocument();
+	/**
+	 * Destructor
+	 */
+	~daeDocument();
 
 	/**
 	* Accessor to get the @c domCollada associated with this document.
@@ -70,15 +71,16 @@ public:
 	const daeURI* getDocumentURI() const {return (&uri);}
 
 	/**
-	 * Accessor to get the database that owns this document.
-	 * @return Returns the database that owns this document.
+	 * Accessor to get the DAE that owns this document.
+	 * @return Returns the DAE that owns this document.
 	 */
-	daeDatabase* getDatabase() {return database;}
+	DAE* getDAE();
+
 	/**
-	 * Sets the database that owns this document.
-	 * @param database_ The database that is taking ownership of this document.
+	 * Accessor to get the database associated with this document.
+	 * @return Returns the database associated with this document.
 	 */
-	void setDatabase(daeDatabase* database_) {database = database_;}
+	daeDatabase* getDatabase();
 
 	/**
 	 * This function is used to track how a document gets modified. It gets called internally.
@@ -86,14 +88,14 @@ public:
 	 * @note This function is called internally and not meant to be called by the client application.
 	 * Calling this function from the client application may result in unexpected behavior.
 	 */
-	DLLSPEC void insertElement( daeElementRef element );
+	void insertElement( daeElementRef element );
 	/**
 	 * This function is used to track how a document gets modified. It gets called internally.
 	 * @param element The element that was removed from this document.
 	 * @note This function is called internally and not meant to be called by the client application.
 	 * Calling this function from the client application may result in unexpected behavior.
 	 */
-	DLLSPEC void removeElement( daeElementRef element );
+	void removeElement( daeElementRef element );
 	/**
 	 * This function is used to track how a document gets modified. It gets called internally.
 	 * @param element The element whose ID is about to be changed.
@@ -101,7 +103,7 @@ public:
 	 * @note This function is called internally and not meant to be called by the client application.
 	 * Calling this function from the client application may result in unexpected behavior.
 	 */
-	DLLSPEC void changeElementID( daeElementRef element, daeString newID );
+	void changeElementID( daeElementRef element, daeString newID );
 	/**
 	 * This function is just like changeElementID, except it keeps track of sids instead of IDs.
 	 * @param element The element whose sid is about to be changed.
@@ -109,7 +111,7 @@ public:
 	 * @note This function is called internally and not meant to be called by the client application.
 	 * Calling this function from the client application may result in unexpected behavior.
 	 */
-	DLLSPEC void changeElementSID( daeElementRef element, daeString newSID );
+	void changeElementSID( daeElementRef element, daeString newSID );
 
 
 	/**
@@ -118,14 +120,14 @@ public:
 	 * @note This function gets called internally from daeURI upon trying to resolve an element.
 	 * Calling this function in your client code my result in unexpected behavior.
 	 */
-	DLLSPEC void addExternalReference( daeURI &uri );
+	void addExternalReference( daeURI &uri );
 	/**
 	 * Removes a URI to the list of external references in this document.
 	 * @param uri The URI that was the external reference.
 	 * @note This function gets called internally from daeURI upon trying to resolve an element.
 	 * Calling this function in your client code my result in unexpected behavior.
 	 */
-	DLLSPEC void removeExternalReference( daeURI &uri );
+	void removeExternalReference( daeURI &uri );
 	/**
 	 * Gets a list of all the documents that are referenced from URI contained within this document.
 	 * @return Returns a list of URI strings, each being a URI which is referenced from within this document.
@@ -136,28 +138,28 @@ public:
 	 * @param docURI The URI string of the document that you want to resolve against.
 	 * @note This function is called internally whenever a new document is loaded.
 	 */
-	DLLSPEC void resolveExternals( daeString docURI);
+	void resolveExternals( daeString docURI);
 
-	DLLSPEC const daeTArray<daeURI*> *getExternalURIs(daeStringRef docURI) const;
+	const daeTArray<daeURI*> *getExternalURIs(daeStringRef docURI) const;
 
 private:
 	/**
-	* Top Level element for of the document, always a domCollada
-	* @remarks This member will eventually be taken private, use getDomRoot() to access it.
-	*/
+	 * The DAE that owns this document. The DAE's database is notified by the document when
+	 * elements are inserted, removed, or have their ID changed.
+	 */
+	DAE* dae;
+
+	/**
+	 * Top Level element for of the document, always a domCollada
+	 * @remarks This member will eventually be taken private, use getDomRoot() to access it.
+	 */
 	daeElementRef dom;
 	
 	/** 
-	* The URI of the document, may be blank if the document wasn't loaded from a URI
-	* @remarks This member will eventually be taken private, use getDocumentURI() to access it.
-	*/
-	daeURI uri;
-
-	/**
-	 * The database that owns this document. The database is notified by the document when
-	 * elements are inserted, removed, or have their ID changed.
+	 * The URI of the document, may be blank if the document wasn't loaded from a URI
+	 * @remarks This member will eventually be taken private, use getDocumentURI() to access it.
 	 */
-	daeDatabase* database;
+	daeURI uri;
 
 	daeStringRefArray referencedDocuments;
 	daeTArray< daeTArray<daeURI*>* > externalURIs;

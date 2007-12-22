@@ -16,32 +16,27 @@
 
 #include <dae/daeTypes.h>
 #include <dae/daeError.h>
-#include <dae/daeInterface.h>
 #include <dae/daeDatabase.h>
 #include <dae/daeIOPlugin.h>
-#include <dae/daeIntegrationObject.h>
+#include <dae/daeAtomicType.h>
+#include <dae/daeMetaElement.h>
+#include <dae/daeIDRef.h>
+#include <dae/daeURI.h>
 
-class daeIDRefResolver;
 class domCOLLADA;
+class daeDatabase;
 
-/**
- * The @c DAE class implements a standard interface to the
- * COLLADA runtime database.
- *
- * @c DAE serves as a wrapper for the entire pipeline ensuring
- * a consistent interface, regardless of extensions to or replacements
- * for the various API components. It provides methods to load, store,
- * translate and query COLLADA elements. A @c DAE object automatically creates
- * and initializes default versions of the COLLADA backend, the COLLADA
- * runtime database, and registered integration libraries. 
- */
-class DAE : public daeInterface
+// The DAE class is the core interface via which you interact with the DOM.
+// It has methods to load/save documents, get the root element of each document, etc.
+class DLLSPEC DAE
 {
-public:	
-	/** 
-	*  Constructor.
-	*/
-	DLLSPEC DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL) {
+public:
+	// Constructor. If no database or IO plugin are provided, a default database and
+	// IO plugin will be used.
+	DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL)
+		: atomicTypes(*this),
+		  baseUri(*this, true)
+	{
 		// See the end of the thread linked below for an explanation of why we have the DAE
 		// constructor set up this way. Basically, I'm going to be changing the build output 
 		// location, and when this happens people sometimes continue to link against the old
@@ -53,78 +48,107 @@ public:
 		init(database, ioPlugin);
 	}
 
-	/** 
-	* Destructor.
-	*/	
-	virtual DLLSPEC ~DAE();
+	virtual ~DAE();
 
-	/**
-	 * Releases all static meta information associated with the COLLADA DOM.
-	 * Ff there are no remaining instances of a @c DAE cleanup happens automatically.
-	 * @note This function is useless if called by the application in a non-static
-	 * context.
-	 */
-	static DLLSPEC void cleanup();
+	// Release all memory used by the DOM. You never need to call this explicitly. It's
+	// called automatically when all DAE objects go out of scope.
+	static void cleanup();
 	
-	// Abstract Interface Class for the daeDatabase front end
 public:
 	// Database setup	
-	virtual DLLSPEC daeDatabase* getDatabase();
-	virtual DLLSPEC daeInt setDatabase(daeDatabase* database);
+	virtual daeDatabase* getDatabase();
+	virtual daeInt setDatabase(daeDatabase* database);
 
 	// IO Plugin setup
-	virtual DLLSPEC daeIOPlugin* getIOPlugin();
-	virtual DLLSPEC daeInt setIOPlugin(daeIOPlugin* plugin);
+	virtual daeIOPlugin* getIOPlugin();
+	virtual daeInt setIOPlugin(daeIOPlugin* plugin);
 
-	// Integration Library Setup
-	virtual DLLSPEC daeIntegrationLibraryFunc getIntegrationLibrary();
-	virtual DLLSPEC daeInt setIntegrationLibrary(daeIntegrationLibraryFunc regFunc);
+	// Document load/save.
+	virtual daeInt load(daeString uri, daeString docBuffer = NULL);
+	virtual daeInt save(daeString uri, daeBool replace=true);
+	virtual daeInt save(daeUInt documentIndex, daeBool replace=true);
+	virtual daeInt saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace=true);
+	virtual daeInt saveAs(daeString uriToSaveTo, daeUInt documentIndex=0, daeBool replace=true);
+	virtual daeInt unload(daeString uri);
 
-	// batch file operations
-	virtual DLLSPEC daeInt load(daeString uri, daeString docBuffer = NULL);
-	virtual DLLSPEC daeInt save(daeString uri, daeBool replace=true);
-	virtual DLLSPEC daeInt save(daeUInt documentIndex, daeBool replace=true);
-	virtual DLLSPEC daeInt saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace=true);
-	virtual DLLSPEC daeInt saveAs(daeString uriToSaveTo, daeUInt documentIndex=0, daeBool replace=true);
-	virtual DLLSPEC daeInt unload(daeString uri);
-
-	// These are exactly the same as the other load/save/unload functions, except that they
+	// These are exactly the same as the above load/save/unload functions, except that they
 	// work with file paths instead of URIs.
-	DLLSPEC virtual daeInt loadFile(daeString file, daeString memBuffer = NULL);
-	DLLSPEC virtual daeInt saveFile(daeString file, daeBool replace = true);
-	DLLSPEC virtual daeInt saveFileAs(daeString fileToSaveTo, daeString file, daeBool replace = true);
-	DLLSPEC virtual daeInt saveFileAs(daeString fileToSaveTo, daeUInt documentIndex = 0, daeBool replace = true);
-	DLLSPEC virtual daeInt unloadFile(daeString file);
+	virtual daeInt loadFile(daeString file, daeString memBuffer = NULL);
+	virtual daeInt saveFile(daeString file, daeBool replace = true);
+	virtual daeInt saveFileAs(daeString fileToSaveTo, daeString file, daeBool replace = true);
+	virtual daeInt saveFileAs(daeString fileToSaveTo, daeUInt documentIndex = 0, daeBool replace = true);
+	virtual daeInt unloadFile(daeString file);
 
-	virtual DLLSPEC daeInt clear();
+	// Remove all loaded documents.
+	virtual daeInt clear();
 
-	// Load/Save Progress	
-	virtual DLLSPEC void getProgress(daeInt* bytesParsed,
-		daeInt* lineNumber,
-		daeInt* totalBytes,
-		daeBool reset = false );
+	// Load/Save Progress. Currently not implemented.
+	virtual void getProgress(daeInt* bytesParsed,
+	                         daeInt* lineNumber,
+	                         daeInt* totalBytes,
+	                         daeBool reset = false);
 
-	// Simple Query
-	virtual DLLSPEC domCOLLADA* getDom(daeString uri);
-	virtual DLLSPEC daeString getDomVersion();
-	virtual DLLSPEC daeInt setDom(daeString uri, domCOLLADA* dom);
+	// Get the root domCOLLADA object corresponding to a particular document (identified
+	// via the URI of the document.
+	virtual domCOLLADA* getDom(daeString uri);
+	virtual daeInt setDom(daeString uri, domCOLLADA* dom);
 
 	// Same as getDom/setDom, except works with file paths instead of URIs
-	DLLSPEC virtual domCOLLADA* getDomFile(daeString file);
-	DLLSPEC virtual daeInt      setDomFile(daeString file, domCOLLADA* dom);
+	virtual domCOLLADA* getDomFile(daeString file);
+	virtual daeInt      setDomFile(daeString file, domCOLLADA* dom);
+
+	virtual daeString getDomVersion();
+
+	// Returns the (modifiable) list of atomic type objects.
+	daeAtomicTypeList& getAtomicTypes();
+
+	// Get/set a daeMetaElement object given the meta object's type ID.
+	daeMetaElement* getMeta(daeInt typeID);
+	void setMeta(daeInt typeID, daeMetaElement& meta);
+
+	// Get all daeMetaElement objects.
+	daeMetaElementRefArray& getAllMetas();
+
+	// Add an element to the list of elements that need a daeElement::resolve call.
+	void appendResolveElement(daeElement* elem);
+
+	// Call daeElement::resolve on all elements waiting to be resolved.
+	void resolveAll();
+
+	// Returns the list of URI resolvers. You can modify the list to add new resolvers.
+	daeURIResolverList& getURIResolvers();
+
+	// The base URI used for resolving relative URI references.
+	daeURI& getBaseURI();
+	void setBaseURI(const daeURI& uri);
+
+	// Returns the list of ID reference resolvers. You can modify the list to add new
+	// resolvers.
+	daeIDRefResolverList& getIDRefResolvers();
 
 private:
-	void DLLSPEC init(daeDatabase* database, daeIOPlugin* ioPlugin);
+	void init(daeDatabase* database, daeIOPlugin* ioPlugin);
 
 	daeDatabase *database;
 	daeIOPlugin *plugin;
-	daeURIResolver* resolver;
-	daeURIResolver* rawResolver;
-	daeIDRefResolver* idResolver;
 	bool defaultDatabase;
 	bool defaultPlugin;
-	daeIntegrationLibraryFunc registerFunc; 
-	static daeMetaElement *topMeta;
+	daeAtomicTypeList atomicTypes;
+	daeMetaElementRefArray metas;
+	daeElementRefArray resolveArray;
+	daeURI baseUri;
+	daeURIResolverList uriResolvers;
+	daeIDRefResolverList idRefResolvers;
 };
+
+
+template <typename T> 
+inline T *daeSafeCast(daeElement *element)
+{ 
+	if (element  &&  element->typeID() == T::ID())
+		return (T*)element; 
+	return NULL; 
+}
+
 
 #endif // __DAE_INTERFACE__

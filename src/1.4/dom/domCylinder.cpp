@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domCylinder.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,127 +22,124 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domCylinder::create(daeInt)
+domCylinder::create(DAE& dae)
 {
-	domCylinderRef ref = new domCylinder;
+	domCylinderRef ref = new domCylinder(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domCylinder::registerElement()
+domCylinder::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "cylinder" );
-	_Meta->registerClass(domCylinder::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "cylinder" );
+	meta->registerClass(domCylinder::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "height" );
 	mea->setOffset( daeOffsetOf(domCylinder,elemHeight) );
-	mea->setElementType( domCylinder::domHeight::registerElement() );
+	mea->setElementType( domCylinder::domHeight::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 1, 1, 1 );
 	mea->setName( "radius" );
 	mea->setOffset( daeOffsetOf(domCylinder,elemRadius) );
-	mea->setElementType( domCylinder::domRadius::registerElement() );
+	mea->setElementType( domCylinder::domRadius::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 2, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domCylinder,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm->setMaxOrdinal( 2 );
-	_Meta->setCMRoot( cm );	
-	
-	
-	_Meta->setElementSize(sizeof(domCylinder));
-	_Meta->validate();
 
-	return _Meta;
+	cm->setMaxOrdinal( 2 );
+	meta->setCMRoot( cm );	
+
+	meta->setElementSize(sizeof(domCylinder));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domCylinder::domHeight::create(daeInt)
+domCylinder::domHeight::create(DAE& dae)
 {
-	domCylinder::domHeightRef ref = new domCylinder::domHeight;
+	domCylinder::domHeightRef ref = new domCylinder::domHeight(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domCylinder::domHeight::registerElement()
+domCylinder::domHeight::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "height" );
-	_Meta->registerClass(domCylinder::domHeight::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "height" );
+	meta->registerClass(domCylinder::domHeight::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domCylinder::domHeight , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domCylinder::domHeight));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domCylinder::domHeight));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domCylinder::domRadius::create(daeInt)
+domCylinder::domRadius::create(DAE& dae)
 {
-	domCylinder::domRadiusRef ref = new domCylinder::domRadius;
+	domCylinder::domRadiusRef ref = new domCylinder::domRadius(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domCylinder::domRadius::registerElement()
+domCylinder::domRadius::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "radius" );
-	_Meta->registerClass(domCylinder::domRadius::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "radius" );
+	meta->registerClass(domCylinder::domRadius::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domCylinder::domRadius , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domCylinder::domRadius));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domCylinder::domRadius));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domCylinder::_Meta = NULL;
-daeMetaElement * domCylinder::domHeight::_Meta = NULL;
-daeMetaElement * domCylinder::domRadius::_Meta = NULL;
-
 

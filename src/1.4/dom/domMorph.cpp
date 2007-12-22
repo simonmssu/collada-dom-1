@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domMorph.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,125 +22,122 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domMorph::create(daeInt)
+domMorph::create(DAE& dae)
 {
-	domMorphRef ref = new domMorph;
+	domMorphRef ref = new domMorph(dae);
 	ref->attrSource.setContainer( (domMorph*)ref );
 	return ref;
 }
 
 
 daeMetaElement *
-domMorph::registerElement()
+domMorph::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "morph" );
-	_Meta->registerClass(domMorph::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "morph" );
+	meta->registerClass(domMorph::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 2, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 2, -1 );
 	mea->setName( "source" );
 	mea->setOffset( daeOffsetOf(domMorph,elemSource_array) );
-	mea->setElementType( domSource::registerElement() );
+	mea->setElementType( domSource::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 1, 1, 1 );
 	mea->setName( "targets" );
 	mea->setOffset( daeOffsetOf(domMorph,elemTargets) );
-	mea->setElementType( domMorph::domTargets::registerElement() );
+	mea->setElementType( domMorph::domTargets::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 2, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domMorph,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 2 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 
 	//	Add attribute: method
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "method" );
-		ma->setType( daeAtomicType::get("MorphMethodType"));
+		ma->setType( dae.getAtomicTypes().get("MorphMethodType"));
 		ma->setOffset( daeOffsetOf( domMorph , attrMethod ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setDefaultString( "NORMALIZED");
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: source
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domMorph , attrSource ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domMorph));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domMorph));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domMorph::domTargets::create(daeInt)
+domMorph::domTargets::create(DAE& dae)
 {
-	domMorph::domTargetsRef ref = new domMorph::domTargets;
+	domMorph::domTargetsRef ref = new domMorph::domTargets(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domMorph::domTargets::registerElement()
+domMorph::domTargets::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "targets" );
-	_Meta->registerClass(domMorph::domTargets::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "targets" );
+	meta->registerClass(domMorph::domTargets::create);
+
+	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 2, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 2, -1 );
 	mea->setName( "input" );
 	mea->setOffset( daeOffsetOf(domMorph::domTargets,elemInput_array) );
-	mea->setElementType( domInputLocal::registerElement() );
+	mea->setElementType( domInputLocal::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domMorph::domTargets,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 1 );
-	_Meta->setCMRoot( cm );	
-	
-	
-	_Meta->setElementSize(sizeof(domMorph::domTargets));
-	_Meta->validate();
+	meta->setCMRoot( cm );	
 
-	return _Meta;
+	meta->setElementSize(sizeof(domMorph::domTargets));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domMorph::_Meta = NULL;
-daeMetaElement * domMorph::domTargets::_Meta = NULL;
-
 

@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domTapered_cylinder.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,169 +22,166 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domTapered_cylinder::create(daeInt)
+domTapered_cylinder::create(DAE& dae)
 {
-	domTapered_cylinderRef ref = new domTapered_cylinder;
+	domTapered_cylinderRef ref = new domTapered_cylinder(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domTapered_cylinder::registerElement()
+domTapered_cylinder::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "tapered_cylinder" );
-	_Meta->registerClass(domTapered_cylinder::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "tapered_cylinder" );
+	meta->registerClass(domTapered_cylinder::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "height" );
 	mea->setOffset( daeOffsetOf(domTapered_cylinder,elemHeight) );
-	mea->setElementType( domTapered_cylinder::domHeight::registerElement() );
+	mea->setElementType( domTapered_cylinder::domHeight::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 1, 1, 1 );
 	mea->setName( "radius1" );
 	mea->setOffset( daeOffsetOf(domTapered_cylinder,elemRadius1) );
-	mea->setElementType( domTapered_cylinder::domRadius1::registerElement() );
+	mea->setElementType( domTapered_cylinder::domRadius1::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 2, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 2, 1, 1 );
 	mea->setName( "radius2" );
 	mea->setOffset( daeOffsetOf(domTapered_cylinder,elemRadius2) );
-	mea->setElementType( domTapered_cylinder::domRadius2::registerElement() );
+	mea->setElementType( domTapered_cylinder::domRadius2::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 3, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domTapered_cylinder,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm->setMaxOrdinal( 3 );
-	_Meta->setCMRoot( cm );	
-	
-	
-	_Meta->setElementSize(sizeof(domTapered_cylinder));
-	_Meta->validate();
 
-	return _Meta;
+	cm->setMaxOrdinal( 3 );
+	meta->setCMRoot( cm );	
+
+	meta->setElementSize(sizeof(domTapered_cylinder));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domTapered_cylinder::domHeight::create(daeInt)
+domTapered_cylinder::domHeight::create(DAE& dae)
 {
-	domTapered_cylinder::domHeightRef ref = new domTapered_cylinder::domHeight;
+	domTapered_cylinder::domHeightRef ref = new domTapered_cylinder::domHeight(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domTapered_cylinder::domHeight::registerElement()
+domTapered_cylinder::domHeight::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "height" );
-	_Meta->registerClass(domTapered_cylinder::domHeight::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "height" );
+	meta->registerClass(domTapered_cylinder::domHeight::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float"));
+		ma->setType( dae.getAtomicTypes().get("Float"));
 		ma->setOffset( daeOffsetOf( domTapered_cylinder::domHeight , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domTapered_cylinder::domHeight));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domTapered_cylinder::domHeight));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domTapered_cylinder::domRadius1::create(daeInt)
+domTapered_cylinder::domRadius1::create(DAE& dae)
 {
-	domTapered_cylinder::domRadius1Ref ref = new domTapered_cylinder::domRadius1;
+	domTapered_cylinder::domRadius1Ref ref = new domTapered_cylinder::domRadius1(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domTapered_cylinder::domRadius1::registerElement()
+domTapered_cylinder::domRadius1::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "radius1" );
-	_Meta->registerClass(domTapered_cylinder::domRadius1::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "radius1" );
+	meta->registerClass(domTapered_cylinder::domRadius1::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domTapered_cylinder::domRadius1 , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domTapered_cylinder::domRadius1));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domTapered_cylinder::domRadius1));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domTapered_cylinder::domRadius2::create(daeInt)
+domTapered_cylinder::domRadius2::create(DAE& dae)
 {
-	domTapered_cylinder::domRadius2Ref ref = new domTapered_cylinder::domRadius2;
+	domTapered_cylinder::domRadius2Ref ref = new domTapered_cylinder::domRadius2(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domTapered_cylinder::domRadius2::registerElement()
+domTapered_cylinder::domRadius2::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "radius2" );
-	_Meta->registerClass(domTapered_cylinder::domRadius2::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "radius2" );
+	meta->registerClass(domTapered_cylinder::domRadius2::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domTapered_cylinder::domRadius2 , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domTapered_cylinder::domRadius2));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domTapered_cylinder::domRadius2));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domTapered_cylinder::_Meta = NULL;
-daeMetaElement * domTapered_cylinder::domHeight::_Meta = NULL;
-daeMetaElement * domTapered_cylinder::domRadius1::_Meta = NULL;
-daeMetaElement * domTapered_cylinder::domRadius2::_Meta = NULL;
-
 

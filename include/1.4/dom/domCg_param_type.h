@@ -1,15 +1,16 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
+
 #ifndef __domCg_param_type_h__
 #define __domCg_param_type_h__
 
@@ -24,6 +25,7 @@
 #include <dom/domCg_samplerRECT.h>
 #include <dom/domCg_samplerCUBE.h>
 #include <dom/domCg_samplerDEPTH.h>
+class DAE;
 
 /**
  * A group that specifies the allowable types for CG profile parameters.
@@ -31,7 +33,9 @@
 class domCg_param_type : public daeElement
 {
 public:
-	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_PARAM_TYPE; }
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_PARAM_TYPE; }
+	static daeInt ID() { return 380; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domBool;
 
@@ -41,7 +45,9 @@ public:
 	class domBool : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL; }
+		static daeInt ID() { return 381; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -65,15 +71,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool() : _value() {}
+		domBool(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool( const domBool &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -82,22 +84,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool1;
@@ -108,7 +103,9 @@ public:
 	class domBool1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1; }
+		static daeInt ID() { return 382; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -132,15 +129,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool1() : _value() {}
+		domBool1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool1( const domBool1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -149,22 +142,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool2;
@@ -175,7 +161,9 @@ public:
 	class domBool2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2; }
+		static daeInt ID() { return 383; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -204,15 +192,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool2() : _value() {}
+		domBool2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool2( const domBool2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -221,22 +205,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool3;
@@ -247,7 +224,9 @@ public:
 	class domBool3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3; }
+		static daeInt ID() { return 384; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -276,15 +255,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool3() : _value() {}
+		domBool3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool3( const domBool3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -293,22 +268,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool4;
@@ -319,7 +287,9 @@ public:
 	class domBool4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4; }
+		static daeInt ID() { return 385; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -348,15 +318,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool4() : _value() {}
+		domBool4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool4( const domBool4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -365,22 +331,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool1x1;
@@ -391,7 +350,9 @@ public:
 	class domBool1x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X1; }
+		static daeInt ID() { return 386; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -420,15 +381,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool1x1() : _value() {}
+		domBool1x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool1x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool1x1( const domBool1x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -437,22 +394,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool1x2;
@@ -463,7 +413,9 @@ public:
 	class domBool1x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X2; }
+		static daeInt ID() { return 387; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -492,15 +444,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool1x2() : _value() {}
+		domBool1x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool1x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool1x2( const domBool1x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -509,22 +457,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool1x3;
@@ -535,7 +476,9 @@ public:
 	class domBool1x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X3; }
+		static daeInt ID() { return 388; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -564,15 +507,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool1x3() : _value() {}
+		domBool1x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool1x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool1x3( const domBool1x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -581,22 +520,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool1x4;
@@ -607,7 +539,9 @@ public:
 	class domBool1x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL1X4; }
+		static daeInt ID() { return 389; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -636,15 +570,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool1x4() : _value() {}
+		domBool1x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool1x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool1x4( const domBool1x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -653,22 +583,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool2x1;
@@ -679,7 +602,9 @@ public:
 	class domBool2x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X1; }
+		static daeInt ID() { return 390; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -708,15 +633,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool2x1() : _value() {}
+		domBool2x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool2x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool2x1( const domBool2x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -725,22 +646,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool2x2;
@@ -751,7 +665,9 @@ public:
 	class domBool2x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X2; }
+		static daeInt ID() { return 391; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -780,15 +696,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool2x2() : _value() {}
+		domBool2x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool2x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool2x2( const domBool2x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -797,22 +709,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool2x3;
@@ -823,7 +728,9 @@ public:
 	class domBool2x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X3; }
+		static daeInt ID() { return 392; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -852,15 +759,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool2x3() : _value() {}
+		domBool2x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool2x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool2x3( const domBool2x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -869,22 +772,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool2x4;
@@ -895,7 +791,9 @@ public:
 	class domBool2x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2X4; }
+		static daeInt ID() { return 393; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -924,15 +822,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool2x4() : _value() {}
+		domBool2x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool2x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool2x4( const domBool2x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -941,22 +835,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool3x1;
@@ -967,7 +854,9 @@ public:
 	class domBool3x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X1; }
+		static daeInt ID() { return 394; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -996,15 +885,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool3x1() : _value() {}
+		domBool3x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool3x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool3x1( const domBool3x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1013,22 +898,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool3x2;
@@ -1039,7 +917,9 @@ public:
 	class domBool3x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X2; }
+		static daeInt ID() { return 395; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1068,15 +948,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool3x2() : _value() {}
+		domBool3x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool3x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool3x2( const domBool3x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1085,22 +961,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool3x3;
@@ -1111,7 +980,9 @@ public:
 	class domBool3x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X3; }
+		static daeInt ID() { return 396; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1140,15 +1011,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool3x3() : _value() {}
+		domBool3x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool3x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool3x3( const domBool3x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1157,22 +1024,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool3x4;
@@ -1183,7 +1043,9 @@ public:
 	class domBool3x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3X4; }
+		static daeInt ID() { return 397; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1212,15 +1074,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool3x4() : _value() {}
+		domBool3x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool3x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool3x4( const domBool3x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1229,22 +1087,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool4x1;
@@ -1255,7 +1106,9 @@ public:
 	class domBool4x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X1; }
+		static daeInt ID() { return 398; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1284,15 +1137,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool4x1() : _value() {}
+		domBool4x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool4x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool4x1( const domBool4x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1301,22 +1150,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool4x2;
@@ -1327,7 +1169,9 @@ public:
 	class domBool4x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X2; }
+		static daeInt ID() { return 399; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1356,15 +1200,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool4x2() : _value() {}
+		domBool4x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool4x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool4x2( const domBool4x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1373,22 +1213,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool4x3;
@@ -1399,7 +1232,9 @@ public:
 	class domBool4x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X3; }
+		static daeInt ID() { return 400; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1428,15 +1263,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool4x3() : _value() {}
+		domBool4x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool4x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool4x3( const domBool4x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1445,22 +1276,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domBool4x4;
@@ -1471,7 +1295,9 @@ public:
 	class domBool4x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4X4; }
+		static daeInt ID() { return 401; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1500,15 +1326,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domBool4x4() : _value() {}
+		domBool4x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domBool4x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domBool4x4( const domBool4x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1517,22 +1339,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat;
@@ -1543,7 +1358,9 @@ public:
 	class domFloat : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT; }
+		static daeInt ID() { return 402; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1567,15 +1384,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat() : _value() {}
+		domFloat(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat( const domFloat &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1584,22 +1397,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat1;
@@ -1610,7 +1416,9 @@ public:
 	class domFloat1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1; }
+		static daeInt ID() { return 403; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1634,15 +1442,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1() : _value() {}
+		domFloat1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat1( const domFloat1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1651,22 +1455,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat2;
@@ -1677,7 +1474,9 @@ public:
 	class domFloat2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2; }
+		static daeInt ID() { return 404; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1706,15 +1505,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2() : _value() {}
+		domFloat2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat2( const domFloat2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1723,22 +1518,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat3;
@@ -1749,7 +1537,9 @@ public:
 	class domFloat3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3; }
+		static daeInt ID() { return 405; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1778,15 +1568,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3() : _value() {}
+		domFloat3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat3( const domFloat3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1795,22 +1581,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat4;
@@ -1821,7 +1600,9 @@ public:
 	class domFloat4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4; }
+		static daeInt ID() { return 406; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1850,15 +1631,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4() : _value() {}
+		domFloat4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat4( const domFloat4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1867,22 +1644,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat1x1;
@@ -1893,7 +1663,9 @@ public:
 	class domFloat1x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X1; }
+		static daeInt ID() { return 407; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1922,15 +1694,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x1() : _value() {}
+		domFloat1x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat1x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat1x1( const domFloat1x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -1939,22 +1707,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat1x2;
@@ -1965,7 +1726,9 @@ public:
 	class domFloat1x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X2; }
+		static daeInt ID() { return 408; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -1994,15 +1757,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x2() : _value() {}
+		domFloat1x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat1x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat1x2( const domFloat1x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2011,22 +1770,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat1x3;
@@ -2037,7 +1789,9 @@ public:
 	class domFloat1x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X3; }
+		static daeInt ID() { return 409; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2066,15 +1820,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x3() : _value() {}
+		domFloat1x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat1x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat1x3( const domFloat1x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2083,22 +1833,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat1x4;
@@ -2109,7 +1852,9 @@ public:
 	class domFloat1x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT1X4; }
+		static daeInt ID() { return 410; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2138,15 +1883,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat1x4() : _value() {}
+		domFloat1x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat1x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat1x4( const domFloat1x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2155,22 +1896,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat2x1;
@@ -2181,7 +1915,9 @@ public:
 	class domFloat2x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X1; }
+		static daeInt ID() { return 411; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2210,15 +1946,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x1() : _value() {}
+		domFloat2x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat2x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat2x1( const domFloat2x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2227,22 +1959,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat2x2;
@@ -2253,7 +1978,9 @@ public:
 	class domFloat2x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X2; }
+		static daeInt ID() { return 412; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2282,15 +2009,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x2() : _value() {}
+		domFloat2x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat2x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat2x2( const domFloat2x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2299,22 +2022,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat2x3;
@@ -2325,7 +2041,9 @@ public:
 	class domFloat2x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X3; }
+		static daeInt ID() { return 413; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2354,15 +2072,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x3() : _value() {}
+		domFloat2x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat2x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat2x3( const domFloat2x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2371,22 +2085,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat2x4;
@@ -2397,7 +2104,9 @@ public:
 	class domFloat2x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X4; }
+		static daeInt ID() { return 414; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2426,15 +2135,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat2x4() : _value() {}
+		domFloat2x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat2x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat2x4( const domFloat2x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2443,22 +2148,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat3x1;
@@ -2469,7 +2167,9 @@ public:
 	class domFloat3x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X1; }
+		static daeInt ID() { return 415; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2498,15 +2198,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x1() : _value() {}
+		domFloat3x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat3x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat3x1( const domFloat3x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2515,22 +2211,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat3x2;
@@ -2541,7 +2230,9 @@ public:
 	class domFloat3x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X2; }
+		static daeInt ID() { return 416; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2570,15 +2261,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x2() : _value() {}
+		domFloat3x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat3x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat3x2( const domFloat3x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2587,22 +2274,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat3x3;
@@ -2613,7 +2293,9 @@ public:
 	class domFloat3x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X3; }
+		static daeInt ID() { return 417; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2642,15 +2324,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x3() : _value() {}
+		domFloat3x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat3x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat3x3( const domFloat3x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2659,22 +2337,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat3x4;
@@ -2685,7 +2356,9 @@ public:
 	class domFloat3x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X4; }
+		static daeInt ID() { return 418; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2714,15 +2387,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat3x4() : _value() {}
+		domFloat3x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat3x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat3x4( const domFloat3x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2731,22 +2400,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat4x1;
@@ -2757,7 +2419,9 @@ public:
 	class domFloat4x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X1; }
+		static daeInt ID() { return 419; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2786,15 +2450,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x1() : _value() {}
+		domFloat4x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat4x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat4x1( const domFloat4x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2803,22 +2463,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat4x2;
@@ -2829,7 +2482,9 @@ public:
 	class domFloat4x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X2; }
+		static daeInt ID() { return 420; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2858,15 +2513,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x2() : _value() {}
+		domFloat4x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat4x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat4x2( const domFloat4x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2875,22 +2526,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat4x3;
@@ -2901,7 +2545,9 @@ public:
 	class domFloat4x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X3; }
+		static daeInt ID() { return 421; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -2930,15 +2576,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x3() : _value() {}
+		domFloat4x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat4x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat4x3( const domFloat4x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -2947,22 +2589,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFloat4x4;
@@ -2973,7 +2608,9 @@ public:
 	class domFloat4x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X4; }
+		static daeInt ID() { return 422; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3002,15 +2639,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFloat4x4() : _value() {}
+		domFloat4x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFloat4x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFloat4x4( const domFloat4x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3019,22 +2652,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt;
@@ -3045,7 +2671,9 @@ public:
 	class domInt : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT; }
+		static daeInt ID() { return 423; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3069,15 +2697,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt() : _value() {}
+		domInt(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt( const domInt &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3086,22 +2710,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt1;
@@ -3112,7 +2729,9 @@ public:
 	class domInt1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1; }
+		static daeInt ID() { return 424; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3136,15 +2755,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt1() : _value() {}
+		domInt1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt1( const domInt1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3153,22 +2768,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt2;
@@ -3179,7 +2787,9 @@ public:
 	class domInt2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2; }
+		static daeInt ID() { return 425; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3208,15 +2818,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt2() : _value() {}
+		domInt2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt2( const domInt2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3225,22 +2831,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt3;
@@ -3251,7 +2850,9 @@ public:
 	class domInt3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3; }
+		static daeInt ID() { return 426; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3280,15 +2881,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt3() : _value() {}
+		domInt3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt3( const domInt3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3297,22 +2894,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt4;
@@ -3323,7 +2913,9 @@ public:
 	class domInt4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4; }
+		static daeInt ID() { return 427; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3352,15 +2944,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt4() : _value() {}
+		domInt4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt4( const domInt4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3369,22 +2957,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt1x1;
@@ -3395,7 +2976,9 @@ public:
 	class domInt1x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X1; }
+		static daeInt ID() { return 428; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3424,15 +3007,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt1x1() : _value() {}
+		domInt1x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt1x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt1x1( const domInt1x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3441,22 +3020,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt1x2;
@@ -3467,7 +3039,9 @@ public:
 	class domInt1x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X2; }
+		static daeInt ID() { return 429; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3496,15 +3070,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt1x2() : _value() {}
+		domInt1x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt1x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt1x2( const domInt1x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3513,22 +3083,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt1x3;
@@ -3539,7 +3102,9 @@ public:
 	class domInt1x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X3; }
+		static daeInt ID() { return 430; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3568,15 +3133,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt1x3() : _value() {}
+		domInt1x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt1x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt1x3( const domInt1x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3585,22 +3146,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt1x4;
@@ -3611,7 +3165,9 @@ public:
 	class domInt1x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT1X4; }
+		static daeInt ID() { return 431; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3640,15 +3196,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt1x4() : _value() {}
+		domInt1x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt1x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt1x4( const domInt1x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3657,22 +3209,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt2x1;
@@ -3683,7 +3228,9 @@ public:
 	class domInt2x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X1; }
+		static daeInt ID() { return 432; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3712,15 +3259,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt2x1() : _value() {}
+		domInt2x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt2x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt2x1( const domInt2x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3729,22 +3272,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt2x2;
@@ -3755,7 +3291,9 @@ public:
 	class domInt2x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X2; }
+		static daeInt ID() { return 433; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3784,15 +3322,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt2x2() : _value() {}
+		domInt2x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt2x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt2x2( const domInt2x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3801,22 +3335,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt2x3;
@@ -3827,7 +3354,9 @@ public:
 	class domInt2x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X3; }
+		static daeInt ID() { return 434; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3856,15 +3385,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt2x3() : _value() {}
+		domInt2x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt2x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt2x3( const domInt2x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3873,22 +3398,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt2x4;
@@ -3899,7 +3417,9 @@ public:
 	class domInt2x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2X4; }
+		static daeInt ID() { return 435; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -3928,15 +3448,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt2x4() : _value() {}
+		domInt2x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt2x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt2x4( const domInt2x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -3945,22 +3461,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt3x1;
@@ -3971,7 +3480,9 @@ public:
 	class domInt3x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X1; }
+		static daeInt ID() { return 436; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4000,15 +3511,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt3x1() : _value() {}
+		domInt3x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt3x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt3x1( const domInt3x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4017,22 +3524,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt3x2;
@@ -4043,7 +3543,9 @@ public:
 	class domInt3x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X2; }
+		static daeInt ID() { return 437; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4072,15 +3574,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt3x2() : _value() {}
+		domInt3x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt3x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt3x2( const domInt3x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4089,22 +3587,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt3x3;
@@ -4115,7 +3606,9 @@ public:
 	class domInt3x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X3; }
+		static daeInt ID() { return 438; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4144,15 +3637,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt3x3() : _value() {}
+		domInt3x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt3x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt3x3( const domInt3x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4161,22 +3650,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt3x4;
@@ -4187,7 +3669,9 @@ public:
 	class domInt3x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3X4; }
+		static daeInt ID() { return 439; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4216,15 +3700,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt3x4() : _value() {}
+		domInt3x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt3x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt3x4( const domInt3x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4233,22 +3713,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt4x1;
@@ -4259,7 +3732,9 @@ public:
 	class domInt4x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X1; }
+		static daeInt ID() { return 440; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4288,15 +3763,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt4x1() : _value() {}
+		domInt4x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt4x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt4x1( const domInt4x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4305,22 +3776,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt4x2;
@@ -4331,7 +3795,9 @@ public:
 	class domInt4x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X2; }
+		static daeInt ID() { return 441; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4360,15 +3826,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt4x2() : _value() {}
+		domInt4x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt4x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt4x2( const domInt4x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4377,22 +3839,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt4x3;
@@ -4403,7 +3858,9 @@ public:
 	class domInt4x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X3; }
+		static daeInt ID() { return 442; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4432,15 +3889,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt4x3() : _value() {}
+		domInt4x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt4x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt4x3( const domInt4x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4449,22 +3902,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domInt4x4;
@@ -4475,7 +3921,9 @@ public:
 	class domInt4x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4X4; }
+		static daeInt ID() { return 443; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4504,15 +3952,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInt4x4() : _value() {}
+		domInt4x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domInt4x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domInt4x4( const domInt4x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4521,22 +3965,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf;
@@ -4547,7 +3984,9 @@ public:
 	class domHalf : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF; }
+		static daeInt ID() { return 444; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4571,15 +4010,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf() : _value() {}
+		domHalf(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf( const domHalf &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4588,22 +4023,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf1;
@@ -4614,7 +4042,9 @@ public:
 	class domHalf1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1; }
+		static daeInt ID() { return 445; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4638,15 +4068,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf1() : _value() {}
+		domHalf1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf1( const domHalf1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4655,22 +4081,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf2;
@@ -4681,7 +4100,9 @@ public:
 	class domHalf2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2; }
+		static daeInt ID() { return 446; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4710,15 +4131,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf2() : _value() {}
+		domHalf2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf2( const domHalf2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4727,22 +4144,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf3;
@@ -4753,7 +4163,9 @@ public:
 	class domHalf3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3; }
+		static daeInt ID() { return 447; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4782,15 +4194,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf3() : _value() {}
+		domHalf3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf3( const domHalf3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4799,22 +4207,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf4;
@@ -4825,7 +4226,9 @@ public:
 	class domHalf4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4; }
+		static daeInt ID() { return 448; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4854,15 +4257,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf4() : _value() {}
+		domHalf4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf4( const domHalf4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4871,22 +4270,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf1x1;
@@ -4897,7 +4289,9 @@ public:
 	class domHalf1x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X1; }
+		static daeInt ID() { return 449; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4926,15 +4320,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf1x1() : _value() {}
+		domHalf1x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf1x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf1x1( const domHalf1x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -4943,22 +4333,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf1x2;
@@ -4969,7 +4352,9 @@ public:
 	class domHalf1x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X2; }
+		static daeInt ID() { return 450; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -4998,15 +4383,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf1x2() : _value() {}
+		domHalf1x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf1x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf1x2( const domHalf1x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5015,22 +4396,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf1x3;
@@ -5041,7 +4415,9 @@ public:
 	class domHalf1x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X3; }
+		static daeInt ID() { return 451; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5070,15 +4446,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf1x3() : _value() {}
+		domHalf1x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf1x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf1x3( const domHalf1x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5087,22 +4459,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf1x4;
@@ -5113,7 +4478,9 @@ public:
 	class domHalf1x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF1X4; }
+		static daeInt ID() { return 452; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5142,15 +4509,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf1x4() : _value() {}
+		domHalf1x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf1x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf1x4( const domHalf1x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5159,22 +4522,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf2x1;
@@ -5185,7 +4541,9 @@ public:
 	class domHalf2x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X1; }
+		static daeInt ID() { return 453; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5214,15 +4572,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf2x1() : _value() {}
+		domHalf2x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf2x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf2x1( const domHalf2x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5231,22 +4585,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf2x2;
@@ -5257,7 +4604,9 @@ public:
 	class domHalf2x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X2; }
+		static daeInt ID() { return 454; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5286,15 +4635,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf2x2() : _value() {}
+		domHalf2x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf2x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf2x2( const domHalf2x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5303,22 +4648,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf2x3;
@@ -5329,7 +4667,9 @@ public:
 	class domHalf2x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X3; }
+		static daeInt ID() { return 455; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5358,15 +4698,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf2x3() : _value() {}
+		domHalf2x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf2x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf2x3( const domHalf2x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5375,22 +4711,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf2x4;
@@ -5401,7 +4730,9 @@ public:
 	class domHalf2x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF2X4; }
+		static daeInt ID() { return 456; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5430,15 +4761,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf2x4() : _value() {}
+		domHalf2x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf2x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf2x4( const domHalf2x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5447,22 +4774,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf3x1;
@@ -5473,7 +4793,9 @@ public:
 	class domHalf3x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X1; }
+		static daeInt ID() { return 457; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5502,15 +4824,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf3x1() : _value() {}
+		domHalf3x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf3x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf3x1( const domHalf3x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5519,22 +4837,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf3x2;
@@ -5545,7 +4856,9 @@ public:
 	class domHalf3x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X2; }
+		static daeInt ID() { return 458; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5574,15 +4887,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf3x2() : _value() {}
+		domHalf3x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf3x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf3x2( const domHalf3x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5591,22 +4900,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf3x3;
@@ -5617,7 +4919,9 @@ public:
 	class domHalf3x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X3; }
+		static daeInt ID() { return 459; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5646,15 +4950,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf3x3() : _value() {}
+		domHalf3x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf3x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf3x3( const domHalf3x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5663,22 +4963,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf3x4;
@@ -5689,7 +4982,9 @@ public:
 	class domHalf3x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF3X4; }
+		static daeInt ID() { return 460; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5718,15 +5013,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf3x4() : _value() {}
+		domHalf3x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf3x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf3x4( const domHalf3x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5735,22 +5026,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf4x1;
@@ -5761,7 +5045,9 @@ public:
 	class domHalf4x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X1; }
+		static daeInt ID() { return 461; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5790,15 +5076,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf4x1() : _value() {}
+		domHalf4x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf4x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf4x1( const domHalf4x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5807,22 +5089,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf4x2;
@@ -5833,7 +5108,9 @@ public:
 	class domHalf4x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X2; }
+		static daeInt ID() { return 462; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5862,15 +5139,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf4x2() : _value() {}
+		domHalf4x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf4x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf4x2( const domHalf4x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5879,22 +5152,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf4x3;
@@ -5905,7 +5171,9 @@ public:
 	class domHalf4x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X3; }
+		static daeInt ID() { return 463; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -5934,15 +5202,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf4x3() : _value() {}
+		domHalf4x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf4x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf4x3( const domHalf4x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -5951,22 +5215,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domHalf4x4;
@@ -5977,7 +5234,9 @@ public:
 	class domHalf4x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF4X4; }
+		static daeInt ID() { return 464; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6006,15 +5265,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domHalf4x4() : _value() {}
+		domHalf4x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domHalf4x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domHalf4x4( const domHalf4x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6023,22 +5278,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed;
@@ -6049,7 +5297,9 @@ public:
 	class domFixed : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED; }
+		static daeInt ID() { return 465; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6073,15 +5323,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed() : _value() {}
+		domFixed(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed( const domFixed &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6090,22 +5336,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed1;
@@ -6116,7 +5355,9 @@ public:
 	class domFixed1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1; }
+		static daeInt ID() { return 466; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6140,15 +5381,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed1() : _value() {}
+		domFixed1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed1( const domFixed1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6157,22 +5394,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed2;
@@ -6183,7 +5413,9 @@ public:
 	class domFixed2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2; }
+		static daeInt ID() { return 467; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6212,15 +5444,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed2() : _value() {}
+		domFixed2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed2( const domFixed2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6229,22 +5457,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed3;
@@ -6255,7 +5476,9 @@ public:
 	class domFixed3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3; }
+		static daeInt ID() { return 468; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6284,15 +5507,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed3() : _value() {}
+		domFixed3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed3( const domFixed3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6301,22 +5520,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed4;
@@ -6327,7 +5539,9 @@ public:
 	class domFixed4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4; }
+		static daeInt ID() { return 469; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6356,15 +5570,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed4() : _value() {}
+		domFixed4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed4( const domFixed4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6373,22 +5583,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed1x1;
@@ -6399,7 +5602,9 @@ public:
 	class domFixed1x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X1; }
+		static daeInt ID() { return 470; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6428,15 +5633,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed1x1() : _value() {}
+		domFixed1x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed1x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed1x1( const domFixed1x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6445,22 +5646,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed1x2;
@@ -6471,7 +5665,9 @@ public:
 	class domFixed1x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X2; }
+		static daeInt ID() { return 471; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6500,15 +5696,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed1x2() : _value() {}
+		domFixed1x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed1x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed1x2( const domFixed1x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6517,22 +5709,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed1x3;
@@ -6543,7 +5728,9 @@ public:
 	class domFixed1x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X3; }
+		static daeInt ID() { return 472; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6572,15 +5759,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed1x3() : _value() {}
+		domFixed1x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed1x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed1x3( const domFixed1x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6589,22 +5772,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed1x4;
@@ -6615,7 +5791,9 @@ public:
 	class domFixed1x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED1X4; }
+		static daeInt ID() { return 473; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6644,15 +5822,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed1x4() : _value() {}
+		domFixed1x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed1x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed1x4( const domFixed1x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6661,22 +5835,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed2x1;
@@ -6687,7 +5854,9 @@ public:
 	class domFixed2x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X1; }
+		static daeInt ID() { return 474; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6716,15 +5885,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed2x1() : _value() {}
+		domFixed2x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed2x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed2x1( const domFixed2x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6733,22 +5898,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed2x2;
@@ -6759,7 +5917,9 @@ public:
 	class domFixed2x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X2; }
+		static daeInt ID() { return 475; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6788,15 +5948,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed2x2() : _value() {}
+		domFixed2x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed2x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed2x2( const domFixed2x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6805,22 +5961,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed2x3;
@@ -6831,7 +5980,9 @@ public:
 	class domFixed2x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X3; }
+		static daeInt ID() { return 476; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6860,15 +6011,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed2x3() : _value() {}
+		domFixed2x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed2x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed2x3( const domFixed2x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6877,22 +6024,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed2x4;
@@ -6903,7 +6043,9 @@ public:
 	class domFixed2x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED2X4; }
+		static daeInt ID() { return 477; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -6932,15 +6074,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed2x4() : _value() {}
+		domFixed2x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed2x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed2x4( const domFixed2x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -6949,22 +6087,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed3x1;
@@ -6975,7 +6106,9 @@ public:
 	class domFixed3x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X1; }
+		static daeInt ID() { return 478; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -7004,15 +6137,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed3x1() : _value() {}
+		domFixed3x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed3x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed3x1( const domFixed3x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -7021,22 +6150,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed3x2;
@@ -7047,7 +6169,9 @@ public:
 	class domFixed3x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X2; }
+		static daeInt ID() { return 479; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -7076,15 +6200,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed3x2() : _value() {}
+		domFixed3x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed3x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed3x2( const domFixed3x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -7093,22 +6213,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed3x3;
@@ -7119,7 +6232,9 @@ public:
 	class domFixed3x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X3; }
+		static daeInt ID() { return 480; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -7148,15 +6263,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed3x3() : _value() {}
+		domFixed3x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed3x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed3x3( const domFixed3x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -7165,22 +6276,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed3x4;
@@ -7191,7 +6295,9 @@ public:
 	class domFixed3x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED3X4; }
+		static daeInt ID() { return 481; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -7220,15 +6326,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed3x4() : _value() {}
+		domFixed3x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed3x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed3x4( const domFixed3x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -7237,22 +6339,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed4x1;
@@ -7263,7 +6358,9 @@ public:
 	class domFixed4x1 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X1; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X1; }
+		static daeInt ID() { return 482; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -7292,15 +6389,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed4x1() : _value() {}
+		domFixed4x1(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed4x1() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed4x1( const domFixed4x1 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -7309,22 +6402,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed4x2;
@@ -7335,7 +6421,9 @@ public:
 	class domFixed4x2 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X2; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X2; }
+		static daeInt ID() { return 483; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -7364,15 +6452,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed4x2() : _value() {}
+		domFixed4x2(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed4x2() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed4x2( const domFixed4x2 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -7381,22 +6465,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed4x3;
@@ -7407,7 +6484,9 @@ public:
 	class domFixed4x3 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X3; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X3; }
+		static daeInt ID() { return 484; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -7436,15 +6515,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed4x3() : _value() {}
+		domFixed4x3(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed4x3() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed4x3( const domFixed4x3 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -7453,22 +6528,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domFixed4x4;
@@ -7479,7 +6547,9 @@ public:
 	class domFixed4x4 : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X4; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FIXED4X4; }
+		static daeInt ID() { return 485; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -7508,15 +6578,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFixed4x4() : _value() {}
+		domFixed4x4(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domFixed4x4() {}
-		/**
-		 * Copy Constructor
-		 */
-		domFixed4x4( const domFixed4x4 &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -7525,22 +6591,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domString;
@@ -7551,7 +6610,9 @@ public:
 	class domString : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STRING; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STRING; }
+		static daeInt ID() { return 486; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -7575,15 +6636,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domString() : _value() {}
+		domString(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domString() {}
-		/**
-		 * Copy Constructor
-		 */
-		domString( const domString &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -7592,22 +6649,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domEnum;
@@ -7618,7 +6668,9 @@ public:
 	class domEnum : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ENUM; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ENUM; }
+		static daeInt ID() { return 487; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -7642,15 +6694,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domEnum() : _value() {}
+		domEnum(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domEnum() {}
-		/**
-		 * Copy Constructor
-		 */
-		domEnum( const domEnum &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -7659,22 +6707,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 
@@ -8395,15 +7436,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_param_type() : elemBool(), elemBool1(), elemBool2(), elemBool3(), elemBool4(), elemBool1x1(), elemBool1x2(), elemBool1x3(), elemBool1x4(), elemBool2x1(), elemBool2x2(), elemBool2x3(), elemBool2x4(), elemBool3x1(), elemBool3x2(), elemBool3x3(), elemBool3x4(), elemBool4x1(), elemBool4x2(), elemBool4x3(), elemBool4x4(), elemFloat(), elemFloat1(), elemFloat2(), elemFloat3(), elemFloat4(), elemFloat1x1(), elemFloat1x2(), elemFloat1x3(), elemFloat1x4(), elemFloat2x1(), elemFloat2x2(), elemFloat2x3(), elemFloat2x4(), elemFloat3x1(), elemFloat3x2(), elemFloat3x3(), elemFloat3x4(), elemFloat4x1(), elemFloat4x2(), elemFloat4x3(), elemFloat4x4(), elemInt(), elemInt1(), elemInt2(), elemInt3(), elemInt4(), elemInt1x1(), elemInt1x2(), elemInt1x3(), elemInt1x4(), elemInt2x1(), elemInt2x2(), elemInt2x3(), elemInt2x4(), elemInt3x1(), elemInt3x2(), elemInt3x3(), elemInt3x4(), elemInt4x1(), elemInt4x2(), elemInt4x3(), elemInt4x4(), elemHalf(), elemHalf1(), elemHalf2(), elemHalf3(), elemHalf4(), elemHalf1x1(), elemHalf1x2(), elemHalf1x3(), elemHalf1x4(), elemHalf2x1(), elemHalf2x2(), elemHalf2x3(), elemHalf2x4(), elemHalf3x1(), elemHalf3x2(), elemHalf3x3(), elemHalf3x4(), elemHalf4x1(), elemHalf4x2(), elemHalf4x3(), elemHalf4x4(), elemFixed(), elemFixed1(), elemFixed2(), elemFixed3(), elemFixed4(), elemFixed1x1(), elemFixed1x2(), elemFixed1x3(), elemFixed1x4(), elemFixed2x1(), elemFixed2x2(), elemFixed2x3(), elemFixed2x4(), elemFixed3x1(), elemFixed3x2(), elemFixed3x3(), elemFixed3x4(), elemFixed4x1(), elemFixed4x2(), elemFixed4x3(), elemFixed4x4(), elemSurface(), elemSampler1D(), elemSampler2D(), elemSampler3D(), elemSamplerRECT(), elemSamplerCUBE(), elemSamplerDEPTH(), elemString(), elemEnum() {}
+	domCg_param_type(DAE& dae) : daeElement(dae), elemBool(), elemBool1(), elemBool2(), elemBool3(), elemBool4(), elemBool1x1(), elemBool1x2(), elemBool1x3(), elemBool1x4(), elemBool2x1(), elemBool2x2(), elemBool2x3(), elemBool2x4(), elemBool3x1(), elemBool3x2(), elemBool3x3(), elemBool3x4(), elemBool4x1(), elemBool4x2(), elemBool4x3(), elemBool4x4(), elemFloat(), elemFloat1(), elemFloat2(), elemFloat3(), elemFloat4(), elemFloat1x1(), elemFloat1x2(), elemFloat1x3(), elemFloat1x4(), elemFloat2x1(), elemFloat2x2(), elemFloat2x3(), elemFloat2x4(), elemFloat3x1(), elemFloat3x2(), elemFloat3x3(), elemFloat3x4(), elemFloat4x1(), elemFloat4x2(), elemFloat4x3(), elemFloat4x4(), elemInt(), elemInt1(), elemInt2(), elemInt3(), elemInt4(), elemInt1x1(), elemInt1x2(), elemInt1x3(), elemInt1x4(), elemInt2x1(), elemInt2x2(), elemInt2x3(), elemInt2x4(), elemInt3x1(), elemInt3x2(), elemInt3x3(), elemInt3x4(), elemInt4x1(), elemInt4x2(), elemInt4x3(), elemInt4x4(), elemHalf(), elemHalf1(), elemHalf2(), elemHalf3(), elemHalf4(), elemHalf1x1(), elemHalf1x2(), elemHalf1x3(), elemHalf1x4(), elemHalf2x1(), elemHalf2x2(), elemHalf2x3(), elemHalf2x4(), elemHalf3x1(), elemHalf3x2(), elemHalf3x3(), elemHalf3x4(), elemHalf4x1(), elemHalf4x2(), elemHalf4x3(), elemHalf4x4(), elemFixed(), elemFixed1(), elemFixed2(), elemFixed3(), elemFixed4(), elemFixed1x1(), elemFixed1x2(), elemFixed1x3(), elemFixed1x4(), elemFixed2x1(), elemFixed2x2(), elemFixed2x3(), elemFixed2x4(), elemFixed3x1(), elemFixed3x2(), elemFixed3x3(), elemFixed3x4(), elemFixed4x1(), elemFixed4x2(), elemFixed4x3(), elemFixed4x4(), elemSurface(), elemSampler1D(), elemSampler2D(), elemSampler3D(), elemSamplerRECT(), elemSamplerCUBE(), elemSamplerDEPTH(), elemString(), elemEnum() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domCg_param_type() { daeElement::deleteCMDataArray(_CMData); }
-	/**
-	 * Copy Constructor
-	 */
-	domCg_param_type( const domCg_param_type &cpy ) : daeElement() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -8412,22 +7449,15 @@ protected:
 public: // STATIC METHODS
 	/**
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
-	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static DLLSPEC daeMetaElement* registerElement();
-
-public: // STATIC MEMBERS
-	/**
-	 * The daeMetaElement that describes this element in the meta object reflection framework.
-	 */
-	static DLLSPEC daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 };
 
 

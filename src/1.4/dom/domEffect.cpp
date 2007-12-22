@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domEffect.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,9 +22,9 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domEffect::create(daeInt)
+domEffect::create(DAE& dae)
 {
-	domEffectRef ref = new domEffect;
+	domEffectRef ref = new domEffect(dae);
 	return ref;
 }
 
@@ -33,120 +34,117 @@ domEffect::create(daeInt)
 #include <dom/domProfile_GLES.h>
 
 daeMetaElement *
-domEffect::registerElement()
+domEffect::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "effect" );
-	_Meta->registerClass(domEffect::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "effect" );
+	meta->registerClass(domEffect::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "asset" );
 	mea->setOffset( daeOffsetOf(domEffect,elemAsset) );
-	mea->setElementType( domAsset::registerElement() );
+	mea->setElementType( domAsset::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 0, -1 );
 	mea->setName( "annotate" );
 	mea->setOffset( daeOffsetOf(domEffect,elemAnnotate_array) );
-	mea->setElementType( domFx_annotate_common::registerElement() );
+	mea->setElementType( domFx_annotate_common::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 2, 0, -1 );
 	mea->setName( "image" );
 	mea->setOffset( daeOffsetOf(domEffect,elemImage_array) );
-	mea->setElementType( domImage::registerElement() );
+	mea->setElementType( domImage::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 3, 0, -1 );
 	mea->setName( "newparam" );
 	mea->setOffset( daeOffsetOf(domEffect,elemNewparam_array) );
-	mea->setElementType( domFx_newparam_common::registerElement() );
+	mea->setElementType( domFx_newparam_common::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 4, 1, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 4, 1, -1 );
 	mea->setName( "fx_profile_abstract" );
 	mea->setOffset( daeOffsetOf(domEffect,elemFx_profile_abstract_array) );
-	mea->setElementType( domFx_profile_abstract::registerElement() );
+	mea->setElementType( domFx_profile_abstract::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
     
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 4, 1, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 4, 1, -1 );
 	mea->setName( "profile_GLSL" );
 	mea->setOffset( daeOffsetOf(domEffect,elemFx_profile_abstract_array) );
-	mea->setElementType( domProfile_GLSL::registerElement() );
+	mea->setElementType( domProfile_GLSL::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
     
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 4, 1, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 4, 1, -1 );
 	mea->setName( "profile_COMMON" );
 	mea->setOffset( daeOffsetOf(domEffect,elemFx_profile_abstract_array) );
-	mea->setElementType( domProfile_COMMON::registerElement() );
+	mea->setElementType( domProfile_COMMON::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
     
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 4, 1, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 4, 1, -1 );
 	mea->setName( "profile_CG" );
 	mea->setOffset( daeOffsetOf(domEffect,elemFx_profile_abstract_array) );
-	mea->setElementType( domProfile_CG::registerElement() );
+	mea->setElementType( domProfile_CG::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
     
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 4, 1, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 4, 1, -1 );
 	mea->setName( "profile_GLES" );
 	mea->setOffset( daeOffsetOf(domEffect,elemFx_profile_abstract_array) );
-	mea->setElementType( domProfile_GLES::registerElement() );
+	mea->setElementType( domProfile_GLES::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 5, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 5, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domEffect,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 5 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
-    _Meta->addContents(daeOffsetOf(domEffect,_contents));
-    _Meta->addContentsOrder(daeOffsetOf(domEffect,_contentsOrder));
-        
+	meta->addContents(daeOffsetOf(domEffect,_contents));
+	meta->addContentsOrder(daeOffsetOf(domEffect,_contentsOrder));
+
 
 	//	Add attribute: id
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
-		ma->setType( daeAtomicType::get("xsID"));
+		ma->setType( dae.getAtomicTypes().get("xsID"));
 		ma->setOffset( daeOffsetOf( domEffect , attrId ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: name
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domEffect , attrName ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domEffect));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domEffect));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domEffect::_Meta = NULL;
-
 

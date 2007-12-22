@@ -29,25 +29,13 @@ namespace COLLADA_TYPE
 	typedef const int TypeEnum;
 }
 
+class DAE;
 class daeMetaElement;
 class daeMetaAttribute;
-class daeIntegrationObject;
 class daeDocument;
 class daeURI;
 
 template <typename T> class daeSmartRef;
-
-//Contributed by Nus - Wed, 08 Nov 2006
-/**
- * Initializing resolve array.
- */
-extern "C" void initializeResolveArray(void);
-
-/**
- * Terminating resolve array.
- */
-extern "C" void terminateResolveArray(void);
-//-------------------
 
 /**
  * The @c daeElement class represents an instance of a COLLADA "Element";
@@ -66,28 +54,17 @@ public:
 	 */
 	DAE_ALLOC
 protected:
-	daeIntegrationObject*	_intObject;
-	daeElement*				_parent;
-	daeDocument*			_document;
-	daeMetaElement*			_meta;
-	daeString				_elementName;
-	daeBoolArray			_validAttributeArray;
+	daeElement* _parent;
+	daeDocument* _document;
+	daeMetaElement* _meta;
+	daeString _elementName;
+	daeBoolArray _validAttributeArray;
 
-public:
-	/** An enum that describes the state of user integration with this object */
-	enum IntegrationState {
-		/** The user integration is not initialized */
-		int_uninitialized,
-		/** The user integration object has been created */
-		int_created,
-		/** The user integration object has been converted */
-		int_converted,
-		/** The user integration object is completed */
-		int_finished
-	};
 protected:
 	daeElement( const daeElement &cpy ) : daeRefCountedObj() { (void)cpy; };
 	virtual daeElement &operator=( const daeElement &cpy ) { (void)cpy; return *this; }
+
+	void init();
 
 	// This function is called internally.
 	void setDocument( daeDocument* c, bool notifyDocument );
@@ -100,14 +77,18 @@ public:
 	 */
 	daeElement();
 	/**
+	 * Element Constructor.
+	 * @note This should not be used externally.
+	 * Use factories to create elements
+	 */
+	daeElement(DAE& dae);
+
+	/**
 	 * Element Destructor.
 	 * @note This should not be used externally, 
 	 * if daeSmartRefs are being used.
 	 */
 	virtual ~daeElement();
-
-	// sthomas (see https://collada.org/public_forum/viewtopic.php?t=325&)
-	static void releaseElements();
 
 	/**
 	 * Resolves all fields of type daeURI and IDRef.
@@ -369,12 +350,18 @@ public:
 	 * @return Returns the @c daeDocument representing the containing file or database
 	 * group.
 	 */
-	daeDocument*	getDocument() const { return _document; }
+	daeDocument* getDocument() const { return _document; }
 
 	/**
 	 * Deprecated.
 	 */
-	daeDocument*	getCollection() const { return _document; }
+	daeDocument* getCollection() const { return _document; }
+
+	/**
+	 * Get the associated DAE object.
+	 * @return The associated DAE object.
+	 */
+	DAE* getDAE();
 	
 	/**
 	 * Sets the database document associated with this element.
@@ -492,19 +479,6 @@ public:
 	inline daeMetaElement* getMeta() { return _meta; }
 
 	/**
-	 * Gets the integration object associated with this @c daeElement object.
-	 * See @c daeIntegrationObject for more details.
-	 * Integration Objects can be automatically created and associated
-	 * with the COLLADA dom via the meta-factory mechanism and
-	 * can be very useful for using the API to integrate with COLLADA.
-	 * @param from_state Specifies where in the conversion process from COLLADA you are interested. A full conversion is the default.
-	 * @param to_state Specifies where in the conversion process to COLLADA you are interested. No conversion is the default.
-	 * @return Returns the @c daeIntegrationObject associated with this COLLADA element
-	 * instance.
-	 */
-	daeIntegrationObject* getIntObject( IntegrationState from_state = int_converted, IntegrationState to_state = int_uninitialized );
-
-	/**
 	 * Gets the element type.
 	 * @return Returns the COLLADA_TYPE::TypeEnum value corresponding to this element's type.
 	 */
@@ -514,6 +488,13 @@ public:
 	 * @return Returns the string for the type name.
 	 */
 	daeString getTypeName() const;
+
+	/**
+	 * Returns this element's type ID. Every element is an instance of a type specified in
+	 * the Collada schema, and every schema type has a unique ID.
+	 * @return The element's type ID.
+	 */
+	virtual daeInt typeID() const = 0;
 
 	/**
 	 * Gets this element's name.
@@ -565,19 +546,6 @@ public:
 	
 public:
 	/**
-	 * Resolves all @c daeURIs yet to be resolved in all @c daeElements that have been
-	 * created.
-	 * This is used as part of post-parsing process of a COLLADA instance document, 
-	 * which results in a new document in the database.
-	 */
-	static void resolveAll();
-
-	/**
-	 * Clears the resolveArray.
-	 */
-	static void clearResolveArray();
-public:
-	/**
 	 * Releases the element passed in. This function is a static wrapper that invokes 
 	 * <tt> elem->release() </tt> on the passed in element,
 	 * if it is not NULL.
@@ -593,31 +561,14 @@ public:
 	 */
 	static void refElem(const daeElement* elem) { if (elem != NULL) elem->ref(); }
 
-	/**
-	 * Appends the passed in element to the list of elements that need to be resolved.
-	 * The elements in this list will be resolved during @c resolveAll().
-	 * @param elem Element to add to the list of elements
-	 * waiting for their @c daeURIs to be resolved.
-	 */
-	static void appendResolveElement(daeElement* elem);
-
 	// This function is called internally
 	static void deleteCMDataArray(daeTArray<daeCharArray*>& cmData);
 };
+
 #include <dae/daeSmartRef.h>
 typedef daeSmartRef<daeElement> daeElementRef;
 typedef daeSmartRef<const daeElement> daeElementConstRef;
 //#include <dae/daeArray.h>
 typedef daeTArray<daeElementRef> daeElementRefArray;
-
-extern daeElementRef DAECreateElement(int nbytes);
-
-template <typename T> 
-inline T *daeSafeCast( daeElement *element ) 
-{ 
-    if ( element && element->getMeta() == T::_Meta ) 
-        return (T *)element; 
-    return NULL; 
-} 
 
 #endif //__DAE_ELEMENT_H__

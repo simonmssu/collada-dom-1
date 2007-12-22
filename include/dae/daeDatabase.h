@@ -15,6 +15,7 @@
 #define __DAE_DATABASE__
 
 #include <list>
+#include <dae.h>
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
 #include <dae/daeURI.h>
@@ -28,9 +29,20 @@ class daeDatabase
 {
 public:
 	/**
-	*  Destructor.
+	 * Constructor
+	 */
+	daeDatabase(DAE& dae);
+	
+	/**
+	 * Destructor
 	 */
 	virtual DLLSPEC ~daeDatabase() {}
+
+	/**
+	 * Get the associated DAE object.
+	 * @return The associated DAE object.
+	 */
+	virtual DAE* getDAE();
 	
 	/** @name Documents */
 	//@{
@@ -171,7 +183,7 @@ public:
 
 	/**
 	* Unloads all of the documents of the runtime database.
-	* This function frees all the @c dom* objects and integration objects created so far,
+	* This function frees all the @c dom* objects created so far,
 	* except any objects on which you still have a smart pointer reference (@c daeSmartRef).
 	* @return Returns @c DAE_OK if all documents successfully unloaded, otherwise returns a negative value as defined in daeError.h.
 	*/
@@ -296,6 +308,8 @@ public: //Depricated methods
 		return isDocumentLoaded( name );
 	}
 
+protected:
+	DAE& dae;
 };
 
 #endif //__DAE_DATABASE__

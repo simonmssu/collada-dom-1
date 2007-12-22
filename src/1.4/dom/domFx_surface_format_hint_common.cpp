@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domFx_surface_format_hint_common.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,211 +22,208 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_format_hint_common::create(daeInt)
+domFx_surface_format_hint_common::create(DAE& dae)
 {
-	domFx_surface_format_hint_commonRef ref = new domFx_surface_format_hint_common;
+	domFx_surface_format_hint_commonRef ref = new domFx_surface_format_hint_common(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domFx_surface_format_hint_common::registerElement()
+domFx_surface_format_hint_common::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "fx_surface_format_hint_common" );
-	_Meta->registerClass(domFx_surface_format_hint_common::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "fx_surface_format_hint_common" );
+	meta->registerClass(domFx_surface_format_hint_common::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "channels" );
 	mea->setOffset( daeOffsetOf(domFx_surface_format_hint_common,elemChannels) );
-	mea->setElementType( domFx_surface_format_hint_common::domChannels::registerElement() );
+	mea->setElementType( domFx_surface_format_hint_common::domChannels::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 1, 1, 1 );
 	mea->setName( "range" );
 	mea->setOffset( daeOffsetOf(domFx_surface_format_hint_common,elemRange) );
-	mea->setElementType( domFx_surface_format_hint_common::domRange::registerElement() );
+	mea->setElementType( domFx_surface_format_hint_common::domRange::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
 	mea->setName( "precision" );
 	mea->setOffset( daeOffsetOf(domFx_surface_format_hint_common,elemPrecision) );
-	mea->setElementType( domFx_surface_format_hint_common::domPrecision::registerElement() );
+	mea->setElementType( domFx_surface_format_hint_common::domPrecision::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 3, 0, -1 );
 	mea->setName( "option" );
 	mea->setOffset( daeOffsetOf(domFx_surface_format_hint_common,elemOption_array) );
-	mea->setElementType( domFx_surface_format_hint_common::domOption::registerElement() );
+	mea->setElementType( domFx_surface_format_hint_common::domOption::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 4, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 4, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domFx_surface_format_hint_common,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 4 );
-	_Meta->setCMRoot( cm );	
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_format_hint_common));
-	_Meta->validate();
+	meta->setCMRoot( cm );	
 
-	return _Meta;
+	meta->setElementSize(sizeof(domFx_surface_format_hint_common));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domFx_surface_format_hint_common::domChannels::create(daeInt)
+domFx_surface_format_hint_common::domChannels::create(DAE& dae)
 {
-	domFx_surface_format_hint_common::domChannelsRef ref = new domFx_surface_format_hint_common::domChannels;
+	domFx_surface_format_hint_common::domChannelsRef ref = new domFx_surface_format_hint_common::domChannels(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domFx_surface_format_hint_common::domChannels::registerElement()
+domFx_surface_format_hint_common::domChannels::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "channels" );
-	_Meta->registerClass(domFx_surface_format_hint_common::domChannels::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "channels" );
+	meta->registerClass(domFx_surface_format_hint_common::domChannels::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_surface_format_hint_channels_enum"));
+		ma->setType( dae.getAtomicTypes().get("Fx_surface_format_hint_channels_enum"));
 		ma->setOffset( daeOffsetOf( domFx_surface_format_hint_common::domChannels , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_format_hint_common::domChannels));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domFx_surface_format_hint_common::domChannels));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domFx_surface_format_hint_common::domRange::create(daeInt)
+domFx_surface_format_hint_common::domRange::create(DAE& dae)
 {
-	domFx_surface_format_hint_common::domRangeRef ref = new domFx_surface_format_hint_common::domRange;
+	domFx_surface_format_hint_common::domRangeRef ref = new domFx_surface_format_hint_common::domRange(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domFx_surface_format_hint_common::domRange::registerElement()
+domFx_surface_format_hint_common::domRange::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "range" );
-	_Meta->registerClass(domFx_surface_format_hint_common::domRange::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "range" );
+	meta->registerClass(domFx_surface_format_hint_common::domRange::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_surface_format_hint_range_enum"));
+		ma->setType( dae.getAtomicTypes().get("Fx_surface_format_hint_range_enum"));
 		ma->setOffset( daeOffsetOf( domFx_surface_format_hint_common::domRange , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_format_hint_common::domRange));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domFx_surface_format_hint_common::domRange));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domFx_surface_format_hint_common::domPrecision::create(daeInt)
+domFx_surface_format_hint_common::domPrecision::create(DAE& dae)
 {
-	domFx_surface_format_hint_common::domPrecisionRef ref = new domFx_surface_format_hint_common::domPrecision;
+	domFx_surface_format_hint_common::domPrecisionRef ref = new domFx_surface_format_hint_common::domPrecision(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domFx_surface_format_hint_common::domPrecision::registerElement()
+domFx_surface_format_hint_common::domPrecision::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "precision" );
-	_Meta->registerClass(domFx_surface_format_hint_common::domPrecision::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "precision" );
+	meta->registerClass(domFx_surface_format_hint_common::domPrecision::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_surface_format_hint_precision_enum"));
+		ma->setType( dae.getAtomicTypes().get("Fx_surface_format_hint_precision_enum"));
 		ma->setOffset( daeOffsetOf( domFx_surface_format_hint_common::domPrecision , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_format_hint_common::domPrecision));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domFx_surface_format_hint_common::domPrecision));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domFx_surface_format_hint_common::domOption::create(daeInt)
+domFx_surface_format_hint_common::domOption::create(DAE& dae)
 {
-	domFx_surface_format_hint_common::domOptionRef ref = new domFx_surface_format_hint_common::domOption;
+	domFx_surface_format_hint_common::domOptionRef ref = new domFx_surface_format_hint_common::domOption(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domFx_surface_format_hint_common::domOption::registerElement()
+domFx_surface_format_hint_common::domOption::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "option" );
-	_Meta->registerClass(domFx_surface_format_hint_common::domOption::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "option" );
+	meta->registerClass(domFx_surface_format_hint_common::domOption::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Fx_surface_format_hint_option_enum"));
+		ma->setType( dae.getAtomicTypes().get("Fx_surface_format_hint_option_enum"));
 		ma->setOffset( daeOffsetOf( domFx_surface_format_hint_common::domOption , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_format_hint_common::domOption));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domFx_surface_format_hint_common::domOption));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domFx_surface_format_hint_common::_Meta = NULL;
-daeMetaElement * domFx_surface_format_hint_common::domChannels::_Meta = NULL;
-daeMetaElement * domFx_surface_format_hint_common::domRange::_Meta = NULL;
-daeMetaElement * domFx_surface_format_hint_common::domPrecision::_Meta = NULL;
-daeMetaElement * domFx_surface_format_hint_common::domOption::_Meta = NULL;
-
 

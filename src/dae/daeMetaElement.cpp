@@ -11,15 +11,13 @@
  * License. 
  */
 
+#include <dae.h>
 #include <dae/daeMetaElement.h>
 #include <dae/daeElement.h>
 #include <dae/daeDocument.h>
 #include <dae/domAny.h>
 #include <dae/daeMetaCMPolicy.h>
 #include <dae/daeMetaElementAttribute.h>
-
-static daeMetaElementRefArray *mera = NULL;
-static daeTArray< daeMetaElement** > *mes = NULL;
 
 daeElementRef
 daeMetaElement::create() 
@@ -28,7 +26,7 @@ daeMetaElement::create()
 	if (_createFunc == NULL)
 		return NULL;
 #endif
-	daeElementRef ret =  (*_createFunc)(_elementSize);
+	daeElementRef ret =  (*_createFunc)(dae);
 	ret->setup(this);
 		
 	return ret;
@@ -53,7 +51,7 @@ daeMetaElement::create(daeString s)
 		return ret;
 	}
 	if ( getAllowsAny() ) {
-		daeElementRef ret = domAny::registerElement()->create();
+		daeElementRef ret = domAny::registerElement(dae)->create();
 		ret->setElementName(s);
 		return ret;
 	}
@@ -94,7 +92,7 @@ daeMetaElement::findChild(daeString s)
 	return NULL;
 }*/
 
-daeMetaElement::daeMetaElement()
+daeMetaElement::daeMetaElement(DAE& dae) : dae(dae)
 {
 	_name = "noname";
 	_createFunc = NULL;
@@ -102,8 +100,7 @@ daeMetaElement::daeMetaElement()
 	_elementSize = sizeof(daeElement);
 	_metaValue = NULL;
 	_metaContents = NULL;
-    _metaContentsOrder = NULL; // sthomas
-	_metaIntegration = NULL;
+	_metaContentsOrder = NULL; // sthomas
 	_metaID = NULL;
 	_isTrackableForQueries = true;
 	_usesStringContents = false;
@@ -111,8 +108,6 @@ daeMetaElement::daeMetaElement()
 	_isAbstract = false;
 	_allowsAny = false;
 	_innerClass = false;
-	_metas().append(this);
-
 	_contentModel = NULL;
 	_metaCMData = NULL;
 	_numMetaChoices = 0;
@@ -120,39 +115,38 @@ daeMetaElement::daeMetaElement()
 
 daeMetaElement::~daeMetaElement()
 {
-	if (_metaContents)
-		delete _metaContents;
-    if (_contentModel) // sthomas
-        delete _contentModel;
-    if (_metaContentsOrder) // sthomas
-        delete _metaContentsOrder;
-	if (_metaCMData)
-		delete _metaCMData;
+	delete _metaContents;
+	delete _contentModel;
+	delete _metaContentsOrder;
+	delete _metaCMData;
+}
+
+DAE* daeMetaElement::getDAE() {
+	return &dae;
 }
 
 void daeMetaElement::setCMRoot( daeMetaCMPolicy *cm )
 {
-    if (_contentModel) 
-        delete _contentModel;
-    _contentModel = cm;
+	if (_contentModel) 
+		delete _contentModel;
+	_contentModel = cm;
 }
 
 void
 daeMetaElement::addContents(daeInt offset)
 {
 	daeMetaElementArrayAttribute* meaa = new daeMetaElementArrayAttribute( this, NULL, 0, 1, -1 );
-	meaa->setType(daeAtomicType::get("element"));
+	meaa->setType(dae.getAtomicTypes().get("element"));
 	meaa->setName("contents");
 	meaa->setOffset(offset);
 	meaa->setContainer( this);
-	meaa->setElementType( daeElement::getMeta() );
 	_metaContents = meaa;
 }
 void
 daeMetaElement::addContentsOrder(daeInt offset)
 {
 	daeMetaArrayAttribute* meaa = new daeMetaArrayAttribute();
-	meaa->setType(daeAtomicType::get("uint"));
+	meaa->setType(dae.getAtomicTypes().get("uint"));
 	meaa->setName("contentsOrder");
 	meaa->setOffset(offset);
 	meaa->setContainer( this);
@@ -166,7 +160,7 @@ daeMetaElement::addContentsOrder(daeInt offset)
 void daeMetaElement::addCMDataArray(daeInt offset, daeUInt numChoices)
 {
 	daeMetaArrayAttribute* meaa = new daeMetaArrayAttribute();
-	meaa->setType(daeAtomicType::get("int"));
+	meaa->setType(dae.getAtomicTypes().get("int"));
 	meaa->setName("CMData");
 	meaa->setOffset(offset);
 	meaa->setContainer( this);
@@ -242,8 +236,6 @@ daeMetaElement::appendAttribute(daeMetaAttribute* attr)
 void
 daeMetaElement::validate()
 {
-	if (_createFunc == NULL)
-		_createFunc = DAECreateElement;
 	if (_elementSize == 0)
 	{
 		daeInt place=0;
@@ -270,26 +262,26 @@ daeMetaElement::getMetaAttribute(daeString s)
 }
 
 
-void daeMetaElement::releaseMetas()
-{
-	_metas().clear();
-	size_t count = _classMetaPointers().getCount();
-	for ( size_t i = 0; i < count; i++ )
-	{
-		*(_classMetaPointers()[i]) = NULL;
-	}
-	_classMetaPointers().clear();
-	if (mera)
-	{
-		delete mera;
-		mera = NULL;
-	}
-	if (mes)
-	{
-		delete mes;
-		mes = NULL;
-	}
-}
+// void daeMetaElement::releaseMetas()
+// {
+// 	_metas().clear();
+// 	size_t count = _classMetaPointers().getCount();
+// 	for ( size_t i = 0; i < count; i++ )
+// 	{
+// 		*(_classMetaPointers()[i]) = NULL;
+// 	}
+// 	_classMetaPointers().clear();
+// 	if (mera)
+// 	{
+// 		delete mera;
+// 		mera = NULL;
+// 	}
+// 	if (mes)
+// 	{
+// 		delete mes;
+// 		mes = NULL;
+// 	}
+// }
 
 daeBool daeMetaElement::place(daeElement *parent, daeElement *child, daeUInt *ordinal )
 {
@@ -511,21 +503,21 @@ void daeMetaElement::getChildren( daeElement* parent, daeElementRefArray &array 
 	}
 }
 
-daeMetaElementRefArray &daeMetaElement::_metas()
-{
-	if (!mera)
-	{
-		mera = new daeMetaElementRefArray();
-	}
-	return *mera;
-}
+// daeMetaElementRefArray &daeMetaElement::_metas()
+// {
+// 	if (!mera)
+// 	{
+// 		mera = new daeMetaElementRefArray();
+// 	}
+// 	return *mera;
+// }
 
-daeTArray< daeMetaElement** > &daeMetaElement::_classMetaPointers()
-{
-	if (!mes)
-	{
-		mes = new daeTArray< daeMetaElement** >();
-	}
-	return *mes;
-}
+// daeTArray< daeMetaElement** > &daeMetaElement::_classMetaPointers()
+// {
+// 	if (!mes)
+// 	{
+// 		mes = new daeTArray< daeMetaElement** >();
+// 	}
+// 	return *mes;
+// }
 

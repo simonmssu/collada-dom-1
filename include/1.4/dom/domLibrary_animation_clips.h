@@ -1,15 +1,16 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
+
 #ifndef __domLibrary_animation_clips_h__
 #define __domLibrary_animation_clips_h__
 
@@ -20,6 +21,7 @@
 #include <dom/domAsset.h>
 #include <dom/domAnimation_clip.h>
 #include <dom/domExtra.h>
+class DAE;
 
 /**
  * The library_animation_clips element declares a module of animation_clip
@@ -28,7 +30,9 @@
 class domLibrary_animation_clips : public daeElement
 {
 public:
-	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIBRARY_ANIMATION_CLIPS; }
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIBRARY_ANIMATION_CLIPS; }
+	static daeInt ID() { return 713; }
+	virtual daeInt typeID() const { return ID(); }
 protected:  // Attributes
 /**
  *  The id attribute is a text string containing the unique identifier of
@@ -110,15 +114,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domLibrary_animation_clips() : attrId(), attrName(), elemAsset(), elemAnimation_clip_array(), elemExtra_array() {}
+	domLibrary_animation_clips(DAE& dae) : daeElement(dae), attrId(), attrName(), elemAsset(), elemAnimation_clip_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domLibrary_animation_clips() {}
-	/**
-	 * Copy Constructor
-	 */
-	domLibrary_animation_clips( const domLibrary_animation_clips &cpy ) : daeElement() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -127,22 +127,15 @@ protected:
 public: // STATIC METHODS
 	/**
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
-	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static DLLSPEC daeMetaElement* registerElement();
-
-public: // STATIC MEMBERS
-	/**
-	 * The daeMetaElement that describes this element in the meta object reflection framework.
-	 */
-	static DLLSPEC daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 };
 
 

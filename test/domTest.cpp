@@ -17,16 +17,11 @@
 #include <dae/daeErrorHandler.h>
 #include <dom/domFx_surface_init_from_common.h>
 #include <../include/modules/stdErrPlugin.h>
+#include <dom/domEllipsoid.h>
+#include <dom/domInputGlobal.h>
+#include "domTest.h"
 
-// We use the boost filesystem library for cross-platform file system support. You'll need
-// to have boost on your machine for this to work. For the Windows build boost is provided
-// in the external-libs folder, but for Linux/Mac it's expected that you'll install a boost
-// obtained via your distro's package manager. For example on Debian/Ubuntu, you can run
-//   apt-get install libboost-filesystem-dev
-// to install the boost filesystem library on your machine.
-#include <boost/filesystem/convenience.hpp>
 namespace fs = boost::filesystem;
-
 using namespace std;
 
 float toFloat(const string& s) {
@@ -51,11 +46,6 @@ string toString(const T& val) {
 #endif
 
 
-#define CheckResult(val) \
-	if (!(val)) { \
-		return testResult(false, __LINE__); \
-	}
-
 #define CheckResultWithMsg(val, msg) \
 	if (!(val)) { \
 		return testResult(false, __LINE__, msg); \
@@ -71,56 +61,35 @@ string toString(const T& val) {
 		} \
 	}
 
-struct domTest;
-map<string, domTest*> g_tests;
+map<string, domTest*>& registeredTests() {
+	static map<string, domTest*> tests;
+	return tests;
+}
 
-struct testResult {
-	bool passed;
-	int line; // If the test failed, the line number it failed on, or -1 if the line
-	          // number isn't available.
-	string msg; // An error message for the user. Usually empty.
+fs::path& dataPath() {
+	static fs::path dataPath_;
+	return dataPath_;
+}
 
-	testResult() : passed(true), line(-1) { }
-	testResult(bool passed, int line = -1, const string& msg = "")
-	  : passed(passed),
-	    line(line),
-	    msg(msg) {
-	}
-};
-
-struct domTest {
-	string name;
-	domTest(const string& name) : name(name) {
-		g_tests[name] = this;
-	}
-	virtual ~domTest() { };
-	virtual testResult run() = 0;
-};
-
-#define DefineTest(testName) \
-	struct domTest_##testName : public domTest { \
-		domTest_##testName() : domTest(#testName) { } \
-		testResult run();	\
-	}; \
-	domTest_##testName domTest_##testName##Obj; \
-	testResult domTest_##testName::run()
+fs::path& tmpPath() {
+	static fs::path tmpPath_;
+	return tmpPath_;
+}
 
 #define RunTest(testName) \
 	{ \
-		map<string, domTest*>::iterator iter = g_tests.find(#testName); \
-		CheckResult(iter != g_tests.end()); \
+		map<string, domTest*>::iterator iter = registeredTests().find(#testName); \
+		CheckResult(iter != registeredTests().end()); \
 		CheckResult(iter->second->run()); \
 	}
 
 
-fs::path g_dataPath;
 string lookupTestFile(const string& fileName) {
-	return (g_dataPath / fileName).native_file_string();
+	return (dataPath() / fileName).native_file_string();
 }
 
-fs::path g_tmpPath;
 string getTmpFile(const string& fileName) {
-	return (g_tmpPath / fileName).native_file_string();
+	return (tmpPath() / fileName).native_file_string();
 }
 
 
@@ -832,7 +801,7 @@ DefineTest(cloneCrash) {
 	CheckResult(initFrom && initFrom->getValue().getElement());
 
 	// The DOM used to crash here
-	daeElement::resolveAll();
+	dae.resolveAll();
 
 	return testResult(true);
 }
@@ -900,20 +869,21 @@ string toString(daeAtomicType& type, daeMemoryRef value) {
 }
 
 DefineTest(atomicTypeOps) {
-	daeUIntType UIntType;
-	daeIntType IntType;
-	daeLongType LongType;
-	daeShortType ShortType;
-	daeULongType ULongType;
-	daeFloatType FloatType;
-	daeDoubleType DoubleType;
-	daeStringRefType StringRefType;
-	daeElementRefType ElementRefType;
-	daeEnumType EnumType;
-	daeResolverType ResolverType;
-	daeIDResolverType IDResolverType;
-	daeBoolType BoolType;
-	daeTokenType TokenType;
+	DAE dae;
+	daeUIntType UIntType(dae);
+	daeIntType IntType(dae);
+	daeLongType LongType(dae);
+	daeShortType ShortType(dae);
+	daeULongType ULongType(dae);
+	daeFloatType FloatType(dae);
+	daeDoubleType DoubleType(dae);
+	daeStringRefType StringRefType(dae);
+	daeElementRefType ElementRefType(dae);
+	daeEnumType EnumType(dae);
+	daeResolverType ResolverType(dae);
+	daeIDResolverType IDResolverType(dae);
+	daeBoolType BoolType(dae);
+	daeTokenType TokenType(dae);
 
 	EnumType._values = new daeEnumArray;
 	EnumType._strings = new daeStringRefArray;
@@ -930,7 +900,7 @@ DefineTest(atomicTypeOps) {
 	daeStringRef StringRef("StringRef");
 	//	daeElementRef ElementRef(0x12345678);
 	daeEnum Enum(0);
-	daeURI uri("http://www.example.com/#fragment");
+	daeURI uri(dae, "http://www.example.com/#fragment");
 	daeIDRef IDRef("sampleID");
 	daeBool Bool(false);
 	daeStringRef Token("token");
@@ -1204,8 +1174,8 @@ DefineTest(uriConversion) {
 
 DefineTest(makeRelativeTo) {
 	DAE dae;
-	daeURI uri1("myFolder/myFile.dae");
-	daeURI uri2("myFolder/myFile.dae");
+	daeURI uri1(dae, "myFolder/myFile.dae");
+	daeURI uri2(dae, "myFolder/myFile.dae");
 	uri1.makeRelativeTo(&uri2);
 	return testResult(true);
 }
@@ -1241,11 +1211,109 @@ DefineTest(xmlNavigation) {
 }
 
 
-// Returns true if all tests names are valid
+DefineTest(multipleDae) {
+	// Basically we just want to make sure that having multiple DAE objects doesn't
+	// crash the DOM.
+	DAE dae1;
+	DAE dae2;
+	CheckResult(dae2.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+	CheckResult(dae1.loadFile(lookupTestFile("duck.dae").c_str()) == DAE_OK);
+	return testResult(true);
+}
+
+
+DefineTest(unusedTypeCheck) {
+	DAE dae;
+
+	// The following types are defined in the schema but aren't used anywhere in
+	// Collada, so they should have a null meta entry:
+	//   ellipsoid
+	//   ellipsoid/size
+	//   InputGlobal
+	// Also, <any> doesn't use a single global meta, so it'll also show up in the
+	// set of elements that don't have metas.
+	set<int> expectedUnusedTypes;
+	expectedUnusedTypes.insert(domEllipsoid::ID());
+	expectedUnusedTypes.insert(domEllipsoid::domSize::ID());
+	expectedUnusedTypes.insert(domInputGlobal::ID());
+	expectedUnusedTypes.insert(domAny::ID());
+
+	// Collect the list of types that don't have a corresponding meta defined
+	set<int> actualUnusedTypes;
+	const daeMetaElementRefArray &metas = dae.getAllMetas();
+	for (size_t i = 0; i < metas.getCount(); i++)
+		if (!metas[i])
+			actualUnusedTypes.insert((int)i);
+
+	// Make sure the set of unused types matches what we expect
+	return testResult(expectedUnusedTypes == actualUnusedTypes);
+}
+
+
+DefineTest(domCommon_transparent_type) {
+	DAE dae;
+	CheckResult(dae.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+
+	daeElement* elt = NULL;
+	dae.getDatabase()->getElement(&elt, 0, NULL, "common_transparent_type");
+	domCommon_transparent_type* transparent = daeSafeCast<domCommon_transparent_type>(elt);
+	CheckResult(transparent);
+
+	CheckResult(transparent->getColor() != NULL);
+	CheckResult(transparent->getParam() == NULL);
+	CheckResult(transparent->getTexture() == NULL);
+	CheckResult(transparent->getOpaque() == FX_OPAQUE_ENUM_A_ONE);
+
+	return testResult(true);
+};
+
+
+DefineTest(resolveAll) {
+	DAE dae;
+	string file = lookupTestFile("cube.dae");
+	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+
+	daeElement* node = dae.getDomFile(file.c_str())->getDescendant("node");
+	CheckResult(node);
+
+	domInstance_geometry* instanceGeom = daeSafeCast<domInstance_geometry>(
+		node->createAndPlace("instance_geometry"));
+	CheckResult(instanceGeom);
+	domInstance_material* instanceMtl = daeSafeCast<domInstance_material>(
+		instanceGeom->createAndPlace("bind_material")->createAndPlace("technique_common")->
+		createAndPlace("instance_material"));
+	CheckResult(instanceMtl);
+
+	instanceGeom->getUrl().setURI("#box-lib");
+	instanceMtl->getTarget().setURI("#Blue");
+	CheckResult(instanceGeom->getUrl().getElement() == NULL);
+	CheckResult(instanceMtl->getTarget().getElement() == NULL);
+
+	dae.resolveAll();
+	
+	CheckResult(instanceGeom->getUrl().getElement() != NULL);
+	CheckResult(instanceMtl->getTarget().getElement() != NULL);
+
+	return testResult(true);
+}
+
+
+DefineTest(baseURI) {
+	DAE dae1, dae2;
+	dae1.setBaseURI(daeURI(dae1, "http://www.example.com/"));
+	daeURI uri1(dae1, "myFolder/myFile.dae");
+	daeURI uri2(dae2, "myFolder/myFile.dae");
+	CheckResult(string(uri1.getURI()) != uri2.getURI());
+	CheckResult(string(uri1.getURI()) == "http://www.example.com/myFolder/myFile.dae");
+	return testResult(true);
+}
+
+
+// Returns true if all test names are valid
 bool checkTests(const set<string>& tests) {
 	bool invalidTestFound = false;
 	for (set<string>::const_iterator iter = tests.begin(); iter != tests.end(); iter++) {
-		if (g_tests.find(*iter) == g_tests.end()) {
+		if (registeredTests().find(*iter) == registeredTests().end()) {
 			if (!invalidTestFound)
 				cout << "Invalid arguments:\n";
 			cout << "  " << *iter << endl;
@@ -1260,7 +1328,7 @@ bool checkTests(const set<string>& tests) {
 map<string, testResult> runTests(const set<string>& tests) {
 	map<string, testResult> failedTests;
 	for (set<string>::const_iterator iter = tests.begin(); iter != tests.end(); iter++) {
-		testResult result = g_tests[*iter]->run();
+		testResult result = registeredTests()[*iter]->run();
 		if (!result.passed)
 			failedTests[*iter] = result;
 	}
@@ -1338,24 +1406,27 @@ int main(int argc, char* argv[]) {
 	// Shut the DOM up
 	daeErrorHandler::setErrorHandler(&quietErrorHandler::getInstance());
 
-	g_dataPath = (fs::path(argv[0]).branch_path()/"../../test/data/").normalize();
-	g_tmpPath = g_dataPath / "tmp";
-	tmpDir tmp(g_tmpPath, !leaveTmpFiles);
+	dataPath() = (fs::path(argv[0]).branch_path()/"../../test/data/").normalize();
+	tmpPath() = dataPath() / "tmp";
+	tmpDir tmp(tmpPath(), !leaveTmpFiles);
 
 	if (checkTests(tests) == false)
 		return 0;
 
 	// -printTest
 	if (printTests) {
-		for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
+		map<string, domTest*>::iterator iter;
+		for (iter = registeredTests().begin(); iter != registeredTests().end(); iter++)
 			cout << iter->second->name << endl;
 		return 0;
 	}
 
 	// -all
-	if (allTests)
-		for (map<string, domTest*>::iterator iter = g_tests.begin(); iter != g_tests.end(); iter++)
+	if (allTests) {
+		map<string, domTest*>::iterator iter;
+		for (iter = registeredTests().begin(); iter != registeredTests().end(); iter++)
 			tests.insert(iter->first);
+	}
 
 	// test1 test2 ...
  	printTestResults(runTests(tests));

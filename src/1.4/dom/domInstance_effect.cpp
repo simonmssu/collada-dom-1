@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domInstance_effect.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,204 +22,201 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domInstance_effect::create(daeInt)
+domInstance_effect::create(DAE& dae)
 {
-	domInstance_effectRef ref = new domInstance_effect;
+	domInstance_effectRef ref = new domInstance_effect(dae);
 	ref->attrUrl.setContainer( (domInstance_effect*)ref );
 	return ref;
 }
 
 
 daeMetaElement *
-domInstance_effect::registerElement()
+domInstance_effect::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "instance_effect" );
-	_Meta->registerClass(domInstance_effect::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "instance_effect" );
+	meta->registerClass(domInstance_effect::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea = new daeMetaElementArrayAttribute( meta, cm, 0, 0, -1 );
 	mea->setName( "technique_hint" );
 	mea->setOffset( daeOffsetOf(domInstance_effect,elemTechnique_hint_array) );
-	mea->setElementType( domInstance_effect::domTechnique_hint::registerElement() );
+	mea->setElementType( domInstance_effect::domTechnique_hint::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 1, 0, -1 );
 	mea->setName( "setparam" );
 	mea->setOffset( daeOffsetOf(domInstance_effect,elemSetparam_array) );
-	mea->setElementType( domInstance_effect::domSetparam::registerElement() );
+	mea->setElementType( domInstance_effect::domSetparam::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 2, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domInstance_effect,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 2 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 
 	//	Add attribute: url
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "url" );
-		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setType( dae.getAtomicTypes().get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstance_effect , attrUrl ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: sid
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect , attrSid ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: name
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect , attrName ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domInstance_effect));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domInstance_effect));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domInstance_effect::domTechnique_hint::create(daeInt)
+domInstance_effect::domTechnique_hint::create(DAE& dae)
 {
-	domInstance_effect::domTechnique_hintRef ref = new domInstance_effect::domTechnique_hint;
+	domInstance_effect::domTechnique_hintRef ref = new domInstance_effect::domTechnique_hint(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domInstance_effect::domTechnique_hint::registerElement()
+domInstance_effect::domTechnique_hint::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "technique_hint" );
-	_Meta->registerClass(domInstance_effect::domTechnique_hint::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "technique_hint" );
+	meta->registerClass(domInstance_effect::domTechnique_hint::create);
+
+	meta->setIsInnerClass( true );
 
 	//	Add attribute: platform
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "platform" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect::domTechnique_hint , attrPlatform ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( false );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: profile
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "profile" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect::domTechnique_hint , attrProfile ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( false );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
 
 	//	Add attribute: ref
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( dae.getAtomicTypes().get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect::domTechnique_hint , attrRef ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domInstance_effect::domTechnique_hint));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domInstance_effect::domTechnique_hint));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domInstance_effect::domSetparam::create(daeInt)
+domInstance_effect::domSetparam::create(DAE& dae)
 {
-	domInstance_effect::domSetparamRef ref = new domInstance_effect::domSetparam;
+	domInstance_effect::domSetparamRef ref = new domInstance_effect::domSetparam(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domInstance_effect::domSetparam::registerElement()
+domInstance_effect::domSetparam::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "setparam" );
-	_Meta->registerClass(domInstance_effect::domSetparam::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "setparam" );
+	meta->registerClass(domInstance_effect::domSetparam::create);
+
+	meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "fx_basic_type_common" );
 	mea->setOffset( daeOffsetOf(domInstance_effect::domSetparam,elemFx_basic_type_common) );
-	mea->setElementType( domFx_basic_type_common::registerElement() );
-	cm->appendChild( new daeMetaGroup( mea, _Meta, cm, 0, 1, 1 ) );
-	
+	mea->setElementType( domFx_basic_type_common::registerElement(dae) );
+	cm->appendChild( new daeMetaGroup( mea, meta, cm, 0, 1, 1 ) );
+
 	cm->setMaxOrdinal( 0 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 
 	//	Add attribute: ref
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsToken"));
 		ma->setOffset( daeOffsetOf( domInstance_effect::domSetparam , attrRef ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domInstance_effect::domSetparam));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domInstance_effect::domSetparam));
+	meta->validate();
+
+	return meta;
 }
-
-
-daeMetaElement * domInstance_effect::_Meta = NULL;
-daeMetaElement * domInstance_effect::domTechnique_hint::_Meta = NULL;
-daeMetaElement * domInstance_effect::domSetparam::_Meta = NULL;
-
 

@@ -1,15 +1,16 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
+
 #ifndef __domCg_newparam_h__
 #define __domCg_newparam_h__
 
@@ -21,6 +22,7 @@
 #include <dom/domFx_annotate_common.h>
 #include <dom/domCg_setuser_type.h>
 #include <dom/domCg_newarray_type.h>
+class DAE;
 
 /**
  * Create a new, named param object in the CG Runtime, assign it a type, an
@@ -40,7 +42,9 @@ public:
 	class domSemantic : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SEMANTIC; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SEMANTIC; }
+		static daeInt ID() { return 140; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -64,15 +68,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSemantic() : _value() {}
+		domSemantic(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domSemantic() {}
-		/**
-		 * Copy Constructor
-		 */
-		domSemantic( const domSemantic &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -81,22 +81,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 	class domModifier;
@@ -110,7 +103,9 @@ public:
 	class domModifier : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODIFIER; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODIFIER; }
+		static daeInt ID() { return 141; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Value
 		/**
@@ -134,15 +129,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domModifier() : _value() {}
+		domModifier(DAE& dae) : daeElement(dae), _value() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domModifier() {}
-		/**
-		 * Copy Constructor
-		 */
-		domModifier( const domModifier &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -151,22 +142,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 
@@ -269,15 +253,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_newparam_complexType() : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemCg_param_type(), elemUsertype(), elemArray() {}
+	domCg_newparam_complexType(DAE& dae) : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemCg_param_type(), elemUsertype(), elemArray() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domCg_newparam_complexType() { daeElement::deleteCMDataArray(_CMData); }
-	/**
-	 * Copy Constructor
-	 */
-	domCg_newparam_complexType( const domCg_newparam_complexType &cpy ) { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -290,7 +270,9 @@ protected:
 class domCg_newparam : public daeElement, public domCg_newparam_complexType
 {
 public:
-	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_NEWPARAM; }
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_NEWPARAM; }
+	static daeInt ID() { return 142; }
+	virtual daeInt typeID() const { return ID(); }
 
 public:	//Accessors and Mutators
 	/**
@@ -308,15 +290,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_newparam() {}
+	domCg_newparam(DAE& dae) : daeElement(dae), domCg_newparam_complexType(dae) {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domCg_newparam() {}
-	/**
-	 * Copy Constructor
-	 */
-	domCg_newparam( const domCg_newparam &cpy ) : daeElement(), domCg_newparam_complexType() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -325,22 +303,15 @@ protected:
 public: // STATIC METHODS
 	/**
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
-	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static DLLSPEC daeMetaElement* registerElement();
-
-public: // STATIC MEMBERS
-	/**
-	 * The daeMetaElement that describes this element in the meta object reflection framework.
-	 */
-	static DLLSPEC daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 };
 
 

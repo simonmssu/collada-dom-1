@@ -1,15 +1,16 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
+
 #ifndef __domCOLLADA_h__
 #define __domCOLLADA_h__
 
@@ -35,6 +36,7 @@
 #include <dom/domLibrary_visual_scenes.h>
 #include <dom/domExtra.h>
 #include <dom/domInstanceWithExtra.h>
+class DAE;
 
 /**
  * The COLLADA element declares the root of the document that comprises some
@@ -43,7 +45,9 @@
 class domCOLLADA : public daeElement
 {
 public:
-	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLLADA; }
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLLADA; }
+	static daeInt ID() { return 602; }
+	virtual daeInt typeID() const { return ID(); }
 public:
 	class domScene;
 
@@ -60,7 +64,9 @@ public:
 	class domScene : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCENE; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCENE; }
+		static daeInt ID() { return 603; }
+		virtual daeInt typeID() const { return ID(); }
 
 	protected:  // Elements
 /**
@@ -110,15 +116,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domScene() : elemInstance_physics_scene_array(), elemInstance_visual_scene(), elemExtra_array() {}
+		domScene(DAE& dae) : daeElement(dae), elemInstance_physics_scene_array(), elemInstance_visual_scene(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domScene() {}
-		/**
-		 * Copy Constructor
-		 */
-		domScene( const domScene &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -127,22 +129,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 
@@ -499,15 +494,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCOLLADA() : attrVersion(), attrXml_base(), elemAsset(), elemLibrary_animations_array(), elemLibrary_animation_clips_array(), elemLibrary_cameras_array(), elemLibrary_controllers_array(), elemLibrary_geometries_array(), elemLibrary_effects_array(), elemLibrary_force_fields_array(), elemLibrary_images_array(), elemLibrary_lights_array(), elemLibrary_materials_array(), elemLibrary_nodes_array(), elemLibrary_physics_materials_array(), elemLibrary_physics_models_array(), elemLibrary_physics_scenes_array(), elemLibrary_visual_scenes_array(), elemScene(), elemExtra_array() {}
+	domCOLLADA(DAE& dae) : daeElement(dae), attrXmlns(dae), attrVersion(), attrXml_base(dae), elemAsset(), elemLibrary_animations_array(), elemLibrary_animation_clips_array(), elemLibrary_cameras_array(), elemLibrary_controllers_array(), elemLibrary_geometries_array(), elemLibrary_effects_array(), elemLibrary_force_fields_array(), elemLibrary_images_array(), elemLibrary_lights_array(), elemLibrary_materials_array(), elemLibrary_nodes_array(), elemLibrary_physics_materials_array(), elemLibrary_physics_models_array(), elemLibrary_physics_scenes_array(), elemLibrary_visual_scenes_array(), elemScene(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domCOLLADA() { daeElement::deleteCMDataArray(_CMData); }
-	/**
-	 * Copy Constructor
-	 */
-	domCOLLADA( const domCOLLADA &cpy ) : daeElement() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -516,22 +507,15 @@ protected:
 public: // STATIC METHODS
 	/**
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
-	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static DLLSPEC daeMetaElement* registerElement();
-
-public: // STATIC MEMBERS
-	/**
-	 * The daeMetaElement that describes this element in the meta object reflection framework.
-	 */
-	static DLLSPEC daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 };
 
 

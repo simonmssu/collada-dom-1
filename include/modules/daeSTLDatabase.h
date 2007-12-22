@@ -35,7 +35,7 @@ public:
 	/**
 	  * Constructor
 	  */
-	DLLSPEC daeSTLDatabase();
+	DLLSPEC daeSTLDatabase(DAE& dae);
 	/**
 	  * Destructor
 	  */

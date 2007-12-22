@@ -11,6 +11,7 @@
  * License. 
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dae/domAny.h>
 #include <dae/daeMetaAttribute.h>
@@ -23,7 +24,7 @@
 #include <dae/daeErrorHandler.h>
 
 daeElementRef
-domAny::create(daeInt)
+domAny::create(DAE& dae)
 {
 	domAnyRef ref = new domAny;
 	return ref;
@@ -31,9 +32,9 @@ domAny::create(daeInt)
 
 
 daeMetaElement *
-domAny::registerElement()
+domAny::registerElement(DAE& dae)
 {
-	daeMetaElement *_Meta = new daeMetaElement;
+	daeMetaElement *_Meta = new daeMetaElement(dae);
 	_Meta->setName( "any" );
 	_Meta->registerClass(domAny::create);
 	_Meta->setIsInnerClass( true );
@@ -56,7 +57,7 @@ domAny::registerElement()
 	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( dae.getAtomicTypes().get("xsString"));
 		ma->setOffset( daeOffsetOf( domAny , _value ));
 		ma->setContainer( _Meta );
 		_Meta->appendAttribute(ma);
@@ -66,6 +67,11 @@ domAny::registerElement()
 	_Meta->validate();
 
 	return _Meta;
+}
+
+domAny::~domAny() {
+	// domAny objects own their corresponding daeMetaElement
+	delete _meta;
 }
 
 // Implementation of daeMetaAttribute that understands how domAny works
@@ -88,7 +94,7 @@ daeBool domAny::setAttribute(daeString attrName, daeString attrValue) {
 	attrs.append("");
 	daeMetaAttribute *ma = new domAnyAttribute;
 	ma->setName( attrName );
-	ma->setType( daeAtomicType::get("xsString"));
+	ma->setType( getDAE()->getAtomicTypes().get("xsString"));
 	ma->setOffset((daeInt)attrs.getCount()-1);
 	ma->setContainer( _meta );
 	if (ma->getType()) {

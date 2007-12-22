@@ -24,6 +24,7 @@
 #include <stdint.h>
 #endif 
 
+class DAE;
 class daeAtomicType;
 class daeMetaElement;
 
@@ -61,7 +62,7 @@ public:
 	/**
 	 * constructor
 	 */
-	daeAtomicType();
+	daeAtomicType(DAE& dae);
 	
 public:
 	/**
@@ -218,25 +219,22 @@ public:
 	daeChar*			align(daeChar* ptr) {
 		return (daeChar*)(((intptr_t)(ptr+_alignment-1))&(~(_alignment - 1))); }
 	
-protected:	
-	daeInt					_size;
-	daeInt					_alignment;
-	daeEnum					_typeEnum;
-	daeStringRef			_typeString;
-	daeStringRef			_printFormat;
-	daeStringRef			_scanFormat;
-	//daeStringRefArray		_nameBindings;
-	daeInt					_maxStringLength;
+protected:
+	DAE* _dae;
+	daeInt _size;
+	daeInt _alignment;
+	daeEnum _typeEnum;
+	daeStringRef _typeString;
+	daeStringRef _printFormat;
+	daeStringRef _scanFormat;
+	daeInt _maxStringLength;
 	
 public:
 	/**
 	 * An array of strings as name bindings for this type.
 	 */
-	daeStringRefArray		_nameBindings;
+	daeStringRefArray _nameBindings;
 
-private: // Static Members
-	static daeAtomicTypeArray*	_Types;
-	static daeBool				_TypesInitialized;
 public: // Static Interface
 	/** An enum for identifying the different atomic types */
 	enum daeAtomicTypes {
@@ -277,56 +275,53 @@ public: // Static Interface
 		/** extension atomic type */
 		ExtensionType
 	};
+};
 
-public: // STATIC INTERFACE
+
+// This is a container class for storing a modifiable list of daeAtomicType objects.
+class DLLSPEC daeAtomicTypeList {
+public:
+	daeAtomicTypeList(DAE& dae);
+	~daeAtomicTypeList();
+	
 	/**
-	 * Appends a new type to the global list of types.
+	 * Appends a new type to the list.
 	 * @param t Type to append.
-	 * @return Returns the index of the type in the list of types.
+	 * @return Returns the index of the type in the list.
 	 */
-	static daeInt				append(daeAtomicType* t);
-
-	/**
-	 * Performs a static initialization of all known atomic types.
-	 */
-	static void					initializeKnownTypes();
-
-	/**
-	 * Performs an uninitialization for all known types, freeing associated memory.
-	 */
-	static void					uninitializeKnownTypes();
-	/**
-	 * Performs a static initialization of all known base atomic types.
-	 */
-	static void					initializeKnownBaseTypes();
+	daeInt append(daeAtomicType* t);
 
 	/**
 	 * Gets a type from the list of types, based on its index.
 	 * @param index Index of the type to retrieve.
 	 * @return Returns the @c daeAtomicType indicated by index.
 	 */
-	static const daeAtomicType*	getByIndex(daeInt index);
+	const daeAtomicType* getByIndex(daeInt index);
 
 	/**
-	 * Gets the number of known atomic types.
-	 * @return Returns the number of known atomic types.
+	 * Gets the number of atomic types in the list.
+	 * @return Returns the number of atomic types in the list.
 	 */
-	static daeInt				getCount();
+	daeInt getCount();
 
 	/**
 	 * Finds a type by its string name.
 	 * @param type String name of the type.
 	 * @return Returns the type with the corresponding name.
 	 */
-	static daeAtomicType*		get(daeStringRef type);
+	daeAtomicType* get(daeStringRef type);
 
 	/**
 	 * Finds a type by its enum.
 	 * @param type Enum representing the desired type.
 	 * @return Returns the type with the corresponding enum.
 	 */
-	static daeAtomicType*		get(daeEnum type);
+	daeAtomicType* get(daeEnum type);
+
+private:
+	daeAtomicTypeArray types;
 };
+
 
 /**
  * The @c daeBoolType class is derived from @c daeAtomicType, and implements
@@ -338,7 +333,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeBoolType();
+	daeBoolType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 	
@@ -363,7 +358,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeIntType();
+	daeIntType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -386,7 +381,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeLongType();
+	daeLongType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -409,7 +404,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeUIntType();
+	daeUIntType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -432,7 +427,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeULongType();
+	daeULongType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -455,7 +450,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeShortType();
+	daeShortType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -478,7 +473,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeFloatType();
+	daeFloatType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -503,7 +498,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeDoubleType();
+	daeDoubleType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -528,7 +523,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeStringRefType();
+	daeStringRefType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -556,7 +551,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeTokenType();
+	daeTokenType(DAE& dae);
 	
 public:
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
@@ -586,7 +581,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeElementRefType();
+	daeElementRefType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -619,7 +614,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeEnumType();
+	daeEnumType(DAE& dae);
 
 	/**
 	 * Destructor
@@ -650,7 +645,7 @@ public:
 	/** 
 	*  Constructor.
 	*/	
-	daeRawRefType();
+	daeRawRefType(DAE& dae);
 	
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
@@ -674,7 +669,7 @@ public:
 	/** 
 	*  Constructor.
 	*/	
-	daeResolverType();
+	daeResolverType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 
@@ -703,7 +698,7 @@ public:
 	/** 
 	*  Constructor.
 	*/	
-	daeIDResolverType();
+	daeIDResolverType(DAE& dae);
 public:
 	virtual daeBool memoryToString(daeChar* src, std::ostringstream& dst);
 

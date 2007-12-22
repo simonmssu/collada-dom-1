@@ -20,7 +20,6 @@
 #include <dae/daeMetaAttribute.h>
 #include <dae/daeIOPlugin.h>
 
-class daeIntegrationObject;
 class daeMetaElement;
 class daeDocument;
 
@@ -28,50 +27,42 @@ class daeDocument;
  * The @c daeIOPluginCommon class was created to serve as a base class for the common functionality
  * between the daeLIBXMLPlugin and daeTinyXMLPlugin classes.
  */
-class daeIOPluginCommon : public daeIOPlugin {
+class DLLSPEC daeIOPluginCommon : public daeIOPlugin {
 public:
 	/**
 	 * Constructor.
 	 */
-	DLLSPEC daeIOPluginCommon();
+	daeIOPluginCommon();
 	/**
 	 * Destructor.
 	 */
-	virtual DLLSPEC ~daeIOPluginCommon();
+	virtual ~daeIOPluginCommon();
 
-	virtual DLLSPEC daeInt setMeta(daeMetaElement *topMeta);
+	virtual daeInt setMeta(daeMetaElement *topMeta);
 
 	// Database setup	
-	virtual DLLSPEC void setDatabase(daeDatabase* database);
+	virtual void setDatabase(daeDatabase* database);
 
 	// Operations
-	virtual DLLSPEC daeInt read(daeURI& uri, daeString docBuffer);
+	virtual daeInt read(daeURI& uri, daeString docBuffer);
 
 protected:
 	daeDatabase* database;
 
 	// On failure, these functions return NULL
-	virtual DLLSPEC daeElementRef readFromFile(const daeURI& uri) = 0;
-	virtual DLLSPEC daeElementRef readFromMemory(daeString buffer, const daeURI& baseUri) = 0;
+	virtual daeElementRef readFromFile(const daeURI& uri) = 0;
+	virtual daeElementRef readFromMemory(daeString buffer, const daeURI& baseUri) = 0;
 
-  // Reading support for subclasses
+	// Reading support for subclasses
 	typedef std::pair<daeString, daeString> attrPair;
-	DLLSPEC daeElementRef beginReadElement(daeElement* parentElement, 
-																				 daeString elementName, 
-																				 const std::vector<attrPair>& attributes,
-																				 daeInt lineNumber);
-	DLLSPEC bool readElementText(daeElement* element, daeString text, daeInt elementLineNumber);
+	daeElementRef beginReadElement(daeElement* parentElement, 
+	                               daeString elementName, 
+	                               const std::vector<attrPair>& attributes,
+	                               daeInt lineNumber);
+	bool readElementText(daeElement* element, daeString text, daeInt elementLineNumber);
 
 private:
-	typedef struct
-	{
-		daeElement* element;
-		daeIntegrationObject* intObject;
-	} INTEGRATION_ITEM;
-	
 	daeMetaElement* topMeta;
-
-	void postProcessDom(daeDocument *document, daeElement* element, std::vector<INTEGRATION_ITEM> &intItems);
 };
 
 #endif //__DAE_IO_PLUGIN_COMMON__

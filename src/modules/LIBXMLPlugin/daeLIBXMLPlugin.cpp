@@ -25,6 +25,7 @@
 #include <modules/daeLIBXMLPlugin.h>
 #include <dae.h>
 #include <dom.h>
+#include <dae/daeDatabase.h>
 #include <dae/daeMetaElement.h>
 #include <libxml/xmlreader.h>
 #include <libxml/xmlwriter.h>
@@ -33,6 +34,11 @@
 #include <dae/daeMetaElementAttribute.h>
 
 using namespace std;
+
+// This should be moved to daeIOPlugin.cpp if we ever create such a file
+const daeTArray<std::string>& daeIOPlugin::getSupportedProtocols() {
+	return supportedProtocols;
+}
 
 // Some helper functions for working with libxml
 namespace {
@@ -59,24 +65,19 @@ namespace {
 	}
 }
 
-daeLIBXMLPlugin::daeLIBXMLPlugin()
+daeLIBXMLPlugin::daeLIBXMLPlugin(DAE& dae) : dae(dae), rawRelPath(dae)
 {
-	 xmlInitParser();
-	 rawFile = NULL;
-	 rawByteCount = 0;
-	 saveRawFile = false;
+	supportedProtocols.append("file");
+	supportedProtocols.append("http");
+	xmlInitParser();
+	rawFile = NULL;
+	rawByteCount = 0;
+	saveRawFile = false;
 }
 
 daeLIBXMLPlugin::~daeLIBXMLPlugin()
 {
 	 xmlCleanupParser();
-}
-
-daeTArray<std::string> daeLIBXMLPlugin::getSupportedProtocols() {
-	daeTArray<std::string> protocols;
-	protocols.append("file");
-	protocols.append("http");
-	return protocols;
 }
 
 daeInt daeLIBXMLPlugin::setOption( daeString option, daeString value )
@@ -304,14 +305,7 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 
 void daeLIBXMLPlugin::writeElement( daeElement* element )
 {
-	daeIntegrationObject* _intObject = element->getIntObject();
 	daeMetaElement* _meta = element->getMeta();
-	if(_intObject)
-	{
-		// added in response to bug 478
-		_intObject->toCOLLADAChecked();
-		_intObject->toCOLLADAPostProcessChecked();
-	}
 
 	//intercept <source> elements for special handling
 	if ( saveRawFile )

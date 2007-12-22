@@ -1,15 +1,16 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
+
 #ifndef __domGlsl_surface_type_h__
 #define __domGlsl_surface_type_h__
 
@@ -22,12 +23,13 @@
 #include <dom/domFx_code_profile.h>
 #include <dom/domFx_include_common.h>
 #include <dom/domGlsl_setparam_simple.h>
+class DAE;
 
 /**
  * A surface type for the GLSL profile. This surface inherits from the fx_surface_common
  * type and adds the ability to programmatically generate textures.
  */
-class domGlsl_surface_type_complexType : public domFx_surface_common_complexType
+class domGlsl_surface_type_complexType  : public domFx_surface_common_complexType
 {
 public:
 	class domGenerator;
@@ -41,7 +43,9 @@ public:
 	class domGenerator : public daeElement
 	{
 	public:
-		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GENERATOR; }
+		virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GENERATOR; }
+		static daeInt ID() { return 105; }
+		virtual daeInt typeID() const { return ID(); }
 	public:
 		class domName;
 
@@ -54,7 +58,9 @@ public:
 		class domName : public daeElement
 		{
 		public:
-			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::NAME; }
+			virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::NAME; }
+			static daeInt ID() { return 106; }
+			virtual daeInt typeID() const { return ID(); }
 		protected:  // Attribute
 			xsNCName attrSource;
 
@@ -91,15 +97,11 @@ public:
 			/**
 			 * Constructor
 			 */
-			domName() : attrSource(), _value() {}
+			domName(DAE& dae) : daeElement(dae), attrSource(), _value() {}
 			/**
 			 * Destructor
 			 */
 			virtual ~domName() {}
-			/**
-			 * Copy Constructor
-			 */
-			domName( const domName &cpy ) : daeElement() { (void)cpy; }
 			/**
 			 * Overloaded assignment operator
 			 */
@@ -108,22 +110,15 @@ public:
 		public: // STATIC METHODS
 			/**
 			 * Creates an instance of this class and returns a daeElementRef referencing it.
-			 * @param bytes The size allocated for this instance.
 			 * @return a daeElementRef referencing an instance of this object.
 			 */
-			static DLLSPEC daeElementRef create(daeInt bytes);
+			static DLLSPEC daeElementRef create(DAE& dae);
 			/**
 			 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 			 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 			 * @return A daeMetaElement describing this COLLADA element.
 			 */
-			static DLLSPEC daeMetaElement* registerElement();
-
-		public: // STATIC MEMBERS
-			/**
-			 * The daeMetaElement that describes this element in the meta object reflection framework.
-			 */
-			static DLLSPEC daeMetaElement* _Meta;
+			static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 		};
 
 
@@ -229,15 +224,11 @@ public:
 		/**
 		 * Constructor
 		 */
-		domGenerator() : elemAnnotate_array(), elemCode_array(), elemInclude_array(), elemName(), elemSetparam_array() {}
+		domGenerator(DAE& dae) : daeElement(dae), elemAnnotate_array(), elemCode_array(), elemInclude_array(), elemName(), elemSetparam_array() {}
 		/**
 		 * Destructor
 		 */
 		virtual ~domGenerator() { daeElement::deleteCMDataArray(_CMData); }
-		/**
-		 * Copy Constructor
-		 */
-		domGenerator( const domGenerator &cpy ) : daeElement() { (void)cpy; }
 		/**
 		 * Overloaded assignment operator
 		 */
@@ -246,22 +237,15 @@ public:
 	public: // STATIC METHODS
 		/**
 		 * Creates an instance of this class and returns a daeElementRef referencing it.
-		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static DLLSPEC daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(DAE& dae);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static DLLSPEC daeMetaElement* registerElement();
-
-	public: // STATIC MEMBERS
-		/**
-		 * The daeMetaElement that describes this element in the meta object reflection framework.
-		 */
-		static DLLSPEC daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 	};
 
 
@@ -282,15 +266,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_surface_type_complexType() : elemGenerator() {}
+	domGlsl_surface_type_complexType(DAE& dae) : domFx_surface_common_complexType(dae), elemGenerator() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domGlsl_surface_type_complexType() {}
-	/**
-	 * Copy Constructor
-	 */
-	domGlsl_surface_type_complexType( const domGlsl_surface_type_complexType &cpy ) : domFx_surface_common_complexType() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -303,20 +283,18 @@ protected:
 class domGlsl_surface_type : public daeElement, public domGlsl_surface_type_complexType
 {
 public:
-	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLSL_SURFACE_TYPE; }
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLSL_SURFACE_TYPE; }
+	static daeInt ID() { return 107; }
+	virtual daeInt typeID() const { return ID(); }
 protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_surface_type() {}
+	domGlsl_surface_type(DAE& dae) : daeElement(dae), domGlsl_surface_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domGlsl_surface_type() {}
-	/**
-	 * Copy Constructor
-	 */
-	domGlsl_surface_type( const domGlsl_surface_type &cpy ) : daeElement(), domGlsl_surface_type_complexType() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -325,22 +303,15 @@ protected:
 public: // STATIC METHODS
 	/**
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
-	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static DLLSPEC daeMetaElement* registerElement();
-
-public: // STATIC MEMBERS
-	/**
-	 * The daeMetaElement that describes this element in the meta object reflection framework.
-	 */
-	static DLLSPEC daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 };
 
 

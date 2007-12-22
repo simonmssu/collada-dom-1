@@ -22,6 +22,7 @@
 #include <dae/daeMetaElement.h>
 #include <dae/daeURI.h>
 #include <dom/domTypes.h>
+#include <dom/domConstants.h>
 #include <dae/daeDocument.h>
 #include <dae/daeDatabase.h>
 
@@ -144,9 +145,10 @@ namespace {
 			
 			// Bail if we're looking for an element in a different profile
 			if (!profile.empty()) {
-				if (elt->getElementType() == COLLADA_TYPE::TECHNIQUE_COMMON)
+				if (strcmp(elt->getElementName(), COLLADA_ELEMENT_TECHNIQUE_COMMON) == 0)
 					continue;
-				if (elt->getElementType() == COLLADA_TYPE::TECHNIQUE  &&  profile != elt->getAttribute("profile"))
+				if (strcmp(elt->getElementName(), COLLADA_ELEMENT_TECHNIQUE) == 0  &&
+				    profile != elt->getAttribute("profile"))
 					continue;
 			}
 		
@@ -176,9 +178,10 @@ namespace {
 		do {
 			// Bail if we're looking for an element in a different profile
 			if (!profile.empty()) {
-				if (elt->getElementType() == COLLADA_TYPE::TECHNIQUE_COMMON)
+				if (strcmp(elt->getElementName(), COLLADA_ELEMENT_TECHNIQUE_COMMON) == 0)
 					return UINT_MAX;
-				if (elt->getElementType() == COLLADA_TYPE::TECHNIQUE  &&  profile != elt->getAttribute("profile"))
+				if (strcmp(elt->getElementName(), COLLADA_ELEMENT_TECHNIQUE) == 0  &&
+				    profile != elt->getAttribute("profile"))
 					return UINT_MAX;
 			}
 
@@ -198,7 +201,7 @@ namespace {
 
 		// Get the elements with a matching sid
 		list<daeElement*> elts;
-		container->getDocument()->getDatabase()->sidLookup(sid, elts);
+		container->getDocument()->getDAE()->getDatabase()->sidLookup(sid, elts);
 
 		// Compute the distance from each matching element to the container element
 		unsigned int minDistance = UINT_MAX;

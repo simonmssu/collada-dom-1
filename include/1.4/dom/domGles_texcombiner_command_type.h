@@ -1,15 +1,16 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
+
 #ifndef __domGles_texcombiner_command_type_h__
 #define __domGles_texcombiner_command_type_h__
 
@@ -20,6 +21,7 @@
 #include <dom/domGles_texture_constant_type.h>
 #include <dom/domGles_texcombiner_commandRGB_type.h>
 #include <dom/domGles_texcombiner_commandAlpha_type.h>
+class DAE;
 
 class domGles_texcombiner_command_type_complexType 
 {
@@ -49,15 +51,11 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texcombiner_command_type_complexType() : elemConstant(), elemRGB(), elemAlpha() {}
+	domGles_texcombiner_command_type_complexType(DAE& dae) : elemConstant(), elemRGB(), elemAlpha() {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domGles_texcombiner_command_type_complexType() {}
-	/**
-	 * Copy Constructor
-	 */
-	domGles_texcombiner_command_type_complexType( const domGles_texcombiner_command_type_complexType &cpy ) { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -70,20 +68,18 @@ protected:
 class domGles_texcombiner_command_type : public daeElement, public domGles_texcombiner_command_type_complexType
 {
 public:
-	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXCOMBINER_COMMAND_TYPE; }
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXCOMBINER_COMMAND_TYPE; }
+	static daeInt ID() { return 151; }
+	virtual daeInt typeID() const { return ID(); }
 protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texcombiner_command_type() {}
+	domGles_texcombiner_command_type(DAE& dae) : daeElement(dae), domGles_texcombiner_command_type_complexType(dae) {}
 	/**
 	 * Destructor
 	 */
 	virtual ~domGles_texcombiner_command_type() {}
-	/**
-	 * Copy Constructor
-	 */
-	domGles_texcombiner_command_type( const domGles_texcombiner_command_type &cpy ) : daeElement(), domGles_texcombiner_command_type_complexType() { (void)cpy; }
 	/**
 	 * Overloaded assignment operator
 	 */
@@ -92,22 +88,15 @@ protected:
 public: // STATIC METHODS
 	/**
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
-	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static DLLSPEC daeMetaElement* registerElement();
-
-public: // STATIC MEMBERS
-	/**
-	 * The daeMetaElement that describes this element in the meta object reflection framework.
-	 */
-	static DLLSPEC daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 };
 
 

@@ -75,7 +75,7 @@ public:
 	daeMetaCMPolicy *getParent() { return _parent; }
 
 	/**
-	 * Sets the maximum ordinal value of this policy objects children. Used to keep proper ording for
+	 * Sets the maximum ordinal value of this policy objects children. Used to keep proper ordering for
 	 * cm objects that may appear multiple times.
 	 * @param ord The maximum ordinal value for this content model object.
 	 */
@@ -95,13 +95,13 @@ protected:
 					 daeInt minO, daeInt maxO ) : _container( container ), _parent( parent ), _minOccurs( minO ), 
 					 _maxOccurs( maxO ), _maxOrdinal( 0 ), _ordinalOffset( ordinal ) {}
 
+public:
 	/**
 	 * Destructor.
 	 */
-public: // sthomas
 	virtual ~daeMetaCMPolicy();
-protected: // sthomas
 
+protected:
 	daeMetaElement * _container;
 	daeMetaCMPolicy * _parent;
 	daeTArray<daeMetaCMPolicy*> _children;

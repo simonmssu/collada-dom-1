@@ -18,6 +18,7 @@
 #include <dae/daeArray.h>
 #include <dae/daeURI.h>
 #include <dae/daeIDRef.h>
+#include <dom/domTypes.h>
 
 /**
  * The domAny class allows for weakly typed xml elements.  This class is used anywhere in the 
@@ -89,7 +90,10 @@ public:
 	 * Gets the element type.
 	 * @return Returns the COLLADA_TYPE::TypeEnum value corresponding to this element's type.
 	 */
-	virtual COLLADA_TYPE::TypeEnum getElementType() const { return (COLLADA_TYPE::TypeEnum)1; }
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ANY; }
+
+	static daeInt ID() { return colladaTypeCount()-1; }
+	virtual daeInt typeID() const { return colladaTypeCount()-1; }
 
 protected:
 	/**
@@ -99,7 +103,7 @@ protected:
 	/**
 	 * Destructor
 	 */
-	virtual ~domAny() {}
+	virtual ~domAny();
 	/**
 	 * Copy Constructor
 	 */
@@ -122,17 +126,16 @@ public: //METHODS
 public: // STATIC METHODS
 	/**
 	 * Creates an instance of this class and returns a daeElementRef referencing it.
-	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static DLLSPEC daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(DAE& dae);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * @return A daeMetaElement describing this COLLADA element.
 	 * @remarks Unlike other dom* elements, domAny will always create a new daeMetaElement when this 
 	 *          function is called. 
 	 */
-	static DLLSPEC daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement(DAE& dae);
 
 };
 

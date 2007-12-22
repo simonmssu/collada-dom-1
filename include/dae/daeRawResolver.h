@@ -15,6 +15,7 @@
 #define __DAE_RAWRESOLVER_H__
 
 #include <dae/daeURI.h>
+class DAE;
 
 /**
  * The @c daeRawResolver class derives from @c daeURIResolver and implements
@@ -26,14 +27,14 @@ public:
 	/**
 	 * Constructor.
 	 */
-	DLLSPEC daeRawResolver();
+	DLLSPEC daeRawResolver(DAE& dae);
 	/**
 	 * Destructor.
 	 */
 	DLLSPEC ~daeRawResolver();
 
 public: // Abstract Interface
-	virtual DLLSPEC daeBool resolveElement(daeURI& uri, daeString typeNameHint = NULL);
+	virtual DLLSPEC daeBool resolveElement(daeURI& uri);
 	virtual DLLSPEC daeBool resolveURI(daeURI& uri);
 	virtual DLLSPEC daeString getName();
 	virtual DLLSPEC daeBool isProtocolSupported(daeString protocol);

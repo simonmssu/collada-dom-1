@@ -15,7 +15,8 @@
 #define __DAE_DOM__
 
 class daeMetaElement;
+class DAE;
 
-daeMetaElement* initializeDomMeta();
+daeMetaElement* initializeDomMeta(DAE& dae);
 
 #endif //__DAE_DOM__

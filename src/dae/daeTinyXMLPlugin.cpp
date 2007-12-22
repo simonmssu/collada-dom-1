@@ -31,6 +31,7 @@
 #include <dae/daeErrorHandler.h>
 #include <dae/daeMetaElementAttribute.h>
 #include <dae/daeTinyXMLPlugin.h>
+#include <dae/daeDocument.h>
 
 using namespace std;
 
@@ -43,16 +44,11 @@ namespace {
 daeTinyXMLPlugin::daeTinyXMLPlugin()
 {
   m_doc = NULL;
+	supportedProtocols.append("file");
 }
 
 daeTinyXMLPlugin::~daeTinyXMLPlugin()
 {
-}
-
-daeTArray<std::string> daeTinyXMLPlugin::getSupportedProtocols() {
-	daeTArray<std::string> protocols;
-	protocols.append("file");
-	return protocols;
 }
 
 daeInt daeTinyXMLPlugin::setOption( daeString option, daeString value )
@@ -76,7 +72,6 @@ void daeTinyXMLPlugin::getProgress(daeInt* bytesParsed,
 
 
 daeElementRef daeTinyXMLPlugin::readFromFile(const daeURI& uri) {
-	// !!!steveT: Replace this with real URI to file path code, and update the resolver to only handle the file scheme
 	string file = cdom::uriToFilePath(uri.getURI());
 	if (file.empty())
 		return NULL;
@@ -170,15 +165,7 @@ daeInt daeTinyXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repl
 
 void daeTinyXMLPlugin::writeElement( daeElement* element )
 {
-	daeIntegrationObject* _intObject = element->getIntObject();
 	daeMetaElement* _meta = element->getMeta();
-	if(_intObject)
-	{
-		// added in response to bug 478
-		_intObject->toCOLLADAChecked();
-		_intObject->toCOLLADAPostProcessChecked();
-	}
-
   if (!_meta->getIsTransparent() ) 
   {
 		TiXmlElement* tiElm = new TiXmlElement( element->getElementName() );  

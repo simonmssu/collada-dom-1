@@ -20,9 +20,6 @@
 #include <dae/daeDatabase.h>
 #include <dae/daeErrorHandler.h>
 
-daeAtomicTypeArray* daeAtomicType::_Types = NULL;
-daeBool daeAtomicType::_TypesInitialized = false;
-
 namespace {
 	// Skip leading whitespace
 	daeChar* skipWhitespace(daeChar* s) {
@@ -61,74 +58,65 @@ namespace {
 	}
 }
 
-void
-daeAtomicType::initializeKnownTypes()
-{
-	_Types = new daeAtomicTypeArray;
-	initializeKnownBaseTypes();
-	//mandatory to set here, because the array types are querying the atomic types
-	_TypesInitialized = true;
+
+daeAtomicTypeList::daeAtomicTypeList(DAE& dae) {
+	types.append(new daeUIntType(dae));
+	types.append(new daeIntType(dae));
+	types.append(new daeLongType(dae));
+	types.append(new daeShortType(dae));
+	types.append(new daeULongType(dae));
+	types.append(new daeFloatType(dae));
+	types.append(new daeDoubleType(dae));
+	types.append(new daeStringRefType(dae));
+	types.append(new daeElementRefType(dae));
+	types.append(new daeEnumType(dae));
+	types.append(new daeRawRefType(dae));
+	types.append(new daeResolverType(dae));
+	types.append(new daeIDResolverType(dae));
+	types.append(new daeBoolType(dae));
+	types.append(new daeTokenType(dae));
 }
 
-void 
-daeAtomicType::uninitializeKnownTypes()
-{
-	if ( _TypesInitialized )
-		{
-		_TypesInitialized = false;
-		unsigned int i;
-		for (i=0;i<_Types->getCount();i++)
-		{
-			daeAtomicType* type = _Types->get(i);
-			delete type;
+daeAtomicTypeList::~daeAtomicTypeList() {
+	for (size_t i = 0; i < types.getCount(); i++)
+		delete types[i];
+}
+
+daeInt daeAtomicTypeList::append(daeAtomicType* t) {
+	return (daeInt)types.append(t);
+}
+	
+const daeAtomicType* daeAtomicTypeList::getByIndex(daeInt index) {
+	return types[index];
+}
+	
+daeInt daeAtomicTypeList::getCount() {
+	return (daeInt)types.getCount();
+}
+
+daeAtomicType* daeAtomicTypeList::get(daeStringRef typeString) {
+	for (size_t i = 0; i < types.getCount(); i++) {
+		daeStringRefArray& nameBindings = types[i]->getNameBindings();
+		for (size_t j = 0; j < nameBindings.getCount(); j++) {
+			if (strcmp(typeString, nameBindings[j]) == 0)
+				return types[i];
 		}
-		delete _Types;
 	}
-}
 
-void
-daeAtomicType::initializeKnownBaseTypes()
-{
-	_Types->append(new daeUIntType);
-	_Types->append(new daeIntType);
-	_Types->append(new daeLongType);
-	_Types->append(new daeShortType);
-	_Types->append(new daeULongType);
-	_Types->append(new daeFloatType);
-	_Types->append(new daeDoubleType);
-	_Types->append(new daeStringRefType);
-	_Types->append(new daeElementRefType);
-	_Types->append(new daeEnumType);
-	_Types->append(new daeRawRefType);
-	_Types->append(new daeResolverType);
-	_Types->append(new daeIDResolverType);
-	_Types->append(new daeBoolType);
-	_Types->append(new daeTokenType);
-}
-
-daeAtomicType*
-daeAtomicType::get(daeStringRef typeString)
-{
-	if (!_TypesInitialized)
-		daeAtomicType::initializeKnownTypes();
-
-	int tCount = (int)_Types->getCount();
-	int i;
-	for(i=0; i<tCount; i++) {
-		daeAtomicType* type = _Types->get(i);
-		daeStringRefArray& nameBindings = type->getNameBindings();
-		int count = (int)nameBindings.getCount();
-		int j;
-		for(j=0;j<count;j++)
-			if (!strcmp(nameBindings[j],typeString))
-				break;
-		if (j!=count)
-			return type;
-	}
 	return NULL;
 }
-daeAtomicType::daeAtomicType()
+
+daeAtomicType* daeAtomicTypeList::get(daeEnum typeEnum) {
+	for (size_t i = 0; i < types.getCount(); i++)
+		if (typeEnum == types[i]->getTypeEnum())
+			return types[i];
+	return NULL;
+}
+
+
+daeAtomicType::daeAtomicType(DAE& dae)
 {
+	_dae = &dae;
 	_size = -1;
 	_alignment = -1;
 	_typeEnum = -1;
@@ -136,22 +124,6 @@ daeAtomicType::daeAtomicType()
 	_printFormat = "badtype";
 	_scanFormat = "";
 	_maxStringLength = -1;
-}
-
-daeAtomicType*
-daeAtomicType::get(daeEnum typeEnum)
-{
-	if (!_TypesInitialized)
-		daeAtomicType::initializeKnownTypes();
-
-	int tCount = (int)_Types->getCount();
-	int i;
-	for(i=0; i<tCount; i++) {
-		daeAtomicType* type = _Types->get(i);
-		if (type->getTypeEnum() == typeEnum)
-			return type;
-	}
-	return NULL;
 }
 
 daeBool
@@ -234,24 +206,7 @@ daeAtomicType::compare(daeChar* value1, daeChar* value2) {
 	return memcmp(value1, value2, _size);
 }
 
-daeInt
-daeAtomicType::append(daeAtomicType* t) {
-	if (!_TypesInitialized)
-		daeAtomicType::initializeKnownTypes();
-	return (daeInt)_Types->append(t);
-}
-	
-const daeAtomicType*
-daeAtomicType::getByIndex(daeInt index) {
-	return _Types->get(index);
-}
-	
-daeInt
-daeAtomicType::getCount() {
-	return (daeInt)_Types->getCount();
-}
-
-daeEnumType::daeEnumType()
+daeEnumType::daeEnumType(DAE& dae) : daeAtomicType(dae)
 {
 	_size = sizeof(daeEnum);
 	_alignment = sizeof(daeEnum);
@@ -275,7 +230,7 @@ daeEnumType::~daeEnumType() {
 	}
 }
 
-daeBoolType::daeBoolType()
+daeBoolType::daeBoolType(DAE& dae) : daeAtomicType(dae)
 {
 	_size = sizeof(daeBool);
 	_alignment = sizeof(daeBool);
@@ -289,7 +244,7 @@ daeBoolType::daeBoolType()
 	_nameBindings.append("xsBoolean");
 }
 
-daeIntType::daeIntType()
+daeIntType::daeIntType(DAE& dae) : daeAtomicType(dae)
 {
 	_size = sizeof(daeInt);
 	_alignment = sizeof(daeInt);
@@ -306,7 +261,7 @@ daeIntType::daeIntType()
 	_scanFormat = "%d";
 	_typeString = "int";
 }
-daeLongType::daeLongType()
+daeLongType::daeLongType(DAE& dae) : daeAtomicType(dae)
 {
 	_size = sizeof(daeLong);
 	_alignment = sizeof(daeLong);
@@ -323,7 +278,7 @@ daeLongType::daeLongType()
 #endif
 	_typeString = "long";
 }
-daeShortType::daeShortType()
+daeShortType::daeShortType(DAE& dae) : daeAtomicType(dae)
 {
 	_maxStringLength = 8;
 	_size = sizeof(daeShort);
@@ -335,7 +290,7 @@ daeShortType::daeShortType()
 	_scanFormat = "%hd";
 	_typeString = "short";
 }
-daeUIntType::daeUIntType()
+daeUIntType::daeUIntType(DAE& dae) : daeAtomicType(dae)
 {
 	_maxStringLength = 16;
 	_size = sizeof(daeUInt);
@@ -350,7 +305,7 @@ daeUIntType::daeUIntType()
 	_scanFormat = "%u";
 	_typeString = "uint";
 }
-daeULongType::daeULongType()
+daeULongType::daeULongType(DAE& dae) : daeAtomicType(dae)
 {
 	_size = sizeof(daeULong);
 	_alignment = sizeof(daeULong);
@@ -367,7 +322,7 @@ daeULongType::daeULongType()
 #endif
 	_typeString = "ulong";
 }
-daeFloatType::daeFloatType()
+daeFloatType::daeFloatType(DAE& dae) : daeAtomicType(dae)
 {
 	_maxStringLength = 64;
 	_size = sizeof(daeFloat);
@@ -379,7 +334,7 @@ daeFloatType::daeFloatType()
 	_scanFormat = "%g";
 	_typeString = "float";
 }
-daeDoubleType::daeDoubleType()
+daeDoubleType::daeDoubleType(DAE& dae) : daeAtomicType(dae)
 {
 	_size = sizeof(daeDouble);
 	_alignment = sizeof(daeDouble);
@@ -393,7 +348,7 @@ daeDoubleType::daeDoubleType()
 	_maxStringLength = 64;
 }
 
-daeStringRefType::daeStringRefType()
+daeStringRefType::daeStringRefType(DAE& dae) : daeAtomicType(dae)
 {
 	_size = sizeof(daeStringRef);
 	_alignment = sizeof(daeStringRef);
@@ -406,7 +361,7 @@ daeStringRefType::daeStringRefType()
 	_typeString = "string";
 }
 
-daeTokenType::daeTokenType()
+daeTokenType::daeTokenType(DAE& dae) : daeStringRefType(dae)
 {
 	_size = sizeof(daeStringRef);
 	_alignment = sizeof(daeStringRef);
@@ -425,7 +380,7 @@ daeTokenType::daeTokenType()
 	_typeString = "token";
 }
 
-daeElementRefType::daeElementRefType()
+daeElementRefType::daeElementRefType(DAE& dae) : daeAtomicType(dae)
 {
 	_size = sizeof(daeElementRef);
 	_alignment = sizeof(daeElementRef);
@@ -439,7 +394,7 @@ daeElementRefType::daeElementRefType()
 	_maxStringLength = 64;
 }
 
-daeRawRefType::daeRawRefType()
+daeRawRefType::daeRawRefType(DAE& dae) : daeAtomicType(dae)
 {
 	_size = sizeof(daeRawRef);
 	_alignment = sizeof(daeRawRef);
@@ -451,7 +406,7 @@ daeRawRefType::daeRawRefType()
 	_maxStringLength = 64;
 }
 
-daeResolverType::daeResolverType()
+daeResolverType::daeResolverType(DAE& dae) : daeAtomicType(dae)
 {
 	_size = sizeof(daeURI);
 	_alignment = sizeof(daeURI);
@@ -462,7 +417,7 @@ daeResolverType::daeResolverType()
 	_scanFormat = "%s";
 	_typeString = "resolver";
 }
-daeIDResolverType::daeIDResolverType()
+daeIDResolverType::daeIDResolverType(DAE& dae) : daeAtomicType(dae)
 {
 	_size = sizeof(daeIDRef);
 	_alignment = sizeof(daeIDRef);
@@ -829,7 +784,7 @@ daeMemoryRef daeRawRefType::create() {
 }
 
 daeMemoryRef daeResolverType::create() {
-	return (daeMemoryRef)new daeURI;
+	return (daeMemoryRef)new daeURI(*_dae);
 }
 
 daeMemoryRef daeIDResolverType::create() {
@@ -978,7 +933,13 @@ daeArray* daeRawRefType::createArray() {
 }
 
 daeArray* daeResolverType::createArray() {
-	return new daeTArray<daeURI>;
+	// !!!steveT
+	// The daeURI object no longer has a constructor that takes no arguments, so
+	// it's not compatible with daeTArray. Therefore this method currently can't be used,
+	// and asserts if you try to use it. The DOM doesn't ever call this code now,
+	// so the situation is sort of alright, but we might need to fix this in the future.
+	assert(false);
+	return NULL;
 }
 
 daeArray* daeIDResolverType::createArray() {

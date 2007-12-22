@@ -18,11 +18,13 @@
 #include <dae/daeArrayTypes.h>
 #include <dae/daeElement.h>
 #include <dae/daeMetaAttribute.h>
+#include <dae/daeRefCountedObj.h>
 
+class DAE;
 class daeMetaCMPolicy;
 class daeMetaElementArrayAttribute;
 
-typedef daeElementRef (*daeElementConstructFunctionPtr)(daeInt bytes);
+typedef daeElementRef (*daeElementConstructFunctionPtr)(DAE& dae);
 
 /**
  * Each instance of the @c daeMetaElement class describes a C++ COLLADA dom
@@ -42,45 +44,43 @@ typedef daeElementRef (*daeElementConstructFunctionPtr)(daeInt bytes);
  * @par
  * See @c daeElement for information about the functionality that every @c daeElement implements.
  */
-class daeMetaElement : public daeElement
+class daeMetaElement : public daeRefCountedObj
 {
 protected:
-	daeStringRef						_name;
+	daeStringRef _name;
 
-	daeElementConstructFunctionPtr		_createFunc;
-	daeBool								_needsResolve;
-	daeInt								_elementSize;
+	daeElementConstructFunctionPtr _createFunc;
+	daeBool _needsResolve;
+	daeInt _elementSize;
 	
-	daeMetaAttributeRefArray			_metaAttributes;
-	daeMetaAttributeRef					_metaValue;
-	daeMetaElementArrayAttribute*		_metaContents;
-	daeMetaArrayAttribute*				_metaContentsOrder;
+	daeMetaAttributeRefArray _metaAttributes;
+	daeMetaAttributeRef _metaValue;
+	daeMetaElementArrayAttribute* _metaContents;
+	daeMetaArrayAttribute* _metaContentsOrder;
 
-	daeMetaElement *					_metaIntegration;
-	daeMetaAttributeRef					_metaID;
+	daeMetaAttributeRef _metaID;
 
-	daeMetaAttributePtrArray			_resolvers;
+	daeMetaAttributePtrArray _resolvers;
 
-	daeBool								_isTrackableForQueries;
-	daeBool								_usesStringContents;
+	daeBool _isTrackableForQueries;
+	daeBool _usesStringContents;
 
-	daeBool								_isTransparent;
-	daeBool								_isAbstract;
-	daeBool								_allowsAny;
-	daeBool								_innerClass;
+	daeBool _isTransparent;
+	daeBool _isAbstract;
+	daeBool _allowsAny;
+	daeBool _innerClass;
 	
-	DLLSPEC static daeTArray<daeSmartRef<daeMetaElement> >		&_metas();
-	DLLSPEC static daeTArray< daeMetaElement** >				&_classMetaPointers();
+	daeMetaCMPolicy* _contentModel;	
+	daeMetaArrayAttribute* _metaCMData;
+	daeUInt _numMetaChoices;
 
-    daeMetaCMPolicy *					_contentModel;	
-	daeMetaArrayAttribute*				_metaCMData;
-	daeUInt								_numMetaChoices;
+	DAE& dae;
 
 public:
 	/**
 	 * Constructor
 	 */
-	DLLSPEC daeMetaElement();
+	DLLSPEC daeMetaElement(DAE& dae);
 
 	/**
 	 * Destructor
@@ -88,6 +88,12 @@ public:
 	DLLSPEC ~daeMetaElement();
 
 public: // public accessors
+
+	/**
+	 * Gets the DAE object that owns this daeMetaElement.
+	 * @return Returns the owning DAE.
+	 */
+	DAE* getDAE();
 	
 	/**
 	 * Determines if elements of this type is an inner class.
@@ -147,23 +153,6 @@ public: // public accessors
 	 * @param allows True if this element allows for any child element, false otherwise.
 	 */
 	void setAllowsAny( daeBool allows ) { _allowsAny = allows; }
-
-	/**
-	 * Gets the @c daeMetaElement for the corresponding integration object
-	 * associated with this COLLADA element (if any).
-	 * @return Returns the @c daeMetaElement for the integration object; this can
-	 * be used as a factory.
-	 */
-	daeMetaElement* getMetaIntegration() { return _metaIntegration; }
-
-	/**
-	 * Sets the @c daeMetaElement for the corresponding integration object
-	 * associated with this COLLADA element (if any).
-	 * @param mI @c daeMetaElement for the integration object; this is
-	 * used as a factory to automatically create this integration object
-	 * whenever an instance of this element is created.
-	 */
-	void setMetaIntegration(daeMetaElement* mI) { _metaIntegration = mI; }
 
 	/**
 	 * Gets the @c daeMetaAttribute for the non-element contents of a @c daeElement.
@@ -284,15 +273,13 @@ public:
 	DLLSPEC void appendAttribute(daeMetaAttribute* attr);
 
 	/**
-	 * Registers the function that can construct a C++ instance of this class and the 
-	 * pointer to the classes static meta.  Necessary for the factory system such that C++
-	 * can still call @c new and the @c vptr will still be initialized even when
-	 * constructed via the factory system.
+	 * Registers the function that can construct a C++ instance of this class.
+	 * Necessary for the factory system such that C++ can still call @c new and the
+	 * @c vptr will still be initialized even when constructed via the factory system.
 	 * @param func Pointer to a function that does object construction.
-	 * @param metaPtr Pointer to the class static meta pointer.
 	 */
-	void registerClass(daeElementConstructFunctionPtr func, daeMetaElement** metaPtr = NULL ) {
-		_createFunc = func; if ( metaPtr != NULL ) _classMetaPointers().append( metaPtr );	}
+	void registerClass(daeElementConstructFunctionPtr func) {
+		_createFunc = func; }
 
 	/**
 	 * Determines if this element contains attributes
@@ -388,15 +375,6 @@ public:
 	 * @param cm The root element of the tree of content model policy elements.
 	 */
 	DLLSPEC void setCMRoot( daeMetaCMPolicy *cm );
-
-public:
-	
-	/**
-	 * Releases all of the meta information contained in @c daeMetaElements.
-	 */
-	static DLLSPEC void releaseMetas();
-
-	static const daeTArray<daeSmartRef<daeMetaElement> > &getAllMetas() { return _metas(); }
 };
 
 typedef daeSmartRef<daeMetaElement> daeMetaElementRef;

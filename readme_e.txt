@@ -46,10 +46,6 @@ root:
 
 /samples: 
    
-   /integration:
-     contains an example of integration library which implements the 
-     intGeometry class, used by COLLADA viewer sample
-   
    /export:
      conatins an example that illustrates how to create a document from scratch.
      This example creates a simple textured cube.

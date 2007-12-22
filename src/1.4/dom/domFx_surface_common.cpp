@@ -1,16 +1,17 @@
 /*
  * Copyright 2006 Sony Computer Entertainment Inc.
  *
- * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the License at:
  * http://research.scea.com/scea_shared_source_license.html
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License 
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
- * implied. See the License for the specific language governing permissions and limitations under the 
- * License. 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
+#include <dae.h>
 #include <dae/daeDom.h>
 #include <dom/domFx_surface_common.h>
 #include <dae/daeMetaCMPolicy.h>
@@ -21,302 +22,284 @@
 #include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
-domFx_surface_common::create(daeInt)
+domFx_surface_common::create(DAE& dae)
 {
-	domFx_surface_commonRef ref = new domFx_surface_common;
+	domFx_surface_commonRef ref = new domFx_surface_common(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domFx_surface_common::registerElement()
+domFx_surface_common::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "fx_surface_common" );
-	_Meta->registerClass(domFx_surface_common::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
+
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "fx_surface_common" );
+	meta->registerClass(domFx_surface_common::create);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea = new daeMetaElementAttribute( meta, cm, 0, 0, 1 );
 	mea->setName( "fx_surface_init_common" );
 	mea->setOffset( daeOffsetOf(domFx_surface_common,elemFx_surface_init_common) );
-	mea->setElementType( domFx_surface_init_common::registerElement() );
-	cm->appendChild( new daeMetaGroup( mea, _Meta, cm, 0, 0, 1 ) );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
+	mea->setElementType( domFx_surface_init_common::registerElement(dae) );
+	cm->appendChild( new daeMetaGroup( mea, meta, cm, 0, 0, 1 ) );
+
+	mea = new daeMetaElementAttribute( meta, cm, 1, 0, 1 );
 	mea->setName( "format" );
 	mea->setOffset( daeOffsetOf(domFx_surface_common,elemFormat) );
-	mea->setElementType( domFx_surface_common::domFormat::registerElement() );
+	mea->setElementType( domFx_surface_common::domFormat::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 2, 0, 1 );
 	mea->setName( "format_hint" );
 	mea->setOffset( daeOffsetOf(domFx_surface_common,elemFormat_hint) );
-	mea->setElementType( domFx_surface_format_hint_common::registerElement() );
+	mea->setElementType( domFx_surface_format_hint_common::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	cm = new daeMetaChoice( _Meta, cm, 0, 3, 0, 1 );
 
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( meta, cm, 0, 3, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "size" );
 	mea->setOffset( daeOffsetOf(domFx_surface_common,elemSize) );
-	mea->setElementType( domFx_surface_common::domSize::registerElement() );
+	mea->setElementType( domFx_surface_common::domSize::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 0, 1, 1 );
 	mea->setName( "viewport_ratio" );
 	mea->setOffset( daeOffsetOf(domFx_surface_common,elemViewport_ratio) );
-	mea->setElementType( domFx_surface_common::domViewport_ratio::registerElement() );
+	mea->setElementType( domFx_surface_common::domViewport_ratio::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 0 );
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 4, 0, 1 );
 	mea->setName( "mip_levels" );
 	mea->setOffset( daeOffsetOf(domFx_surface_common,elemMip_levels) );
-	mea->setElementType( domFx_surface_common::domMip_levels::registerElement() );
+	mea->setElementType( domFx_surface_common::domMip_levels::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementAttribute( _Meta, cm, 5, 0, 1 );
+
+	mea = new daeMetaElementAttribute( meta, cm, 5, 0, 1 );
 	mea->setName( "mipmap_generate" );
 	mea->setOffset( daeOffsetOf(domFx_surface_common,elemMipmap_generate) );
-	mea->setElementType( domFx_surface_common::domMipmap_generate::registerElement() );
+	mea->setElementType( domFx_surface_common::domMipmap_generate::registerElement(dae) );
 	cm->appendChild( mea );
-	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 6, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( meta, cm, 6, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domFx_surface_common,elemExtra_array) );
-	mea->setElementType( domExtra::registerElement() );
+	mea->setElementType( domExtra::registerElement(dae) );
 	cm->appendChild( mea );
-	
+
 	cm->setMaxOrdinal( 6 );
-	_Meta->setCMRoot( cm );	
+	meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
-    _Meta->addContents(daeOffsetOf(domFx_surface_common,_contents));
-    _Meta->addContentsOrder(daeOffsetOf(domFx_surface_common,_contentsOrder));
-        
-    _Meta->addCMDataArray(daeOffsetOf(domFx_surface_common,_CMData), 1);
+	meta->addContents(daeOffsetOf(domFx_surface_common,_contents));
+	meta->addContentsOrder(daeOffsetOf(domFx_surface_common,_contentsOrder));
+
+	meta->addCMDataArray(daeOffsetOf(domFx_surface_common,_CMData), 1);
 	//	Add attribute: type
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "type" );
-		ma->setType( daeAtomicType::get("Fx_surface_type_enum"));
+		ma->setType( dae.getAtomicTypes().get("Fx_surface_type_enum"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common , attrType ));
-		ma->setContainer( _Meta );
+		ma->setContainer( meta );
 		ma->setIsRequired( true );
 	
-		_Meta->appendAttribute(ma);
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_common));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domFx_surface_common));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domFx_surface_common::domFormat::create(daeInt)
+domFx_surface_common::domFormat::create(DAE& dae)
 {
-	domFx_surface_common::domFormatRef ref = new domFx_surface_common::domFormat;
+	domFx_surface_common::domFormatRef ref = new domFx_surface_common::domFormat(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domFx_surface_common::domFormat::registerElement()
+domFx_surface_common::domFormat::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "format" );
-	_Meta->registerClass(domFx_surface_common::domFormat::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "format" );
+	meta->registerClass(domFx_surface_common::domFormat::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsToken"));
+		ma->setType( dae.getAtomicTypes().get("xsToken"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common::domFormat , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_common::domFormat));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domFx_surface_common::domFormat));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domFx_surface_common::domSize::create(daeInt)
+domFx_surface_common::domSize::create(DAE& dae)
 {
-	domFx_surface_common::domSizeRef ref = new domFx_surface_common::domSize;
+	domFx_surface_common::domSizeRef ref = new domFx_surface_common::domSize(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domFx_surface_common::domSize::registerElement()
+domFx_surface_common::domSize::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "size" );
-	_Meta->registerClass(domFx_surface_common::domSize::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "size" );
+	meta->registerClass(domFx_surface_common::domSize::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Int3"));
+		ma->setType( dae.getAtomicTypes().get("Int3"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common::domSize , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_common::domSize));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domFx_surface_common::domSize));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domFx_surface_common::domViewport_ratio::create(daeInt)
+domFx_surface_common::domViewport_ratio::create(DAE& dae)
 {
-	domFx_surface_common::domViewport_ratioRef ref = new domFx_surface_common::domViewport_ratio;
+	domFx_surface_common::domViewport_ratioRef ref = new domFx_surface_common::domViewport_ratio(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domFx_surface_common::domViewport_ratio::registerElement()
+domFx_surface_common::domViewport_ratio::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "viewport_ratio" );
-	_Meta->registerClass(domFx_surface_common::domViewport_ratio::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "viewport_ratio" );
+	meta->registerClass(domFx_surface_common::domViewport_ratio::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("Float2"));
+		ma->setType( dae.getAtomicTypes().get("Float2"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common::domViewport_ratio , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_common::domViewport_ratio));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domFx_surface_common::domViewport_ratio));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domFx_surface_common::domMip_levels::create(daeInt)
+domFx_surface_common::domMip_levels::create(DAE& dae)
 {
-	domFx_surface_common::domMip_levelsRef ref = new domFx_surface_common::domMip_levels;
+	domFx_surface_common::domMip_levelsRef ref = new domFx_surface_common::domMip_levels(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domFx_surface_common::domMip_levels::registerElement()
+domFx_surface_common::domMip_levels::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "mip_levels" );
-	_Meta->registerClass(domFx_surface_common::domMip_levels::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "mip_levels" );
+	meta->registerClass(domFx_surface_common::domMip_levels::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsUnsignedInt"));
+		ma->setType( dae.getAtomicTypes().get("xsUnsignedInt"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common::domMip_levels , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_common::domMip_levels));
-	_Meta->validate();
 
-	return _Meta;
+	meta->setElementSize(sizeof(domFx_surface_common::domMip_levels));
+	meta->validate();
+
+	return meta;
 }
 
 daeElementRef
-domFx_surface_common::domMipmap_generate::create(daeInt)
+domFx_surface_common::domMipmap_generate::create(DAE& dae)
 {
-	domFx_surface_common::domMipmap_generateRef ref = new domFx_surface_common::domMipmap_generate;
+	domFx_surface_common::domMipmap_generateRef ref = new domFx_surface_common::domMipmap_generate(dae);
 	return ref;
 }
 
 
 daeMetaElement *
-domFx_surface_common::domMipmap_generate::registerElement()
+domFx_surface_common::domMipmap_generate::registerElement(DAE& dae)
 {
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "mipmap_generate" );
-	_Meta->registerClass(domFx_surface_common::domMipmap_generate::create, &_Meta);
+	daeMetaElement* meta = dae.getMeta(ID());
+	if ( meta != NULL ) return meta;
 
-	_Meta->setIsInnerClass( true );
+	meta = new daeMetaElement(dae);
+	dae.setMeta(ID(), *meta);
+	meta->setName( "mipmap_generate" );
+	meta->registerClass(domFx_surface_common::domMipmap_generate::create);
+
+	meta->setIsInnerClass( true );
 	//	Add attribute: _value
- 	{
+	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsBoolean"));
+		ma->setType( dae.getAtomicTypes().get("xsBoolean"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common::domMipmap_generate , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
+		ma->setContainer( meta );
+		meta->appendAttribute(ma);
 	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_common::domMipmap_generate));
-	_Meta->validate();
 
-	return _Meta;
-}
+	meta->setElementSize(sizeof(domFx_surface_common::domMipmap_generate));
+	meta->validate();
 
-
-daeMetaElement * domFx_surface_common::_Meta = NULL;
-daeMetaElement * domFx_surface_common::domFormat::_Meta = NULL;
-daeMetaElement * domFx_surface_common::domSize::_Meta = NULL;
-daeMetaElement * domFx_surface_common::domViewport_ratio::_Meta = NULL;
-daeMetaElement * domFx_surface_common::domMip_levels::_Meta = NULL;
-daeMetaElement * domFx_surface_common::domMipmap_generate::_Meta = NULL;
-
-
-//Backwards Compatibility functions
-domFx_surface_common_complexType::domInit_from_Array &domFx_surface_common_complexType::getInit_from_array() { 
-	if (elemFx_surface_init_common != NULL ) {
-		return elemFx_surface_init_common->getInit_from_array(); 
-	}
-	return emptyArray;
-}
-
-const domFx_surface_common_complexType::domInit_from_Array &domFx_surface_common_complexType::getInit_from_array() const { 
-	if (elemFx_surface_init_common != NULL ) {
-		return elemFx_surface_init_common->getInit_from_array(); 
-	}
-	return emptyArray;
+	return meta;
 }
 

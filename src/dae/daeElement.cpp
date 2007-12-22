@@ -19,75 +19,8 @@
 #include <dae/daeDatabase.h>
 #include <dae/daeErrorHandler.h>
 
-#include <dae/daeIntegrationObject.h>
 #include <dae/daeURI.h>
 #include <dae/domAny.h>
-
-daeElementRef DAECreateElement(int)
-{
-	return new daeElement;
-}
-
-//Contributed by Nus - Wed, 08 Nov 2006
-// static daeElementRefArray resolveArray;
-static daeElementRefArray* pResolveArray = NULL;
-//static char StaticIndentBuf[] = "";
-
-extern "C" void initializeResolveArray(void)
-{
-  if(!pResolveArray) {
-    pResolveArray = new daeElementRefArray;
-  }
-}
-
-extern "C" void terminateResolveArray(void)
-{
-  if(pResolveArray) {
-    delete pResolveArray;
-    pResolveArray = NULL;
-  }
-}
-//----------------------------------
-
-// sthomas (see https://collada.org/public_forum/viewtopic.php?t=325&)
-void daeElement::releaseElements()
-{
-    // resolveArray.clear();
-    pResolveArray->clear();
-}
-
-daeIntegrationObject*
-daeElement::getIntObject( IntegrationState from_state, IntegrationState to_state )
-{
-	if ( !_intObject ) {
-		return NULL;
-	}
-	if ( from_state >= int_created ) {
-		if ( _intObject->_from_state < int_created ) {
-			daeErrorHandler::get()->handleWarning("Warning: getIntObject tries to get object that is not created (from)");
-			return NULL;
-		}
-		if ( from_state >= int_converted ) {
-			_intObject->fromCOLLADAChecked();
-			if ( from_state == int_finished ) {
-				_intObject->fromCOLLADAPostProcessChecked();
-			}
-		}
-	}
-	if ( to_state >= int_created ) {
-		if ( _intObject->_to_state < int_created ) {
-			daeErrorHandler::get()->handleWarning("Warning: getIntObject tries to get object that is not created (to)");
-			return NULL;
-		}
-		if ( to_state >= int_converted ) {
-			_intObject->toCOLLADAChecked();
-			if ( to_state == int_finished ) {
-				_intObject->toCOLLADAPostProcessChecked();
-			}
-		}
-	}
-	return _intObject;
-}
 
 daeElementRef
 daeElement::createElement(daeString className)
@@ -402,46 +335,6 @@ daeMemoryRef daeElement::getValuePointer() {
 }
 
 void
-daeElement::appendResolveElement(daeElement* elem)
-{
-//Contributed by Nus - Wed, 08 Nov 2006
-	// resolveArray.append(elem);
-	pResolveArray->append(elem);
-//----------------------
-}
-void
-daeElement::resolveAll()
-{
-	int cnt;
-//Contributed by Nus - Wed, 08 Nov 2006
-	// while(resolveArray.getCount()) {
-	while(pResolveArray->getCount()) {
-		// cnt = (int)resolveArray.getCount();
-		cnt = (int)pResolveArray->getCount();
-		// daeElementRef elem = resolveArray[cnt-1];
-		daeElementRef elem = (*pResolveArray)[cnt-1];
-		// resolveArray.removeIndex(cnt-1);
-		pResolveArray->removeIndex(cnt-1);
-//--------------------------
-		elem->resolve();
-	}
-	/*size_t cnt = resolveArray.getCount();
-	for ( size_t i =0; i < cnt; i++ ) {
-		resolveArray[i]->resolve();
-	}
-	resolveArray.clear();*/
-}
-
-void
-daeElement::clearResolveArray()
-{
-//Contributed by Nus - Wed, 08 Nov 2006
-	// resolveArray.clear();
-	pResolveArray->clear();
-//------------------------
-}
-
-void
 daeElement::resolve()
 {
 	if (_meta == NULL)
@@ -461,14 +354,7 @@ daeElement::setup(daeMetaElement* meta)
 		return;
 	_meta = meta;
 	if (meta->needsResolve())
-		appendResolveElement((daeElement*)this);
-	daeMetaElement* intlibMeta = meta->getMetaIntegration();
-	if (intlibMeta != NULL)
-	{
-		 daeElementRef intObj = intlibMeta->create();
-		 intObj->ref(); //inc the ref count
-		_intObject = (daeIntegrationObject*)(daeElement*)intObj;
-	}
+		getDAE()->appendResolveElement(this);
 	daeMetaAttributeRefArray& attrs = meta->getMetaAttributes();
 	int macnt = (int)attrs.getCount();
 
@@ -500,19 +386,23 @@ daeElement::setup(daeMetaElement* meta)
 #endif	
 }
 
-daeElement::daeElement():
-		_intObject(0),
-		_parent(NULL),
-		_document(NULL),
-		_meta(NULL),
-		_elementName(NULL)
-{}
+void daeElement::init() {
+	_parent = NULL;
+	_document = NULL;
+	_meta = NULL;
+	_elementName = NULL;
+}
+
+daeElement::daeElement() {
+	init();
+}
+
+daeElement::daeElement(DAE& dae) {
+	init();
+}
 
 daeElement::~daeElement()
 {
-	if (_intObject)
-		_intObject->release();
-
 	if (_elementName) {
 		delete[] _elementName;
 		_elementName = NULL;
@@ -563,7 +453,7 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 	// any additional special case code for cloning domAny. Unfortunately, we don't have a
 	// daeMetaElement::clone method.
 	bool any = strcmp(getTypeName(), "any") == 0;
-	daeElementRef ret = any ? domAny::registerElement()->create() : _meta->create();
+	daeElementRef ret = any ? domAny::registerElement(*getDAE())->create() : _meta->create();
 	ret->setElementName( _elementName );
 
 	// Copy the attributes and character data. Requires special care for domAny.
@@ -688,4 +578,8 @@ daeElement* daeElement::getAncestor(daeString eltName) {
 	if (!eltName)
 		return NULL;
 	return getAncestor(matchName(eltName));
+}
+
+DAE* daeElement::getDAE() {
+	return _meta->getDAE();
 }

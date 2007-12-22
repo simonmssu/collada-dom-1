@@ -10,15 +10,13 @@
  * implied. See the License for the specific language governing permissions and limitations under the 
  * License. 
  */
+#include <dae.h>
 #include <dae/daeDom.h>
-
 #include <dae/daeMetaElement.h>
-
 #include <dom.h>
 
-daeMetaElement* initializeDomMeta()
+daeMetaElement* initializeDomMeta(DAE& dae)
 {
-	registerDomTypes();
-	
-	return registerDomElements();
+	registerDomTypes(dae);
+	return registerDomElements(dae);
 }

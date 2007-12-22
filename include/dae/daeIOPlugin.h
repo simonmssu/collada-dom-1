@@ -26,7 +26,7 @@ class daeDocument;
 * the interface between the COLLADA runtime and the backend storage. A native
 * COLLADA XML plugin implementation is provided along with this interface.
 */
-class daeIOPlugin
+class DLLSPEC daeIOPlugin
 {
 public:	
 	/**
@@ -42,7 +42,7 @@ public:
 	* @param topMeta Top meta object to use to create objects to fill the database.
 	* @return Returns DAE_OK if successful, otherwise returns a negative value defined in daeError.h.
 	*/
-	virtual DLLSPEC daeInt setMeta(daeMetaElement *topMeta) = 0;
+	virtual daeInt setMeta(daeMetaElement *topMeta) = 0;
 
 	/** @name Database setup	 */
 	//@{
@@ -53,7 +53,7 @@ public:
 	* for storage and queries.
 	* @param database Database to set.
 	*/
-	virtual DLLSPEC void setDatabase(daeDatabase* database) = 0;
+	virtual void setDatabase(daeDatabase* database) = 0;
 	//@}
 
 
@@ -67,9 +67,9 @@ public:
 	* @param docBuffer A string containing the text of the document to load. This is an optional attribute
 	* and should only be used if the document has already been loaded into memory.
 	* @return Returns DAE_OK if successfully loaded, otherwise returns a negative value defined in daeError.h.
-	* @see @c daeInterface::load().
+	* @see @c DAE::load().
 	*/
-	virtual DLLSPEC daeInt read(daeURI& uri, daeString docBuffer) = 0;
+	virtual daeInt read(daeURI& uri, daeString docBuffer) = 0;
 
 	/** @name Operations	 */
 	//@{
@@ -80,9 +80,9 @@ public:
 	* @param document Pointer to the document that we're going to write out.
 	* @param replace True if write should overwrite an existing file. False otherwise.
 	* @return Returns DAE_OK if success, a negative value defined in daeError.h otherwise.
-	* @see @c daeInterface::saveAS()
+	* @see @c DAE::saveAs()
 	*/
-	virtual DLLSPEC daeInt write(daeURI *name, daeDocument *document, daeBool replace) = 0;
+	virtual daeInt write(daeURI *name, daeDocument *document, daeBool replace) = 0;
 	//@}
 	
 	/** @name Load/Save Progress */
@@ -103,17 +103,17 @@ public:
 	* the <tt><i> bytesParsed </i></tt> and <tt><i> lineNumber </i></tt> counters. The system resets the counter at the beginning of 
 	* each file.
 	*/
-	virtual DLLSPEC void getProgress(daeInt* bytesParsed,
-							 daeInt* lineNumber,
-							 daeInt* totalBytes,
-							 daeBool reset = false ) = 0;
+	virtual void getProgress(daeInt* bytesParsed,
+	                         daeInt* lineNumber,
+	                         daeInt* totalBytes,
+	                         daeBool reset = false ) = 0;
 	//@}
 
 	/**
 	 * Returns a list of the URI protocols that this plugin supports.
 	 * @return Returns a daeArray containing the supported protocols.
 	 */
-	virtual DLLSPEC daeTArray<std::string> getSupportedProtocols() = 0;
+	virtual const daeTArray<std::string>& getSupportedProtocols();
 
 	/**
 	 * setOption allows you to set options for this IOPlugin. Which options a plugin supports is
@@ -123,7 +123,7 @@ public:
 	 * @param value The value to set the option.
 	 * @return Returns DAE_OK upon success.
 	 */
-	virtual DLLSPEC daeInt setOption( daeString option, daeString value ) = 0;
+	virtual daeInt setOption( daeString option, daeString value ) = 0;
 
 	/**
 	 * getOption retrieves the value of an option from this IOPlugin. Which options a plugin supports is
@@ -131,7 +131,12 @@ public:
 	 * @param option The option to get.
 	 * @return Returns the string value of the option or NULL if option is not valid.
 	 */
-	virtual DLLSPEC daeString getOption( daeString option ) = 0;
+	virtual daeString getOption( daeString option ) = 0;
+
+protected:
+	// This is an array of the URI protocols supported by this plugin, e.g. "http", "file",
+	// etc. Each plugin should set initialize this variable in the constructor.
+	daeTArray<std::string> supportedProtocols;
 };
 
 #endif // __DAE_IOPLUGIN__

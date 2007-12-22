@@ -12,6 +12,7 @@
  */
 
 #include <dae.h>
+#include <dae/daeDatabase.h>
 #include <dae/daeDom.h>
 #include <dae/daeIDRef.h>
 #include <dae/daeMetaElement.h>
@@ -19,6 +20,8 @@
 #include <dae/daeErrorHandler.h>
 #include <dae/daeRawResolver.h>
 #include <dae/daeStandardURIResolver.h>
+#include <dom/domTypes.h>
+#include <dom/domCOLLADA.h>
 
 #ifndef NO_DEFAULT_PLUGIN
 
@@ -47,44 +50,27 @@ using namespace std;
 extern daeString COLLADA_VERSION;		 
 
 daeInt DAEInstanceCount = 0;
-daeMetaElement *DAE::topMeta = NULL;
 
 void
 DAE::cleanup()
 {
-	if (topMeta != NULL) {
-		daeMetaElement::releaseMetas();
-		daeAtomicType::uninitializeKnownTypes();
-		topMeta = NULL;
-//Contributed by Nus - Wed, 08 Nov 2006
-		terminateURI();
-		terminateResolveArray();
-		daeStringRef::releaseStringTable();
-		daeIDRefResolver::terminateIDRefSolver();
-//----------------------
-	}
+	//Contributed by Nus - Wed, 08 Nov 2006
+	daeStringRef::releaseStringTable();
+	//----------------------
 }
 
 void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 	database = NULL;
 	plugin = NULL;
-	resolver = NULL;
-	idResolver = NULL;
 	defaultDatabase = false;
 	defaultPlugin = false;
-	registerFunc = NULL;
+	metas.setCount(colladaTypeCount());
 
-//Contributed by Nus - Wed, 08 Nov 2006
-	initializeURI();
-	initializeResolveArray();
-	daeIDRefResolver::initializeIDRefSolver();
-//------------------------
-	if ( DAEInstanceCount == 0 ) {
-		topMeta = initializeDomMeta();
-	}
+	initializeDomMeta(*this);
 	DAEInstanceCount++;
-	rawResolver = new daeRawResolver();
-	idResolver = new daeDefaultIDRefResolver();
+	uriResolvers.addResolver(new daeStandardURIResolver(*this));
+	uriResolvers.addResolver(new daeRawResolver(*this));
+	idRefResolvers.addResolver(new daeDefaultIDRefResolver(*this));
 
 	setDatabase(database_);
 	setIOPlugin(ioPlugin);
@@ -94,18 +80,10 @@ DAE::~DAE()
 {
 	if (defaultDatabase)
 		delete database;
-	if (defaultPlugin) {
+	if (defaultPlugin)
 		delete plugin;
-		delete resolver;
-	}
-	delete rawResolver;
-	delete idResolver;
-	daeElement::clearResolveArray();
-	--DAEInstanceCount;
-	if ( DAEInstanceCount <= 0 )
-	{
+	if ( --DAEInstanceCount <= 0 )
 		cleanup();
-	}
 }
 
 // Database setup	
@@ -126,13 +104,10 @@ daeInt DAE::setDatabase(daeDatabase* _database)
 	else
 	{
 		//create default database
-		database = new daeSTLDatabase;
+		database = new daeSTLDatabase(*this);
 		defaultDatabase = true;
 	}
-	// !!!GAC Not sure what good the error return is, current implementations never fail, what would we do if they did?
-	int res = database->setMeta(topMeta);
-	(void)res;
-	((daeDefaultIDRefResolver*)idResolver)->setDatabase( database );
+	database->setMeta(getMeta(domCOLLADA::ID()));
 	return DAE_OK;
 }
 
@@ -145,10 +120,7 @@ daeIOPlugin* DAE::getIOPlugin()
 daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 {
 	if (defaultPlugin) 
-	{
 		delete plugin;
-		delete resolver;
-	}
 	if (_plugin)
 	{
 		defaultPlugin = false;
@@ -162,17 +134,14 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 #ifdef DEFAULT_BXCEPLUGIN
 		plugin = new daebXCePlugin();
 		defaultPlugin = true;
-		resolver = new daeStandardURIResolver(database, plugin);
 #else
 #ifdef DOM_INCLUDE_LIBXML
-		plugin = new daeLIBXMLPlugin;
+		plugin = new daeLIBXMLPlugin(*this);
 		defaultPlugin = true;
-		resolver = new daeStandardURIResolver(database, plugin);
 #else
 #ifdef DOM_INCLUDE_TINYXML
 		plugin = new daeTinyXMLPlugin;
 		defaultPlugin = true;
-		resolver = new daeStandardURIResolver(database, plugin);
 #else
 		daeErrorHandler::get()->handleWarning( "No IOPlugin Set! Neither DOM_INCLUDE_LIBXML or DOM_INCLUDE_TINYXML  is defined." );
 		plugin = NULL;
@@ -187,7 +156,7 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 		return DAE_ERR_BACKEND_IO;
 #endif // NO_DEFAULT_PLUGIN
 	}
-	int res = plugin->setMeta(topMeta);
+	int res = plugin->setMeta(getMeta(domCOLLADA::ID()));
 	if (res != DAE_OK)
 	{
 		if (defaultPlugin)
@@ -201,18 +170,6 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 	return DAE_OK;
 }
 
-// Integration Library Setup
-daeIntegrationLibraryFunc DAE::getIntegrationLibrary()
-{
-	return registerFunc;
-}
-
-daeInt DAE::setIntegrationLibrary(daeIntegrationLibraryFunc _registerFunc)
-{
-	registerFunc = _registerFunc;
-	return DAE_OK;
-}
-
 // batch file operations
 daeInt DAE::load(daeString uri, daeString docBuffer)
 {
@@ -222,9 +179,6 @@ daeInt DAE::load(daeString uri, daeString docBuffer)
 	if (!plugin)
 		setIOPlugin(NULL);
 	
-	if (registerFunc) 
-		registerFunc();
-
 	if ( !plugin || !database ) {
 		//printf( "no plugin or database\n" );
 		daeErrorHandler::get()->handleError("no plugin or database\n");
@@ -236,7 +190,7 @@ daeInt DAE::load(daeString uri, daeString docBuffer)
 	if (!uri || uri[0] == '\0')
 		return DAE_ERR_INVALID_CALL;
 
-	daeURI tempURI(uri);
+	daeURI tempURI(*this, uri);
 	
 	return plugin->read(tempURI, docBuffer);
 }
@@ -248,9 +202,6 @@ daeInt DAE::save(daeString uri, daeBool replace)
 	if (!plugin)
 		setIOPlugin(NULL);
 
-	if (registerFunc) 
-		registerFunc();
-	
 	if ( !plugin || !database ) {
 		return DAE_ERR_BACKEND_IO;
 	}
@@ -274,9 +225,6 @@ daeInt DAE::save(daeUInt documentIndex, daeBool replace)
 	if (!plugin)
 		setIOPlugin(NULL);
 
-	if (registerFunc) 
-		registerFunc();
-	
 	if ( !plugin || !database ) {
 		return DAE_ERR_BACKEND_IO;
 	}
@@ -299,9 +247,6 @@ daeInt DAE::saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace)
 	if (!plugin)
 		setIOPlugin(NULL);
 
-	if (registerFunc) 
-		registerFunc();
-	
 	if ( !plugin || !database ) {
 		return DAE_ERR_BACKEND_IO;
 	}
@@ -314,7 +259,7 @@ daeInt DAE::saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace)
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
 	// Make a URI from uriToSaveTo and save to that
-	daeURI tempURI(uriToSaveTo, true);
+	daeURI tempURI(*this, uriToSaveTo, true);
 	return plugin->write(&tempURI, document, replace);
 	
 }
@@ -326,9 +271,6 @@ daeInt DAE::saveAs(daeString uriToSaveTo, daeUInt documentIndex, daeBool replace
 	if (!plugin)
 		setIOPlugin(NULL);
 
-	if (registerFunc) 
-		registerFunc();
-	
 	if ( !plugin || !database ) {
 		return DAE_ERR_BACKEND_IO;
 	}
@@ -340,7 +282,7 @@ daeInt DAE::saveAs(daeString uriToSaveTo, daeUInt documentIndex, daeBool replace
 
 	daeDocument *document = database->getDocument(documentIndex);
 	
-	daeURI tempURI(uriToSaveTo, true);
+	daeURI tempURI(*this, uriToSaveTo, true);
 	return plugin->write(&tempURI, document, replace);
 }
 daeInt DAE::unload(daeString uri)
@@ -354,43 +296,44 @@ daeInt DAE::unload(daeString uri)
 namespace {
 	// Take a URI ref and return a full URI. Uses the current working directory
 	// as the base URI if a relative URI reference is given.
-	string makeFullUri(const string& uriRef) {
-		daeURI uri(uriRef.c_str());
+	string makeFullUri(DAE& dae, const string& uriRef) {
+		daeURI uri(dae, uriRef.c_str());
 		return uri.getURI();
 	}
 
 	// Take a file path (either relative or absolute) and return a full URI
 	// representing the path. If a relative path is given, uses the current working
 	// directory as a base URI to construct the full URI.
-	string filePathToFullUri(const string& path) {
-		return makeFullUri(cdom::filePathToUri(path));
+	string filePathToFullUri(DAE& dae, const string& path) {
+		return makeFullUri(dae, cdom::filePathToUri(path));
 	}
 }
 
 daeInt DAE::loadFile(daeString file, daeString memBuffer) {
-	return load(filePathToFullUri(file).c_str(), memBuffer);
+	return load(filePathToFullUri(*this, file).c_str(), memBuffer);
 }
 
 daeInt DAE::saveFile(daeString file, daeBool replace) {
-	return save(filePathToFullUri(file).c_str(), replace);
+	return save(filePathToFullUri(*this, file).c_str(), replace);
 }
 
 daeInt DAE::saveFileAs(daeString fileToSaveTo, daeString file, daeBool replace) {
-	return saveAs(filePathToFullUri(fileToSaveTo).c_str(), filePathToFullUri(file).c_str(), replace);
+	return saveAs(filePathToFullUri(*this, fileToSaveTo).c_str(),
+	              filePathToFullUri(*this, file).c_str(), replace);
 }
 
 daeInt DAE::saveFileAs(daeString fileToSaveTo, daeUInt documentIndex, daeBool replace) {
-	return saveAs(filePathToFullUri(fileToSaveTo).c_str(), documentIndex, replace);
+	return saveAs(filePathToFullUri(*this, fileToSaveTo).c_str(), documentIndex, replace);
 }
 
 daeInt DAE::unloadFile(daeString file) {
-	return unload(filePathToFullUri(file).c_str());
+	return unload(filePathToFullUri(*this, file).c_str());
 }
 
 
 daeInt DAE::clear()
 {
-	daeElement::clearResolveArray();
+	resolveArray.clear();
 	if (database)
 		database->clear();
 	return DAE_OK;
@@ -455,14 +398,60 @@ daeInt DAE::setDom(daeString uri, domCOLLADA* dom)
 }
 
 domCOLLADA* DAE::getDomFile(daeString file) {
-	return getDom(filePathToFullUri(file).c_str());
+	return getDom(filePathToFullUri(*this, file).c_str());
 }
 
 daeInt DAE::setDomFile(daeString file, domCOLLADA* dom) {
-	return setDom(filePathToFullUri(file).c_str(), dom);
+	return setDom(filePathToFullUri(*this, file).c_str(), dom);
 }
 
 daeString DAE::getDomVersion()
 {
 	return(COLLADA_VERSION);
+}
+
+daeAtomicTypeList& DAE::getAtomicTypes() {
+	return atomicTypes;
+}
+
+daeMetaElement* DAE::getMeta(daeInt typeID) {
+	if (typeID < 0 || typeID >= daeInt(metas.getCount()))
+		return NULL;
+	return metas[typeID];
+}
+
+daeMetaElementRefArray& DAE::getAllMetas() {
+	return metas;
+}
+
+void DAE::setMeta(daeInt typeID, daeMetaElement& meta) {
+	if (typeID < 0 || typeID >= daeInt(metas.getCount()))
+		return;
+	metas[typeID] = &meta;
+}
+
+void DAE::appendResolveElement(daeElement* elem) {
+	resolveArray.append(elem);
+}
+
+void DAE::resolveAll() {
+	for (size_t i = 0; i < resolveArray.getCount(); i++)
+		resolveArray[i]->resolve();
+	resolveArray.clear();
+}
+
+daeURIResolverList& DAE::getURIResolvers() {
+	return uriResolvers;
+}
+
+daeURI& DAE::getBaseURI() {
+	return baseUri;
+}
+
+void DAE::setBaseURI(const daeURI& uri) {
+	baseUri = uri;
+}
+
+daeIDRefResolverList& DAE::getIDRefResolvers() {
+	return idRefResolvers;
 }
