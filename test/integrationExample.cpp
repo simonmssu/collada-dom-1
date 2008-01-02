@@ -1,8 +1,13 @@
 // The DOM used to provide an "integration library", which was a mechanism for
 // converting the DOM's representation of a Collada model to the user's representation.
 // The integration classes were very clumsy and not particularly useful, so they
-// were removed in December 08. This file shows how you might write a Collada
+// were removed in December 07. This program shows how you might write a Collada
 // importer without using the integration library.
+//
+// Our model structure consists of nodes, meshes, and materials. We create them by
+// converting from domNode, domGeometry, and domMaterial, respectively. We'll
+// demonstrate how you can write an importer to traverse the Collada DOM element
+// hierarchy and build up our own model structure based on what's in the document.
 
 #include <map>
 #include <list>
