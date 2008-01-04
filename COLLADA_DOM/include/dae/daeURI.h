@@ -66,6 +66,7 @@ class DLLSPEC daeURI
 {
 private:
 	void internalSetURI(daeString uri);
+	void internalResolveElement();
 	
 public:
 	/**
@@ -171,6 +172,9 @@ public:
 	 */
 	daeURI(const daeURI& constructFromURI);
 
+	// !!!steveT Add a constructor that takes a daeElement and change the dom* objects
+	// to always create daeURIs using that constructor.
+
 	/**
 	 * Gets the DAE objects associated with this daeURI.
 	 * @return Returns a pointer to the associated DAE. This will never return null.
@@ -217,13 +221,7 @@ public:
 	 * Gets the element that this URI resolves to in memory.
 	 * @return Returns a ref to the element.
 	 */
-	inline daeElementRef getElement(){return(element);};
-	
-	/** 
-	 * Gets the element that this URI resolves to in memory.
-	 * @return Returns a ref to the element.
-	 */
-	inline daeElementConstRef getElement() const {return(element);};
+	daeElementRef getElement();
 	
 	/** 
 	 * Sets the element that this URI resolves to in memory.
@@ -284,14 +282,6 @@ public:
 	daeBool isExternalReference() const { return external; }
 	 
 	/**
-	 * Uses the @c daeURIResolver static API to try to resolve this URI
-	 * into a @c daeElement reference, placing the resolved element into <tt><i>element.</i></tt> 
-	 * This function can effectively force a load of a file, perform
-	 * a database query, and so on, based on the @c daeURIResolver plugins implemented.
-	 */
-	void resolveElement();
-
-	/**
 	 * Configures the <tt><i>uriString</i></tt> for this @c daeURI based on the element set in <tt><i>element.</i></tt> 
 	 * Uses the element's base URI and ID information to configure
 	 * the URI string.
@@ -341,6 +331,9 @@ public:
 		state = other.state;
 		return *this;
 	}
+
+	// This method is deprecated. There's no reason to ever call it. Just call getElement directly.
+	void resolveElement();
 
 private:
 	/**

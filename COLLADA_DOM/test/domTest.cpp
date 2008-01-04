@@ -1433,3 +1433,5 @@ int main(int argc, char* argv[]) {
 
 	return 0;
 }
+
+// !!!steveT Test daeURI when multiple documents are loaded

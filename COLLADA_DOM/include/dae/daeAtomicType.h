@@ -47,7 +47,6 @@ typedef daeSmartRef<daeMetaAttribute> daeMetaAttributeRef;
  * - @c print()
  * - @c memoryToString()
  * - @c stringToMemory()
- * - @c resolve()
  *
  * Types are also able to align data pointers appropriately.
  */
@@ -150,13 +149,6 @@ public:
 	 */
 	virtual void copyArray(daeArray& src, daeArray& dst);
 
-	/**
-	 * Resolves a reference, if indeed this type is a reference type.
-	 * @param element The containing element.
-	 * @param src Source of the raw data to resolve.
-	 */
-	virtual void resolve(daeElementRef element, daeChar* src);
-	
 	/**
 	 * Gets the array of strings as name bindings for this type.
 	 * @return Returns the array of strings.
@@ -675,8 +667,6 @@ public:
 
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 	
-	virtual void resolve(daeElementRef element, daeChar* src);
-
 	virtual daeInt compare(daeChar* value1, daeChar* value2);
 
 	virtual daeMemoryRef create();
@@ -704,8 +694,6 @@ public:
 
 	virtual daeBool stringToMemory(daeChar* src, daeChar* dst);
 	
-	virtual void resolve(daeElementRef element, daeChar* src);
-
 	virtual daeInt compare(daeChar* value1, daeChar* value2);
 
 	virtual daeMemoryRef create();

@@ -87,6 +87,9 @@ public:
 	 */
 	daeIDRef(const daeIDRef& constructFromIDRef);
 
+	// !!!steveT Add a constructor that takes a container element, and have the
+	// dom* classes always use that constructor.
+
 	/**
 	 * Gets the ID string
 	 * @return Returns the full ID string from <tt><i>id.</i></tt> 
