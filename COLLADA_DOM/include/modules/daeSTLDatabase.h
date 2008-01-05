@@ -29,58 +29,62 @@
  * The @c daeSTLDatabase class derives from @c daeDatabase and implements
  * the default database.
  */
-class daeSTLDatabase : public daeDatabase
+class DLLSPEC daeSTLDatabase : public daeDatabase
 {
 public:
 	/**
 	  * Constructor
 	  */
-	DLLSPEC daeSTLDatabase(DAE& dae);
+	daeSTLDatabase(DAE& dae);
 	/**
 	  * Destructor
 	  */
-	virtual DLLSPEC ~daeSTLDatabase();
+	virtual ~daeSTLDatabase();
 
 public:
 	// Element Types of all Elements
-	virtual DLLSPEC daeUInt getTypeCount();
-	virtual DLLSPEC daeString getTypeName(daeUInt index);
-	virtual DLLSPEC daeInt setMeta(daeMetaElement *_topMeta);
+	virtual daeUInt getTypeCount();
+	virtual daeString getTypeName(daeUInt index);
+	virtual daeInt setMeta(daeMetaElement *_topMeta);
 
 	// Documents
-	virtual DLLSPEC daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt insertDocument(daeString name, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt createDocument(daeString name, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt insertDocument( daeDocument *c );
+	virtual daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
+	virtual daeInt insertDocument(daeString name, daeDocument** document = NULL);
+	virtual daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
+	virtual daeInt createDocument(daeString name, daeDocument** document = NULL);
+	virtual daeInt insertDocument( daeDocument *c );
 
-	virtual DLLSPEC daeInt removeDocument(daeDocument* document);
-	virtual DLLSPEC daeUInt getDocumentCount();
-	virtual DLLSPEC daeDocument* getDocument(daeUInt index);
-	virtual DLLSPEC daeDocument* getDocument(daeString name);
-	virtual DLLSPEC daeString getDocumentName(daeUInt index);
-	virtual DLLSPEC daeBool isDocumentLoaded(daeString name);
+	virtual daeInt removeDocument(daeDocument* document);
+	virtual daeUInt getDocumentCount();
+	virtual daeDocument* getDocument(daeUInt index);
+	virtual daeDocument* getDocument(daeString name);
+	virtual daeString getDocumentName(daeUInt index);
+	virtual daeBool isDocumentLoaded(daeString name);
 
 	// Elements 
-	virtual DLLSPEC daeInt insertElement(daeDocument* document, daeElement* element);
-	virtual DLLSPEC daeInt removeElement(daeDocument* document, daeElement* element); 
-	virtual DLLSPEC daeInt changeElementID(daeElement* element, daeString newID);
-	virtual DLLSPEC daeInt changeElementSID(daeElement* element, daeString newSID); // Not implemented
-	virtual DLLSPEC daeInt clear();
-	virtual DLLSPEC daeUInt getElementCount(daeString name = NULL,
-	                                        daeString type = NULL,
-	                                        daeString file = NULL);
-	virtual DLLSPEC daeInt getElement(daeElement** pElement, 
-	                                  daeInt index,
-	                                  daeString name = NULL,
-	                                  daeString type = NULL,
-	                                  daeString file = NULL); 
+	virtual daeInt insertElement(daeDocument* document, daeElement* element);
+	virtual daeInt removeElement(daeDocument* document, daeElement* element); 
+	virtual daeInt changeElementID(daeElement* element, daeString newID);
+	virtual daeInt changeElementSID(daeElement* element, daeString newSID); // Not implemented
+	virtual daeInt clear();
+	virtual daeUInt getElementCount(daeString name = NULL,
+	                                daeString type = NULL,
+	                                daeString file = NULL);
+	virtual daeInt getElement(daeElement** pElement, 
+	                          daeInt index,
+	                          daeString name = NULL,
+	                          daeString type = NULL,
+	                          daeString file = NULL); 
 
 	// Not implemented
-	virtual DLLSPEC void sidLookup(const std::string& sid, std::list<daeElement*>& result);
+	virtual void sidLookup(const std::string& sid, std::list<daeElement*>& result);
 
 	// Generic Query
-	virtual DLLSPEC daeInt queryElement(daeElement** pElement, daeString genericQuery);
+	virtual daeInt queryElement(daeElement** pElement, daeString genericQuery);
+
+	// !!!steveT Remove
+	void getTypeList(const std::string& typeName, std::list<daeElement*>& result);
+	void getTypeArray(const std::string& typeName, std::vector<daeElement*>& result);
 
 private:
 

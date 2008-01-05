@@ -665,3 +665,23 @@ daeInt daeSTLDatabase::queryElement(daeElement** pElement, daeString genericQuer
 	(void)genericQuery; 
 	return DAE_ERR_NOT_IMPLEMENTED;
 }
+
+// !!!steveT Remove
+void daeSTLDatabase::getTypeList(const std::string& typeName, std::list<daeElement*>& result) {
+	map<string, vector<daeElement*> >::iterator iter = elements.find(typeName);
+	if (iter != elements.end()) {
+		const vector<daeElement*>& elts = iter->second;
+		for (size_t i = 0; i < elts.size(); i++)
+			result.push_back(elts[i]);
+	}
+}
+
+void daeSTLDatabase::getTypeArray(const std::string& typeName, std::vector<daeElement*>& result) {
+	map<string, vector<daeElement*> >::iterator iter = elements.find(typeName);
+	if (iter != elements.end()) {
+		const vector<daeElement*>& elts = iter->second;
+		for (size_t i = 0; i < elts.size(); i++)
+			result.push_back(elts[i]);
+	}
+}
+

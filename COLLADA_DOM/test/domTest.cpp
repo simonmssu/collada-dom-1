@@ -1309,6 +1309,64 @@ DefineTest(baseURI) {
 }
 
 
+// !!!steveT Remove
+#include "../include/modules/daeSTLDatabase.h"
+
+struct perfTest {
+	virtual size_t test(daeSTLDatabase& database, const string& type) = 0;
+};
+
+struct listPerfTest : public perfTest {
+	virtual size_t test(daeSTLDatabase& database, const string& type) {
+		list<daeElement*> result;
+		database.getTypeList(type, result);
+		return result.size();
+	}
+};
+
+struct arrayPerfTest : public perfTest {
+	virtual size_t test(daeSTLDatabase& database, const string& type) {
+		vector<daeElement*> result;
+		database.getTypeArray(type, result);
+		return result.size();
+	}
+};
+
+void collectAllElements(daeElement& elt, vector<daeElement*>& elts) {
+	elts.push_back(&elt);
+	daeElementRefArray children = elt.getChildren();
+	for (size_t i = 0; i < children.getCount(); i++)
+		collectAllElements(*children[i], elts);
+}
+
+testResult runPerfTest(perfTest& tester) {
+	DAE dae;
+	string file = lookupTestFile("Seymour.dae");
+	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+
+	daeSTLDatabase& database = (daeSTLDatabase&)*dae.getDatabase();
+
+	vector<daeElement*> elts;
+	collectAllElements(*dae.getDomFile(file.c_str()), elts);
+
+	cout << elts.size() << endl;
+	for (size_t i = 0; i < elts.size(); i++)
+		tester.test(database, elts[i]->getTypeName());
+
+	return testResult(true);
+}
+
+DefineTest(listPerf) {
+	listPerfTest tester = listPerfTest();
+	return runPerfTest(tester);
+}
+
+DefineTest(arrayPerf) {
+	arrayPerfTest tester = arrayPerfTest();
+	return runPerfTest(tester);
+}
+
+
 // Returns true if all test names are valid
 bool checkTests(const set<string>& tests) {
 	bool invalidTestFound = false;
