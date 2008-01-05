@@ -131,6 +131,15 @@ daeURI::daeURI(const daeURI& copyFrom) : dae(copyFrom.getDAE())
 	state = copyFrom.state;
 }
 
+daeURI::daeURI(daeElement& container, daeString uriString)
+	: dae(container.getDAE()),
+		container(&container)
+{
+	initialize();
+	setURI(uriString);
+	validate();
+}
+
 void
 daeURI::copyFrom(daeURI& copyFrom)
 {

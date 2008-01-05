@@ -42,6 +42,12 @@ daeIDRef::daeIDRef(const daeIDRef& copyFrom_)
 	copyFrom(copyFrom_);
 }
 
+daeIDRef::daeIDRef(daeElement* container) {
+	initialize();
+	setContainer(container);
+}
+
+
 void
 daeIDRef::reset()
 {
