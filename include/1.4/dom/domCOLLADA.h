@@ -308,6 +308,11 @@ public:	//Accessors and Mutators
 	 * @param atXml_base The new value for the xml_base attribute.
 	 */
 	void setXml_base( const xsAnyURI &atXml_base ) { attrXml_base = atXml_base; _validAttributeArray[2] = true; }
+	/**
+	 * Sets the xml_base attribute.
+	 * @param atXml_base The new value for the xml_base attribute.
+	 */
+	void setXml_base( xsString atXml_base ) { attrXml_base = atXml_base; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the asset element.

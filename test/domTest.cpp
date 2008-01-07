@@ -1300,7 +1300,7 @@ DefineTest(resolveAll) {
 
 DefineTest(baseURI) {
 	DAE dae1, dae2;
-	dae1.setBaseURI(daeURI(dae1, "http://www.example.com/"));
+	dae1.setBaseURI("http://www.example.com/");
 	daeURI uri1(dae1, "myFolder/myFile.dae");
 	daeURI uri2(dae2, "myFolder/myFile.dae");
 	CheckResult(string(uri1.getURI()) != uri2.getURI());

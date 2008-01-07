@@ -149,6 +149,11 @@ daeURI::copyFrom(daeURI& copyFrom)
 	// !!!GAC Should there be a call to validate in here?
 }
 
+daeURI& daeURI::operator=(daeString uri) {
+	setURI(uri);
+	return *this;
+}
+
 void
 daeURI::reset()
 {
