@@ -196,29 +196,6 @@ void daeTinyXMLPlugin::writeElement( daeElement* element )
 		writeElement( children.get(x) );
 	}
 
-	/*if (_meta->getContents() != NULL) {
-		daeElementRefArray* era = (daeElementRefArray*)_meta->getContents()->getWritableMemory(element);
-		int elemCnt = (int)era->getCount();
-		for(int i = 0; i < elemCnt; i++) {
-			daeElementRef elem = (daeElementRef)era->get(i);
-			if (elem != NULL) {
-				writeElement( elem );
-			}
-		}
-	}
-	else
-	{
-		daeMetaElementAttributeArray& children = _meta->getMetaElements();
-		int cnt = (int)children.getCount();
-		for(int i=0;i<cnt;i++) {
-			daeMetaElement *type = children[i]->getElementType();
-			if ( !type->getIsAbstract() ) {
-				for (int c = 0; c < children[i]->getCount(element); c++ ) {
-					writeElement( *(daeElementRef*)children[i]->get(element,c) );
-				}
-			}
-		}
-	}*/
 	if (!_meta->getIsTransparent() ) 
   {
     m_elements.pop_front();

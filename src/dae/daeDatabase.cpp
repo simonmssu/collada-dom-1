@@ -12,6 +12,7 @@
  */
 
 #include "dae/daeDatabase.h"
+using namespace std;
 
 daeDatabase::daeDatabase(DAE& dae) : dae(dae) { }
 
@@ -19,8 +20,26 @@ DAE* daeDatabase::getDAE() {
 	return &dae;
 }
 
-std::list<daeElement*> daeDatabase::sidLookup(const std::string& sid) {
-	std::list<daeElement*> result;
-	sidLookup(sid, result);
+daeDocument* daeDatabase::getDoc(daeUInt index) {
+	return getDocument(index);
+}
+
+daeElement* daeDatabase::idLookup(const string& id, daeDocument* doc) {
+	vector<daeElement*> elts = idLookup(id);
+	for (size_t i = 0; i < elts.size(); i++)
+		if (elts[i]->getDocument() == doc)
+			return elts[i];
+	return NULL;
+}
+
+vector<daeElement*> daeDatabase::typeLookup(daeInt typeID, daeDocument* doc) {
+	vector<daeElement*> result;
+	typeLookup(typeID, result);
+	return result;
+}
+
+vector<daeElement*> daeDatabase::sidLookup(const string& sid, daeDocument* doc) {
+	vector<daeElement*> result;
+	sidLookup(sid, result, doc);
 	return result;
 }

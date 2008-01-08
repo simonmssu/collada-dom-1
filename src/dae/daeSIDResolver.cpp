@@ -25,6 +25,7 @@
 #include <dom/domConstants.h>
 #include <dae/daeDocument.h>
 #include <dae/daeDatabase.h>
+#include <dom/domSource.h>
 
 using namespace std;
 
@@ -200,17 +201,17 @@ namespace {
 			return NULL;
 
 		// Get the elements with a matching sid
-		list<daeElement*> elts;
-		container->getDocument()->getDAE()->getDatabase()->sidLookup(sid, elts);
+		vector<daeElement*> elts;
+		container->getDocument()->getDAE()->getDatabase()->sidLookup(sid, elts, container->getDocument());
 
 		// Compute the distance from each matching element to the container element
 		unsigned int minDistance = UINT_MAX;
 		daeElement* closestElt = NULL;
-		for (list<daeElement*>::iterator iter = elts.begin(); iter != elts.end(); iter++) {
-			unsigned int distance = computeDistance(container, *iter, profile);
+		for (size_t i = 0; i < elts.size(); i++) {
+			unsigned int distance = computeDistance(container, elts[i], profile);
 			if (distance < minDistance) {
 				minDistance = distance;
-				closestElt = *iter;
+				closestElt = elts[i];
 			}
 		}
 
@@ -400,17 +401,9 @@ void daeSIDResolver::resolveImpl(const string& sidRef)
 	// At this point we've parsed a correctly formatted SID reference. The only thing left is to resolve
 	// the member selection portion of the SID ref. First, see if the resolved element has a float array we
 	// can use.
-	if ( strcmp( element->getTypeName(), "source" ) == 0 ) {
-		daeElementRefArray children;
-		element->getChildren( children );
-		size_t cnt = children.getCount();
-
-		for ( size_t x = 0; x < cnt; x++ ) {
-			if ( strcmp( children[x]->getTypeName(), "float_array" ) == 0 ) {
-				doubleArray = (daeDoubleArray*)children[x]->getCharDataObject()->get(children[x]);
-				break;
-			}
-		}
+	if (element->typeID() == domSource::ID()) {
+		if (domFloat_array* floatArray = ((domSource*)element)->getFloat_array())
+			doubleArray = (daeDoubleArray*)floatArray->getCharDataObject()->get(floatArray);
 	}
 	else 
 	{

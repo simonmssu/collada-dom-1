@@ -14,7 +14,7 @@
 #ifndef __DAE_DATABASE__
 #define __DAE_DATABASE__
 
-#include <list>
+#include <vector>
 #include <dae.h>
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
@@ -25,7 +25,7 @@
 /**
  * The @c daeDatabase class defines the COLLADA runtime database interface.
  */
-class daeDatabase
+class DLLSPEC daeDatabase
 {
 public:
 	/**
@@ -36,7 +36,7 @@ public:
 	/**
 	 * Destructor
 	 */
-	virtual DLLSPEC ~daeDatabase() {}
+	virtual ~daeDatabase() {}
 
 	/**
 	 * Get the associated DAE object.
@@ -44,8 +44,6 @@ public:
 	 */
 	virtual DAE* getDAE();
 	
-	/** @name Documents */
-	//@{
 	/**
 	* Creates a new document, defining its root as the <tt><i>dom</i></tt> object; returns an error if the document name already exists.
 	* @param name Name of the new document, must be a valid URI.
@@ -55,7 +53,7 @@ public:
 	* @note The @c daeElement passed in as <tt><i>dom</i></tt> should always be a @c domCOLLADA object, the API may enforce this in the future.
 	* @deprecated This function will be removed in future versions. Please use createDocument.
 	*/
-	virtual DLLSPEC daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL) = 0;
+	virtual daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL) = 0;
 	/**
 	* Creates a new @c domCOLLADA root element and a new document; returns an error if the document name already exists.
 	* @param name Name of the new document, must be a valid URI.
@@ -63,7 +61,7 @@ public:
 	* @return Returns DAE_OK if the document was created successfully, otherwise returns a negative value as defined in daeError.h.
 	* @deprecated This function will be removed in future versions. Please use createDocument.
 	*/
-	virtual DLLSPEC daeInt insertDocument(daeString name, daeDocument** document = NULL) = 0;
+	virtual daeInt insertDocument(daeString name, daeDocument** document = NULL) = 0;
 	/**
 	* Creates a new document, defining its root as the <tt><i>dom</i></tt> object; returns an error if the document name already exists.
 	* @param name Name of the new document, must be a valid URI.
@@ -72,90 +70,82 @@ public:
 	* @return Returns @c DAE_OK if the document was created successfully, otherwise returns a negative value as defined in daeError.h.
 	* @note The @c daeElement passed in as <tt><i>dom</i></tt> should always be a @c domCOLLADA object, the API may enforce this in the future.
 	*/
-	virtual DLLSPEC daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL) = 0;
+	virtual daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL) = 0;
 	/**
 	* Creates a new @c domCOLLADA root element and a new document; returns an error if the document name already exists.
 	* @param name Name of the new document, must be a valid URI.
 	* @param document Pointer to a @c daeDocument pointer that receives the document created 
 	* @return Returns DAE_OK if the document was created successfully, otherwise returns a negative value as defined in daeError.h.
 	*/
-	virtual DLLSPEC daeInt createDocument(daeString name, daeDocument** document = NULL) = 0;
+	virtual daeInt createDocument(daeString name, daeDocument** document = NULL) = 0;
 
 	/**
 	 * Inserts an already existing document into the database.
 	 * @param c The document to insert.
 	 * @return Returns DAE_OK if the document was inserted successfully, otherwise returns a negative value as defined in daeError.h.
 	 */
-	virtual DLLSPEC daeInt insertDocument( daeDocument *c ) = 0;
+	virtual daeInt insertDocument( daeDocument *c ) = 0;
 
 	/**
 	* Removes a document from the database.
 	* @param document Document to remove from the database
 	* @return Returns DAE_OK if the document was successfully removed, otherwise returns a negative value as defined in daeError.h. 
 	*/
-	virtual DLLSPEC daeInt removeDocument(daeDocument* document) = 0;
+	virtual daeInt removeDocument(daeDocument* document) = 0;
 	/**
 	* Gets the number of documents.
 	* @return Returns the number of documents.
 	*/
-	virtual DLLSPEC daeUInt getDocumentCount() = 0;
+	virtual daeUInt getDocumentCount() = 0;
 	/**
 	* Gets a document based on the document index.
 	* @param index Index of the document to get.
 	* @return Returns a pointer on the document, or NULL if not found. 
 	*/
-	virtual DLLSPEC daeDocument* getDocument(daeUInt index) = 0;
+	virtual daeDocument* getDocument(daeUInt index) = 0;
+	/**
+	* Gets a document based on the document index.
+	* @param index Index of the document to get.
+	* @return Returns a pointer on the document, or NULL if not found. 
+	*/
+	daeDocument* getDoc(daeUInt index);
 	/**
 	* Gets a document based on the document name.
 	* @param name The name of the document as a URI.
 	* @return Returns a pointer to the document, or NULL if not found. 
 	* @note If the URI contains a fragment, the fragment is stripped off.
 	*/
-	virtual DLLSPEC daeDocument* getDocument(daeString name) = 0;
+	virtual daeDocument* getDocument(daeString name) = 0;
 	/**
 	* Gets a document name.
 	* @param index Index of the document to get.
 	* @return Returns the name of the document at the given index. 
 	*/
-	virtual DLLSPEC daeString getDocumentName(daeUInt index) = 0;
+	virtual daeString getDocumentName(daeUInt index) = 0;
 	/**
 	* Indicates if a document is loaded or not.
 	* @param name Name of the document  as a URI.
 	* @return Returns true if the document is loaded, false otherwise.
 	* @note If the URI contains a fragment, the fragment is stripped off.
 	*/
-	virtual DLLSPEC daeBool isDocumentLoaded(daeString name) = 0;
-	//@}
+	virtual daeBool isDocumentLoaded(daeString name) = 0;
 	
-	/** @name Elements */ 
-	//@{
-	/**
-	* Gets the number of types in the database.
-	* @return Returns the number of different types of objects inserted in the database.
-	*/
-	virtual DLLSPEC daeUInt getTypeCount() = 0;
-	/**
-	* Retrieves the name of a type of object inserted in the database.
-	* @param index Index of the type; must be between 0 and <tt> daeDatabase::getTypeCount()-1 </tt>
-	* @return Returns the name of the type, NULL if the index is invalid.
-	*/
-	virtual DLLSPEC daeString getTypeName(daeUInt index) = 0;
 	/**
 	* Inserts a @c daeElement into the runtime database.
 	* @param document Document in which the @c daeElement lives.
 	* @param element @c daeElement to insert in the database
 	* @return Returns @c DAE_OK if element successfully inserted, otherwise returns a negative value as defined in daeError.h.
 	*/
-	virtual DLLSPEC daeInt insertElement(daeDocument* document,
-	                                     daeElement* element) = 0;
+	virtual daeInt insertElement(daeDocument* document,
+	                             daeElement* element) = 0;
 	/**
 	* Removes a @c daeElement from the runtime database; not implemented in the reference STL implementation.
 	* @param document Document in which the @c daeElement lives.
 	* @param element Element to remove.
 	* @return Returns @c DAE_OK if element successfully removed, otherwise returns a negative value as defined in daeError.h.
 	*/
-	virtual DLLSPEC daeInt removeElement(daeDocument* document,
-	                                     daeElement* element) = 0;
+	virtual daeInt removeElement(daeDocument* document,
+	                             daeElement* element) = 0;
 	/**
 	 * Updates the database to reflect a change to the ID of a @c daeElement.
 	 * @param element @c daeElement whose ID is going to change.
@@ -165,8 +155,8 @@ public:
 	 * merely updates its internal structures to reflect the change. It's
 	 * expected that the ID will be assigned to the element by someone else.
 	 */
-	virtual DLLSPEC daeInt changeElementID(daeElement* element,
-	                                       daeString newID) = 0;
+	virtual daeInt changeElementID(daeElement* element,
+	                               daeString newID) = 0;
 
 	/**
 	 * Updates the database to reflect a change to the sid of a @c daeElement.
@@ -178,8 +168,8 @@ public:
 	 * expected that the sid will be assigned to the element by someone else.
  	 * Note - This function currently isn't implemented in the default database.
 	 */
-	virtual DLLSPEC daeInt changeElementSID(daeElement* element,
-	                                        daeString newSID) = 0;
+	virtual daeInt changeElementSID(daeElement* element,
+	                                daeString newSID) = 0;
 
 	/**
 	* Unloads all of the documents of the runtime database.
@@ -187,81 +177,63 @@ public:
 	* except any objects on which you still have a smart pointer reference (@c daeSmartRef).
 	* @return Returns @c DAE_OK if all documents successfully unloaded, otherwise returns a negative value as defined in daeError.h.
 	*/
-	virtual DLLSPEC daeInt clear() = 0;
-	//@}
-
-	/** @name Queries */
-	//@{
-	/**
-	* Gets the number of daeElement objects that match the search criteria
-	* Any combination of search criteria can be NULL, if a criterion is NULL all 
-	* the parameters will match for this criterion.
-	* Hence @c getElementCount() called without parameters returns the total number of @c daeElement objects in the database.
-	* Criteria can not be specified with wildcards, either a criterion is set and it will have
-	* to match, or it is not set and all @c daeElements match for this criterion.
-	* @param name Name or id of the @c daeElement, for example, "mycube1", can be NULL
-	* @param type Type of @c daeElement to find, this can be any COLLADA tag such as <geometry> or <library>, can be NULL
-	* @param file Name of the document or file, for example, "myDocument.xml", can be NULL
-	* @return Returns the number of elements matching this query.
-	*/
-	virtual DLLSPEC daeUInt getElementCount(daeString name = NULL,
-	                                        daeString type = NULL,
-	                                        daeString file = NULL) = 0;
-	/**
-	* Returns the @c daeElement which matches the search criteria.
-	* Any combination of search criteria can be NULL, if a criterion is NULL all 
-	* the parameters will match for this criterion.
-	* The function operates on the set of assets that match the <tt><i>name, type</i></tt> and <tt><i>file</i></tt> search criteria, 
-	* with the <tt><i>index</i></tt> parameter indicating which asset within the set is returned.
-	* Calling @c daeElement(&pElement,index) without search criteria returns the @c daeElement number <tt><i>index</i></tt> in the database without
-	* any consideration of name, type or document.
-	* Criteria can not be specified with wildcards, either a criterion is set and it will have
-	* to match, or it is not set and all @c daeElements match for this criterion.
-	* The default database search is roughly in log2(n). Maximum performance is obtained when querying 
-	* by type and a name. Any other combination results in a slight overhead, but the overall search time
-	* remains around log2(n).
-	* @param pElement Pointer of a @c daeElement* which receives the found @c daeElement if the search succeeds
-	* @param index Index within the set of @c daeElements that match the search criteria
-	* @param name Name or id of the @c daeElement, for example "mycube1", can be NULL
-	* @param type Type of the @c daeElement to get, this can be any COLLADA tag such as <geometry> or <library>, can be NULL
-	* @param file Name of the document or file, for example, "myDocument.xml", can be NULL
-	* @return Returns DAE_OK upon success, returns DAE_ERR_QUERY_NO_MATCH if there is no match, otherwise, returns a negative value as defined in daeError.h.
-	*/
-	virtual DLLSPEC daeInt getElement(daeElement** pElement,
-	                                  daeInt index,
-	                                  daeString name = NULL,
-	                                  daeString type = NULL,
-	                                  daeString file = NULL ) = 0;
+	virtual daeInt clear() = 0;
 
 	/**
-	 * Returns a list of all the elements with a particular sid. This list will contain all the
-	 * matching elements for all documents in the database.
+	 * Lookup elements by ID, searching through all documents.
+	 * @param id The ID to match on.
+	 * @return The array of matching elements.
+	 */
+	virtual std::vector<daeElement*> idLookup(const std::string& id) = 0;
+
+	/**
+	 * Find an element with the given ID in a specific document.
+	 * @param id The ID to match on.
+	 * @param doc The document to search in.
+	 * @return The matching element if one is found, NULL otherwise.
+	 */
+	daeElement* idLookup(const std::string& id, daeDocument* doc);
+
+	/**
+	 * Lookup elements by type ID.
+	 * @param typeID The type to match on, e.g. domNode::ID().
+	 * @param doc The document to search in, or NULL to search in all documents.
+	 * @return The array of matching elements.
+	 */
+	std::vector<daeElement*> typeLookup(daeInt typeID, daeDocument* doc = NULL);
+
+	/**
+	 * Same as the previous method, but returns the array of matching elements via a
+	 * reference parameter for additional efficiency.
+	 * @param typeID The type to match on, e.g. domNode::ID().
+	 * @param matchingElements The array of matching elements.
+	 * @param doc The document to search in, or NULL to search in all documents.
+	 */
+	virtual void typeLookup(daeInt typeID,
+	                        std::vector<daeElement*>& matchingElements,
+	                        daeDocument* doc = NULL) = 0;
+
+	/**
+	 * Lookup elements by sid.
 	 * @param sid The sid to match on.
-	 * @return The list of matching elements.
+	 * @param doc The document to search in, or NULL to search in all documents.
+	 * @return The array of matching elements.
 	 * Note - This function currently isn't implemented in the default database.
 	 */
-	DLLSPEC std::list<daeElement*> sidLookup(const std::string& sid);
+	std::vector<daeElement*> sidLookup(const std::string& sid, daeDocument* doc = NULL);
 
 	/**
 	 * Same as the previous method, but the results are returned via a parameter instead
 	 * of a return value, for extra efficiency.
 	 * @param sid The sid to match on.
-	 * @param result The list of matching elements.
+	 * @param matchingElements The array of matching elements.
+	 * @param doc The document to search in, or NULL to search in all documents.
 	 * Note - This function currently isn't implemented in the default database.
 	 */
-	virtual DLLSPEC void sidLookup(const std::string& sid, std::list<daeElement*>& result) = 0;
+	virtual void sidLookup(const std::string& sid,
+	                       std::vector<daeElement*>& matchingElements,
+	                       daeDocument* doc = NULL) = 0;
 
-	
-	/**
-	* Returns the @c daeElement which matches the <tt><i>genericQuery</i></tt> parameter; not implemented.
-	* @param pElement Element to return.
-	* @param genericQuery Generic query
-	* @return Returns DAE_OK if it succeeds, returns DAE_ERR_QUERY_NO_MATCH if there is no match, otherwise returns a negative value as defined in daeError.h.
-	* @note This function is not implemented.
-	*/
-	virtual DLLSPEC daeInt queryElement(daeElement** pElement, daeString genericQuery) = 0;
-	//@}
-	
 	/** 
 	* Sets the top meta object.
 	* Called by @c dae::setDatabase() when the database changes. It passes to this function the
@@ -271,40 +243,56 @@ public:
 	* @param _topMeta Top meta object to use to create objects to fill the database.
 	* @return Returns DAE_OK if successful, otherwise returns a negative value defined in daeError.h.
 	*/
-	virtual DLLSPEC daeInt setMeta(daeMetaElement *_topMeta) = 0;
+	virtual daeInt setMeta(daeMetaElement *_topMeta) = 0;
 
-public: //Depricated methods
-	inline DLLSPEC daeInt insertCollection(daeString name, daeElement* dom, daeDocument** document = NULL) {
+public:
+	// The following methods are deprecated, and it's recommended that you don't use them.
+	// Where appropriate, alternative methods are specified.
+
+	virtual daeUInt getTypeCount() = 0;
+	virtual daeString getTypeName(daeUInt index) = 0;
+
+	// Instead of the following two methods, use idLookup or typeLookup.
+	virtual daeUInt getElementCount(daeString name = NULL,
+	                                daeString type = NULL,
+	                                daeString file = NULL) = 0;
+	virtual daeInt getElement(daeElement** pElement,
+	                          daeInt index,
+	                          daeString name = NULL,
+	                          daeString type = NULL,
+	                          daeString file = NULL ) = 0;
+
+	inline daeInt insertCollection(daeString name, daeElement* dom, daeDocument** document = NULL) {
 		return insertDocument( name, dom, document );
 	}
-	inline DLLSPEC daeInt insertCollection(daeString name, daeDocument** document = NULL) {
+	inline daeInt insertCollection(daeString name, daeDocument** document = NULL) {
 		return insertDocument( name, document );
 	}
-	inline DLLSPEC daeInt createCollection(daeString name, daeElement* dom, daeDocument** document = NULL) {
+	inline daeInt createCollection(daeString name, daeElement* dom, daeDocument** document = NULL) {
 		return createDocument( name, dom, document );
 	}
-	inline DLLSPEC daeInt createCollection(daeString name, daeDocument** document = NULL) {
+	inline daeInt createCollection(daeString name, daeDocument** document = NULL) {
 		return createDocument( name, document );
 	}
-	inline DLLSPEC daeInt insertCollection( daeDocument *c ) {
+	inline daeInt insertCollection( daeDocument *c ) {
 		return insertDocument( c );
 	}
-	inline DLLSPEC daeInt removeCollection(daeDocument* document) {
+	inline daeInt removeCollection(daeDocument* document) {
 		return removeDocument( document );
 	}
-	inline DLLSPEC daeUInt getCollectionCount() {
+	inline daeUInt getCollectionCount() {
 		return getDocumentCount();
 	}
-	inline DLLSPEC daeDocument* getCollection(daeUInt index) {
+	inline daeDocument* getCollection(daeUInt index) {
 		return getDocument( index );
 	}
-	inline DLLSPEC daeDocument* getCollection(daeString name) {
+	inline daeDocument* getCollection(daeString name) {
 		return getDocument( name );
 	}
-	inline DLLSPEC daeString getCollectionName(daeUInt index) {
+	inline daeString getCollectionName(daeUInt index) {
 		return getDocumentName( index );
 	}
-	inline DLLSPEC daeBool isCollectionLoaded(daeString name) {
+	inline daeBool isCollectionLoaded(daeString name) {
 		return isDocumentLoaded( name );
 	}
 

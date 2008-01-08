@@ -66,7 +66,6 @@ daeStandardURIResolver::resolveElement(daeURI& uri)
 	}
 
 	daeElement* resolved = NULL;
-	int status;
 
 	// Does the URI have a document reference?
 	if ( (uri.getFile() != NULL) &&	(strlen(uri.getFile())>0)) 
@@ -82,7 +81,7 @@ daeStandardURIResolver::resolveElement(daeURI& uri)
 			}
 		}
 		// Try to find the id by searching this document only
-		status = database->getElement(&resolved, 0, uri.getID(), NULL, uri.getURI());
+		resolved = database->idLookup(uri.getID(), database->getDocument(uri.getURI()));
 	}
 	else
 	{
@@ -99,16 +98,14 @@ daeStandardURIResolver::resolveElement(daeURI& uri)
 			return false;
 		}
 		//assert(tempDocument);
-		daeURI *tempURI = tempDocument->getDocumentURI();
-		//assert(tempURI);
-		status = database->getElement(&resolved, 0, uri.getID(), NULL, tempURI->getURI());
+		resolved = database->idLookup(uri.getID(), tempDocument);
 	}
 
 	uri.setElement(resolved);
 
 	// Error if we didn't successfully resolve the uri
 
-	if (status ||(resolved==NULL)) 
+	if (!resolved)
 	{
 		uri.setState(daeURI::uri_failed_id_not_found);
 		std::ostringstream msg;
