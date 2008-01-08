@@ -442,9 +442,9 @@ public:
 
 	// Matches an element by schema type
 	struct DLLSPEC matchType : public matchElement {
-		matchType(daeString type);
+		matchType(daeInt typeID);
 		virtual bool operator()(daeElement* elt) const;
-		std::string type;
+		daeInt typeID;
 	};
 
 	// Returns a matching child element. By "child", I mean one hierarchy level beneath the
@@ -478,15 +478,8 @@ public:
 	 */
 	inline daeMetaElement* getMeta() { return _meta; }
 
-	/**
-	 * Gets the element type.
-	 * @return Returns the COLLADA_TYPE::TypeEnum value corresponding to this element's type.
-	 */
+	// These functions are deprecated. Use typeID instead.
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return (COLLADA_TYPE::TypeEnum)0; }
-	/**
-	 * Gets the element type name for this element.
-	 * @return Returns the string for the type name.
-	 */
 	daeString getTypeName() const;
 
 	/**

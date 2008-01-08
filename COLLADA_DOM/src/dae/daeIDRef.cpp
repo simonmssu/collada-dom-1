@@ -183,7 +183,7 @@ daeElement* daeDefaultIDRefResolver::resolveElement(daeString id,
 		if (!docURI)
 			state = daeIDRef::id_failed_no_document;
 		else {
-			dae->getDatabase()->getElement(&el, 0, id, NULL, docURI);
+			el = dae->getDatabase()->idLookup(id, dae->getDatabase()->getDocument(docURI));
 			if (!el)
 				state = daeIDRef::id_failed_id_not_found;
 		}

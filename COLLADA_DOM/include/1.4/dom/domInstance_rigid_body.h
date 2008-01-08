@@ -836,6 +836,11 @@ public:	//Accessors and Mutators
 	 * @param atTarget The new value for the target attribute.
 	 */
 	void setTarget( const xsAnyURI &atTarget ) { attrTarget = atTarget; _validAttributeArray[3] = true; }
+	/**
+	 * Sets the target attribute.
+	 * @param atTarget The new value for the target attribute.
+	 */
+	void setTarget( xsString atTarget ) { attrTarget = atTarget; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the technique_common element.

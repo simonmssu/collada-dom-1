@@ -74,27 +74,6 @@ daeBool daeElement::placeElementBefore( daeElement *marker, daeElement *element 
 	if (marker == NULL || element == NULL || marker->getXMLParentElement() != this ) {
 		return false;
 	}
-	//if ( _meta->getContents() != NULL ) {
-	//	size_t idx;
-	//	daeElementRefArray* contents =
-	//					(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
-	//	if ( contents->find( marker, idx ) != DAE_OK ) {
-	//		return false;
-	//	}
-	//	return placeElementAt( (daeInt)idx, element );
-	//}
-	//if ( strcmp( marker->getTypeName(), element->getTypeName() ) == 0 ) {
-	//	//same type
-	//	daeMetaElementAttribute *mea = _meta->getChildMetaElementAttribute( element->getTypeName() );
-	//	daeElementRefArray* era = (daeElementRefArray*)mea->getWritableMemory(this);
-	//	size_t idx;
-	//	if ( era->find( marker, idx ) != DAE_OK ) {
-	//		return false;
-	//	}
-	//	era->insertAt( idx, element );
-	//	return true;
-	//}
-	//return placeElement( element );
 	return _meta->placeBefore( marker, this, element );
 }
 
@@ -102,25 +81,6 @@ daeBool daeElement::placeElementAfter( daeElement *marker, daeElement *element )
 	if (marker == NULL || element == NULL || marker->getXMLParentElement() != this ) {
 		return false;
 	}
-	/*if ( _meta->getContents() != NULL ) {
-		size_t idx;
-		daeElementRefArray* contents =
-						(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
-		if ( contents->find( marker, idx ) != DAE_OK ) {
-			return false;
-		}
-		return placeElementAt( (daeInt)idx+1, element );
-	}
-	if ( strcmp( marker->getTypeName(), element->getTypeName() ) == 0 ) {
-		daeMetaElementAttribute *mea = _meta->getChildMetaElementAttribute( element->getTypeName() );
-		daeElementRefArray* era = (daeElementRefArray*)mea->getWritableMemory(this);
-		size_t idx;
-		if ( era->find( marker, idx ) != DAE_OK ) {
-			return false;
-		}
-		era->insertAt( idx+1, element );
-		return true;
-	}*/
 	return _meta->placeAfter( marker, this, element );
 }
 
@@ -452,7 +412,7 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 	// Ideally we'd be able to clone the _meta for domAny objects. Then we wouldn't need
 	// any additional special case code for cloning domAny. Unfortunately, we don't have a
 	// daeMetaElement::clone method.
-	bool any = strcmp(getTypeName(), "any") == 0;
+	bool any = typeID() == domAny::ID();
 	daeElementRef ret = any ? domAny::registerElement(*getDAE())->create() : _meta->create();
 	ret->setElementName( _elementName );
 
@@ -509,10 +469,10 @@ bool daeElement::matchName::operator()(daeElement* elt) const {
 	return strcmp(elt->getElementName(), name.c_str()) == 0;
 }
 
-daeElement::matchType::matchType(daeString type) : type(type) { }
+daeElement::matchType::matchType(daeInt typeID) : typeID(typeID) { }
 
 bool daeElement::matchType::operator()(daeElement* elt) const {
-	return strcmp(elt->getTypeName(), type.c_str()) == 0;
+	return elt->typeID() == typeID;
 }
 
 daeElement* daeElement::getChild(const matchElement& matcher) {

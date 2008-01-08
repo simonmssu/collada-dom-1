@@ -349,6 +349,8 @@ public:
 		return *this;
 	}
 
+	daeURI& operator=(daeString uri);
+
 private:
 	/**
 	 * Resets this URI; frees all string references

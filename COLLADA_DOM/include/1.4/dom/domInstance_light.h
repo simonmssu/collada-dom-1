@@ -47,6 +47,11 @@ public:
 	 * @param atUrl The new value for the url attribute.
 	 */
 	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
+	/**
+	 * Sets the url attribute.
+	 * @param atUrl The new value for the url attribute.
+	 */
+	void setUrl( xsString atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.

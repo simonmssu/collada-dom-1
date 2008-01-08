@@ -69,6 +69,11 @@ public:	//Accessors and Mutators
 	 * @param atUrl The new value for the url attribute.
 	 */
 	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; }
+	/**
+	 * Sets the url attribute.
+	 * @param atUrl The new value for the url attribute.
+	 */
+	void setUrl( xsString atUrl ) { attrUrl = atUrl; }
 
 protected:
 	/**
@@ -122,6 +127,11 @@ public:	//Accessors and Mutators
 	 * @param atUrl The new value for the url attribute.
 	 */
 	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[1] = true; }
+	/**
+	 * Sets the url attribute.
+	 * @param atUrl The new value for the url attribute.
+	 */
+	void setUrl( xsString atUrl ) { attrUrl = atUrl; _validAttributeArray[1] = true; }
 
 protected:
 	/**

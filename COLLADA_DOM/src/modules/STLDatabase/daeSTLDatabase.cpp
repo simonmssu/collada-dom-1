@@ -51,8 +51,8 @@ daeString daeSTLDatabase::getTypeName(daeUInt index)
 {
 	daeUInt count = 0;
 	
-	std::map<std::string, std::vector< daeElement* > >::iterator iter = elements.begin();
-	std::map<std::string, std::vector< daeElement* > >::iterator end = elements.end();
+	map<string, vector< daeElement* > >::iterator iter = elements.begin();
+	map<string, vector< daeElement* > >::iterator end = elements.end();
 	while ( iter != end )
 	{
 		if ( count == index )
@@ -149,7 +149,7 @@ daeInt daeSTLDatabase::insertDocument( daeDocument *c ) {
 
 daeInt daeSTLDatabase::removeDocument(daeDocument *document)
 {	
-	std::vector< daeDocument* >::iterator iter = documents.begin();
+	vector< daeDocument* >::iterator iter = documents.begin();
 	while ( iter != documents.end() ) {
 		if ( (*iter) == document ) {
 			//delete all of its children
@@ -210,21 +210,24 @@ daeInt daeSTLDatabase::insertElement(daeDocument* document,daeElement* element)
 {
 	insertChildren( document, element );
 	
-	std::map<std::string, std::vector< daeElement* > >::iterator iter = elements.find( std::string( element->getTypeName() ) );
+	map<string, vector< daeElement* > >::iterator iter = elements.find( string( element->getTypeName() ) );
 	if ( iter != elements.end() )
 	{
 		(*iter).second.push_back( element );
 	}
 	else
 	{
-		std::vector< daeElement* > vec;
+		vector< daeElement* > vec;
 		vec.push_back( element );
-		elements.insert( std::make_pair( std::string( element->getTypeName() ), vec ) );
+		elements.insert( make_pair( string( element->getTypeName() ), vec ) );
 	}
+
+	// Insert into the type ID map
+	typeMap.insert(make_pair(element->typeID(), element));
 
 	//insert into IDMap if element has an ID. IDMap is used to speed up URI resolution
 	if ( element->getID() != NULL ) {
-		elementsIDMap.insert( std::make_pair( std::string( element->getID() ), element ) );
+		elementsIDMap.insert( make_pair( string( element->getID() ), element ) );
 	}
 
 	// Insert into sid map if the element has a sid
@@ -252,12 +255,12 @@ daeInt daeSTLDatabase::removeElement(daeDocument* document,daeElement* element)
 	}
 	removeChildren( document, element );
 	
-	std::map<std::string, std::vector< daeElement* > >::iterator iter = elements.find( std::string( element->getTypeName() ) );
+	map<string, vector< daeElement* > >::iterator iter = elements.find( string( element->getTypeName() ) );
 	if ( iter != elements.end() )
 	{
-		std::vector< daeElement* > &vec = (*iter).second;
-		std::vector< daeElement* >::iterator i = vec.begin();
-		std::vector< daeElement* >::iterator end = vec.end();
+		vector< daeElement* > &vec = (*iter).second;
+		vector< daeElement* >::iterator i = vec.begin();
+		vector< daeElement* >::iterator end = vec.end();
 		while( i != end )
 		{
 			if ( (*i) == element )
@@ -269,10 +272,17 @@ daeInt daeSTLDatabase::removeElement(daeDocument* document,daeElement* element)
 		}
 	}
 
+	typeMapRange range = typeMap.equal_range(element->typeID());
+	for (typeMapIter iter = range.first; iter != range.second; iter++) {
+		if (iter->second == element) {
+			typeMap.erase(iter);
+			break;
+		}
+	}
+
 	if ( element->getID() != NULL ) {
-		std::pair< std::multimap<std::string, daeElement* >::iterator, std::multimap<std::string, daeElement* >::iterator> range;
-		range = elementsIDMap.equal_range( std::string( element->getID() ) );
-        std::multimap<std::string, daeElement* >::iterator iter = range.first;
+		idMapRange range = elementsIDMap.equal_range( string( element->getID() ) );
+		multimap<string, daeElement* >::iterator iter = range.first;
 		while( iter != range.second ) {
 			if ( (*iter).second == element ) {
 				elementsIDMap.erase( iter );
@@ -314,9 +324,9 @@ daeInt daeSTLDatabase::changeElementID( daeElement* element, daeString newID )
 
 	// Remove the current entry in the ID map if the element has an ID
 	if ( element->getID() != NULL ) {
-		std::pair< std::multimap<std::string, daeElement* >::iterator, std::multimap<std::string, daeElement* >::iterator> range;
-		range = elementsIDMap.equal_range( std::string( element->getID() ) );
-		std::multimap<std::string, daeElement* >::iterator iter = range.first;
+		pair< multimap<string, daeElement* >::iterator, multimap<string, daeElement* >::iterator> range;
+		range = elementsIDMap.equal_range( string( element->getID() ) );
+		multimap<string, daeElement* >::iterator iter = range.first;
 		while( iter != range.second ) {
 			if ( (*iter).second == element ) {
 				elementsIDMap.erase( iter );
@@ -328,7 +338,7 @@ daeInt daeSTLDatabase::changeElementID( daeElement* element, daeString newID )
 
 	// Add an entry to the ID map if the element will have an ID
 	if ( newID != NULL ) {
-		elementsIDMap.insert( std::make_pair( std::string( newID ), element ) );
+		elementsIDMap.insert( make_pair( string( newID ), element ) );
 	}
 
 	return DAE_OK;
@@ -360,6 +370,7 @@ daeInt daeSTLDatabase::changeElementSID(daeElement* element, daeString newSID) {
 daeInt daeSTLDatabase::clear()
 {
 	elements.clear();
+	typeMap.clear();
 	elementsIDMap.clear();
 	sidMap.clear();
 	int i;
@@ -375,8 +386,8 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 	if ( !name && !type && !file ) 
 	{
 		daeUInt count = 0;
-		std::map< std::string, std::vector< daeElement*> >::iterator iter = elements.begin();
-		std::map< std::string, std::vector< daeElement*> >::iterator end = elements.end();
+		map< string, vector< daeElement*> >::iterator iter = elements.begin();
+		map< string, vector< daeElement*> >::iterator end = elements.end();
 		while( iter != end )
 		{
 			count += (daeUInt)(*iter).second.size();
@@ -398,9 +409,9 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 				return 0;
 			}
 			// a document was specified
-			std::pair< std::multimap< std::string, daeElement* >::iterator, std::multimap< std::string, daeElement* >::iterator > range;
-			range = elementsIDMap.equal_range( std::string( name ) );
-			std::multimap< std::string, daeElement* >::iterator i = range.first;
+			pair< multimap< string, daeElement* >::iterator, multimap< string, daeElement* >::iterator > range;
+			range = elementsIDMap.equal_range( string( name ) );
+			multimap< string, daeElement* >::iterator i = range.first;
 			while ( i != range.second )
 			{
 				if ( col == (*i).second->getDocument() )
@@ -414,14 +425,14 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 		else 
 		{ 
 			//no file specified - just name
-			return (daeUInt)elementsIDMap.count( std::string( name ) );
+			return (daeUInt)elementsIDMap.count( string( name ) );
 		}
 	}
 
 	if ( type ) 
 	{ 
 		// type specified
-		std::map< std::string, std::vector< daeElement*> >::iterator iter = elements.find( std::string( type ) );
+		map< string, vector< daeElement*> >::iterator iter = elements.find( string( type ) );
 		if ( iter == elements.end() )
 		{
 			return 0;
@@ -437,9 +448,9 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 				return 0;
 			}
 			// a document was specified
-			std::vector< daeElement* > &vec = (*iter).second;
-			std::vector< daeElement* >::iterator i = vec.begin();
-			std::vector< daeElement* >::iterator end = vec.end();
+			vector< daeElement* > &vec = (*iter).second;
+			vector< daeElement* >::iterator i = vec.begin();
+			vector< daeElement* >::iterator end = vec.end();
 			while( i != end )
 			{
 				if ( col == (*i)->getDocument() )
@@ -465,13 +476,13 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 	}
 	//a document was specified
 	int count = 0;
-	std::map< std::string, std::vector< daeElement*> >::iterator iter = elements.begin();
-	std::map< std::string, std::vector< daeElement*> >::iterator end = elements.end();
+	map< string, vector< daeElement*> >::iterator iter = elements.begin();
+	map< string, vector< daeElement*> >::iterator end = elements.end();
 	while( iter != end )
 	{
-		std::vector< daeElement* > &vec = (*iter).second;
-		std::vector< daeElement* >::iterator i = vec.begin();
-		std::vector< daeElement* >::iterator end2 = vec.end();
+		vector< daeElement* > &vec = (*iter).second;
+		vector< daeElement* >::iterator i = vec.begin();
+		vector< daeElement* >::iterator end2 = vec.end();
 		while( i != end2 )
 		{
 			if( col == (*i)->getDocument() )
@@ -498,8 +509,8 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 	if ( !name && !type && !file ) 
 	{
 		daeUInt count = 0;
-		std::map< std::string, std::vector< daeElement*> >::iterator iter = elements.begin();
-		std::map< std::string, std::vector< daeElement*> >::iterator end = elements.end();
+		map< string, vector< daeElement*> >::iterator iter = elements.begin();
+		map< string, vector< daeElement*> >::iterator end = elements.end();
 		while( iter != end )
 		{
 			count += (daeUInt)(*iter).second.size();
@@ -527,9 +538,9 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 				return DAE_ERR_QUERY_NO_MATCH;
 			}
 			//a document was specified
-			std::pair< std::multimap< std::string, daeElement* >::iterator, std::multimap< std::string, daeElement* >::iterator> range;
-			range = elementsIDMap.equal_range( std::string( name ) );
-			std::multimap< std::string, daeElement* >::iterator i = range.first;
+			pair< multimap< string, daeElement* >::iterator, multimap< string, daeElement* >::iterator> range;
+			range = elementsIDMap.equal_range( string( name ) );
+			multimap< string, daeElement* >::iterator i = range.first;
 			while ( i != range.second )
 			{
 				if ( col == (*i).second->getDocument() )
@@ -549,8 +560,8 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 		else 
 		{ 
 			//no document specified
-			std::multimap< std::string, daeElement* >::iterator i = elementsIDMap.find( std::string( name ) );
-			if ( index > (daeInt)elementsIDMap.count( std::string( name ) ) || i == elementsIDMap.end() )
+			multimap< string, daeElement* >::iterator i = elementsIDMap.find( string( name ) );
+			if ( index > (daeInt)elementsIDMap.count( string( name ) ) || i == elementsIDMap.end() )
 			{
 				*pElement = NULL;
 				return DAE_ERR_QUERY_NO_MATCH;
@@ -566,7 +577,7 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 	
 	if ( type ) 
 	{ 
-		std::map< std::string, std::vector< daeElement*> >::iterator iter = elements.find( std::string( type ) );
+		map< string, vector< daeElement*> >::iterator iter = elements.find( string( type ) );
 		if ( iter == elements.end() )
 		{
 			*pElement = NULL;
@@ -584,9 +595,9 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 			}
 			//a document was specified
 			// a document was specified
-			std::vector< daeElement* > &vec = (*iter).second;
-			std::vector< daeElement* >::iterator i = vec.begin();
-			std::vector< daeElement* >::iterator end = vec.end();
+			vector< daeElement* > &vec = (*iter).second;
+			vector< daeElement* >::iterator i = vec.begin();
+			vector< daeElement* >::iterator end = vec.end();
 			while( i != end )
 			{
 				if ( col == (*i)->getDocument() )
@@ -623,13 +634,13 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 	}
 	//a document was specified
 	int count = 0;
-	std::map< std::string, std::vector< daeElement*> >::iterator iter = elements.begin();
-	std::map< std::string, std::vector< daeElement*> >::iterator end = elements.end();
+	map< string, vector< daeElement*> >::iterator iter = elements.begin();
+	map< string, vector< daeElement*> >::iterator end = elements.end();
 	while( iter != end )
 	{
-		std::vector< daeElement* > &vec = (*iter).second;
-		std::vector< daeElement* >::iterator i = vec.begin();
-		std::vector< daeElement* >::iterator end2 = vec.end();
+		vector< daeElement* > &vec = (*iter).second;
+		vector< daeElement* >::iterator i = vec.begin();
+		vector< daeElement* >::iterator end2 = vec.end();
 		while( i != end2 )
 		{
 			if( col == (*i)->getDocument() ) 
@@ -649,39 +660,32 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 
 }
 
-void daeSTLDatabase::sidLookup(const string& sid, list<daeElement*>& result) {
-	result.clear();
+vector<daeElement*> daeSTLDatabase::idLookup(const string& id) {
+	vector<daeElement*> matchingElements;
+	idMapRange range = elementsIDMap.equal_range(id);
+	for (idMapIter iter = range.first; iter != range.second; iter++)
+		matchingElements.push_back(iter->second);
+	return matchingElements;
+}
+
+void daeSTLDatabase::typeLookup(daeInt typeID,
+                                vector<daeElement*>& matchingElements,
+                                daeDocument* doc) {
+	matchingElements.clear();
+	typeMapRange range = typeMap.equal_range(typeID);
+	for (typeMapIter iter = range.first; iter != range.second; iter++)
+		if (!doc  ||  doc == iter->second->getDocument())
+			matchingElements.push_back(iter->second);
+}
+
+void daeSTLDatabase::sidLookup(const string& sid,
+                               vector<daeElement*>& matchingElements,
+                               daeDocument* doc) {
+	matchingElements.clear();
 	if (!sid.empty()) {
-		pair<sidMapIter, sidMapIter> range = sidMap.equal_range(sid);
+		sidMapRange range = sidMap.equal_range(sid);
 		for (sidMapIter iter = range.first; iter != range.second; iter++)
-			result.push_back(iter->second);
+			if (!doc  ||  doc == iter->second->getDocument())
+				matchingElements.push_back(iter->second);
 	}
 }
-
-// Generic Query
-daeInt daeSTLDatabase::queryElement(daeElement** pElement, daeString genericQuery)
-{
-	(void)pElement; 
-	(void)genericQuery; 
-	return DAE_ERR_NOT_IMPLEMENTED;
-}
-
-// !!!steveT Remove
-void daeSTLDatabase::getTypeList(const std::string& typeName, std::list<daeElement*>& result) {
-	map<string, vector<daeElement*> >::iterator iter = elements.find(typeName);
-	if (iter != elements.end()) {
-		const vector<daeElement*>& elts = iter->second;
-		for (size_t i = 0; i < elts.size(); i++)
-			result.push_back(elts[i]);
-	}
-}
-
-void daeSTLDatabase::getTypeArray(const std::string& typeName, std::vector<daeElement*>& result) {
-	map<string, vector<daeElement*> >::iterator iter = elements.find(typeName);
-	if (iter != elements.end()) {
-		const vector<daeElement*>& elts = iter->second;
-		for (size_t i = 0; i < elts.size(); i++)
-			result.push_back(elts[i]);
-	}
-}
-

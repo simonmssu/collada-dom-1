@@ -67,6 +67,20 @@ public:
 	virtual daeInt changeElementID(daeElement* element, daeString newID);
 	virtual daeInt changeElementSID(daeElement* element, daeString newSID); // Not implemented
 	virtual daeInt clear();
+
+	virtual std::vector<daeElement*> idLookup(const std::string& id);
+
+	virtual void typeLookup(daeInt typeID,
+	                        std::vector<daeElement*>& matchingElements,
+	                        daeDocument* doc = NULL);
+
+	// Currently not implemented, but you can uncomment some code in daeSTLDatabase.cpp to get
+	// it working.
+	virtual void sidLookup(const std::string& sid,
+	                       std::vector<daeElement*>& matchingElements,
+	                       daeDocument* doc = NULL);
+
+	// Deprecated. Don't use these. Use idLookup or typeLookup instead.
 	virtual daeUInt getElementCount(daeString name = NULL,
 	                                daeString type = NULL,
 	                                daeString file = NULL);
@@ -74,26 +88,26 @@ public:
 	                          daeInt index,
 	                          daeString name = NULL,
 	                          daeString type = NULL,
-	                          daeString file = NULL); 
-
-	// Not implemented
-	virtual void sidLookup(const std::string& sid, std::list<daeElement*>& result);
-
-	// Generic Query
-	virtual daeInt queryElement(daeElement** pElement, daeString genericQuery);
-
-	// !!!steveT Remove
-	void getTypeList(const std::string& typeName, std::list<daeElement*>& result);
-	void getTypeArray(const std::string& typeName, std::vector<daeElement*>& result);
+	                          daeString file = NULL);
 
 private:
 
-	std::map< std::string, std::vector< daeElement* > > elements; //map for all elements keyed on Type
+	std::map< std::string, std::vector< daeElement* > > elements; // type name --> element lookup table (deprecated)
+
+	std::multimap<daeInt, daeElement*> typeMap; // type ID --> element lookup table
+	typedef std::multimap<daeInt, daeElement*>::iterator typeMapIter;
+	typedef std::pair<daeInt, daeElement*> typeMapPair;
+	typedef std::pair<typeMapIter, typeMapIter> typeMapRange;
+
 	std::multimap< std::string, daeElement* > elementsIDMap; //map for elements keyed on ID
+	typedef std::multimap<std::string, daeElement*>::iterator idMapIter;
+	typedef std::pair<std::string, daeElement*> idMapPair;
+	typedef std::pair<idMapIter, idMapIter> idMapRange;
 
 	std::multimap< std::string, daeElement* > sidMap; // sid --> element lookup table
-	typedef std::pair<std::string, daeElement*> sidMapPair;
 	typedef std::multimap<std::string, daeElement*>::iterator sidMapIter;
+	typedef std::pair<std::string, daeElement*> sidMapPair;
+	typedef std::pair<sidMapIter, sidMapIter> sidMapRange;
 
 	std::vector<daeDocument*> documents;
 	daeMetaElement* topMeta;
