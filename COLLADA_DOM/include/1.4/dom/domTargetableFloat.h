@@ -67,7 +67,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domTargetableFloat_complexType(DAE& dae) : attrSid(), _value() {}
+	domTargetableFloat_complexType(DAE& dae, daeElement* elt) : attrSid(), _value() {}
 	/**
 	 * Destructor
 	 */
@@ -104,7 +104,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domTargetableFloat(DAE& dae) : daeElement(dae), domTargetableFloat_complexType(dae) {}
+	domTargetableFloat(DAE& dae) : daeElement(dae), domTargetableFloat_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

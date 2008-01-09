@@ -104,17 +104,27 @@ public:
 template <class T>
 class daeTArray : public daeArray
 {
+protected:
+	T* prototype;
 public:
 	/**
 	 *  Constructor.
 	 */
 	daeTArray() {
 		_elementSize = sizeof( T );
+		prototype = NULL;
+	}
+	/**
+	 *  Constructor.
+	 */
+	daeTArray(T* prototype) : prototype(prototype) {
+		_elementSize = sizeof( T );
 	}
 	/**
 	 * Copy Constructor
 	 */
 	daeTArray( const daeTArray<T> &cpy ) : daeArray() {
+		prototype = NULL;
 		*this = cpy;
 	}
 	/**
@@ -122,6 +132,7 @@ public:
 	 */
 	daeTArray( const T &el ) {
 		_elementSize = sizeof(T);
+		prototype = NULL;
 		append( el );
 	}
 	/**
@@ -129,6 +140,7 @@ public:
 	 */
 	virtual ~daeTArray() {
 		clear();
+		delete prototype;
 	}
 	/**
 	 * Frees the memory in this array and resets it to it's initial state.
@@ -214,7 +226,10 @@ public:
 	 * @note Shrinking the array does NOT free up memory.
 	 */
 	virtual void setCount(size_t nElements) {
-		setCount(nElements, T());
+		if (prototype)
+			setCount(nElements, *prototype);
+		else
+			setCount(nElements, T());
 	}
 	
 	/**

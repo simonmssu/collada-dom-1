@@ -76,7 +76,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInputGlobal_complexType(DAE& dae) : attrSemantic(), attrSource(dae) {}
+	domInputGlobal_complexType(DAE& dae, daeElement* elt) : attrSemantic(), attrSource(dae, *elt) {}
 	/**
 	 * Destructor
 	 */
@@ -134,7 +134,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInputGlobal(DAE& dae) : daeElement(dae), domInputGlobal_complexType(dae) {}
+	domInputGlobal(DAE& dae) : daeElement(dae), domInputGlobal_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

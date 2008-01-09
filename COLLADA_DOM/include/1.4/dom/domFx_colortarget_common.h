@@ -94,7 +94,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_colortarget_common_complexType(DAE& dae) : attrIndex(), attrFace(), attrMip(), attrSlice(), _value() {}
+	domFx_colortarget_common_complexType(DAE& dae, daeElement* elt) : attrIndex(), attrFace(), attrMip(), attrSlice(), _value() {}
 	/**
 	 * Destructor
 	 */
@@ -164,7 +164,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_colortarget_common(DAE& dae) : daeElement(dae), domFx_colortarget_common_complexType(dae) {}
+	domFx_colortarget_common(DAE& dae) : daeElement(dae), domFx_colortarget_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

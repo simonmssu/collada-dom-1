@@ -503,7 +503,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_common_complexType(DAE& dae) : attrType(), elemFx_surface_init_common(), elemFormat(), elemFormat_hint(), elemSize(), elemViewport_ratio(), elemMip_levels(), elemMipmap_generate(), elemExtra_array() {}
+	domFx_surface_common_complexType(DAE& dae, daeElement* elt) : attrType(), elemFx_surface_init_common(), elemFormat(), elemFormat_hint(), elemSize(), elemViewport_ratio(), elemMip_levels(), elemMipmap_generate(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -540,7 +540,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_common(DAE& dae) : daeElement(dae), domFx_surface_common_complexType(dae) {}
+	domFx_surface_common(DAE& dae) : daeElement(dae), domFx_surface_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

@@ -28,7 +28,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_samplerDEPTH_complexType(DAE& dae) : domFx_samplerDEPTH_common_complexType(dae) {}
+	domCg_samplerDEPTH_complexType(DAE& dae, daeElement* elt) : domFx_samplerDEPTH_common_complexType(dae, elt) {}
 	/**
 	 * Destructor
 	 */
@@ -52,7 +52,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_samplerDEPTH(DAE& dae) : daeElement(dae), domCg_samplerDEPTH_complexType(dae) {}
+	domCg_samplerDEPTH(DAE& dae) : daeElement(dae), domCg_samplerDEPTH_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

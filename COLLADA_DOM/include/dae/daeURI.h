@@ -172,15 +172,16 @@ public:
 	 */
 	daeURI(const daeURI& constructFromURI);
 
-	// !!!steveT Add a constructor that takes a daeElement and change the dom* objects
-	// to always create daeURIs using that constructor.
-
 	/**
 	 * Constructs a daeURI given a container element and a URI string.
 	 * @param container The container element.
 	 * @param uriString the URI string.
 	 */
 	daeURI(daeElement& container, daeString uriString = 0);
+
+	// This constructor is for internal DOM purposes only. For client code, use the constructor
+	// that takes only a daeElement instead of this one.
+	daeURI(DAE& dae, daeElement& container, daeString uriString = 0);
 
 	/**
 	 * Gets the DAE objects associated with this daeURI.

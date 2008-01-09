@@ -67,7 +67,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_code_profile_complexType(DAE& dae) : attrSid(), _value() {}
+	domFx_code_profile_complexType(DAE& dae, daeElement* elt) : attrSid(), _value() {}
 	/**
 	 * Destructor
 	 */
@@ -104,7 +104,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_code_profile(DAE& dae) : daeElement(dae), domFx_code_profile_complexType(dae) {}
+	domFx_code_profile(DAE& dae) : daeElement(dae), domFx_code_profile_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

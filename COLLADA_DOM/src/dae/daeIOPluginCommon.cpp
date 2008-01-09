@@ -83,8 +83,6 @@ daeInt daeIOPluginCommon::read(daeURI& uri, daeString docBuffer)
 	if (res!= DAE_OK)
 		return res;
 
-	database->getDAE()->resolveAll();
-
 	return DAE_OK;
 }
 

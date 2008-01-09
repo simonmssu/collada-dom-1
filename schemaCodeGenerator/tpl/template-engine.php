@@ -189,17 +189,16 @@ function getInheritanceStatement($baseClasses) {
 }
 
 function beginConstructorInitializer(& $initializerListStarted) {
-	if (!$initializerListStarted)
-		print " : ";
-	else
-		print ", ";
+	print $initializerListStarted ? ", " : " : ";
 	$initializerListStarted = true;
 }
 
-function printBaseClassInitializers($baseClasses, & $initializerListStarted) {
+function printBaseClassInitializers($elemName, $baseClasses, & $initializerListStarted) {
+	$elt = strpos($elemName, "_complexType") === false ? "this" : "elt";
 	for ($i = 0; $i < count($baseClasses); $i++) {
 		beginConstructorInitializer($initializerListStarted);
-		print $baseClasses[$i] . "(dae)";
+		print $baseClasses[$i] .
+		      (strpos($baseClasses[$i], "_complexType") !== false ? "(dae, " . $elt . ")" : "(dae)");
 	}
 }
 
@@ -207,14 +206,18 @@ function printConstructors( $elemName, & $bag, $baseClasses, $indent ) {
 	//print the protected ctor and copy stuff
 	print $indent ."protected:\n";
 	print $indent ."\t/**\n". $indent ."\t * Constructor\n". $indent ."\t */\n";
-	print $indent ."\t". $elemName ."(DAE& dae)";
+	print $indent ."\t". $elemName ."(DAE& dae";
+	if ($bag['isAComplexType'])
+		print ", daeElement* elt";
+	print ")";
 	$initializerListStarted = false;
+	$eltVar = $bag['isAComplexType'] ? "*elt" : "*this";
 
-	printBaseClassInitializers($baseClasses, $initializerListStarted);
+	printBaseClassInitializers($elemName, $baseClasses, $initializerListStarted);
 
 	if ($bag['useXMLNS']) {
 		beginConstructorInitializer($initializerListStarted);
-		print "attrXmlns(dae)";
+		print "attrXmlns(dae, " . $eltVar . ")";
 	}
 	
 	// Constructor initialization of attributes
@@ -225,8 +228,12 @@ function printConstructors( $elemName, & $bag, $baseClasses, $indent ) {
 			$attr_name = ucfirst($attr_name);
 			$type = $a_list['type'];
 			print "attr" . $attr_name . "(";
-			if ($type == 'xs:anyURI' || $type == 'URIFragmentType' )
-				print "dae";
+			if ($type == 'xs:anyURI' || $type == 'URIFragmentType')
+				print "dae, " . $eltVar;
+			else if ($type == 'xs:IDREF')
+				print $eltVar;
+			else if ($type == 'xs:IDREFS')
+				print "new xsIDREF(" . $eltVar . ")";
 			print ")";
 		}
 	}
@@ -241,8 +248,12 @@ function printConstructors( $elemName, & $bag, $baseClasses, $indent ) {
 
 	if ( ($bag['content_type'] != '' || $bag['mixed']) && !$bag['abstract'] ) {
 		beginConstructorInitializer($initializerListStarted);
-		if ($bag['content_type'] == "xs:anyURI" || $bag['content_type'] == 'URIFragmentType')
-			print "_value(dae)";
+		if ($bag['content_type'] == 'xs:anyURI' || $bag['content_type'] == 'URIFragmentType')
+			print "_value(dae, " . $eltVar . ")";
+		else if ($bag['content_type'] == 'xs:IDREF')
+			print "_value(" . $eltVar . ")";
+		else if ($bag['content_type'] == 'xs:IDREFS')
+			print "_value(new xsIDREF(" . $eltVar . "))";
 		else
 			print "_value()";
 	}	

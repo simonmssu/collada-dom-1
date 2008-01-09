@@ -47,7 +47,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domScale(DAE& dae) : daeElement(dae), domTargetableFloat3_complexType(dae) {}
+	domScale(DAE& dae) : daeElement(dae), domTargetableFloat3_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

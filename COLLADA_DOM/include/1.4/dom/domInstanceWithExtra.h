@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstanceWithExtra_complexType(DAE& dae) : attrUrl(dae), attrSid(), attrName(), elemExtra_array() {}
+	domInstanceWithExtra_complexType(DAE& dae, daeElement* elt) : attrUrl(dae, *elt), attrSid(), attrName(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -180,7 +180,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstanceWithExtra(DAE& dae) : daeElement(dae), domInstanceWithExtra_complexType(dae) {}
+	domInstanceWithExtra(DAE& dae) : daeElement(dae), domInstanceWithExtra_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

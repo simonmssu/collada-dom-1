@@ -304,7 +304,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_effect(DAE& dae) : daeElement(dae), attrUrl(dae), attrSid(), attrName(), elemTechnique_hint_array(), elemSetparam_array(), elemExtra_array() {}
+	domInstance_effect(DAE& dae) : daeElement(dae), attrUrl(dae, *this), attrSid(), attrName(), elemTechnique_hint_array(), elemSetparam_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

@@ -499,7 +499,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCOLLADA(DAE& dae) : daeElement(dae), attrXmlns(dae), attrVersion(), attrXml_base(dae), elemAsset(), elemLibrary_animations_array(), elemLibrary_animation_clips_array(), elemLibrary_cameras_array(), elemLibrary_controllers_array(), elemLibrary_geometries_array(), elemLibrary_effects_array(), elemLibrary_force_fields_array(), elemLibrary_images_array(), elemLibrary_lights_array(), elemLibrary_materials_array(), elemLibrary_nodes_array(), elemLibrary_physics_materials_array(), elemLibrary_physics_models_array(), elemLibrary_physics_scenes_array(), elemLibrary_visual_scenes_array(), elemScene(), elemExtra_array() {}
+	domCOLLADA(DAE& dae) : daeElement(dae), attrXmlns(dae, *this), attrVersion(), attrXml_base(dae, *this), elemAsset(), elemLibrary_animations_array(), elemLibrary_animation_clips_array(), elemLibrary_cameras_array(), elemLibrary_controllers_array(), elemLibrary_geometries_array(), elemLibrary_effects_array(), elemLibrary_force_fields_array(), elemLibrary_images_array(), elemLibrary_lights_array(), elemLibrary_materials_array(), elemLibrary_nodes_array(), elemLibrary_physics_materials_array(), elemLibrary_physics_models_array(), elemLibrary_physics_scenes_array(), elemLibrary_visual_scenes_array(), elemScene(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

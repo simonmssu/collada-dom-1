@@ -350,7 +350,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_format_hint_common_complexType(DAE& dae) : elemChannels(), elemRange(), elemPrecision(), elemOption_array(), elemExtra_array() {}
+	domFx_surface_format_hint_common_complexType(DAE& dae, daeElement* elt) : elemChannels(), elemRange(), elemPrecision(), elemOption_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -374,7 +374,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_format_hint_common(DAE& dae) : daeElement(dae), domFx_surface_format_hint_common_complexType(dae) {}
+	domFx_surface_format_hint_common(DAE& dae) : daeElement(dae), domFx_surface_format_hint_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

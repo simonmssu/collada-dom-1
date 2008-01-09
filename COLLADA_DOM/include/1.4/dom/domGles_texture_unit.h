@@ -251,7 +251,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texture_unit_complexType(DAE& dae) : attrSid(), elemSurface(), elemSampler_state(), elemTexcoord(), elemExtra_array() {}
+	domGles_texture_unit_complexType(DAE& dae, daeElement* elt) : attrSid(), elemSurface(), elemSampler_state(), elemTexcoord(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -288,7 +288,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texture_unit(DAE& dae) : daeElement(dae), domGles_texture_unit_complexType(dae) {}
+	domGles_texture_unit(DAE& dae) : daeElement(dae), domGles_texture_unit_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

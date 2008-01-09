@@ -140,6 +140,15 @@ daeURI::daeURI(daeElement& container, daeString uriString)
 	validate();
 }
 
+daeURI::daeURI(DAE& dae, daeElement& container, daeString uriString)
+	: dae(&dae),
+		container(&container)
+{
+	initialize();
+	setURI(uriString);
+	validate();
+}
+
 void
 daeURI::copyFrom(daeURI& copyFrom)
 {

@@ -106,7 +106,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_setparam_complexType(DAE& dae) : attrRef(), attrProgram(), elemAnnotate_array(), elemGlsl_param_type(), elemArray() {}
+	domGlsl_setparam_complexType(DAE& dae, daeElement* elt) : attrRef(), attrProgram(), elemAnnotate_array(), elemGlsl_param_type(), elemArray() {}
 	/**
 	 * Destructor
 	 */
@@ -154,7 +154,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_setparam(DAE& dae) : daeElement(dae), domGlsl_setparam_complexType(dae) {}
+	domGlsl_setparam(DAE& dae) : daeElement(dae), domGlsl_setparam_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

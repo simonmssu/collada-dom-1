@@ -50,7 +50,6 @@ protected:
 	daeStringRef _name;
 
 	daeElementConstructFunctionPtr _createFunc;
-	daeBool _needsResolve;
 	daeInt _elementSize;
 	
 	daeMetaAttributeRefArray _metaAttributes;

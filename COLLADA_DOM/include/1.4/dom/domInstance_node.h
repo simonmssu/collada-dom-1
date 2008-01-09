@@ -79,7 +79,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_node(DAE& dae) : daeElement(dae), domInstanceWithExtra_complexType(dae) {}
+	domInstance_node(DAE& dae) : daeElement(dae), domInstanceWithExtra_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

@@ -28,7 +28,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_sampler3D_complexType(DAE& dae) : domFx_sampler3D_common_complexType(dae) {}
+	domCg_sampler3D_complexType(DAE& dae, daeElement* elt) : domFx_sampler3D_common_complexType(dae, elt) {}
 	/**
 	 * Destructor
 	 */
@@ -52,7 +52,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_sampler3D(DAE& dae) : daeElement(dae), domCg_sampler3D_complexType(dae) {}
+	domCg_sampler3D(DAE& dae) : daeElement(dae), domCg_sampler3D_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

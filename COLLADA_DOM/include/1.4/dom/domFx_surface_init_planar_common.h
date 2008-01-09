@@ -65,7 +65,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAll(DAE& dae) : daeElement(dae), attrRef() {}
+		domAll(DAE& dae) : daeElement(dae), attrRef(*this) {}
 		/**
 		 * Destructor
 		 */
@@ -132,7 +132,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_planar_common_complexType(DAE& dae) : elemAll() {}
+	domFx_surface_init_planar_common_complexType(DAE& dae, daeElement* elt) : elemAll() {}
 	/**
 	 * Destructor
 	 */
@@ -156,7 +156,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_planar_common(DAE& dae) : daeElement(dae), domFx_surface_init_planar_common_complexType(dae) {}
+	domFx_surface_init_planar_common(DAE& dae) : daeElement(dae), domFx_surface_init_planar_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

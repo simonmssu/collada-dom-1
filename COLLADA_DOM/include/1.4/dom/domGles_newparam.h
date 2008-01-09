@@ -219,7 +219,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_newparam_complexType(DAE& dae) : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemGles_basic_type_common() {}
+	domGles_newparam_complexType(DAE& dae, daeElement* elt) : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemGles_basic_type_common() {}
 	/**
 	 * Destructor
 	 */
@@ -256,7 +256,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_newparam(DAE& dae) : daeElement(dae), domGles_newparam_complexType(dae) {}
+	domGles_newparam(DAE& dae) : daeElement(dae), domGles_newparam_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

@@ -82,7 +82,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domSkeleton(DAE& dae) : daeElement(dae), _value(dae) {}
+		domSkeleton(DAE& dae) : daeElement(dae), _value(dae, *this) {}
 		/**
 		 * Destructor
 		 */
@@ -216,7 +216,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_controller(DAE& dae) : daeElement(dae), attrUrl(dae), attrSid(), attrName(), elemSkeleton_array(), elemBind_material(), elemExtra_array() {}
+	domInstance_controller(DAE& dae) : daeElement(dae), attrUrl(dae, *this), attrSid(), attrName(), elemSkeleton_array(), elemBind_material(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

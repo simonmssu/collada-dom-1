@@ -871,7 +871,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_rigid_body(DAE& dae) : daeElement(dae), attrBody(), attrSid(), attrName(), attrTarget(dae), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
+	domInstance_rigid_body(DAE& dae) : daeElement(dae), attrBody(), attrSid(), attrName(), attrTarget(dae, *this), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

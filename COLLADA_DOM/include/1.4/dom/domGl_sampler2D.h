@@ -31,7 +31,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGl_sampler2D_complexType(DAE& dae) : domFx_sampler2D_common_complexType(dae) {}
+	domGl_sampler2D_complexType(DAE& dae, daeElement* elt) : domFx_sampler2D_common_complexType(dae, elt) {}
 	/**
 	 * Destructor
 	 */
@@ -55,7 +55,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGl_sampler2D(DAE& dae) : daeElement(dae), domGl_sampler2D_complexType(dae) {}
+	domGl_sampler2D(DAE& dae) : daeElement(dae), domGl_sampler2D_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

@@ -153,7 +153,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domRef_attachment(DAE& dae) : daeElement(dae), attrRigid_body(dae), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
+		domRef_attachment(DAE& dae) : daeElement(dae), attrRigid_body(dae, *this), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */
@@ -293,7 +293,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAttachment(DAE& dae) : daeElement(dae), attrRigid_body(dae), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
+		domAttachment(DAE& dae) : daeElement(dae), attrRigid_body(dae, *this), elemTranslate_array(), elemRotate_array(), elemExtra_array() {}
 		/**
 		 * Destructor
 		 */

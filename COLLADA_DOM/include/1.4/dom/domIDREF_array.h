@@ -109,7 +109,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domIDREF_array(DAE& dae) : daeElement(dae), attrId(), attrName(), attrCount(), _value() {}
+	domIDREF_array(DAE& dae) : daeElement(dae), attrId(), attrName(), attrCount(), _value(new xsIDREF(*this)) {}
 	/**
 	 * Destructor
 	 */

@@ -129,7 +129,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_newarray_type_complexType(DAE& dae) : attrLength(), elemCg_param_type_array(), elemArray_array(), elemUsertype_array(), elemConnect_param_array() {}
+	domCg_newarray_type_complexType(DAE& dae, daeElement* elt) : attrLength(), elemCg_param_type_array(), elemArray_array(), elemUsertype_array(), elemConnect_param_array() {}
 	/**
 	 * Destructor
 	 */
@@ -166,7 +166,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_newarray_type(DAE& dae) : daeElement(dae), domCg_newarray_type_complexType(dae) {}
+	domCg_newarray_type(DAE& dae) : daeElement(dae), domCg_newarray_type_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

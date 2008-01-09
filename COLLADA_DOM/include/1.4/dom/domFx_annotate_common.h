@@ -50,7 +50,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_annotate_common_complexType(DAE& dae) : attrName(), elemFx_annotate_type_common() {}
+	domFx_annotate_common_complexType(DAE& dae, daeElement* elt) : attrName(), elemFx_annotate_type_common() {}
 	/**
 	 * Destructor
 	 */
@@ -87,7 +87,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_annotate_common(DAE& dae) : daeElement(dae), domFx_annotate_common_complexType(dae) {}
+	domFx_annotate_common(DAE& dae) : daeElement(dae), domFx_annotate_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

@@ -342,7 +342,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domSource_data(DAE& dae) : daeElement(dae), _value(dae) {}
+			domSource_data(DAE& dae) : daeElement(dae), _value(dae, *this) {}
 			/**
 			 * Destructor
 			 */

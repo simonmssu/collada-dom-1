@@ -91,7 +91,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_from_common_complexType(DAE& dae) : attrMip(), attrSlice(), attrFace(), _value() {}
+	domFx_surface_init_from_common_complexType(DAE& dae, daeElement* elt) : attrMip(), attrSlice(), attrFace(), _value(*elt) {}
 	/**
 	 * Destructor
 	 */
@@ -150,7 +150,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_from_common(DAE& dae) : daeElement(dae), domFx_surface_init_from_common_complexType(dae) {}
+	domFx_surface_init_from_common(DAE& dae) : daeElement(dae), domFx_surface_init_from_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

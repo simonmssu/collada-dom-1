@@ -43,7 +43,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_transparent_type_complexType(DAE& dae) : domCommon_color_or_texture_type_complexType(dae), attrOpaque() {}
+	domCommon_transparent_type_complexType(DAE& dae, daeElement* elt) : domCommon_color_or_texture_type_complexType(dae, elt), attrOpaque() {}
 	/**
 	 * Destructor
 	 */
@@ -80,7 +80,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_transparent_type(DAE& dae) : daeElement(dae), domCommon_transparent_type_complexType(dae) {}
+	domCommon_transparent_type(DAE& dae) : daeElement(dae), domCommon_transparent_type_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

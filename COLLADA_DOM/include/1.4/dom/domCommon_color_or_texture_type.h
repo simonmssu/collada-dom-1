@@ -281,7 +281,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_color_or_texture_type_complexType(DAE& dae) : elemColor(), elemParam(), elemTexture() {}
+	domCommon_color_or_texture_type_complexType(DAE& dae, daeElement* elt) : elemColor(), elemParam(), elemTexture() {}
 	/**
 	 * Destructor
 	 */
@@ -305,7 +305,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_color_or_texture_type(DAE& dae) : daeElement(dae), domCommon_color_or_texture_type_complexType(dae) {}
+	domCommon_color_or_texture_type(DAE& dae) : daeElement(dae), domCommon_color_or_texture_type_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

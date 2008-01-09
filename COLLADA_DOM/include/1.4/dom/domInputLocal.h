@@ -76,7 +76,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInputLocal_complexType(DAE& dae) : attrSemantic(), attrSource(dae) {}
+	domInputLocal_complexType(DAE& dae, daeElement* elt) : attrSemantic(), attrSource(dae, *elt) {}
 	/**
 	 * Destructor
 	 */
@@ -134,7 +134,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInputLocal(DAE& dae) : daeElement(dae), domInputLocal_complexType(dae) {}
+	domInputLocal(DAE& dae) : daeElement(dae), domInputLocal_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

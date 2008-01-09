@@ -62,7 +62,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAll(DAE& dae) : daeElement(dae), attrRef() {}
+		domAll(DAE& dae) : daeElement(dae), attrRef(*this) {}
 		/**
 		 * Destructor
 		 */
@@ -126,7 +126,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPrimary(DAE& dae) : daeElement(dae), attrRef() {}
+		domPrimary(DAE& dae) : daeElement(dae), attrRef(*this) {}
 		/**
 		 * Destructor
 		 */
@@ -204,7 +204,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_volume_common_complexType(DAE& dae) : elemAll(), elemPrimary() {}
+	domFx_surface_init_volume_common_complexType(DAE& dae, daeElement* elt) : elemAll(), elemPrimary() {}
 	/**
 	 * Destructor
 	 */
@@ -228,7 +228,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_volume_common(DAE& dae) : daeElement(dae), domFx_surface_init_volume_common_complexType(dae) {}
+	domFx_surface_init_volume_common(DAE& dae) : daeElement(dae), domFx_surface_init_volume_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

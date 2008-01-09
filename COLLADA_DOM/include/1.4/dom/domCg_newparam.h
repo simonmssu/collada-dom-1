@@ -253,7 +253,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_newparam_complexType(DAE& dae) : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemCg_param_type(), elemUsertype(), elemArray() {}
+	domCg_newparam_complexType(DAE& dae, daeElement* elt) : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemCg_param_type(), elemUsertype(), elemArray() {}
 	/**
 	 * Destructor
 	 */
@@ -290,7 +290,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_newparam(DAE& dae) : daeElement(dae), domCg_newparam_complexType(dae) {}
+	domCg_newparam(DAE& dae) : daeElement(dae), domCg_newparam_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

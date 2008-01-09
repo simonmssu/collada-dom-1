@@ -45,7 +45,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_connect_param_complexType(DAE& dae) : attrRef() {}
+	domCg_connect_param_complexType(DAE& dae, daeElement* elt) : attrRef() {}
 	/**
 	 * Destructor
 	 */
@@ -82,7 +82,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_connect_param(DAE& dae) : daeElement(dae), domCg_connect_param_complexType(dae) {}
+	domCg_connect_param(DAE& dae) : daeElement(dae), domCg_connect_param_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

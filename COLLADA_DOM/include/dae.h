@@ -109,12 +109,6 @@ public:
 	// Get all daeMetaElement objects.
 	daeMetaElementRefArray& getAllMetas();
 
-	// Add an element to the list of elements that need a daeElement::resolve call.
-	void appendResolveElement(daeElement* elem);
-
-	// Call daeElement::resolve on all elements waiting to be resolved.
-	void resolveAll();
-
 	// Returns the list of URI resolvers. You can modify the list to add new resolvers.
 	daeURIResolverList& getURIResolvers();
 
@@ -136,7 +130,6 @@ private:
 	bool defaultPlugin;
 	daeAtomicTypeList atomicTypes;
 	daeMetaElementRefArray metas;
-	daeElementRefArray resolveArray;
 	daeURI baseUri;
 	daeURIResolverList uriResolvers;
 	daeIDRefResolverList idRefResolvers;

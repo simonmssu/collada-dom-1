@@ -67,7 +67,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texcombiner_commandAlpha_type_complexType(DAE& dae) : attrOperator(), attrScale(), elemArgument_array() {}
+	domGles_texcombiner_commandAlpha_type_complexType(DAE& dae, daeElement* elt) : attrOperator(), attrScale(), elemArgument_array() {}
 	/**
 	 * Destructor
 	 */
@@ -115,7 +115,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texcombiner_commandAlpha_type(DAE& dae) : daeElement(dae), domGles_texcombiner_commandAlpha_type_complexType(dae) {}
+	domGles_texcombiner_commandAlpha_type(DAE& dae) : daeElement(dae), domGles_texcombiner_commandAlpha_type_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

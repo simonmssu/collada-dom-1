@@ -87,14 +87,11 @@ public:
 	 */
 	daeIDRef(const daeIDRef& constructFromIDRef);
 
-	// !!!steveT Add a constructor that takes a container element, and have the
-	// dom* classes always use that constructor.
-
 	/**
 	 * Constructs an id reference with a container element
 	 * @param container The container element.
 	 */
-	daeIDRef(daeElement* container);
+	daeIDRef(daeElement& container);
 
 	/**
 	 * Gets the ID string

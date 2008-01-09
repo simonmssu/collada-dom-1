@@ -151,7 +151,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domInit_from(DAE& dae) : daeElement(dae), _value(dae) {}
+		domInit_from(DAE& dae) : daeElement(dae), _value(dae, *this) {}
 		/**
 		 * Destructor
 		 */
