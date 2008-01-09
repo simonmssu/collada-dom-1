@@ -131,6 +131,15 @@ daeURI::daeURI(const daeURI& copyFrom) : dae(copyFrom.getDAE())
 	state = copyFrom.state;
 }
 
+daeURI::daeURI(daeElement& container, daeString uriString)
+	: dae(container.getDAE()),
+		container(&container)
+{
+	initialize();
+	setURI(uriString);
+	validate();
+}
+
 void
 daeURI::copyFrom(daeURI& copyFrom)
 {
@@ -138,6 +147,11 @@ daeURI::copyFrom(daeURI& copyFrom)
 	element = copyFrom.element;		// !!!GAC SetURI immediately clears element so we must do this after
 	state = copyFrom.state;
 	// !!!GAC Should there be a call to validate in here?
+}
+
+daeURI& daeURI::operator=(daeString uri) {
+	setURI(uri);
+	return *this;
 }
 
 void

@@ -29,67 +29,85 @@
  * The @c daeSTLDatabase class derives from @c daeDatabase and implements
  * the default database.
  */
-class daeSTLDatabase : public daeDatabase
+class DLLSPEC daeSTLDatabase : public daeDatabase
 {
 public:
 	/**
 	  * Constructor
 	  */
-	DLLSPEC daeSTLDatabase(DAE& dae);
+	daeSTLDatabase(DAE& dae);
 	/**
 	  * Destructor
 	  */
-	virtual DLLSPEC ~daeSTLDatabase();
+	virtual ~daeSTLDatabase();
 
 public:
 	// Element Types of all Elements
-	virtual DLLSPEC daeUInt getTypeCount();
-	virtual DLLSPEC daeString getTypeName(daeUInt index);
-	virtual DLLSPEC daeInt setMeta(daeMetaElement *_topMeta);
+	virtual daeUInt getTypeCount();
+	virtual daeString getTypeName(daeUInt index);
+	virtual daeInt setMeta(daeMetaElement *_topMeta);
 
 	// Documents
-	virtual DLLSPEC daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt insertDocument(daeString name, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt createDocument(daeString name, daeDocument** document = NULL);
-	virtual DLLSPEC daeInt insertDocument( daeDocument *c );
+	virtual daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
+	virtual daeInt insertDocument(daeString name, daeDocument** document = NULL);
+	virtual daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
+	virtual daeInt createDocument(daeString name, daeDocument** document = NULL);
+	virtual daeInt insertDocument( daeDocument *c );
 
-	virtual DLLSPEC daeInt removeDocument(daeDocument* document);
-	virtual DLLSPEC daeUInt getDocumentCount();
-	virtual DLLSPEC daeDocument* getDocument(daeUInt index);
-	virtual DLLSPEC daeDocument* getDocument(daeString name);
-	virtual DLLSPEC daeString getDocumentName(daeUInt index);
-	virtual DLLSPEC daeBool isDocumentLoaded(daeString name);
+	virtual daeInt removeDocument(daeDocument* document);
+	virtual daeUInt getDocumentCount();
+	virtual daeDocument* getDocument(daeUInt index);
+	virtual daeDocument* getDocument(daeString name);
+	virtual daeString getDocumentName(daeUInt index);
+	virtual daeBool isDocumentLoaded(daeString name);
 
 	// Elements 
-	virtual DLLSPEC daeInt insertElement(daeDocument* document, daeElement* element);
-	virtual DLLSPEC daeInt removeElement(daeDocument* document, daeElement* element); 
-	virtual DLLSPEC daeInt changeElementID(daeElement* element, daeString newID);
-	virtual DLLSPEC daeInt changeElementSID(daeElement* element, daeString newSID); // Not implemented
-	virtual DLLSPEC daeInt clear();
-	virtual DLLSPEC daeUInt getElementCount(daeString name = NULL,
-	                                        daeString type = NULL,
-	                                        daeString file = NULL);
-	virtual DLLSPEC daeInt getElement(daeElement** pElement, 
-	                                  daeInt index,
-	                                  daeString name = NULL,
-	                                  daeString type = NULL,
-	                                  daeString file = NULL); 
+	virtual daeInt insertElement(daeDocument* document, daeElement* element);
+	virtual daeInt removeElement(daeDocument* document, daeElement* element); 
+	virtual daeInt changeElementID(daeElement* element, daeString newID);
+	virtual daeInt changeElementSID(daeElement* element, daeString newSID); // Not implemented
+	virtual daeInt clear();
 
-	// Not implemented
-	virtual DLLSPEC void sidLookup(const std::string& sid, std::list<daeElement*>& result);
+	virtual std::vector<daeElement*> idLookup(const std::string& id);
 
-	// Generic Query
-	virtual DLLSPEC daeInt queryElement(daeElement** pElement, daeString genericQuery);
+	virtual void typeLookup(daeInt typeID,
+	                        std::vector<daeElement*>& matchingElements,
+	                        daeDocument* doc = NULL);
+
+	// Currently not implemented, but you can uncomment some code in daeSTLDatabase.cpp to get
+	// it working.
+	virtual void sidLookup(const std::string& sid,
+	                       std::vector<daeElement*>& matchingElements,
+	                       daeDocument* doc = NULL);
+
+	// Deprecated. Don't use these. Use idLookup or typeLookup instead.
+	virtual daeUInt getElementCount(daeString name = NULL,
+	                                daeString type = NULL,
+	                                daeString file = NULL);
+	virtual daeInt getElement(daeElement** pElement, 
+	                          daeInt index,
+	                          daeString name = NULL,
+	                          daeString type = NULL,
+	                          daeString file = NULL);
 
 private:
 
-	std::map< std::string, std::vector< daeElement* > > elements; //map for all elements keyed on Type
+	std::map< std::string, std::vector< daeElement* > > elements; // type name --> element lookup table (deprecated)
+
+	std::multimap<daeInt, daeElement*> typeMap; // type ID --> element lookup table
+	typedef std::multimap<daeInt, daeElement*>::iterator typeMapIter;
+	typedef std::pair<daeInt, daeElement*> typeMapPair;
+	typedef std::pair<typeMapIter, typeMapIter> typeMapRange;
+
 	std::multimap< std::string, daeElement* > elementsIDMap; //map for elements keyed on ID
+	typedef std::multimap<std::string, daeElement*>::iterator idMapIter;
+	typedef std::pair<std::string, daeElement*> idMapPair;
+	typedef std::pair<idMapIter, idMapIter> idMapRange;
 
 	std::multimap< std::string, daeElement* > sidMap; // sid --> element lookup table
-	typedef std::pair<std::string, daeElement*> sidMapPair;
 	typedef std::multimap<std::string, daeElement*>::iterator sidMapIter;
+	typedef std::pair<std::string, daeElement*> sidMapPair;
+	typedef std::pair<sidMapIter, sidMapIter> sidMapRange;
 
 	std::vector<daeDocument*> documents;
 	daeMetaElement* topMeta;

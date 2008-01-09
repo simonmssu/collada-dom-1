@@ -100,6 +100,11 @@ public:	//Accessors and Mutators
 	 * @param atSource The new value for the source attribute.
 	 */
 	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; _validAttributeArray[2] = true; }
+	/**
+	 * Sets the source attribute.
+	 * @param atSource The new value for the source attribute.
+	 */
+	void setSource( xsString atSource ) { attrSource = atSource; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the stride attribute.

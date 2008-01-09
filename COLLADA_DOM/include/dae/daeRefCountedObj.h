@@ -40,4 +40,7 @@ public:
 	void ref() const;
 };
 
+void DLLSPEC checkedRelease(const daeRefCountedObj* obj);
+void DLLSPEC checkedRef(const daeRefCountedObj* obj);
+
 #endif

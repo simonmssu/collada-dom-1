@@ -176,6 +176,13 @@ public:
 	// to always create daeURIs using that constructor.
 
 	/**
+	 * Constructs a daeURI given a container element and a URI string.
+	 * @param container The container element.
+	 * @param uriString the URI string.
+	 */
+	daeURI(daeElement& container, daeString uriString = 0);
+
+	/**
 	 * Gets the DAE objects associated with this daeURI.
 	 * @return Returns a pointer to the associated DAE. This will never return null.
 	 */
@@ -331,6 +338,8 @@ public:
 		state = other.state;
 		return *this;
 	}
+
+	daeURI& operator=(daeString uri);
 
 	// This method is deprecated. There's no reason to ever call it. Just call getElement directly.
 	void resolveElement();

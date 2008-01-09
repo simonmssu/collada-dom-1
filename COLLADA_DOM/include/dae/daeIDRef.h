@@ -91,6 +91,12 @@ public:
 	// dom* classes always use that constructor.
 
 	/**
+	 * Constructs an id reference with a container element
+	 * @param container The container element.
+	 */
+	daeIDRef(daeElement* container);
+
+	/**
 	 * Gets the ID string
 	 * @return Returns the full ID string from <tt><i>id.</i></tt> 
 	 */

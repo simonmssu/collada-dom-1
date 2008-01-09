@@ -452,6 +452,10 @@ void DAE::setBaseURI(const daeURI& uri) {
 	baseUri = uri;
 }
 
+void DAE::setBaseURI(daeString uri) {
+	baseUri = uri;
+}
+
 daeIDRefResolverList& DAE::getIDRefResolvers() {
 	return idRefResolvers;
 }

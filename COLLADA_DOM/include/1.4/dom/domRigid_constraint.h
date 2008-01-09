@@ -102,6 +102,11 @@ public:
 		 * @param atRigid_body The new value for the rigid_body attribute.
 		 */
 		void setRigid_body( const xsAnyURI &atRigid_body ) { attrRigid_body = atRigid_body; _validAttributeArray[0] = true; }
+		/**
+		 * Sets the rigid_body attribute.
+		 * @param atRigid_body The new value for the rigid_body attribute.
+		 */
+		void setRigid_body( xsString atRigid_body ) { attrRigid_body = atRigid_body; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the translate element array.
@@ -237,6 +242,11 @@ public:
 		 * @param atRigid_body The new value for the rigid_body attribute.
 		 */
 		void setRigid_body( const xsAnyURI &atRigid_body ) { attrRigid_body = atRigid_body; _validAttributeArray[0] = true; }
+		/**
+		 * Sets the rigid_body attribute.
+		 * @param atRigid_body The new value for the rigid_body attribute.
+		 */
+		void setRigid_body( xsString atRigid_body ) { attrRigid_body = atRigid_body; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the translate element array.

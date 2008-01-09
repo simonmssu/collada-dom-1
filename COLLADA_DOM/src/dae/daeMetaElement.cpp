@@ -58,40 +58,6 @@ daeMetaElement::create(daeString s)
 	return NULL;
 }
 
-/*
-daeMetaElement*
-daeMetaElement::findChild(daeString s)
-{
-	if (s != NULL) {
-		if ( strcmp( _name, s) == 0 ) {
-			return this;
-		}
-		int n = (int)_metaElements.getCount();
-		int i;
-		for(i=0;i<n;i++) {
-			daeMetaElement* me = _metaElements[i]->_elementType;
-		
-			if ((me == NULL) || ((daeString)(me->_name) == NULL))
-				continue;
-		
-			if (strcmp(me->_name,s)==0)
-				return me;
-
-			if (strcmp(_metaElements[i]->getName(),s)==0)
-				return me;
-		}
-		//!!!ACL Added for testing complex types and groups
-		for( i =0; i < (int)_otherChildren.getCount(); i++ ) {
-			if ( strcmp( _otherChildren[i], s) == 0 ) {
-				daeMetaElementAttribute *mea = _otherChildrenContainer[i];
-				daeMetaElement *me = mea->getElementType();
-				return me->findChild(s);
-			}
-		}
-	}
-	return NULL;
-}*/
-
 daeMetaElement::daeMetaElement(DAE& dae) : dae(dae)
 {
 	_name = "noname";

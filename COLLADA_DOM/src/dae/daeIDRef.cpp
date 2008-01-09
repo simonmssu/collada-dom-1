@@ -42,6 +42,12 @@ daeIDRef::daeIDRef(const daeIDRef& copyFrom_)
 	copyFrom(copyFrom_);
 }
 
+daeIDRef::daeIDRef(daeElement* container) {
+	initialize();
+	setContainer(container);
+}
+
+
 void
 daeIDRef::reset()
 {
@@ -165,8 +171,8 @@ daeDefaultIDRefResolver::getName()
 }
 
 daeElement* daeDefaultIDRefResolver::resolveElement(daeString id, 
-																										daeString docURI, 
-																										daeIDRef::ResolveState* result /* = NULL */)
+                                                    daeString docURI, 
+                                                    daeIDRef::ResolveState* result /* = NULL */)
 {
 	daeElement* el = NULL;
 	daeIDRef::ResolveState state = daeIDRef::id_success;
@@ -177,7 +183,7 @@ daeElement* daeDefaultIDRefResolver::resolveElement(daeString id,
 		if (!docURI)
 			state = daeIDRef::id_failed_no_document;
 		else {
-			dae->getDatabase()->getElement(&el, 0, id, NULL, docURI);
+			el = dae->getDatabase()->idLookup(id, dae->getDatabase()->getDocument(docURI));
 			if (!el)
 				state = daeIDRef::id_failed_id_not_found;
 		}

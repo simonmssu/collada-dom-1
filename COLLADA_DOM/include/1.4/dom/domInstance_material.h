@@ -268,6 +268,11 @@ public:	//Accessors and Mutators
 	 * @param atTarget The new value for the target attribute.
 	 */
 	void setTarget( const xsAnyURI &atTarget ) { attrTarget = atTarget; _validAttributeArray[1] = true; }
+	/**
+	 * Sets the target attribute.
+	 * @param atTarget The new value for the target attribute.
+	 */
+	void setTarget( xsString atTarget ) { attrTarget = atTarget; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the sid attribute.

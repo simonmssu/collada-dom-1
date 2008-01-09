@@ -95,6 +95,11 @@ public:	//Accessors and Mutators
 	 * @param atConvex_hull_of The new value for the convex_hull_of attribute.
 	 */
 	void setConvex_hull_of( const xsAnyURI &atConvex_hull_of ) { attrConvex_hull_of = atConvex_hull_of; _validAttributeArray[0] = true; }
+	/**
+	 * Sets the convex_hull_of attribute.
+	 * @param atConvex_hull_of The new value for the convex_hull_of attribute.
+	 */
+	void setConvex_hull_of( xsString atConvex_hull_of ) { attrConvex_hull_of = atConvex_hull_of; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the source element array.

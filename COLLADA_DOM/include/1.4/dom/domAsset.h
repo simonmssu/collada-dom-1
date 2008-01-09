@@ -332,6 +332,11 @@ public:
 			 * @param val The new value for this element.
 			 */
 			void setValue( const xsAnyURI &val ) { _value = val; }
+			/**
+			 * Sets the _value of this element.
+			 * @param val The new value for this element.
+			 */
+			void setValue( xsString val ) { _value = val; }
 
 		protected:
 			/**

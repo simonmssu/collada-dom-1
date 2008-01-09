@@ -121,6 +121,7 @@ public:
 	// The base URI used for resolving relative URI references.
 	daeURI& getBaseURI();
 	void setBaseURI(const daeURI& uri);
+	void setBaseURI(daeString uri);
 
 	// Returns the list of ID reference resolvers. You can modify the list to add new
 	// resolvers.
