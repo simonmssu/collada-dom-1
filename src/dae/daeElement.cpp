@@ -351,6 +351,7 @@ void daeElement::init() {
 	_document = NULL;
 	_meta = NULL;
 	_elementName = NULL;
+	_userData = NULL;
 }
 
 daeElement::daeElement() {
@@ -542,4 +543,12 @@ daeElement* daeElement::getAncestor(daeString eltName) {
 
 DAE* daeElement::getDAE() {
 	return _meta->getDAE();
+}
+
+void daeElement::setUserData(void* data) {
+	_userData = data;
+}
+
+void* daeElement::getUserData() {
+	return _userData;
 }

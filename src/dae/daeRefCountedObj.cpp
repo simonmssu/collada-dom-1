@@ -26,3 +26,12 @@ void daeRefCountedObj::ref() const {
 	_refCount++;
 }
 
+void checkedRelease(const daeRefCountedObj* obj) {
+	if (obj)
+		obj->release();
+}
+
+void checkedRef(const daeRefCountedObj* obj) {
+	if (obj)
+		obj->ref();
+}

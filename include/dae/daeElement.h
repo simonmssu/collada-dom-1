@@ -19,6 +19,7 @@
 #include <wchar.h>
 #include <dae/daeArray.h>
 #include <dae/daeRefCountedObj.h>
+#include <dae/daeSmartRef.h>
 
 //#ifndef NO_MALLOC_HEADER
 //#include <malloc.h>
@@ -34,8 +35,6 @@ class daeMetaElement;
 class daeMetaAttribute;
 class daeDocument;
 class daeURI;
-
-template <typename T> class daeSmartRef;
 
 /**
  * The @c daeElement class represents an instance of a COLLADA "Element";
@@ -59,6 +58,7 @@ protected:
 	daeMetaElement* _meta;
 	daeString _elementName;
 	daeBoolArray _validAttributeArray;
+	void* _userData;
 
 protected:
 	daeElement( const daeElement &cpy ) : daeRefCountedObj() { (void)cpy; };
@@ -528,6 +528,32 @@ public:
 	void getChildren( daeTArray<daeSmartRef<daeElement> > &array );
 
 	/**
+	 * Gets all the children of a particular type.
+	 * @return An array containing the matching child elements.
+	 */
+	template<typename T>
+	daeTArray< daeSmartRef<T> > getChildrenByType() {
+		daeTArray< daeSmartRef<T> > result;
+		getChildrenByType(result);
+		return result;
+	}
+
+	/**
+	 * Same as the previous function, but returns the result via a parameter instead
+	 * of a return value, for extra efficiency.
+	 * @return An array containing the matching child elements.
+	 */
+	template<typename T>
+	void getChildrenByType(daeTArray< daeSmartRef<T> >& matchingChildren) {
+		matchingChildren.setCount(0);
+		daeTArray< daeSmartRef<daeElement> > children;
+		getChildren(children);
+		for (size_t i = 0; i < children.getCount(); i++)
+			if (children[i]->typeID() == T::ID())
+				matchingChildren.append((T*)children[i].cast());
+	}
+
+	/**
 	 * Clones/deep copies this @c daeElement and all of it's subtree.
 	 * @param idSuffix A string to append to the copied element's ID, if one exists.
 	 *        Default is no ID mangling.
@@ -536,24 +562,20 @@ public:
 	 * @return Returns a @c daeElement smartref of the copy of this element.
 	 */
 	daeSmartRef<daeElement> clone( daeString idSuffix = NULL, daeString nameSuffix = NULL );
+
+	/**
+	 * Sets the user data pointer attached to this element.
+	 * @param data User's custom data to store.
+	 */
+	void setUserData(void* data);
+
+	/**
+	 * Gets the user data pointer attached to this element.
+	 * @return User data pointer previously set with setUserData.
+	 */
+	void* getUserData();
 	
 public:
-	/**
-	 * Releases the element passed in. This function is a static wrapper that invokes 
-	 * <tt> elem->release() </tt> on the passed in element,
-	 * if it is not NULL.
-	 * @param elem Element to call @c release() for, if the element exists.
-	 */
-	static void releaseElem(const daeElement* elem) {if (elem != NULL) elem->release();}
-	
-	/**
-	 * Increments the reference counter for the element passed in. This function is a static wrapper
-	 * that invokes <tt> elem->ref() </tt> on the passed in element,
-	 * if it is not NULL.
-	 * @param elem Element to call @c ref() for, if the element exists.
-	 */
-	static void refElem(const daeElement* elem) { if (elem != NULL) elem->ref(); }
-
 	// This function is called internally
 	static void deleteCMDataArray(daeTArray<daeCharArray*>& cmData);
 };

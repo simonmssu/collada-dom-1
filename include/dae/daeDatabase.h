@@ -214,6 +214,34 @@ public:
 	                        daeDocument* doc = NULL) = 0;
 
 	/**
+	 * Lookup elements by type ID.
+	 * @param doc The document to search in, or NULL to search in all documents.
+	 * @return The array of matching elements.
+	 */
+	template<typename T>
+	std::vector<T*> typeLookup(daeDocument* doc = NULL) {
+		std::vector<T*> result;
+		typeLookup(result, doc);
+		return result;
+	}
+
+	/**
+	 * Same as the previous method, but returns the array of matching elements via a
+	 * reference parameter for additional efficiency.
+	 * @param matchingElements The array of matching elements.
+	 * @param doc The document to search in, or NULL to search in all documents.
+	 */
+	template<typename T> void
+	typeLookup(std::vector<T*>& matchingElements, daeDocument* doc = NULL) {
+		std::vector<daeElement*> elts;
+		typeLookup(T::ID(), elts, doc);
+		matchingElements.clear();
+		matchingElements.reserve(elts.size());
+		for (size_t i = 0; i < elts.size(); i++)
+			matchingElements.push_back((T*)elts[i]);
+	}
+		
+	/**
 	 * Lookup elements by sid.
 	 * @param sid The sid to match on.
 	 * @param doc The document to search in, or NULL to search in all documents.

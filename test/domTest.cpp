@@ -788,8 +788,8 @@ DefineTest(cloneCrash) {
 	daeElement* el = idRef.getElement();
 	CheckResult(el);
 
-	domFx_surface_init_from_common* initFrom = daeSafeCast<domFx_surface_init_from_common>(
-		dae.getDatabase()->typeLookup(domFx_surface_init_from_common::ID()).at(0));
+	domFx_surface_init_from_common* initFrom =
+		dae.getDatabase()->typeLookup<domFx_surface_init_from_common>().at(0);
 	CheckResult(initFrom && initFrom->getValue().getElement());
 
 	// The DOM used to crash here
@@ -1046,9 +1046,9 @@ DefineTest(sidResolveSpeed) {
 	domCOLLADA* root = dae.getDomFile(file.c_str());
 	CheckResult(root);
 
-	vector<daeElement*> sidRefArrays = dae.getDatabase()->typeLookup(domSIDREF_array::ID());
+	vector<domSIDREF_array*> sidRefArrays = dae.getDatabase()->typeLookup<domSIDREF_array>();
 	for (size_t i = 0; i < sidRefArrays.size(); i++) {
-		domListOfNames& sidRefs = ((domSIDREF_array*)sidRefArrays[i])->getValue();
+		domListOfNames& sidRefs = sidRefArrays[i]->getValue();
 		for (size_t j = 0; j < sidRefs.getCount(); j++) {
 			CheckResult(cdom::resolveSid(root, sidRefs[i]));
 		}
@@ -1225,8 +1225,8 @@ DefineTest(domCommon_transparent_type) {
 	DAE dae;
 	CheckResult(dae.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
 
-	domCommon_transparent_type* transparent = (domCommon_transparent_type*)
-		dae.getDatabase()->typeLookup(domCommon_transparent_type::ID()).at(0);
+	domCommon_transparent_type* transparent =
+		dae.getDatabase()->typeLookup<domCommon_transparent_type>().at(0);
 
 	CheckResult(transparent->getColor() != NULL);
 	CheckResult(transparent->getParam() == NULL);
@@ -1292,6 +1292,10 @@ DefineTest(databaseLookup) {
 	vector<daeElement*> elts;
 	database.typeLookup(domRotate::ID(), elts, doc);
 	CheckResult(elts.size() == 15);
+	CheckResult(database.typeLookup<domNode>().size() == 5);
+	vector<domRotate*> rotateElts;
+	database.typeLookup(rotateElts);
+	CheckResult(rotateElts.size() == 15);
 
 	// Test the old functions
 	CheckResult(database.getElementCount("light-lib") == 1);

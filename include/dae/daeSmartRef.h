@@ -14,14 +14,12 @@
 #ifndef __DAE_SMARTREF_H__
 #define __DAE_SMARTREF_H__
 
-#include <dae/daeElement.h>
 #include <assert.h>
-
-template<class T> class daeElementWrapper {};
+#include <dae/daeRefCountedObj.h>
 
 /**
  * The @c daeSmartRef template class automates reference counting for
- * objects derived from @c daeElement.
+ * objects derived from @c daeRefCountedObj.
  */
 template<class T> class daeSmartRef
 {
@@ -29,29 +27,23 @@ public:
 	/**
 	 * Constructor
 	 */
-	inline daeSmartRef() : _ptr((T*) NULL){}
+	inline daeSmartRef() : _ptr(NULL) { }
 
 	/**
 	 * Destructor
 	 */
 	inline ~daeSmartRef() {
-		daeElement::releaseElem((daeElement*)_ptr); }
-
-	/**
-	 * Constructor that will convert from one template to the other.
-	 * unimplemented.
-	 * @param 
-	 */
-	template<class U>
-	inline daeSmartRef(const daeElementWrapper<U>&) : _ptr(U::instance()) {}
+		checkedRelease(_ptr);
+	}
 
 	/**
 	 * Copy Constructor that will convert from one template to the other.
 	 * @param smartRef a daeSmartRef to the object to copy from.
 	 */
 	template<class U>
-	inline daeSmartRef(const daeSmartRef<U>& smartRef) : _ptr(smartRef.cast()){
-		daeElement::refElem((const daeElement*)_ptr); }
+	inline daeSmartRef(const daeSmartRef<U>& smartRef) : _ptr(smartRef.cast()) {
+		checkedRef(_ptr);
+	}
 
 	/**
 	 * Function that returns a pointer to object being reference counted.
@@ -63,26 +55,17 @@ public:
 	 * Copy Constructor.
 	 * @param smartRef a daeSmartRef of the same template type to copy from
 	 */
-	inline daeSmartRef(const daeSmartRef<T>& smartRef) : _ptr(smartRef._ptr){
-		daeElement::refElem((const daeElement*)_ptr); }
+	inline daeSmartRef(const daeSmartRef<T>& smartRef) : _ptr(smartRef._ptr) {
+		checkedRef(_ptr);
+	}
 
 	/**
 	 * Constructor
 	 * @param ptr a pointer to an object of the same template type.
 	 */
 	inline daeSmartRef(T* ptr) : _ptr(ptr) {
-		daeElement::refElem((const daeElement*)_ptr); }
-
-	/**
-	 * Overloaded assignment operator which will convert between template types.
-	 * @return Returns a reference to this object.
-	 * @note Unimplemented
-	 */
-	template<class U>
-	inline const daeSmartRef<T>& operator=(const daeElementWrapper<U>&){
-		daeElement::releaseElem((const daeElement*)_ptr);
-		_ptr = U::instance();
-		return *this; }
+		checkedRef(_ptr);
+	}
 
 	/**
 	 * Overloaded assignment operator which will convert between template types.
@@ -92,8 +75,8 @@ public:
 	template<class U>
 	inline const daeSmartRef<T>& operator=(const daeSmartRef<U>& smartRef) {
 		T* ptr = smartRef.cast();
-		daeElement::refElem((const daeElement*)ptr);
-		daeElement::releaseElem((const daeElement*)_ptr);
+		checkedRef(ptr);
+		checkedRelease(_ptr);
 		_ptr = ptr;
 		return *this; }
 
@@ -104,8 +87,8 @@ public:
 	 */
 	inline const daeSmartRef<T>& operator=(const daeSmartRef<T>& other) {
 		T* ptr = other._ptr;
-		daeElement::refElem((const daeElement*)ptr);
-		daeElement::releaseElem((const daeElement *)_ptr);
+		checkedRef(ptr);
+		checkedRelease(_ptr);
 		_ptr = ptr;
 		return *this; }
 
@@ -115,8 +98,8 @@ public:
 	 * @return Returns a reference to this object.
 	 */
 	inline const daeSmartRef<T>& operator=(T* ptr) {
-		daeElement::refElem((const daeElement*)ptr);
-		daeElement::releaseElem((const daeElement*)_ptr);
+		checkedRef(ptr);
+		checkedRelease(_ptr);
 		_ptr = ptr;
 		return *this; }
 
