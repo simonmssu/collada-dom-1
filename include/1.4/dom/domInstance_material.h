@@ -330,7 +330,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_material(DAE& dae) : daeElement(dae), attrSymbol(), attrTarget(dae), attrSid(), attrName(), elemBind_array(), elemBind_vertex_input_array(), elemExtra_array() {}
+	domInstance_material(DAE& dae) : daeElement(dae), attrSymbol(), attrTarget(dae, *this), attrSid(), attrName(), elemBind_array(), elemBind_vertex_input_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

@@ -518,7 +518,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_sampler_state_complexType(DAE& dae) : attrSid(), elemWrap_s(), elemWrap_t(), elemMinfilter(), elemMagfilter(), elemMipfilter(), elemMipmap_maxlevel(), elemMipmap_bias(), elemExtra_array() {}
+	domGles_sampler_state_complexType(DAE& dae, daeElement* elt) : attrSid(), elemWrap_s(), elemWrap_t(), elemMinfilter(), elemMagfilter(), elemMipfilter(), elemMipmap_maxlevel(), elemMipmap_bias(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -555,7 +555,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_sampler_state(DAE& dae) : daeElement(dae), domGles_sampler_state_complexType(dae) {}
+	domGles_sampler_state(DAE& dae) : daeElement(dae), domGles_sampler_state_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

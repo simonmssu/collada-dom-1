@@ -103,7 +103,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_setarray_type_complexType(DAE& dae) : attrLength(), elemGlsl_param_type_array(), elemArray_array() {}
+	domGlsl_setarray_type_complexType(DAE& dae, daeElement* elt) : attrLength(), elemGlsl_param_type_array(), elemArray_array() {}
 	/**
 	 * Destructor
 	 */
@@ -140,7 +140,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_setarray_type(DAE& dae) : daeElement(dae), domGlsl_setarray_type_complexType(dae) {}
+	domGlsl_setarray_type(DAE& dae) : daeElement(dae), domGlsl_setarray_type_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

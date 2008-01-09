@@ -295,26 +295,11 @@ daeMemoryRef daeElement::getValuePointer() {
 }
 
 void
-daeElement::resolve()
-{
-	if (_meta == NULL)
-		return;
-	
-	daeMetaAttributePtrArray& maa = _meta->getMetaResolvers();
-	int n = (int)maa.getCount();
-	int i;
-	for(i=0;i<n;i++)
-		maa[i]->resolve(this);
-}
-
-void
 daeElement::setup(daeMetaElement* meta)
 {
 	if (_meta)
 		return;
 	_meta = meta;
-	if (meta->needsResolve())
-		getDAE()->appendResolveElement(this);
 	daeMetaAttributeRefArray& attrs = meta->getMetaAttributes();
 	int macnt = (int)attrs.getCount();
 
@@ -335,15 +320,6 @@ daeElement::setup(daeMetaElement* meta)
 			CMData->set( i, new daeCharArray() );
 		}
 	}
-
-#if 0	
-	// Setup resolvers to know their containers and thus their file context
-	daeMetaAttributePtrArray& resolvers = meta->getMetaResolvers();
-	int racnt = resolvers.getCount();
-	for(i=0;i<racnt;i++)
-		((daeURI*)(resolvers[i]->getWritableMemory(this)))->_container =
-			this;
-#endif	
 }
 
 void daeElement::init() {

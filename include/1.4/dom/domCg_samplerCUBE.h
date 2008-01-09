@@ -28,7 +28,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_samplerCUBE_complexType(DAE& dae) : domFx_samplerCUBE_common_complexType(dae) {}
+	domCg_samplerCUBE_complexType(DAE& dae, daeElement* elt) : domFx_samplerCUBE_common_complexType(dae, elt) {}
 	/**
 	 * Destructor
 	 */
@@ -52,7 +52,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_samplerCUBE(DAE& dae) : daeElement(dae), domCg_samplerCUBE_complexType(dae) {}
+	domCg_samplerCUBE(DAE& dae) : daeElement(dae), domCg_samplerCUBE_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

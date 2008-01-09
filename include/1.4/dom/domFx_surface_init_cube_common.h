@@ -62,7 +62,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domAll(DAE& dae) : daeElement(dae), attrRef() {}
+		domAll(DAE& dae) : daeElement(dae), attrRef(*this) {}
 		/**
 		 * Destructor
 		 */
@@ -207,7 +207,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domPrimary(DAE& dae) : daeElement(dae), attrRef(), elemOrder_array() {}
+		domPrimary(DAE& dae) : daeElement(dae), attrRef(*this), elemOrder_array() {}
 		/**
 		 * Destructor
 		 */
@@ -270,7 +270,7 @@ public:
 		/**
 		 * Constructor
 		 */
-		domFace(DAE& dae) : daeElement(dae), attrRef() {}
+		domFace(DAE& dae) : daeElement(dae), attrRef(*this) {}
 		/**
 		 * Destructor
 		 */
@@ -362,7 +362,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_cube_common_complexType(DAE& dae) : elemAll(), elemPrimary(), elemFace_array() {}
+	domFx_surface_init_cube_common_complexType(DAE& dae, daeElement* elt) : elemAll(), elemPrimary(), elemFace_array() {}
 	/**
 	 * Destructor
 	 */
@@ -386,7 +386,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_surface_init_cube_common(DAE& dae) : daeElement(dae), domFx_surface_init_cube_common_complexType(dae) {}
+	domFx_surface_init_cube_common(DAE& dae) : daeElement(dae), domFx_surface_init_cube_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

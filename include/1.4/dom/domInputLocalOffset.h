@@ -110,7 +110,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInputLocalOffset_complexType(DAE& dae) : attrOffset(), attrSemantic(), attrSource(dae), attrSet() {}
+	domInputLocalOffset_complexType(DAE& dae, daeElement* elt) : attrOffset(), attrSemantic(), attrSource(dae, *elt), attrSet() {}
 	/**
 	 * Destructor
 	 */
@@ -190,7 +190,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInputLocalOffset(DAE& dae) : daeElement(dae), domInputLocalOffset_complexType(dae) {}
+	domInputLocalOffset(DAE& dae) : daeElement(dae), domInputLocalOffset_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

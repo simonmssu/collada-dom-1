@@ -31,7 +31,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGl_samplerRECT_complexType(DAE& dae) : domFx_samplerRECT_common_complexType(dae) {}
+	domGl_samplerRECT_complexType(DAE& dae, daeElement* elt) : domFx_samplerRECT_common_complexType(dae, elt) {}
 	/**
 	 * Destructor
 	 */
@@ -55,7 +55,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGl_samplerRECT(DAE& dae) : daeElement(dae), domGl_samplerRECT_complexType(dae) {}
+	domGl_samplerRECT(DAE& dae) : daeElement(dae), domGl_samplerRECT_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

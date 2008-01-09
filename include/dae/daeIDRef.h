@@ -91,7 +91,7 @@ public:
 	 * Constructs an id reference with a container element
 	 * @param container The container element.
 	 */
-	daeIDRef(daeElement* container);
+	daeIDRef(daeElement& container);
 
 	/**
 	 * Gets the ID string

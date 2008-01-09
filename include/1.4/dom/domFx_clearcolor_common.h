@@ -63,7 +63,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_clearcolor_common_complexType(DAE& dae) : attrIndex(), _value() {}
+	domFx_clearcolor_common_complexType(DAE& dae, daeElement* elt) : attrIndex(), _value() {}
 	/**
 	 * Destructor
 	 */
@@ -100,7 +100,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_clearcolor_common(DAE& dae) : daeElement(dae), domFx_clearcolor_common_complexType(dae) {}
+	domFx_clearcolor_common(DAE& dae) : daeElement(dae), domFx_clearcolor_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

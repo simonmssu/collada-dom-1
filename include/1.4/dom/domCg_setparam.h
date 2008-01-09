@@ -111,7 +111,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_setparam_complexType(DAE& dae) : attrRef(), attrProgram(), elemCg_param_type(), elemUsertype(), elemArray(), elemConnect_param() {}
+	domCg_setparam_complexType(DAE& dae, daeElement* elt) : attrRef(), attrProgram(), elemCg_param_type(), elemUsertype(), elemArray(), elemConnect_param() {}
 	/**
 	 * Destructor
 	 */
@@ -159,7 +159,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCg_setparam(DAE& dae) : daeElement(dae), domCg_setparam_complexType(dae) {}
+	domCg_setparam(DAE& dae) : daeElement(dae), domCg_setparam_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

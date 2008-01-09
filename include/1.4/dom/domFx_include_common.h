@@ -79,7 +79,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_include_common_complexType(DAE& dae) : attrSid(), attrUrl(dae) {}
+	domFx_include_common_complexType(DAE& dae, daeElement* elt) : attrSid(), attrUrl(dae, *elt) {}
 	/**
 	 * Destructor
 	 */
@@ -137,7 +137,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_include_common(DAE& dae) : daeElement(dae), domFx_include_common_complexType(dae) {}
+	domFx_include_common(DAE& dae) : daeElement(dae), domFx_include_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

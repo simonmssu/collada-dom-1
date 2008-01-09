@@ -595,22 +595,6 @@ daeBool daeIDResolverType::memoryToString(daeChar* src, std::ostringstream& dst)
 	return true;
 }
 
-void
-daeAtomicType::resolve(daeElementRef element, daeChar* src)
-{
-	// just to remove the warnings 
-	(void)element;
-	(void)src; 
-}
-
-void
-daeResolverType::resolve(daeElementRef element, daeChar* src)
-{
-	daeURI* resolver = (daeURI*)src;
-	resolver->setContainer(element);
-	resolver->resolveElement();
-}
-
 daeBool
 daeResolverType::stringToMemory(daeChar* src, daeChar* dstMemory)
 {
@@ -638,12 +622,6 @@ daeResolverType::stringToMemory(daeChar* src, daeChar* dstMemory)
 	}
 	((daeURI*)dstMemory)->setURI(tempstr);
 	return true;
-}
-void
-daeIDResolverType::resolve(daeElementRef element, daeChar* src)
-{
-	daeIDRef* resolver = (daeIDRef*)src;
-	resolver->setContainer( element );
 }
 
 daeBool

@@ -367,7 +367,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_samplerDEPTH_common_complexType(DAE& dae) : elemSource(), elemWrap_s(), elemWrap_t(), elemMinfilter(), elemMagfilter(), elemExtra_array() {}
+	domFx_samplerDEPTH_common_complexType(DAE& dae, daeElement* elt) : elemSource(), elemWrap_s(), elemWrap_t(), elemMinfilter(), elemMagfilter(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -391,7 +391,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_samplerDEPTH_common(DAE& dae) : daeElement(dae), domFx_samplerDEPTH_common_complexType(dae) {}
+	domFx_samplerDEPTH_common(DAE& dae) : daeElement(dae), domFx_samplerDEPTH_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

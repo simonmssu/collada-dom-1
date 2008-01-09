@@ -91,12 +91,6 @@ public:
 	virtual ~daeElement();
 
 	/**
-	 * Resolves all fields of type daeURI and IDRef.
-	 * This is done via database query of the URI or IDRef.
-	 */
-	void resolve();
-
-	/**
 	 * Sets up a @c daeElement. Called on all @c daeElements as part of their initialization.
 	 * @param meta Meta element to use to configure this element.
 	 * @note Should not be called externally.

@@ -42,9 +42,9 @@ daeIDRef::daeIDRef(const daeIDRef& copyFrom_)
 	copyFrom(copyFrom_);
 }
 
-daeIDRef::daeIDRef(daeElement* container) {
+daeIDRef::daeIDRef(daeElement& container) {
 	initialize();
-	setContainer(container);
+	setContainer(&container);
 }
 
 
@@ -59,7 +59,8 @@ bool daeIDRef::operator==(const daeIDRef& other) const {
 }
 
 daeIDRef &daeIDRef::operator=( const daeIDRef& other) {
-	container = other.container;
+	if (!container)
+		container = other.container;
 	id = other.getID();
 	element = other.element;
 	return *this;

@@ -36,8 +36,8 @@ class daeMetaElementAttribute;
  * However these attributes are stored separately in the containing meta
  * @c daeMetaElement.
  * @c daeMetaAttributes always exist inside of @c daeMetaElements.
- * Each @c daeMetaAttribute has certain symantic operations it is capable of
- * including @c set(), @c get(), @c print(), and @c resolve().
+ * Each @c daeMetaAttribute has certain semantic operations it is capable of
+ * including @c set(), @c get(), and @c print().
  * @c daeMetaAttributes use the @c daeAtomicType system as their underlying semantic
  * implementation, but contain additional information about the packaging
  * of the atomic types into the C++ dom classes such as offset, and
@@ -178,14 +178,6 @@ public:
 	  
 public:
 	/**
-	 * Resolves a reference (if there is one) in the attribute type;
-	 * only useful for reference types.
-	 * @param elem Containing element on which this attribute
-	 * should be resolved.
-	 */
-	virtual void resolve(daeElementRef elem);
-
-	/**
 	 * Gets the number of bytes for this attribute.
 	 * @return Returns the number of bytes in the C++ COLLADA dom element for this
 	 * attribute.
@@ -306,14 +298,6 @@ public:
 	 * @return Returns true if this attribute is an array type.
 	 */
 	virtual daeBool isArrayAttribute() { return true; }
-
-	/**
-	 * Resolves a reference (if there is one) in the attribute type;
-	 * only useful for reference types.
-	 * @param elem Containing element on which this attribute
-	 * should be resolved.
-	 */
-	virtual void resolve(daeElementRef elem);
 };
 
 

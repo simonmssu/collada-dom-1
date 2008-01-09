@@ -531,7 +531,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domSkin(DAE& dae) : daeElement(dae), attrSource(dae), elemBind_shape_matrix(), elemSource_array(), elemJoints(), elemVertex_weights(), elemExtra_array() {}
+	domSkin(DAE& dae) : daeElement(dae), attrSource(dae, *this), elemBind_shape_matrix(), elemSource_array(), elemJoints(), elemVertex_weights(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

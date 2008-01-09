@@ -125,7 +125,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texture_pipeline_complexType(DAE& dae) : attrSid(), elemTexcombiner_array(), elemTexenv_array(), elemExtra_array() {}
+	domGles_texture_pipeline_complexType(DAE& dae, daeElement* elt) : attrSid(), elemTexcombiner_array(), elemTexenv_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -162,7 +162,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texture_pipeline(DAE& dae) : daeElement(dae), domGles_texture_pipeline_complexType(dae) {}
+	domGles_texture_pipeline(DAE& dae) : daeElement(dae), domGles_texture_pipeline_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

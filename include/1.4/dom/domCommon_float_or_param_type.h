@@ -195,7 +195,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_float_or_param_type_complexType(DAE& dae) : elemFloat(), elemParam() {}
+	domCommon_float_or_param_type_complexType(DAE& dae, daeElement* elt) : elemFloat(), elemParam() {}
 	/**
 	 * Destructor
 	 */
@@ -219,7 +219,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_float_or_param_type(DAE& dae) : daeElement(dae), domCommon_float_or_param_type_complexType(dae) {}
+	domCommon_float_or_param_type(DAE& dae) : daeElement(dae), domCommon_float_or_param_type_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

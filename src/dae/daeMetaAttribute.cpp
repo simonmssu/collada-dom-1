@@ -87,24 +87,6 @@ daeMetaArrayAttribute::~daeMetaArrayAttribute() {
 	_defaultValue = NULL;
 }
 
-void
-daeMetaAttribute::resolve(daeElementRef element)
-{
-	if (_type != NULL)
-		_type->resolve(element, get(element) );
-}
-
-void
-daeMetaArrayAttribute::resolve(daeElementRef element)
-{
-	daeArray* era = (daeArray*)get(element);
-	size_t cnt = era->getCount();
-	for ( size_t i = 0; i < cnt; i++ )
-	{
-		_type->resolve( element, era->getRaw(i) );
-	}
-}
-
 daeInt
 daeMetaAttribute::getSize()
 {

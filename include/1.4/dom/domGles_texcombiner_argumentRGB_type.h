@@ -66,7 +66,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texcombiner_argumentRGB_type_complexType(DAE& dae) : attrSource(), attrOperand(), attrUnit() {}
+	domGles_texcombiner_argumentRGB_type_complexType(DAE& dae, daeElement* elt) : attrSource(), attrOperand(), attrUnit() {}
 	/**
 	 * Destructor
 	 */
@@ -125,7 +125,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texcombiner_argumentRGB_type(DAE& dae) : daeElement(dae), domGles_texcombiner_argumentRGB_type_complexType(dae) {}
+	domGles_texcombiner_argumentRGB_type(DAE& dae) : daeElement(dae), domGles_texcombiner_argumentRGB_type_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

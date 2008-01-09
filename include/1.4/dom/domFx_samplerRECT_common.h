@@ -628,7 +628,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_samplerRECT_common_complexType(DAE& dae) : elemSource(), elemWrap_s(), elemWrap_t(), elemMinfilter(), elemMagfilter(), elemMipfilter(), elemBorder_color(), elemMipmap_maxlevel(), elemMipmap_bias(), elemExtra_array() {}
+	domFx_samplerRECT_common_complexType(DAE& dae, daeElement* elt) : elemSource(), elemWrap_s(), elemWrap_t(), elemMinfilter(), elemMagfilter(), elemMipfilter(), elemBorder_color(), elemMipmap_maxlevel(), elemMipmap_bias(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */
@@ -652,7 +652,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_samplerRECT_common(DAE& dae) : daeElement(dae), domFx_samplerRECT_common_complexType(dae) {}
+	domFx_samplerRECT_common(DAE& dae) : daeElement(dae), domFx_samplerRECT_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

@@ -424,7 +424,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_newparam_type_complexType(DAE& dae) : attrSid(), elemSemantic(), elemFloat(), elemFloat2(), elemFloat3(), elemFloat4(), elemSurface(), elemSampler2D() {}
+	domCommon_newparam_type_complexType(DAE& dae, daeElement* elt) : attrSid(), elemSemantic(), elemFloat(), elemFloat2(), elemFloat3(), elemFloat4(), elemSurface(), elemSampler2D() {}
 	/**
 	 * Destructor
 	 */
@@ -461,7 +461,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domCommon_newparam_type(DAE& dae) : daeElement(dae), domCommon_newparam_type_complexType(dae) {}
+	domCommon_newparam_type(DAE& dae) : daeElement(dae), domCommon_newparam_type_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

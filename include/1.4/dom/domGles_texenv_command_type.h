@@ -62,7 +62,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texenv_command_type_complexType(DAE& dae) : attrOperator(), attrUnit(), elemConstant() {}
+	domGles_texenv_command_type_complexType(DAE& dae, daeElement* elt) : attrOperator(), attrUnit(), elemConstant() {}
 	/**
 	 * Destructor
 	 */
@@ -110,7 +110,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texenv_command_type(DAE& dae) : daeElement(dae), domGles_texenv_command_type_complexType(dae) {}
+	domGles_texenv_command_type(DAE& dae) : daeElement(dae), domGles_texenv_command_type_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

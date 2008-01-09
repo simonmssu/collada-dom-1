@@ -201,7 +201,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domMorph(DAE& dae) : daeElement(dae), attrMethod(), attrSource(dae), elemSource_array(), elemTargets(), elemExtra_array() {}
+	domMorph(DAE& dae) : daeElement(dae), attrMethod(), attrSource(dae, *this), elemSource_array(), elemTargets(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

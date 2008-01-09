@@ -266,7 +266,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_surface_type_complexType(DAE& dae) : domFx_surface_common_complexType(dae), elemGenerator() {}
+	domGlsl_surface_type_complexType(DAE& dae, daeElement* elt) : domFx_surface_common_complexType(dae, elt), elemGenerator() {}
 	/**
 	 * Destructor
 	 */
@@ -290,7 +290,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_surface_type(DAE& dae) : daeElement(dae), domGlsl_surface_type_complexType(dae) {}
+	domGlsl_surface_type(DAE& dae) : daeElement(dae), domGlsl_surface_type_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

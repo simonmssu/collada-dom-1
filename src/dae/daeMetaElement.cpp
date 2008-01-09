@@ -62,7 +62,6 @@ daeMetaElement::daeMetaElement(DAE& dae) : dae(dae)
 {
 	_name = "noname";
 	_createFunc = NULL;
-	_needsResolve = false;
 	_elementSize = sizeof(daeElement);
 	_metaValue = NULL;
 	_metaContents = NULL;
@@ -185,13 +184,6 @@ daeMetaElement::appendAttribute(daeMetaAttribute* attr)
 	else
 		_metaAttributes.append(attr);
 
-	if ((attr->getType() != NULL) &&
-		((strcmp(attr->getType()->getTypeString(),"resolver")==0)||
-		 (strcmp(attr->getType()->getTypeString(),"idref_resolver")==0))) {
-		_resolvers.append(attr);
-		_needsResolve = true;
-	}
-	
 	if ((attr->getName() != NULL) &&
 		(strcmp(attr->getName(),"id") == 0)) {
 		_metaID = attr;

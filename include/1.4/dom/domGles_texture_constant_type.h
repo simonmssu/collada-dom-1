@@ -59,7 +59,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texture_constant_type_complexType(DAE& dae) : attrValue(), attrParam() {}
+	domGles_texture_constant_type_complexType(DAE& dae, daeElement* elt) : attrValue(), attrParam() {}
 	/**
 	 * Destructor
 	 */
@@ -112,7 +112,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGles_texture_constant_type(DAE& dae) : daeElement(dae), domGles_texture_constant_type_complexType(dae) {}
+	domGles_texture_constant_type(DAE& dae) : daeElement(dae), domGles_texture_constant_type_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

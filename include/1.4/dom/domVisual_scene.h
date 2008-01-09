@@ -194,7 +194,7 @@ public:
 			/**
 			 * Constructor
 			 */
-			domRender(DAE& dae) : daeElement(dae), attrCamera_node(dae), elemLayer_array(), elemInstance_effect() {}
+			domRender(DAE& dae) : daeElement(dae), attrCamera_node(dae, *this), elemLayer_array(), elemInstance_effect() {}
 			/**
 			 * Destructor
 			 */

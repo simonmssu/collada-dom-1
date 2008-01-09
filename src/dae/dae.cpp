@@ -333,7 +333,6 @@ daeInt DAE::unloadFile(daeString file) {
 
 daeInt DAE::clear()
 {
-	resolveArray.clear();
 	if (database)
 		database->clear();
 	return DAE_OK;
@@ -428,16 +427,6 @@ void DAE::setMeta(daeInt typeID, daeMetaElement& meta) {
 	if (typeID < 0 || typeID >= daeInt(metas.getCount()))
 		return;
 	metas[typeID] = &meta;
-}
-
-void DAE::appendResolveElement(daeElement* elem) {
-	resolveArray.append(elem);
-}
-
-void DAE::resolveAll() {
-	for (size_t i = 0; i < resolveArray.getCount(); i++)
-		resolveArray[i]->resolve();
-	resolveArray.clear();
 }
 
 daeURIResolverList& DAE::getURIResolvers() {

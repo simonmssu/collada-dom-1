@@ -50,7 +50,6 @@ protected:
 	daeStringRef _name;
 
 	daeElementConstructFunctionPtr _createFunc;
-	daeBool _needsResolve;
 	daeInt _elementSize;
 	
 	daeMetaAttributeRefArray _metaAttributes;
@@ -59,8 +58,6 @@ protected:
 	daeMetaArrayAttribute* _metaContentsOrder;
 
 	daeMetaAttributeRef _metaID;
-
-	daeMetaAttributePtrArray _resolvers;
 
 	daeBool _isTrackableForQueries;
 	daeBool _usesStringContents;
@@ -183,15 +180,6 @@ public: // public accessors
 	void setName(daeString s) { _name = s; }
 
 	/**
-	 * Gets the array of attributes that represent URI fields that need
-	 * to be "resolved" after the database is completely read in.
-	 * @return Returns the array of @c daeMetaAttribute*'s with all of the relevant
-	 * attributes.
-	 */
-	daeMetaAttributePtrArray& getMetaResolvers() {
-		return _resolvers; }
-
-	/**
 	 * Gets the array of all known attributes on this element type.
 	 * This includes all meta attributes except those describing child
 	 * elements. It does include the value element.
@@ -280,14 +268,6 @@ public:
 	 */
 	void registerClass(daeElementConstructFunctionPtr func) {
 		_createFunc = func; }
-
-	/**
-	 * Determines if this element contains attributes
-	 * of type @c daeURI which need to be resolved after they are read
-	 * or setup.
-	 * @return Returns true if this element type requires resolving, false if not.
-	 */
-	daeBool needsResolve() { return _needsResolve; }
 
 	/**
 	 * Validates this class to be used by the runtime c++ object model

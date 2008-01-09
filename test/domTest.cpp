@@ -776,29 +776,6 @@ DefineTest(removeElement) {
 }
 
 
-DefineTest(cloneCrash) {
-	DAE dae;
-	CheckResult(dae.loadFile(lookupTestFile("duck.dae").c_str()) == DAE_OK);
-
-	daeElement* effect = dae.getDatabase()->typeLookup(domEffect::ID()).at(0);
-	daeElementRef clonedEffect = effect->clone();
-
-	daeIDRef idRef("MayaNativePhysicsScene");
-	idRef.setContainer(effect);
-	daeElement* el = idRef.getElement();
-	CheckResult(el);
-
-	domFx_surface_init_from_common* initFrom =
-		dae.getDatabase()->typeLookup<domFx_surface_init_from_common>().at(0);
-	CheckResult(initFrom && initFrom->getValue().getElement());
-
-	// The DOM used to crash here
-	dae.resolveAll();
-
-	return testResult(true);
-}
-
-
 void nameArraySet(domListOfNames& names, size_t index, const char* name) {
 	*(daeStringRef*)&names[index] = name;
 }
@@ -1237,31 +1214,60 @@ DefineTest(domCommon_transparent_type) {
 };
 
 
-DefineTest(resolveAll) {
+DefineTest(autoResolve) {
+	// When you load a document, daeIDRefs, xsIDREFS, and daeURIs should resolve automatically.
+	// Make sure that works properly.
 	DAE dae;
-	string file = lookupTestFile("cube.dae");
-	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+	daeDatabase& database = *dae.getDatabase();
+	CheckResult(dae.loadFile(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
 
-	daeElement* node = dae.getDomFile(file.c_str())->getDescendant("node");
-	CheckResult(node);
+	// Make sure the IDREF_array element had all its daeIDRef objects resolved
+	{
+		xsIDREFS& idRefs = database.typeLookup<domIDREF_array>().at(0)->getValue();
+		for (size_t i = 0; i < idRefs.getCount(); i++) {
+			CheckResult(idRefs[i].getElement());
+		}
 
-	domInstance_geometry* instanceGeom = daeSafeCast<domInstance_geometry>(
-		node->createAndPlace("instance_geometry"));
-	CheckResult(instanceGeom);
-	domInstance_material* instanceMtl = daeSafeCast<domInstance_material>(
-		instanceGeom->createAndPlace("bind_material")->createAndPlace("technique_common")->
-		createAndPlace("instance_material"));
-	CheckResult(instanceMtl);
+		domInstance_controller& ic = *database.typeLookup<domInstance_controller>().at(0);
+		CheckResult(ic.getUrl().getElement());
 
-	instanceGeom->getUrl().setURI("#box-lib");
-	instanceMtl->getTarget().setURI("#Blue");
-	CheckResult(instanceGeom->getUrl().getElement() == NULL);
-	CheckResult(instanceMtl->getTarget().getElement() == NULL);
+		domFx_surface_init_from_common& initFrom =
+			*database.typeLookup<domFx_surface_init_from_common>().at(0);
+		CheckResult(initFrom.getValue().getElement());
+	}
 
-	dae.resolveAll();
-	
-	CheckResult(instanceGeom->getUrl().getElement() != NULL);
-	CheckResult(instanceMtl->getTarget().getElement() != NULL);
+	// When you're modifying a new document or creating a new one and you create some
+	// new ID or URI refs, they should resolve automatically.
+	dae.clear();
+	CheckResult(database.insertDocument("tmp.dae") == DAE_OK);
+	domCOLLADA* root = dae.getDomFile("tmp.dae");
+	CheckResult(root);
+
+	// Create a <geometry> with an <IDREF_array>
+	root->createAndPlace("library_geometries")->createAndPlace("geometry")
+	     ->createAndPlace("mesh")->createAndPlace("source")->createAndPlace("IDREF_array");
+	daeElement* geom = root->getDescendant("geometry");
+	geom->setAttribute("id", "myGeom");
+	xsIDREFS& idRefs = database.typeLookup<domIDREF_array>().at(0)->getValue();
+	idRefs.append(daeIDRef("myGeom"));
+
+	// Create a <node> with an <instance_geometry> to test URIs
+	domInstance_geometry& ig = *daeSafeCast<domInstance_geometry>(
+		root->createAndPlace("library_nodes")->createAndPlace("node")->
+		createAndPlace("instance_geometry"));
+	ig.setUrl("#myGeom");
+
+	// Create a <surface> with an <init_from> to test ID refs
+	domFx_surface_init_from_common& initFrom = *daeSafeCast<domFx_surface_init_from_common>(
+		root->createAndPlace("library_effects")->createAndPlace("effect")
+		->createAndPlace("profile_COMMON")->createAndPlace("newparam")
+		->createAndPlace("surface")->createAndPlace("init_from"));
+	initFrom.setValue("myGeom");
+
+	// Make sure everything resolves automatically
+	CheckResult(idRefs[0].getElement() == geom);
+	CheckResult(ig.getUrl().getElement() == geom);
+	CheckResult(initFrom.getValue().getElement() == geom);
 
 	return testResult(true);
 }

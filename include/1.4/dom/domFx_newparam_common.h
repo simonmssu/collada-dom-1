@@ -219,7 +219,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_newparam_common_complexType(DAE& dae) : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemFx_basic_type_common() {}
+	domFx_newparam_common_complexType(DAE& dae, daeElement* elt) : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemFx_basic_type_common() {}
 	/**
 	 * Destructor
 	 */
@@ -256,7 +256,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domFx_newparam_common(DAE& dae) : daeElement(dae), domFx_newparam_common_complexType(dae) {}
+	domFx_newparam_common(DAE& dae) : daeElement(dae), domFx_newparam_common_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */

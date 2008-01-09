@@ -211,7 +211,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domConvex_mesh(DAE& dae) : daeElement(dae), attrConvex_hull_of(dae), elemSource_array(), elemVertices(), elemLines_array(), elemLinestrips_array(), elemPolygons_array(), elemPolylist_array(), elemTriangles_array(), elemTrifans_array(), elemTristrips_array(), elemExtra_array() {}
+	domConvex_mesh(DAE& dae) : daeElement(dae), attrConvex_hull_of(dae, *this), elemSource_array(), elemVertices(), elemLines_array(), elemLinestrips_array(), elemPolygons_array(), elemPolylist_array(), elemTriangles_array(), elemTrifans_array(), elemTristrips_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

@@ -133,7 +133,16 @@ daeURI::daeURI(const daeURI& copyFrom) : dae(copyFrom.getDAE())
 
 daeURI::daeURI(daeElement& container, daeString uriString)
 	: dae(container.getDAE()),
-		container(&container)
+	  container(&container)
+{
+	initialize();
+	setURI(uriString);
+	validate();
+}
+
+daeURI::daeURI(DAE& dae, daeElement& container, daeString uriString)
+	: dae(&dae),
+	  container(&container)
 {
 	initialize();
 	setURI(uriString);
@@ -841,9 +850,13 @@ daeURI::validate(daeURI* baseURI)
 #endif
 }
 
-void
-daeURI::resolveElement()
-{
+daeElementRef daeURI::getElement() {
+	if (!element)
+		internalResolveElement();
+	return element;
+}
+
+void daeURI::internalResolveElement() {
 	if (state == uri_empty)
 		return;
 	
@@ -856,11 +869,13 @@ daeURI::resolveElement()
 	dae->getURIResolvers().resolveElement(*this);
 }
 
+void daeURI::resolveElement() { }
+
 void
 daeURI::resolveURI()
 {
 	// !!!GAC bug 486, there used to be code here that just returned if state was uri_empty or uri_resolve_local this has been removed.
-	if (element != NULL)
+	if (getElement() != NULL)
 	{
 		// !!!GAC bug 388 and 421, need to add a fragment (#) before the ID (was setURI(element->getID()))
 		if(element->getID() == NULL || element->getID()[0] == 0)

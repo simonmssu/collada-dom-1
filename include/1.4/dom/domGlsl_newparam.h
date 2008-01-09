@@ -224,7 +224,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_newparam_complexType(DAE& dae) : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemGlsl_param_type(), elemArray() {}
+	domGlsl_newparam_complexType(DAE& dae, daeElement* elt) : attrSid(), elemAnnotate_array(), elemSemantic(), elemModifier(), elemGlsl_param_type(), elemArray() {}
 	/**
 	 * Destructor
 	 */
@@ -261,7 +261,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domGlsl_newparam(DAE& dae) : daeElement(dae), domGlsl_newparam_complexType(dae) {}
+	domGlsl_newparam(DAE& dae) : daeElement(dae), domGlsl_newparam_complexType(dae, this) {}
 	/**
 	 * Destructor
 	 */
