@@ -1128,7 +1128,7 @@ void	ColladaConverter::ConvertRigidBodyRef( btRigidBodyInput& rbInput,btRigidBod
 								daeString str = localRef->getSemantic();
 								if ( !strcmp(str,"POSITION"))
 								{
-									const domURIFragmentType& frag = localRef->getSource();
+									domURIFragmentType& frag = localRef->getSource();
 
 									daeElementConstRef constElem = frag.getElement();
 
@@ -1201,7 +1201,7 @@ void	ColladaConverter::ConvertRigidBodyRef( btRigidBodyInput& rbInput,btRigidBod
 								daeString str = localRef->getSemantic();
 								if ( !strcmp(str,"POSITION"))
 								{
-									const domURIFragmentType& frag = localRef->getSource();
+									domURIFragmentType& frag = localRef->getSource();
 
 									daeElementConstRef constElem = frag.getElement();
 
@@ -1298,7 +1298,7 @@ void	ColladaConverter::ConvertRigidBodyRef( btRigidBodyInput& rbInput,btRigidBod
 											daeString str = localRef->getSemantic();
 											if ( !strcmp(str,"POSITION"))
 											{
-												const domURIFragmentType& frag = localRef->getSource();
+												domURIFragmentType& frag = localRef->getSource();
 
 												daeElementConstRef constElem = frag.getElement();
 
@@ -1336,7 +1336,7 @@ void	ColladaConverter::ConvertRigidBodyRef( btRigidBodyInput& rbInput,btRigidBod
 							daeString str = localRef->getSemantic();
 							if ( !strcmp(str,"POSITION"))
 							{
-								const domURIFragmentType& frag = localRef->getSource();
+								domURIFragmentType& frag = localRef->getSource();
 
 								daeElementConstRef constElem = frag.getElement();
 

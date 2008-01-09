@@ -194,8 +194,6 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 
 	CrtPrint("Finish Conditioning\n");
 
-	//update anything that is not resolved
-	m_collada->resolveAll();
 	// Need to now get the asset tag which will determine what vector x y or z is up.  Typically y or z. 
 	if ( dom->getAsset()->getUp_axis() )
 	{
