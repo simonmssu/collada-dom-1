@@ -1,0 +1,62 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dom1.4", "dom1.4.vcproj", "{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dae", "dae.vcproj", "{B70CBA1A-414C-4872-8DAF-31934BCAB568}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C} = {EEAD895E-87CF-4A0A-AAC6-951D96977E2C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "domTest", "domTest.vcproj", "{501342E5-AE61-4DCB-8E06-20C89A0079E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug DLL|Win32 = Debug DLL|Win32
+		Debug(1.4)|Win32 = Debug(1.4)|Win32
+		Debug|Win32 = Debug|Win32
+		Release DLL|Win32 = Release DLL|Win32
+		Release(1.4)|Win32 = Release(1.4)|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Debug DLL|Win32.ActiveCfg = Debug DLL|Win32
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Debug DLL|Win32.Build.0 = Debug DLL|Win32
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Debug(1.4)|Win32.ActiveCfg = Debug(1.4)|Win32
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Debug(1.4)|Win32.Build.0 = Debug(1.4)|Win32
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Debug|Win32.ActiveCfg = Debug DLL|Win32
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Debug|Win32.Build.0 = Debug DLL|Win32
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Release DLL|Win32.ActiveCfg = Release DLL|Win32
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Release DLL|Win32.Build.0 = Release DLL|Win32
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Release(1.4)|Win32.ActiveCfg = Release(1.4)|Win32
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Release(1.4)|Win32.Build.0 = Release(1.4)|Win32
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Release|Win32.ActiveCfg = Release DLL|Win32
+		{EEAD895E-87CF-4A0A-AAC6-951D96977E2C}.Release|Win32.Build.0 = Release DLL|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Debug DLL|Win32.ActiveCfg = Debug DLL|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Debug DLL|Win32.Build.0 = Debug DLL|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Debug(1.4)|Win32.ActiveCfg = Debug(1.4)|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Debug(1.4)|Win32.Build.0 = Debug(1.4)|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Debug|Win32.ActiveCfg = Debug DLL|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Debug|Win32.Build.0 = Debug DLL|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Release DLL|Win32.ActiveCfg = Release DLL|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Release DLL|Win32.Build.0 = Release DLL|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Release(1.4)|Win32.ActiveCfg = Release(1.4)|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Release(1.4)|Win32.Build.0 = Release(1.4)|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Release|Win32.ActiveCfg = Release DLL|Win32
+		{B70CBA1A-414C-4872-8DAF-31934BCAB568}.Release|Win32.Build.0 = Release DLL|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Debug DLL|Win32.ActiveCfg = Debug|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Debug DLL|Win32.Build.0 = Debug|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Debug(1.4)|Win32.ActiveCfg = Debug|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Debug(1.4)|Win32.Build.0 = Debug|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Debug|Win32.Build.0 = Debug|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Release DLL|Win32.ActiveCfg = Release|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Release DLL|Win32.Build.0 = Release|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Release(1.4)|Win32.ActiveCfg = Release|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Release(1.4)|Win32.Build.0 = Release|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Release|Win32.ActiveCfg = Release|Win32
+		{501342E5-AE61-4DCB-8E06-20C89A0079E5}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
