@@ -16,25 +16,7 @@
 #
 #
 
-include $(ROOT_DIR)/build/buildParams.mk
-
-#########################################################
-# detect platform
-ifneq ($(WIN32),)
-PLATFORM_NAME := win32
-else
-PLATFORM_NAME := linux
-endif
-
-#########################################################
-# COLLADA version
-ifeq ($(COLLADA_VERSION),)
-export COLLADA_VERSION = 1.4
-endif
-
-#########################################################
-# COLLADA version
-
+include $(ROOT_DIR)/build/params.mk
 
 #########################################################
 # DOM version
@@ -44,15 +26,15 @@ export DOM_VERSION=$(DOM_MAJOR_VERSION).$(DOM_MINOR_VERSION)
 
 #########################################################
 # Debug suffix
-ifneq ($(RELEASE), 1)
+ifdef debug
 DEBUG_SUFFIX := -d
 endif
 
 #########################################################
 # configuration - This is a unique string that identifies the build config. It's used
 #                 to generate build output paths.
-CONF_NAME := $(PLATFORM_NAME)_$(COLLADA_VERSION)
-ifneq ($(RELEASE),1)
+CONF_NAME := $(platform)_$(colladaVersion)
+ifdef debug
 CONF_NAME := $(CONF_NAME)_debug
 endif
 
@@ -70,11 +52,7 @@ INTERMEDIATE_DIR = $(ROOT_DIR)/tmp/$(CONF_NAME)/$(OUT_NAME)/
 
 #########################################################
 # platform specific definitions
-ifneq ($(PLATFORM_NAME),win32)
-include         $(ROOT_DIR)/build/linuxdefs.txt
-else
-include         $(ROOT_DIR)/build/win32defs.txt
-endif
+include $(ROOT_DIR)/build/linuxdefs.mk
 
 #########################################################
 # Linux .so defs
@@ -89,7 +67,7 @@ endif
 # common settings
 #QUIET           := @
 
-ifeq ($(RELEASE),1)
+ifdef release
 CCOPT			+= $(RELEASE_CCOPT)
 EXE_LCOPT       += $(EXE_REL_LCOPT)
 LIB_CCOPT       += $(EXE_REL_LCOPT)

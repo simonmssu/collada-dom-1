@@ -1,48 +1,49 @@
-#debug/release/both
-#1.4/1.5/all
-#libxml/TinyXml/both
-#clean+build option
+# platform: 'linux', 'ps3', or 'both'
+platform := linux
 
-# or 'debug' or 'all'
+# Build configuration: 'release', 'debug', or 'both'
 conf := release
 
-# No other versions supported for now
+# Collada version: No other versions supported for now
 colladaVersion := 1.4
-
-# or 'tinyxml' or 'both'
-parser := libxml
 
 # Clean first? 'yes' or 'no'
 clean := no
 
-ifeq ($(conf), both)
-debug := yes
-release := yes
-endif
+# parser: 'libxml', 'tinyxml', or 'both'.
+parser := libxml
 
-ifeq ($(conf), release)
-debug :=
-release := yes
-endif
 
-ifeq ($(conf), debug)
-debug := yes
-release :=
-endif
+# Internal variables. You typically won't want to set these yourself on the command line.
 
 colladaVersionNoDots := 14
 
+# Set linux, ps3 variables based on platform
+ifeq ($(platform), both)
+linux := yes
+ps3 := yes
+else ifeq ($(platform), linux)
+linux := yes
+else ifeq ($(platform), ps3)
+ps3 := yes
+endif
+
+# Set debug, release variables based on configuration
+ifeq ($(conf), both)
+debug := yes
+release := yes
+else ifeq ($(conf), release)
+release := yes
+else ifeq ($(conf), debug)
+debug := yes
+endif
+
+# Set libxml, tinyxml variables based on parser setting
 ifeq ($(parser), both)
 libxml := yes
 tinyxml := yes
-endif
-
-ifeq ($(parser), libxml)
+else ifeq ($(parser), libxml)
 libxml := yes
-tinyxml := no
-endif
-
-ifeq ($(parser), tinyxml)
-libxml := no
+else ifeq ($(parser), tinyxml)
 tinyxml := yes
 endif

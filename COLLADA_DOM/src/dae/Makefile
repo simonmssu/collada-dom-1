@@ -16,7 +16,7 @@ LIBRARY := dom
 OUTPUT_DIR := $(ROOT_DIR)/lib
 
 # definitions
-include $(ROOT_DIR)/build/makedefs.txt
+include $(ROOT_DIR)/build/defs.mk
 
 # files
 SRC	:= dae.cpp \
@@ -52,7 +52,7 @@ SRC	:= dae.cpp \
        ../modules/LIBXMLPlugin/daeLIBXMLPlugin.cpp \
        daeTinyXMLPlugin.cpp
 
-ifeq ($(COLLADA_VERSION), 1.4)
+ifeq ($(colladaVersion), 1.4)
 # Add the 1.4 source files
 SRC	+= ../1.4/dom/domAccessor.cpp \
        ../1.4/dom/domAnimation.cpp \
@@ -229,34 +229,35 @@ SRC	+= ../1.4/dom/domAccessor.cpp \
 endif
 
 INCLUDE_DIR += $(ROOT_DIR)/include
-INCLUDE_DIR += $(ROOT_DIR)/include/$(COLLADA_VERSION)/
+INCLUDE_DIR += $(ROOT_DIR)/include/$(colladaVersion)/
 
-# Do we want libxml, TinyXML, or both?
-ifneq ($(PLATFORM_NAME), ps3)
-# On Linux, enable libxml and disable TinyXml by default
-LIBXML := 1
-TINYXML := 0
+# If we're building for PS3, ignore the parser settings and just use TinyXml
+ifdef ps3
+useTinyxml := yes
 else
-# On PS3, disable libxml and enable TinyXml by default
-LIBXML := 0
-TINYXML := 1
+ifdef libxml
+useLibxml := yes
+endif
+ifdef tinyxml
+useTinyxml := yes
+endif
 endif
 
-ifneq ($(LIBXML), 0)
+ifdef useLibxml
 CCOPT += -D"DOM_INCLUDE_LIBXML"
 INCLUDE_DIR += /usr/include/libxml2
 LIBRARIES += -lxml2
 endif
-ifeq ($(TINYXML), 1)
+ifdef useTinyxml
 CCOPT += -D"DOM_INCLUDE_TINYXML"
 INCLUDE_DIR += $(ROOT_DIR)/../external-libs/tinyxml/
-LIBRARIES += $(ROOT_DIR)/../external-libs/tinyxml/lib/$(PLATFORM_NAME)/libtinyxml.a
+LIBRARIES += $(ROOT_DIR)/../external-libs/tinyxml/lib/$(platform)/libtinyxml.a
 endif
 
-ifeq ($(PLATFORM_NAME), ps3)
+ifdef ps3
 # On PS3, we need to be told where to find pcre
 INCLUDE_DIR += $(ROOT_DIR)/../external-libs/pcre
-LCOPT += -L$(ROOT_DIR)/../external-libs/pcre/lib/$(PLATFORM_NAME)
+LCOPT += -L$(ROOT_DIR)/../external-libs/pcre/lib/$(platform)
 
 # We have no getcwd on PS3
 CCOPT += -DNO_GETCWD
@@ -265,4 +266,4 @@ endif
 LIBRARIES += -lpcre -lpcrecpp
 
 # rules
-include          $(ROOT_DIR)/build/makerules.txt
+include $(ROOT_DIR)/build/rules.mk

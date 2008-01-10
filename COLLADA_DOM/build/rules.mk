@@ -17,7 +17,7 @@
 # some more definitions
 
 # PS3 doesn't support shared libraries
-ifeq ($(PLATFORM_NAME), ps3)
+ifdef ps3
 TARGETS := $(TARGET)
 else
 TARGETS := $(TARGET) $(TARGET_DYN)
@@ -59,7 +59,7 @@ install_headers:
 	mkdir /usr/include/collada/dae -p
 	cp include/dae/*.h /usr/include/collada/dae
 	mkdir /usr/include/collada/dom  -p
-	cp include/$(COLLADA_VERSION)/dom/*.h /usr/include/collada/dom 
+	cp include/$(colladaVersion)/dom/*.h /usr/include/collada/dom 
 	mkdir /usr/include/collada/modules  -p
 	cp include/modules/*.h /usr/include/collada/modules
 	cp include/dae.h /usr/include/collada

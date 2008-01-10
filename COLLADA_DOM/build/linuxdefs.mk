@@ -9,13 +9,13 @@
 # implied. See the License for the specific language governing permissions and limitations under the 
 # License. 
 
-LIB_PREFIX      := libcollada
+LIB_PREFIX      := libcollada$(colladaVersionNoDots)
 LIB_SUFFIX      := .a
 LIB_DYN_SUFFIX  = .so
 EXE_SUFFIX		:= 
 OBJ_SUFFIX      := .o
 
-ifeq ($(PLATFORM_NAME), ps3)
+ifdef ps3
 CC  = ppu-lv2-gcc
 CXX = ppu-lv2-g++
 LD  = ppu-lv2-g++

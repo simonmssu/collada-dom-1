@@ -16,27 +16,27 @@ OUTPUT_DIR := $(ROOT_DIR)/bin
 EXTERNAL_LIBS_DIR := $(ROOT_DIR)/../external-libs
 
 # Basic definitions
-include $(ROOT_DIR)/build/makedefs.txt
+include $(ROOT_DIR)/build/defs.mk
 
 # These are used for different things. The names are stupid, I know.
 LIB_DIR := $(ROOT_DIR)/lib/$(CONF_NAME)
 LIB_PATH += $(ROOT_DIR)/lib/$(CONF_NAME)
 
-ifeq ($(PLATFORM_NAME), ps3)
+ifdef ps3
 # PS3 doesn't support shared libraries, so link against the static libs
-LIBRARIES += -lcolladadom$(DEBUG_SUFFIX) -lpcrecpp -lpcre -ltinyxml -lboost_filesystem
+LIBRARIES += -lcollada$(colladaVersionNoDots)dom$(DEBUG_SUFFIX) -lpcrecpp -lpcre -ltinyxml -lboost_filesystem
 
-LIB_PATH += $(EXTERNAL_LIBS_DIR)/pcre/lib/$(PLATFORM_NAME)
-LIB_PATH += $(EXTERNAL_LIBS_DIR)/tinyxml/lib/$(PLATFORM_NAME)
-LIB_PATH += $(EXTERNAL_LIBS_DIR)/boost/lib/$(PLATFORM_NAME)
+LIB_PATH += $(EXTERNAL_LIBS_DIR)/pcre/lib/$(platform)
+LIB_PATH += $(EXTERNAL_LIBS_DIR)/tinyxml/lib/$(platform)
+LIB_PATH += $(EXTERNAL_LIBS_DIR)/boost/lib/$(platform)
 
 # Tell the makefile what libs we depend on, so that the exe gets rebuilt if any of these
 # libs changes.
 DEP_LIBS += $(LIB_DIR)/$(LIB_PREFIX)dom$(DEBUG_SUFFIX)$(LIB_SUFFIX)
-DEP_LIBS += $(EXTERNAL_LIBS_DIR)/pcre/lib/$(PLATFORM_NAME)/libpcre.a
-DEP_LIBS += $(EXTERNAL_LIBS_DIR)/pcre/lib/$(PLATFORM_NAME)/libpcrecpp.a
-DEP_LIBS += $(EXTERNAL_LIBS_DIR)/tinyxml/lib/$(PLATFORM_NAME)/libtinyxml.a
-DEP_LIBS += $(EXTERNAL_LIBS_DIR)/boost/lib/$(PLATFORM_NAME)/libboost_filesystem.a
+DEP_LIBS += $(EXTERNAL_LIBS_DIR)/pcre/lib/$(platform)/libpcre.a
+DEP_LIBS += $(EXTERNAL_LIBS_DIR)/pcre/lib/$(platform)/libpcrecpp.a
+DEP_LIBS += $(EXTERNAL_LIBS_DIR)/tinyxml/lib/$(platform)/libtinyxml.a
+DEP_LIBS += $(EXTERNAL_LIBS_DIR)/boost/lib/$(platform)/libboost_filesystem.a
 
 INCLUDE_DIR += $(EXTERNAL_LIBS_DIR)/pcre
 INCLUDE_DIR += $(EXTERNAL_LIBS_DIR)/tinyxml
@@ -51,7 +51,7 @@ POST_CREATE_EXE_COMMAND := make_fself $(TARGET) $(addsuffix .self, $(basename $(
 else
 
 # For the Linux build, we're going to link against the shared libs
-LIBRARIES += -lcolladadom$(DEBUG_SUFFIX) -lboost_filesystem
+LIBRARIES += -lcollada$(colladaVersionNoDots)dom$(DEBUG_SUFFIX) -lboost_filesystem
 
 # Embed the info about where to find the DOM shared libs directly in the executable
 COMMA := ,
@@ -71,11 +71,11 @@ EXE_LCOPT	+= $(addprefix -L, $(LIB_PATH))
 
 INCLUDE_DIR	+= $(ROOT_DIR)/include \
                $(ROOT_DIR)/include/dae \
-               $(ROOT_DIR)/include/$(COLLADA_VERSION)
+               $(ROOT_DIR)/include/$(colladaVersion)
 
 # Are we doing TinyXML tests?
-ifeq ($(TINYXML), 1)
+ifdef tinyxml
 CCOPT += -D"TINYXML"
 endif
 
-include $(ROOT_DIR)/build/makerules.txt
+include $(ROOT_DIR)/build/rules.mk

@@ -14,10 +14,27 @@
 ROOT_DIR :=	.
 
 # definitions
-include $(ROOT_DIR)/build/makedefs.txt
+include $(ROOT_DIR)/build/params.mk
 
-# files
-SUBDIRS	+= $(ROOT_DIR)/src/dae
+all:
+ifdef linux
+ifdef debug
+	@$(MAKE) -r -R -C $(ROOT_DIR)/src/dae platform=linux conf=debug colladaVersion=$(colladaVersion) parser=$(parser) $(MAKECMDGOALS)
+	@$(MAKE) -r -R -C $(ROOT_DIR)/test platform=linux conf=debug colladaVersion=$(colladaVersion) parser=$(parser) $(MAKECMDGOALS)
+endif
+ifdef release
+	@$(MAKE) -r -R -C $(ROOT_DIR)/src/dae platform=linux conf=release colladaVersion=$(colladaVersion) parser=$(parser) $(MAKECMDGOALS)
+	@$(MAKE) -r -R -C $(ROOT_DIR)/test platform=linux conf=release colladaVersion=$(colladaVersion) parser=$(parser) $(MAKECMDGOALS)
+endif
+endif
 
-# rules
-include $(ROOT_DIR)/build/makerules.txt
+ifdef ps3
+ifdef debug
+	@$(MAKE) -r -R -C $(ROOT_DIR)/src/dae platform=ps3 conf=debug colladaVersion=$(colladaVersion) parser=$(parser) $(MAKECMDGOALS)
+	@$(MAKE) -r -R -C $(ROOT_DIR)/test platform=ps3 conf=debug colladaVersion=$(colladaVersion) parser=$(parser) $(MAKECMDGOALS)
+endif
+ifdef release
+	@$(MAKE) -r -R -C $(ROOT_DIR)/src/dae platform=ps3 conf=release colladaVersion=$(colladaVersion) parser=$(parser) $(MAKECMDGOALS)
+	@$(MAKE) -r -R -C $(ROOT_DIR)/test platform=ps3 conf=release colladaVersion=$(colladaVersion) parser=$(parser) $(MAKECMDGOALS)
+endif
+endif
