@@ -9,7 +9,7 @@
 # implied. See the License for the specific language governing permissions and limitations under the 
 # License. 
 
-LIB_PREFIX      := libcollada_
+LIB_PREFIX      := libcollada
 LIB_SUFFIX      := .a
 LIB_DYN_SUFFIX  = .so
 EXE_SUFFIX		:= 

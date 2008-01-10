@@ -12,9 +12,6 @@
 #
 # 
 #
-# makefile rules: all nosubs clean cleandir
-#
-#
 
 #########################################################
 # some more definitions
@@ -42,16 +39,12 @@ vpath %.rc $(subst $(space),:,$(RES_DIRS))
 #########################################################
 # all rule
 
-.PHONY:	all $(SUBDIRS)
+.PHONY:	all clean createdirs check_build done
 
-all: $(SUBDIRS) nosubs
-nosubs: check_build createdirs $(SUBDIR) $(TARGETS) done
+all: check_build createdirs $(TARGETS) done
 install: check_install uninstall_headers uninstall_libraries \
 				 install_headers install_libraries done
 uninstall: check_uninstall uninstall_headers uninstall_libraries done
-
-#$(TARGET): $(OBJS)
-#$(TARGET_DYN): $(OBJS)
 
 # Pull in dependency info for *existing* .o files
 ifneq ($(PRINT_DEPENDENCIES_OPTION), )
@@ -137,8 +130,8 @@ $(TARGET): $(OBJS) $(DEP_LIBS)
 endif
 
 #########################################################
-# clean rules
-clean: $(SUBDIRS)
+# clean rule
+clean:
 ifneq ($(strip $(CLEAN_LIST)),)
 ifeq ($(USE_SHELL),)
 #	@for %%d in ($(subst /,\,$(CLEAN_LIST))) do if exist "%%d" del /Q "%%d" 2> nul
@@ -148,16 +141,6 @@ else
 # Remove the .so links. It'd be better to have a list of the links we built, and delete
 # only that list of files instead of deleting *.so*
 	@rm -f $(OUTDIR)*.so*
-endif
-endif
-
-cleandir:
-ifneq ($(strip $(CLEAN_LIST)),)
-ifeq ($(USE_SHELL),)
-#	@for %%d in ($(subst /,\,$(CLEAN_LIST))) do if exist "%%d" del /Q "%%d" 2> nul
-else
-	@echo cleaning $(notdir $(CLEAN_LIST))
-	@rm -f $(CLEAN_LIST)
 endif
 endif
 
@@ -199,16 +182,6 @@ check_install:
 # when doing an uninstall.
 check_uninstall:
 	@echo Removing files from /usr/include and /usr/lib
-
-#########################################################
-# run rule: can be used to run the target
-run: all
-ifneq ($(EXECUTABLE),)
-	cd $(OUTDIR) ;./$(EXECUTABLE)$(EXE_SUFFIX)
-else
-	echo "Nothing to be runned here"
-endif
-
 
 #########################################################
 # subdirectories

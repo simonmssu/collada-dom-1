@@ -46,6 +46,7 @@ public:
 		// very nice, but it's certainly better than getting bizarre runtime crashes.
 		// https://collada.org/public_forum/viewtopic.php?t=771&sid=f13c34f2d17ca720c5021bccbe5128b7
 		init(database, ioPlugin);
+		dummyFunction1();
 	}
 
 	virtual ~DAE();
@@ -123,6 +124,7 @@ public:
 
 private:
 	void init(daeDatabase* database, daeIOPlugin* ioPlugin);
+	void dummyFunction1();
 
 	daeDatabase *database;
 	daeIOPlugin *plugin;

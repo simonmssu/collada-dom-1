@@ -16,6 +16,7 @@
 #
 #
 
+include $(ROOT_DIR)/build/buildParams.mk
 
 #########################################################
 # detect platform
@@ -32,10 +33,20 @@ export COLLADA_VERSION = 1.4
 endif
 
 #########################################################
+# COLLADA version
+
+
+#########################################################
 # DOM version
-export DOM_MAJOR_VERSION=1
-export DOM_MINOR_VERSION=3
+export DOM_MAJOR_VERSION=2
+export DOM_MINOR_VERSION=0
 export DOM_VERSION=$(DOM_MAJOR_VERSION).$(DOM_MINOR_VERSION)
+
+#########################################################
+# Debug suffix
+ifneq ($(RELEASE), 1)
+DEBUG_SUFFIX := -d
+endif
 
 #########################################################
 # configuration - This is a unique string that identifies the build config. It's used
@@ -104,15 +115,15 @@ OUTDIR			:= $(TMPDIR)/
 ifneq ($(LIBRARY),)
 
 # library build settings
-TARGET          := $(OUTDIR)$(LIB_PREFIX)$(LIBRARY)$(LIB_SUFFIX)
-TARGET_DYN      := $(OUTDIR)$(LIB_PREFIX)$(LIBRARY)_shared$(LIB_DYN_SUFFIX_VERSION)
-LCOPT			+= $(LDOPT) $(LIB_CCOPT)
+TARGET     := $(OUTDIR)$(LIB_PREFIX)$(LIBRARY)$(DEBUG_SUFFIX)$(LIB_SUFFIX)
+TARGET_DYN := $(OUTDIR)$(LIB_PREFIX)$(LIBRARY)$(DEBUG_SUFFIX)$(LIB_DYN_SUFFIX_VERSION)
+LCOPT      += $(LDOPT) $(LIB_CCOPT)
 else
 
 ifneq ($(EXECUTABLE),)
 
 # executable build settings
-TARGET          := $(OUTDIR)$(EXECUTABLE)$(EXE_SUFFIX)
-LCOPT     += $(EXE_LCOPT)
+TARGET := $(OUTDIR)$(EXECUTABLE)$(EXE_SUFFIX)
+LCOPT  += $(EXE_LCOPT)
 endif
 endif

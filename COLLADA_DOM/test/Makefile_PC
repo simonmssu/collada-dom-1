@@ -24,7 +24,7 @@ LIB_PATH += $(ROOT_DIR)/lib/$(CONF_NAME)
 
 ifeq ($(PLATFORM_NAME), ps3)
 # PS3 doesn't support shared libraries, so link against the static libs
-LIBRARIES += -lcollada_dae -lcollada_dom -lcollada_dae -lpcrecpp -lpcre -ltinyxml -lboost_filesystem
+LIBRARIES += -lcolladadom$(DEBUG_SUFFIX) -lpcrecpp -lpcre -ltinyxml -lboost_filesystem
 
 LIB_PATH += $(EXTERNAL_LIBS_DIR)/pcre/lib/$(PLATFORM_NAME)
 LIB_PATH += $(EXTERNAL_LIBS_DIR)/tinyxml/lib/$(PLATFORM_NAME)
@@ -32,8 +32,7 @@ LIB_PATH += $(EXTERNAL_LIBS_DIR)/boost/lib/$(PLATFORM_NAME)
 
 # Tell the makefile what libs we depend on, so that the exe gets rebuilt if any of these
 # libs changes.
-DEP_LIBS += $(LIB_DIR)/$(LIB_PREFIX)dae$(LIB_SUFFIX)
-DEP_LIBS += $(LIB_DIR)/$(LIB_PREFIX)dom$(LIB_SUFFIX)
+DEP_LIBS += $(LIB_DIR)/$(LIB_PREFIX)dom$(DEBUG_SUFFIX)$(LIB_SUFFIX)
 DEP_LIBS += $(EXTERNAL_LIBS_DIR)/pcre/lib/$(PLATFORM_NAME)/libpcre.a
 DEP_LIBS += $(EXTERNAL_LIBS_DIR)/pcre/lib/$(PLATFORM_NAME)/libpcrecpp.a
 DEP_LIBS += $(EXTERNAL_LIBS_DIR)/tinyxml/lib/$(PLATFORM_NAME)/libtinyxml.a
@@ -52,7 +51,7 @@ POST_CREATE_EXE_COMMAND := make_fself $(TARGET) $(addsuffix .self, $(basename $(
 else
 
 # For the Linux build, we're going to link against the shared libs
-LIBRARIES += -lcollada_dae_shared -lcollada_dom_shared -lboost_filesystem
+LIBRARIES += -lcolladadom$(DEBUG_SUFFIX) -lboost_filesystem
 
 # Embed the info about where to find the DOM shared libs directly in the executable
 COMMA := ,
@@ -62,8 +61,7 @@ SHARED_LIB_COMMAND := $(addprefix -Wl$(COMMA)-rpath$(COMMA), $(SHARED_LIB_PATH))
 
 # Tell the makefile what libs we depend on, so that the exe gets rebuilt if any of these
 # libs changes.
-DEP_LIBS += $(LIB_PATH)/$(LIB_PREFIX)dae_shared$(LIB_DYN_SUFFIX)
-DEP_LIBS += $(LIB_PATH)/$(LIB_PREFIX)dom_shared$(LIB_DYN_SUFFIX)
+DEP_LIBS += $(LIB_PATH)/$(LIB_PREFIX)dom$(DEBUG_SUFFIX)$(LIB_DYN_SUFFIX)
 endif
 
 # files
