@@ -16,6 +16,8 @@ ROOT_DIR :=	.
 # definitions
 include $(ROOT_DIR)/build/params.mk
 
+.PHONY: all clean
+
 all:
 ifdef linux
 ifdef debug
@@ -38,3 +40,5 @@ ifdef release
 	@$(MAKE) -r -R -C $(ROOT_DIR)/test platform=ps3 conf=release colladaVersion=$(colladaVersion) parser=$(parser) $(MAKECMDGOALS)
 endif
 endif
+
+clean: all

@@ -23,7 +23,8 @@ else
 TARGETS := $(TARGET) $(TARGET_DYN)
 endif
 
-OBJS  = $(addprefix $(INTERMEDIATE_DIR), $(notdir $(addsuffix $(OBJ_SUFFIX), $(basename $(SRC)))))
+src-to-obj = $(addprefix $(INTERMEDIATE_DIR), $(notdir $(addsuffix $(OBJ_SUFFIX), $(basename $(1)))))
+OBJS := $(call src-to-obj, $(SRC))
 OBJS += $(addprefix $(INTERMEDIATE_DIR), $(notdir $(addsuffix .res, $(basename $(RES)))))
 DEPENDENCY_FILES := $(addsuffix .d, $(basename $(OBJS)))
 CLEAN_LIST  = $(OBJS) $(DEPENDENCY_FILES) $(TARGETS)
@@ -35,6 +36,14 @@ vpath %.cpp $(subst $(space),:,$(SRC_DIRS)) # Pass vpath a colon-separated list 
 # Tell make where to find our resource files
 RES_DIRS = $(sort $(dir $(RES)))
 vpath %.rc $(subst $(space),:,$(RES_DIRS))
+
+# If the user has set the 'file' option, that means build *only* that file
+ifdef file
+TARGETS := $(call src-to-obj, $(file))
+# Filter out any files that aren't in out objs list
+TARGETS := $(foreach x, $(TARGETS), $(findstring $(x), $(OBJS)))
+endif
+
 
 #########################################################
 # all rule
@@ -182,12 +191,6 @@ check_install:
 # when doing an uninstall.
 check_uninstall:
 	@echo Removing files from /usr/include and /usr/lib
-
-#########################################################
-# subdirectories
-
-$(SUBDIRS):
-	@$(MAKE) -r -R -C $@ $(MAKECMDGOALS)
 
 done:
 	@echo done
