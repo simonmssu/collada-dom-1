@@ -25,7 +25,6 @@ daeElementRef
 domInstance_geometry::create(DAE& dae)
 {
 	domInstance_geometryRef ref = new domInstance_geometry(dae);
-	ref->attrUrl.setContainer( (domInstance_geometry*)ref );
 	return ref;
 }
 

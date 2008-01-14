@@ -154,7 +154,6 @@ daeElementRef
 domVisual_scene::domEvaluate_scene::domRender::create(DAE& dae)
 {
 	domVisual_scene::domEvaluate_scene::domRenderRef ref = new domVisual_scene::domEvaluate_scene::domRender(dae);
-	ref->attrCamera_node.setContainer( (domVisual_scene::domEvaluate_scene::domRender*)ref );
 	return ref;
 }
 

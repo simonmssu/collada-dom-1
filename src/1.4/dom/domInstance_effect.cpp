@@ -25,7 +25,6 @@ daeElementRef
 domInstance_effect::create(DAE& dae)
 {
 	domInstance_effectRef ref = new domInstance_effect(dae);
-	ref->attrUrl.setContainer( (domInstance_effect*)ref );
 	return ref;
 }
 

@@ -25,7 +25,6 @@ daeElementRef
 domInstanceWithExtra::create(DAE& dae)
 {
 	domInstanceWithExtraRef ref = new domInstanceWithExtra(dae);
-	ref->attrUrl.setContainer( (domInstanceWithExtra*)ref );
 	return ref;
 }
 

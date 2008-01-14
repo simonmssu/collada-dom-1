@@ -25,7 +25,6 @@ daeElementRef
 domChannel::create(DAE& dae)
 {
 	domChannelRef ref = new domChannel(dae);
-	ref->attrSource.setContainer( (domChannel*)ref );
 	return ref;
 }
 

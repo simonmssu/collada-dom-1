@@ -25,7 +25,6 @@ daeElementRef
 domInputGlobal::create(DAE& dae)
 {
 	domInputGlobalRef ref = new domInputGlobal(dae);
-	ref->attrSource.setContainer( (domInputGlobal*)ref );
 	return ref;
 }
 

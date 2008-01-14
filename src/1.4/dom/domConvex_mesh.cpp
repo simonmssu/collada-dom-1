@@ -25,7 +25,6 @@ daeElementRef
 domConvex_mesh::create(DAE& dae)
 {
 	domConvex_meshRef ref = new domConvex_mesh(dae);
-	ref->attrConvex_hull_of.setContainer( (domConvex_mesh*)ref );
 	return ref;
 }
 

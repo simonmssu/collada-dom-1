@@ -25,7 +25,6 @@ daeElementRef
 domTechnique::create(DAE& dae)
 {
 	domTechniqueRef ref = new domTechnique(dae);
-	ref->attrXmlns.setContainer( (domTechnique*)ref );
 	return ref;
 }
 

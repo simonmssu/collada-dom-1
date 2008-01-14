@@ -25,7 +25,6 @@ daeElementRef
 domSkin::create(DAE& dae)
 {
 	domSkinRef ref = new domSkin(dae);
-	ref->attrSource.setContainer( (domSkin*)ref );
 	return ref;
 }
 

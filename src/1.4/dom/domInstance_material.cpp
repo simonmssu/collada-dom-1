@@ -25,7 +25,6 @@ daeElementRef
 domInstance_material::create(DAE& dae)
 {
 	domInstance_materialRef ref = new domInstance_material(dae);
-	ref->attrTarget.setContainer( (domInstance_material*)ref );
 	return ref;
 }
 

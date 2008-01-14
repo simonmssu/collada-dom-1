@@ -1251,11 +1251,17 @@ DefineTest(autoResolve) {
 	xsIDREFS& idRefs = database.typeLookup<domIDREF_array>().at(0)->getValue();
 	idRefs.append(daeIDRef("myGeom"));
 
-	// Create a <node> with an <instance_geometry> to test URIs
-	domInstance_geometry& ig = *daeSafeCast<domInstance_geometry>(
-		root->createAndPlace("library_nodes")->createAndPlace("node")->
-		createAndPlace("instance_geometry"));
-	ig.setUrl("#myGeom");
+	// Create a <library_nodes> with a <node> that we'll instantiate via <instance_node>
+	daeElement* node1 = root->createAndPlace("library_nodes")->createAndPlace("node");
+	node1->setAttribute("id", "myNode");
+
+	// Create a <node> with an <instance_geometry> and <instance_node> to test URIs
+	daeElement* node2 = root->getDescendant("library_nodes")->createAndPlace("node");
+	domInstance_node& instanceNode = *daeSafeCast<domInstance_node>(node2->createAndPlace("instance_node"));
+	domInstance_geometry& instanceGeom = *daeSafeCast<domInstance_geometry>(
+		node2->createAndPlace("instance_geometry"));
+	instanceNode.setUrl("#myNode");
+	instanceGeom.setUrl("#myGeom");
 
 	// Create a <surface> with an <init_from> to test ID refs
 	domFx_surface_init_from_common& initFrom = *daeSafeCast<domFx_surface_init_from_common>(
@@ -1266,8 +1272,9 @@ DefineTest(autoResolve) {
 
 	// Make sure everything resolves automatically
 	CheckResult(idRefs[0].getElement() == geom);
-	CheckResult(ig.getUrl().getElement() == geom);
+	CheckResult(instanceGeom.getUrl().getElement() == geom);
 	CheckResult(initFrom.getValue().getElement() == geom);
+	CheckResult(instanceNode.getUrl().getElement() == node1);
 
 	return testResult(true);
 }

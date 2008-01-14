@@ -131,20 +131,20 @@ daeURI::daeURI(const daeURI& copyFrom) : dae(copyFrom.getDAE())
 	state = copyFrom.state;
 }
 
-daeURI::daeURI(daeElement& container, daeString uriString)
-	: dae(container.getDAE()),
-	  container(&container)
+daeURI::daeURI(daeElement& container_, daeString uriString)
+	: dae(container_.getDAE())
 {
 	initialize();
+	container = &container_;
 	setURI(uriString);
 	validate();
 }
 
-daeURI::daeURI(DAE& dae, daeElement& container, daeString uriString)
-	: dae(&dae),
-	  container(&container)
+daeURI::daeURI(DAE& dae, daeElement& container_, daeString uriString)
+	: dae(&dae)
 {
 	initialize();
+	container = &container_;
 	setURI(uriString);
 	validate();
 }

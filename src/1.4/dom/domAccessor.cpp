@@ -25,7 +25,6 @@ daeElementRef
 domAccessor::create(DAE& dae)
 {
 	domAccessorRef ref = new domAccessor(dae);
-	ref->attrSource.setContainer( (domAccessor*)ref );
 	return ref;
 }
 
