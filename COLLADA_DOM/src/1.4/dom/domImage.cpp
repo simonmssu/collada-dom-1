@@ -194,7 +194,6 @@ daeElementRef
 domImage::domInit_from::create(DAE& dae)
 {
 	domImage::domInit_fromRef ref = new domImage::domInit_from(dae);
-	ref->_value.setContainer( (domImage::domInit_from*)ref );
 	return ref;
 }
 

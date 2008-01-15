@@ -25,7 +25,6 @@ daeElementRef
 domInstance_controller::create(DAE& dae)
 {
 	domInstance_controllerRef ref = new domInstance_controller(dae);
-	ref->attrUrl.setContainer( (domInstance_controller*)ref );
 	return ref;
 }
 
@@ -110,7 +109,6 @@ daeElementRef
 domInstance_controller::domSkeleton::create(DAE& dae)
 {
 	domInstance_controller::domSkeletonRef ref = new domInstance_controller::domSkeleton(dae);
-	ref->_value.setContainer( (domInstance_controller::domSkeleton*)ref );
 	return ref;
 }
 

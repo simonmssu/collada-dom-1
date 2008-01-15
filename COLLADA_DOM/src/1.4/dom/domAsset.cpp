@@ -318,7 +318,6 @@ daeElementRef
 domAsset::domContributor::domSource_data::create(DAE& dae)
 {
 	domAsset::domContributor::domSource_dataRef ref = new domAsset::domContributor::domSource_data(dae);
-	ref->_value.setContainer( (domAsset::domContributor::domSource_data*)ref );
 	return ref;
 }
 

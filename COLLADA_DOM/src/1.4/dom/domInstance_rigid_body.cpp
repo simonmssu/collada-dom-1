@@ -25,7 +25,6 @@ daeElementRef
 domInstance_rigid_body::create(DAE& dae)
 {
 	domInstance_rigid_bodyRef ref = new domInstance_rigid_body(dae);
-	ref->attrTarget.setContainer( (domInstance_rigid_body*)ref );
 	return ref;
 }
 

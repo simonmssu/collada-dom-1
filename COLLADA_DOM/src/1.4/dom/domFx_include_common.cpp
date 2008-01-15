@@ -25,7 +25,6 @@ daeElementRef
 domFx_include_common::create(DAE& dae)
 {
 	domFx_include_commonRef ref = new domFx_include_common(dae);
-	ref->attrUrl.setContainer( (domFx_include_common*)ref );
 	return ref;
 }
 

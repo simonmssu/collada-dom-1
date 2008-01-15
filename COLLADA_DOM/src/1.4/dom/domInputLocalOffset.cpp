@@ -25,7 +25,6 @@ daeElementRef
 domInputLocalOffset::create(DAE& dae)
 {
 	domInputLocalOffsetRef ref = new domInputLocalOffset(dae);
-	ref->attrSource.setContainer( (domInputLocalOffset*)ref );
 	return ref;
 }
 

@@ -25,8 +25,6 @@ daeElementRef
 domInstance_physics_model::create(DAE& dae)
 {
 	domInstance_physics_modelRef ref = new domInstance_physics_model(dae);
-	ref->attrUrl.setContainer( (domInstance_physics_model*)ref );
-	ref->attrParent.setContainer( (domInstance_physics_model*)ref );
 	return ref;
 }
 

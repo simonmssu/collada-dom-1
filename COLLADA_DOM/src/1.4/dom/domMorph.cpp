@@ -25,7 +25,6 @@ daeElementRef
 domMorph::create(DAE& dae)
 {
 	domMorphRef ref = new domMorph(dae);
-	ref->attrSource.setContainer( (domMorph*)ref );
 	return ref;
 }
 

@@ -28,8 +28,6 @@ daeElementRef
 domCOLLADA::create(DAE& dae)
 {
 	domCOLLADARef ref = new domCOLLADA(dae);
-	ref->attrXmlns.setContainer( (domCOLLADA*)ref );
-	ref->attrXml_base.setContainer( (domCOLLADA*)ref );
 	ref->_meta = dae.getMeta(domCOLLADA::ID());
 	ref->setAttribute("version", COLLADA_VERSION );
 	ref->setAttribute("xmlns", COLLADA_NAMESPACE );

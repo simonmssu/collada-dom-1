@@ -110,7 +110,6 @@ daeElementRef
 domRigid_constraint::domRef_attachment::create(DAE& dae)
 {
 	domRigid_constraint::domRef_attachmentRef ref = new domRigid_constraint::domRef_attachment(dae);
-	ref->attrRigid_body.setContainer( (domRigid_constraint::domRef_attachment*)ref );
 	return ref;
 }
 
@@ -177,7 +176,6 @@ daeElementRef
 domRigid_constraint::domAttachment::create(DAE& dae)
 {
 	domRigid_constraint::domAttachmentRef ref = new domRigid_constraint::domAttachment(dae);
-	ref->attrRigid_body.setContainer( (domRigid_constraint::domAttachment*)ref );
 	return ref;
 }
 
