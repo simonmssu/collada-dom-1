@@ -13,184 +13,77 @@
 # 
 #
 
-#########################################################
-# some more definitions
+obj := $(addprefix $(objPath),$(src:.cpp=.o))
+dependencyFiles := $(obj:.o=.d)
+outputFiles := $(obj) $(dependencyFiles) $(targets)
+outputFiles += $(foreach so,$(filter %.so,$(targets)),$(so).$(soMajorVersion) $(so).$(soMajorVersion).$(soMinorVersion))
 
-# PS3 doesn't support shared libraries
-ifdef ps3
-TARGETS := $(TARGET)
-else
-TARGETS := $(TARGET) $(TARGET_DYN)
-endif
+# Parse the targets, which can contain a static lib, a shared lib, and an exe
+staticLib := $(filter %.a,$(targets))
+sharedLib := $(filter %.so,$(targets))
+# Anything other than a .a or .so is considered an exe
+exe := $(filter-out %.a,$(filter-out %.so,$(targets)))
 
-src-to-obj = $(addprefix $(INTERMEDIATE_DIR), $(notdir $(addsuffix $(OBJ_SUFFIX), $(basename $(1)))))
-OBJS := $(call src-to-obj, $(SRC))
-OBJS += $(addprefix $(INTERMEDIATE_DIR), $(notdir $(addsuffix .res, $(basename $(RES)))))
-DEPENDENCY_FILES := $(addsuffix .d, $(basename $(OBJS)))
-CLEAN_LIST  = $(OBJS) $(DEPENDENCY_FILES) $(TARGETS)
-
-# Tell make where to find our source files
-SRC_DIRS = $(sort $(dir $(SRC))) # Generate a unique list of the paths containing our source files
-vpath %.cpp $(subst $(space),:,$(SRC_DIRS)) # Pass vpath a colon-separated list of paths
-
-# Tell make where to find our resource files
-RES_DIRS = $(sort $(dir $(RES)))
-vpath %.rc $(subst $(space),:,$(RES_DIRS))
-
-# If the user has set the 'file' option, that means build *only* that file
-ifdef file
-TARGETS := $(call src-to-obj, $(file))
-# Filter out any files that aren't in out objs list
-TARGETS := $(foreach x, $(TARGETS), $(findstring $(x), $(OBJS)))
-endif
-
-
-#########################################################
-# all rule
-
-.PHONY:	all clean createdirs check_build done
-
-all: check_build createdirs $(TARGETS) done
-install: check_install uninstall_headers uninstall_libraries \
-				 install_headers install_libraries done
-uninstall: check_uninstall uninstall_headers uninstall_libraries done
-
+ifneq ($(obj),)
 # Pull in dependency info for *existing* .o files
-ifneq ($(PRINT_DEPENDENCIES_OPTION), )
--include $(OBJS:.o=.d)
-endif
+-include $(dependencyFiles)
 
-#########################################################
-# build install
+# Make has weird evaluation semantics, so we have to be careful to capture the state of
+# any values we use in rule commands. This is the reason for all the target-specific variable
+# values.
+$(obj): cc := $(cc)
+$(obj): ccFlags := $(ccFlags)
+$(obj): includeSearchPaths := $(addprefix -I,$(includeSearchPaths))
 
-install_headers:
-	mkdir /usr/include/collada -p
-	mkdir /usr/include/collada/dae -p
-	cp include/dae/*.h /usr/include/collada/dae
-	mkdir /usr/include/collada/dom  -p
-	cp include/$(colladaVersion)/dom/*.h /usr/include/collada/dom 
-	mkdir /usr/include/collada/modules  -p
-	cp include/modules/*.h /usr/include/collada/modules
-	cp include/dae.h /usr/include/collada
-	cp include/dom.h /usr/include/collada
-
-uninstall_headers:
-	rm -r -f /usr/include/collada
-
-install_libraries:
-	cp lib/$(CONF_NAME)/*.a /usr/lib
-	cp lib/$(CONF_NAME)/*.so* /usr/lib
-
-uninstall_libraries:
-# We don't want to just remove all /usr/lib/libcollada*.a files. Other libraries
-# such as bullet build with a "libcollada" prefix but aren't part of the COLLADA
-# DOM. We don't want to remove those files if they happen to be in /usr/lib.
-#	rm -f /usr/lib/libcollada*.a
-	rm -f /usr/lib/libcollada_dae.a
-	rm -f /usr/lib/libcollada_dom.a
-	rm -f /usr/lib/libcollada_dae_shared.so*
-	rm -f /usr/lib/libcollada_dom_shared.so*
-
-
-#########################################################
-# build rules
-INCLUDES_WITH_PREFIX := $(addprefix $(CCINC) ,$(INCLUDE_DIR))
-
-ifneq ($(PRINT_DEPENDENCIES_OPTION), )
-# Sweet, our compiler can automatically generate make rules for our dependencies.
+# We're going to automatically generate make rules for our header dependencies.
 # See this for more info: http://www.cs.berkeley.edu/~smcpeak/autodepend/autodepend.html
-$(INTERMEDIATE_DIR)%$(OBJ_SUFFIX) : %.cpp
-	$(QUIET)$(CXX) -c $< $(CCQUIET) $(CCOPT) $(CCOUT)$@ $(INCLUDES_WITH_PREFIX)
-	@$(CXX) $(PRINT_DEPENDENCIES_OPTION) $< $(CCQUIET) $(CCOPT) $(INCLUDES_WITH_PREFIX) > $(basename $@).d
-	@mv -f $(basename $@).d $(basename $@).d.tmp
-	@sed -e 's|.*:|$@:|' < $(basename $@).d.tmp > $(basename $@).d
-	@sed -e 's/.*://' -e 's/\\$$//' < $(basename $@).d.tmp | fmt -1 | \
-		sed -e 's/^ *//' -e 's/$$/:/' >> $(basename $@).d
-	@rm -f $(basename $@).d.tmp
-else
-$(INTERMEDIATE_DIR)%$(OBJ_SUFFIX) : %.cpp
-	$(QUIET)$(CXX) -c $< $(CCQUIET) $(CCOPT) $(CCOUT)$@ $(INCLUDES_WITH_PREFIX)
+$(objPath)%.o: %.cpp
+	@echo Compiling $< to $@
+	$(quiet)$(cc) -c $< $(ccFlags) $(includeSearchPaths) -o $@
+	@$(cc) -MM $< $(ccFlags) $(includeSearchPaths) > $(@:.o=.d)
+	@mv -f $(@:.o=.d) $(@:.o=.d.tmp)
+	@sed -e 's|.*:|$@:|' < $(@:.o=.d.tmp) > $(@:.o=.d)
+	@sed -e 's/.*://' -e 's/\\$$//' < $(@:.o=.d.tmp) | fmt -1 | \
+		sed -e 's/^ *//' -e 's/$$/:/' >> $(@:.o=.d)
+	@rm -f $(@:.o=.d.tmp)
 endif
 
-$(INTERMEDIATE_DIR)%.res : %.rc
-	$(QUIET)rc /fo$@ $<
-
-ifeq ($(suffix $(TARGET)), $(LIB_SUFFIX))
-# We're building a static lib
-$(TARGET): $(OBJS)
-	@echo $@
-	$(QUIET)$(AR) $(LCOUT) $@ $^
+# Rule for static libs
+ifneq ($(staticLib),)
+$(staticLib): ar := $(ar)
+$(staticLib): $(obj)
+	@echo Creating $@
+	$(quiet)$(ar) $@ $^
 endif
 
-ifneq ($(findstring $(LIB_DYN_SUFFIX_VERSION), $(TARGET_DYN)),)
-# We're building a shared lib
-$(TARGET_DYN): $(OBJS) $(DEP_LIBS)
-	echo $@
-	$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $^ $(LIBRARIES)
-	$(ROOT_DIR)/build/create_so_links $@
+# Rules for shared libs
+ifneq ($(sharedLib),)
+$(sharedLib).$(soMajorVersion).$(soMinorVersion): cc := $(cc)
+$(sharedLib).$(soMajorVersion).$(soMinorVersion): ccFlags := $(ccFlags)
+$(sharedLib).$(soMajorVersion).$(soMinorVersion): libs := $(libs)
+$(sharedLib).$(soMajorVersion).$(soMinorVersion): libSearchPaths := $(addprefix -L,$(libSearchPaths))
+$(sharedLib).$(soMajorVersion).$(soMinorVersion): $(dependentLibs) $(obj)
+	@echo Linking $@
+	$(quiet)$(cc) $(ccFlags) -shared -o $@ $^ $(libSearchPaths) $(libs)
+
+$(sharedLib).$(soMajorVersion): $(sharedLib).$(soMajorVersion).$(soMinorVersion)
+	$(quiet)cd $(dir $@)  &&  ln -s $(notdir $^) $(notdir $@)
+
+$(sharedLib): $(sharedLib).$(soMajorVersion)
+	$(quiet)cd $(dir $@)  &&  ln -s $(notdir $^) $(notdir $@)
 endif
 
-ifeq ($(suffix $(TARGET)), $(EXE_SUFFIX))
-# We're building an executable
-$(TARGET): $(OBJS) $(DEP_LIBS)
-	@echo $@
-	$(QUIET)$(LD) $(LCOPT) $(LDOUT) $@ $(OBJS) $(LIBRARIES) $(SHARED_LIB_COMMAND)
-	$(POST_CREATE_EXE_COMMAND)
+# Rules for exes
+ifneq ($(exe),)
+$(exe): cc := $(cc)
+$(exe): ccFlags := $(ccFlags)
+$(exe): obj := $(obj)
+$(exe): libs := $(libs)
+$(exe): libSearchPaths := $(addprefix -L,$(libSearchPaths))
+$(exe): sharedLibSearchPathCommand := $(addprefix -Wl$(comma)-rpath$(comma),$(sharedLibSearchPaths))
+$(exe): postCreateExeCommand := $(postCreateExeCommand)
+$(exe): $(dependentLibs) $(obj)
+	@echo Linking $@
+	$(quiet)$(cc) $(ccFlags) -o $@ $(obj) $(libSearchPaths) $(libs) $(sharedLibSearchPathCommand)
+	$(quiet)$(postCreateExeCommand)
 endif
-
-#########################################################
-# clean rule
-clean:
-ifneq ($(strip $(CLEAN_LIST)),)
-ifeq ($(USE_SHELL),)
-#	@for %%d in ($(subst /,\,$(CLEAN_LIST))) do if exist "%%d" del /Q "%%d" 2> nul
-else
-	@echo cleaning $(notdir $(CLEAN_LIST))
-	@rm -f $(CLEAN_LIST)
-# Remove the .so links. It'd be better to have a list of the links we built, and delete
-# only that list of files instead of deleting *.so*
-	@rm -f $(OUTDIR)*.so*
-endif
-endif
-
-#########################################################
-#create directory rule
-createdirs:
-ifneq ($(TARGET),)
-ifeq ($(USE_SHELL),)
-				@for %%d in ($(CREATE_DIR)) do if not exist "%%d" mkdir "%%d"
-else
-				@for d in $(CREATE_DIR); do \
-					if [ ! -d $dd ] ; then \
-						mkdir -p $$d ; \
-					fi; \
-					done;
-endif
-endif
-
-#########################################################
-# check_build rule: can be used to perform some basic checks and tests
-# when doing a build.
-check_build:
-	@echo building $(TARGETS) - $(CONF_NAME)
-#	@echo TARGET = $(TARGET)
-#	@echo EXECUTABLE = $(EXECUTABLE)
-#	@echo LIBRARY = $(LIBRARY)
-#	@echo DEBUG = $(DEBUG)
-#	@echo SRC = $(SRC)
-#	@echo OBJS = $(OBJS)
-
-#########################################################
-# check_install rule: can be used to perform some basic checks and tests
-# when doing an install.
-check_install:
-	@echo Adding $(CONF_NAME) files to /usr/include and /usr/lib
-
-#########################################################
-# check_uninstall rule: can be used to perform some basic checks and tests
-# when doing an uninstall.
-check_uninstall:
-	@echo Removing files from /usr/include and /usr/lib
-
-done:
-	@echo done
