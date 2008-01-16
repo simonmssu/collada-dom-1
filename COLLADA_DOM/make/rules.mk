@@ -1,4 +1,3 @@
-#-*-makefile-*-
 # Copyright 2006 Sony Computer Entertainment Inc.
 #
 # Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
@@ -10,10 +9,8 @@
 # implied. See the License for the specific language governing permissions and limitations under the 
 # License. 
 #
-# 
-#
 
-obj := $(addprefix $(objPath),$(src:.cpp=.o))
+obj := $(addprefix $(objPath),$(notdir $(src:.cpp=.o)))
 dependencyFiles := $(obj:.o=.d)
 outputFiles := $(obj) $(dependencyFiles) $(targets)
 outputFiles += $(foreach so,$(filter %.so,$(targets)),$(so).$(soMajorVersion) $(so).$(soMajorVersion).$(soMinorVersion))
@@ -29,48 +26,60 @@ ifneq ($(obj),)
 -include $(dependencyFiles)
 
 # Make has weird evaluation semantics, so we have to be careful to capture the state of
-# any values we use in rule commands. This is the reason for all the target-specific variable
-# values.
+# any values we use in rule commands. This is the reason for all the target-specific variables.
 $(obj): cc := $(cc)
 $(obj): ccFlags := $(ccFlags)
 $(obj): includeSearchPaths := $(addprefix -I,$(includeSearchPaths))
 
+# Call createObjRule with a source file path
+define createObjRule
+srcPath := $(1)
+
+# Pick off the matching obj files
+objFiles := $$(addprefix $$(objPath),$$(notdir $$(filter $$(srcPath)%,$$(src:.cpp=.o))))
+
 # We're going to automatically generate make rules for our header dependencies.
 # See this for more info: http://www.cs.berkeley.edu/~smcpeak/autodepend/autodepend.html
-$(objPath)%.o: %.cpp
-	@echo Compiling $< to $@
-	$(quiet)$(cc) -c $< $(ccFlags) $(includeSearchPaths) -o $@
-	@$(cc) -MM $< $(ccFlags) $(includeSearchPaths) > $(@:.o=.d)
-	@mv -f $(@:.o=.d) $(@:.o=.d.tmp)
-	@sed -e 's|.*:|$@:|' < $(@:.o=.d.tmp) > $(@:.o=.d)
-	@sed -e 's/.*://' -e 's/\\$$//' < $(@:.o=.d.tmp) | fmt -1 | \
-		sed -e 's/^ *//' -e 's/$$/:/' >> $(@:.o=.d)
-	@rm -f $(@:.o=.d.tmp)
+$$(objFiles): $$(objPath)%.o: $$(srcPath)%.cpp | $$(sort $$(dir $$(objFiles)))
+	@echo Compiling $$< to $$@
+	$$(quiet)$$(cc) -c $$< $$(ccFlags) $$(includeSearchPaths) -o $$@
+	@$$(cc) -MM $$< $$(ccFlags) $$(includeSearchPaths) > $$(@:.o=.d)
+	@mv -f $$(@:.o=.d) $$(@:.o=.d.tmp)
+	@sed -e 's|.*:|$$@:|' < $$(@:.o=.d.tmp) > $$(@:.o=.d)
+	@sed -e 's/.*://' -e 's/\\$$$$//' < $$(@:.o=.d.tmp) | fmt -1 | \
+		sed -e 's/^ *//' -e 's/$$$$/:/' >> $$(@:.o=.d)
+	@rm -f $$(@:.o=.d.tmp)
+endef
+
+srcPaths := $(sort $(dir $(src)))
+$(foreach path,$(srcPaths),$(eval $(call createObjRule,$(path))))
 endif
 
 # Rule for static libs
 ifneq ($(staticLib),)
 $(staticLib): ar := $(ar)
-$(staticLib): $(obj)
+$(staticLib): $(obj) | $(dir $(staticLib))
 	@echo Creating $@
 	$(quiet)$(ar) $@ $^
 endif
 
 # Rules for shared libs
 ifneq ($(sharedLib),)
-$(sharedLib).$(soMajorVersion).$(soMinorVersion): cc := $(cc)
-$(sharedLib).$(soMajorVersion).$(soMinorVersion): ccFlags := $(ccFlags)
-$(sharedLib).$(soMajorVersion).$(soMinorVersion): libs := $(libs)
-$(sharedLib).$(soMajorVersion).$(soMinorVersion): libSearchPaths := $(addprefix -L,$(libSearchPaths))
-$(sharedLib).$(soMajorVersion).$(soMinorVersion): $(dependentLibs) $(obj)
+sharedLibMajor := $(sharedLib).$(soMajorVersion)
+sharedLibMajorMinor := $(sharedLib).$(soMajorVersion).$(soMinorVersion)
+$(sharedLibMajorMinor): cc := $(cc)
+$(sharedLibMajorMinor): ccFlags := $(ccFlags)
+$(sharedLibMajorMinor): libs := $(libs)
+$(sharedLibMajorMinor): libSearchPaths := $(addprefix -L,$(libSearchPaths))
+$(sharedLibMajorMinor): $(dependentLibs) $(obj) | $(dir $(sharedLibMajorMinor))
 	@echo Linking $@
 	$(quiet)$(cc) $(ccFlags) -shared -o $@ $^ $(libSearchPaths) $(libs)
 
-$(sharedLib).$(soMajorVersion): $(sharedLib).$(soMajorVersion).$(soMinorVersion)
-	$(quiet)cd $(dir $@)  &&  ln -s $(notdir $^) $(notdir $@)
+$(sharedLibMajor): $(sharedLibMajorMinor) | $(dir $(sharedLibMajor))
+	$(quiet)cd $(dir $@)  &&  ln -sf $(notdir $^) $(notdir $@)
 
-$(sharedLib): $(sharedLib).$(soMajorVersion)
-	$(quiet)cd $(dir $@)  &&  ln -s $(notdir $^) $(notdir $@)
+$(sharedLib): $(sharedLibMajor) | $(dir $(sharedLib))
+	$(quiet)cd $(dir $@)  &&  ln -sf $(notdir $^) $(notdir $@)
 endif
 
 # Rules for exes
@@ -82,7 +91,7 @@ $(exe): libs := $(libs)
 $(exe): libSearchPaths := $(addprefix -L,$(libSearchPaths))
 $(exe): sharedLibSearchPathCommand := $(addprefix -Wl$(comma)-rpath$(comma),$(sharedLibSearchPaths))
 $(exe): postCreateExeCommand := $(postCreateExeCommand)
-$(exe): $(dependentLibs) $(obj)
+$(exe): $(dependentLibs) $(obj) | $(dir $(exe))
 	@echo Linking $@
 	$(quiet)$(cc) $(ccFlags) -o $@ $(obj) $(libSearchPaths) $(libs) $(sharedLibSearchPathCommand)
 	$(quiet)$(postCreateExeCommand)

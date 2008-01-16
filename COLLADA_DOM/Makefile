@@ -25,45 +25,33 @@ colladaVersion := 1.4
 # parser: 'libxml', 'tinyxml', or 'all'.
 parser := libxml
 
-# Set projects variable based on project setting
-projects := $(subst all,dom domTest,$(project))
-ifneq ($(filter-out dom domTest,$(projects)),)
-$(error Invalid setting: project=$(project))
-endif
+# file: Set this to the name of a source file (eg 'dae.cpp') to build just that file
+file :=
 
-# Set platforms variable based on platform setting
-platforms := $(subst all,linux ps3,$(platform))
-ifneq ($(filter-out linux ps3,$(platforms)),)
-$(error Invalid setting: platform=$(platform))
+# Initialize the build variables
+define setBuildVar
+$(1)s := $(sort $(subst all,$(2),$($(1))))
+ifneq ($$(filter-out $(2),$$($(1)s)),)
+$$(error Invalid setting: $(1)=$($(1)))
 endif
+endef
 
-# Set the colladaVersions variable based on colladaVersion setting
-colladaVersions := $(subst all,1.4,$(colladaVersion))
-ifneq ($(filter-out 1.4,$(colladaVersions)),)
-$(error Invalid setting: colladaVersions=$(colladaVersion))
-endif
-
-# Set confs variable based on conf setting
-confs := $(subst all,debug release,$(conf))
-ifneq ($(filter-out debug release,$(confs)),)
-$(error Invalid setting: conf=$(conf))
-endif
-
-# Set parsers variable based on parser setting
-parsers := $(subst all,libxml tinyxml,$(parser))
-ifneq ($(filter-out libxml tinyxml,$(parsers)),)
-$(error Invalid setting: parser=$(parser))
-endif
+$(eval $(call setBuildVar,project,dom domTest))
+$(eval $(call setBuildVar,platform,linux ps3))
+$(eval $(call setBuildVar,colladaVersion,1.4))
+$(eval $(call setBuildVar,conf,debug release))
+$(eval $(call setBuildVar,parser,libxml tinyxml))
 
 quiet := @
 comma := ,
 soMajorVersion := 2
 soMinorVersion := 0
 
-rm := rm -f
-
 # We don't want make to automatically delete our intermediate (eg .o) files
 .SECONDARY:
+
+# Have make automatically delete a target if there's an error in one of the rule commands
+.DELETE_ON_ERROR:
 
 allOutputFiles :=
 allTargets :=
@@ -84,17 +72,50 @@ $(foreach _colladaVersion,$(colladaVersions),\
 $(foreach _conf,$(confs),\
 $(eval $(call includeConfig,$(_project),$(_platform),$(_colladaVersion),$(_conf)))))))
 
+buildObj := $(filter %$(file:.cpp=.o),$(filter %.o,$(allOutputFiles)))
+
 .DEFAULT_GOAL := all
-all: createOutputPaths $(allTargets)
-	@echo done
+.PHONY: all
+ifeq ($(file),)
+# Do a normal build of all targets
+all: $(allTargets)
+else ifneq ($(buildObj),)
+# Just build the source files the user requested
+all: $(buildObj)
+else
+$(error Invalid source file - $(file))
+endif
 
 allOutputPaths := $(sort $(dir $(allOutputFiles)))
-createOutputPaths:
-	@for d in $(allOutputPaths); do \
-		if [ ! -d $dd ] ; then \
-			mkdir -p $$d ; \
-		fi; \
-	done;
+$(allOutputPaths):
+	$(quiet)if [ ! -d $@ ] ; then mkdir -p $@; fi;
 
+.PHONY: clean
 clean:
+	@echo Removing build files.
+# Delete all the output files
 	$(quiet)rm -f $(allOutputFiles)
+# Delete each empty output folder
+	$(quiet)for path in $(allOutputPaths); do \
+		if [ -d $$path ] && [ `find $$path -type f | wc -l` -eq 0 ]; then rm -r $$path ; fi \
+	done;
+# Delete the build folder if it's empty
+	$(quiet)if [ -d build ] && [ `find build -type f | wc -l` -eq 0 ] ; then rm -r build ; fi
+
+# 'test' target for running the automated tests.
+#
+# Note: I originally had a separate target for each test, one reason being so that each
+# test suite could be run in parallel. However when running in parallel I'd get weird errors where
+# some of the tests would fail and some would succeed, with error messages like this:
+#   I/O error : No such file or directory
+#   I/O error : No such file or directory
+#   error : xmlNewTextWriterFilename : out of memory!
+# To work around this, I changed to using a single target with a shell loop to run each test program.
+# This way the tests are forced to run serially.
+domTestExes := $(filter %domTest,$(allTargets))
+.PHONY: test
+test: $(domTestExes)
+	@for testExe in $(domTestExes); do \
+		echo $$testExe -all; \
+		$$testExe -all; \
+	done
