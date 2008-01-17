@@ -28,6 +28,10 @@ parser := libxml
 # file: Set this to the name of a source file (eg 'dae.cpp') to build just that file
 file :=
 
+# If you want to change the default values of the above params, you can either modify them
+# directly by changing the text above or put the variables assignments in make/customSettings.mk
+-include make/customSettings.mk
+
 # Initialize the build variables
 define setBuildVar
 $(1)s := $(sort $(subst all,$(2),$($(1))))
@@ -90,6 +94,10 @@ allOutputPaths := $(sort $(dir $(allOutputFiles)))
 $(allOutputPaths):
 	$(quiet)if [ ! -d $@ ] ; then mkdir -p $@; fi;
 
+
+##############################################
+# clean
+#
 .PHONY: clean
 clean:
 	@echo Removing build files.
@@ -102,7 +110,9 @@ clean:
 # Delete the build folder if it's empty
 	$(quiet)if [ -d build ] && [ `find build -type f | wc -l` -eq 0 ] ; then rm -r build ; fi
 
-# 'test' target for running the automated tests.
+
+##############################################
+# test target for running the automated tests.
 #
 # Note: I originally had a separate target for each test, one reason being so that each
 # test suite could be run in parallel. However when running in parallel I'd get weird errors where
@@ -119,3 +129,33 @@ test: $(domTestExes)
 		echo $$testExe -all; \
 		$$testExe -all; \
 	done
+
+
+##############################################
+# install/uninstall
+#
+prefix := /usr/local
+-include make/installPrefix.mk
+
+.PHONY: uninstall
+ifneq ($(installPrefix),)
+uninstall:
+	$(quiet)rm -rf $(installPrefix)/include/collada
+	$(quiet)rm -f  $(installPrefix)/lib/libcollada*dom*
+else ifneq ($(findstring uninstall,$(MAKECMDGOALS)),)
+$(error Can't uninstall because we don't know what path we installed to (missing make/installPrefix.mk file)).
+else
+uninstall:
+endif
+
+.PHONY: install
+install: uninstall
+# Write the install prefix to the file make/installPrefix.mk so we can retrieve it for uninstalling.
+# A better way to do this would be to have a configure script.
+	$(quiet)echo 'installPrefix := $(prefix)' > make/installPrefix.mk
+# Install headers
+	$(quiet)cp -r include $(prefix)/include/collada
+# Install linux-1.4 libs
+	$(quiet)cp build/linux-1.4/libcollada*dom* $(prefix)/lib
+# Install linux-1.4-d libs
+	$(quiet)cp build/linux-1.4-d/libcollada*dom* $(prefix)/lib
