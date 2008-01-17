@@ -156,6 +156,6 @@ install: uninstall
 # Install headers
 	$(quiet)cp -r include $(prefix)/include/collada
 # Install linux-1.4 libs
-	$(quiet)cp build/linux-1.4/libcollada*dom* $(prefix)/lib
+	$(quiet)if [ -d build/linux-1.4 ]; then cp build/linux-1.4/libcollada*dom* $(prefix)/lib; fi;
 # Install linux-1.4-d libs
-	$(quiet)cp build/linux-1.4-d/libcollada*dom* $(prefix)/lib
+	$(quiet)if [ -d build/linux-1.4-d ]; then cp build/linux-1.4-d/libcollada*dom* $(prefix)/lib; fi;

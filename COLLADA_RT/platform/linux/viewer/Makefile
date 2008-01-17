@@ -42,13 +42,17 @@ INCLUDE_DIR	+= $(ROOT_DIR)/include
 INCLUDE_DIR	+= $(ROOT_DIR)/../external-libs/bullet/src
 
 
-EXE_LCOPT	+= -L$(ROOT_DIR)/../COLLADA_DOM/lib/$(CONF_NAME)
 EXE_LCOPT	+= -L$(ROOT_DIR)/../COLLADA_FX/lib/$(CONF_NAME)
 EXE_LCOPT	+= -L$(ROOT_DIR)/lib/$(CONF_NAME)
 EXE_LCOPT	+= -L$(ROOT_DIR)/../external-libs/bullet/lib/$(CONF_NAME)
 
+colladaVersion := $(COLLADA_DOM_VERSION)
+colladaVersionNoDots := $(subst .,,$(colladaVersion))
+debugSuffix := $(if $(findstring 1,$(RELEASE)),-d)
+domLib := libcollada$(colladaVersionNoDots)dom$(debugSuffix).a
+
 LCOPT	+=   -lcollada_Cfx -lcollada_Crt -lcollada_Cfx
-LCOPT	+=   -lcollada_dae -lcollada_dom -lcollada_dae
+LCOPT	+=   $(ROOT_DIR)/../COLLADA_DOM/build/$(PLATFORM_NAME)-$(colladaVersion)$(debugSuffix)/$(domLib)
 LCOPT	+=   -lglut -lCg -lCgGL -lGL -lGLU -lm -lpthread
 LCOPT	+=   -lcollada_bullet
 LCOPT	+=   -lxml2
