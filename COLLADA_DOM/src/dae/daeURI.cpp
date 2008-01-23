@@ -28,7 +28,7 @@ using namespace std;
 
 daeString safeCreate(daeString src);
 void safeDelete(daeString src);
-daeString findCharacterReverse(daeString string, daeChar stopChar);
+daeString findCharacterReverse(daeString str, daeChar stopChar);
 
 void
 daeURI::initialize()
@@ -213,27 +213,27 @@ DAE* daeURI::getDAE() const {
 }
 
 daeString
-findCharacterReverse(daeString string, daeChar stopChar)
+findCharacterReverse(daeString str, daeChar stopChar)
 {
-	if (string == NULL)
+	if (str == NULL)
 		return NULL;
-	daeString cur = string + strlen(string)-1;
-	while((cur >= string) && (*cur != stopChar))
+	daeString cur = str + strlen(str)-1;
+	while((cur >= str) && (*cur != stopChar))
 		cur--;
 	
-	if ((cur >= string) && (*cur == stopChar))
+	if ((cur >= str) && (*cur == stopChar))
 		return cur;
 	
 	return NULL;
 }
 
 daeString
-findCharacter(daeString string, daeChar stopChar)
+findCharacter(daeString str, daeChar stopChar)
 {
-	if (string == NULL)
+	if (str == NULL)
 		return NULL;
-	daeString end = string + strlen(string);
-	daeString cur = string;
+	daeString end = str + strlen(str);
+	daeString cur = str;
 	while((*cur != stopChar) && (cur < end))
 		cur++;
 	

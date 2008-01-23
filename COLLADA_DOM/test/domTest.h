@@ -10,7 +10,15 @@
 // obtained via your distro's package manager. For example on Debian/Ubuntu, you can run
 //   apt-get install libboost-filesystem-dev
 // to install the boost filesystem library on your machine.
+//
+// Disable the warnings we get from Boost
+// warning C4180: qualifier applied to function type has no meaning; ignored
+// warning C4245: 'argument' : conversion from 'int' to 'boost::filesystem::system_error_type', 
+//   signed/unsigned mismatch
+#pragma warning(push)
+#pragma warning(disable: 4180 4245)
 #include <boost/filesystem/convenience.hpp>
+#pragma warning(pop)
 
 struct domTest;
 std::map<std::string, domTest*>& registeredTests();

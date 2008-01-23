@@ -49,5 +49,7 @@ typedef int intptr_t;
 #pragma warning(disable: 4355)
 // warning C4512: 'daeDatabase' : assignment operator could not be generated
 #pragma warning(disable: 4512)
+// warning LNK4099: Missing pdb file for PCRE
+#pragma warning(disable: 4099)
 
 #endif
