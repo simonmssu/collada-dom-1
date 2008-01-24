@@ -1456,12 +1456,3 @@ int main(int argc, char* argv[]) {
 	// test1 test2 ...
  	return printTestResults(runTests(tests)) ? 0 : 1;
 }
-
-#if 0
-#include <iostream>
-#include <dae.h>
-int main() {
-	std::cout << "hello\n";
-	return 0;
-}
-#endif
