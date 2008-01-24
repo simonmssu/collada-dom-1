@@ -38,11 +38,12 @@ libs += -l$(domName) -lboost_filesystem
 # Tell the makefile what libs we depend on, so that the exe gets rebuilt if any of these
 # libs changes.
 dependentLibs += $(outPath)lib$(domName).so
+
+sharedLibSearchPaths += $(outPath)
 endif
 
 includeSearchPaths += include include/dae include/$(colladaVersion)
 libSearchPaths += $(outPath)
-sharedLibSearchPaths += $(outPath)
 
 # Are we doing TinyXML tests?
 # Notify domTest.cpp if we're supposed to do TinyXml tests

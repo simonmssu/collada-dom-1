@@ -113,7 +113,9 @@ public:
 	 * Returns a list of the URI protocols that this plugin supports.
 	 * @return Returns a daeArray containing the supported protocols.
 	 */
-	virtual const daeTArray<std::string>& getSupportedProtocols();
+	virtual const daeTArray<std::string>& getSupportedProtocols() {
+		return supportedProtocols;
+	}
 
 	/**
 	 * setOption allows you to set options for this IOPlugin. Which options a plugin supports is

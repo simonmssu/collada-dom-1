@@ -65,8 +65,8 @@ daeURI::daeURI(DAE& dae, bool cwdUri) : dae(&dae)
 		// !!!GAC the buffers should probably be bigger
 		char buffer[1024], *b1;
 		strcpy(buffer, "file:///");
-#ifdef NO_GETCWD
-		// The platform has no getcwd call, so leave the value as file:///
+#ifdef __CELLOS_LV2__
+		// The PS3 has no getcwd call, so leave the value as file:///
 #else
 #ifdef _WIN32
 		// Windows getcwd always returns a path beginning with a drive letter, so we add file:/// to the beginning 
