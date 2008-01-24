@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Clear the output makefile
+makefile=make/configureSettings.mk
+rm -f $makefile
+
+if [ `uname | grep -i linux` != "" ]; then
+echo "os := linux" >> $makefile
+echo "arch := x86" >> $makefile
+elif [ `uname | grep -i darwin` != "" ]; then
+echo "os := mac" >> $makefile
+echo "arch := x86" >> $makefile
+fi

@@ -28,6 +28,9 @@ parser := libxml
 # file: Set this to the name of a source file (eg 'dae.cpp') to build just that file
 file :=
 
+# Include the vars created by our configure script
+include make/configureSettings.mk
+
 # If you want to change the default values of the above params, you can either modify them
 # directly by changing the text above or put the variables assignments in make/customSettings.mk
 -include make/customSettings.mk

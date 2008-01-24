@@ -1,4 +1,4 @@
-include make/configVars.mk
+include make/common.mk
 
 src := test/domTest.cpp test/integrationExample.cpp
 domName := collada$(colladaVersionNoDots)dom$(debugSuffix)

@@ -1,4 +1,4 @@
-include make/configVars.mk
+include make/common.mk
 
 src := $(wildcard src/dae/*.cpp)
 
