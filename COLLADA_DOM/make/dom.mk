@@ -10,7 +10,7 @@ src += $(wildcard src/$(colladaVersion)/dom/*.cpp)
 
 includeSearchPaths := include include/$(colladaVersion)
 
-ifneq ($(platform),ps3)
+ifneq ($(os),ps3)
 # We're building a shared lib, so make sure to generate position independent code
 ccFlags += -fPIC
 endif
@@ -24,13 +24,13 @@ endif
 ifneq ($(findstring tinyxml,$(xmlparsers)),)
 ccFlags += -DDOM_INCLUDE_TINYXML
 includeSearchPaths += ../external-libs/tinyxml/
-libs += ../external-libs/tinyxml/lib/$(platform)/libtinyxml.a
+libs += ../external-libs/tinyxml/lib/$(os)/libtinyxml.a
 endif
 
 # On PS3, we need to be told where to find pcre
-ifeq ($(platform),ps3)
+ifeq ($(os),ps3)
 includeSearchPaths += ../external-libs/pcre
-libSearchPaths += ../external-libs/pcre/lib/$(platform)
+libSearchPaths += ../external-libs/pcre/lib/$(os)
 endif
 
 libs += -lpcre -lpcrecpp
@@ -38,7 +38,7 @@ libs += -lpcre -lpcrecpp
 libName := libcollada$(colladaVersionNoDots)dom$(debugSuffix)
 targets := $(addprefix $(outPath),$(libName).a)
 # Don't build the shared lib on PS3, since PS3 doesn't support shared libs.
-ifneq ($(platform),ps3)
+ifneq ($(os),ps3)
 targets += $(addprefix $(outPath),$(libName).so)
 endif
 

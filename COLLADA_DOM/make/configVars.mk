@@ -1,4 +1,4 @@
-ifeq ($(platform),ps3)
+ifeq ($(os),ps3)
 cc := ppu-lv2-g++
 ar := ppu-lv2-ar rcs
 exeSuffix := .elf
@@ -26,7 +26,7 @@ libSearchPaths :=
 sharedLibSearchPaths :=
 dependentLibs :=
 postCreateExeCommand :=
-outPath := build/$(platform)-$(colladaVersion)$(if $(findstring debug,$(conf)),$(debugSuffix))/
+outPath := build/$(os)-$(colladaVersion)$(if $(findstring debug,$(conf)),$(debugSuffix))/
 objPath := $(outPath)obj/
 colladaVersionNoDots := $(subst .,,$(colladaVersion))
-xmlparsers := $(if $(findstring ps3,$(platform)),tinyxml,$(parsers))
+xmlparsers := $(if $(findstring ps3,$(os)),tinyxml,$(parsers))

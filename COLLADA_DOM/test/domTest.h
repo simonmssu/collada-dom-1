@@ -15,10 +15,14 @@
 // warning C4180: qualifier applied to function type has no meaning; ignored
 // warning C4245: 'argument' : conversion from 'int' to 'boost::filesystem::system_error_type', 
 //   signed/unsigned mismatch
+#ifdef _MSC_VER
 #pragma warning(push)
 #pragma warning(disable: 4180 4245)
+#endif
 #include <boost/filesystem/convenience.hpp>
+#ifdef _MSC_VER
 #pragma warning(pop)
+#endif
 
 struct domTest;
 std::map<std::string, domTest*>& registeredTests();

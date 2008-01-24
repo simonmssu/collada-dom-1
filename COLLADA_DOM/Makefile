@@ -11,12 +11,12 @@
 # License. 
 
 # project: 'dom', 'domTest', or 'all'
-project := all
+project := dom
 
-# platform: 'linux', 'ps3', or 'all'
-platform := linux
+# os: 'linux', 'ps3', or 'all'
+os := linux
 
-# Build configuration: 'release', 'debug', or 'all'
+# Release/debug configuration: 'release', 'debug', or 'all'
 conf := release
 
 # Collada version: No other versions supported for now
@@ -41,7 +41,7 @@ endif
 endef
 
 $(eval $(call setBuildVar,project,dom domTest))
-$(eval $(call setBuildVar,platform,linux ps3))
+$(eval $(call setBuildVar,os,linux ps3))
 $(eval $(call setBuildVar,colladaVersion,1.4))
 $(eval $(call setBuildVar,conf,debug release))
 $(eval $(call setBuildVar,parser,libxml tinyxml))
@@ -62,7 +62,7 @@ allTargets :=
 
 define includeConfig
 override project := $(1)
-override platform := $(2)
+override os := $(2)
 override colladaVersion := $(3)
 override conf := $(4)
 include make/$(1).mk
@@ -71,10 +71,10 @@ allTargets += $$(targets)
 endef
 
 $(foreach _project,$(projects),\
-$(foreach _platform,$(platforms),\
+$(foreach _os,$(oss),\
 $(foreach _colladaVersion,$(colladaVersions),\
 $(foreach _conf,$(confs),\
-$(eval $(call includeConfig,$(_project),$(_platform),$(_colladaVersion),$(_conf)))))))
+$(eval $(call includeConfig,$(_project),$(_os),$(_colladaVersion),$(_conf)))))))
 
 buildObj := $(filter %$(file:.cpp=.o),$(filter %.o,$(allOutputFiles)))
 
