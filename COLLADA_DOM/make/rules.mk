@@ -18,8 +18,12 @@ outputFiles += $(foreach so,$(filter %.so,$(targets)),$(so).$(soMajorVersion) $(
 # Parse the targets, which can contain a static lib, a shared lib, and an exe
 staticLib := $(filter %.a,$(targets))
 sharedLib := $(filter %.so,$(targets))
-# Anything other than a .a or .so is considered an exe
-exe := $(filter-out %.a,$(filter-out %.so,$(targets)))
+dylib := $(filter %.dylib,$(targets))
+# Anything other than a .a, .so, or .dylib is considered an exe
+exe := $(filter-out $(staticLib) $(sharedLib) $(dylib),$(targets))
+
+# Add -L to the lib search paths
+libSearchPaths := $(addprefix -L,$(libSearchPaths))
 
 ifneq ($(obj),)
 # Pull in dependency info for *existing* .o files
@@ -70,7 +74,7 @@ sharedLibMajorMinor := $(sharedLib).$(soMajorVersion).$(soMinorVersion)
 $(sharedLibMajorMinor): cc := $(cc)
 $(sharedLibMajorMinor): ccFlags := $(ccFlags)
 $(sharedLibMajorMinor): libs := $(libs)
-$(sharedLibMajorMinor): libSearchPaths := $(addprefix -L,$(libSearchPaths))
+$(sharedLibMajorMinor): libSearchPaths := $(libSearchPaths)
 $(sharedLibMajorMinor): $(dependentLibs) $(obj) | $(dir $(sharedLibMajorMinor))
 	@echo Linking $@
 	$(quiet)$(cc) $(ccFlags) -shared -o $@ $^ $(libSearchPaths) $(libs)
@@ -82,13 +86,24 @@ $(sharedLib): $(sharedLibMajor) | $(dir $(sharedLib))
 	$(quiet)cd $(dir $@)  &&  ln -sf $(notdir $^) $(notdir $@)
 endif
 
+# Rule for Mac-style dynamic libs
+ifneq ($(dylib),)
+$(dylib): cc := $(cc)
+$(dylib): ccFlags := $(ccFlags)
+$(dylib): libs := $(libs)
+$(dylib): libSearchPaths := $(libSearchPaths)
+$(dylib): $(dependentLibs) $(obj) | $(dir $(dylib))
+	@echo Linking $@
+	$(quiet)$(cc) $(ccFlags) -dynamiclib -o $@ $^ $(libSearchPaths) $(libs)
+endif
+
 # Rules for exes
 ifneq ($(exe),)
 $(exe): cc := $(cc)
 $(exe): ccFlags := $(ccFlags)
 $(exe): obj := $(obj)
 $(exe): libs := $(libs)
-$(exe): libSearchPaths := $(addprefix -L,$(libSearchPaths))
+$(exe): libSearchPaths := $(libSearchPaths)
 $(exe): sharedLibSearchPathCommand := $(addprefix -Wl$(comma)-rpath$(comma),$(sharedLibSearchPaths))
 $(exe): postCreateExeCommand := $(postCreateExeCommand)
 $(exe): $(dependentLibs) $(obj) | $(dir $(exe))

@@ -10,11 +10,11 @@
 # implied. See the License for the specific language governing permissions and limitations under the 
 # License. 
 
+# os: 'linux', 'mac', or 'ps3'
+os := linux
+
 # project: 'dom', 'domTest', or 'all'
 project := dom
-
-# os: 'linux', 'ps3', or 'all'
-os := linux
 
 # Release/debug configuration: 'release', 'debug', or 'all'
 conf := release
@@ -43,8 +43,17 @@ $$(error Invalid setting: $(1)=$($(1)))
 endif
 endef
 
+oss := $(sort $(os))
+ifneq ($(filter-out linux mac ps3,$(oss)),)
+$(error Invalid setting os=$(os))
+endif
+
+archs := $(sort $(subst i386,x86,$(arch)))
+ifneq ($(filter-out x86 ppc,$(archs)),)
+$(error Invalid setting arch=$(arch))
+endif
+
 $(eval $(call setBuildVar,project,dom domTest))
-$(eval $(call setBuildVar,os,linux ps3))
 $(eval $(call setBuildVar,colladaVersion,1.4))
 $(eval $(call setBuildVar,conf,debug release))
 $(eval $(call setBuildVar,parser,libxml tinyxml))
