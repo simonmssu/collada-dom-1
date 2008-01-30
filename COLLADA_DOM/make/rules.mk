@@ -33,6 +33,7 @@ ifneq ($(obj),)
 # any values we use in rule commands. This is the reason for all the target-specific variables.
 $(obj): cc := $(cc)
 $(obj): ccFlags := $(ccFlags)
+$(obj): ccFlagsNoArch := $(filter-out -arch ppc ppc64 i386 x86_64,$(ccFlags))
 $(obj): includeSearchPaths := $(addprefix -I,$(includeSearchPaths))
 
 # Call createObjRule with a source file path
@@ -44,10 +45,12 @@ objFiles := $$(addprefix $$(objPath),$$(notdir $$(filter $$(srcPath)%,$$(src:.cp
 
 # We're going to automatically generate make rules for our header dependencies.
 # See this for more info: http://www.cs.berkeley.edu/~smcpeak/autodepend/autodepend.html
+# When using the -M option to generate dependency info, we can't have any -arch flags or
+# gcc complains.
 $$(objFiles): $$(objPath)%.o: $$(srcPath)%.cpp | $$(sort $$(dir $$(objFiles)))
 	@echo Compiling $$< to $$@
 	$$(quiet)$$(cc) -c $$< $$(ccFlags) $$(includeSearchPaths) -o $$@
-	@$$(cc) -MM $$< $$(ccFlags) $$(includeSearchPaths) > $$(@:.o=.d)
+	@$$(cc) -MM $$< $$(ccFlagsNoArch) $$(includeSearchPaths) > $$(@:.o=.d)
 	@mv -f $$(@:.o=.d) $$(@:.o=.d.tmp)
 	@sed -e 's|.*:|$$@:|' < $$(@:.o=.d.tmp) > $$(@:.o=.d)
 	@sed -e 's/.*://' -e 's/\\$$$$//' < $$(@:.o=.d.tmp) | fmt -1 | \
