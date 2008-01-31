@@ -10,17 +10,32 @@
 # License. 
 #
 
+# If we're building a lib of any sort libVersion will be set to a version number
+# of the form major.minor, e.g. 2.0. Parse out the major and minor version numbers.
+libMajorVersion := $(word 1,$(subst ., ,$(libVersion)))
+libMinorVersion := $(word 2,$(subst ., ,$(libVersion)))
+
 obj := $(addprefix $(objPath),$(notdir $(src:.cpp=.o)))
 dependencyFiles := $(obj:.o=.d)
 outputFiles := $(obj) $(dependencyFiles) $(targets)
-outputFiles += $(foreach so,$(filter %.so,$(targets)),$(so).$(soMajorVersion) $(so).$(soMajorVersion).$(soMinorVersion))
+outputFiles += $(foreach so,$(filter %.so,$(targets)),$(so).$(libMajorVersion) $(so).$(libVersion))
 
-# Parse the targets, which can contain a static lib, a shared lib, and an exe
+# Parse the targets, which can contain any of the following:
+#  static lib (.a)
+#  shared lib (.so)
+#  Mac dynamic lib (.dylib)
+#  framework (.framework)
+#  exe (no extension, or .elf on PS3)
 staticLib := $(filter %.a,$(targets))
 sharedLib := $(filter %.so,$(targets))
 dylib := $(filter %.dylib,$(targets))
+framework := $(filter %.framework,$(targets))
+# For each framework we need a corresponding .dylib
+dylib += $(framework:.framework=.dylib)
 # Anything other than a .a, .so, or .dylib is considered an exe
-exe := $(filter-out $(staticLib) $(sharedLib) $(dylib),$(targets))
+exe := $(filter-out $(staticLib) $(sharedLib) $(dylib) $(framework),$(targets))
+
+# If we're building
 
 # Add -L to the lib search paths
 libSearchPaths := $(addprefix -L,$(libSearchPaths))
@@ -72,8 +87,8 @@ endif
 
 # Rules for shared libs
 ifneq ($(sharedLib),)
-sharedLibMajor := $(sharedLib).$(soMajorVersion)
-sharedLibMajorMinor := $(sharedLib).$(soMajorVersion).$(soMinorVersion)
+sharedLibMajor := $(sharedLib).$(libMajorVersion)
+sharedLibMajorMinor := $(sharedLib).$(libVersion)
 $(sharedLibMajorMinor): cc := $(cc)
 $(sharedLibMajorMinor): ccFlags := $(ccFlags)
 $(sharedLibMajorMinor): libs := $(libs)
@@ -98,6 +113,32 @@ $(dylib): libSearchPaths := $(libSearchPaths)
 $(dylib): $(dependentLibs) $(obj) | $(dir $(dylib))
 	@echo Linking $@
 	$(quiet)$(cc) $(ccFlags) -dynamiclib -o $@ $^ $(libSearchPaths) $(libs)
+endif
+
+# Rule for Mac frameworks
+ifneq ($(framework),)
+$(framework): dylib := $(dylib)
+$(framework): dylibNoExt := $(notdir $(basename $(dylib)))
+$(framework): libVersion := $(libVersion)
+$(framework): frameworkCurVersionPath := $(framework)/Versions/$(libVersion)
+$(framework): copyFrameworkHeadersCommand := $(copyFrameworkHeadersCommand)
+$(framework): $(dylib)
+	@echo Creating framework $@
+# Set up the headers
+	$(quiet)mkdir -p $(frameworkCurVersionPath)/Headers
+	$(quiet)$(copyFrameworkHeadersCommand)
+# Set up the resources
+	$(quiet)mkdir -p $(frameworkCurVersionPath)/Resources
+	$(quiet)$(copyFrameworkResourcesCommand)
+# Set up the dylib. It's conventional in Mac frameworks to drop the .dylib extension.
+	$(quiet)mv $(dylib) $(frameworkCurVersionPath)/$(dylibNoExt)
+# Set up the "current version" links
+	$(quiet)ln -s $(libVersion) $(framework)/Versions/Current
+	$(quiet)ln -s Versions/Current/Headers $(framework)/Headers
+	$(quiet)ln -s Versions/Current/Resources $(framework)/Resources
+	$(quiet)ln -s Versions/Current/$(dylibNoExt) $(framework)/$(dylibNoExt)
+# Remove any .svn folders we may have inadvertently copied to the framework
+	$(quiet)find $@ -name '.svn' | xargs rm -r
 endif
 
 # Rules for exes

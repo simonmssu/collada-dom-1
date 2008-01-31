@@ -60,8 +60,9 @@ $(eval $(call setBuildVar,parser,libxml tinyxml))
 
 quiet := @
 comma := ,
-soMajorVersion := 2
-soMinorVersion := 0
+domMajorVersion := 2
+domMinorVersion := 0
+domVersion := $(domMajorVersion).$(domMinorVersion)
 
 # We don't want make to automatically delete our intermediate (eg .o) files
 .SECONDARY:
@@ -166,7 +167,8 @@ install: uninstall
 # A better way to do this would be to have a configure script.
 	$(quiet)echo 'installPrefix := $(prefix)' > make/installPrefix.mk
 # Install headers
-	$(quiet)cp -r include $(prefix)/include/collada
+	$(quiet)cp -R include $(prefix)/include/collada
+	$(quiet)find $(prefix)/include/collada -name '.svn' | xargs rm -r
 # Install linux-1.4 libs
 	$(quiet)if [ -d build/linux-1.4 ]; then cp build/linux-1.4/libcollada*dom* $(prefix)/lib; fi;
 # Install linux-1.4-d libs
