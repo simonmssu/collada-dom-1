@@ -13,6 +13,9 @@
 # os: 'linux', 'mac', or 'ps3'
 os := linux
 
+# arch: x86 (or i386), x64 (or x86_64), ppc, ppc64
+arch := $(nativeArch)
+
 # project: 'dom', 'domTest', or 'all'
 project := dom
 
@@ -64,9 +67,6 @@ domMajorVersion := 2
 domMinorVersion := 0
 domVersion := $(domMajorVersion).$(domMinorVersion)
 
-# We don't want make to automatically delete our intermediate (eg .o) files
-.SECONDARY:
-
 # Have make automatically delete a target if there's an error in one of the rule commands
 .DELETE_ON_ERROR:
 
@@ -115,7 +115,7 @@ $(allOutputPaths):
 clean:
 	@echo Removing build files.
 # Delete all the output files
-	$(quiet)rm -f $(allOutputFiles)
+	$(quiet)rm -rf $(allOutputFiles)
 # Delete each empty output folder
 	$(quiet)for path in $(allOutputPaths); do \
 		if [ -d $$path ] && [ `find $$path -type f | wc -l` -eq 0 ]; then rm -r $$path ; fi \

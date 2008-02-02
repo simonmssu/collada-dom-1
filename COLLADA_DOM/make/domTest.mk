@@ -1,70 +1,53 @@
 include make/common.mk
 
 src := test/domTest.cpp test/integrationExample.cpp
-domName := collada$(colladaVersionNoDots)dom$(debugSuffix)
 targets := $(outPath)domTest$(exeSuffix)
 
-libSuffix := $(if $(findstring linux,$(os)),.so,.dylib)
-libSuffix := $(if $(findstring ps3,$(os)),.a,$(libSuffix))
+# DOM defs
+ifneq ($(os),mac)
+libSuffix := $(if $(findstring ps3,$(os)),.a,.so)
+domName := $(outPath)libcollada$(colladaVersionNoDots)dom$(debugSuffix)$(libSuffix)
+libOpts += $(domName)
+ifeq ($(os),linux)
+sharedLibSearchPaths += $(abspath $(outPath))
+endif
+else ifeq ($(os),mac)
+domName := $(outPath)Collada$(colladaVersionNoDots)Dom$(debugSuffix).framework
+# On Mac we use the framework for linking
+libOpts += -F$(dir $(domName)) -framework $(notdir $(basename $(domName)))
+endif
+includeOpts += -Iinclude -Iinclude/$(colladaVersion)
+dependentLibs += $(domName)
 
-# Set include search paths
-includeSearchPaths += include include/dae include/$(colladaVersion)
-ifneq ($(os),linux)
-includeSearchPaths += ../external-libs/pcre
-includeSearchPaths += ../external-libs/boost
-ifneq ($(findstring tinyxml,$(xmlparsers)),)
-includeSearchPaths += ../external-libs/tinyxml
-endif
-endif
-
-# Set lib search paths
-libSearchPaths += $(outPath)
-ifneq ($(os),linux)
-libSearchPaths += ../external-libs/pcre/lib/$(os)
-libSearchPaths += ../external-libs/boost/lib/$(os)
-ifneq ($(findstring tinyxml,$(xmlparsers)),)
-libSearchPaths += ../external-libs/tinyxml/lib/$(os)
-endif
-endif
-
-# Set libs
-libs += -l$(domName) -lboost_filesystem
+# PCRE defs
 ifeq ($(os),ps3)
-libs += -lpcrecpp -lpcre
-endif
-ifneq ($(findstring tinyxml,$(xmlparsers)),)
-libs += -ltinyxml
+pcreLibPath := ../external-libs/pcre/lib/$(os)/
+libOpts += -L$(pcreLibPath) -lpcrecpp -lpcre
 endif
 
-# Set dependent libs, so the exe gets rebuilt if any libs change
-dependentLibs += $(outPath)lib$(domName)$(libSuffix)
+# TinyXml defs
+ifneq ($(findstring tinyxml,$(xmlparsers)),)
+# Notify domTest.cpp if we're supposed to do TinyXml tests
+ccFlags += -DTINYXML
+ifeq ($(os),ps3)
+libOpts += ../external-libs/tinyxml/lib/$(os)/libtinyxml.a
+endif
+endif
+
+# Boost defs
 ifneq ($(os),linux)
-dependentLibs += ../external-libs/pcre/lib/$(os)/libpcre.a
-dependentLibs += ../external-libs/pcre/lib/$(os)/libpcrecpp.a
-dependentLibs += ../external-libs/boost/lib/$(os)/libboost_filesystem.a
+includeOpts += -I../external-libs/boost
+libOpts += -L../external-libs/boost/lib/$(os)
 endif
-ifneq ($(findstring tinyxml,$(xmlparsers)),)
-dependentLibs += ../external-libs/tinyxml/lib/$(os)/libtinyxml.a
-endif
-
 ifeq ($(os),ps3)
 # PS3 doesn't support C++ locales, so tell boost not to use them
 ccFlags += -DBOOST_NO_STD_LOCALE
+endif
+libOpts += -lboost_filesystem
+
+ifeq ($(os),ps3)
 # On PS3 we need to make a .self from the .elf
 postCreateExeCommand := make_fself $(targets) $(targets:.elf=.self)
-endif
-
-ifeq ($(os),linux)
-sharedLibSearchPaths += $(abspath $(outPath))
-else ifeq ($(os),mac)
-postCreateExeCommand := install_name_tool -change $(outPath)lib$(domName).dylib \
-$(abspath $(outPath))/lib$(domName).dylib $(targets)
-endif
-
-# Are we doing TinyXML tests?
-# Notify domTest.cpp if we're supposed to do TinyXml tests
-ifneq ($(findstring tinyxml,$(xmlparsers)),)
-ccFlags += -DTINYXML
 endif
 
 include make/rules.mk

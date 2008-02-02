@@ -32,13 +32,8 @@ dylib := $(filter %.dylib,$(targets))
 framework := $(filter %.framework,$(targets))
 # For each framework we need a corresponding .dylib
 dylib += $(framework:.framework=.dylib)
-# Anything other than a .a, .so, or .dylib is considered an exe
+# Any target other than a .a, .so, .dylib, or .framework is considered an exe
 exe := $(filter-out $(staticLib) $(sharedLib) $(dylib) $(framework),$(targets))
-
-# If we're building
-
-# Add -L to the lib search paths
-libSearchPaths := $(addprefix -L,$(libSearchPaths))
 
 ifneq ($(obj),)
 # Pull in dependency info for *existing* .o files
@@ -49,7 +44,7 @@ ifneq ($(obj),)
 $(obj): cc := $(cc)
 $(obj): ccFlags := $(ccFlags)
 $(obj): ccFlagsNoArch := $(filter-out -arch ppc ppc64 i386 x86_64,$(ccFlags))
-$(obj): includeSearchPaths := $(addprefix -I,$(includeSearchPaths))
+$(obj): includeOpts := $(includeOpts)
 
 # Call createObjRule with a source file path
 define createObjRule
@@ -64,8 +59,8 @@ objFiles := $$(addprefix $$(objPath),$$(notdir $$(filter $$(srcPath)%,$$(src:.cp
 # gcc complains.
 $$(objFiles): $$(objPath)%.o: $$(srcPath)%.cpp | $$(sort $$(dir $$(objFiles)))
 	@echo Compiling $$< to $$@
-	$$(quiet)$$(cc) -c $$< $$(ccFlags) $$(includeSearchPaths) -o $$@
-	@$$(cc) -MM $$< $$(ccFlagsNoArch) $$(includeSearchPaths) > $$(@:.o=.d)
+	$$(quiet)$$(cc) -c $$< $$(ccFlags) $$(includeOpts) -o $$@
+	@$$(cc) -MM $$< $$(ccFlagsNoArch) $$(includeOpts) > $$(@:.o=.d)
 	@mv -f $$(@:.o=.d) $$(@:.o=.d.tmp)
 	@sed -e 's|.*:|$$@:|' < $$(@:.o=.d.tmp) > $$(@:.o=.d)
 	@sed -e 's/.*://' -e 's/\\$$$$//' < $$(@:.o=.d.tmp) | fmt -1 | \
@@ -91,11 +86,10 @@ sharedLibMajor := $(sharedLib).$(libMajorVersion)
 sharedLibMajorMinor := $(sharedLib).$(libVersion)
 $(sharedLibMajorMinor): cc := $(cc)
 $(sharedLibMajorMinor): ccFlags := $(ccFlags)
-$(sharedLibMajorMinor): libs := $(libs)
-$(sharedLibMajorMinor): libSearchPaths := $(libSearchPaths)
+$(sharedLibMajorMinor): libOpts := $(libOpts)
 $(sharedLibMajorMinor): $(dependentLibs) $(obj) | $(dir $(sharedLibMajorMinor))
 	@echo Linking $@
-	$(quiet)$(cc) $(ccFlags) -shared -o $@ $^ $(libSearchPaths) $(libs)
+	$(quiet)$(cc) $(ccFlags) -shared -o $@ $^ $(libOpts)
 
 $(sharedLibMajor): $(sharedLibMajorMinor) | $(dir $(sharedLibMajor))
 	$(quiet)cd $(dir $@)  &&  ln -sf $(notdir $^) $(notdir $@)
@@ -108,22 +102,26 @@ endif
 ifneq ($(dylib),)
 $(dylib): cc := $(cc)
 $(dylib): ccFlags := $(ccFlags)
-$(dylib): libs := $(libs)
-$(dylib): libSearchPaths := $(libSearchPaths)
+$(dylib): libOpts := $(libOpts)
 $(dylib): $(dependentLibs) $(obj) | $(dir $(dylib))
 	@echo Linking $@
-	$(quiet)$(cc) $(ccFlags) -dynamiclib -o $@ $^ $(libSearchPaths) $(libs)
+	$(quiet)$(cc) $(ccFlags) -dynamiclib -o $@ $^ $(libOpts)
 endif
 
 # Rule for Mac frameworks
 ifneq ($(framework),)
+$(framework): framework := $(framework)
 $(framework): dylib := $(dylib)
 $(framework): dylibNoExt := $(notdir $(basename $(dylib)))
 $(framework): libVersion := $(libVersion)
 $(framework): frameworkCurVersionPath := $(framework)/Versions/$(libVersion)
 $(framework): copyFrameworkHeadersCommand := $(copyFrameworkHeadersCommand)
+$(framework): copyFrameworkResourcesCommand := $(copyFrameworkResourcesCommand)
 $(framework): $(dylib)
 	@echo Creating framework $@
+# First remove the framework folder if it's already there. Otherwise we get errors about
+# files already existing and such.
+	$(quiet)rm -rf $(framework)
 # Set up the headers
 	$(quiet)mkdir -p $(frameworkCurVersionPath)/Headers
 	$(quiet)$(copyFrameworkHeadersCommand)
@@ -132,6 +130,8 @@ $(framework): $(dylib)
 	$(quiet)$(copyFrameworkResourcesCommand)
 # Set up the dylib. It's conventional in Mac frameworks to drop the .dylib extension.
 	$(quiet)mv $(dylib) $(frameworkCurVersionPath)/$(dylibNoExt)
+# Use install_name_tool to fix the lib name of the dylib
+	$(quiet)install_name_tool -id $(abspath $(frameworkCurVersionPath)/$(dylibNoExt)) $(frameworkCurVersionPath)/$(dylibNoExt)
 # Set up the "current version" links
 	$(quiet)ln -s $(libVersion) $(framework)/Versions/Current
 	$(quiet)ln -s Versions/Current/Headers $(framework)/Headers
@@ -146,12 +146,11 @@ ifneq ($(exe),)
 $(exe): cc := $(cc)
 $(exe): ccFlags := $(ccFlags)
 $(exe): obj := $(obj)
-$(exe): libs := $(libs)
-$(exe): libSearchPaths := $(libSearchPaths)
+$(exe): libOpts := $(libOpts)
 $(exe): sharedLibSearchPathCommand := $(addprefix -Wl$(comma)-rpath$(comma),$(sharedLibSearchPaths))
 $(exe): postCreateExeCommand := $(postCreateExeCommand)
 $(exe): $(dependentLibs) $(obj) | $(dir $(exe))
 	@echo Linking $@
-	$(quiet)$(cc) $(ccFlags) -o $@ $(obj) $(libSearchPaths) $(libs) $(sharedLibSearchPathCommand)
+	$(quiet)$(cc) $(ccFlags) -o $@ $(obj) $(libOpts) $(sharedLibSearchPathCommand)
 	$(quiet)$(postCreateExeCommand)
 endif

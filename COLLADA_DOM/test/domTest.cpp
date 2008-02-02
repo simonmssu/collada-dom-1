@@ -16,7 +16,7 @@
 #include <dae/domAny.h>
 #include <dae/daeErrorHandler.h>
 #include <dom/domFx_surface_init_from_common.h>
-#include <../include/modules/stdErrPlugin.h>
+#include <modules/stdErrPlugin.h>
 #include <dom/domEllipsoid.h>
 #include <dom/domInputGlobal.h>
 #include <dom/domAsset.h>

@@ -18,16 +18,15 @@ debugSuffix :=
 endif
 
 ifeq ($(os),mac)
-# Add the -arch flags to specify what architectures we're building for
+# Add the -arch flags to specify what architectures we're building for.
 ccFlags += $(addprefix -arch ,$(subst x86,i386,$(archs)))
 endif
 
 # Clear out a bunch of variables that may have previously been set
 src :=
 targets :=
-includeSearchPaths :=
-libs :=
-libSearchPaths :=
+includeOpts :=
+libOpts :=
 sharedLibSearchPaths :=
 dependentLibs :=
 postCreateExeCommand :=

@@ -10,12 +10,12 @@ rm -f $makefile
 
 if [ "`uname | grep -i linux`" != "" ]; then
 echo "os := linux" >> $makefile
-echo "arch := x86" >> $makefile
+echo "nativeArch := x86" >> $makefile
 elif [ "`uname | grep -i darwin`" != "" ]; then
 echo "os := mac" >> $makefile
 if [ "`uname -p | grep -i powerpc`" != "" ]; then
-echo "arch := ppc" >> $makefile
+echo "nativeArch := ppc" >> $makefile
 else
-echo "arch := x86" >> $makefile
+echo "nativeArch := x86" >> $makefile
 fi
 fi
