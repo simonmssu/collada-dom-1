@@ -46,7 +46,7 @@ targets += $(addprefix $(outPath),$(libName).so)
 
 else ifeq ($(os),mac)
 # On Mac we build a framework
-targets += $(addprefix $(outPath),Collada$(colladaVersionNoDots)Dom.framework)
+targets += $(addprefix $(outPath),Collada$(colladaVersionNoDots)Dom$(debugSuffix).framework)
 frameworkHeadersPath = $(framework)/Versions/$(libVersion)/Headers
 copyFrameworkHeadersCommand = cp -R include/* $(frameworkHeadersPath) && \
   mv $(frameworkHeadersPath)/$(colladaVersion)/dom $(frameworkHeadersPath)/dom && \
