@@ -3,20 +3,31 @@ include make/common.mk
 src := test/domTest.cpp test/integrationExample.cpp
 targets := $(outPath)domTest$(exeSuffix)
 
-# DOM defs
+# DOM defs. This is extra complicated because of the installTest make target. The extra
+# complexity is justified since installTest is very useful.
 ifneq ($(os),mac)
 libSuffix := $(if $(findstring ps3,$(os)),.a,.so)
-domName := $(outPath)libcollada$(colladaVersionNoDots)dom$(debugSuffix)$(libSuffix)
+domPath := $(if $(installTest),$(installPrefix)/lib/,$(outPath))
+domName := $(domPath)libcollada$(colladaVersionNoDots)dom$(debugSuffix)$(libSuffix)
 libOpts += $(domName)
 ifeq ($(os),linux)
 sharedLibSearchPaths += $(abspath $(outPath))
 endif
 else ifeq ($(os),mac)
-domName := $(outPath)Collada$(colladaVersionNoDots)Dom$(debugSuffix).framework
+domPath := $(if $(installTest),$(installPrefix)/,$(outPath))
+domFramework := Collada$(colladaVersionNoDots)Dom$(debugSuffix).framework
+domName := $(domPath)$(domFramework)
 # On Mac we use the framework for linking
 libOpts += -F$(dir $(domName)) -framework $(notdir $(basename $(domName)))
 endif
+
+ifeq ($(installTest),)
 includeOpts += -Iinclude -Iinclude/$(colladaVersion)
+else ifeq ($(os),linux)
+includeOpts += -I$(installPrefix)/include/collada -I$(installPrefix)/include/collada/$(colladaVersion)
+else ifeq ($(os),mac)
+includeOpts += -I$(installPrefix)/$(domFramework)/Headers
+endif
 dependentLibs += $(domName)
 
 # PCRE defs

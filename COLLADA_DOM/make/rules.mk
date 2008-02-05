@@ -59,7 +59,7 @@ objFiles := $$(addprefix $$(objPath),$$(notdir $$(filter $$(srcPath)%,$$(src:.cp
 # gcc complains.
 $$(objFiles): $$(objPath)%.o: $$(srcPath)%.cpp | $$(sort $$(dir $$(objFiles)))
 	@echo Compiling $$< to $$@
-	$$(quiet)$$(cc) -c $$< $$(ccFlags) $$(includeOpts) -o $$@
+	$$(cc) -c $$< $$(ccFlags) $$(includeOpts) -o $$@
 	@$$(cc) -MM $$< $$(ccFlagsNoArch) $$(includeOpts) > $$(@:.o=.d)
 	@mv -f $$(@:.o=.d) $$(@:.o=.d.tmp)
 	@sed -e 's|.*:|$$@:|' < $$(@:.o=.d.tmp) > $$(@:.o=.d)
@@ -77,7 +77,7 @@ ifneq ($(staticLib),)
 $(staticLib): ar := $(ar)
 $(staticLib): $(obj) | $(dir $(staticLib))
 	@echo Creating $@
-	$(quiet)$(ar) $@ $^
+	$(ar) $@ $^
 endif
 
 # Rules for shared libs
@@ -89,13 +89,13 @@ $(sharedLibMajorMinor): ccFlags := $(ccFlags)
 $(sharedLibMajorMinor): libOpts := $(libOpts)
 $(sharedLibMajorMinor): $(dependentLibs) $(obj) | $(dir $(sharedLibMajorMinor))
 	@echo Linking $@
-	$(quiet)$(cc) $(ccFlags) -shared -o $@ $^ $(libOpts)
+	$(cc) $(ccFlags) -shared -o $@ $^ $(libOpts)
 
 $(sharedLibMajor): $(sharedLibMajorMinor) | $(dir $(sharedLibMajor))
-	$(quiet)cd $(dir $@)  &&  ln -sf $(notdir $^) $(notdir $@)
+	cd $(dir $@)  &&  ln -sf $(notdir $^) $(notdir $@)
 
 $(sharedLib): $(sharedLibMajor) | $(dir $(sharedLib))
-	$(quiet)cd $(dir $@)  &&  ln -sf $(notdir $^) $(notdir $@)
+	cd $(dir $@)  &&  ln -sf $(notdir $^) $(notdir $@)
 endif
 
 # Rule for Mac-style dynamic libs
@@ -103,9 +103,11 @@ ifneq ($(dylib),)
 $(dylib): cc := $(cc)
 $(dylib): ccFlags := $(ccFlags)
 $(dylib): libOpts := $(libOpts)
+$(dylib): libVersion := $(libVersion)
 $(dylib): $(dependentLibs) $(obj) | $(dir $(dylib))
 	@echo Linking $@
-	$(quiet)$(cc) $(ccFlags) -dynamiclib -o $@ $^ $(libOpts)
+	$(cc) $(ccFlags) -dynamiclib -install_name $(notdir $@) -current_version $(libVersion).0 \
+		-compatibility_version $(libVersion).0 -o $@ $^ $(libOpts)
 endif
 
 # Rule for Mac frameworks
@@ -121,24 +123,24 @@ $(framework): $(dylib)
 	@echo Creating framework $@
 # First remove the framework folder if it's already there. Otherwise we get errors about
 # files already existing and such.
-	$(quiet)rm -rf $(framework)
+	rm -rf $(framework)
 # Set up the headers
-	$(quiet)mkdir -p $(frameworkCurVersionPath)/Headers
-	$(quiet)$(copyFrameworkHeadersCommand)
+	mkdir -p $(frameworkCurVersionPath)/Headers
+	$(copyFrameworkHeadersCommand)
 # Set up the resources
-	$(quiet)mkdir -p $(frameworkCurVersionPath)/Resources
-	$(quiet)$(copyFrameworkResourcesCommand)
+	mkdir -p $(frameworkCurVersionPath)/Resources
+	$(copyFrameworkResourcesCommand)
 # Set up the dylib. It's conventional in Mac frameworks to drop the .dylib extension.
-	$(quiet)mv $(dylib) $(frameworkCurVersionPath)/$(dylibNoExt)
+	cp $(dylib) $(frameworkCurVersionPath)/$(dylibNoExt)
 # Use install_name_tool to fix the lib name of the dylib
-	$(quiet)install_name_tool -id $(abspath $(frameworkCurVersionPath)/$(dylibNoExt)) $(frameworkCurVersionPath)/$(dylibNoExt)
+	install_name_tool -id $(abspath $(frameworkCurVersionPath)/$(dylibNoExt)) $(frameworkCurVersionPath)/$(dylibNoExt)
 # Set up the "current version" links
-	$(quiet)ln -s $(libVersion) $(framework)/Versions/Current
-	$(quiet)ln -s Versions/Current/Headers $(framework)/Headers
-	$(quiet)ln -s Versions/Current/Resources $(framework)/Resources
-	$(quiet)ln -s Versions/Current/$(dylibNoExt) $(framework)/$(dylibNoExt)
+	ln -s $(libVersion) $(framework)/Versions/Current
+	ln -s Versions/Current/Headers $(framework)/Headers
+	ln -s Versions/Current/Resources $(framework)/Resources
+	ln -s Versions/Current/$(dylibNoExt) $(framework)/$(dylibNoExt)
 # Remove any .svn folders we may have inadvertently copied to the framework
-	$(quiet)find $@ -name '.svn' | xargs rm -r
+	find $@ -name '.svn' | xargs rm -r
 endif
 
 # Rules for exes
@@ -151,6 +153,6 @@ $(exe): sharedLibSearchPathCommand := $(addprefix -Wl$(comma)-rpath$(comma),$(sh
 $(exe): postCreateExeCommand := $(postCreateExeCommand)
 $(exe): $(dependentLibs) $(obj) | $(dir $(exe))
 	@echo Linking $@
-	$(quiet)$(cc) $(ccFlags) -o $@ $(obj) $(libOpts) $(sharedLibSearchPathCommand)
-	$(quiet)$(postCreateExeCommand)
+	$(cc) $(ccFlags) -o $@ $(obj) $(libOpts) $(sharedLibSearchPathCommand)
+	$(postCreateExeCommand)
 endif

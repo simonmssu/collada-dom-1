@@ -10,6 +10,13 @@
 # implied. See the License for the specific language governing permissions and limitations under the 
 # License. 
 
+# By default, all commands are silent. Echo statements are provided for each rule (if appropriate)
+# so the user knows what's going on. If you need to debug the makefile or need to know what's
+# going on, call make with silent=no.
+ifneq ($(silent),no)
+.SILENT:
+endif
+
 # os: 'linux', 'mac', or 'ps3'
 os := linux
 
@@ -17,7 +24,7 @@ os := linux
 arch := $(nativeArch)
 
 # project: 'dom', 'domTest', or 'all'
-project := dom
+project := all
 
 # Release/debug configuration: 'release', 'debug', or 'all'
 conf := release
@@ -37,6 +44,13 @@ include make/configureSettings.mk
 # If you want to change the default values of the above params, you can either modify them
 # directly by changing the text above or put the variables assignments in make/customSettings.mk
 -include make/customSettings.mk
+
+-include make/installPrefix.mk
+
+ifneq ($(findstring test,$(MAKECMDGOALS)),)
+# If we're running the automated tests, make sure that everything gets a chance to build
+project := all
+endif
 
 # Initialize the build variables
 define setBuildVar
@@ -61,7 +75,6 @@ $(eval $(call setBuildVar,colladaVersion,1.4))
 $(eval $(call setBuildVar,conf,debug release))
 $(eval $(call setBuildVar,parser,libxml tinyxml))
 
-quiet := @
 comma := ,
 domMajorVersion := 2
 domMinorVersion := 0
@@ -105,7 +118,7 @@ endif
 
 allOutputPaths := $(sort $(dir $(allOutputFiles)))
 $(allOutputPaths):
-	$(quiet)if [ ! -d $@ ] ; then mkdir -p $@; fi;
+	if [ ! -d $@ ] ; then mkdir -p $@; fi;
 
 
 ##############################################
@@ -115,13 +128,13 @@ $(allOutputPaths):
 clean:
 	@echo Removing build files.
 # Delete all the output files
-	$(quiet)rm -rf $(allOutputFiles)
+	rm -rf $(allOutputFiles)
 # Delete each empty output folder
-	$(quiet)for path in $(allOutputPaths); do \
+	for path in $(allOutputPaths); do \
 		if [ -d $$path ] && [ `find $$path -type f | wc -l` -eq 0 ]; then rm -r $$path ; fi \
 	done;
 # Delete the build folder if it's empty
-	$(quiet)if [ -d build ] && [ `find build -type f | wc -l` -eq 0 ] ; then rm -r build ; fi
+	if [ -d build ] && [ `find build -type f | wc -l` -eq 0 ] ; then rm -r build ; fi
 
 
 ##############################################
@@ -147,29 +160,71 @@ test: $(domTestExes)
 ##############################################
 # install/uninstall
 #
+ifneq ($(filter install uninstall installTest,$(MAKECMDGOALS)),)
+# You can only install on Mac or Linux. Check for that.
+ifeq ($(oss),linux)
 prefix := /usr/local
--include make/installPrefix.mk
+else ifeq ($(oss),mac)
+prefix := /Library/Frameworks
+else
+$(error You can only install with 'os' set to 'mac' or 'linux')
+endif
+endif
 
 .PHONY: uninstall
 ifneq ($(installPrefix),)
+ifeq ($(oss),linux)
 uninstall:
-	$(quiet)rm -rf $(installPrefix)/include/collada
-	$(quiet)rm -f  $(installPrefix)/lib/libcollada*dom*
+	@echo Uninstalling from $(prefix)
+	rm -rf $(installPrefix)/include/collada
+	rm -f  $(installPrefix)/lib/libcollada*dom*
+else ifeq ($(oss),mac)
+uninstall:
+	@echo Uninstalling from $(prefix)
+	 rm -rf $(installPrefix)/Collada*Dom*.framework
+endif
 else ifneq ($(findstring uninstall,$(MAKECMDGOALS)),)
-$(error Can't uninstall because we don't know what path we installed to (missing make/installPrefix.mk file)).
+$(error Can't uninstall because we don't know what path we installed to (missing make/installPrefix.mk file))
 else
 uninstall:
 endif
 
+# 1st param is build path, 2nd param is framework name, 3rd param is framework version number
+# e.g. $(call installMacFrameworkCmd,build/mac-1.4,Collada14Dom.framework,2.0)
+define installMacFrameworkCmd
+if [ -d $(1) ]; then \
+cp -R $(1)/$(2) $(prefix)/$(2); \
+install_name_tool -id $(prefix)/$(2)/Versions/$(3)/$(basename $(2)) $(prefix)/$(2)/$(basename $(2)); \
+fi;
+endef
+
 .PHONY: install
+ifeq ($(oss),linux)
 install: uninstall
+	@echo Installing to $(prefix)
 # Write the install prefix to the file make/installPrefix.mk so we can retrieve it for uninstalling.
 # A better way to do this would be to have a configure script.
-	$(quiet)echo 'installPrefix := $(prefix)' > make/installPrefix.mk
+	echo 'installPrefix := $(prefix)' > make/installPrefix.mk
 # Install headers
-	$(quiet)cp -R include $(prefix)/include/collada
-	$(quiet)find $(prefix)/include/collada -name '.svn' | xargs rm -r
+	cp -R include $(prefix)/include/collada
+	find $(prefix)/include/collada -name '.svn' | xargs rm -r
 # Install linux-1.4 libs
-	$(quiet)if [ -d build/linux-1.4 ]; then cp build/linux-1.4/libcollada*dom* $(prefix)/lib; fi;
+	if [ -d build/linux-1.4 ]; then cp build/linux-1.4/libcollada*dom* $(prefix)/lib; fi;
 # Install linux-1.4-d libs
-	$(quiet)if [ -d build/linux-1.4-d ]; then cp build/linux-1.4-d/libcollada*dom* $(prefix)/lib; fi;
+	if [ -d build/linux-1.4-d ]; then cp build/linux-1.4-d/libcollada*dom* $(prefix)/lib; fi;
+else ifeq ($(oss),mac)
+install: uninstall
+	@echo Installing to $(prefix)
+	echo 'installPrefix := $(prefix)' > make/installPrefix.mk
+	$(call installMacFrameworkCmd,build/mac-1.4,Collada14Dom.framework,$(domVersion))
+	$(call installMacFrameworkCmd,build/mac-1.4-d,Collada14Dom-d.framework,$(domVersion))
+endif
+
+.PHONY: installTest
+installTest:
+	$(MAKE) install
+	$(MAKE) clean project=domTest
+	$(MAKE) test installTest=yes
+	$(MAKE) uninstall
+	$(MAKE) clean project=domTest
+	$(MAKE) project=domTest
