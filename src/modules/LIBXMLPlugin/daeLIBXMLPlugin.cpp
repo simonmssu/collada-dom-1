@@ -35,10 +35,6 @@
 
 using namespace std;
 
-// This should be moved to daeIOPlugin.cpp if we ever create such a file
-const daeTArray<std::string>& daeIOPlugin::getSupportedProtocols() {
-	return supportedProtocols;
-}
 
 // Some helper functions for working with libxml
 namespace {

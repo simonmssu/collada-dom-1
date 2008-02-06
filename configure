@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# cd to the directory containing this configure script
+configDir=`dirname $0`
+cd $configDir
+
+# Clear the output makefile
+makefile=make/configureSettings.mk
+rm -f $makefile
+
+if [ "`uname | grep -i linux`" != "" ]; then
+echo "os := linux" >> $makefile
+echo "nativeArch := x86" >> $makefile
+elif [ "`uname | grep -i darwin`" != "" ]; then
+echo "os := mac" >> $makefile
+if [ "`uname -p | grep -i powerpc`" != "" ]; then
+echo "nativeArch := ppc" >> $makefile
+else
+echo "nativeArch := x86" >> $makefile
+fi
+fi

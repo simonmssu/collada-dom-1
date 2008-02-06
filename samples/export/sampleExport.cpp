@@ -154,7 +154,7 @@ int main( int argc, char* argv[] )
 	domAccessor *acc = daeSafeCast<domAccessor>( srcTeqC->createAndPlace( COLLADA_ELEMENT_ACCESSOR ) );
 	acc->setCount( 8 );
 	acc->setStride( 3 );
-	daeURI uri;
+	daeURI uri(*dae.get());
 	uri.setElement( fa );
 	uri.resolveURI();
 	acc->setSource( uri );

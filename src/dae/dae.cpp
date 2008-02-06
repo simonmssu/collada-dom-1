@@ -448,3 +448,5 @@ void DAE::setBaseURI(daeString uri) {
 daeIDRefResolverList& DAE::getIDRefResolvers() {
 	return idRefResolvers;
 }
+
+void DAE::dummyFunction1() { }

@@ -27,7 +27,7 @@
 
 namespace COLLADA_TYPE
 {
-	typedef const int TypeEnum;
+	typedef int TypeEnum;
 }
 
 class DAE;
