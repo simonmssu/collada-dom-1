@@ -13,7 +13,7 @@
 # By default, all commands are silent. Echo statements are provided for each rule (if appropriate)
 # so the user knows what's going on. If you need to debug the makefile or need to know what's
 # going on, call make with silent=no.
-ifneq ($(silent),no)
+ifneq ($(verbose),yes)
 .SILENT:
 endif
 
