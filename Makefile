@@ -17,8 +17,18 @@ ifneq ($(verbose),yes)
 .SILENT:
 endif
 
-# os: 'linux', 'mac', or 'ps3'
+# os: 'linux', 'mac', or 'ps3'. Use the 'uname' command to decide between Mac and Linux
+# as the default.
 os := linux
+ifneq ($(shell uname | grep -i darwin),)
+os := mac
+endif
+
+# nativeArch: For internal use. Don't override this, instead override 'arch'.
+nativeArch := x86
+ifneq ($(shell uname -p | grep -i powerpc),)
+nativeArch := ppc
+endif
 
 # arch: x86 (or i386), x64 (or x86_64), ppc, ppc64
 arch := $(nativeArch)
@@ -37,9 +47,6 @@ parser := libxml
 
 # file: Set this to the name of a source file (eg 'dae.cpp') to build just that file
 file :=
-
-# Include the vars created by our configure script
-include make/configureSettings.mk
 
 # If you want to change the default values of the above params, you can either modify them
 # directly by changing the text above or put the variables assignments in make/customSettings.mk
