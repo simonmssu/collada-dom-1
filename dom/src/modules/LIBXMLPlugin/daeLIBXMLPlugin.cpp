@@ -55,8 +55,18 @@ namespace {
 		attributes.reserve(numAttributes);
 		
 		while (xmlTextReaderMoveToNextAttribute(reader) == 1) {
-			attributes.push_back(std::pair<daeString, daeString>((daeString)xmlTextReaderConstName(reader),
-			                    (daeString)xmlTextReaderConstValue(reader)));
+            const xmlChar* xmlName = xmlTextReaderConstName(reader);
+            const xmlChar* xmlValue = xmlTextReaderConstValue(reader);
+#ifdef WIN32
+            int inLen = xmlStrlen(xmlValue);
+            int outLen = inLen;
+            xmlChar* value = new xmlChar[(inLen+1)*2];
+            int numBytes = UTF8Toisolat1(value, &outLen, xmlValue, &inLen);
+            value[numBytes] = 0;
+            attributes.push_back(std::pair<daeString, daeString>((daeString)xmlName, (daeString)value));
+#else
+			attributes.push_back(std::pair<daeString, daeString>((daeString)xmlName, (daeString)xmlValue));
+#endif
 		}
 	}
 }
@@ -166,6 +176,17 @@ daeElementRef daeLIBXMLPlugin::readElement(_xmlTextReader* reader, daeElement* p
 	packageCurrentAttributes(reader, /* out */ attributes);
 	
 	daeElementRef element = beginReadElement(parentElement, elementName, attributes, getCurrentLineNumber(reader));
+#ifdef WIN32
+    // for windows we ceated temporary character arrays which should be deleted
+    // to get no memory leak.
+    for(size_t i=0, size=attributes.size(); i<size; ++i)
+    {
+        attrPair& attrib = attributes[i];
+        delete [] attrib.second;
+        attrib.second = 0;
+    }
+#endif
+
 	if (!element) {
 		// We couldn't create the element. beginReadElement already printed an error message. Just make sure
 		// to skip ahead past the bad element.
@@ -182,7 +203,19 @@ daeElementRef daeLIBXMLPlugin::readElement(_xmlTextReader* reader, daeElement* p
 			element->placeElement(readElement(reader, element));
 		}
 		else if (nodeType == XML_READER_TYPE_TEXT) {
-			readElementText(element, (daeString)xmlTextReaderConstValue(reader), getCurrentLineNumber(reader));
+            const xmlChar* xmlText = xmlTextReaderConstValue(reader);
+#ifdef WIN32
+            int inLen = xmlStrlen(xmlText);
+            int outLen = inLen;
+            xmlChar* text = new xmlChar[(inLen+1)*2];
+            int numBytes = UTF8Toisolat1(text, &outLen, xmlText, &inLen);
+            text[numBytes] = 0;
+            readElementText(element, (daeString)text, getCurrentLineNumber(reader));
+            delete [] text;
+#else
+			readElementText(element, (daeString)xmlText, getCurrentLineNumber(reader));
+#endif
+
 			if (xmlTextReaderRead(reader) != 1)
 				return NULL;
 		}
@@ -262,7 +295,7 @@ daeInt daeLIBXMLPlugin::write(const daeURI& name, daeDocument *document, daeBool
 	}
 	xmlTextWriterSetIndentString( writer, (const xmlChar*)"\t" ); // Don't change this to spaces
 	xmlTextWriterSetIndent( writer, 1 ); // Turns indentation on
-	xmlTextWriterStartDocument( writer, NULL, NULL, NULL );
+    xmlTextWriterStartDocument( writer, "1.0", "UTF-8", NULL );
 	
 	writeElement( document->getDomRoot() );
 	
@@ -377,18 +410,42 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 	xmlTextWriterStartAttribute(writer, (xmlChar*)(daeString)attr->getName());
 	std::ostringstream buffer;
 	attr->memoryToString(element, buffer);
-	xmlTextWriterWriteString(writer, (xmlChar*)buffer.str().c_str());
+#ifdef WIN32
+    std::string str = buffer.str();
+    int lengthIn = (int)str.length();    
+    xmlChar* xmlStrIn = xmlCharStrndup(str.c_str(), lengthIn);    
+    int lengthOut = (lengthIn+1)*2;
+    xmlChar* xmlStrOut = new xmlChar[lengthOut];
+    int num = isolat1ToUTF8(xmlStrOut, &lengthOut, xmlStrIn, &lengthIn);
+    xmlStrOut[num] = '\0';
+    xmlTextWriterWriteString(writer, xmlStrOut);
+    delete [] xmlStrOut;
+#else
+		xmlTextWriterWriteString(writer, (xmlChar*)buffer.str().c_str());
+#endif
+	
 	xmlTextWriterEndAttribute(writer);
 }
 
 void daeLIBXMLPlugin::writeValue(daeElement* element) {
 	if (daeMetaAttribute* attr = element->getMeta()->getValueAttribute()) {
-		std::ostringstream buffer;
-		attr->memoryToString(element, buffer);
-		std::string s = buffer.str();
-		if (!s.empty()) {
-			xmlTextWriterWriteString(writer, (xmlChar*)buffer.str().c_str());
-		}
+			std::ostringstream buffer;
+			attr->memoryToString(element, buffer);
+			std::string s = buffer.str();
+			if (!s.empty()) {
+#ifdef WIN32
+                int lengthIn = (int) s.length();    
+                xmlChar* xmlStrIn = xmlCharStrndup(s.c_str(), lengthIn);    
+                int lengthOut = (lengthIn+1)*2;
+                xmlChar* xmlStrOut = new xmlChar[lengthOut];
+                int num = isolat1ToUTF8(xmlStrOut, &lengthOut, xmlStrIn, &lengthIn);
+                xmlStrOut[num] = '\0';
+                xmlTextWriterWriteString(writer, xmlStrOut);
+                delete [] xmlStrOut;
+#else
+								xmlTextWriterWriteString(writer, (xmlChar*)s.c_str());
+#endif
+			}
 	}
 }
 

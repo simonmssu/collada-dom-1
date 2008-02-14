@@ -1064,6 +1064,17 @@ DefineTest(databaseLookup) {
 }
 
 
+DefineTest(charEncoding) {
+	DAE dae;
+	daeElement* elt = dae.add(getTmpFile("charEncoding.dae"))->add("asset contributor comments");
+	CheckResult(elt);
+	elt->setCharData("æøå");
+	CheckResult(dae.writeAll());
+
+	return testResult(true);
+}
+
+
 // I don't want to enable this test until I figure out how to disable the extra
 // error messages that libxml spits out.
 //
