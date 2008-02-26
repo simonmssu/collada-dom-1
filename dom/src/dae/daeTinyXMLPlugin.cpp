@@ -44,7 +44,7 @@ namespace {
 daeTinyXMLPlugin::daeTinyXMLPlugin()
 {
   m_doc = NULL;
-	supportedProtocols.append("file");
+	supportedProtocols.push_back("*");
 }
 
 daeTinyXMLPlugin::~daeTinyXMLPlugin()

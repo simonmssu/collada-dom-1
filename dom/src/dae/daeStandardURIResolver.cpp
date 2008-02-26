@@ -19,7 +19,9 @@
 #include <dae/daeIOPlugin.h>
 #include <dae/daeErrorHandler.h>
 
-daeStandardURIResolver::daeStandardURIResolver(DAE& dae) : daeURIResolver(dae) { }
+daeStandardURIResolver::daeStandardURIResolver(DAE& dae)
+	: daeURIResolver(dae),
+	  supportsAnyExtension(true) { }
 
 daeStandardURIResolver::~daeStandardURIResolver() { }
 
@@ -43,6 +45,7 @@ daeStandardURIResolver::isExtensionSupported(daeString extension)
 }
 		
 daeBool daeStandardURIResolver::isProtocolSupported(daeString protocol) {
+	vec
 	size_t index;
 	return (protocol  &&  dae->getIOPlugin()->getSupportedProtocols().find(protocol, index) == DAE_OK);
 }

@@ -1064,6 +1064,18 @@ DefineTest(databaseLookup) {
 }
 
 
+DefineTest(fileExtension) {
+	// The DOM used to have a bug where it couldn't resolve URIs or ID refs of
+	// documents with extensions other than .dae or .xml. This test ensures that
+	// the DOM is extension-agnostic.
+	DAE dae;
+	CheckResult(dae.open(lookupTestFile("cube.cstm")));
+	CheckResult(dae.getDatabase()->typeLookup<domAccessor>().at(0)->getSource().getElement());
+	CheckResult(dae.writeTo(lookupTestFile("cube.cstm"), getTmpFile("cube_roundTrip.cstm")));
+	return testResult(true);
+}
+
+
 // I don't want to enable this test until I figure out how to disable the extra
 // error messages that libxml spits out.
 //

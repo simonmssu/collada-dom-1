@@ -393,7 +393,7 @@ class daeURIResolver
 {
 public:
 	/**
-	 * This base constructor appends @c this to KnownResolvers list.
+	 * Constructor
 	 * @param dae The associated dae object.
 	 */
 	daeURIResolver(DAE& dae);
@@ -426,13 +426,6 @@ public:
 	 * returns false otherwise.
 	 */
 	virtual daeBool resolveElement(daeURI& uri) = 0;
-	/**
-	 * Provides an abstract interface for converting a @c daeElement into a @c daeURI
-	 * @param uri @c daeURI to resolve.
-	 * @return Returns true if the @c daeURIResolver successfully resolved the element
-	 * into a URI, returns  false otherwise.
-	 */
-	virtual daeBool resolveURI(daeURI& uri) = 0;
 
 	/**
 	 * Gets the name of this resolver.
@@ -461,6 +454,7 @@ public:
 protected:
 	static daeBool _loadExternalDocuments;
 	DAE* dae;
+	bool supportsAnyExtension;
 };
 
 

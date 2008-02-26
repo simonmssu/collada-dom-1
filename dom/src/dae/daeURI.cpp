@@ -1038,7 +1038,7 @@ int daeURI::makeRelativeTo(const daeURI* relativeToURI)
 
 daeBool daeURIResolver::_loadExternalDocuments = true;
 
-daeURIResolver::daeURIResolver(DAE& dae) : dae(&dae) { }
+daeURIResolver::daeURIResolver(DAE& dae) : dae(&dae), supportsAnyExtension(false) { }
 
 daeURIResolver::~daeURIResolver() { }
 

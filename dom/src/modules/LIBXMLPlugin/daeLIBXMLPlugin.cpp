@@ -63,8 +63,7 @@ namespace {
 
 daeLIBXMLPlugin::daeLIBXMLPlugin(DAE& dae) : dae(dae), rawRelPath(dae)
 {
-	supportedProtocols.append("file");
-	supportedProtocols.append("http");
+	supportedProtocols.push_back("*");
 	xmlInitParser();
 	rawFile = NULL;
 	rawByteCount = 0;
