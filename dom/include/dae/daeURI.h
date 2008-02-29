@@ -65,7 +65,7 @@ class DAE;
 class DLLSPEC daeURI
 {
 private:
-	void internalSetURI(daeString uri);
+	void internalSetURI(const std::string& uri);
 	void internalResolveElement();
 	
 public:
@@ -101,7 +101,7 @@ public:
 		uri_failed_externalization,
 		/** Failure due to missing document */
 		uri_failed_missing_container,
-		/** Failure because autmoatic loading of a document is turned off */
+		/** Failure because automatic loading of a document is turned off */
 		uri_failed_external_document
 	};
 	
@@ -110,24 +110,24 @@ private:
 	mutable DAE* dae;
 	
 	/** Resolved version of the URI */
-	daeString uriString;
+	std::string uriString;
 
 	/** Original URI before resolution */
-	daeString originalURIString;
+	std::string originalURIString;
 	
 	// Parceled out of storage as const char*'s
 	/** Protocol substring parsed from the URI */
-	daeString protocol;
+	std::string protocol;
 	/** authority substring parsed from the URI */
-	daeString authority;
+	std::string authority;
 	/** Path substring parsed from the URI */
-	daeString filepath;
+	std::string filepath;
 	/** File name substring parsed from the URI */
-	daeString file;
+	std::string file;
 	/** Id substring parsed from the URI */
-	daeString id;
+	std::string id;
 	/** Extension parsed from the filename in the URI */
-	daeString extension;
+	std::string extension;
 	/** Reference to the element that the URI resolves to in memory */
 	daeElement* element;
 	/** Pointer to the element that owns this URI */
@@ -141,10 +141,9 @@ public:
 	/**
 	 * Constructs a daeURI object that contains no URI reference.
 	 * @param dae The DAE associated with this daeURI.
-	 * @param cwdUri If true, initializes this object as a URI that references the
 	 * current working directory.
 	 */
-	daeURI(DAE& dae, bool cwdUri = false);
+	daeURI(DAE& dae);
 	/**
 	 * Destructor
 	 */
@@ -193,37 +192,37 @@ public:
 	 * Gets the ID string parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getID() const {return(id);}
+	inline daeString getID() const {return id.c_str();}
 
 	/**
 	 * Gets the file string parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getFile() const {return(file);}
+	inline daeString getFile() const {return file.c_str();}
 
 	/**
 	 * Gets the path string to the file, without the path name, parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getFilepath() const {return(filepath);}
+	inline daeString getFilepath() const {return filepath.c_str();}
 
 	/**
 	 * Gets the protocol string parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getProtocol() const {return(protocol);}
+	inline daeString getProtocol() const {return protocol.c_str();}
 
 	/**
 	 * Gets the authority string parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getAuthority() const {return(authority);}
+	inline daeString getAuthority() const {return authority.c_str();}
 
 	/**
 	 * Gets the extension string parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getExtension() const {return(extension);}
+	inline daeString getExtension() const {return extension.c_str();}
 
 	/** 
 	 * Gets the element that this URI resolves to in memory.
@@ -366,13 +365,15 @@ public:
 	*/
 	daeBool getPath(daeChar *dest, daeInt size) const;
 
+	// Same as the above, but returns as a std::string instead
+	std::string getPath() const;
+
 public:
 	/**
 	 * Performs RFC2396 path normalization.
 	 * @param path Path to be normalized.
 	 */
-	static void normalizeURIPath(char *path); 
-
+	static void normalizeURIPath(char* path);
 };
 
 class daeURIResolver;
@@ -468,7 +469,6 @@ public:
 	void removeResolver(daeURIResolver* resolver);
 
 	void resolveElement(daeURI& uri);
-	void resolveURI(daeURI& uri);
 
 private:
 	// Disabled copy constructor/assignment operator

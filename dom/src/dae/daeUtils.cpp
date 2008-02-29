@@ -1,5 +1,12 @@
 #include <cstdarg>
 #include <dae/daeUtils.h>
+#include <dae/daeURI.h>
+
+#ifdef _WIN32
+#include <direct.h>  // for getcwd (windows)
+#else
+#include <unistd.h>  // for getcwd (linux)
+#endif
 
 using namespace std;
 
@@ -26,7 +33,7 @@ void cdom::tokenize(const string& s,
                     bool separatorsInResult) {
 	size_t currentIndex = 0, nextTokenIndex = 0;
 	while (currentIndex < s.length() &&
-					 (nextTokenIndex = s.find_first_of(separators, currentIndex)) != string::npos) {
+	       (nextTokenIndex = s.find_first_of(separators, currentIndex)) != string::npos) {
 		if ((nextTokenIndex - currentIndex) > 0)
 			tokens.push_back(s.substr(currentIndex, nextTokenIndex-currentIndex));
 		if (separatorsInResult)
@@ -67,5 +74,29 @@ list<string> cdom::makeStringList(const char* s, ...) {
 		s = va_arg(args, const char*);
 	}
 	va_end(args);
+	return result;
+}
+
+string cdom::getcwd() {
+#ifdef __CELLOS_LV2__
+	// The PS3 has no getcwd call.
+	// !!!steveT Should we return app_home instead?
+	return "/";
+#endif
+	
+	char buffer[1024];
+#ifdef _WIN32
+	_getcwd(buffer, 1024);
+#else
+	getcwd(buffer, 1024);
+#endif
+	return buffer;
+}
+
+string cdom::getcwdAsUri() {
+	string result = string("file://") + cdom::filePathToUri(getcwd());
+	// Make sure the last char is a /
+	if (*(result.end()--) != '/')
+		result += "/";
 	return result;
 }

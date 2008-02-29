@@ -114,7 +114,7 @@ public:
 
 protected:
 	// This is an array of the URI protocols supported by this plugin, e.g. "http", "file",
-	// etc. Each plugin should set initialize this variable in the constructor.
+	// etc. Each plugin should initialize this variable in the constructor.
 	std::vector<std::string> supportedProtocols;
 };
 

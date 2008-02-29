@@ -33,6 +33,9 @@ namespace cdom {
 	DLLSPEC std::vector<std::string> makeStringArray(const char* s, ...);
 	DLLSPEC std::list<std::string> makeStringList(const char* s, ...);
 
+	DLLSPEC std::string getcwd();
+	DLLSPEC std::string getcwdAsUri();
+
 #ifdef _MSC_VER
 #pragma warning(push)
 #pragma warning(disable : 4267)
