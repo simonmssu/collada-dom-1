@@ -65,7 +65,7 @@ class DAE;
 class DLLSPEC daeURI
 {
 private:
-	void internalSetURI(const std::string& uri);
+	void internalSetURI(const std::string& uri, daeURI* baseURI);
 	void internalResolveElement();
 	
 public:
@@ -267,8 +267,9 @@ public:
 	 * <tt><i>protocol, authority, filepath, file,</i></tt> and <tt><i>id.</i></tt>
 	 * After @c setURI(), the <tt><i>state</i></tt> is set to @c uri_loaded.
 	 * @param uri String to use to configure this URI.
+	 * @param baseURI URI to resolve against.
 	 */
-	void setURI(daeString uri);
+	void setURI(daeString uri, daeURI* baseURI = NULL);
 
 	/**
 	 * Gets the URI stored in the daeURI.
@@ -434,28 +435,9 @@ public:
 	 */
 	virtual daeString getName() = 0;
 
-	/**
-	 * Determines whether this resolver supports a particular protocol
-	 * for resolution.
-	 * @param protocol Determine whether the resolver supports this protocol.
-	 * @return Returns true if this @c daeURIResolver understands how to resolve using this protocol, returns
-	 * false otherwise
-	 */
-	virtual daeBool isProtocolSupported(daeString protocol) = 0;
-
-	/**
-	 * Determines whether this resolver supports the given extension. 
-	 * This keeps parsers from trying to process incompatible
-	 * file formats.
-	 * @param extension Extension string found after the '.' in the file name.
-	 * @return Returns true if the given extension is supported, returns false otherwise.
-	 */
-	virtual daeBool isExtensionSupported(daeString extension) = 0;
-
 protected:
 	static daeBool _loadExternalDocuments;
 	DAE* dae;
-	bool supportsAnyExtension;
 };
 
 
@@ -465,9 +447,7 @@ public:
 	daeURIResolverList();
 	~daeURIResolverList();
 
-	void addResolver(daeURIResolver* resolver);
-	void removeResolver(daeURIResolver* resolver);
-
+	daeTArray<daeURIResolver*>& list();
 	void resolveElement(daeURI& uri);
 
 private:

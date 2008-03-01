@@ -20,8 +20,7 @@
 #include <dae/daeErrorHandler.h>
 
 daeStandardURIResolver::daeStandardURIResolver(DAE& dae)
-	: daeURIResolver(dae),
-	  supportsAnyExtension(true) { }
+	: daeURIResolver(dae) { }
 
 daeStandardURIResolver::~daeStandardURIResolver() { }
 
@@ -32,52 +31,23 @@ daeStandardURIResolver::getName()
 }
 
 daeBool
-daeStandardURIResolver::isExtensionSupported(daeString extension)
-{
-	if ((extension!=NULL) &&
-		(strlen(extension) > 0) &&
-		((strncmp(extension,"xml",3)==0) ||
-		 (strncmp(extension,"XML",3)==0) ||
-		 (strncmp(extension,"DAE",3)==0) ||
-		 (strncmp(extension,"dae",3)==0)))
-		return true;
-	return false;
-}
-		
-daeBool daeStandardURIResolver::isProtocolSupported(daeString protocol) {
-	vec
-	size_t index;
-	return (protocol  &&  dae->getIOPlugin()->getSupportedProtocols().find(protocol, index) == DAE_OK);
-}
-
-daeBool
-daeStandardURIResolver::resolveURI(daeURI& uri)
-{
-	(void)uri;
-	return false;
-}
-
-daeBool
 daeStandardURIResolver::resolveElement(daeURI& uri)
 {
 	daeDatabase* database = dae->getDatabase();
 	
-	// Make sure the URI is validated
-	if (uri.getState() == daeURI::uri_loaded)
-	{
-		uri.validate();
-	}
-
+	// !!!steveT Remove
+	// if (!dae->getIOPlugin()->getSupportedProtocols().find(uri.getProtocol()))
+	// 	return false;
+	
 	daeElement* resolved = NULL;
 
 	// Does the URI have a document reference?
-	if ( (uri.getFile() != NULL) &&	(strlen(uri.getFile())>0)) 
+	if (strlen(uri.getFile()) > 0)
 	{
 		// The URI contains a document reference, see if it is loaded and try to load it if it's not
 		if (!database->isDocumentLoaded(uri.getURI())) {
-			if ( _loadExternalDocuments ) {
+			if ( _loadExternalDocuments )
 				dae->getIOPlugin()->read(uri,NULL);
-			}
 			else {
 				uri.setState( daeURI::uri_failed_external_document );
 				return false;
@@ -91,7 +61,6 @@ daeStandardURIResolver::resolveElement(daeURI& uri)
 		// The URI was just a fragment, so try to find it in the document that contains it.
 		// !!!GAC not sure if all these pointers will be set when we get here, so assert if any of them aren't
 		daeElement *tempElement = uri.getContainer();
-		//assert(tempElement);
 		daeDocument *tempDocument;
 		if ( tempElement == NULL || (tempDocument = tempElement->getDocument()) == NULL ) {
 			uri.setState(daeURI::uri_failed_missing_container);
@@ -100,7 +69,6 @@ daeStandardURIResolver::resolveElement(daeURI& uri)
 			daeErrorHandler::get()->handleError(msg.str().c_str());
 			return false;
 		}
-		//assert(tempDocument);
 		resolved = database->idLookup(uri.getID(), tempDocument);
 	}
 

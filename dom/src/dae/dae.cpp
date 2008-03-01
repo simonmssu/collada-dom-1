@@ -58,8 +58,11 @@ void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 
 	initializeDomMeta(*this);
 	DAEInstanceCount++;
-	uriResolvers.addResolver(new daeStandardURIResolver(*this));
-	uriResolvers.addResolver(new daeRawResolver(*this));
+
+	// The order of the URI resolvers is significant, so be careful
+	uriResolvers.list().append(new daeRawResolver(*this));
+	uriResolvers.list().append(new daeStandardURIResolver(*this));
+
 	idRefResolvers.addResolver(new daeDefaultIDRefResolver(*this));
 
 	setDatabase(database_);

@@ -88,7 +88,7 @@ string cdom::getcwd() {
 #ifdef _WIN32
 	_getcwd(buffer, 1024);
 #else
-	getcwd(buffer, 1024);
+	::getcwd(buffer, 1024);
 #endif
 	return buffer;
 }
@@ -100,3 +100,9 @@ string cdom::getcwdAsUri() {
 		result += "/";
 	return result;
 }
+
+#ifdef _MSC_VER
+int strcasecmp(const char* str1, const char* str2) {
+	return stricmp(str1, str2);
+}
+#endif

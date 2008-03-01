@@ -37,6 +37,11 @@ namespace cdom {
 	DLLSPEC std::string getcwdAsUri();
 
 #ifdef _MSC_VER
+	int strcasecmp(const char* str1, const char* str2);
+#endif
+
+	// Disable VS warning
+#ifdef _MSC_VER
 #pragma warning(push)
 #pragma warning(disable : 4267)
 #endif

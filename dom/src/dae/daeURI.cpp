@@ -63,15 +63,13 @@ daeURI::daeURI(DAE& dae, daeString uriString, daeBool nofrag) : dae(&dae) {
 			uriStr = uriStr.substr(0, pos);
 	}
 
-	setURI(uriString);
-	validate();
+	setURI(uriStr.c_str());
 }
 
 daeURI::daeURI(daeURI& baseURI, daeString uriString) : dae(baseURI.getDAE())
 {
 	initialize();
-	setURI(uriString);
-	validate(&baseURI);
+	setURI(uriString, &baseURI);
 }
 
 daeURI::daeURI(const daeURI& copyFrom) : dae(copyFrom.getDAE())
@@ -88,7 +86,6 @@ daeURI::daeURI(daeElement& container_, daeString uriString)
 	initialize();
 	container = &container_;
 	setURI(uriString);
-	validate();
 }
 
 daeURI::daeURI(DAE& dae, daeElement& container_, daeString uriString)
@@ -97,7 +94,6 @@ daeURI::daeURI(DAE& dae, daeElement& container_, daeString uriString)
 	initialize();
 	container = &container_;
 	setURI(uriString);
-	validate();
 }
 
 void
@@ -106,7 +102,6 @@ daeURI::copyFrom(daeURI& copyFrom)
 	setURI(copyFrom.getOriginalURI());
 	element = copyFrom.element;		// !!!GAC SetURI immediately clears element so we must do this after
 	state = copyFrom.state;
-	// !!!GAC Should there be a call to validate in here?
 }
 
 daeURI& daeURI::operator=(daeString uri) {
@@ -133,11 +128,9 @@ DAE* daeURI::getDAE() const {
 	return dae;
 }
 
-void daeURI::setURI(daeString _URIString) {
+void daeURI::setURI(daeString _URIString, daeURI* baseURI) {
 	string uriStr = _URIString ? _URIString : "";
-	if (originalURIString == uriStr)
-		return;
-	internalSetURI(uriStr);
+	internalSetURI(uriStr, baseURI);
 }
 
 namespace {
@@ -151,7 +144,7 @@ namespace {
 	}
 }
 
-void daeURI::internalSetURI(const string& uriStr) {
+void daeURI::internalSetURI(const string& uriStr, daeURI* baseURI) {
 	reset();
 	originalURIString = uriStr;
 
@@ -166,6 +159,7 @@ void daeURI::internalSetURI(const string& uriStr) {
 	parsePath(path, filepath, file, extension);
 	id = fragment;
 	state = uri_loaded;
+	validate(baseURI);
 }
 
 void
@@ -203,7 +197,9 @@ namespace {
 void
 daeURI::validate(daeURI* baseURI)
 {
-	// If no base URI was supplied, get the application base and use it
+	// If no base URI was supplied, use the container's document URI. If there's
+	// no container or the container doesn't have a doc URI, use the application
+	// base URI.
 	if (!baseURI) {
 		if (!container || !(baseURI = container->getDocumentURI()))
 			baseURI = &dae->getBaseURI();
@@ -308,13 +304,6 @@ void daeURI::internalResolveElement() {
 	if (state == uri_empty)
 		return;
 	
-	if (state == uri_loaded) {
-		if (container != NULL)
-			validate(container->getDocumentURI());
-		else
-			validate();
-	}
-
 	dae->getURIResolvers().resolveElement(*this);
 }
 
@@ -337,9 +326,6 @@ daeURI::resolveURI()
 		// !!!GAC We have to save element and container because setURI clears them for some reason
 		daeElementRef	elementSave = element;
 		setURI((string("#") + elementID).c_str());
-		// !!!GAC Hopefully, calling validate like below is the right thing to do to get the full URI resolution
-		element	= elementSave;
-		validate(element->getDocumentURI());
 		element	= elementSave;
 		state = uri_success;  // !!!GAC The element pointer and the URI should agree now, so set success
 	}
@@ -548,20 +534,6 @@ int daeURI::makeRelativeTo(const daeURI* relativeToURI)
 {
 	if( getState() == uri_empty || relativeToURI->getState() == uri_empty ) 
 		return(DAE_ERR_INVALID_CALL);
-	if( getState() == uri_loaded )
-	{
-		if (container != NULL)
-			validate(container->getDocumentURI());
-		else
-			validate();
-	}
-	if( relativeToURI->getState() == uri_loaded )
-	{
-		if (relativeToURI->getContainer() != NULL)
-			const_cast<daeURI*>(relativeToURI)->validate(relativeToURI->getContainer()->getDocumentURI());
-		else
-			const_cast<daeURI*>(relativeToURI)->validate();
-	}
 
 	// Can only do this function if both URIs have the same scheme and authority
 	if (protocol != relativeToURI->protocol  ||  authority != relativeToURI->authority)
@@ -609,7 +581,7 @@ int daeURI::makeRelativeTo(const daeURI* relativeToURI)
 
 daeBool daeURIResolver::_loadExternalDocuments = true;
 
-daeURIResolver::daeURIResolver(DAE& dae) : dae(&dae), supportsAnyExtension(false) { }
+daeURIResolver::daeURIResolver(DAE& dae) : dae(&dae) { }
 
 daeURIResolver::~daeURIResolver() { }
 
@@ -631,24 +603,14 @@ daeURIResolverList::~daeURIResolverList() {
 		delete resolvers[i];
 }
 
-void daeURIResolverList::addResolver(daeURIResolver* resolver) {
-	resolvers.append(resolver);
-}
-
-void daeURIResolverList::removeResolver(daeURIResolver* resolver) {
-	resolvers.remove(resolver);
+daeTArray<daeURIResolver*>& daeURIResolverList::list() {
+	return resolvers;
 }
 
 void daeURIResolverList::resolveElement(daeURI& uri) {
-	for (size_t i = 0; i < resolvers.getCount(); i++) {
-		if (resolvers[i]->isProtocolSupported(uri.getProtocol())) {
-			if (uri.getFile() == NULL ||
-			    uri.getFile()[0] == '\0' ||
-			    resolvers[i]->isExtensionSupported(uri.getExtension())) {
-				resolvers[i]->resolveElement(uri);
-			}
-		}
-	}
+	for (size_t i = 0; i < resolvers.getCount(); i++)
+		if (resolvers[i]->resolveElement(uri))
+			return;
 }
 
 
