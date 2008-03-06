@@ -20,27 +20,7 @@
 #include <pcrecpp.h>
 
 using namespace std;
-
-namespace {
-	// Returns true if parsing succeeded, false otherwise. Parsing can fail if the uri
-	// reference isn't properly formed.
-	bool parseUriRef(const string& uriRef,
-	                 string& scheme,
-	                 string& authority,
-	                 string& path,
-	                 string& query,
-	                 string& fragment) {
-		// This regular expression for parsing URI references comes from the URI spec:
-		//   http://tools.ietf.org/html/rfc3986#appendix-B
-		static pcrecpp::RE re("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
-		string s1, s3, s6, s8;
-		if (re.FullMatch(uriRef, &s1, &scheme, &s3, &authority, &path, &s6, &query, &s8, &fragment))
-			return true;
-
-		return false;
-	}
-}
-
+using namespace cdom;
 
 void daeURI::initialize() {
 	reset();
@@ -53,138 +33,250 @@ daeURI::daeURI(DAE& dae) : dae(&dae) {
 	initialize();
 }
 
-daeURI::daeURI(DAE& dae, daeString uriString, daeBool nofrag) : dae(&dae) {
+daeURI::daeURI(DAE& dae, const string& uriStr, daeBool nofrag) : dae(&dae) {
 	initialize();
 
-	string uriStr = uriString ? uriString : "";
 	if (nofrag) {
 		size_t pos = uriStr.find_last_of('#');
-		if (pos != string::npos)
-			uriStr = uriStr.substr(0, pos);
+		if (pos != string::npos) {
+			set(uriStr.substr(0, pos));
+			return;
+		}
 	}
 
-	setURI(uriStr.c_str());
+	set(uriStr);
 }
 
-daeURI::daeURI(daeURI& baseURI, daeString uriString) : dae(baseURI.getDAE())
+daeURI::daeURI(const daeURI& baseURI, const string& uriStr) : dae(baseURI.getDAE())
 {
 	initialize();
-	setURI(uriString, &baseURI);
+	set(uriStr, &baseURI);
 }
 
 daeURI::daeURI(const daeURI& copyFrom) : dae(copyFrom.getDAE())
 {
 	initialize();
-	setURI(copyFrom.getOriginalURI());
+	set(copyFrom.originalStr());
 	element = copyFrom.element;   // !!!GAC SetURI immediately clears element so we must do this after
 	state = copyFrom.state;
 }
 
-daeURI::daeURI(daeElement& container_, daeString uriString)
+daeURI::daeURI(daeElement& container_, const std::string& uriStr)
 	: dae(container_.getDAE())
 {
 	initialize();
 	container = &container_;
-	setURI(uriString);
+	set(uriStr);
 }
 
-daeURI::daeURI(DAE& dae, daeElement& container_, daeString uriString)
+daeURI::daeURI(DAE& dae, daeElement& container_, const string& uriStr)
 	: dae(&dae)
 {
 	initialize();
 	container = &container_;
-	setURI(uriString);
+	set(uriStr);
 }
 
 void
 daeURI::copyFrom(daeURI& copyFrom)
 {
-	setURI(copyFrom.getOriginalURI());
+	set(copyFrom.originalStr());
 	element = copyFrom.element;		// !!!GAC SetURI immediately clears element so we must do this after
 	state = copyFrom.state;
 }
 
-daeURI& daeURI::operator=(daeString uri) {
-	setURI(uri);
+daeURI& daeURI::operator=(const string& uriStr) {
+	set(uriStr);
 	return *this;
 }
 
 void daeURI::reset() {
 	// Clear everything except the container, which doesn't change for the lifetime of the daeURI
-	uriString	        = "";
-	originalURIString	= "";
-	protocol          = "";
-	authority	        = "";
-	filepath          = "";
-	file              = "";
-	id                = "";
-	extension         = "";
-	state	            = uri_empty;
-	element	          = NULL;
-	external          = false;
+	uriString	         = "";
+	originalURIString	 = "";
+	_scheme            = "";
+	_authority	       = "";
+	_path              = "";
+	_query             = "";
+	_fragment          = "";
+	state	             = uri_empty;
+	element	           = NULL;
+	external           = false;
 }
 
 DAE* daeURI::getDAE() const {
 	return dae;
 }
 
-void daeURI::setURI(daeString _URIString, daeURI* baseURI) {
-	string uriStr = _URIString ? _URIString : "";
-	internalSetURI(uriStr, baseURI);
+
+const string& daeURI::str() const {
+	return uriString;
 }
+
+const string& daeURI::originalStr() const {
+	return originalURIString;
+}
+
+daeString daeURI::getURI() const {
+	return str().c_str();
+}
+
+daeString daeURI::getOriginalURI() const {
+	return originalStr().c_str();
+}
+
 
 namespace {
 	void parsePath(const string& path,
 	               /* out */ string& dir,
-	               /* out */ string& file,
+	               /* out */ string& baseName,
 	               /* out */ string& extension) {
-		static pcrecpp::RE re("(.*/)?([^.]*(\\.(.*))?)?");
-		string s;
-		re.FullMatch(path, &dir, &file, &s, &extension);
+		// !!!steveT Currently, if we have a file name that begins with a '.', as in
+		// ".emacs", that will be treated as having no base name with an extension
+		// of ".emacs". We might want to change this behavior, so that the base name
+		// is considered ".emacs" and the extension is empty. I think this is more
+		// in line with what path parsers in other libraries/languages do, and it
+		// more accurately reflects the intended structure of the file name.
+		static pcrecpp::RE re("(.*/)?([^.]*)?(\\..*)?");
+		dir = baseName = extension = "";
+		re.FullMatch(path, &dir, &baseName, &extension);
 	}
 }
 
-void daeURI::internalSetURI(const string& uriStr, daeURI* baseURI) {
+void daeURI::set(const string& uriStr, const daeURI* baseURI) {
 	reset();
 	originalURIString = uriStr;
 
-	string scheme, auth, path, query, fragment;
-	if (!parseUriRef(uriStr, scheme, auth, path, query, fragment)) {
+	if (!parseUriRef(uriStr, _scheme, _authority, _path, _query, _fragment)) {
 		reset();
 		return;
 	}
 
-	protocol = scheme;
-	authority = auth;
-	parsePath(path, filepath, file, extension);
-	id = fragment;
 	state = uri_loaded;
 	validate(baseURI);
 }
+
+void daeURI::set(const string& scheme_,
+                 const string& authority_,
+                 const string& path_,
+                 const string& query_,
+                 const string& fragment_,
+                 const daeURI* baseURI)
+{
+	set(assembleUri(scheme_, authority_, path_, query_, fragment_), baseURI);
+}
+
+void daeURI::setURI(daeString _URIString, const daeURI* baseURI) {
+	string uriStr = _URIString ? _URIString : "";
+	set(uriStr, baseURI);
+}
+
+
+const string& daeURI::scheme() const { return _scheme; }
+const string& daeURI::authority() const { return _authority; }
+const string& daeURI::path() const { return _path; }
+const string& daeURI::query() const { return _query; }
+const string& daeURI::fragment() const { return _fragment; }
+const string& daeURI::id() const { return fragment(); }
+
+
+namespace {
+	string addSlashToEnd(const string& s) {
+		return (!s.empty() && s[s.length()-1] != '/')  ?  s + '/' : s;
+	}
+}
+
+void daeURI::pathComponents(string& dir, string& baseName, string& ext) const {
+	parsePath(_path, dir, baseName, ext);
+}
+
+string daeURI::pathDir() const {
+	string dir, base, ext;
+	parsePath(_path, dir, base, ext);
+	return dir;
+}
+
+string daeURI::pathFileBase() const {
+	string dir, base, ext;
+	parsePath(_path, dir, base, ext);
+	return base;
+}
+
+string daeURI::pathExt() const {
+	string dir, base, ext;
+	parsePath(_path, dir, base, ext);
+	return ext;
+}
+
+string daeURI::pathFile() const {
+	string dir, base, ext;
+	parsePath(_path, dir, base, ext);
+	return base + ext;
+}
+
+void daeURI::path(const string& dir, const string& baseName, const string& ext) {
+	path(addSlashToEnd(dir) + baseName + ext);
+}
+
+void daeURI::pathDir(const string& dir) {
+	string tmp, base, ext;
+	parsePath(_path, tmp, base, ext);
+	path(addSlashToEnd(dir), base, ext);
+}
+
+void daeURI::pathFileBase(const string& baseName) {
+	string dir, tmp, ext;
+	parsePath(_path, dir, tmp, ext);
+	path(dir, baseName, ext);
+}
+
+void daeURI::pathExt(const string& ext) {
+	string dir, base, tmp;
+	parsePath(_path, dir, base, tmp);
+	path(dir, base, ext);
+}
+
+void daeURI::pathFile(const string& file) {
+	string dir, base, ext;
+	parsePath(_path, dir, base, ext);
+	path(dir, file, "");
+}
+
+
+daeString daeURI::getScheme() const { return _scheme.c_str(); }
+daeString daeURI::getProtocol() const {	return getScheme(); }
+daeString daeURI::getAuthority() const { return _authority.c_str(); }
+daeString daeURI::getPath() const { return _path.c_str(); }
+daeString daeURI::getQuery() const { return _query.c_str(); }
+daeString daeURI::getFragment() const { return _fragment.c_str(); }
+daeString daeURI::getID() const { return getFragment(); }
+daeBool daeURI::getPath(daeChar *dest, daeInt size) const {
+	if (int(_path.length()) < size) {
+		strcpy(dest, _path.c_str());
+		return true;
+	}
+	return false;
+}
+
+
+void daeURI::scheme(const string& scheme_) { set(scheme_, _authority, _path, _query, _fragment); };
+void daeURI::authority(const string& authority_) { set(_scheme, authority_, _path, _query, _fragment); }
+void daeURI::path(const string& path_) { set(_scheme, _authority, path_, _query, _fragment); }
+void daeURI::query(const string& query_) { set(_scheme, _authority, _path, query_, _fragment); }
+void daeURI::fragment(const string& fragment_) { set(_scheme, _authority, _path, _query, fragment_); }
+void daeURI::id(const string& id) { fragment(id); }
 
 void
 daeURI::print()
 {
 	fprintf(stderr,"URI(%s)\n",uriString.c_str());
-	fprintf(stderr,"protocol = %s\n",protocol.c_str());
-	fprintf(stderr,"authority = %s\n",authority.c_str());
-	fprintf(stderr,"path = %s\n",filepath.c_str());
-	fprintf(stderr,"file = %s\n",file.c_str());
-	fprintf(stderr,"id = %s\n",id.c_str());
+	fprintf(stderr,"scheme = %s\n",_scheme.c_str());
+	fprintf(stderr,"authority = %s\n",_authority.c_str());
+	fprintf(stderr,"path = %s\n",_path.c_str());
+	fprintf(stderr,"query = %s\n",_query.c_str());
+	fprintf(stderr,"fragment = %s\n",_fragment.c_str());
 	fprintf(stderr,"URI without base = %s\n",originalURIString.c_str());
 	fflush(stderr);
-}
-
-daeString
-daeURI::getURI() const
-{
-	return uriString.c_str();
-}
-
-daeString
-daeURI::getOriginalURI() const
-{
-	return originalURIString.c_str();
 }
 
 namespace {
@@ -195,7 +287,7 @@ namespace {
 }
 
 void
-daeURI::validate(daeURI* baseURI)
+daeURI::validate(const daeURI* baseURI)
 {
 	// If no base URI was supplied, use the container's document URI. If there's
 	// no container or the container doesn't have a doc URI, use the application
@@ -208,80 +300,80 @@ daeURI::validate(daeURI* baseURI)
 	}
 
 	// This is rewritten according to the updated rfc 3986
-	if (!protocol.empty()) // if defined(R.scheme) then
+	if (!_scheme.empty()) // if defined(R.scheme) then
 	{
 		// Everything stays the same except path which we normalize
 		// T.scheme    = R.scheme;
 		// T.authority = R.authority;
 		// T.path      = remove_dot_segments(R.path);
 		// T.query     = R.query;
-		normalize(filepath);
+		normalize(_path);
 	}
 	else
 	{
-		if (!authority.empty()) // if defined(R.authority) then
+		if (!_authority.empty()) // if defined(R.authority) then
 		{
 			// Authority and query stay the same, path is normalized
 			// T.authority = R.authority;
 			// T.path      = remove_dot_segments(R.path);
 			// T.query     = R.query;
-			normalize(filepath);
+			normalize(_path);
 		}
 		else
 		{
-			if (filepath.empty() && file.empty())  // if (R.path == "") then
+			if (_path.empty())  // if (R.path == "") then
 			{
 				// T.path = Base.path;
-				filepath = baseURI->filepath;
-				file = baseURI->file;
-				extension = baseURI->extension;
-				// We don't handle querys, but if we did
+				_path = baseURI->_path;
+
 				//if defined(R.query) then
 				//   T.query = R.query;
 				//else
 				//   T.query = Base.query;
 				//endif;
+				if (_query.empty())
+					_query = baseURI->_query;
 			}
 			else
 			{
-				if (!filepath.empty() && filepath[0] == '/')  //if (R.path starts-with "/") then
+				if (_path[0] == '/')  // if (R.path starts-with "/") then
 				{
 					// T.path = remove_dot_segments(R.path);
-					normalize(filepath);
+					normalize(_path);
 				}
 				else
 				{
-					//T.path = merge(Base.path, R.path);
-					if (!baseURI->authority.empty() && baseURI->filepath.empty() && baseURI->file.empty()) //authority defined, path empty
-						filepath.insert(0, "/");
-					else
-						filepath = baseURI->filepath + filepath;
-					//T.path = remove_dot_segments(T.path);
-					normalize(filepath);
+					// T.path = merge(Base.path, R.path);
+					if (!baseURI->_authority.empty() && baseURI->_path.empty()) // authority defined, path empty
+						_path.insert(0, "/");
+					else {
+						string dir, baseName, ext;
+						parsePath(baseURI->_path, dir, baseName, ext);
+						_path = dir + _path;
+					}
+					// T.path = remove_dot_segments(T.path);
+					normalize(_path);
 				}
 				// T.query = R.query;
 			}
 			// T.authority = Base.authority;
-			authority = baseURI->authority;
+			_authority = baseURI->_authority;
 		}
 		// T.scheme = Base.scheme;
-		protocol = baseURI->protocol;
+		_scheme = baseURI->_scheme;
 	}
 	// T.fragment = R.fragment;
 
 	// Reassemble all this into a string version of the URI
-	uriString = "";
-	if (!protocol.empty())
-		uriString += protocol + ':';
-	uriString += "//" + authority + filepath + file;
-	if (!id.empty())
-		uriString += "#" + id;
+	uriString = assembleUri(_scheme, _authority, _path, _query, _fragment);
 
 	state = uri_pending;
 
 	if (container && container->getDocumentURI()) {
 		daeURI* docURI = container->getDocumentURI();
-		if (filepath != docURI->filepath  ||  file != docURI->file) {
+		if (_path != docURI->_path ||
+		    _scheme != docURI->_scheme ||
+		    _authority != docURI->_authority) {
 			// external ref
 			container->getDocument()->addExternalReference(*this);
 			external = true;
@@ -315,7 +407,7 @@ daeURI::resolveURI()
 	// !!!GAC bug 486, there used to be code here that just returned if state was uri_empty or uri_resolve_local this has been removed.
 	if (element)
 	{
-		// !!!GAC bug 388 and 421, need to add a fragment (#) before the ID (was setURI(element->getID()))
+		// !!!GAC bug 388 and 421, need to add a # before the fragment (was setURI(element->getID()))
 		string elementID = element->getAttribute("id");
 		if (elementID.empty())
 		{
@@ -325,7 +417,7 @@ daeURI::resolveURI()
 		}
 		// !!!GAC We have to save element and container because setURI clears them for some reason
 		daeElementRef	elementSave = element;
-		setURI((string("#") + elementID).c_str());
+		set(string("#") + elementID);
 		element	= elementSave;
 		state = uri_success;  // !!!GAC The element pointer and the URI should agree now, so set success
 	}
@@ -333,20 +425,6 @@ daeURI::resolveURI()
 	{
 		state = uri_failed_invalid_reference;
 	}
-}
-
-daeBool daeURI::getPath(daeChar *dest, daeInt size) const
-{
-	string path = getPath();
-	if (int(path.length()) < size) {
-		strcat(dest, path.c_str());
-		return true;
-	}
-	return false;
-}
-
-string daeURI::getPath() const {
-	return filepath + file;
 }
 
 // This code is loosely based on the RFC 2396 normalization code from
@@ -532,28 +610,25 @@ void daeURI::normalizeURIPath(char* path)
 // another existing URI.  The new URI is stored in the "originalURI"
 int daeURI::makeRelativeTo(const daeURI* relativeToURI)
 {
-	if( getState() == uri_empty || relativeToURI->getState() == uri_empty ) 
-		return(DAE_ERR_INVALID_CALL);
-
 	// Can only do this function if both URIs have the same scheme and authority
-	if (protocol != relativeToURI->protocol  ||  authority != relativeToURI->authority)
+	if (_scheme != relativeToURI->_scheme  ||  _authority != relativeToURI->_authority)
 		return DAE_ERR_INVALID_CALL;
 
 	// advance till we find a segment that doesn't match
-	const char *this_filepath		= getFilepath();
-	const char *relativeTo_filepath = relativeToURI->getFilepath();
-	const char *this_slash			= this_filepath;
-	const char *relativeTo_slash	= relativeTo_filepath;
+	const char *this_path        = getPath();
+	const char *relativeTo_path  = relativeToURI->getPath();
+	const char *this_slash       = this_path;
+	const char *relativeTo_slash = relativeTo_path;
 
-	while((*this_filepath == *relativeTo_filepath) && *this_filepath)
+	while((*this_path == *relativeTo_path) && *this_path)
 	{
-		if(*this_filepath == '/')
+		if(*this_path == '/')
 		{
-			this_slash = this_filepath;
-			relativeTo_slash = relativeTo_filepath;
+			this_slash = this_path;
+			relativeTo_slash = relativeTo_path;
 		}
-		this_filepath++;
-		relativeTo_filepath++;
+		this_path++;
+		relativeTo_path++;
 	}
 
 	// Decide how many ../ segments are needed (Filepath should always end in a /)
@@ -567,14 +642,12 @@ int daeURI::makeRelativeTo(const daeURI* relativeToURI)
 	}
 	this_slash++;
 
-	string newUri;
+	string newPath;
 	for (int i = 0; i < segment_count; i++)
-		newUri += "../";
-	newUri += this_slash + file;
-	if (!id.empty())
-		newUri += "#" + id;
+		newPath += "../";
+	newPath += this_slash;
 	
-	setURI(newUri.c_str());
+	set("", "", newPath, _query, _fragment, relativeToURI);
 	return(DAE_OK);
 }
 
@@ -614,20 +687,62 @@ void daeURIResolverList::resolveElement(daeURI& uri) {
 }
 
 
-string cdom::filePathToUri(const string& filePath) {
-	string uri = filePath;
+// Returns true if parsing succeeded, false otherwise. Parsing can fail if the uri
+// reference isn't properly formed.
+bool cdom::parseUriRef(const string& uriRef,
+                       string& scheme,
+                       string& authority,
+                       string& path,
+                       string& query,
+                       string& fragment) {
+	// This regular expression for parsing URI references comes from the URI spec:
+	//   http://tools.ietf.org/html/rfc3986#appendix-B
+	static pcrecpp::RE re("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
+	string s1, s3, s6, s8;
+	if (re.FullMatch(uriRef, &s1, &scheme, &s3, &authority, &path, &s6, &query, &s8, &fragment))
+		return true;
 
-	// Windows - convert "c:\" to "/c:\"
-	if (uri.length() >= 2  &&  isalpha(uri[0])  &&  uri[1] == ':')
-		uri.insert(0, "/");
-	else if (!uri.empty()  &&  uri[0] == '\\') {
-		// Windows - If it's an absolute path with no drive letter, or a UNC path,
-		// prepend "file:///"
-		uri.insert(0, "file:///");
-	}
+	return false;
+}
+
+string cdom::assembleUri(const string& scheme,
+                         const string& authority,
+                         const string& path,
+                         const string& query,
+                         const string& fragment,
+                         bool addEmptyAuthority) {
+	string uri;
+	if (!scheme.empty())
+		uri += scheme + ":";
+	if (addEmptyAuthority || !authority.empty())
+		uri += "//";
+	if (!authority.empty())
+		uri += authority;
+	uri += path;
+	if (!query.empty())
+		uri += "?" + query;
+	if (!fragment.empty())
+		uri += "#" + fragment;
+	return uri;
+}
+
+
+string cdom::nativePathToUri(const string& nativePath, systemType type) {
+	string uri = nativePath;
+
+	if (type == Windows) {
+		// Convert "c:\" to "/c:\"
+		if (uri.length() >= 2  &&  isalpha(uri[0])  &&  uri[1] == ':')
+			uri.insert(0, "/");
+		else if (!uri.empty()  &&  uri[0] == '\\') {
+			// If it's an absolute path with no drive letter, or a UNC path,
+			// prepend "file:///"
+			uri.insert(0, "file:///");
+		}
 	
-	// Windows - convert backslashes to forward slashes
-	uri = replace(uri, "\\", "/");
+		// Convert backslashes to forward slashes
+		uri = replace(uri, "\\", "/");
+	}
 
 	// Convert spaces to %20
 	uri = replace(uri, " ", "%20");
@@ -635,8 +750,11 @@ string cdom::filePathToUri(const string& filePath) {
 	return uri;
 }
 
+string cdom::filePathToUri(const string& filePath) {
+	return nativePathToUri(filePath);
+}
 
-string cdom::uriToFilePath(const string& uriRef) {
+string cdom::uriToNativePath(const string& uriRef, systemType type) {
 	string scheme, authority, path, query, fragment;
 	parseUriRef(uriRef, scheme, authority, path, query, fragment);
 
@@ -646,22 +764,26 @@ string cdom::uriToFilePath(const string& uriRef) {
 
 	string filePath = path;
 
-#ifdef WIN32
-	// Windows - replace two leading slashes with one leading slash, so that
-	// ///otherComputer/file.dae becomes //otherComputer/file.dae
-	if (filePath.length() >= 2  &&  filePath[0] == '/'  &&  filePath[1] == '/')
-		filePath.erase(0, 1);
+	if (type == Windows) {
+		// Replace two leading slashes with one leading slash, so that
+		// ///otherComputer/file.dae becomes //otherComputer/file.dae
+		if (filePath.length() >= 2  &&  filePath[0] == '/'  &&  filePath[1] == '/')
+			filePath.erase(0, 1);
 
-	// Windows - convert "/C:/" to "C:/"
-	if (filePath.length() >= 3  &&  filePath[0] == '/'  &&  filePath[2] == ':')
-		filePath.erase(0, 1);
+		// Convert "/C:/" to "C:/"
+		if (filePath.length() >= 3  &&  filePath[0] == '/'  &&  filePath[2] == ':')
+			filePath.erase(0, 1);
 
-	// Windows - convert forward slashes to back slashes
-	filePath = replace(filePath, "/", "\\");
-#endif
+		// Convert forward slashes to back slashes
+		filePath = replace(filePath, "/", "\\");
+	}
 
 	// Replace %20 with space
 	filePath = replace(filePath, "%20", " ");
 	
 	return filePath;
+}
+
+string cdom::uriToFilePath(const string& uriRef) {
+	return uriToNativePath(uriRef);
 }

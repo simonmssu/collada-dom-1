@@ -35,10 +35,10 @@ daeRawResolver::getName()
 daeBool
 daeRawResolver::resolveElement(daeURI& uri)
 {
-	if (strcasecmp(uri.getExtension(), "raw"))
+	if (strcasecmp(uri.pathExt().c_str(), ".raw"))
 		return false;
 
-	string fileName = cdom::uriToFilePath(uri.getURI());
+	string fileName = cdom::uriToNativePath(uri.str());
 	if (fileName.empty())
 	{
 		daeErrorHandler::get()->handleError( "can't get path from URI\n" );

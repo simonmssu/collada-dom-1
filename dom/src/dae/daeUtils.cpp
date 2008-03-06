@@ -10,6 +10,14 @@
 
 using namespace std;
 
+cdom::systemType cdom::getSystemType() {
+#ifdef WIN32
+	return Windows;
+#else
+	return Posix;
+#endif
+}
+
 string cdom::replace(const string& s, const string& replace, const string& replaceWith) {
 	if (replace.empty())
 		return s;
@@ -94,7 +102,7 @@ string cdom::getcwd() {
 }
 
 string cdom::getcwdAsUri() {
-	string result = string("file://") + cdom::filePathToUri(getcwd());
+	string result = string("file://") + cdom::nativePathToUri(getcwd());
 	// Make sure the last char is a /
 	if (*(result.end()--) != '/')
 		result += "/";

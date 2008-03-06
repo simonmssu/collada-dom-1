@@ -126,7 +126,7 @@ struct xmlTextReaderHelper {
 daeElementRef daeLIBXMLPlugin::readFromFile(const daeURI& uri) {
 	xmlTextReaderHelper readerHelper(uri);
 	if (!readerHelper.reader) {
-		daeErrorHandler::get()->handleError((std::string("Failed to open ") + uri.getURI() +
+		daeErrorHandler::get()->handleError((std::string("Failed to open ") + uri.str() +
 		                                    " in daeLIBXMLPlugin::readFromFile\n").c_str());
 		return NULL;
 	}
@@ -199,6 +199,13 @@ daeElementRef daeLIBXMLPlugin::readElement(_xmlTextReader* reader, daeElement* p
 	return element;
 }
 
+// To work around a bug in libxml
+string insertEmptyAuthority(const string& uriRef) {
+	string scheme, authority, path, query, fragment;
+	cdom::parseUriRef(uriRef, scheme, authority, path, query, fragment);
+	return cdom::assembleUri(scheme, authority, path, query, fragment, true);
+}
+
 daeInt daeLIBXMLPlugin::write(const daeURI& name, daeDocument *document, daeBool replace)
 {
 	// Make sure database and document are both set
@@ -208,7 +215,7 @@ daeInt daeLIBXMLPlugin::write(const daeURI& name, daeDocument *document, daeBool
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
 	// Convert the URI to a file path, to see if we're about to overwrite a file
-	string file = cdom::uriToFilePath(name.getURI());
+	string file = cdom::uriToNativePath(name.str());
 	if (file.empty()  &&  saveRawFile)
 	{
 		daeErrorHandler::get()->handleError( "can't get path in write\n" );
@@ -246,17 +253,17 @@ daeInt daeLIBXMLPlugin::write(const daeURI& name, daeDocument *document, daeBool
 		{
 			return DAE_ERR_BACKEND_IO;
 		}
-		rawRelPath.setURI(cdom::filePathToUri(rawFilePath).c_str());
+		rawRelPath.set(cdom::nativePathToUri(rawFilePath));
 		rawRelPath.validate();
 		rawRelPath.makeRelativeTo( &name );
 	}
 
 	// Open the file we will write to
-	writer = xmlNewTextWriterFilename(name.getURI(), 0);
+	writer = xmlNewTextWriterFilename(insertEmptyAuthority(name.str()).c_str(), 0);
 	if ( !writer ) {
-		char msg[512];
-		sprintf(msg,"daeLIBXMLPlugin::write(%s) failed\n",name.getURI());
-		daeErrorHandler::get()->handleError( msg );
+		ostringstream msg;
+		msg << "daeLIBXMLPlugin::write(" << name.str() << ") failed\n";
+		daeErrorHandler::get()->handleError(msg.str().c_str());
 		return DAE_ERR_BACKEND_IO;
 	}
 	xmlTextWriterSetIndentString( writer, (const xmlChar*)"\t" ); // Don't change this to spaces

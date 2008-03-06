@@ -34,15 +34,10 @@ daeBool
 daeStandardURIResolver::resolveElement(daeURI& uri)
 {
 	daeDatabase* database = dae->getDatabase();
-	
-	// !!!steveT Remove
-	// if (!dae->getIOPlugin()->getSupportedProtocols().find(uri.getProtocol()))
-	// 	return false;
-	
 	daeElement* resolved = NULL;
 
 	// Does the URI have a document reference?
-	if (strlen(uri.getFile()) > 0)
+	if (!uri.pathFile().empty())
 	{
 		// The URI contains a document reference, see if it is loaded and try to load it if it's not
 		if (!database->isDocumentLoaded(uri.getURI())) {
@@ -65,7 +60,7 @@ daeStandardURIResolver::resolveElement(daeURI& uri)
 		if ( tempElement == NULL || (tempDocument = tempElement->getDocument()) == NULL ) {
 			uri.setState(daeURI::uri_failed_missing_container);
 			std::ostringstream msg;
-			msg << "daeStandardURIResolver::resolveElement() - failed to resolve " << uri.getURI() << "\n";
+			msg << "daeStandardURIResolver::resolveElement() - failed to resolve " << uri.str() << "\n";
 			daeErrorHandler::get()->handleError(msg.str().c_str());
 			return false;
 		}
@@ -80,7 +75,7 @@ daeStandardURIResolver::resolveElement(daeURI& uri)
 	{
 		uri.setState(daeURI::uri_failed_id_not_found);
 		std::ostringstream msg;
-		msg << "daeStandardURIResolver::resolveElement() - failed to resolve " << uri.getURI() << "\n";
+		msg << "daeStandardURIResolver::resolveElement() - failed to resolve " << uri.str() << "\n";
 		daeErrorHandler::get()->handleError(msg.str().c_str());
 		return false;
 	}

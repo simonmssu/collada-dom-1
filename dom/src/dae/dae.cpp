@@ -154,8 +154,8 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 // using the current working directory as the base URI if a relative URI
 // reference is given.
 string DAE::makeFullUri(const string& path) {
-	daeURI uri(*this, cdom::filePathToUri(path).c_str());
-	return uri.getURI();
+	daeURI uri(*this, cdom::nativePathToUri(path));
+	return uri.str();
 }
 
 

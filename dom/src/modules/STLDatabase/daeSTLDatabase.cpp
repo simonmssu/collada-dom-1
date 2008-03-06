@@ -182,7 +182,7 @@ daeDocument* daeSTLDatabase::getDocument(daeString name)
 	// Normalize the input string to an absolute URI with no fragment
 
 	daeURI tempURI(dae, name, true);
-	daeString targetURI = tempURI.getURI();
+	const string& targetURI = tempURI.str();
 
 	// Try to find a document that matches
 
@@ -191,7 +191,7 @@ daeDocument* daeSTLDatabase::getDocument(daeString name)
 	for (int i=0;i<documentCount;i++)
 	{
 		document = getDocument(i);
-		if(strcmp(document->getDocumentURI()->getURI(), targetURI)==0)
+		if(document->getDocumentURI()->str() == targetURI)
 			return(document);
 	}
 	return(NULL);

@@ -566,7 +566,7 @@ daeBool daeResolverType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	if(thisURI->getState() != daeURI::uri_success || !(thisURI->getElement()) || !(thisURI->getContainer()))
 	{
 		// This URI was never successfully resolved, so write out it's original value
-		s = thisURI->getOriginalURI() ? thisURI->getOriginalURI() : "";
+		s = thisURI->originalStr();
 	}
 	else
 	{
@@ -577,12 +577,12 @@ daeBool daeResolverType::memoryToString(daeChar* src, std::ostringstream& dst) {
 		if(thisURI->getElement()->getDocument() == thisURI->getContainer()->getDocument())
 		{
 			// we will send back the original URI if we're pointing at ourselves
-			s = thisURI->getOriginalURI() ? thisURI->getOriginalURI() : "";
+			s = thisURI->originalStr();
 		}
 		else
 		{
 			// we will send back the full resolved URI
-			s = thisURI->getURI() ? thisURI->getURI() : "";
+			s = thisURI->str();
 		}
 	}
 
@@ -599,29 +599,7 @@ daeBool daeIDResolverType::memoryToString(daeChar* src, std::ostringstream& dst)
 daeBool
 daeResolverType::stringToMemory(daeChar* src, daeChar* dstMemory)
 {
-#define MAX_PATH 1024
-	daeChar tempstr[MAX_PATH];
-	memset(tempstr,0,MAX_PATH);
-	daeChar* s;
-	daeChar* t;
-	for(s=src, t=tempstr; *s!=0; s++,t++)
-	{
-		if (*s == '%') {
-			if ((*(s+1) == '2') && (*(s+2) == '0'))
-			{
-				(*t)=' ';
-				s+=2;
-				continue;
-			}
-		} else if (*s == ' ') {
-			char err[512];
-			memset( err, 0, 512 );
-			sprintf(err,"uri contains white space, dom will convert them to %%20 in output files!\n  uri=%s", src);
-			daeErrorHandler::get()->handleWarning( err );
-		}
-		*t=*s;
-	}
-	((daeURI*)dstMemory)->setURI(tempstr);
+	((daeURI*)dstMemory)->set(cdom::replace(src, " ", "%20"));
 	return true;
 }
 
@@ -844,14 +822,7 @@ daeInt daeStringRefType::compare(daeChar* value1, daeChar* value2) {
 }
 
 daeInt daeResolverType::compare(daeChar* value1, daeChar* value2) {
-	const char *uri1 = ((daeURI*)value1)->getURI(),
-	           *uri2 = ((daeURI*)value2)->getURI();
-	// Consider null and an empty string to be equivalent
-	if (!uri1)
-		uri1 = "";
-	if (!uri2)
-		uri2 = "";
-	return strcmp(uri1, uri2);
+	return strcmp(((daeURI*)value1)->str().c_str(), ((daeURI*)value2)->str().c_str());
 }
 
 daeInt daeIDResolverType::compare(daeChar* value1, daeChar* value2) {
