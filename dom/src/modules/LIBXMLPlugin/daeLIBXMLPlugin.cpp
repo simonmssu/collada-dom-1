@@ -59,6 +59,13 @@ namespace {
 			                    (daeString)xmlTextReaderConstValue(reader)));
 		}
 	}
+
+	// To work around a bug in libxml
+	string insertEmptyAuthority(const string& uriRef) {
+		string scheme, authority, path, query, fragment;
+		cdom::parseUriRef(uriRef, scheme, authority, path, query, fragment);
+		return cdom::assembleUri(scheme, authority, path, query, fragment, true);
+	}
 }
 
 daeLIBXMLPlugin::daeLIBXMLPlugin(DAE& dae) : dae(dae), rawRelPath(dae)
@@ -108,11 +115,11 @@ daeString daeLIBXMLPlugin::getOption( daeString option )
 // A simple structure to help alloc/free xmlTextReader objects
 struct xmlTextReaderHelper {
 	xmlTextReaderHelper(const daeURI& uri) {
-		reader = xmlReaderForFile(uri.getURI(), NULL, 0);
+		reader = xmlReaderForFile(insertEmptyAuthority(uri.str()).c_str(), NULL, 0);
 	}
 
 	xmlTextReaderHelper(daeString buffer, const daeURI& baseUri) {
-		reader = xmlReaderForDoc((xmlChar*)buffer, baseUri.getURI(), NULL, 0);
+		reader = xmlReaderForDoc((xmlChar*)buffer, insertEmptyAuthority(baseUri.str()).c_str(), NULL, 0);
 	};
 
 	~xmlTextReaderHelper() {
@@ -197,13 +204,6 @@ daeElementRef daeLIBXMLPlugin::readElement(_xmlTextReader* reader, daeElement* p
 		xmlTextReaderRead(reader);
 
 	return element;
-}
-
-// To work around a bug in libxml
-string insertEmptyAuthority(const string& uriRef) {
-	string scheme, authority, path, query, fragment;
-	cdom::parseUriRef(uriRef, scheme, authority, path, query, fragment);
-	return cdom::assembleUri(scheme, authority, path, query, fragment, true);
 }
 
 daeInt daeLIBXMLPlugin::write(const daeURI& name, daeDocument *document, daeBool replace)
