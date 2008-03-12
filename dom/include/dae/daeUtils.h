@@ -45,9 +45,7 @@ namespace cdom {
 	DLLSPEC std::string getcwd();
 	DLLSPEC std::string getcwdAsUri();
 
-#ifdef _MSC_VER
 	DLLSPEC int strcasecmp(const char* str1, const char* str2);
-#endif
 
 	// Disable VS warning
 #ifdef _MSC_VER

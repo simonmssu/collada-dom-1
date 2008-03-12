@@ -109,8 +109,10 @@ string cdom::getcwdAsUri() {
 	return result;
 }
 
-#ifdef _MSC_VER
 int cdom::strcasecmp(const char* str1, const char* str2) {
+#ifdef _MSC_VER
 	return _stricmp(str1, str2);
-}
+#else
+	return ::strcasecmp(str1, str2);
 #endif
+}

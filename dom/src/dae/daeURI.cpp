@@ -387,7 +387,7 @@ daeURI::validate(const daeURI* baseURI)
 	}
 }
 
-daeElement* daeURI::getElement() {
+daeElementRef daeURI::getElement() {
 	if (!element)
 		internalResolveElement();
 	return element;
