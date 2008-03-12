@@ -104,13 +104,13 @@ string cdom::getcwd() {
 string cdom::getcwdAsUri() {
 	string result = string("file://") + cdom::nativePathToUri(getcwd());
 	// Make sure the last char is a /
-	if (*(result.end()--) != '/')
+	if (!result.empty()  &&  result[result.length()-1] != '/')
 		result += "/";
 	return result;
 }
 
 #ifdef _MSC_VER
-int strcasecmp(const char* str1, const char* str2) {
-	return stricmp(str1, str2);
+int cdom::strcasecmp(const char* str1, const char* str2) {
+	return _stricmp(str1, str2);
 }
 #endif

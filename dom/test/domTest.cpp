@@ -831,12 +831,12 @@ DefineTest(placeElement) {
 };
 
 
-DefineTest(uriConversion) {
+DefineTest(nativePathConversion) {
 	// Windows file path to URI
 	CheckResult(cdom::nativePathToUri("C:\\myFolder\\myFile.dae", cdom::Windows) == "/C:/myFolder/myFile.dae");
-	CheckResult(cdom::nativePathToUri("\\myFolder\\myFile.dae", cdom::Windows) == "file:////myFolder/myFile.dae");
+	CheckResult(cdom::nativePathToUri("\\myFolder\\myFile.dae", cdom::Windows) == "/myFolder/myFile.dae");
 	CheckResult(cdom::nativePathToUri("..\\myFolder\\myFile.dae", cdom::Windows) == "../myFolder/myFile.dae");
-	CheckResult(cdom::nativePathToUri("\\\\otherComputer\\myFile.dae", cdom::Windows) == "file://///otherComputer/myFile.dae");
+	CheckResult(cdom::nativePathToUri("\\\\otherComputer\\myFile.dae", cdom::Windows) == "//otherComputer/myFile.dae");
 
 	// Linux/Mac file path to URI
 	CheckResult(cdom::nativePathToUri("/myFolder/myFile.dae", cdom::Posix) == "/myFolder/myFile.dae");
@@ -845,17 +845,57 @@ DefineTest(uriConversion) {
 
 	// URI to Windows file path
 	CheckResult(cdom::uriToNativePath("../folder/file.dae", cdom::Windows) == "..\\folder\\file.dae");
+	CheckResult(cdom::uriToNativePath("/C:/folder/file.dae", cdom::Windows) == "C:\\folder\\file.dae");
 	CheckResult(cdom::uriToNativePath("file:///C:/folder/file.dae", cdom::Windows) == "C:\\folder\\file.dae");
+	CheckResult(cdom::uriToNativePath("//otherComputer/file.dae", cdom::Windows) == "\\\\otherComputer\\file.dae");
 	CheckResult(cdom::uriToNativePath("file://///otherComputer/file.dae", cdom::Windows) == "\\\\otherComputer\\file.dae");
 	CheckResult(cdom::uriToNativePath("http://www.slashdot.org", cdom::Windows) == "");
 
 	// URI to Linux/Mac file path
 	CheckResult(cdom::uriToNativePath("../folder/file.dae", cdom::Posix) == "../folder/file.dae");
+	CheckResult(cdom::uriToNativePath("/folder/file.dae", cdom::Posix) == "/folder/file.dae");
 	CheckResult(cdom::uriToNativePath("file:///folder/file.dae", cdom::Posix) == "/folder/file.dae");
 	CheckResult(cdom::uriToNativePath("http://www.slashdot.org", cdom::Posix) == "");
 
 	return testResult(true);
 }
+
+
+DefineTest(libxmlUriBugWorkaround) {
+	if (cdom::getSystemType() == cdom::Posix) {
+		// libxml doesn't like file scheme uris that don't have an authority component
+		CheckResult(cdom::fixUriForLibxml("file:/folder/file.dae") == "file:///folder/file.dae");
+	}
+	else if (cdom::getSystemType() == cdom::Windows) {
+		// libxml doesn't like file scheme uris that don't have an authority component
+		CheckResult(cdom::fixUriForLibxml("file:/c:/folder/file.dae") == "file:///c:/folder/file.dae");
+		// libxml wants UNC paths that contain an empty authority followed by three slashes
+		CheckResult(cdom::fixUriForLibxml("file://otherComputer/file.dae") == "file://///otherComputer/file.dae");
+		// libxml wants absolute paths that don't contain a drive letter to have an
+		// empty authority followed by two slashes.
+		CheckResult(cdom::fixUriForLibxml("file:/folder/file.dae") == "file:////folder/file.dae");
+	}
+
+	return testResult(true);
+}
+
+
+// !!!steveT I want this to be a test of the DOM's ability to open files
+// using all the various ways of referencing files: relative paths, absolute
+// paths, absolute paths with no drive letter (Windows), UNC paths (Windows),
+// http scheme URIs, zipped files, etc.
+#if 0
+DefineTest(uriOpen) {
+	DAE dae;
+	CheckResult(dae.open("file:/c:/models/cube.dae"));
+	CheckResult(dae.open("/c:/models/cube.dae"));
+	CheckResult(dae.open("/models/cube.dae"));
+	CheckResult(dae.open("file:////models/cube.dae"));
+	CheckResult(dae.open("file://isis/sceard/COLLADA/forsteve/cube.dae"));
+	CheckResult(dae.open("file://///isis/sceard/COLLADA/forsteve/cube.dae"));
+	return testResult(true);
+}
+#endif
 
 
 DefineTest(uriOps) {
@@ -1041,6 +1081,14 @@ DefineTest(uriOps) {
 		uri.setElement(dae.getDatabase()->typeLookup(domGeometry::ID()).at(0));
 		uri.resolveURI();
 		CheckResult(uri.id() == "box-lib");
+	}
+
+	// Make sure we can handle paths that start with '//'. Libxml uses such paths
+	// to represent UNC paths and absolute paths without a drive letter on Windows.
+	{
+		string scheme, authority, path, query, fragment;
+		cdom::parseUriRef("file:////models/cube.dae", scheme, authority, path, query, fragment);
+		CheckResult(cdom::assembleUri(scheme, authority, path, query, fragment) == "file:////models/cube.dae");
 	}
 
 	return testResult(true);

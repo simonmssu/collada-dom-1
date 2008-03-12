@@ -464,32 +464,43 @@ private:
 // Helper functions for file path <--> URI conversion
 namespace cdom {
 	// Takes a uri reference and parses it into its components.
-	bool parseUriRef(const std::string& uriRef,
-	                 std::string& scheme,
-	                 std::string& authority,
-	                 std::string& path,
-	                 std::string& query,
-	                 std::string& fragment);
+	DLLSPEC bool parseUriRef(const std::string& uriRef,
+	                         std::string& scheme,
+	                         std::string& authority,
+	                         std::string& path,
+	                         std::string& query,
+	                         std::string& fragment);
 
-	// Takes the uri components of a uri ref and combines them. The
-	// 'addEmptyAuthority' param is meant to work around bugs in the uri handling
-	// of some applications. For example, calling assembleUri("file", "", "/home", "", "")
-	// would normally result in a uri ref of the form "file:/home", but libxml doesn't
-	// properly handle those types of uris. By setting addEmptyAuthority to true,
-	// assembleUri will add the // authority separator even if the authority is empty.
-	// In the previous example this would result in a uri of the form "file:///home",
-	// which libxml handles correctly.
-	std::string assembleUri(const std::string& scheme,
-	                        const std::string& authority,
-	                        const std::string& path,
-	                        const std::string& query,
-	                        const std::string& fragment,
-	                        bool addEmptyAuthority = false);
+	// Takes the uri components of a uri ref and combines them.
+	//
+	// The 'forceLibxmlCompatible' param is meant to work around bugs in the file
+	// scheme uri handling of libxml. It causes the function to output a uri
+	// that's fully compatible with libxml. It only modifies file scheme uris,
+	// since uris with other schemes seem to work fine.
+	//
+	// The known libxml uri bugs are as follows:
+	//   1) libxml won't write files when given file scheme URIs with an empty
+	//      authority, as in "file:/home".
+	//   2) libxml won't read or write Windows UNC paths represented with the
+	//      machine name in the authority, as in "file://otherMachine/folder/file.dae"
+	//   3) On Windows, libxml won't read or write paths that don't have a drive
+	//      letter, as in "/folder/file.dae".
+	DLLSPEC std::string assembleUri(const std::string& scheme,
+	                                const std::string& authority,
+	                                const std::string& path,
+	                                const std::string& query,
+	                                const std::string& fragment,
+	                                bool forceLibxmlCompatible = false);
+
+	// A wrapper function for calling assembleUri to create a URI that's compatible
+	// with libxml.
+	DLLSPEC std::string fixUriForLibxml(const std::string& uriRef);
 
 	// This function takes a file path in the OS's native format and converts it to
 	// a URI reference. If a relative path is given, a relative URI reference is
 	// returned. If an absolute path is given, a relative URI reference containing 
-	// a fully specified path is returned. Spaces are encoded as %20.
+	// a fully specified path is returned. Spaces are encoded as %20. The 'type'
+	// parameter indicates the format of the nativePath.
 	//
 	// Windows-specific note: Special care must be taken to handle paths of the form 
 	// "\myFolder\myFile.dae". This specifies an absolute path on the current drive.
@@ -499,9 +510,9 @@ namespace cdom {
 	//
 	// Examples - Windows
 	//   nativePathToUri("C:\myFolder\myFile.dae") --> "/C:/myFolder/myFile.dae"
-	//   nativePathToUri("\myFolder\myFile.dae") --> "file:////myFolder/myFile.dae"
+	//   nativePathToUri("\myFolder\myFile.dae") --> "/myFolder/myFile.dae"
 	//   nativePathToUri("..\myFolder\myFile.dae") --> "../myFolder/myFile.dae"
-	//   nativePathToUri("\\otherComputer\myFile.dae") --> "file://///otherComputer/myFile.dae"
+	//   nativePathToUri("\\otherComputer\myFile.dae") --> "//otherComputer/myFile.dae"
 	//
 	// Examples - Linux/Mac
 	//   nativePathToUri("/myFolder/myFile.dae") --> "/myFolder/myFile.dae"
@@ -512,17 +523,19 @@ namespace cdom {
 
 	// This function takes a URI reference and converts it to an OS file path. Conversion
 	// can fail if the URI reference is ill-formed, or if the URI contains a scheme other
-	// than "file", in which case an empty string is returned.
+	// than "file", in which case an empty string is returned. The 'type' parameter
+	// indicates the format of the returned native path.
 	//
 	// Examples - Windows
 	//   uriToNativePath("../folder/file.dae") --> "..\folder\file.dae"
-	//   uriToNativePath("file:///C:/folder/file.dae") --> "C:\folder\file.dae"
-	//   uriToNativePath("file://///otherComputer/file.dae") --> "\\otherComputer\file.dae"
+	//   uriToNativePath("/folder/file.dae") --> "\folder\file.dae"
+	//   uriToNativePath("file:/C:/folder/file.dae") --> "C:\folder\file.dae"
+	//   uriToNativePath("file://otherComputer/file.dae") --> "\\otherComputer\file.dae"
 	//   uriToNativePath("http://www.slashdot.org") --> "" (it's not a file scheme URI!)
 	//
 	// Examples - Linux/Mac
 	//   uriToNativePath("../folder/file.dae") --> "../folder/file.dae"
-	//   uriToNativePath("file:///folder/file.dae") --> "/folder/file.dae"
+	//   uriToNativePath("file:/folder/file.dae") --> "/folder/file.dae"
 	//   uriToNativePath("http://www.slashdot.org") --> "" (it's not a file scheme URI!)
 	DLLSPEC std::string uriToNativePath(const std::string& uriRef,
 	                                    systemType type = getSystemType());

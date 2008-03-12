@@ -15,6 +15,7 @@
 
 #include <dae/daeURI.h>
 #include <dae/daeErrorHandler.h>
+#include <dae/daeUtils.h>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ daeRawResolver::getName()
 daeBool
 daeRawResolver::resolveElement(daeURI& uri)
 {
-	if (strcasecmp(uri.pathExt().c_str(), ".raw"))
+	if (cdom::strcasecmp(uri.pathExt().c_str(), ".raw"))
 		return false;
 
 	string fileName = cdom::uriToNativePath(uri.str());

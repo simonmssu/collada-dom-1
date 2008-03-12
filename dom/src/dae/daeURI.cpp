@@ -11,6 +11,7 @@
  * License. 
  */
 
+#include <algorithm>
 #include <dae.h>
 #include <dae/daeURI.h>
 #include <ctype.h>
@@ -705,25 +706,65 @@ bool cdom::parseUriRef(const string& uriRef,
 	return false;
 }
 
+namespace {
+	string safeSubstr(const string& s, size_t offset, size_t length) {
+		string result = s.substr(offset, min(length, s.length() - offset));
+		result.resize(length, '\0');
+		return result;
+	}
+}
+
 string cdom::assembleUri(const string& scheme,
                          const string& authority,
                          const string& path,
                          const string& query,
                          const string& fragment,
-                         bool addEmptyAuthority) {
+                         bool forceLibxmlCompatible) {
+	string p = safeSubstr(path, 0, 3);
+	bool libxmlHack = forceLibxmlCompatible && scheme == "file";
+	bool uncPath = false;
 	string uri;
+
 	if (!scheme.empty())
 		uri += scheme + ":";
-	if (addEmptyAuthority || !authority.empty())
+
+	if (!authority.empty() || libxmlHack || (p[0] == '/' && p[1] == '/'))
 		uri += "//";
-	if (!authority.empty())
-		uri += authority;
+	if (!authority.empty()) {
+		if (libxmlHack) {
+			// We have a UNC path URI of the form file://otherMachine/file.dae.
+			// Convert it to file://///otherMachine/file.dae, which is how libxml
+			// does UNC paths.
+			uri += "///" + authority;
+			uncPath = true;
+		}
+		else {
+			uri += authority;
+		}
+	}
+
+	if (!uncPath && libxmlHack && getSystemType() == Windows) {
+		// We have to be delicate in how we pass absolute path URIs to libxml on Windows.
+		// If the path is an absolute path with no drive letter, add an extra slash to
+		// appease libxml.
+		if (p[0] == '/' && p[1] != '/' && p[2] != ':') {
+			uri += "/";
+		}
+	}
 	uri += path;
+	
 	if (!query.empty())
 		uri += "?" + query;
 	if (!fragment.empty())
 		uri += "#" + fragment;
+
 	return uri;
+}
+
+string cdom::fixUriForLibxml(const string& uriRef) {
+	string scheme, authority, path, query, fragment;
+	cdom::parseUriRef(uriRef, scheme, authority, path, query, fragment);
+	return assembleUri(scheme, authority, path, query, fragment, true);
 }
 
 
@@ -731,15 +772,9 @@ string cdom::nativePathToUri(const string& nativePath, systemType type) {
 	string uri = nativePath;
 
 	if (type == Windows) {
-		// Convert "c:\" to "/c:\"
+		// Convert "c:\" to "/c:/"
 		if (uri.length() >= 2  &&  isalpha(uri[0])  &&  uri[1] == ':')
 			uri.insert(0, "/");
-		else if (!uri.empty()  &&  uri[0] == '\\') {
-			// If it's an absolute path with no drive letter, or a UNC path,
-			// prepend "file:///"
-			uri.insert(0, "file:///");
-		}
-	
 		// Convert backslashes to forward slashes
 		uri = replace(uri, "\\", "/");
 	}
@@ -762,21 +797,27 @@ string cdom::uriToNativePath(const string& uriRef, systemType type) {
 	if (!scheme.empty()  &&  scheme != "file")
 		return "";
 
-	string filePath = path;
+	string filePath;
 
 	if (type == Windows) {
+		if (!authority.empty())
+			filePath += string("\\\\") + authority; // UNC path
+	
 		// Replace two leading slashes with one leading slash, so that
-		// ///otherComputer/file.dae becomes //otherComputer/file.dae
-		if (filePath.length() >= 2  &&  filePath[0] == '/'  &&  filePath[1] == '/')
-			filePath.erase(0, 1);
+		// ///otherComputer/file.dae becomes //otherComputer/file.dae and
+		// //folder/file.dae becomes /folder/file.dae
+		if (path.length() >= 2  &&  path[0] == '/'  &&  path[1] == '/')
+			path.erase(0, 1);
 
 		// Convert "/C:/" to "C:/"
-		if (filePath.length() >= 3  &&  filePath[0] == '/'  &&  filePath[2] == ':')
-			filePath.erase(0, 1);
+		if (path.length() >= 3  &&  path[0] == '/'  &&  path[2] == ':')
+			path.erase(0, 1);
 
 		// Convert forward slashes to back slashes
-		filePath = replace(filePath, "/", "\\");
+		path = replace(path, "/", "\\");
 	}
+
+	filePath += path;
 
 	// Replace %20 with space
 	filePath = replace(filePath, "%20", " ");

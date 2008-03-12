@@ -59,13 +59,6 @@ namespace {
 			                    (daeString)xmlTextReaderConstValue(reader)));
 		}
 	}
-
-	// To work around a bug in libxml
-	string insertEmptyAuthority(const string& uriRef) {
-		string scheme, authority, path, query, fragment;
-		cdom::parseUriRef(uriRef, scheme, authority, path, query, fragment);
-		return cdom::assembleUri(scheme, authority, path, query, fragment, true);
-	}
 }
 
 daeLIBXMLPlugin::daeLIBXMLPlugin(DAE& dae) : dae(dae), rawRelPath(dae)
@@ -115,11 +108,11 @@ daeString daeLIBXMLPlugin::getOption( daeString option )
 // A simple structure to help alloc/free xmlTextReader objects
 struct xmlTextReaderHelper {
 	xmlTextReaderHelper(const daeURI& uri) {
-		reader = xmlReaderForFile(insertEmptyAuthority(uri.str()).c_str(), NULL, 0);
+		reader = xmlReaderForFile(cdom::fixUriForLibxml(uri.str()).c_str(), NULL, 0);
 	}
 
 	xmlTextReaderHelper(daeString buffer, const daeURI& baseUri) {
-		reader = xmlReaderForDoc((xmlChar*)buffer, insertEmptyAuthority(baseUri.str()).c_str(), NULL, 0);
+		reader = xmlReaderForDoc((xmlChar*)buffer, cdom::fixUriForLibxml(baseUri.str()).c_str(), NULL, 0);
 	};
 
 	~xmlTextReaderHelper() {
@@ -259,7 +252,7 @@ daeInt daeLIBXMLPlugin::write(const daeURI& name, daeDocument *document, daeBool
 	}
 
 	// Open the file we will write to
-	writer = xmlNewTextWriterFilename(insertEmptyAuthority(name.str()).c_str(), 0);
+	writer = xmlNewTextWriterFilename(cdom::fixUriForLibxml(name.str()).c_str(), 0);
 	if ( !writer ) {
 		ostringstream msg;
 		msg << "daeLIBXMLPlugin::write(" << name.str() << ") failed\n";
