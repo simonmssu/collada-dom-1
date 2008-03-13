@@ -1095,6 +1095,16 @@ DefineTest(uriOps) {
 }
 
 
+DefineTest(uriBase) {
+	DAE dae;
+	daeURI uri(dae, cdom::nativePathToUri(lookupTestFile("uri.dae")));
+	CheckResult(dae.open(uri.str()));
+	domImage::domInit_from* initFrom = dae.getDatabase()->typeLookup<domImage::domInit_from>().at(0);
+	CheckResult(initFrom->getValue().pathDir() == uri.pathDir());
+	return testResult(true);
+}
+
+
 DefineTest(xmlNavigation) {
 	DAE dae;
 	string file = lookupTestFile("cube.dae");

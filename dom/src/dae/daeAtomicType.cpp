@@ -956,3 +956,17 @@ void daeResolverType::copy(daeChar* src, daeChar* dst) {
 void daeIDResolverType::copy(daeChar* src, daeChar* dst) {
 	(daeIDRef&)*dst = (daeIDRef&)*src;
 }
+
+void daeResolverType::setDocument(daeChar* value, daeDocument* doc) {
+	daeURI* uri = (daeURI*)value;
+	uri->setContainer(uri->getContainer());
+}
+
+void daeResolverType::setDocument(daeArray& array, daeDocument* doc) {
+	// !!!steveT
+	// The daeURI object no longer has a constructor that takes no arguments, so
+	// it's not compatible with daeTArray. Therefore this method currently can't be used,
+	// and asserts if you try to use it. The DOM doesn't ever call this code now,
+	// so the situation is sort of alright, but we might need to fix this in the future.
+	assert(false);
+}

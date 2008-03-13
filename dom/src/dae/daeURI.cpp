@@ -144,7 +144,9 @@ namespace {
 	}
 }
 
-void daeURI::set(const string& uriStr, const daeURI* baseURI) {
+void daeURI::set(const string& uriStr_, const daeURI* baseURI) {
+	// We make a copy of the uriStr so that set(originalURIString, ...) works properly.
+	string uriStr = uriStr_;
 	reset();
 	originalURIString = uriStr;
 
@@ -391,6 +393,12 @@ daeElementRef daeURI::getElement() {
 	if (!element)
 		internalResolveElement();
 	return element;
+}
+
+void daeURI::setContainer(daeElement* cont) {
+	container = cont;
+	// Since we have a new container element, the base URI may have changed. Re-resolve.
+	set(originalURIString);
 }
 
 void daeURI::internalResolveElement() {

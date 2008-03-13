@@ -83,14 +83,8 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeElement* dom, daeDocu
 	
 	// Make a new document
 	daeDocument *newDocument = new daeDocument(dae);
-	// Create a Reference on the domCOLLADA passed into us
-	newDocument->setDomRoot(dom);
-	// Set the domCollada's document to this one
-	//dom->setDocument(newDocument);
-	// Set and resolve the document URI
 	newDocument->getDocumentURI()->setURI(name);
-	newDocument->getDocumentURI()->validate();
-	//insertElement( newDocument, dom );
+	newDocument->setDomRoot(dom);
 	// Push the connection into the database
 	documents.push_back(newDocument);
 	
@@ -125,12 +119,9 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeDocument** document)
 	daeDocument *newDocument = new daeDocument(dae);
 	// Make a domCOLLADA to be the root of this new document (this makes a reference so the domCOLLADA won't delete itself
 	daeElementRef myCOLLADA = topMeta->create();
-	// Set the domCollada's document to this one
 	myCOLLADA->setDocument(newDocument);
-	newDocument->setDomRoot(myCOLLADA);
-	// Set and resolve the document URI
 	newDocument->getDocumentURI()->setURI(name);
-	newDocument->getDocumentURI()->validate();
+	newDocument->setDomRoot(myCOLLADA);
 
 	// Add this document to the list.
 	documents.push_back(newDocument);

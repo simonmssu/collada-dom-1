@@ -247,7 +247,6 @@ daeInt daeLIBXMLPlugin::write(const daeURI& name, daeDocument *document, daeBool
 			return DAE_ERR_BACKEND_IO;
 		}
 		rawRelPath.set(cdom::nativePathToUri(rawFilePath));
-		rawRelPath.validate();
 		rawRelPath.makeRelativeTo( &name );
 	}
 

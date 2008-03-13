@@ -298,7 +298,7 @@ public:
 	 * Sets the pointer to the @c daeElement that contains this URI.
 	 * @param cont Pointer to the containing @c daeElmement.
 	 */
-	inline void setContainer(daeElement* cont){container=cont;};
+	void setContainer(daeElement* container);
 
 	/**
 	 * Gets if this URI resolves to an element that is not contained in the same document as the URI.
@@ -312,16 +312,6 @@ public:
 	 * the URI string.
 	 */
 	void resolveURI();
-
-	/**
-	 * Flattens this URI with base URI to obtain a useable
-	 * complete URI for resolution.
-	 * @param baseURI Base URI to flatten against if this URI is
-	 * relative.
-	 * @note After @c validate(), state is @c uri_pending as it is awaiting a call to
-	 * @c resolveElement().
-	 */
-	void validate(const daeURI* baseURI = NULL);
 
 	/**
 	 * Copies the URI specified in <tt><i>from</i></tt> into @c this.
@@ -360,8 +350,9 @@ public:
 
 	daeURI& operator=(const std::string& uri);
 
-	// This method is deprecated. There's no reason to ever call it. Just call getElement directly.
-	void resolveElement();
+	// These methods are deprecated.
+	void resolveElement(); // Call getElement directly.
+	void validate(const daeURI* baseURI = NULL); // Shouldn't ever need to call this.
 
 private:
 	/**
