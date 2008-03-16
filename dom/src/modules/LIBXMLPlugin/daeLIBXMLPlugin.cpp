@@ -55,15 +55,15 @@ namespace {
 		attributes.reserve(numAttributes);
 		
 		while (xmlTextReaderMoveToNextAttribute(reader) == 1) {
-            const xmlChar* xmlName = xmlTextReaderConstName(reader);
-            const xmlChar* xmlValue = xmlTextReaderConstValue(reader);
+			const xmlChar* xmlName = xmlTextReaderConstName(reader);
+			const xmlChar* xmlValue = xmlTextReaderConstValue(reader);
 #ifdef WIN32
-            int inLen = xmlStrlen(xmlValue);
-            int outLen = inLen;
-            xmlChar* value = new xmlChar[(inLen+1)*2];
-            int numBytes = UTF8Toisolat1(value, &outLen, xmlValue, &inLen);
-            value[numBytes] = 0;
-            attributes.push_back(std::pair<daeString, daeString>((daeString)xmlName, (daeString)value));
+			int inLen = xmlStrlen(xmlValue);
+			int outLen = inLen;
+			xmlChar* value = new xmlChar[(inLen+1)*2];
+			int numBytes = UTF8Toisolat1(value, &outLen, xmlValue, &inLen);
+			value[numBytes] = 0;
+			attributes.push_back(std::pair<daeString, daeString>((daeString)xmlName, (daeString)value));
 #else
 			attributes.push_back(std::pair<daeString, daeString>((daeString)xmlName, (daeString)xmlValue));
 #endif
@@ -202,15 +202,15 @@ daeElementRef daeLIBXMLPlugin::readElement(_xmlTextReader* reader, daeElement* p
 			element->placeElement(readElement(reader, element));
 		}
 		else if (nodeType == XML_READER_TYPE_TEXT) {
-            const xmlChar* xmlText = xmlTextReaderConstValue(reader);
+			const xmlChar* xmlText = xmlTextReaderConstValue(reader);
 #ifdef WIN32
-            int inLen = xmlStrlen(xmlText);
-            int outLen = inLen;
-            xmlChar* text = new xmlChar[(inLen+1)*2];
-            int numBytes = UTF8Toisolat1(text, &outLen, xmlText, &inLen);
-            text[numBytes] = 0;
-            readElementText(element, (daeString)text, getCurrentLineNumber(reader));
-            delete [] text;
+			int inLen = xmlStrlen(xmlText);
+			int outLen = inLen;
+			xmlChar* text = new xmlChar[(inLen+1)*2];
+			int numBytes = UTF8Toisolat1(text, &outLen, xmlText, &inLen);
+			text[numBytes] = 0;
+			readElementText(element, (daeString)text, getCurrentLineNumber(reader));
+			delete [] text;
 #else
 			readElementText(element, (daeString)xmlText, getCurrentLineNumber(reader));
 #endif
@@ -409,17 +409,17 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 	std::ostringstream buffer;
 	attr->memoryToString(element, buffer);
 #ifdef WIN32
-    std::string str = buffer.str();
-    int lengthIn = (int)str.length();    
-    xmlChar* xmlStrIn = xmlCharStrndup(str.c_str(), lengthIn);    
-    int lengthOut = (lengthIn+1)*2;
-    xmlChar* xmlStrOut = new xmlChar[lengthOut];
-    int num = isolat1ToUTF8(xmlStrOut, &lengthOut, xmlStrIn, &lengthIn);
-    xmlStrOut[num] = '\0';
-    xmlTextWriterWriteString(writer, xmlStrOut);
-    delete [] xmlStrOut;
+	std::string str = buffer.str();
+	int lengthIn = (int)str.length();    
+	xmlChar* xmlStrIn = xmlCharStrndup(str.c_str(), lengthIn);    
+	int lengthOut = (lengthIn+1)*2;
+	xmlChar* xmlStrOut = new xmlChar[lengthOut];
+	int num = isolat1ToUTF8(xmlStrOut, &lengthOut, xmlStrIn, &lengthIn);
+	xmlStrOut[num] = '\0';
+	xmlTextWriterWriteString(writer, xmlStrOut);
+	delete [] xmlStrOut;
 #else
-		xmlTextWriterWriteString(writer, (xmlChar*)buffer.str().c_str());
+	xmlTextWriterWriteString(writer, (xmlChar*)buffer.str().c_str());
 #endif
 	
 	xmlTextWriterEndAttribute(writer);
@@ -427,21 +427,21 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 
 void daeLIBXMLPlugin::writeValue(daeElement* element) {
 	if (daeMetaAttribute* attr = element->getMeta()->getValueAttribute()) {
-			std::ostringstream buffer;
-			attr->memoryToString(element, buffer);
-			std::string s = buffer.str();
-			if (!s.empty()) {
+		std::ostringstream buffer;
+		attr->memoryToString(element, buffer);
+		std::string s = buffer.str();
+		if (!s.empty()) {
 #ifdef WIN32
-                int lengthIn = (int) s.length();    
-                xmlChar* xmlStrIn = xmlCharStrndup(s.c_str(), lengthIn);    
-                int lengthOut = (lengthIn+1)*2;
-                xmlChar* xmlStrOut = new xmlChar[lengthOut];
-                int num = isolat1ToUTF8(xmlStrOut, &lengthOut, xmlStrIn, &lengthIn);
-                xmlStrOut[num] = '\0';
-                xmlTextWriterWriteString(writer, xmlStrOut);
-                delete [] xmlStrOut;
+			int lengthIn = (int) s.length();    
+			xmlChar* xmlStrIn = xmlCharStrndup(s.c_str(), lengthIn);    
+			int lengthOut = (lengthIn+1)*2;
+			xmlChar* xmlStrOut = new xmlChar[lengthOut];
+			int num = isolat1ToUTF8(xmlStrOut, &lengthOut, xmlStrIn, &lengthIn);
+			xmlStrOut[num] = '\0';
+			xmlTextWriterWriteString(writer, xmlStrOut);
+			delete [] xmlStrOut;
 #else
-								xmlTextWriterWriteString(writer, (xmlChar*)s.c_str());
+			xmlTextWriterWriteString(writer, (xmlChar*)s.c_str());
 #endif
 			}
 	}
