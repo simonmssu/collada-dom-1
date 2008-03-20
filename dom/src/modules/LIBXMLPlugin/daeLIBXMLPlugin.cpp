@@ -57,7 +57,7 @@ namespace {
 			// Failed. Return an empty string instead.
 			numBytes = 0;
 
-		latin1[numBytes] = NULL;
+		latin1[numBytes] = '\0';
 		return latin1;
 	}
 
@@ -71,7 +71,7 @@ namespace {
 			// Failed. Return an empty string instead.
 			numBytes = 0;
 
-		utf8[numBytes] = NULL;
+		utf8[numBytes] = '\0';
 		return utf8;
 	}
 
