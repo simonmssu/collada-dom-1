@@ -46,9 +46,43 @@ namespace {
 #endif
 	}
 
-	// The attributes vector passed in should be empty
+	// Return value should be freed by caller with delete[]. Passed in value should not
+	// be null.
+	xmlChar* utf8ToLatin1(const xmlChar* utf8) {
+		int inLen = xmlStrlen(utf8);
+		int outLen = (inLen+1) * 2;
+		xmlChar* latin1 = new xmlChar[outLen];
+		int numBytes = UTF8Toisolat1(latin1, &outLen, utf8, &inLen);
+		if (numBytes < 0)
+			// Failed. Return an empty string instead.
+			numBytes = 0;
+
+		latin1[numBytes] = NULL;
+		return latin1;
+	}
+
+	// Return value should be freed by caller with delete[].
+	xmlChar* latin1ToUtf8(const string& latin1) {
+		int inLen = (int)latin1.length();
+		int outLen = (inLen+1) * 2;
+		xmlChar* utf8 = new xmlChar[outLen];
+		int numBytes = isolat1ToUTF8(utf8, &outLen, (xmlChar*)latin1.c_str(), &inLen);
+		if (numBytes < 0)
+			// Failed. Return an empty string instead.
+			numBytes = 0;
+
+		utf8[numBytes] = NULL;
+		return utf8;
+	}
+
+	typedef pair<daeString, daeString> stringPair;
+	
+	// The attributes vector passed in should be empty. If 'encoding' is anything
+	// other than utf8 the caller should free the returned attribute value
+	// strings. The 'freeAttrValues' function is provided for that purpose.
 	void packageCurrentAttributes(xmlTextReaderPtr reader,
-	                              /* out */ std::vector<std::pair<daeString, daeString> >& attributes) {
+	                              DAE::charEncoding encoding,
+	                              /* out */ vector<stringPair>& attributes) {
 		int numAttributes = xmlTextReaderAttributeCount(reader);
 		if (numAttributes == -1 || numAttributes == 0)
 			return;
@@ -57,16 +91,17 @@ namespace {
 		while (xmlTextReaderMoveToNextAttribute(reader) == 1) {
 			const xmlChar* xmlName = xmlTextReaderConstName(reader);
 			const xmlChar* xmlValue = xmlTextReaderConstValue(reader);
-#ifdef WIN32
-			int inLen = xmlStrlen(xmlValue);
-			int outLen = inLen;
-			xmlChar* value = new xmlChar[(inLen+1)*2];
-			int numBytes = UTF8Toisolat1(value, &outLen, xmlValue, &inLen);
-			value[numBytes] = 0;
-			attributes.push_back(std::pair<daeString, daeString>((daeString)xmlName, (daeString)value));
-#else
-			attributes.push_back(std::pair<daeString, daeString>((daeString)xmlName, (daeString)xmlValue));
-#endif
+			if (encoding == DAE::Latin1)
+				attributes.push_back(stringPair((daeString)xmlName, (daeString)utf8ToLatin1(xmlValue)));
+			else
+				attributes.push_back(stringPair((daeString)xmlName, (daeString)xmlValue));
+		}
+	}
+
+	void freeAttrValues(vector<stringPair>& pairs) {
+		for(size_t i=0, size=pairs.size(); i<size; ++i) {
+			delete[] pairs[i].second;
+			pairs[i].second = 0;
 		}
 	}
 }
@@ -136,7 +171,7 @@ struct xmlTextReaderHelper {
 daeElementRef daeLIBXMLPlugin::readFromFile(const daeURI& uri) {
 	xmlTextReaderHelper readerHelper(uri);
 	if (!readerHelper.reader) {
-		daeErrorHandler::get()->handleError((std::string("Failed to open ") + uri.str() +
+		daeErrorHandler::get()->handleError((string("Failed to open ") + uri.str() +
 		                                    " in daeLIBXMLPlugin::readFromFile\n").c_str());
 		return NULL;
 	}
@@ -171,20 +206,12 @@ daeElementRef daeLIBXMLPlugin::readElement(_xmlTextReader* reader, daeElement* p
 	daeString elementName = (daeString)xmlTextReaderConstName(reader);
 	bool empty = xmlTextReaderIsEmptyElement(reader) != 0;
 
-	std::vector<attrPair> attributes;
-	packageCurrentAttributes(reader, /* out */ attributes);
+	vector<attrPair> attributes;
+	packageCurrentAttributes(reader, dae.getCharEncoding(), /* out */ attributes);
 	
 	daeElementRef element = beginReadElement(parentElement, elementName, attributes, getCurrentLineNumber(reader));
-#ifdef WIN32
-    // for windows we ceated temporary character arrays which should be deleted
-    // to get no memory leak.
-    for(size_t i=0, size=attributes.size(); i<size; ++i)
-    {
-        attrPair& attrib = attributes[i];
-        delete [] attrib.second;
-        attrib.second = 0;
-    }
-#endif
+	if (dae.getCharEncoding() != DAE::Utf8)
+		freeAttrValues(attributes);
 
 	if (!element) {
 		// We couldn't create the element. beginReadElement already printed an error message. Just make sure
@@ -203,17 +230,11 @@ daeElementRef daeLIBXMLPlugin::readElement(_xmlTextReader* reader, daeElement* p
 		}
 		else if (nodeType == XML_READER_TYPE_TEXT) {
 			const xmlChar* xmlText = xmlTextReaderConstValue(reader);
-#ifdef WIN32
-			int inLen = xmlStrlen(xmlText);
-			int outLen = inLen;
-			xmlChar* text = new xmlChar[(inLen+1)*2];
-			int numBytes = UTF8Toisolat1(text, &outLen, xmlText, &inLen);
-			text[numBytes] = 0;
-			readElementText(element, (daeString)text, getCurrentLineNumber(reader));
-			delete [] text;
-#else
+			if (dae.getCharEncoding() == DAE::Latin1)
+				xmlText = utf8ToLatin1(xmlText);
 			readElementText(element, (daeString)xmlText, getCurrentLineNumber(reader));
-#endif
+			if (dae.getCharEncoding() == DAE::Latin1)
+				delete[] xmlText;
 
 			if (xmlTextReaderRead(reader) != 1)
 				return NULL;
@@ -406,44 +427,33 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 	}
 
 	xmlTextWriterStartAttribute(writer, (xmlChar*)(daeString)attr->getName());
-	std::ostringstream buffer;
+	ostringstream buffer;
 	attr->memoryToString(element, buffer);
-#ifdef WIN32
-	std::string str = buffer.str();
-	int lengthIn = (int)str.length();    
-	xmlChar* xmlStrIn = xmlCharStrndup(str.c_str(), lengthIn);    
-	int lengthOut = (lengthIn+1)*2;
-	xmlChar* xmlStrOut = new xmlChar[lengthOut];
-	int num = isolat1ToUTF8(xmlStrOut, &lengthOut, xmlStrIn, &lengthIn);
-	xmlStrOut[num] = '\0';
-	xmlTextWriterWriteString(writer, xmlStrOut);
-	delete [] xmlStrOut;
-#else
-	xmlTextWriterWriteString(writer, (xmlChar*)buffer.str().c_str());
-#endif
+	string str = buffer.str();
+
+	xmlChar* utf8 = (xmlChar*)str.c_str();
+	if (dae.getCharEncoding() == DAE::Latin1)
+		utf8 = latin1ToUtf8(str);
+	xmlTextWriterWriteString(writer, utf8);
+	if (dae.getCharEncoding() == DAE::Latin1)
+		delete[] utf8;
 	
 	xmlTextWriterEndAttribute(writer);
 }
 
 void daeLIBXMLPlugin::writeValue(daeElement* element) {
 	if (daeMetaAttribute* attr = element->getMeta()->getValueAttribute()) {
-		std::ostringstream buffer;
+		ostringstream buffer;
 		attr->memoryToString(element, buffer);
-		std::string s = buffer.str();
+		string s = buffer.str();
 		if (!s.empty()) {
-#ifdef WIN32
-			int lengthIn = (int) s.length();    
-			xmlChar* xmlStrIn = xmlCharStrndup(s.c_str(), lengthIn);    
-			int lengthOut = (lengthIn+1)*2;
-			xmlChar* xmlStrOut = new xmlChar[lengthOut];
-			int num = isolat1ToUTF8(xmlStrOut, &lengthOut, xmlStrIn, &lengthIn);
-			xmlStrOut[num] = '\0';
-			xmlTextWriterWriteString(writer, xmlStrOut);
-			delete [] xmlStrOut;
-#else
+			xmlChar* str = (xmlChar*)s.c_str();
+			if (dae.getCharEncoding() == DAE::Latin1)
+				str = latin1ToUtf8(s);
 			xmlTextWriterWriteString(writer, (xmlChar*)s.c_str());
-#endif
-			}
+			if (dae.getCharEncoding() == DAE::Latin1)
+				delete[] str;
+		}
 	}
 }
 

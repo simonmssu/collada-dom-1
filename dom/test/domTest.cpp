@@ -23,6 +23,13 @@
 #include <dom/domAsset.h>
 #include "domTest.h"
 
+// Windows memory leak checking
+#if defined WIN32 && defined _DEBUG
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#endif
+
 namespace fs = boost::filesystem;
 using namespace std;
 using namespace cdom;
@@ -1306,12 +1313,16 @@ DefineTest(fileExtension) {
 
 
 DefineTest(charEncoding) {
+	// Basically we're just looking for crashes or memory leaks here.
+	string file = getTmpFile("charEncoding.dae");
 	DAE dae;
-	daeElement* elt = dae.add(getTmpFile("charEncoding.dae"))->add("asset contributor comments");
+	dae.setCharEncoding(DAE::Latin1);
+	daeElement* elt = dae.add(file)->add("asset contributor comments");
 	CheckResult(elt);
-	elt->setCharData("æøå");
+	elt->setCharData("æ ø å ü ä ö");
 	CheckResult(dae.writeAll());
-
+	dae.clear();
+	CheckResult(dae.open(file));
 	return testResult(true);
 }
 
@@ -1405,6 +1416,11 @@ struct tmpDir {
 
 
 int main(int argc, char* argv[]) {
+	// Windows memory leak checking
+#if defined WIN32 && defined _DEBUG
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF | _CRTDBG_CHECK_EVERY_1024_DF);
+#endif
+
 	if (argc == 1) {
 		cout << "Usage:\n"
 		        "  -printTests - Print the names of all available tests\n"
