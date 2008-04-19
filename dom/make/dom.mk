@@ -10,15 +10,21 @@ src += $(wildcard src/$(colladaVersion)/dom/*.cpp)
 
 includeOpts := -Iinclude -Iinclude/$(colladaVersion)
 
-ifneq ($(os),ps3)
-# We're building a shared lib, so make sure to generate position independent code
+ifneq ($(findstring $(os),linux mac),)
 ccFlags += -fPIC
+else ifeq ($(os),windows)
+ccFlags += -DDOM_DYNAMIC -DDOM_EXPORT
 endif
 
 ifneq ($(findstring libxml,$(xmlparsers)),)
 ccFlags += -DDOM_INCLUDE_LIBXML
+ifeq ($(os),windows)
+includeOpts += -Iexternal-libs/libxml2/win32/include
+libOpts += -Lexternal-libs/libxml2/$(buildID)/lib -lxml2 -lws2_32 -lz
+else
 includeOpts += -I/usr/include/libxml2
 libOpts += -lxml2
+endif
 endif
 
 ifneq ($(findstring tinyxml,$(xmlparsers)),)
@@ -31,8 +37,11 @@ endif
 ifeq ($(os),linux)
 libOpts += -lpcre -lpcrecpp
 else
+ifeq ($(os),windows)
+ccFlags += -DPCRE_STATIC
+endif
 includeOpts += -Iexternal-libs/pcre
-libOpts += $(addprefix external-libs/pcre/lib/$(os)/,libpcre.a libpcrecpp.a)
+libOpts += $(addprefix external-libs/pcre/lib/$(buildID)/,libpcrecpp.a libpcre.a )
 endif
 
 libName := libcollada$(colladaVersionNoDots)dom$(debugSuffix)
@@ -43,6 +52,12 @@ ifeq ($(os),linux)
 # On Linux we build a static lib and a shared lib
 targets += $(addprefix $(outPath),$(libName).a)
 targets += $(addprefix $(outPath),$(libName).so)
+
+else ifeq ($(os),windows)
+# On Windows we build a static lib and a DLL
+windowsLibName := libcollada$(colladaVersionNoDots)dom
+targets += $(addprefix $(outPath),$(windowsLibName)$(debugSuffix).a)
+targets += $(addprefix $(outPath),$(windowsLibName)$(libVersion)$(debugSuffix).dll)
 
 else ifeq ($(os),mac)
 # On Mac we build a framework

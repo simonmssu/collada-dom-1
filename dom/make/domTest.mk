@@ -6,7 +6,7 @@ targets := $(outPath)domTest$(exeSuffix)
 # DOM defs. This is extra complicated because of the installTest make target. The extra
 # complexity is justified since installTest is very useful.
 ifneq ($(os),mac)
-libSuffix := $(if $(findstring ps3,$(os)),.a,.so)
+libSuffix := $(if $(findstring windows,$(os)),.dll,$(if $(findstring ps3,$(os)),.a,.so))
 domPath := $(if $(installTest),$(installPrefix)/lib/,$(outPath))
 domName := $(domPath)libcollada$(colladaVersionNoDots)dom$(debugSuffix)$(libSuffix)
 ifeq ($(installTest),)
