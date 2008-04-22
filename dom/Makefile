@@ -89,6 +89,8 @@ comma := ,
 domMajorVersion := 2
 domMinorVersion := 0
 domVersion := $(domMajorVersion).$(domMinorVersion)
+domVersionNoDots := $(subst .,,$(domVersion))
+
 
 # Have make automatically delete a target if there's an error in one of the rule commands
 .DELETE_ON_ERROR:

@@ -107,7 +107,7 @@ $(dll): ccFlags := $(ccFlags)
 $(dll): libOpts := $(libOpts)
 $(dll): $(dependentLibs) $(obj) | $(dir $(dll))
 	@echo Linking $@
-	$(cc) $(ccFlags) -Wl,--out-implib,$@.a -shared -o $@ $^ $(libOpts)
+	$(cc) $(ccFlags) -Wl,--out-implib,$(@:.dll=.lib) -shared -o $@ $^ $(libOpts)
 endif
 
 # Rule for Mac-style dynamic libs
