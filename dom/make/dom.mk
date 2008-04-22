@@ -30,7 +30,7 @@ endif
 ifneq ($(findstring tinyxml,$(xmlparsers)),)
 ccFlags += -DDOM_INCLUDE_TINYXML
 includeOpts += -Iexternal-libs/tinyxml/
-libOpts += external-libs/tinyxml/lib/$(os)/libtinyxml.a
+libOpts += external-libs/tinyxml/lib/$(buildID)/libtinyxml.a
 endif
 
 # On Mac and PS3 we need to be told where to find pcre
