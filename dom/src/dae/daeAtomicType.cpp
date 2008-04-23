@@ -270,7 +270,7 @@ daeLongType::daeLongType(DAE& dae) : daeAtomicType(dae)
 	_maxStringLength = 32;
 	_nameBindings.append("xsLong");
 	_nameBindings.append("xsLongArray");
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__MINGW32__)
 	_printFormat = "%I64d";
 	_scanFormat = "%I64d";
 #else
@@ -314,7 +314,7 @@ daeULongType::daeULongType(DAE& dae) : daeAtomicType(dae)
 	_maxStringLength = 32;
 	_nameBindings.append("ulong");
 	_nameBindings.append("xsUnsignedLong");
-#if defined(WIN32) || defined(__MINGW32__)
+#if defined(_MSC_VER) || defined(__MINGW32__)
 	_printFormat = "%I64u";
 	_scanFormat = "%I64u";
 #else

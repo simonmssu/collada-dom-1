@@ -42,12 +42,14 @@
 #include <string>
 #include <iosfwd>    // for ostream forward-declaration
 
-#if 0
+#ifndef _MSC_VER
+#if 1
 #define HAVE_TYPE_TRAITS
 #include <type_traits.h>
-#elif 1
+#elif 0
 #define HAVE_TYPE_TRAITS
 #include <bits/type_traits.h>
+#endif
 #endif
 
 #include <pcre.h>
