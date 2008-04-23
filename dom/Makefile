@@ -188,7 +188,7 @@ endif
 ifneq ($(installPrefix),)
 ifeq ($(oss),linux)
 uninstall:
-	@echo Uninstalling from $(prefix)
+	@echo Uninstalling from $(installPrefix)
 	rm -rf $(installPrefix)/include/colladadom
 	rm -f  $(installPrefix)/lib/libcollada*dom*
 else ifeq ($(oss),mac)
