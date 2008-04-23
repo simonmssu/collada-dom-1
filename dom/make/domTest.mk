@@ -29,7 +29,7 @@ endif
 ifeq ($(installTest),)
 includeOpts += -Iinclude -Iinclude/$(colladaVersion)
 else ifeq ($(os),linux)
-includeOpts += -I$(installPrefix)/include/collada -I$(installPrefix)/include/collada/$(colladaVersion)
+includeOpts += -I$(installPrefix)/include/colladadom -I$(installPrefix)/include/colladadom/$(colladaVersion)
 else ifeq ($(os),mac)
 includeOpts += -I$(installPrefix)/$(domFramework)/Headers
 endif
