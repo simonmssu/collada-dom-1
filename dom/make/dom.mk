@@ -33,10 +33,10 @@ includeOpts += -Iexternal-libs/tinyxml/
 libOpts += external-libs/tinyxml/lib/$(buildID)/libtinyxml.a
 endif
 
-# On Mac and PS3 we need to be told where to find pcre
-ifeq ($(os),linux)
+# On Windows and PS3 we need to be told where to find pcre
+ifneq ($(findstring $(os),linux mac),)
 libOpts += -lpcre -lpcrecpp
-else
+else 
 ifeq ($(os),windows)
 ccFlags += -DPCRE_STATIC
 endif
