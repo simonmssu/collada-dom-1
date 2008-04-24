@@ -42,7 +42,7 @@
 #include <string>
 #include <iosfwd>    // for ostream forward-declaration
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) && !defined(__CELLOS_LV2__)
 #if 1
 #define HAVE_TYPE_TRAITS
 #include <type_traits.h>
