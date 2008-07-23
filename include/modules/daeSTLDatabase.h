@@ -13,6 +13,7 @@
 
 #include <vector>
 #include <map>
+#include <set>
 #include <string>
 #include <algorithm>
 #include <functional>
@@ -89,20 +90,13 @@ private:
 
 	std::map< std::string, std::vector< daeElement* > > elements; // type name --> element lookup table (deprecated)
 
-	std::multimap<daeInt, daeElement*> typeMap; // type ID --> element lookup table
-	typedef std::multimap<daeInt, daeElement*>::iterator typeMapIter;
-	typedef std::pair<daeInt, daeElement*> typeMapPair;
-	typedef std::pair<typeMapIter, typeMapIter> typeMapRange;
+	typedef std::set<daeElement*> daeElementPtrSet;
+	typedef std::map<daeInt, daeElementPtrSet> daeTypeElementMap;
+	typedef std::map<std::string, daeElementPtrSet> daeStringElementMap;
 
-	std::multimap< std::string, daeElement* > elementsIDMap; //map for elements keyed on ID
-	typedef std::multimap<std::string, daeElement*>::iterator idMapIter;
-	typedef std::pair<std::string, daeElement*> idMapPair;
-	typedef std::pair<idMapIter, idMapIter> idMapRange;
-
-	std::multimap< std::string, daeElement* > sidMap; // sid --> element lookup table
-	typedef std::multimap<std::string, daeElement*>::iterator sidMapIter;
-	typedef std::pair<std::string, daeElement*> sidMapPair;
-	typedef std::pair<sidMapIter, sidMapIter> sidMapRange;
+	daeTypeElementMap typeMap; // type ID --> element lookup table
+	daeStringElementMap elementsIDMap; //map for elements keyed on ID
+	daeStringElementMap sidMap; // sid --> element lookup table
 
 	std::vector<daeDocument*> documents;
 	daeMetaElement* topMeta;

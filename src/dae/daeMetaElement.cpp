@@ -443,6 +443,8 @@ void daeMetaElement::getChildren( daeElement* parent, daeElementRefArray &array 
 	}
 	if ( _metaContents != NULL ) {
 		daeElementRefArray* contents = (daeElementRefArray*)_metaContents->getWritableMemory(parent);
+		size_t count = contents->getCount();
+		array.grow( array.getCount() + count );
 		for ( size_t x = 0; x < contents->getCount(); x++ ) {
 			array.append( contents->get(x) );
 		}

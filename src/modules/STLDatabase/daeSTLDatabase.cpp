@@ -188,7 +188,7 @@ daeString daeSTLDatabase::getDocumentName(daeUInt index)
 daeInt daeSTLDatabase::insertElement(daeDocument* document,daeElement* element)
 {
 	insertChildren( document, element );
-	
+
 	map<string, vector< daeElement* > >::iterator iter = elements.find( string( element->getTypeName() ) );
 	if ( iter != elements.end() )
 	{
@@ -202,11 +202,13 @@ daeInt daeSTLDatabase::insertElement(daeDocument* document,daeElement* element)
 	}
 
 	// Insert into the type ID map
-	typeMap.insert(make_pair(element->typeID(), element));
+	daeElementPtrSet& elementSet = typeMap[element->typeID()];
+	elementSet.insert(element);
 
 	//insert into IDMap if element has an ID. IDMap is used to speed up URI resolution
 	if ( element->getID() != NULL ) {
-		elementsIDMap.insert( make_pair( string( element->getID() ), element ) );
+		daeElementPtrSet& elementSet = elementsIDMap[element->getID()];
+		elementSet.insert( element );
 	}
 
 	// Insert into sid map if the element has a sid
@@ -253,23 +255,33 @@ daeInt daeSTLDatabase::removeElement(daeDocument* document,daeElement* element)
 		}
 	}
 
-	typeMapRange range = typeMap.equal_range(element->typeID());
-	for (typeMapIter iter = range.first; iter != range.second; iter++) {
-		if (iter->second == element) {
-			typeMap.erase(iter);
-			break;
+	daeTypeElementMap::iterator typeIter = typeMap.find(element->typeID());
+	if(typeIter != typeMap.end())
+	{
+		daeElementPtrSet& elementSet = typeIter->second;
+		daeElementPtrSet::iterator elementIter = elementSet.find(element);
+		if(elementIter != elementSet.end())
+		{
+			elementSet.erase(elementIter);
 		}
 	}
+	
 
-	if ( element->getID() != NULL ) {
-		idMapRange range = elementsIDMap.equal_range( string( element->getID() ) );
-		multimap<string, daeElement* >::iterator iter = range.first;
-		while( iter != range.second ) {
-			if ( (*iter).second == element ) {
-				elementsIDMap.erase( iter );
-				break;
+	if ( element->getID() != NULL ) 
+	{
+		daeStringElementMap::iterator idIter = elementsIDMap.find( string(element->getID()) );
+		if(idIter != elementsIDMap.end())
+		{
+			daeElementPtrSet& elementSet = idIter->second;
+			daeElementPtrSet::iterator elementIter = elementSet.find(element);
+			if(elementIter != elementSet.end())
+			{
+				elementSet.erase(elementIter);
 			}
-			++iter;
+			if(elementSet.empty())
+			{
+				elementsIDMap.erase(idIter);
+			}
 		}
 	}
 
@@ -307,21 +319,26 @@ daeInt daeSTLDatabase::changeElementID( daeElement* element, daeString newID )
 
 	// Remove the current entry in the ID map if the element has an ID
 	if ( element->getID() != NULL ) {
-		pair< multimap<string, daeElement* >::iterator, multimap<string, daeElement* >::iterator> range;
-		range = elementsIDMap.equal_range( string( element->getID() ) );
-		multimap<string, daeElement* >::iterator iter = range.first;
-		while( iter != range.second ) {
-			if ( (*iter).second == element ) {
-				elementsIDMap.erase( iter );
-				break;
+		daeStringElementMap::iterator idIter = elementsIDMap.find( element->getID() );
+		if(idIter != elementsIDMap.end())
+		{
+			daeElementPtrSet& elementSet = idIter->second;
+			daeElementPtrSet::iterator elementItr = elementSet.find(element);
+			if(elementItr != elementSet.end())
+			{
+				elementSet.erase(elementItr);
 			}
-			++iter;
+			if(elementSet.empty())
+			{
+				elementsIDMap.erase(idIter);
+			}
 		}
 	}
 
 	// Add an entry to the ID map if the element will have an ID
 	if ( newID != NULL ) {
-		elementsIDMap.insert( make_pair( string( newID ), element ) );
+		daeElementPtrSet& elementSet = elementsIDMap[ newID ];
+		elementSet.insert(element);
 	}
 
 	dae.getSidRefCache().clear();
@@ -398,17 +415,20 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 				return 0;
 			}
 			// a document was specified
-			pair< multimap< string, daeElement* >::iterator, multimap< string, daeElement* >::iterator > range;
-			range = elementsIDMap.equal_range( string( name ) );
-			multimap< string, daeElement* >::iterator i = range.first;
-			while ( i != range.second )
+			daeStringElementMap::iterator idIter = elementsIDMap.find( string( name ) );
+			if(idIter != elementsIDMap.end())
 			{
-				if ( col == (*i).second->getDocument() )
+				const daeElementPtrSet& elementSet = idIter->second;
+				for(daeElementPtrSet::const_iterator elementItr = elementSet.begin(); elementItr != elementSet.end(); ++elementItr)
 				{
-					count++;
+					daeElement* element = *elementItr;
+					if ( col == element->getDocument() )
+					{
+						count++;
+					}
 				}
-				++i;
 			}
+			
 			return count;
 		}
 		else 
@@ -527,39 +547,44 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 				return DAE_ERR_QUERY_NO_MATCH;
 			}
 			//a document was specified
-			pair< multimap< string, daeElement* >::iterator, multimap< string, daeElement* >::iterator> range;
-			range = elementsIDMap.equal_range( string( name ) );
-			multimap< string, daeElement* >::iterator i = range.first;
-			while ( i != range.second )
+			daeStringElementMap::const_iterator idItr = elementsIDMap.find( string( name ) );
+			if(idItr != elementsIDMap.end())
 			{
-				if ( col == (*i).second->getDocument() )
+				const daeElementPtrSet& elementSet = idItr->second;
+				for (daeElementPtrSet::const_iterator i = elementSet.begin(); i != elementSet.end(); ++i )
 				{
-					if ( count == index )
+					daeElement* element = *i;
+					if ( col == element->getDocument() )
 					{
-						*pElement = (*i).second;
-						return DAE_OK;
+						if ( count == index )
+						{
+							*pElement = element;
+							return DAE_OK;
+						}
+						count++;
 					}
-					count++;
 				}
-				++i;
 			}
+			
 			*pElement = NULL;
 			return DAE_ERR_QUERY_NO_MATCH;
 		}
 		else 
 		{ 
 			//no document specified
-			multimap< string, daeElement* >::iterator i = elementsIDMap.find( string( name ) );
+			daeStringElementMap::iterator i = elementsIDMap.find( string( name ) );
 			if ( index > (daeInt)elementsIDMap.count( string( name ) ) || i == elementsIDMap.end() )
 			{
 				*pElement = NULL;
 				return DAE_ERR_QUERY_NO_MATCH;
 			}
+			daeElementPtrSet& elementSet = i->second;
+			daeElementPtrSet::iterator elementItr = elementSet.begin();
 			for ( int x = 0; x < index; x++ )
 			{
-				++i;
+				++elementItr;
 			}
-			*pElement = i->second;
+			*pElement = *elementItr;
 			return DAE_OK;
 		}
 	}
@@ -650,21 +675,33 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 }
 
 vector<daeElement*> daeSTLDatabase::idLookup(const string& id) {
-	vector<daeElement*> matchingElements;
-	idMapRange range = elementsIDMap.equal_range(id);
-	for (idMapIter iter = range.first; iter != range.second; iter++)
-		matchingElements.push_back(iter->second);
-	return matchingElements;
+	daeStringElementMap::const_iterator idItr = elementsIDMap.find(id);
+	if(idItr != elementsIDMap.end())
+	{
+		const daeElementPtrSet& elementSet = idItr->second;
+		return vector<daeElement*>(elementSet.begin(), elementSet.end());
+	}
+	return vector<daeElement*>();
 }
 
 void daeSTLDatabase::typeLookup(daeInt typeID,
                                 vector<daeElement*>& matchingElements,
                                 daeDocument* doc) {
 	matchingElements.clear();
-	typeMapRange range = typeMap.equal_range(typeID);
-	for (typeMapIter iter = range.first; iter != range.second; iter++)
-		if (!doc  ||  doc == iter->second->getDocument())
-			matchingElements.push_back(iter->second);
+	daeTypeElementMap::const_iterator typeIter = typeMap.find(typeID);
+	if(typeIter != typeMap.end())
+	{
+		const daeElementPtrSet& elementSet = typeIter->second;
+		for (daeElementPtrSet::const_iterator iter = elementSet.begin(); iter != elementSet.end(); ++iter)
+		{
+			daeElement* element = *iter;
+			if (!doc  ||  doc == element->getDocument())
+			{
+				matchingElements.push_back(element);
+			}
+		}
+	}
+	
 }
 
 void daeSTLDatabase::sidLookup(const string& sid,
@@ -672,9 +709,18 @@ void daeSTLDatabase::sidLookup(const string& sid,
                                daeDocument* doc) {
 	matchingElements.clear();
 	if (!sid.empty()) {
-		sidMapRange range = sidMap.equal_range(sid);
-		for (sidMapIter iter = range.first; iter != range.second; iter++)
-			if (!doc  ||  doc == iter->second->getDocument())
-				matchingElements.push_back(iter->second);
+		daeStringElementMap::iterator sidItr = sidMap.find(sid);
+		if(sidItr != sidMap.end())
+		{
+			const daeElementPtrSet& elementSet = sidItr->second;
+			for (daeElementPtrSet::const_iterator iter = elementSet.begin(); iter != elementSet.end(); ++iter)
+			{
+				daeElement* element = *iter;
+				if (!doc  ||  doc == element->getDocument())
+				{
+					matchingElements.push_back(element);
+				}
+			}
+		}		
 	}
 }
