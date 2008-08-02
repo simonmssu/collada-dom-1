@@ -434,7 +434,7 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 		else 
 		{ 
 			//no file specified - just name
-			return (daeUInt)elementsIDMap.count( string( name ) );
+			return (daeUInt)elementsIDMap[ name ].size();
 		}
 	}
 
