@@ -43,6 +43,15 @@ DAE::cleanup()
 	//Contributed by Nus - Wed, 08 Nov 2006
 	daeStringRef::releaseStringTable();
 	//----------------------
+
+    try
+    {
+        boost::filesystem::remove_all(cdom::getSafeTmpDir());
+    }
+    catch (...)
+    {
+        daeErrorHandler::get()->handleWarning("Could not remove temporary directory in DAE::cleanup()\n");
+    }
 }
 
 void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
@@ -242,7 +251,7 @@ daeInt DAE::saveAs(daeString uriToSaveTo, daeUInt documentIndex, daeBool replace
 		return DAE_ERROR;
 
 	daeString docUri = getDoc((int)documentIndex)->getDocumentURI()->getURI();
-	return writeCommon(docUri, uriToSaveTo, replace);
+	return writeCommon(docUri, uriToSaveTo, replace) ? DAE_OK : DAE_ERROR;
 }
 
 daeInt DAE::unload(daeString uri) {

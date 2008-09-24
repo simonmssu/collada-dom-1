@@ -17,17 +17,18 @@
 #include <dae.h>
 #include <dom/domConstants.h>
 #include <dom/domCOLLADA.h>
-#include <dom/domProfile_COMMON.h>
+#include <dom/domProfile_common.h>
 #include <dae/daeSIDResolver.h>
 #include <dom/domInstance_controller.h>
 #include <dae/domAny.h>
 #include <dae/daeErrorHandler.h>
 #include <dae/daeUtils.h>
-//#include <dom/domFx_surface_init_from_common.h>
+#include <dom/domImage.h>
 #include <modules/stdErrPlugin.h>
 #include <dom/domEllipsoid.h>
 #include <dom/domInput_global.h>
 #include <dom/domAsset.h>
+#include <dom/domLimits_sub.h>
 #include "domTest.h"
 
 // Windows memory leak checking
@@ -193,25 +194,26 @@ DefineTest(loadClipPlane) {
 
 
 DefineTest(renderStates) {
-	return testResult(false, __FILE__, __LINE__);
-
 	string memoryUri = "renderStates_create.dae";
 	string file = getTmpFile("renderStates.dae");
 	
 	DAE dae;
 	daeElement* root = dae.add(memoryUri);
 	CheckResult(root);
-	daeElement* pass = root->add("library_effects effect profile_CG technique pass");
+    daeElement* pass = root->add("library_effects effect profile_CG technique pass");
 	CheckResult(pass);
-	pass->add("color_clear")->setCharData("0 0 0 0");
-	pass->add("depth_mask")->setAttribute("value", "true");
-	pass->add("cull_face_enable")->setAttribute("value", "true");
-	pass->add("blend_enable")->setAttribute("value", "true");
-	pass->add("blend_func_separate")->setAttribute("value", "true");
-	pass->add("cull_face")->setAttribute("value", "FRONT");
-	pass->add("polygon_offset_fill_enable")->setAttribute("value", "true");
-	pass->add("clear_color")->setAttribute("value", "0 0 0 0");
-	
+
+    domCg_pass::domEvaluate* evaluate = daeSafeCast<domCg_pass::domEvaluate>(pass->add("evaluate"));
+	evaluate->add("color_clear")->setCharData("0 0 0 0");
+
+    domCg_pass::domStates* states = daeSafeCast<domCg_pass::domStates>(pass->add("states"));
+    states->add("depth_mask")->setAttribute("value", "true");
+	states->add("cull_face_enable")->setAttribute("value", "true");
+	states->add("blend_enable")->setAttribute("value", "true");
+	states->add("blend_func_separate")->setAttribute("value", "true");
+	states->add("cull_face")->setAttribute("value", "FRONT");
+	states->add("polygon_offset_fill_enable")->setAttribute("value", "true");
+
 	// Write the document to disk
 	CheckResult(dae.writeTo(memoryUri, file));
 
@@ -222,7 +224,6 @@ DefineTest(renderStates) {
 
 	// Check default attribute value suppression
 	CheckResult(root->getDescendant("depth_mask")->isAttributeSet("value") == false);
-	CheckResult(root->getDescendant("clear_color")->isAttributeSet("value") == false);
 	CheckResult(root->getDescendant("color_clear")->getCharData() != "");
 	CheckResult(root->getDescendant("polygon_offset_fill_enable")->isAttributeSet("value"));
 		
@@ -339,6 +340,7 @@ DefineTest(extraTypeTest) {
 	           *expectedTypesElt = root->getDescendant("expected_types");
 	CheckResult(technique && expectedTypesElt);
 
+    // read expected type names from <expected_types> element
 	istringstream expectedTypesStream(expectedTypesElt->getCharData());
 	vector<string> expectedTypes;
 	string tmp;
@@ -347,6 +349,7 @@ DefineTest(extraTypeTest) {
 
 	daeElementRefArray elements = technique->getChildren();
 
+    // compare expected types with direct children of technique
 	CheckResult(expectedTypes.size() == elements.getCount()-1);
 	for (size_t i = 0; i < elements.getCount()-1; i++) {
 		ostringstream msg;
@@ -477,17 +480,13 @@ string getCharData(daeElement* el) {
 }
 
 daeURI* getTextureUri(const string& samplerSid, daeElement& effect) {
-	daeElement* sampler = findChildByName(resolveSid(samplerSid, effect), "sampler2D");
-	string surfaceSid = getCharData(findChildByName(sampler, "source"));
-	daeElement* surface = findChildByName(resolveSid(surfaceSid, effect), "surface");
-	domImage* image = daeSafeCast<domImage>(
-		resolveID(getCharData(findChildByName(surface, "init_from")).c_str(), *effect.getDocument()));
-	if (image && image->getInit_from()) {
-		if(image->getInit_from()->getRef()) {
-			return &(image->getInit_from()->getRef()->getValue());
-		}
-	}
-	return 0;
+    daeElement* sampler = findChildByName(resolveSid(samplerSid, effect), "sampler2D");
+    daeElement* instanceImage = findChildByName(sampler, "instance_image");
+    xsAnyURI imageUrl = daeSafeCast<domInstance_image>(instanceImage)->getUrl();
+    domImage* image = daeSafeCast<domImage>(imageUrl.getElement());
+    if (image && image->getInit_from() && image->getInit_from()->getRef())
+        return &image->getInit_from()->getRef()->getValue();
+    return 0;
 }
 
 DefineTest(getTexture) {
@@ -525,7 +524,6 @@ DefineTest(removeElement) {
 	return testResult(true);
 }
 
-
 void nameArraySet(domList_of_names& names, size_t index, const char* name) {
 	*(daeStringRef*)&names[index] = name;
 }
@@ -536,11 +534,11 @@ void nameArrayAppend(domList_of_names& names, const char* name) {
 }
 
 DefineTest(nameArray) {
-	domList_of_names names;
+    domList_of_names names;
 	for (int i = 0; i < 10; i++)
 		nameArrayAppend(names, (string("name") + toString(i)).c_str());
 	for (int i = 0; i < 10; i++) {
-		CheckResult( string("name") + toString(i) == string(names[i]));
+        CheckResult(string("name") + toString(i) == string(names[i]));
 	}
 	
 	return testResult(true);
@@ -1103,7 +1101,7 @@ DefineTest(uriBase) {
 	daeURI uri(dae, cdom::nativePathToUri(lookupTestFile("uri.dae")));
 	CheckResult(dae.open(uri.str()));
 	domImage::domInit_from* initFrom = dae.getDatabase()->typeLookup<domImage::domInit_from>().at(0);
-	CheckResult(initFrom->getRef()->getValue().pathDir() == uri.pathDir());
+    CheckResult(initFrom->getRef()->getValue().pathDir() == uri.pathDir());
 	return testResult(true);
 }
 
@@ -1157,35 +1155,47 @@ DefineTest(unusedTypeCheck) {
 	//   InputGlobal
 	// Also, <any> doesn't use a single global meta, so it'll also show up in the
 	// set of elements that don't have metas.
+    //
+    // That was the situation for 1.4.
 	set<int> expectedUnusedTypes;
 	expectedUnusedTypes.insert(domEllipsoid::ID());
 	expectedUnusedTypes.insert(domEllipsoid::domSize::ID());
-	expectedUnusedTypes.insert(domInput_global::ID());
+    expectedUnusedTypes.insert(domInput_global::ID());
 	expectedUnusedTypes.insert(domAny::ID());
 
-	// Collect the list of types that don't have a corresponding meta defined
+    // In 1.5 these unused elements have been introduced:
+    expectedUnusedTypes.insert(domImage_source::ID());
+    expectedUnusedTypes.insert(domFx_sampler::ID());
+    expectedUnusedTypes.insert(domFx_rendertarget::ID());
+    expectedUnusedTypes.insert(domGles2_newparam::ID());
+    expectedUnusedTypes.insert(domLimits_sub::ID());
+    expectedUnusedTypes.insert(domTargetable_float4::ID());
+    expectedUnusedTypes.insert(domCommon_int_or_param::ID());
+
+    // Collect the list of types that don't have a corresponding meta defined
 	set<int> actualUnusedTypes;
 	const daeMetaElementRefArray &metas = dae.getAllMetas();
 	for (size_t i = 0; i < metas.getCount(); i++)
 		if (!metas[i])
 			actualUnusedTypes.insert((int)i);
 
-	// Make sure the set of unused types matches what we expect
+    // Make sure the set of unused types matches what we expect
 	return testResult(expectedUnusedTypes == actualUnusedTypes);
 }
 
 
-DefineTest(domCommon_transparent_type) {
-	DAE dae;
+DefineTest(domFx_common_transparent) {
+
+    DAE dae;
 	CheckResult(dae.open(lookupTestFile("cube.dae")));
 
-	domFx_common_transparent* transparent =
-		dae.getDatabase()->typeLookup<domFx_common_transparent>().at(0);
+    domFx_common_transparent* transparent =
+        dae.getDatabase()->typeLookup<domFx_common_transparent>().at(0);
 
 	CheckResult(transparent->getColor() != NULL);
 	CheckResult(transparent->getParam() == NULL);
 	CheckResult(transparent->getTexture() == NULL);
-	CheckResult(transparent->getOpaque() == FX_OPAQUE_A_ONE);
+    CheckResult(transparent->getOpaque() == FX_OPAQUE_A_ONE);
 
 	return testResult(true);
 };
@@ -1200,7 +1210,7 @@ DefineTest(autoResolve) {
 
 	{
 		// Make sure the IDREF_array element had all its daeIDRef objects resolved
-		xsIDREFS& idRefs = database.typeLookup<domIdref_array>().at(0)->getValue();
+        xsIDREFS& idRefs = database.typeLookup<domIdref_array>().at(0)->getValue();
 		for (size_t i = 0; i < idRefs.getCount(); i++) {
 			CheckResult(idRefs[i].getElement());
 		}
@@ -1208,9 +1218,17 @@ DefineTest(autoResolve) {
 		domInstance_controller& ic = *database.typeLookup<domInstance_controller>().at(0);
 		CheckResult(ic.getUrl().getElement());
 
-// 		domFx_surface_init_from_common& initFrom =
-// 			*database.typeLookup<domFx_surface_init_from_common>().at(0);
-// 		CheckResult(initFrom.getValue().getElement());
+        // In COLLADA 1.5 there is no xsIDREF anymore
+        //domImage::domInit_from & initFrom =
+        //    *database.typeLookup<domImage::domInit_from>().at(0);
+        //if (initFrom.getRef())
+        //{
+        //    CheckResult(initFrom.getRef()->getValue().getElement());
+        //}
+        //else
+        //{
+        //    CheckResult(false);
+        //}
 	}
 
 	// When you're modifying a new document or creating a new one and you create some
@@ -1223,7 +1241,7 @@ DefineTest(autoResolve) {
 	CheckResult(root->add("library_geometries geometry mesh source IDREF_array"));
 	daeElement* geom = root->getDescendant("geometry");
 	geom->setAttribute("id", "myGeom");
-	xsIDREFS& idRefs = database.typeLookup<domIdref_array>().at(0)->getValue();
+    xsIDREFS& idRefs = database.typeLookup<domIdref_array>().at(0)->getValue();
 	idRefs.append(daeIDRef("myGeom"));
 
 	// Create a <library_nodes> with a <node> that we'll instantiate via <instance_node>
@@ -1238,10 +1256,17 @@ DefineTest(autoResolve) {
 	instanceNode.setUrl("#myNode");
 	instanceGeom.setUrl("#myGeom");
 
+	// Create a <surface> with an <init_from> to test ID refs
+    domImage_source::domRef* ref = daeSafeCast<domImage_source::domRef>(
+        root->add("library_images image init_from ref"));
+    ref->setValue("myGeom");
+
 	// Make sure everything resolves automatically
 	CheckResult(idRefs[0].getElement() == geom);
 	CheckResult(instanceGeom.getUrl().getElement() == geom);
-	CheckResult(instanceNode.getUrl().getElement() == node1);
+    // In COLLADA 1.5 there is no xsIDREF anymore
+    //CheckResult(ref->getValue().getElement() == geom);
+    CheckResult(instanceNode.getUrl().getElement() == node1);
 
 	return testResult(true);
 }
@@ -1318,7 +1343,7 @@ DefineTest(charEncoding) {
 	dae.setCharEncoding(DAE::Latin1);
 	daeElement* elt = dae.add(file)->add("asset contributor comments");
 	CheckResult(elt);
-	elt->setCharData("Ã¦ Ã¸ Ã¥ Ã¼ Ã¤ Ã¶");
+	elt->setCharData("æ ø å ü ä ö");
 	CheckResult(dae.writeAll());
 	dae.clear();
 	CheckResult(dae.open(file));
@@ -1412,6 +1437,55 @@ DefineTest(spuriousQuotes) {
 	return testResult(true);
 }
 
+
+DefineTest(zaeLoading) {
+    DAE dae;
+
+    // check if root document is loaded
+    std::string testFile = lookupTestFile("duck.zae");
+    domCOLLADA* root = dae.open(testFile);
+    CheckResult(root);
+
+    // load sibling doc to root doc
+    domInstance_with_extra* instanceVisualScene = daeSafeCast<domInstance_with_extra>(root->getDescendant("instance_visual_scene"));
+    CheckResult(instanceVisualScene);
+    daeURI visualSceneURI = instanceVisualScene->getUrl();
+    domVisual_scene* visualScene = daeSafeCast<domVisual_scene>(visualSceneURI.getElement());
+    CheckResult(visualScene);
+
+    // load doc from internal archive
+    domInstance_image* instanceImage = daeSafeCast<domInstance_image>(visualScene->getDocument()->getDomRoot()->getDescendant("instance_image"));
+    CheckResult(instanceImage);
+    daeURI imageURI = instanceImage->getUrl();
+    domImage* image = daeSafeCast<domImage>(imageURI.getElement());
+    CheckResult(image);
+
+    // check for file in sub dir
+    domImage_source::domRef* ref = daeSafeCast<domImage_source::domRef>(image->getDescendant("ref"));
+    xsAnyURI imageFileURI = ref->getValue();
+    bool imageFileExists = boost::filesystem::exists( cdom::uriToNativePath( imageFileURI.str() ) );
+    CheckResult(imageFileExists);
+
+    // load doc from sub dir in internal archive
+    domInstance_geometry* instanceGeometry = daeSafeCast<domInstance_geometry>(visualScene->getDocument()->getDomRoot()->getDescendant("instance_geometry"));
+    CheckResult(instanceGeometry);
+    daeURI geometryURI = instanceGeometry->getUrl();
+    domGeometry* geometry = daeSafeCast<domGeometry>(geometryURI.getElement());
+    CheckResult(geometry);
+
+    return testResult(true);
+}
+
+DefineTest(zaeIllegalArchive) {
+    DAE dae;
+
+    // check if root document is loaded
+    std::string testFile = lookupTestFile("illegal_archive.zae");
+    domCOLLADA* root = dae.open(testFile);
+    CheckResult(!root);
+
+    return testResult(true);
+}
 
 // DefineTest(hauntedHouse) {
 // 	DAE dae;
@@ -1533,7 +1607,7 @@ int main(int argc, char* argv[]) {
 
 	dataPath() = (fs::path(argv[0]).branch_path()/"domTestData/").normalize();
 	if (!fs::exists(dataPath()))
-		dataPath() = (fs::path(argv[0]).branch_path()/"../../test/data/").normalize();
+        dataPath() = (fs::path(argv[0]).branch_path()/"../../test/1.5/data/").normalize();
 	tmpPath() = dataPath() / "tmp";
 	tmpDir tmp(tmpPath(), !leaveTmpFiles);
 

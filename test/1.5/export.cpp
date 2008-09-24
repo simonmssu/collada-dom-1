@@ -100,12 +100,12 @@ testResult addInput(daeElement* triangles,
                     const string& semantic,
                     const string& srcID,
                     int offset) {
-	domInput_local_offset* input = daeSafeCast<domInput_local_offset>(triangles->add("input"));
+    domInput_local_offset* input = daeSafeCast<domInput_local_offset>(triangles->add("input"));
 	CheckResult(input);
 	input->setSemantic(semantic.c_str());
 	input->setOffset(offset);
-	daeURI uriref(*input, makeUriRef(srcID));
-	input->setSource(uriref);
+    domUrifragment source(*triangles->getDAE(), srcID);
+    input->setSource(source);
 	if (semantic == "TEXCOORD")
 		input->setSet(0);
 	return testResult(true);
@@ -201,20 +201,13 @@ testResult addEffect(daeElement* root) {
 	effect->setAttribute("id", "cubeEffect");
 	SafeAdd(effect, "profile_COMMON", profile);
 
-	// Add a <surface>
-	SafeAdd(profile, "newparam", newparam);
-	newparam->setAttribute("sid", "surface");
-	SafeAdd(newparam, "surface", surface);
-	surface->setAttribute("type", "2D");
-	surface->add("init_from")->setCharData("img");
-
 	// Add a <sampler2D>
-	newparam = profile->add("newparam");
+    SafeAdd(profile, "newparam", newparam);
 	CheckResult(newparam);
 	newparam->setAttribute("sid", "sampler");
 	SafeAdd(newparam, "sampler2D", sampler);
-	sampler->add("source")->setCharData("surface");
-	sampler->add("minfilter")->setCharData("LINEAR_MIPMAP_LINEAR");
+    daeSafeCast<domInstance_image>(sampler->add("instance_image"))->setUrl("#img");
+	sampler->add("minfilter")->setCharData("LINEAR");
 	sampler->add("magfilter")->setCharData("LINEAR");
 
 	SafeAdd(profile, "technique", technique);
